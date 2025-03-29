@@ -158,7 +158,7 @@ export const ThemePreview = ({
   )
 
   return (
-    <div className={darkMode ? "dark" : ""}>
+    <div >
       <div className="rounded-lg border shadow-sm overflow-hidden transition-all" style={previewStyle}>
         <div className="bg-[var(--preview-card)] p-4 border-b flex flex-col md:flex-row md:items-center justify-between gap-4">
           <h2
@@ -176,7 +176,7 @@ export const ThemePreview = ({
             </Tabs>
             <div className="flex items-center space-x-2">
               <Sun className="h-4 w-4 text-gray-500" />
-              <Switch checked={darkMode} onCheckedChange={setDarkMode} id="dark-mode" className="text-gray-500" />
+              <Switch checked={darkMode} onCheckedChange={setDarkMode} id="dark-mode" className="border-gray-400" />
               <Moon className="h-4 w-4 text-gray-500" />
             </div>
           </div>
