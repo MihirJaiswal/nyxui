@@ -39,7 +39,7 @@ export default function Header() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full transition-all duration-300 border-b",
+        "sticky top-0 z-50 w-full transition-all duration-300 bg-card/50 border-b",
         scrolled ? "bg-background/85 backdrop-blur-xl shadow-sm" : "bg-background/50 backdrop-blur-sm",
       )}
     >
@@ -47,13 +47,15 @@ export default function Header() {
         {/* Logo & Desktop Navigation */}
         <div className="flex items-center space-x-4">
           <Link href="/" className="group flex items-center gap-2 transition-all duration-300 hover:opacity-90">
-            <div className="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-primary to-primary/80 shadow-md group-hover:shadow-primary/20 transition-all duration-300">
+            <div className="relative flex items-center justify-center overflow-hidden rounded-full shadow-md group-hover:shadow-primary/20 transition-all duration-300">
               <Image
                 src="/logo.png"
                 alt="Logo"
-                width={40}
-                height={40}
-                className="scale-100 group-hover:scale-110 transition-transform duration-300"
+                width={80}
+                height={80}
+                quality={100}
+                loading="lazy"
+                className="scale-100 group-hover:scale-105 transition-transform duration-300 w-10"
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
