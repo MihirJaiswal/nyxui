@@ -1,75 +1,102 @@
 import React from "react";
-import clsx from "clsx";
 
 export type GradientButtonProps = {
-  variant?: "animated" | "fill" | "slide-up";
-  size?: "default" | "sm" | "lg";
-  gradientFrom?: string;
-  gradientTo?: string;
+  variant?: "pulse" | "glow" | "sweep" | "shine" | "outline";
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
+  theme?: "sunset" | "ocean" | "forest" | "neon" | "berry" | "custom";
+  customGradient?: string;
+  rounded?: "full" | "md" | "lg" | "none";
+  shadow?: boolean;
+  hoverEffect?: "scale" | "brightness" | "contrast" | "none";
+  className?: string;
   children: React.ReactNode;
 };
 
 export const GradientButton = ({
-  variant = "fill",
-  size = "default",
-  gradientFrom = "pink-500",
-  gradientTo = "violet-600",
+  variant = "glow",
+  size = "md",
+  theme = "sunset",
+  customGradient,
+  rounded = "md",
+  shadow = true,
+  hoverEffect = "brightness",
+  className = "",
   children,
 }: GradientButtonProps) => {
-  const baseClasses =
-    "inline-flex items-center justify-center rounded-md font-medium text-white transition-all";
   const sizeClasses = {
+    xs: "h-6 px-3 text-xs",
     sm: "h-8 px-4 text-sm",
-    default: "h-12 px-6",
-    lg: "h-14 px-8 text-lg",
-  };
-  const gradientMap: Record<string, Record<string, string>> = {
-    "pink-500": {
-      "violet-600": "bg-gradient-to-r from-pink-500 to-violet-600 hover:brightness-110",
-      "purple-600": "bg-gradient-to-r from-pink-500 to-purple-600 hover:brightness-110",
-    },
-    "blue-500": {
-      "indigo-600": "bg-gradient-to-r from-blue-500 to-indigo-600 hover:brightness-110",
-    },
+    md: "h-10 px-5 text-base",
+    lg: "h-12 px-6 text-lg",
+    xl: "h-14 px-8 text-xl",
   };
 
-  if (variant === "fill") {
-    const gradientClasses =
-      gradientMap[gradientFrom]?.[gradientTo] ||
-      "bg-gradient-to-r from-pink-500 to-violet-600 hover:brightness-110";
+  const roundedClasses = {
+    none: "rounded-none",
+    md: "rounded-md",
+    lg: "rounded-lg",
+    full: "rounded-full",
+  };
+
+  const hoverClasses = {
+    scale: "hover:scale-105 transition-transform duration-300",
+    brightness: "hover:brightness-110 transition-all duration-300",
+    contrast: "hover:contrast-125 transition-all duration-300",
+    none: "",
+  };
+
+  const shadowClass = shadow ? "shadow-lg" : "";
+
+  const themeGradients = {
+    sunset: "bg-gradient-to-r from-amber-500 via-orange-600 to-pink-500",
+    ocean: "bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600",
+    forest: "bg-gradient-to-r from-emerald-400 via-green-500 to-teal-600",
+    neon: "bg-gradient-to-r from-green-400 via-purple-500 to-pink-500",
+    berry: "bg-gradient-to-r from-fuchsia-500 via-purple-600 to-indigo-500",
+    custom: customGradient || "bg-gradient-to-r from-violet-500 to-fuchsia-500",
+  };
+
+  const baseClasses = `inline-flex items-center justify-center font-medium text-white transition-all ${sizeClasses[size]} ${roundedClasses[rounded]} ${shadowClass} ${hoverClasses[hoverEffect]}`;
+
+  if (variant === "pulse") {
     return (
-      <button className={clsx(baseClasses, sizeClasses[size], gradientClasses)}>
-        {children}
+      <button className={`${baseClasses} ${themeGradients[theme]} relative overflow-hidden group ${className}`}>
+        <span className="relative z-10">{children}</span>
+        <span className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300 ease-in-out"></span>
+        <span className="absolute inset-0 animate-pulse bg-white opacity-0 group-hover:opacity-10"></span>
       </button>
     );
   }
-  if (variant === "animated") {
+
+  if (variant === "glow") {
     return (
-      <button className="relative inline-flex overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
-        <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
-        <span className={clsx("inline-flex w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 backdrop-blur-3xl text-white", sizeClasses[size])}>
-          {children}
-        </span>
+      <button className={`${baseClasses} ${themeGradients[theme]} relative group ${className}`}>
+        <span className="relative z-10">{children}</span>
+        <span className="absolute -inset-1 rounded-lg blur opacity-0 group-hover:opacity-20 transition duration-1000 group-hover:duration-200"></span>
       </button>
     );
   }
-  if (variant === "slide-up") {
+
+  if (variant === "sweep") {
     return (
-      <button className={clsx(
-          "relative inline-flex items-center justify-center overflow-hidden rounded-md border border-violet-600 font-medium text-violet-600 transition-all",
-          sizeClasses[size],
-          "before:absolute before:inset-0 before:-z-10 before:translate-y-full before:bg-gradient-to-r before:from-violet-600 before:to-indigo-600 before:transition-transform before:duration-300 hover:text-white hover:before:translate-y-0"
-        )}>
-        {children}
+      <button className={`${baseClasses} ${themeGradients[theme]} relative overflow-hidden group ${className}`}>
+        <span className="relative z-10">{children}</span>
+        <span className="absolute top-0 -right-full h-full w-1/2 z-0 block transform -skew-x-12 bg-white opacity-20 group-hover:right-0 transition-all duration-700"></span>
       </button>
     );
   }
+
+  if (variant === "shine") {
+    return (
+      <button className={`${baseClasses} ${themeGradients[theme]} relative overflow-hidden group ${className}`}>
+        <span className="relative z-10">{children}</span>
+        <span className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 group-hover:translate-x-full transition-all duration-1000 ease-in-out"></span>
+      </button>
+    );
+  }
+
   return (
-    <button className={clsx(
-      baseClasses,
-      sizeClasses[size],
-      "bg-gradient-to-r from-pink-500 to-violet-600 hover:brightness-110"
-    )}>
+    <button className={`${baseClasses} ${themeGradients[theme]} ${className}`}>
       {children}
     </button>
   );
