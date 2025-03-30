@@ -38,6 +38,9 @@ export const InstallationSection = ({ componentData }: { componentData: Componen
   const [copiedIndex, setCopiedIndex] = useState<string | null>(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
   
+  // Check if any dependencies have setup information
+  const hasSetupInfo = componentData.dependencies?.some(dependency => dependency.setup);
+  
   React.useEffect(() => {
     const isDark = document.documentElement.classList.contains('dark');
     setIsDarkMode(isDark);
@@ -215,11 +218,78 @@ export const InstallationSection = ({ componentData }: { componentData: Componen
                 </div>
               )}
               
-              {/* Step 2: Copy Component Code */}
+              {/* Step 2: Setup Configuration (If Available) */}
+              {hasSetupInfo && (
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold flex items-center gap-2">
+                    <span className="flex items-center justify-center rounded-full bg-primary/10 w-7 h-7 text-xs font-bold text-primary">2</span>
+                    Setup Configuration
+                  </h3>
+                  
+                  <CollapsibleSection 
+                    title="Setup Files" 
+                    icon={<FileCode className="size-4 text-primary" />}
+                  >
+                    <div className="p-6 space-y-6">
+                      {componentData.dependencies?.filter(dependency => dependency.setup).map((dependency) => (
+                        <div key={`setup-${dependency.name}`} className="space-y-4">
+                          <p className="font-medium text-sm flex items-center gap-2">
+                            <span className="w-2 h-2 rounded-full bg-primary inline-block"></span>
+                            {dependency.name} Setup
+                            {dependency.setup?.description && (
+                              <span className="text-xs text-muted-foreground ml-2">
+                                - {dependency.setup.description}
+                              </span>
+                            )}
+                          </p>
+                          
+                          {dependency.setup?.file && dependency.setup?.code && (
+                            <div className="space-y-2">
+                              <p className="text-xs text-muted-foreground">
+                                Create file: <code className="px-1.5 py-0.5 bg-muted rounded">{dependency.setup.file}</code>
+                              </p>
+                              <div className="relative">
+                                <div className="rounded-lg border overflow-hidden">
+                                  <SyntaxHighlighter 
+                                    language="typescript" 
+                                    style={codeStyle}
+                                    customStyle={{
+                                      margin: 0,
+                                      padding: '12px',
+                                      borderRadius: '0.5rem',
+                                      fontSize: '12px',
+                                    }}
+                                  >
+                                    {dependency.setup.code}
+                                  </SyntaxHighlighter>
+                                </div>
+                                <Button 
+                                  variant="ghost" 
+                                  size="icon" 
+                                  className="absolute right-2 top-2 opacity-70 hover:opacity-100 h-6 w-6"
+                                  onClick={() => handleCopyClick(dependency.setup?.code || '', `${dependency.name}-setup`)}
+                                >
+                                  {copiedIndex === `${dependency.name}-setup` ? 
+                                    <Check className="size-3.5" /> : 
+                                    <Copy className="size-3.5" />
+                                  }
+                                  <span className="sr-only">Copy setup code</span>
+                                </Button>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </CollapsibleSection>
+                </div>
+              )}
+              
+              {/* Step 3: Copy Component Code */}
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold flex items-center gap-2">
                   <span className="flex items-center justify-center rounded-full bg-primary/10 w-7 h-7 text-xs font-bold text-primary">
-                    {componentData.dependencies && componentData.dependencies.length > 0 ? 3 : 2}
+                    {componentData.dependencies && componentData.dependencies.length > 0 ? (hasSetupInfo ? 3 : 2) : 1}
                   </span>
                   Copy Component Code
                 </h3>
@@ -260,15 +330,14 @@ export const InstallationSection = ({ componentData }: { componentData: Componen
                 </CollapsibleSection>
               </div>
 
-              {/* Step 3: update the import paths to match your project setup */}
+              {/* Final Step: Update import paths */}
               <div className="space-y-4">
                 <p className="text-lg font-semibold flex items-center gap-2">
                   <span className="flex items-center justify-center rounded-full bg-primary/10 w-7 h-7 text-xs font-bold text-primary">
-                    {componentData.dependencies && componentData.dependencies.length > 0 ? 3 : 2}
+                    {componentData.dependencies && componentData.dependencies.length > 0 ? (hasSetupInfo ? 4 : 3) : 2}
                   </span>
                   Update the import paths to match your project setup.
                 </p>
-                
               </div>
             </div>
           </TabsContent>

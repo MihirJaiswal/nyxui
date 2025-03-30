@@ -7,6 +7,11 @@ interface Dependency {
       yarn: string;
       bun: string;
     };
+    setup?: {
+      description: string;
+      file: string;
+      code: string;
+    };
   }
 
   export interface ComponentData {
