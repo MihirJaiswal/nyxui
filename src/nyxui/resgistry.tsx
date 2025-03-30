@@ -6,6 +6,7 @@ import { expandingCircleMenuData } from "@/nyxui/metadata/expanding-circle-menu.
 import { floatingCardData } from "@/nyxui/metadata/floating-card.meta";
 import { glassmorphismDepthData } from "@/nyxui/metadata/glassmorphism-depth.meta";
 import { liquidMetalButtonData } from "@/nyxui/metadata/liquid-metal-button.meta";
+import { morphingBlobData } from "@/nyxui/metadata/morphing-blob.meta";
 
 export const componentsData = {
   "gradient-button": gradientButtonData,
@@ -16,4 +17,5 @@ export const componentsData = {
   "majestic-card": floatingCardData,
   "glassmorphism-depth": glassmorphismDepthData,
   "liquid-metal-button": liquidMetalButtonData,
+  "morphing-blob": morphingBlobData,
 };
