@@ -1,7 +1,7 @@
 import React from "react";
 import { GradientButton } from "@/nyxui/components/GradientButton";
 
-const GradientButtonDemo = () => {
+export const GradientButtonDemo = () => {
   return (
     <>
       <GradientButton variant="animated">Animated Gradient</GradientButton>
@@ -11,4 +11,3 @@ const GradientButtonDemo = () => {
   );
 }
 
-export default GradientButtonDemo;

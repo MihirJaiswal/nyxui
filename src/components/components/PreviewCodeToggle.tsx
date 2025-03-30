@@ -33,7 +33,6 @@ export const PreviewCodeToggle = ({
   const { theme, systemTheme } = useTheme()
   const [currentTheme, setCurrentTheme] = useState<string | undefined>(undefined)
 
-  // Determine the current theme
   useEffect(() => {
     const resolvedTheme = theme === 'system' ? systemTheme : theme
     setCurrentTheme(resolvedTheme)
@@ -49,7 +48,6 @@ export const PreviewCodeToggle = ({
     }
   }
 
-  // Use prism for light mode and vscDarkPlus for dark mode
   const codeStyle = currentTheme === 'light' ? prism : vscDarkPlus
 
   return (

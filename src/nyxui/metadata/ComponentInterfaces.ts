@@ -1,5 +1,3 @@
-// src/metadata/ComponentInterfaces.ts
-
 interface Dependency {
     name: string;
     description: string;
@@ -10,7 +8,7 @@ interface Dependency {
       bun: string;
     };
   }
-  
+
   export interface ComponentData {
     name: string;
     description: string;
@@ -20,6 +18,7 @@ interface Dependency {
     examples: Example[];
     componentCode: string;
     dependencies: Dependency[];
+    category: string;
   }
   
   export interface PropGroup {

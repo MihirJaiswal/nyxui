@@ -6,10 +6,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ComponentData } from '@/nyxui/metadata/ComponentInterfaces';
 import Image from 'next/image';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { vscDarkPlus, oneLight, solarizedlight, ghcolors, prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { vscDarkPlus, prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
-// You can change this to select your preferred light theme
-// Options: oneLight, solarizedLight, ghcolors, prism
 const LIGHT_THEME = prism;
 
 const CollapsibleSection = ({ title, icon, defaultCollapsed = true, children }: { title: string; icon: React.ReactNode; defaultCollapsed?: boolean; children: React.ReactNode }) => {
@@ -40,12 +38,10 @@ export const InstallationSection = ({ componentData }: { componentData: Componen
   const [copiedIndex, setCopiedIndex] = useState<string | null>(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
   
-  // Check for dark mode on component mount and set up listener
   React.useEffect(() => {
     const isDark = document.documentElement.classList.contains('dark');
     setIsDarkMode(isDark);
     
-    // Optional: Set up a listener for theme changes
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         if (mutation.attributeName === 'class') {
@@ -66,7 +62,6 @@ export const InstallationSection = ({ componentData }: { componentData: Componen
     setTimeout(() => setCopiedIndex(null), 2000);
   };
   
-  // The code style based on dark/light mode
   const codeStyle = isDarkMode ? vscDarkPlus : LIGHT_THEME;
   
   return (
@@ -85,7 +80,6 @@ export const InstallationSection = ({ componentData }: { componentData: Componen
             </TabsList>
           </div>
           
-          {/* CLI Tab Content */}
           <TabsContent value="cli" className="p-6 space-y-6 bg-background">
             <div className="flex items-center gap-2 p-3 bg-primary/5 border rounded-lg">
               <div className="p-2 rounded-full bg-primary/10">
@@ -107,10 +101,8 @@ export const InstallationSection = ({ componentData }: { componentData: Componen
             </div>
           </TabsContent>
           
-          {/* Manual Tab Content - Dynamic Version */}
           <TabsContent value="manual" className="p-8 space-y-8 bg-background">
             <div className="space-y-6">
-              {/* Step 1: Install Dependencies - Dynamically generated */}
               {componentData.dependencies && componentData.dependencies.length > 0 && (
                 <div className="space-y-4">
                   <h3 className="text-lg font-semibold flex items-center gap-2">

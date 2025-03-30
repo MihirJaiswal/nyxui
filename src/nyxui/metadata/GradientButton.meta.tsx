@@ -1,13 +1,20 @@
-// src/nyxui/metadata/GradientButton.meta.tsx
 import React from "react";
 import type { ComponentData } from "./ComponentInterfaces";
 import { GradientButton } from "@/nyxui/components/GradientButton";
-import GradientButtonDemo from "@/nyxui/demos/GradientButtonDemo";
-import fs from "fs";
-import path from "path";
+import { GradientButtonDemo } from "@/nyxui/demos/GradientButtonDemo";
 
-const componentPath = path.join(process.cwd(), "src/nyxui/components/GradientButton.tsx");
-const GradientButtonSource = fs.readFileSync(componentPath, "utf8");
+
+const GradientButtonSource = `import { GradientButton } from "@/nyxui/components/GradientButton";
+
+export function GradientButtonDemo() {
+  return (
+    <>
+      <GradientButton variant="animated">Animated Gradient</GradientButton>
+      <GradientButton variant="fill">Gradient Fill</GradientButton>
+      <GradientButton variant="slide-up">Slide Up Effect</GradientButton>
+    </>
+  );
+}`
 
 export const gradientButtonData: ComponentData = {
   name: "Gradient Button",
@@ -25,7 +32,6 @@ export function GradientButtonDemo() {
   );
 }`,
   componentCode: GradientButtonSource,
-  // List of external dependencies required for the component with multiple package manager commands
   dependencies: [
     {
       name: "Tailwind CSS",
@@ -79,6 +85,7 @@ export function GradientButtonDemo() {
       ],
     },
   ],
+  category: "Buttons",
   examples: [
     {
       name: "Animated Gradient Button",
@@ -101,9 +108,7 @@ export function AnimatedGradientButton() {
     {
       name: "Slide Up Effect Button",
       preview: (
-        <GradientButton variant="slide-up">
-          Slide Up Effect
-        </GradientButton>
+        <GradientButton variant="slide-up">Slide Up Effect</GradientButton>
       ),
       filename: "GradientButton.tsx",
       code: `import { GradientButton } from "@/nyxui/components/GradientButton";

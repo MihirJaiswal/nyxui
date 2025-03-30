@@ -39,8 +39,8 @@ export default function Header() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full transition-all duration-300",
-        scrolled ? "bg-background/85 backdrop-blur-xl border-b shadow-sm" : "bg-background/50 backdrop-blur-sm",
+        "sticky top-0 z-50 w-full transition-all duration-300 border-b",
+        scrolled ? "bg-background/85 backdrop-blur-xl shadow-sm" : "bg-background/50 backdrop-blur-sm",
       )}
     >
       <div className="flex h-16 items-center justify-between px-4 md:px-8">

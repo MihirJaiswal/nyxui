@@ -1,5 +1,4 @@
-import React from "react"
-import { Copy, Github, ExternalLink, Check } from "lucide-react"
+import { Github, ExternalLink } from "lucide-react"
 import { notFound } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { ComponentSidebar } from "@/components/components/component-sidebar"
@@ -15,10 +14,8 @@ interface ComponentPageProps {
   }
 }
 
-const ComponentPage = async ({ params }: ComponentPageProps) => {
-  // Await the params before using its properties
-  const resolvedParams = await params
-  const component = resolvedParams.component
+const ComponentPage = ({ params }: ComponentPageProps) => {
+  const component = params.component
 
   if (!componentsData) {
     console.error("componentsData is not properly loaded")
@@ -48,9 +45,8 @@ const ComponentPage = async ({ params }: ComponentPageProps) => {
         <aside className="sticky top-16 self-start hidden md:block">
           <ComponentSidebar />
         </aside>
-        <main className="relative py-8 lg:py-10">
+        <main className="relative py-8 lg:py-10 px-6">
           <div className="mx-auto max-w-4xl space-y-10">
-            {/* Component Header */}
             <div className="space-y-4 border-b pb-8">
               <div className="flex items-center gap-3">
                 <h1 className="scroll-m-20 text-4xl font-bold tracking-tight">
@@ -75,7 +71,6 @@ const ComponentPage = async ({ params }: ComponentPageProps) => {
               </div>
             </div>
 
-            {/* Preview Section */}
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <h2 className="text-2xl font-semibold tracking-tight">Preview</h2>
@@ -100,10 +95,8 @@ const ComponentPage = async ({ params }: ComponentPageProps) => {
               </div>
             </div>
 
-            {/* Installation Section */}
             <InstallationSection componentData={componentData} />
 
-            {/* Documentation: Props */}
             <div className="space-y-4">
               <h2 className="text-2xl font-semibold tracking-tight">Props</h2>
               {componentData.props &&
@@ -135,7 +128,6 @@ const ComponentPage = async ({ params }: ComponentPageProps) => {
                 ))}
             </div>
 
-            {/* Documentation: Examples */}
             <div className="space-y-8">
               <h2 className="text-2xl font-semibold tracking-tight">Examples</h2>
               {componentData.examples &&
