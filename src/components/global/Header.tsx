@@ -51,11 +51,11 @@ export default function Header() {
               <Image
                 src="/logo.png"
                 alt="Logo"
-                width={80}
-                height={80}
+                width={200}
+                height={200}
                 quality={100}
                 loading="lazy"
-                className="scale-100 group-hover:scale-105 transition-transform duration-300 w-10"
+                className="scale-100 group-hover:scale-105 transition-transform duration-300 w-10 dark:w-12"
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>

@@ -215,157 +215,7 @@ export const InstallationSection = ({ componentData }: { componentData: Componen
                 </div>
               )}
               
-              {/* Step 2: Configure Tailwind */}
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold flex items-center gap-2">
-                  <span className="flex items-center justify-center rounded-full bg-primary/10 w-7 h-7 text-xs font-bold text-primary">
-                    {componentData.dependencies && componentData.dependencies.length > 0 ? 2 : 1}
-                  </span>
-                  Configure Tailwind CSS
-                </h3>
-                
-                <CollapsibleSection 
-                  title="tailwind.config.js" 
-                  icon={<FileCode className="size-4 text-primary" />}
-                >
-                  <div className="p-6">
-                    <div className="relative">
-                      <div className={`rounded-lg border overflow-hidden ${showFullConfig ? 'max-h-96 overflow-y-auto' : ''}`}>
-                        <SyntaxHighlighter 
-                          language="javascript" 
-                          style={codeStyle}
-                          customStyle={{
-                            margin: 0,
-                            padding: '12px',
-                            borderRadius: '0.5rem',
-                            fontSize: '12px',
-                            maxHeight: showFullConfig ? '24rem' : '16rem',
-                            overflow: 'auto'
-                          }}
-                          showLineNumbers
-                        >
-{`/** @type {import('tailwindcss').Config} */
-export default {
-  darkMode: ["class"],
-  content: [
-    './pages/**/*.{js,jsx}',
-    './components/**/*.{js,jsx}',
-    './app/**/*.{js,jsx}',
-    './src/**/*.{js,jsx}',
-  ],
-  prefix: "",
-  theme: {
-    container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
-    },
-    extend: {
-      colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-        },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
-      }
-    }
-  }
-}`}
-                        </SyntaxHighlighter>
-                      </div>
-                      {!showFullConfig && (
-                        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background to-transparent pointer-events-none" />
-                      )}
-                      <div className="flex justify-between mt-2">
-                        <Button 
-                          variant="outline" 
-                          size="sm" 
-                          onClick={() => setShowFullConfig(!showFullConfig)}
-                          className="text-xs"
-                        >
-                          {showFullConfig ? "Show Less" : "Show More"}
-                        </Button>
-                        <Button 
-                          variant="ghost" 
-                          size="icon" 
-                          className="h-6 w-6"
-                          onClick={() => handleCopyClick(`/** @type {import('tailwindcss').Config} */
-export default {
-  darkMode: ["class"],
-  content: [
-    './pages/**/*.{js,jsx}',
-    './components/**/*.{js,jsx}',
-    './app/**/*.{js,jsx}',
-    './src/**/*.{js,jsx}',
-  ],
-  prefix: "",
-  theme: {
-    container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
-    },
-    extend: {
-      colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-        },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
-      }
-    }
-  }
-}`, "tailwind-config")}
-                        >
-                          {copiedIndex === "tailwind-config" ? 
-                            <Check className="size-3.5" /> : 
-                            <Copy className="size-3.5" />
-                          }
-                          <span className="sr-only">Copy code</span>
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </CollapsibleSection>
-              </div>
-              
-              {/* Step 3: Copy Component Code */}
+              {/* Step 2: Copy Component Code */}
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold flex items-center gap-2">
                   <span className="flex items-center justify-center rounded-full bg-primary/10 w-7 h-7 text-xs font-bold text-primary">
@@ -408,6 +258,17 @@ export default {
                     </div>
                   </div>
                 </CollapsibleSection>
+              </div>
+
+              {/* Step 3: update the import paths to match your project setup */}
+              <div className="space-y-4">
+                <p className="text-lg font-semibold flex items-center gap-2">
+                  <span className="flex items-center justify-center rounded-full bg-primary/10 w-7 h-7 text-xs font-bold text-primary">
+                    {componentData.dependencies && componentData.dependencies.length > 0 ? 3 : 2}
+                  </span>
+                  Update the import paths to match your project setup.
+                </p>
+                
               </div>
             </div>
           </TabsContent>

@@ -14,8 +14,8 @@ interface ComponentPageProps {
   }
 }
 
-const ComponentPage = ({ params }: ComponentPageProps) => {
-  const component = params.component
+const ComponentPage = async ({ params }: ComponentPageProps) => {
+  const component = await params.component
 
   if (!componentsData) {
     console.error("componentsData is not properly loaded")
@@ -70,7 +70,6 @@ const ComponentPage = ({ params }: ComponentPageProps) => {
                 </Button>
               </div>
             </div>
-
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <h2 className="text-2xl font-semibold tracking-tight">Preview</h2>
@@ -94,9 +93,7 @@ const ComponentPage = ({ params }: ComponentPageProps) => {
                 />
               </div>
             </div>
-
             <InstallationSection componentData={componentData} />
-
             <div className="space-y-4">
               <h2 className="text-2xl font-semibold tracking-tight">Props</h2>
               {componentData.props &&
@@ -127,20 +124,19 @@ const ComponentPage = ({ params }: ComponentPageProps) => {
                   </div>
                 ))}
             </div>
-
             <div className="space-y-8">
               <h2 className="text-2xl font-semibold tracking-tight">Examples</h2>
               {componentData.examples &&
-                componentData.examples.map((example, index) => (
+                componentData.examples.map((example) => (
                   <div key={example.name} className="space-y-4">
-                 <PreviewCodeToggle
-                  preview={
-                    <div className="flex flex-wrap justify-center gap-4 p-10">
-                      {example.preview}
-                    </div>
-                  }
-                  code={example.code}
-                />
+                    <PreviewCodeToggle
+                      preview={
+                        <div className="flex flex-wrap justify-center gap-4 p-10">
+                          {example.preview}
+                        </div>
+                      }
+                      code={example.code}
+                    />
                   </div>
                 ))}
             </div>

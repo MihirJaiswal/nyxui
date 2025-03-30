@@ -2,19 +2,11 @@ import React from "react";
 import type { ComponentData } from "./ComponentInterfaces";
 import { GradientButton } from "@/nyxui/components/GradientButton";
 import { GradientButtonDemo } from "@/nyxui/demos/GradientButtonDemo";
+import fs from "fs";
+import path from "path";
 
-
-const GradientButtonSource = `import { GradientButton } from "@/nyxui/components/GradientButton";
-
-export function GradientButtonDemo() {
-  return (
-    <>
-      <GradientButton variant="animated">Animated Gradient</GradientButton>
-      <GradientButton variant="fill">Gradient Fill</GradientButton>
-      <GradientButton variant="slide-up">Slide Up Effect</GradientButton>
-    </>
-  );
-}`
+const componentPath = path.join(process.cwd(), "src/nyxui/components/GradientButton.tsx");
+const GradientButtonSource = fs.readFileSync(componentPath, "utf8");;
 
 export const gradientButtonData: ComponentData = {
   name: "Gradient Button",
