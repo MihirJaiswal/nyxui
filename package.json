@@ -40,9 +40,11 @@
     "@types/react": "^19.0.12",
     "@types/react-dom": "^19",
     "@types/react-syntax-highlighter": "^15.5.13",
+    "babel-plugin-macros": "^2.8.0",
     "eslint": "^9",
     "eslint-config-next": "15.2.4",
     "raw-loader": "^4.0.2",
+    "raw.macro": "^0.7.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

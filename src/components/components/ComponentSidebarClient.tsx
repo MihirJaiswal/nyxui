@@ -2,7 +2,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import React from "react"
-import { Circle, LayoutGrid, Pencil, Layers, MessageSquare, Menu, Settings, Share2, Lightbulb, Sparkles, ChevronRight } from "lucide-react"
+import { Circle, LayoutGrid, Pencil, Layers, MessageSquare, Menu, Settings, Share2, Lightbulb, Sparkles, ChevronRight, CreditCard, AppWindow, Zap,  } from "lucide-react"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { cn } from "@/lib/utils"
 
@@ -28,11 +28,13 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({ 
     "Data Display": Layers,
     "Feedback": MessageSquare,
     "Navigation": Menu,
-    "Overlays": Layers,
+    "Overlays": AppWindow,
     "Utils": Settings,
     "Buttons": Share2,
     "Animation": Sparkles,
     "UI Elements": Lightbulb,
+    "Cards": CreditCard,
+    "Effects": Zap
   }
   
   const activeCategory = categories.find(category =>
@@ -58,7 +60,6 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({ 
             <AccordionTrigger
               className={cn(
                 "py-2 px-2 text-sm hover:no-underline rounded-md transition-colors",
-                isActiveCategory ? "text-foreground font-medium" : "text-muted-foreground"
               )}
             >
               <div className="flex items-center gap-2">
@@ -67,7 +68,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({ 
               </div>
             </AccordionTrigger>
             <AccordionContent className="pb-1 pt-0 pl-2">
-              <div className="flex flex-col gap-1 pl-4 border-l border-border/50">
+              <div className="flex flex-col gap-1 pl-1 border-l border-border/50">
                 {category.items.map((item: CategoryItem) => {
                   const isActive = currentPath === item.href
                   return (
@@ -75,14 +76,14 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({ 
                       key={item.href}
                       href={item.href}
                       className={cn(
-                        "flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors hover:bg-muted group",
-                        isActive ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"
+                        "flex items-center gap-2 text-primary  rounded-md px-3 py-2 text-sm transition-colors hover:bg-muted group",
+                        isActive ? "font-medium bg-gray-100 dark:bg-zinc-800" : "font-normal"
                       )}
                     >
                       {isActive ? (
-                        <ChevronRight className="size-3 text-primary" />
+                        <ChevronRight className="size-3" />
                       ) : (
-                        <Circle className="size-1.5 group-hover:text-foreground" />
+                        null
                       )}
                       <span>{item.name}</span>
                     </Link>
