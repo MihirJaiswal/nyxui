@@ -29,7 +29,7 @@ export function PerspectiveImageDemo() {
               shadow={true}
               border={false}
               glare={true}
-              glareOpacity={0.2}
+              glareOpacity={0.8}
               borderRadius="8px"
             />
           </div>

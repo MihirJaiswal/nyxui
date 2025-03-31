@@ -13,6 +13,8 @@ import { animatedGradientBgData } from "./metadata/AnimatedGradientBg.meta";
 import { draggableElementData } from "./metadata/DraggableElement.meta";
 import { dynamicGridLayoutData } from "./metadata/DynamicGridLayout.meta";
 import { perspectiveImageData } from "./metadata/PerspectiveImage.meta";
+import { scrollAnimationTriggerData } from "./metadata/ScrollAnimationTrigger.meta";
+import { specialCardData } from "./metadata/SpecialCard.meta";
 
 export const componentsData = {
   "gradient-button": gradientButtonData,
@@ -30,4 +32,6 @@ export const componentsData = {
   "draggable-element": draggableElementData,
   "dynamic-grid-layout": dynamicGridLayoutData,
   "3d-perspective-image": perspectiveImageData,
+  "scroll-animation-trigger": scrollAnimationTriggerData,
+  "special-card": specialCardData 
 };
