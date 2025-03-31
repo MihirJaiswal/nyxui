@@ -9,6 +9,8 @@ import { liquidMetalButtonData } from "@/nyxui/metadata/liquid-metal-button.meta
 import { morphingBlobData } from "@/nyxui/metadata/morphing-blob.meta";
 import { threeDCardData } from "@/nyxui/metadata/ThreeDcard.meta";
 import { animatedCodeBlockData } from "@/nyxui/metadata/AnimatedCodeBlock.meta";
+import { animatedGradientBgData } from "./metadata/AnimatedGradientBg.meta";
+import { draggableElementData } from "./metadata/DraggableElement.meta";
 
 export const componentsData = {
   "gradient-button": gradientButtonData,
@@ -22,4 +24,6 @@ export const componentsData = {
   "morphing-blob": morphingBlobData,
   "3d-card": threeDCardData,
   "animated-code-block": animatedCodeBlockData,
+  "animated-gradient-background":animatedGradientBgData,
+  "draggable-element": draggableElementData,
 };
