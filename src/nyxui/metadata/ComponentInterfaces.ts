@@ -24,6 +24,7 @@ interface Dependency {
     componentCode: string;
     dependencies: Dependency[];
     category: string;
+    new?: boolean;
   }
   
   export interface PropGroup {

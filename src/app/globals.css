@@ -180,3 +180,44 @@
 ::-webkit-scrollbar-button {
   display: none;
 }
+
+
+
+.hide-scrollbar::-webkit-scrollbar {
+  width: 7px;
+  height: 4px;
+}
+
+.hide-scrollbar::-webkit-scrollbar-track {
+  background-color: #f7f7f7;
+  border-radius: 8px;
+}
+
+.hide-scrollbar::-webkit-scrollbar-thumb {
+  background: #e2e2e2;
+  border-radius: 8px;
+  border: 2px solid #f7f7f7;
+  transition: background 0.2s ease;
+  height: 8px;
+}
+
+.hide-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
+}
+
+/* Dark Mode Scrollbar */
+.dark .hide-scrollbar::-webkit-scrollbar-track {
+  background-color: #040405; /* zinc-900 */
+  border-radius: 8px;
+}
+
+.dark .hide-scrollbar::-webkit-scrollbar-thumb {
+  background: #252525; /* zinc-800 */
+  border-radius: 8px;
+  border: 2px solid #18181b;
+  transition: background 0.2s ease;
+}
+
+.dark .hide-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #1f1f20; /* zinc-700 */
+}

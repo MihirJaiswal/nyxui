@@ -1,14 +1,15 @@
 'use client'
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import React from "react"
-import { Circle, LayoutGrid, Pencil, Layers, MessageSquare, Menu, Settings, Share2, Lightbulb, Sparkles, ChevronRight, CreditCard, AppWindow, Zap,  } from "lucide-react"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { cn } from "@/lib/utils"
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import React, { useState, useEffect, useRef } from "react";
+import { cn } from "@/lib/utils";
+import { ChevronRight, Minus } from 'lucide-react';
 
 interface CategoryItem {
   name: string;
   href: string;
+  isNew?: boolean; // Added isNew property
 }
 
 interface CategoryType {
@@ -21,79 +22,94 @@ interface ComponentSidebarClientProps {
 }
 
 export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({ categories }) => {
-  const currentPath = usePathname()
-  const categoryIcons: Record<string, React.ElementType> = {
-    "Layout": LayoutGrid,
-    "Forms": Pencil,
-    "Data Display": Layers,
-    "Feedback": MessageSquare,
-    "Navigation": Menu,
-    "Overlays": AppWindow,
-    "Utils": Settings,
-    "Buttons": Share2,
-    "Animation": Sparkles,
-    "UI Elements": Lightbulb,
-    "Cards": CreditCard,
-    "Effects": Zap
-  }
+  const currentPath = usePathname();
+  const [isScrolling, setIsScrolling] = useState(false);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   
-  const activeCategory = categories.find(category =>
-    category.items.some(item => currentPath === item.href)
-  )?.category
-
+  useEffect(() => {
+    const scrollContainer = scrollContainerRef.current;
+    
+    if (!scrollContainer) return;
+    
+    let scrollTimer: NodeJS.Timeout;
+    
+    const handleScroll = () => {
+      setIsScrolling(true);
+      
+      // Clear the existing timer
+      clearTimeout(scrollTimer);
+      
+      // Set a new timer to hide the scrollbar after scrolling stops
+      scrollTimer = setTimeout(() => {
+        setIsScrolling(false);
+      }, 1000);
+    };
+    
+    scrollContainer.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      if (scrollContainer) {
+        scrollContainer.removeEventListener('scroll', handleScroll);
+      }
+      clearTimeout(scrollTimer);
+    };
+  }, []);
+  
   return (
-    <Accordion
-      type="multiple"
-      defaultValue={[activeCategory || '', ...categories.map((c) => c.category)]}
-      className="w-full"
+    <div
+      ref={scrollContainerRef}
+      className={cn(
+        "h-full overflow-y-auto transition-all duration-300 hide-scrollbar",
+        isScrolling
+          ? "pr-2 scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent hover:scrollbar-thumb-primary/30"
+          : "pr-4 scrollbar-none"
+      )}
     >
-      {categories.map((category: CategoryType) => {
-        const isActiveCategory = category.category === activeCategory
-        const IconComponent = categoryIcons[category.category] || Settings
-        
-        return (
-          <AccordionItem
-            key={category.category}
-            value={category.category}
-            className={cn("border-b-0 mb-1", isActiveCategory && "")}
-          >
-            <AccordionTrigger
-              className={cn(
-                "py-2 px-2 text-sm hover:no-underline rounded-md transition-colors",
-              )}
-            >
-              <div className="flex items-center gap-2">
-                <IconComponent className={cn("size-4", isActiveCategory && "text-primary")} />
-                <span>{category.category}</span>
+      <div className="space-y-8 hide-scrollbar">
+        {categories.map((category) => {
+          return (
+            <div key={category.category} className="space-y-3">
+              <div className="text-xs font-bold text-primary/80 dark:text-primary/70 uppercase tracking-wider px-2">
+                {category.category}
               </div>
-            </AccordionTrigger>
-            <AccordionContent className="pb-1 pt-0 pl-2">
-              <div className="flex flex-col gap-1 pl-1 border-l border-border/50">
-                {category.items.map((item: CategoryItem) => {
-                  const isActive = currentPath === item.href
+              <div className="space-y-0.5">
+                {category.items.map((item) => {
+                  const isActive = currentPath === item.href;
                   return (
                     <Link
                       key={item.href}
                       href={item.href}
                       className={cn(
-                        "flex items-center gap-2 text-primary  rounded-md px-3 py-2 text-sm transition-colors hover:bg-muted group",
-                        isActive ? "font-medium bg-gray-100 dark:bg-zinc-800" : "font-normal"
+                        "group flex items-center w-full text-sm py-2 rounded-md transition-all duration-200",
+                        isActive
+                          ? "bg-primary/10 text-primary font-medium"
+                          : "text-foreground/70 hover:text-foreground hover:bg-muted/50"
                       )}
                     >
-                      {isActive ? (
-                        <ChevronRight className="size-3" />
-                      ) : (
-                        null
+                      {isActive && (
+                        <Minus className="mr-1 text-blue-500" size={24} fill="#3455eb" style={{ transform: 'rotate(90deg)' }} />
                       )}
-                      <span>{item.name}</span>
+                      <span className={cn(
+                        "truncate",
+                        isActive ? "ml-0" : "ml-4 group-hover:ml-2 transition-all duration-200"
+                      )}>
+                        {item.name}
+                      </span>
+                      
+                      {/* NEW badge */}
+                      {item.isNew && (
+                        <span className="ml-2 px-1.5 py-0.5 text-xs font-medium border-2 border-blue-500 text-white rounded-md">
+                          New
+                        </span>
+                      )}
                     </Link>
-                  )
+                  );
                 })}
               </div>
-            </AccordionContent>
-          </AccordionItem>
-        )
-      })}
-    </Accordion>
-  )
-}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
