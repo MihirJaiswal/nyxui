@@ -8,6 +8,7 @@ import { glassmorphismDepthData } from "@/nyxui/metadata/glassmorphism-depth.met
 import { liquidMetalButtonData } from "@/nyxui/metadata/liquid-metal-button.meta";
 import { morphingBlobData } from "@/nyxui/metadata/morphing-blob.meta";
 import { threeDCardData } from "@/nyxui/metadata/ThreeDcard.meta";
+import { animatedCodeBlockData } from "@/nyxui/metadata/AnimatedCodeBlock.meta";
 
 export const componentsData = {
   "gradient-button": gradientButtonData,
@@ -20,5 +21,5 @@ export const componentsData = {
   "liquid-metal-button": liquidMetalButtonData,
   "morphing-blob": morphingBlobData,
   "3d-card": threeDCardData,
-
+  "animated-code-block": animatedCodeBlockData,
 };
