@@ -12,6 +12,7 @@ import { animatedCodeBlockData } from "@/nyxui/metadata/AnimatedCodeBlock.meta";
 import { animatedGradientBgData } from "./metadata/AnimatedGradientBg.meta";
 import { draggableElementData } from "./metadata/DraggableElement.meta";
 import { dynamicGridLayoutData } from "./metadata/DynamicGridLayout.meta";
+import { perspectiveImageData } from "./metadata/PerspectiveImage.meta";
 
 export const componentsData = {
   "gradient-button": gradientButtonData,
@@ -28,4 +29,5 @@ export const componentsData = {
   "animated-gradient-background":animatedGradientBgData,
   "draggable-element": draggableElementData,
   "dynamic-grid-layout": dynamicGridLayoutData,
+  "3d-perspective-image": perspectiveImageData,
 };
