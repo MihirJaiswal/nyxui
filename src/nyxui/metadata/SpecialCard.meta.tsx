@@ -201,7 +201,7 @@ export function BatmanDark() {
       name: "Iron Man Tech",
       preview: (
         <div className="flex flex-col items-center">
-          <h2 className="text-xl font-medium text-white mb-4">Iron Man Tech</h2>
+          <h2 className="text-xl font-medium mb-4">Iron Man Tech</h2>
           <SpecialCard
             coverImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/hulkposter.jpg"
             titleImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/hlogo1.png"
@@ -225,7 +225,7 @@ export function BatmanDark() {
 export function IronManTech() {
   return (
     <div className="flex flex-col items-center">
-      <h2 className="text-xl font-medium text-white mb-4">Iron Man Tech</h2>
+      <h2 className="text-xl font-medium mb-4">Iron Man Tech</h2>
       <SpecialCard
         coverImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/hulkposter.jpg"
         titleImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/hlogo1.png"

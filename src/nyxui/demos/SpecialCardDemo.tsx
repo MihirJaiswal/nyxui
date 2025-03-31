@@ -4,7 +4,7 @@ import SpecialCard from '@/nyxui/components/specialCard';
 const SpecialCardDemo = () => {
   return (
     <div className="py-12 px-4">
-      <h1 className="text-4xl font-bold text-center text-white mb-12">Hover on the Card</h1>
+      <h1 className="text-4xl font-bold text-center mb-12">Hover on the Card</h1>
       <div className="flex flex-wrap justify-center gap-8 max-w-6xl mx-auto">
         <div className="flex flex-col items-center">
           <SpecialCard
