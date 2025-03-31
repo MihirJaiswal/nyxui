@@ -72,7 +72,7 @@ export const InstallationSection = ({ componentData }: { componentData: Componen
       <h2 className="text-2xl font-semibold tracking-tight">Installation</h2>
       <div className="rounded-xl border overflow-hidden">
         <Tabs defaultValue="cli" className="w-full">
-          <div className="border-b bg-muted/40">
+          <div className="border-b bg-white dark:bg-black">
             <TabsList className="w-full justify-start h-12 px-4 bg-transparent">
               <TabsTrigger value="cli" className="data-[state=active]:bg-background">
                 CLI
@@ -131,7 +131,7 @@ export const InstallationSection = ({ componentData }: { componentData: Componen
                           </p>
                           
                           <Tabs defaultValue="npm" className="w-full">
-                            <TabsList className="w-full grid grid-cols-4 h-9 bg-muted/40 p-1 rounded-lg">
+                            <TabsList className="w-full grid grid-cols-4 h-9 bg-muted/40 p-1 rounded-lg dark:bg-black">
                               <TabsTrigger value="npm" className="text-xs h-7 px-2 rounded-md data-[state=active]:bg-background">
                                 <Image
                                  src="/npm.svg"

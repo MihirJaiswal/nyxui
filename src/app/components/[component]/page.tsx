@@ -1,4 +1,4 @@
-import { Github, ExternalLink } from "lucide-react"
+import { Github, ExternalLink, Copy, Check } from "lucide-react"
 import { notFound } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { ComponentSidebar } from "@/components/components/component-sidebar"
@@ -7,6 +7,9 @@ import Header from "@/components/global/Header"
 import { PreviewCodeToggle } from "@/components/components/PreviewCodeToggle"
 import { Badge } from "@/components/ui/badge"
 import { InstallationSection } from "@/components/components/Installation"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { CopyButton } from "@/components/components/CopyButton"
 
 interface ComponentPageProps {
   params: {
@@ -41,12 +44,13 @@ const ComponentPage = async ({ params }: ComponentPageProps) => {
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <Header />
-      <div className="container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-8 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-12">
+      <div className="container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-8 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-12 bg-white dark:bg-zinc-950">
         <aside className="sticky top-16 self-start hidden md:block">
           <ComponentSidebar />
         </aside>
         <main className="relative py-8 lg:py-10 px-6">
           <div className="mx-auto max-w-4xl space-y-10">
+            {/* Component Header Section */}
             <div className="space-y-4 border-b pb-8">
               <div className="flex items-center gap-3">
                 <h1 className="scroll-m-20 text-4xl font-bold tracking-tight">
@@ -70,6 +74,8 @@ const ComponentPage = async ({ params }: ComponentPageProps) => {
                 </Button>
               </div>
             </div>
+
+            {/* Preview Section */}
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <h2 className="text-2xl font-semibold tracking-tight">Preview</h2>
@@ -82,7 +88,7 @@ const ComponentPage = async ({ params }: ComponentPageProps) => {
                   </Badge>
                 </div>
               </div>
-              <div className="rounded-xl border bg-gradient-to-br from-background to-muted/30 backdrop-blur-sm overflow-hidden">
+              <div className="rounded-xl border bg-white dark:bg-black backdrop-blur-sm overflow-hidden">
                 <PreviewCodeToggle
                   preview={
                     <div className="flex flex-wrap justify-center gap-4 p-10">
@@ -93,50 +99,82 @@ const ComponentPage = async ({ params }: ComponentPageProps) => {
                 />
               </div>
             </div>
+
+            {/* Installation Section */}
             <InstallationSection componentData={componentData} />
-            <div className="space-y-4">
-              <h2 className="text-2xl font-semibold tracking-tight">Props</h2>
-              {componentData.props &&
-                componentData.props.map((propGroup) => (
-                  <div key={propGroup.name} className="space-y-3">
-                    <h3 className="text-lg font-semibold">{propGroup.name} Props</h3>
-                    <div className="rounded-lg border overflow-hidden">
-                      <div className="grid grid-cols-4 bg-muted/40 px-4 py-2 border-b text-sm font-medium">
-                        <div>Name</div>
-                        <div>Type</div>
-                        <div>Default</div>
-                        <div>Description</div>
+
+            {/* Props Section */}
+            <section className="space-y-6">
+              <h2 className="text-3xl font-semibold tracking-tight">Props</h2>
+              {componentData.props && componentData.props.length > 0 ? (
+                <Tabs defaultValue={componentData.props[0].name} className="w-full">
+                  <TabsList className="mb-6 p-1 bg-muted/30">
+                    {componentData.props.map((propGroup) => (
+                      <TabsTrigger 
+                        key={propGroup.name} 
+                        value={propGroup.name}
+                        className="px-6 py-2 text-base"
+                      >
+                        {propGroup.name}
+                      </TabsTrigger>
+                    ))}
+                  </TabsList>
+                  {componentData.props.map((propGroup) => (
+                    <TabsContent key={propGroup.name} value={propGroup.name} className="space-y-4">
+                      <div className="overflow-hidden rounded-lg border shadow-md">
+                        <table className="w-full border-collapse text-base">
+                          <thead>
+                            <tr className="border-b">
+                              <th className="px-6 py-4 text-left font-medium w-1/4 border-r border-primary-foreground/20">Name</th>
+                              <th className="px-6 py-4 text-left font-medium w-1/4 border-r border-primary-foreground/20">Type</th>
+                              <th className="px-6 py-4 text-left font-medium w-1/4 border-r border-primary-foreground/20">Default</th>
+                              <th className="px-6 py-4 text-left font-medium w-1/4">Description</th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y">
+                            {propGroup.items.map((prop, index) => (
+                              <tr 
+                                key={prop.name} 
+                                className={`hover:bg-muted/40 transition-colors ${index % 2 === 0 ? 'bg-background' : 'bg-muted/20'}`}
+                              >
+                                <td className="px-6 py-4 font-mono text-sm font-semibold border-r "><span className="bg-yellow-50 dark:bg-zinc-800 p-2 rounded-md">{prop.name}</span></td>
+                                <td className="px-6 py-4 font-mono text-sm border-r">{prop.type}</td>
+                                <td className="px-6 py-4 text-sm border-r">{prop.default || "-"}</td>
+                                <td className="px-6 py-4 text-sm">{prop.description}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
                       </div>
-                      <div className="divide-y">
-                        {propGroup.items.map((prop) => (
-                          <div
-                            key={prop.name}
-                            className="grid grid-cols-4 px-4 py-3 hover:bg-muted/20 transition-colors"
-                          >
-                            <div className="font-mono text-xs font-medium">{prop.name}</div>
-                            <div className="text-xs text-muted-foreground">{prop.type}</div>
-                            <div className="text-xs text-muted-foreground">{prop.default || "-"}</div>
-                            <div className="text-xs text-muted-foreground">{prop.description}</div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-            </div>
+                    </TabsContent>
+                  ))}
+                </Tabs>
+              ) : (
+                <Card className="border p-6 shadow-md">
+                  <p className="text-muted-foreground">No props available for this component.</p>
+                </Card>
+              )}
+            </section>
+            {/* Examples Section */}
             <div className="space-y-8">
               <h2 className="text-2xl font-semibold tracking-tight">Examples</h2>
               {componentData.examples &&
                 componentData.examples.map((example) => (
                   <div key={example.name} className="space-y-4">
-                    <PreviewCodeToggle
-                      preview={
-                        <div className="flex flex-wrap justify-center gap-4 p-10">
-                          {example.preview}
-                        </div>
-                      }
-                      code={example.code}
-                    />
+                    <div className="flex items-center justify-between">
+                      <h3 className="text-lg font-semibold">{example.name || "Example"}</h3>
+                      <CopyButton textToCopy={example.code} />
+                    </div>
+                    <div className="rounded-xl border overflow-hidden bg-white dark:bg-black">
+                      <PreviewCodeToggle
+                        preview={
+                          <div className="flex flex-wrap justify-center gap-4 p-10">
+                            {example.preview}
+                          </div>
+                        }
+                        code={example.code}
+                      />
+                    </div>
                   </div>
                 ))}
             </div>
@@ -147,4 +185,4 @@ const ComponentPage = async ({ params }: ComponentPageProps) => {
   )
 }
 
-export default ComponentPage
+export default ComponentPage;

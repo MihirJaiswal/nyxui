@@ -25,7 +25,7 @@ export const ComponentSidebar = () => {
     items: groupedByCategory[category]
   }))
   return (
-    <aside className="fixed top-16 z-30 -ml-2 hidden h-[calc(100vh-4rem)] w-72 shrink-0 border-r border-border bg-card/50 backdrop-blur-sm md:sticky md:block">
+    <aside className="fixed top-16 z-30 -ml-2 hidden h-[calc(100vh-4rem)] w-72 shrink-0 border-r border-border backdrop-blur-sm md:sticky md:block bg-white dark:bg-black">
       <div className="h-full py-4 pl-6 pr-4">
         <div className="flex h-full flex-col gap-4">
           <div className="flex items-center gap-2 border-b border-border pb-4 mb-2">
