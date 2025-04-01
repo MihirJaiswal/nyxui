@@ -1,13 +1,10 @@
 "use client"
-
 import type React from "react"
 import { useState, useEffect } from "react"
 import { cn } from "@/lib/utils"
 
 export interface CyberpunkCardProps extends React.HTMLAttributes<HTMLDivElement> {
- 
   theme?: "neon-blue" | "neon-pink" | "neon-green" | "neon-orange" | "neon-purple" | "custom"
-  
   customColors?: {
     primary: string
     secondary: string
@@ -39,7 +36,6 @@ export const CyberpunkCard = ({
   const [isHovered, setIsHovered] = useState(false)
   const [colorPhase, setColorPhase] = useState(0)
 
-  // Color shift animation
   useEffect(() => {
     if (!colorShift || !isHovered) return
 
@@ -68,7 +64,6 @@ export const CyberpunkCard = ({
     setIsHovered(false)
   }
 
-  // Theme colors
   const themeColors = {
     "neon-blue": {
       primary: "from-blue-500 to-cyan-400",
@@ -120,7 +115,6 @@ export const CyberpunkCard = ({
 
   const currentTheme = themeColors[theme]
 
-  
   const borderStyles = {
     solid: "border-2",
     dashed: "border-2 border-dashed",
@@ -130,7 +124,6 @@ export const CyberpunkCard = ({
       "border-0 before:content-[''] before:absolute before:w-8 before:h-8 before:border-t-2 before:border-l-2 before:top-0 before:left-0 after:content-[''] after:absolute after:w-8 after:h-8 after:border-b-2 after:border-r-2 after:bottom-0 after:right-0",
   }
 
- 
   const roundedStyles = {
     none: "rounded-none",
     sm: "rounded-sm",

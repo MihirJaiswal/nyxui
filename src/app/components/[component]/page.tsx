@@ -109,12 +109,12 @@ const ComponentPage = async ({ params }: ComponentPageProps) => {
       
       {componentData.props && componentData.props.length > 0 ? (
         <Tabs defaultValue={componentData.props[0].name} className="w-full">
-          <TabsList className="mb-6 bg-zinc-100 dark:bg-zinc-800 p-0 shadow-sm border">
+          <TabsList className="mb-6 bg-zinc-100 dark:bg-zinc-800 p-0 shadow-sm ">
             {componentData.props.map((propGroup) => (
               <TabsTrigger 
                 key={propGroup.name} 
                 value={propGroup.name}
-                className="px-8 py-3 text-base border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-white dark:data-[state=active]:bg-zinc-900"
+                className="px-8 py-3 text-base data-[state=active]:bg-white dark:data-[state=active]:bg-zinc-900"
               >
                 {propGroup.name}
               </TabsTrigger>
@@ -126,7 +126,7 @@ const ComponentPage = async ({ params }: ComponentPageProps) => {
               <div className="border shadow">
                 <table className="w-full border-collapse text-sm">
                   <thead>
-                    <tr className="bg-zinc-50 dark:bg-zinc-800">
+                    <tr className="bg-zinc-50 dark:bg-black border-b">
                       <th className="px-6 py-4 text-left font-medium w-1/4 border-r">Name</th>
                       <th className="px-6 py-4 text-left font-medium w-1/4 border-r">Type</th>
                       <th className="px-6 py-4 text-left font-medium w-1/4 border-r">Default</th>
@@ -173,10 +173,6 @@ const ComponentPage = async ({ params }: ComponentPageProps) => {
               {componentData.examples &&
                 componentData.examples.map((example) => (
                   <div key={example.name} className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-lg font-semibold">{example.name || "Example"}</h3>
-                      <CopyButton textToCopy={example.code} />
-                    </div>
                     <div className="rounded-xl border overflow-hidden bg-white dark:bg-black">
                       <PreviewCodeToggle
                         preview={
