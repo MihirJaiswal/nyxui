@@ -17,18 +17,16 @@ export const gradientButtonData: ComponentData = {
   preview: <GradientButtonDemo />,
   usage: GradientButtonDemoSource,
   componentCode: GradientButtonSource,
-  dependencies: [
-    {
-      name: "Tailwind CSS",
-      description: "Utility-first CSS framework used for styling the component.",
-      install: {
-        npm: "npm install tailwindcss postcss autoprefixer && npx tailwindcss init -p",
-        pnpm: "pnpm add tailwindcss postcss autoprefixer && pnpx tailwindcss init -p",
-        yarn: "yarn add tailwindcss postcss autoprefixer && yarn tailwindcss init -p",
-        bun: "bun add tailwindcss postcss autoprefixer && bun tailwindcss init -p",
-      },
-    },
-  ],
+  dependencies: [],
+/*   variant = "glow",
+  size = "md",
+  theme = "sunset",
+  customGradient,
+  rounded = "md",
+  shadow = true,
+  hoverEffect = "brightness",
+  className = "",
+  children, */
   props: [
     {
       name: "Gradient Button",
@@ -36,20 +34,20 @@ export const gradientButtonData: ComponentData = {
         {
           name: "variant",
           type: "string",
-          default: '"pulse" | "glow" | "sweep" | "shine" | "outline"',
-          description: "Button animation and style variant",
+          default: 'glow',
+          description: "Button animation and style variant (glow, pulse, sweep, shine, outline)",
         },
         {
           name: "size",
           type: "string",
-          default: '"xs" | "sm" | "md" | "lg" | "xl"',
-          description: "Button size",
+          default: 'md',
+          description: "Button size (xs, sm, md, lg, xl)",
         },
         {
           name: "theme",
           type: "string",
-          default: '"sunset" | "ocean" | "forest" | "neon" | "berry" | "custom"',
-          description: "Pre-defined gradient theme",
+          default: 'sunset',
+          description: "Pre-defined gradient theme (sunset, ocean, forest, neon, berry, custom)",
         },
         {
           name: "customGradient",
@@ -60,8 +58,8 @@ export const gradientButtonData: ComponentData = {
         {
           name: "rounded",
           type: "string",
-          default: '"md" | "lg" | "full" | "none"',
-          description: "Button corner radius",
+          default: 'md',
+          description: "Button corner radius (md, lg, full, none)",
         },
         {
           name: "shadow",
@@ -72,14 +70,20 @@ export const gradientButtonData: ComponentData = {
         {
           name: "hoverEffect",
           type: "string",
-          default: '"scale" | "brightness" | "contrast" | "none"',
-          description: "Additional hover effect to apply",
+          default: 'brightness',
+          description: "Additional hover effect to apply (scale, brightness, contrast, none)",
         },
         {
           name: "className",
           type: "string",
-          default: '""',
+          default: '',
           description: "Additional CSS classes to apply",
+        },
+        {
+          name: "children",
+          type: "string",
+          default: '',
+          description: "Button text",
         },
       ],
     },

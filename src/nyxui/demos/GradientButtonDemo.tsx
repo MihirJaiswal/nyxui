@@ -3,7 +3,7 @@ import { GradientButton } from "@/nyxui/components/GradientButton";
 
 export const GradientButtonDemo = () => {
   return (
-    <div className="flex flex-wrap gap-4">
+    <div className="flex flex-wrap items-center justify-center gap-4">
       <GradientButton variant="pulse" theme="sunset">
         Pulse Effect
       </GradientButton>
