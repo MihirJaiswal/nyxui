@@ -1,28 +1,22 @@
 import type { ComponentData } from "@/nyxui/ComponentInterfaces"
 import { PerspectiveImage } from "@/nyxui/components/PerspectiveImage"
 import { PerspectiveImageDemo } from "@/nyxui/demos/PerspectiveImageDemo"
+import fs from "fs";
+import path from "path";
+
+const componentPath = path.join(process.cwd(), "src/nyxui/components/PerspectiveImage.tsx");
+const PerspectiveImageSource = fs.readFileSync(componentPath, "utf8");
+
+const demoPath = path.join(process.cwd(), "src/nyxui/demos/PerspectiveImageDemo.tsx");
+const PerspectiveImageDemoSource = fs.readFileSync(demoPath, "utf8");
 
 export const perspectiveImageData: ComponentData = {
   name: "3D Perspective Image",
   description:
     "Images that tilt and rotate dynamically when hovered. Can create a depth illusion effect similar to parallax. Works well for product showcases and eCommerce sites.",
   preview: <PerspectiveImageDemo />,
-  usage: `import { PerspectiveImage } from "@/components/PerspectiveImage"
-
-export function MyComponent() {
-  return (
-    <PerspectiveImage
-      src="/path/to/image.jpg"
-      alt="Product image"
-      width={400}
-      height={300}
-      intensity={15}
-      shine={true}
-      shadow={true}
-    />
-  )
-}`,
-  componentCode: `// Full component code available in the PerspectiveImage.tsx file`,
+  usage: PerspectiveImageDemoSource,
+  componentCode: PerspectiveImageSource,
   dependencies: [
     {
       name: "Framer Motion",
@@ -151,8 +145,8 @@ export function cn(...inputs: ClassValue[]) {
         },
         {
           name: "glarePosition",
-          type: "string",
-          default: '"top" | "center"',
+          type: '"top" | "center"',
+          default: '"top"',
           description: "Position of the glare effect",
         },
         {
@@ -163,7 +157,7 @@ export function cn(...inputs: ClassValue[]) {
         },
         {
           name: "parallaxItems",
-          type: "ReactNode",
+          type: "React.ReactNode",
           default: "undefined",
           description: "React nodes to use as parallax layers",
         },
@@ -172,6 +166,12 @@ export function cn(...inputs: ClassValue[]) {
           type: "boolean",
           default: "false",
           description: "Whether the effect is disabled",
+        },
+        {
+          name: "priority",
+          type: "boolean",
+          default: "false",
+          description: "Whether the image should be prioritized for loading",
         },
         {
           name: "className",
@@ -188,57 +188,97 @@ export function cn(...inputs: ClassValue[]) {
       ],
     },
   ],
+  
   category: "Effects",
   examples: [
     {
-      name: "Dynamic Tilt",
+      name: "Glossy Product Card",
       preview: (
-        <div className="flex justify-center p-4">
+        <div className="flex justify-center p-8 bg-gradient-to-br from-indigo-900 to-purple-900 rounded-xl">
+          <div className="relative">
+            <PerspectiveImage
+              src="https://raw.githubusercontent.com/MihirJaiswal/monsterpedia/refs/heads/main/public/pikachu.jpg"
+              alt="Pikachu Product Display"
+              width={320}
+              height={240}
+              intensity={20}
+              perspective={1200}
+              shine={true}
+              shadow={true}
+              glare={true}
+              glareOpacity={0.35}
+              borderRadius="12px"
+              className="z-10"
+            />
+            <div className="absolute -bottom-4 inset-x-0 h-8 bg-black/50 blur-xl rounded-full z-0" />
+          </div>
+        </div>
+      ),
+      filename: "GlossyProductCard.tsx",
+      code: `import { PerspectiveImage } from "@/components/PerspectiveImage";
+  
+  export function GlossyProductCard() {
+    return (
+      <div className="flex justify-center p-8 bg-gradient-to-br from-indigo-900 to-purple-900 rounded-xl">
+        <div className="relative">
           <PerspectiveImage
-            src="https://www.coolkatana.com/cdn/shop/articles/16856.jpg?v=1721716639"
-            alt="Dynamic Tilt Image"
+            src="https://raw.githubusercontent.com/MihirJaiswal/monsterpedia/refs/heads/main/public/pikachu.jpg"
+            alt="Pikachu Product Display"
             width={320}
             height={240}
-            intensity={18}
-            perspective={900}
+            intensity={20}
+            perspective={1200}
             shine={true}
             shadow={true}
             glare={true}
-            glareOpacity={0.25}
-            borderRadius="10px"
+            glareOpacity={0.35}
+            borderRadius="12px"
+            className="z-10"
           />
+          <div className="absolute -bottom-4 inset-x-0 h-8 bg-black/50 blur-xl rounded-full z-0" />
         </div>
-      ),
-      filename: "DynamicTilt.tsx",
-      code: `import { PerspectiveImage } from "@/components/PerspectiveImage";
-  
-  export function DynamicTilt() {
-    return (
-      <div className="flex justify-center p-4">
-        <PerspectiveImage
-          src="/placeholder.svg?height=300&width=400"
-          alt="Dynamic Tilt Image"
-          width={320}
-          height={240}
-          intensity={18}
-          perspective={900}
-          shine={true}
-          shadow={true}
-          glare={true}
-          glareOpacity={0.25}
-          borderRadius="10px"
-        />
       </div>
     );
   }`,
     },
     {
-      name: "Framed Image",
+      name: "Elegant Gallery Frame",
       preview: (
-        <div className="flex justify-center p-4">
+        <div className="flex justify-center p-6 bg-stone-100">
+          <div className="p-3 bg-white rounded-2xl shadow-lg">
+            <PerspectiveImage
+              src="https://raw.githubusercontent.com/MihirJaiswal/monsterpedia/refs/heads/main/public/pikachu.jpg"
+              alt="Pikachu Gallery Display"
+              width={350}
+              height={250}
+              intensity={12}
+              perspective={1100}
+              shine={false}
+              shadow={true}
+              border={true}
+              borderColor="rgba(220, 220, 220, 0.8)"
+              borderWidth={4}
+              borderRadius="8px"
+              glare={true}
+              glarePosition="center"
+              glareOpacity={0.15}
+              glareColor="rgba(255, 255, 255, 0.9)"
+              imageClassName="grayscale hover:grayscale-0 transition-all duration-300"
+            />
+            <div className="mt-3 text-center font-serif text-sm text-gray-700">Pikachu, 2025</div>
+          </div>
+        </div>
+      ),
+      filename: "ElegantGalleryFrame.tsx",
+      code: `import { PerspectiveImage } from "@/components/PerspectiveImage";
+  
+  export function ElegantGalleryFrame() {
+    return (
+      <div className="flex justify-center p-6 bg-stone-100">
+        <div className="p-3 bg-white rounded-2xl shadow-lg">
           <PerspectiveImage
-            src="https://images6.alphacoders.com/132/1325915.png"
-            alt="Framed Image"
+            src="https://raw.githubusercontent.com/MihirJaiswal/monsterpedia/refs/heads/main/public/pikachu.jpg"
+            alt="Pikachu Gallery Display"
             width={350}
             height={250}
             intensity={12}
@@ -246,34 +286,103 @@ export function cn(...inputs: ClassValue[]) {
             shine={false}
             shadow={true}
             border={true}
-            borderColor="rgba(200, 200, 200, 0.5)"
-            borderWidth={3}
-            borderRadius="16px"
-            glare={false}
+            borderColor="rgba(220, 220, 220, 0.8)"
+            borderWidth={4}
+            borderRadius="8px"
+            glare={true}
+            glarePosition="center"
+            glareOpacity={0.15}
+            glareColor="rgba(255, 255, 255, 0.9)"
+            imageClassName="grayscale hover:grayscale-0 transition-all duration-300"
           />
+          <div className="mt-3 text-center font-serif text-sm text-gray-700">Pikachu, 2025</div>
+        </div>
+      </div>
+    );
+  }`,
+    },
+    {
+      name: "Interactive Game Card",
+      preview: (
+        <div className="flex justify-center p-6 bg-gradient-to-r from-yellow-400 to-amber-500">
+          <div className="relative">
+            <PerspectiveImage
+              src="https://raw.githubusercontent.com/MihirJaiswal/monsterpedia/refs/heads/main/public/pikachu.jpg"
+              alt="Pikachu Character Card"
+              width={300}
+              height={400}
+              intensity={25}
+              perspective={800}
+              shine={true}
+              shadow={true}
+              border={true}
+              borderColor="rgba(255, 215, 0, 0.6)"
+              borderWidth={2}
+              borderRadius="16px"
+              glare={true}
+              glareOpacity={0.4}
+              parallax={true}
+              parallaxItems={
+                <>
+                  <div style={{ top: '10%', left: '10%', fontSize: '24px', fontWeight: 'bold', color: 'white', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>
+                    Pikachu
+                  </div>
+                  <div style={{ bottom: '10%', right: '10%', backgroundColor: 'rgba(0,0,0,0.7)', padding: '8px 12px', borderRadius: '20px', color: 'yellow', fontWeight: 'bold' }}>
+                    HP: 100
+                  </div>
+                  <div style={{ top: '20%', right: '10%', backgroundColor: 'rgba(255,255,255,0.9)', padding: '6px', borderRadius: '50%' }}>
+                    ⚡
+                  </div>
+                </>
+              }
+            />
+            <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 px-6 py-2 bg-amber-600 text-white font-bold rounded-full shadow-lg">
+              Collect Now!
+            </div>
+          </div>
         </div>
       ),
-      filename: "FramedImage.tsx",
+      filename: "InteractiveGameCard.tsx",
       code: `import { PerspectiveImage } from "@/components/PerspectiveImage";
   
-  export function FramedImage() {
+  export function InteractiveGameCard() {
     return (
-      <div className="flex justify-center p-4">
-        <PerspectiveImage
-          src="/placeholder.svg?height=300&width=400"
-          alt="Framed Image"
-          width={350}
-          height={250}
-          intensity={12}
-          perspective={1100}
-          shine={false}
-          shadow={true}
-          border={true}
-          borderColor="rgba(200, 200, 200, 0.5)"
-          borderWidth={3}
-          borderRadius="16px"
-          glare={false}
-        />
+      <div className="flex justify-center p-6 bg-gradient-to-r from-yellow-400 to-amber-500">
+        <div className="relative">
+          <PerspectiveImage
+            src="https://raw.githubusercontent.com/MihirJaiswal/monsterpedia/refs/heads/main/public/pikachu.jpg"
+            alt="Pikachu Character Card"
+            width={300}
+            height={400}
+            intensity={25}
+            perspective={800}
+            shine={true}
+            shadow={true}
+            border={true}
+            borderColor="rgba(255, 215, 0, 0.6)"
+            borderWidth={2}
+            borderRadius="16px"
+            glare={true}
+            glareOpacity={0.4}
+            parallax={true}
+            parallaxItems={
+              <>
+                <div style={{ top: '10%', left: '10%', fontSize: '24px', fontWeight: 'bold', color: 'white', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>
+                  Pikachu
+                </div>
+                <div style={{ bottom: '10%', right: '10%', backgroundColor: 'rgba(0,0,0,0.7)', padding: '8px 12px', borderRadius: '20px', color: 'yellow', fontWeight: 'bold' }}>
+                  HP: 100
+                </div>
+                <div style={{ top: '20%', right: '10%', backgroundColor: 'rgba(255,255,255,0.9)', padding: '6px', borderRadius: '50%' }}>
+                  ⚡
+                </div>
+              </>
+            }
+          />
+          <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 px-6 py-2 bg-amber-600 text-white font-bold rounded-full shadow-lg">
+            Collect Now!
+          </div>
+        </div>
       </div>
     );
   }`,

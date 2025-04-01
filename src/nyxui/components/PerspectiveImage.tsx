@@ -1,8 +1,8 @@
 "use client"
-
 import React, { useState, useRef, useEffect } from "react"
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion"
 import { cn } from "@/lib/utils"
+import Image from "next/image"
 
 export interface PerspectiveImageProps {
   src: string
@@ -26,6 +26,7 @@ export interface PerspectiveImageProps {
   parallax?: boolean
   parallaxItems?: React.ReactNode
   disabled?: boolean
+  priority?: boolean
 }
 
 export function PerspectiveImage({
@@ -50,40 +51,29 @@ export function PerspectiveImage({
   parallax = false,
   parallaxItems,
   disabled = false,
+  priority = false,
 }: PerspectiveImageProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const [isHovering, setIsHovering] = useState(false)
-
-  // Motion values for rotation
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
-
-  // Transform mouse position to rotation values
   const rotateX = useTransform(mouseY, [-0.5, 0.5], [intensity, -intensity])
   const rotateY = useTransform(mouseX, [-0.5, 0.5], [-intensity, intensity])
-
-  // Add spring physics for smoother animation
   const springConfig = { damping: 20, stiffness: 300 }
   const springRotateX = useSpring(rotateX, springConfig)
   const springRotateY = useSpring(rotateY, springConfig)
-
-  // Reset position when not hovering
   useEffect(() => {
     if (!isHovering && !disabled) {
       mouseX.set(0)
       mouseY.set(0)
     }
   }, [isHovering, mouseX, mouseY, disabled])
-
-  // Handle mouse move
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (disabled || !containerRef.current) return
 
     const rect = containerRef.current.getBoundingClientRect()
     const centerX = rect.left + rect.width / 2
     const centerY = rect.top + rect.height / 2
-
-    // Calculate normalized mouse position (-0.5 to 0.5)
     const normalizedX = (e.clientX - centerX) / rect.width
     const normalizedY = (e.clientY - centerY) / rect.height
 
@@ -117,15 +107,16 @@ export function PerspectiveImage({
           boxShadow: shadow ? "0 30px 60px rgba(0,0,0,0.3)" : "none",
         }}
       >
-        {/* Main image */}
-        <img
+        <Image
           src={src || "/placeholder.svg"}
           alt={alt}
           className={cn("w-full h-full object-cover", imageClassName)}
           style={{ borderRadius: borderRadius }}
+          width={width}
+          height={height}
+          loading={priority ? "eager" : "lazy"}
+          priority={priority}
         />
-
-        {/* Shine effect */}
         {shine && !disabled && (
           <motion.div
             className="absolute inset-0 pointer-events-none"
@@ -137,8 +128,6 @@ export function PerspectiveImage({
             }}
           />
         )}
-
-        {/* Glare effect */}
         {glare && !disabled && (
           <motion.div
             className="absolute inset-0 pointer-events-none"
@@ -157,8 +146,6 @@ export function PerspectiveImage({
             }}
           />
         )}
-
-        {/* Parallax items */}
         {parallax && parallaxItems && (
           <div
             className="absolute inset-0 overflow-hidden"
@@ -168,7 +155,6 @@ export function PerspectiveImage({
               if (!React.isValidElement(child)) return null
 
               const zIndex = (index + 1) * 20
-              // Explicitly cast the child to a React element with an optional style prop
               const element = child as React.ReactElement<{ style?: React.CSSProperties }>
               const mergedStyle: React.CSSProperties = {
                 ...element.props.style,

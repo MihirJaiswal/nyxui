@@ -1,11 +1,10 @@
 "use client"
-
 import React from "react"
 import { PerspectiveImage } from "@/nyxui/components/PerspectiveImage"
 
 export function PerspectiveImageDemo() {
   const imageSrc =
-    "https://occ-0-8407-90.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABeNzg-kMHhUBP4AmHnLsrPYzxKHVceLnkwtLhxZlDssj7KjhStloJR6px7EbquZ83uDcygnWkekxysvuNYVzLQ3GyBMRl2PpU7pO.jpg?r=db8"
+    "https://raw.githubusercontent.com/MihirJaiswal/monsterpedia/refs/heads/main/public/pikachu.jpg"
 
   return (
     <div className="py-12 px-4 sm:px-6 lg:px-8">
