@@ -20,15 +20,25 @@ export const morphingBlobData: ComponentData = {
   componentCode: MorphingBlobSource,
   dependencies: [
     {
-      name: "Tailwind CSS",
-      description: "Utility-first CSS framework used for styling the component.",
+      name: "Utility Functions",
+      description: "Utility functions for conditional class name merging.",
       install: {
-        npm: "npm install tailwindcss postcss autoprefixer && npx tailwindcss init -p",
-        pnpm: "pnpm add tailwindcss postcss autoprefixer && pnpx tailwindcss init -p",
-        yarn: "yarn add tailwindcss postcss autoprefixer && yarn tailwindcss init -p",
-        bun: "bun add tailwindcss postcss autoprefixer && bun tailwindcss init -p",
+        npm: "npm install clsx tailwind-merge",
+        pnpm: "pnpm add clsx tailwind-merge",
+        yarn: "yarn add clsx tailwind-merge",
+        bun: "bun add clsx tailwind-merge",
       },
-    },
+      setup: {
+        description: "Create a utils.ts file with the cn utility function",
+        file: "/lib/utils.ts",
+        code: `import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+  export function cn(...inputs: ClassValue[]) {
+      return twMerge(clsx(inputs));
+  }`,
+        },
+      },
   ],
   props: [
     {
@@ -37,72 +47,102 @@ export const morphingBlobData: ComponentData = {
         {
           name: "theme",
           type: "string",
-          default: '"primary" | "secondary" | "accent" | "success" | "warning" | "danger" | "custom"',
-          description: "The color theme of the blob",
+          default: '"primary"',
+          description:
+            'The color theme of the blob. Possible values: "primary", "secondary", "accent", "success", "warning", "danger", "custom".',
         },
         {
           name: "customColors",
           type: "object",
           default: "undefined",
-          description: "Custom colors for the blob when theme is set to 'custom'",
+          description:
+            'Custom colors for the blob when theme is set to "custom". The object should include properties: from, to, and optionally via.',
         },
         {
           name: "size",
           type: "string",
-          default: '"sm" | "md" | "lg" | "xl" | "full"',
-          description: "The size of the blob",
+          default: '"md"',
+          description:
+            'The size of the blob. Possible values: "sm", "md", "lg", "xl", "full".',
         },
         {
           name: "complexity",
           type: "number",
           default: "3",
-          description: "The complexity of the blob shape (1-5)",
+          description: "The complexity of the blob shape (1-5).",
         },
         {
           name: "speed",
           type: "number",
           default: "3",
-          description: "The speed of the morphing animation (1-5)",
+          description: "The speed of the morphing animation (1-5).",
         },
         {
           name: "hoverEffect",
           type: "boolean",
           default: "true",
-          description: "Whether to enable the hover effect",
+          description: "Whether to enable the hover effect.",
         },
         {
           name: "clickEffect",
           type: "boolean",
           default: "true",
-          description: "Whether to enable the click effect",
+          description: "Whether to enable the click effect.",
         },
         {
           name: "pulse",
           type: "boolean",
           default: "false",
-          description: "Whether to enable the pulse animation",
+          description: "Whether to enable the pulse animation.",
         },
         {
           name: "glow",
           type: "boolean",
           default: "true",
-          description: "Whether to show a glow effect",
+          description: "Whether to show a glow effect.",
         },
         {
           name: "glowIntensity",
           type: "number",
           default: "3",
-          description: "The intensity of the glow effect (1-5)",
+          description: "The intensity of the glow effect (1-5).",
+        },
+        {
+          name: "opacity",
+          type: "number",
+          default: "100",
+          description: "The opacity of the blob (percentage).",
+        },
+        {
+          name: "smooth",
+          type: "boolean",
+          default: "true",
+          description:
+            "Whether to enable smooth transitions in the morphing animation.",
+        },
+        {
+          name: "effect3D",
+          type: "boolean",
+          default: "false",
+          description: "Whether to enable a 3D effect on the blob.",
         },
         {
           name: "className",
           type: "string",
           default: '""',
-          description: "Additional CSS classes to apply",
+          description: "Additional CSS classes to apply.",
+        },
+        {
+          name: "children",
+          type: "React.ReactNode",
+          default: "undefined",
+          description:
+            "Content to be rendered inside the blob component.",
         },
       ],
     },
   ],
+  
   category: "Effects",
   examples: [
     {
