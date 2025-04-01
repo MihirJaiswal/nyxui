@@ -98,7 +98,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({ 
                       
                       {/* NEW badge */}
                       {item.isNew && (
-                        <span className="ml-2 px-1.5 py-0.5 text-xs font-medium border-2 border-blue-500 text-white rounded-md">
+                        <span className="ml-2 px-1.5 py-0.5 text-xs font-medium border-2 border-blue-500 text-blue-500 dark:text-white rounded-md">
                           New
                         </span>
                       )}

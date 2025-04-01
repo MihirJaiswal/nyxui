@@ -16,7 +16,7 @@ const SpecialCardDemo = () => {
         
         <div className="flex flex-wrap justify-center gap-12 mb-16">
           <div className="relative group">
-            <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-blue-600 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+            <div className="absolute -inset-1 bg-gradient-to-b dark:from-red-900 from-red-500 dark:to-blue-900 to-blue-500 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
             <div className="relative flex flex-col items-center mt-10">
               <SpecialCard
                 coverImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/main/public/spidermanposter.jpg"
