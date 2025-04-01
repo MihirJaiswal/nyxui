@@ -109,7 +109,7 @@ const ComponentPage = async ({ params }: ComponentPageProps) => {
       
       {componentData.props && componentData.props.length > 0 ? (
         <Tabs defaultValue={componentData.props[0].name} className="w-full">
-          <TabsList className="mb-6 bg-zinc-100 dark:bg-zinc-800 p-0 shadow-sm ">
+          <TabsList className="mb-6 bg-zinc-100 dark:bg-zinc-800 p-0 shadow-sm">
             {componentData.props.map((propGroup) => (
               <TabsTrigger 
                 key={propGroup.name} 
@@ -127,10 +127,10 @@ const ComponentPage = async ({ params }: ComponentPageProps) => {
                 <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr className="bg-zinc-50 dark:bg-black border-b">
-                      <th className="px-6 py-4 text-left font-medium w-1/4 border-r">Name</th>
-                      <th className="px-6 py-4 text-left font-medium w-1/4 border-r">Type</th>
-                      <th className="px-6 py-4 text-left font-medium w-1/4 border-r">Default</th>
-                      <th className="px-6 py-4 text-left font-medium w-1/4">Description</th>
+                      <th className="px-6 py-4 text-left font-medium w-1/6 border-r">Name</th>
+                      <th className="px-6 py-4 text-left font-medium w-1/6 border-r">Type</th>
+                      <th className="px-6 py-4 text-left font-medium w-1/5 border-r">Default</th>
+                      <th className="px-6 py-4 text-left font-medium w-3/6">Description</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y">
