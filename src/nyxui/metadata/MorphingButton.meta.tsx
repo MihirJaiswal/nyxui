@@ -18,28 +18,7 @@ export const morphingButtonData: ComponentData = {
   preview: <MorphingButtonDemo />,
   usage: MorphingButtonDemoSource,
   componentCode: MorphingButtonSource,
-  dependencies: [
-    {
-      name: "Tailwind CSS",
-      description: "Utility-first CSS framework used for styling the component.",
-      install: {
-        npm: "npm install tailwindcss postcss autoprefixer && npx tailwindcss init -p",
-        pnpm: "pnpm add tailwindcss postcss autoprefixer && pnpx tailwindcss init -p",
-        yarn: "yarn add tailwindcss postcss autoprefixer && yarn tailwindcss init -p",
-        bun: "bun add tailwindcss postcss autoprefixer && bun tailwindcss init -p",
-      },
-    },
-    {
-      name: "React Icons",
-      description: "Popular icons library for React applications (optional for icon support).",
-      install: {
-        npm: "npm install react-icons",
-        pnpm: "pnpm add react-icons",
-        yarn: "yarn add react-icons",
-        bun: "bun add react-icons",
-      },
-    }
-  ],
+  dependencies: [],
   props: [
     {
       name: "Morphing Button",
@@ -47,20 +26,20 @@ export const morphingButtonData: ComponentData = {
         {
           name: "variant",
           type: "string",
-          default: '"expand" | "collapse" | "rotate" | "skew" | "liquid"',
-          description: "Button transformation animation variant",
+          default: 'expand',
+          description: "Button transformation animation variant - (expand, collapse, rotate, skew, liquid)",
         },
         {
           name: "size",
           type: "string",
-          default: '"xs" | "sm" | "md" | "lg" | "xl"',
-          description: "Button size",
+          default: 'md',
+          description: "Button size - (xs, sm, md, lg, xl)",
         },
         {
           name: "color",
           type: "string",
-          default: '"primary" | "secondary" | "success" | "danger" | "warning" | "info" | "dark"',
-          description: "Button color theme",
+          default: 'primary',
+          description: "Button color theme - (primary, secondary, success, danger, warning, info, dark)",
         },
         {
           name: "icon",
@@ -71,13 +50,13 @@ export const morphingButtonData: ComponentData = {
         {
           name: "iconPosition",
           type: "string",
-          default: '"left" | "right" | "only"',
-          description: "Position of the icon relative to button text",
+          default: 'left',
+          description: "Position of the icon relative to button text - (left, right, only)",
         },
         {
           name: "className",
           type: "string",
-          default: '""',
+          default: '',
           description: "Additional CSS classes to apply",
         },
         {
