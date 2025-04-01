@@ -2,22 +2,21 @@ import type { ComponentData } from "@/nyxui/ComponentInterfaces"
 import { ScrollAnimationTrigger } from "@/nyxui/components/ScrollAnimationTrigger"
 import { ScrollAnimationTriggerDemo } from "@/nyxui/demos/ScrollAnimationTriggerDemo"
 import { ArrowUp, FileBadge2, Lightbulb, Maximize, Palette, RotateCw, Sparkles, Star } from "lucide-react"
+import fs from "fs";
+import path from "path";
+
+const componentPath = path.join(process.cwd(), "src/nyxui/components/ScrollAnimationTrigger.tsx");
+const ScrollAnimationTriggerSource = fs.readFileSync(componentPath, "utf8");
+
+const demoPath = path.join(process.cwd(), "src/nyxui/demos/ScrollAnimationTriggerDemo.tsx");
+const ScrollAnimationTriggerDemoSource = fs.readFileSync(demoPath, "utf8");
 
 export const scrollAnimationTriggerData: ComponentData = {
   name: "Scroll Animation Trigger",
-  description:
-    "UI elements that change color, size, or shape based on scroll progress. Text that reveals dynamically when entering the viewport. Ideal for storytelling-based UI experiences.",
+  description:"UI elements that change color, size, or shape based on scroll progress. Text that reveals dynamically when entering the viewport. Ideal for storytelling-based UI experiences.",
   preview: <ScrollAnimationTriggerDemo />,
-  usage: `import { ScrollAnimationTrigger } from "@/components/ScrollAnimationTrigger"
-
-export function MyComponent() {
-  return (
-    <ScrollAnimationTrigger effect="fade">
-      <div>This content will fade in when scrolled into view</div>
-    </ScrollAnimationTrigger>
-  )
-}`,
-  componentCode: `// Full component code available in the ScrollAnimationTrigger.tsx file`,
+  usage: ScrollAnimationTriggerDemoSource,
+  componentCode: ScrollAnimationTriggerSource,
   dependencies: [
     {
       name: "Framer Motion",
@@ -44,79 +43,121 @@ export function MyComponent() {
         code: `import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}`,
-      },
-    },
-  ],
-  props: [
+  export function cn(...inputs: ClassValue[]) {
+      return twMerge(clsx(inputs));
+  }`,
+            },
+          },
+        ],
+  props:[
     {
-      name: "ScrollAnimationTrigger",
-      items: [
+      "name": "ScrollAnimationTrigger",
+      "items": [
         {
-          name: "effect",
-          type: "string",
-          default: '"fade" | "scale" | "slide" | "color" | "rotate" | "custom"',
-          description: "The animation effect to apply",
+          "name": "children",
+          "type": "ReactNode",
+          "default": "",
+          "description": "The content to be animated"
         },
         {
-          name: "threshold",
-          type: "number",
-          default: "0.1",
-          description: "The threshold for triggering the animation (0-1)",
+          "name": "effect",
+          "type": "string",
+          "default": "fade",
+          "description": "The animation effect to apply"
         },
         {
-          name: "delay",
-          type: "number",
-          default: "0",
-          description: "Delay before the animation starts (in seconds)",
+          "name": "threshold",
+          "type": "number",
+          "default": "0.1",
+          "description": "The threshold for triggering the animation (0-1)"
         },
         {
-          name: "duration",
-          type: "number",
-          default: "0.5",
-          description: "Duration of the animation (in seconds)",
+          "name": "delay",
+          "type": "number",
+          "default": "0",
+          "description": "Delay before the animation starts (in seconds)"
         },
         {
-          name: "direction",
-          type: "string",
-          default: '"up" | "down" | "left" | "right"',
-          description: "Direction for slide animations",
+          "name": "duration",
+          "type": "number",
+          "default": "0.5",
+          "description": "Duration of the animation (in seconds)"
         },
         {
-          name: "once",
-          type: "boolean",
-          default: "false",
-          description: "Whether to trigger the animation only once",
+          "name": "direction",
+          "type": "string",
+          "default": "up",
+          "description": "Direction for slide animations"
         },
         {
-          name: "customProps",
-          type: "object",
-          default: "{}",
-          description: "Custom animation properties for the 'custom' effect",
+          "name": "once",
+          "type": "boolean",
+          "default": "false",
+          "description": "Whether to trigger the animation only once"
         },
         {
-          name: "as",
-          type: "React.ElementType",
-          default: "div",
-          description: "The element type to render",
+          "name": "customProps",
+          "type": "object",
+          "default": "{}",
+          "description": "Custom animation properties for the 'custom' effect"
         },
         {
-          name: "className",
-          type: "string",
-          default: '""',
-          description: "Additional CSS classes to apply",
+          "name": "as",
+          "type": "React.ElementType",
+          "default": "div",
+          "description": "The element type to render"
         },
-      ],
-    },
-  ],
+        {
+          "name": "className",
+          "type": "string",
+          "default": "",
+          "description": "Additional CSS classes to apply"
+        },
+        {
+          "name": "fromColor",
+          "type": "string",
+          "default": "var(--color-muted)",
+          "description": "Starting color for color transition"
+        },
+        {
+          "name": "toColor",
+          "type": "string",
+          "default": "var(--color-primary)",
+          "description": "Ending color for color transition"
+        },
+        {
+          "name": "fromRotation",
+          "type": "number",
+          "default": "direction === \"left\" ? -10 : 10",
+          "description": "Initial rotation angle for rotate effect"
+        },
+        {
+          "name": "toRotation",
+          "type": "number",
+          "default": "0",
+          "description": "Final rotation angle for rotate effect"
+        },
+        {
+          "name": "fromScale",
+          "type": "number",
+          "default": "0.8",
+          "description": "Initial scale value for scale effect"
+        },
+        {
+          "name": "toScale",
+          "type": "number",
+          "default": "1",
+          "description": "Final scale value for scale effect"
+        }
+      ]
+    }
+  ],  
   category: "Animation",
   examples: [
     {
       name: "Fade In Effect",
       preview: (
-        <div className="p-8 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-blue-100 dark:border-blue-900/30 transition-all duration-300 hover:shadow-xl">
+        <div className="p-8 bg-white dark:bg-zinc-800 rounded-xl shadow-lg border border-blue-100 dark:border-blue-900/30 transition-all duration-300 hover:shadow-xl">
           <div className="flex items-center mb-4">
             <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-full mr-3">
               <FileBadge2 className="h-5 w-5 text-blue-500" />
@@ -147,7 +188,7 @@ export function cn(...inputs: ClassValue[]) {
   
   export function FadeInEffect() {
     return (
-      <div className="p-8 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-blue-100 dark:border-blue-900/30 transition-all duration-300 hover:shadow-xl">
+      <div className="p-8 bg-white dark:bg-zinc-800 rounded-xl shadow-lg border border-blue-100 dark:border-blue-900/30 transition-all duration-300 hover:shadow-xl">
         <div className="flex items-center mb-4">
           <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-full mr-3">
             <FadeIn className="h-5 w-5 text-blue-500" />
@@ -336,11 +377,10 @@ export function cn(...inputs: ClassValue[]) {
     );
   }`,
     },
-    // New Examples
     {
       name: "Scale Effect",
       preview: (
-        <div className="p-8 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-amber-100 dark:border-amber-900/30 transition-all duration-300 hover:shadow-xl">
+        <div className="p-8 bg-white dark:bg-yellow-950 rounded-xl shadow-lg border border-amber-100 dark:border-amber-900/30 transition-all duration-300 hover:shadow-xl">
           <div className="flex items-center mb-4">
             <div className="p-2 bg-amber-100 dark:bg-amber-900/30 rounded-full mr-3">
               <Maximize className="h-5 w-5 text-amber-500" />
@@ -372,7 +412,7 @@ export function cn(...inputs: ClassValue[]) {
   
   export function ScaleEffect() {
     return (
-      <div className="p-8 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-amber-100 dark:border-amber-900/30 transition-all duration-300 hover:shadow-xl">
+      <div className="p-8 bg-white dark:bg-yellow-950 rounded-xl shadow-lg border border-amber-100 dark:border-amber-900/30 transition-all duration-300 hover:shadow-xl">
         <div className="flex items-center mb-4">
           <div className="p-2 bg-amber-100 dark:bg-amber-900/30 rounded-full mr-3">
             <Maximize className="h-5 w-5 text-amber-500" />
@@ -414,9 +454,12 @@ export function cn(...inputs: ClassValue[]) {
             effect="color" 
             threshold={0.2} 
             duration={0.8}
+            direction="up"
+            fromColor="#996dff"
+            toColor="#ff0000"
           >
-            <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Color Change Animation</h3>
-            <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+            <h3 className="text-xl font-bold mb-3">Color Change Animation</h3>
+            <p className="leading-relaxed">
               This content transforms through a beautiful color transition as it enters your view,
               creating a visually engaging experience.
             </p>
@@ -448,9 +491,12 @@ export function cn(...inputs: ClassValue[]) {
           effect="color" 
           threshold={0.2} 
           duration={0.8}
+          direction="up"
+          fromColor="#996dff"
+          toColor="#ff0000"
         >
-          <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Color Change Animation</h3>
-          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+          <h3 className="text-xl font-bold mb-3">Color Change Animation</h3>
+          <p className="leading-relaxed">
             This content transforms through a beautiful color transition as it enters your view,
             creating a visually engaging experience.
           </p>
@@ -460,79 +506,6 @@ export function cn(...inputs: ClassValue[]) {
               <div className="w-6 h-6 rounded-full bg-purple-500"></div>
               <div className="w-6 h-6 rounded-full bg-indigo-500"></div>
               <div className="w-6 h-6 rounded-full bg-blue-500"></div>
-            </div>
-          </div>
-        </ScrollAnimationTrigger>
-      </div>
-    );
-  }`,
-    },
-    {
-      name: "Rotate Effect",
-      preview: (
-        <div className="p-8 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-cyan-100 dark:border-cyan-900/30 transition-all duration-300 hover:shadow-xl">
-          <div className="flex items-center mb-4">
-            <div className="p-2 bg-cyan-100 dark:bg-cyan-900/30 rounded-full mr-3">
-              <RotateCw className="h-5 w-5 text-cyan-500" />
-            </div>
-            <div className="text-sm font-medium text-cyan-500 dark:text-cyan-400">Rotate</div>
-          </div>
-          <ScrollAnimationTrigger 
-            effect="rotate" 
-            direction="right"
-            threshold={0.2} 
-            duration={0.7}
-          >
-            <div className="relative">
-              <div className="absolute -top-1 -right-1 w-full h-full bg-cyan-50 dark:bg-cyan-900/20 rounded-lg transform rotate-3"></div>
-              <div className="relative p-4 bg-white dark:bg-gray-700 rounded-lg border border-cyan-100 dark:border-cyan-900/30">
-                <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Rotation Animation</h3>
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                  This content rotates into place as you scroll, creating a playful and dynamic element 
-                  that adds personality to your page.
-                </p>
-                <div className="mt-4 flex justify-center">
-                  <div className="w-12 h-12 bg-cyan-100 dark:bg-cyan-900/30 rounded-full flex items-center justify-center">
-                    <RotateCw className="h-6 w-6 text-cyan-500" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </ScrollAnimationTrigger>
-        </div>
-      ),
-      filename: "RotateEffect.tsx",
-      code: `import { ScrollAnimationTrigger } from "@/components/ScrollAnimationTrigger";
-  import { RotateCw } from "lucide-react";
-  
-  export function RotateEffect() {
-    return (
-      <div className="p-8 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-cyan-100 dark:border-cyan-900/30 transition-all duration-300 hover:shadow-xl">
-        <div className="flex items-center mb-4">
-          <div className="p-2 bg-cyan-100 dark:bg-cyan-900/30 rounded-full mr-3">
-            <RotateCw className="h-5 w-5 text-cyan-500" />
-          </div>
-          <div className="text-sm font-medium text-cyan-500 dark:text-cyan-400">Rotate</div>
-        </div>
-        <ScrollAnimationTrigger 
-          effect="rotate" 
-          direction="right"
-          threshold={0.2} 
-          duration={0.7}
-        >
-          <div className="relative">
-            <div className="absolute -top-1 -right-1 w-full h-full bg-cyan-50 dark:bg-cyan-900/20 rounded-lg transform rotate-3"></div>
-            <div className="relative p-4 bg-white dark:bg-gray-700 rounded-lg border border-cyan-100 dark:border-cyan-900/30">
-              <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Rotation Animation</h3>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                This content rotates into place as you scroll, creating a playful and dynamic element 
-                that adds personality to your page.
-              </p>
-              <div className="mt-4 flex justify-center">
-                <div className="w-12 h-12 bg-cyan-100 dark:bg-cyan-900/30 rounded-full flex items-center justify-center">
-                  <RotateCw className="h-6 w-6 text-cyan-500" />
-                </div>
-              </div>
             </div>
           </div>
         </ScrollAnimationTrigger>

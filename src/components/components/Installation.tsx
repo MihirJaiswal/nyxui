@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Copy, Github, Package, FileCode, ChevronDown, ChevronUp, FileWarning, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ComponentData } from '@/nyxui/metadata/ComponentInterfaces';
+import { ComponentData } from '@/nyxui/ComponentInterfaces';
 import Image from 'next/image';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus, prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
@@ -71,7 +71,7 @@ export const InstallationSection = ({ componentData }: { componentData: Componen
     <div className="space-y-4">
       <h2 className="text-2xl font-semibold tracking-tight">Installation</h2>
       <div className="rounded-xl border overflow-hidden">
-        <Tabs defaultValue="cli" className="w-full">
+        <Tabs defaultValue="manual" className="w-full">
           <div className="border-b bg-white dark:bg-black">
             <TabsList className="w-full justify-start h-12 px-4 bg-transparent">
               <TabsTrigger value="cli" className="data-[state=active]:bg-background">
@@ -91,16 +91,6 @@ export const InstallationSection = ({ componentData }: { componentData: Componen
               <p className="text-sm font-medium">CLI installation will be available soon.</p>
             </div>
             <div className="space-y-2">
-              <div className="relative">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="absolute right-3 top-3 opacity-70 hover:opacity-100"
-                >
-                  <Copy className="size-4" />
-                  <span className="sr-only">Copy command</span>
-                </Button>
-              </div>
             </div>
           </TabsContent>
           
