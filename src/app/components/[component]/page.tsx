@@ -48,11 +48,11 @@ const ComponentPage = async ({ params }: ComponentPageProps) => {
         <aside className="sticky top-16 self-start hidden md:block">
           <ComponentSidebar />
         </aside>
-        <main className="relative py-8 lg:py-10 px-6">
+        <main className="relative py-8 lg:py-10 px-5">
           <div className="mx-auto max-w-4xl space-y-10">
             {/* Component Header Section */}
             <div className="space-y-4 border-b pb-8">
-              <div className="flex items-center gap-3">
+              <div className="flex flex-col md:flex-row md:items-center gap-3">
                 <h1 className="scroll-m-20 text-4xl font-bold tracking-tight">
                   {componentData.name}
                 </h1>
@@ -60,7 +60,7 @@ const ComponentPage = async ({ params }: ComponentPageProps) => {
                   UI Component
                 </Badge>
               </div>
-              <p className="text-xl text-muted-foreground leading-relaxed">
+              <p className="md:text-xl text-lg text-muted-foreground leading-relaxed">
                 {componentData.description}
               </p>
               <div className="flex gap-3 pt-2">
@@ -91,7 +91,7 @@ const ComponentPage = async ({ params }: ComponentPageProps) => {
               <div className="rounded-xl border bg-white dark:bg-black backdrop-blur-sm overflow-hidden">
                 <PreviewCodeToggle
                   preview={
-                    <div className="flex flex-wrap justify-center gap-4 p-10">
+                    <div className="flex flex-wrap justify-center gap-4 md:p-10">
                       {componentData.preview}
                     </div>
                   }
