@@ -1,4 +1,4 @@
-import type { ComponentData } from "./ComponentInterfaces"
+import type { ComponentData } from "@/nyxui/ComponentInterfaces"
 import { ThreeDCard } from "@/nyxui/components/3DCard"
 import { ThreeDCardDemo } from "@/nyxui/demos/3DCardDemo"
 import fs from "fs";

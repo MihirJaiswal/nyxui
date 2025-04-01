@@ -1,4 +1,4 @@
-import type { ComponentData } from "./ComponentInterfaces"
+import type { ComponentData } from "@/nyxui/ComponentInterfaces"
 import { MatrixCodeRain } from "@/nyxui/components/MatrixCodeRain"
 import { MatrixCodeRainDemo } from "@/nyxui/demos/MatrixCodeRainDemo"
 import fs from "fs";

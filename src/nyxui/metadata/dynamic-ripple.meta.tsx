@@ -1,5 +1,5 @@
 import React from "react";
-import type { ComponentData } from "./ComponentInterfaces";
+import type { ComponentData } from "@/nyxui/ComponentInterfaces";
 import { DynamicRipple } from "@/nyxui/components/DynamicRipple";
 import { DynamicRippleDemo } from "@/nyxui/demos/DynamicRippleDemo";
 import { Droplets } from "lucide-react";

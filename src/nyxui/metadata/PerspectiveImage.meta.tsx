@@ -1,4 +1,4 @@
-import type { ComponentData } from "./ComponentInterfaces"
+import type { ComponentData } from "@/nyxui/ComponentInterfaces"
 import { PerspectiveImage } from "@/nyxui/components/PerspectiveImage"
 import { PerspectiveImageDemo } from "@/nyxui/demos/PerspectiveImageDemo"
 

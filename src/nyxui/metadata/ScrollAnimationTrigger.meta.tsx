@@ -1,4 +1,4 @@
-import type { ComponentData } from "./ComponentInterfaces"
+import type { ComponentData } from "@/nyxui/ComponentInterfaces"
 import { ScrollAnimationTrigger } from "@/nyxui/components/ScrollAnimationTrigger"
 import { ScrollAnimationTriggerDemo } from "@/nyxui/demos/ScrollAnimationTriggerDemo"
 import { ArrowUp, FileBadge2, Lightbulb, Maximize, Palette, RotateCw, Sparkles, Star } from "lucide-react"

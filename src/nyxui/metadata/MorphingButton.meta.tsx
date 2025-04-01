@@ -1,5 +1,5 @@
 import React from "react";
-import type { ComponentData } from "./ComponentInterfaces";
+import type { ComponentData } from "@/nyxui/ComponentInterfaces";
 import { MorphingButton } from "@/nyxui/components/MorphingButton";
 import { MorphingButtonDemo } from "@/nyxui/demos/MorphingButtonDemo";
 import { ArrowRight, Bell, Check, Plus, Trash } from "lucide-react";

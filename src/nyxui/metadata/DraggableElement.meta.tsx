@@ -1,4 +1,4 @@
-import type { ComponentData } from "./ComponentInterfaces"
+import type { ComponentData } from "@/nyxui/ComponentInterfaces"
 import { DraggableElement } from "@/nyxui/components/DraggableElement"
 import { DraggableElementDemo } from "@/nyxui/demos/DraggableElementDemo"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"

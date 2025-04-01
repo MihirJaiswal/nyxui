@@ -1,4 +1,4 @@
-import type { ComponentData } from "./ComponentInterfaces"
+import type { ComponentData } from "@/nyxui/ComponentInterfaces"
 import { AnimatedGradientBg } from "@/nyxui/components/AnimatedGradientBg"
 import { AnimatedGradientBgDemo } from "@/nyxui/demos/AnimatedGradientBgDemo"
 import fs from "fs"

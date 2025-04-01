@@ -1,4 +1,4 @@
-import type { ComponentData } from "./ComponentInterfaces"
+import type { ComponentData } from "@/nyxui/ComponentInterfaces"
 import { GlassmorphismDepth } from "@/nyxui/components/GlassmorphismDepth"
 import { GlassmorphismDepthDemo } from "@/nyxui/demos/GlassmorphismDepthDemo"
 import fs from "fs";

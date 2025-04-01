@@ -1,4 +1,4 @@
-import type { ComponentData } from "./ComponentInterfaces";
+import type { ComponentData } from "@/nyxui/ComponentInterfaces";
 import SpecialCard from "@/nyxui/components/specialCard";
 import SpecialCardDemo from "@/nyxui/demos/SpecialCardDemo";
 import fs from "fs";

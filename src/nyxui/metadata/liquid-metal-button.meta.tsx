@@ -1,4 +1,4 @@
-import type { ComponentData } from "./ComponentInterfaces"
+import type { ComponentData } from "@/nyxui/ComponentInterfaces"
 import { LiquidMetalButtonDemo } from "@/nyxui/demos/LiquidMetalButtonDemo"
 import { LiquidMetalButton } from "@/nyxui/components/LiquidMetalButton"
 import { ArrowRight, Download, Leaf, Mail, ShieldCheck, Sparkles, Star } from "lucide-react"

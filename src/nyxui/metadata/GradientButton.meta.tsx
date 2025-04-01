@@ -1,5 +1,5 @@
 import React from "react";
-import type { ComponentData } from "./ComponentInterfaces";
+import type { ComponentData } from "@/nyxui/ComponentInterfaces";
 import { GradientButton } from "@/nyxui/components/GradientButton";
 import { GradientButtonDemo } from "@/nyxui/demos/GradientButtonDemo";
 import fs from "fs";

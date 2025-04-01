@@ -1,4 +1,4 @@
-import type { ComponentData } from "./ComponentInterfaces"
+import type { ComponentData } from "@/nyxui/ComponentInterfaces"
 import DrawingCanvas from "@/nyxui/components/DrawingCanvas"
 import DrawingCanvasDemo from "@/nyxui/demos/DrawingCanvasDemo"
 import fs from "fs";

@@ -1,4 +1,4 @@
-import type { ComponentData } from "./ComponentInterfaces"
+import type { ComponentData } from "@/nyxui/ComponentInterfaces"
 import { DynamicGridLayout } from "@/nyxui/components/DynamicGridLayout"
 import { DynamicGridLayoutDemo } from "@/nyxui/demos/DynamicGridLayoutDemo"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"

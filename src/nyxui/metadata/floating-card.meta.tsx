@@ -1,4 +1,4 @@
-import type { ComponentData } from "./ComponentInterfaces"
+import type { ComponentData } from "@/nyxui/ComponentInterfaces"
 import { FloatingCard } from "@/nyxui/components/FloatingCard"
 import { FloatingCardDemo } from "@/nyxui/demos/FloatingCardDemo"
 import { Activity, Badge, CloudLightning, Globe, HeartPulse, LineChart, MessageCircle, MoreVertical, MountainSnowIcon, Share2, Shield, Smartphone, Sparkles, Star } from "lucide-react"

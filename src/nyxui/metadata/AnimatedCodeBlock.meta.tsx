@@ -1,4 +1,4 @@
-import type { ComponentData } from "./ComponentInterfaces"
+import type { ComponentData } from "@/nyxui/ComponentInterfaces"
 import { AnimatedCodeBlock } from "@/nyxui/components/AnimatedCodeBlock"
 import { AnimatedCodeBlockDemo } from "@/nyxui/demos/AnimatedCodeBlockDemo"
 import fs from "fs";

@@ -1,5 +1,5 @@
 import React from "react";
-import type { ComponentData } from "./ComponentInterfaces";
+import type { ComponentData } from "@/nyxui/ComponentInterfaces";
 import { ExpandingCircleMenu } from "@/nyxui/components/ExpandingCircleMenu";
 import { ExpandingCircleMenuDemo } from "@/nyxui/demos/ExpandingCircleMenuDemo";
 import fs from "fs";

@@ -1,4 +1,4 @@
-import type { ComponentData } from "./ComponentInterfaces"
+import type { ComponentData } from "@/nyxui/ComponentInterfaces"
 import { MorphingBlob } from "@/nyxui/components/MorphingBlob"
 import { MorphingBlobDemo } from "@/nyxui/demos/MorphingBlobDemo"
 import { Atom, Brain, Rocket, Shield, Sparkles, Star, Zap } from "lucide-react"

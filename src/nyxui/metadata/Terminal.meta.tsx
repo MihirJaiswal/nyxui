@@ -1,4 +1,4 @@
-import type { ComponentData } from "./ComponentInterfaces";
+import type { ComponentData } from "@/nyxui/ComponentInterfaces";
 import TerminalDemo from "@/nyxui/demos/TerminalDemo";
 import fs from "fs";
 import { Code, Heart, Rocket } from "lucide-react";

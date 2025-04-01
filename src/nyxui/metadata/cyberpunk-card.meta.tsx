@@ -1,5 +1,5 @@
 import React from "react";
-import type { ComponentData } from "./ComponentInterfaces";
+import type { ComponentData } from "@/nyxui/ComponentInterfaces";
 import { CyberpunkCard } from "@/nyxui/components/CyberpunkCard";
 import { CyberpunkCardDemo } from "@/nyxui/demos/CyberpunkCardDemo";
 import { Zap } from "lucide-react";
