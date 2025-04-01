@@ -15,6 +15,9 @@ import { dynamicGridLayoutData } from "./metadata/DynamicGridLayout.meta";
 import { perspectiveImageData } from "./metadata/PerspectiveImage.meta";
 import { scrollAnimationTriggerData } from "./metadata/ScrollAnimationTrigger.meta";
 import { specialCardData } from "./metadata/SpecialCard.meta";
+import { matrixCodeRainData } from "./metadata/MatrixCodeRain.meta";
+import { drawingCanvasData } from "./metadata/DrawingCanvas.meta";
+import { interactiveTerminalData } from "./metadata/Terminal.meta";
 
 export const componentsData = {
   "gradient-button": gradientButtonData,
@@ -33,5 +36,8 @@ export const componentsData = {
   "dynamic-grid-layout": dynamicGridLayoutData,
   "3d-perspective-image": perspectiveImageData,
   "scroll-animation-trigger": scrollAnimationTriggerData,
-  "special-card": specialCardData 
+  "special-card": specialCardData,
+  "matrix-code-rain": matrixCodeRainData,
+  "drawing-canvas": drawingCanvasData,
+  "interactive-terminal": interactiveTerminalData 
 };
