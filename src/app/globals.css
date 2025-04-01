@@ -221,3 +221,12 @@
 .dark .hide-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #1f1f20; /* zinc-700 */
 }
+
+.scrollbar-no::-webkit-scrollbar {
+  display: none; 
+}
+
+.scrollbar-no {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}

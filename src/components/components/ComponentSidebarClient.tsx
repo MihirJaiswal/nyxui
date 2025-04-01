@@ -59,10 +59,10 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({ 
     <div
       ref={scrollContainerRef}
       className={cn(
-        "h-full overflow-y-auto transition-all duration-300 hide-scrollbar",
+        "h-full overflow-y-auto transition-all duration-300",
         isScrolling
-          ? "pr-2 scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent hover:scrollbar-thumb-primary/30"
-          : "pr-4 scrollbar-none"
+          ? "pr-2  hide-scrollbar scrollbar-thumb-primary/20 scrollbar-track-transparent hover:scrollbar-thumb-primary/30"
+          : "pr-4 scrollbar-no"
       )}
     >
       <div className="space-y-8 hide-scrollbar">
