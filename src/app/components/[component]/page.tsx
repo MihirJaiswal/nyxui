@@ -104,57 +104,69 @@ const ComponentPage = async ({ params }: ComponentPageProps) => {
             <InstallationSection componentData={componentData} />
 
             {/* Props Section */}
-            <section className="space-y-6">
-              <h2 className="text-3xl font-semibold tracking-tight">Props</h2>
-              {componentData.props && componentData.props.length > 0 ? (
-                <Tabs defaultValue={componentData.props[0].name} className="w-full">
-                  <TabsList className="mb-6 p-1 bg-muted/30">
-                    {componentData.props.map((propGroup) => (
-                      <TabsTrigger 
-                        key={propGroup.name} 
-                        value={propGroup.name}
-                        className="px-6 py-2 text-base"
+            <section className="space-y-8">
+      <h2 className="text-3xl font-bold tracking-tight">Props</h2>
+      
+      {componentData.props && componentData.props.length > 0 ? (
+        <Tabs defaultValue={componentData.props[0].name} className="w-full">
+          <TabsList className="mb-6 bg-zinc-100 dark:bg-zinc-800 p-0 shadow-sm border">
+            {componentData.props.map((propGroup) => (
+              <TabsTrigger 
+                key={propGroup.name} 
+                value={propGroup.name}
+                className="px-8 py-3 text-base border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-white dark:data-[state=active]:bg-zinc-900"
+              >
+                {propGroup.name}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+          
+          {componentData.props.map((propGroup) => (
+            <TabsContent key={propGroup.name} value={propGroup.name} className="space-y-4">
+              <div className="border shadow">
+                <table className="w-full border-collapse text-sm">
+                  <thead>
+                    <tr className="bg-zinc-50 dark:bg-zinc-800">
+                      <th className="px-6 py-4 text-left font-medium w-1/4 border-r">Name</th>
+                      <th className="px-6 py-4 text-left font-medium w-1/4 border-r">Type</th>
+                      <th className="px-6 py-4 text-left font-medium w-1/4 border-r">Default</th>
+                      <th className="px-6 py-4 text-left font-medium w-1/4">Description</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y">
+                    {propGroup.items.map((prop, index) => (
+                      <tr 
+                        key={prop.name} 
+                        className={`transition-colors ${
+                          index % 2 === 0 
+                            ? 'bg-white dark:bg-black' 
+                            : 'bg-zinc-50 dark:bg-zinc-900'
+                        }`}
                       >
-                        {propGroup.name}
-                      </TabsTrigger>
+                        <td className="px-6 py-4 font-mono text-sm font-semibold border-r">
+                          <code className="bg-yellow-50 dark:bg-zinc-800 px-2 py-1">{prop.name}</code>
+                        </td>
+                        <td className="px-6 py-4 font-mono text-sm border-r">
+                          <code className="bg-yellow-50 dark:bg-zinc-800 px-2 py-1">{prop.type}</code>
+                        </td>
+                        <td className="px-6 py-4 text-sm border-r">
+                          <code className="bg-yellow-50 dark:bg-zinc-800 px-2 py-1">{prop.default || "-"}</code>
+                        </td>
+                        <td className="px-6 py-4 text-sm">{prop.description}</td>
+                      </tr>
                     ))}
-                  </TabsList>
-                  {componentData.props.map((propGroup) => (
-                    <TabsContent key={propGroup.name} value={propGroup.name} className="space-y-4">
-                      <div className="overflow-hidden rounded-lg border shadow-md">
-                        <table className="w-full border-collapse text-base">
-                          <thead>
-                            <tr className="border-b">
-                              <th className="px-6 py-4 text-left font-medium w-1/4 border-r border-primary-foreground/20">Name</th>
-                              <th className="px-6 py-4 text-left font-medium w-1/4 border-r border-primary-foreground/20">Type</th>
-                              <th className="px-6 py-4 text-left font-medium w-1/4 border-r border-primary-foreground/20">Default</th>
-                              <th className="px-6 py-4 text-left font-medium w-1/4">Description</th>
-                            </tr>
-                          </thead>
-                          <tbody className="divide-y">
-                            {propGroup.items.map((prop, index) => (
-                              <tr 
-                                key={prop.name} 
-                                className={`hover:bg-muted/40 transition-colors ${index % 2 === 0 ? 'bg-background' : 'bg-muted/20'}`}
-                              >
-                                <td className="px-6 py-4 font-mono text-sm font-semibold border-r "><span className="bg-yellow-50 dark:bg-zinc-800 p-2 rounded-md">{prop.name}</span></td>
-                                <td className="px-6 py-4 font-mono text-sm border-r"><span className="bg-yellow-50 dark:bg-zinc-800 p-2 rounded-md">{prop.type}</span></td>
-                                <td className="px-6 py-4 text-sm border-r"><span className="bg-yellow-50 dark:bg-zinc-800 p-2 rounded-md">{prop.default || "-"}</span></td>
-                                <td className="px-6 py-4 text-sm">{prop.description}</td>
-                              </tr>
-                            ))}
-                          </tbody>
-                        </table>
-                      </div>
-                    </TabsContent>
-                  ))}
-                </Tabs>
-              ) : (
-                <Card className="border p-6 shadow-md">
-                  <p className="text-muted-foreground">No props available for this component.</p>
-                </Card>
-              )}
-            </section>
+                  </tbody>
+                </table>
+              </div>
+            </TabsContent>
+          ))}
+        </Tabs>
+      ) : (
+        <Card className="border p-6 shadow">
+          <p className="text-zinc-500">No props available for this component.</p>
+        </Card>
+      )}
+    </section>
             {/* Examples Section */}
             <div className="space-y-8">
               <h2 className="text-2xl font-semibold tracking-tight">Examples</h2>
