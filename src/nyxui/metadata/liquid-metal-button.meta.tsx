@@ -20,26 +20,27 @@ export const liquidMetalButtonData: ComponentData = {
   componentCode: LiquidMetalButtonSource,
   dependencies: [
     {
-      name: "Tailwind CSS",
-      description: "Utility-first CSS framework used for styling the component.",
+      name: "Utility Functions",
+      description: "Utility functions for conditional class name merging.",
       install: {
-        npm: "npm install tailwindcss postcss autoprefixer && npx tailwindcss init -p",
-        pnpm: "pnpm add tailwindcss postcss autoprefixer && pnpx tailwindcss init -p",
-        yarn: "yarn add tailwindcss postcss autoprefixer && yarn tailwindcss init -p",
-        bun: "bun add tailwindcss postcss autoprefixer && bun tailwindcss init -p",
+        npm: "npm install clsx tailwind-merge",
+        pnpm: "pnpm add clsx tailwind-merge",
+        yarn: "yarn add clsx tailwind-merge",
+        bun: "bun add clsx tailwind-merge",
       },
-    },
-    {
-      name: "@radix-ui/react-slot",
-      description: "Used for the asChild pattern to allow rendering as different elements.",
-      install: {
-        npm: "npm install @radix-ui/react-slot",
-        pnpm: "pnpm add @radix-ui/react-slot",
-        yarn: "yarn add @radix-ui/react-slot",
-        bun: "bun add @radix-ui/react-slot",
+      setup: {
+        description: "Create a utils.ts file with the cn utility function",
+        file: "/lib/utils.ts",
+        code: `import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+  export function cn(...inputs: ClassValue[]) {
+      return twMerge(clsx(inputs));
+  }`,
+            },
       },
-    },
   ],
+  
   props: [
     {
       name: "Liquid Metal Button",
@@ -47,72 +48,119 @@ export const liquidMetalButtonData: ComponentData = {
         {
           name: "variant",
           type: "string",
-          default: '"default" | "outline" | "ghost" | "mercury" | "ripple"',
-          description: "The variant of the button",
+          default: '"default"',
+          description:
+            'The variant of the button. Possible values: "default", "outline", "ghost", "mercury", "ripple", "gradient".',
         },
         {
           name: "size",
           type: "string",
-          default: '"sm" | "md" | "lg" | "xl"',
-          description: "The size of the button",
+          default: '"md"',
+          description:
+            'The size of the button. Possible values: "xs", "sm", "md", "lg", "xl", "2xl".',
         },
         {
           name: "theme",
           type: "string",
-          default: '"silver" | "gold" | "copper" | "mercury" | "steel" | "custom"',
-          description: "The color theme of the button",
+          default: '"silver"',
+          description:
+            'The color theme of the button. Possible values: "silver", "gold", "copper", "mercury", "steel", "obsidian", "emerald", "ruby", "sapphire", "custom".',
         },
         {
           name: "customColors",
           type: "object",
           default: "undefined",
-          description: "Custom colors for the button when theme is set to 'custom'",
+          description:
+            'Custom colors for the button when theme is set to "custom". The object should include properties: base, highlight, shadow, and optionally text, border, and glow.',
         },
         {
           name: "intensity",
           type: "number",
           default: "3",
-          description: "The intensity of the liquid effect (1-5)",
+          description:
+            "The intensity of the liquid effect (1-5).",
         },
         {
           name: "magnetic",
           type: "boolean",
           default: "true",
-          description: "Whether to enable the magnetic pull effect",
+          description:
+            "Whether to enable the magnetic pull effect.",
         },
         {
           name: "clickEffect",
           type: "boolean",
           default: "true",
-          description: "Whether to enable the click animation",
+          description:
+            "Whether to enable the click animation.",
         },
         {
           name: "asChild",
           type: "boolean",
           default: "false",
-          description: "Whether to render the button as a child element",
+          description:
+            "Whether to render the button as a child element.",
         },
         {
           name: "rounded",
           type: "string",
-          default: '"none" | "sm" | "md" | "lg" | "full"',
-          description: "The border radius of the button",
+          default: '"md"',
+          description:
+            'The border radius of the button. Possible values: "none", "sm", "md", "lg", "full".',
         },
         {
           name: "shadow",
+          type: "boolean | string",
+          default: "true",
+          description:
+            'Whether to show a shadow effect. Can be a boolean or a specific shadow size: "sm", "md", "lg", "xl".',
+        },
+        {
+          name: "hoverAnimation",
           type: "boolean",
           default: "true",
-          description: "Whether to show a shadow effect",
+          description:
+            "Whether to enable hover animation.",
+        },
+        {
+          name: "textured",
+          type: "boolean",
+          default: "false",
+          description:
+            "Whether to apply a textured effect.",
+        },
+        {
+          name: "icon",
+          type: "React.ReactNode",
+          default: "undefined",
+          description:
+            "Icon to be displayed before the children.",
+        },
+        {
+          name: "iconAfter",
+          type: "React.ReactNode",
+          default: "undefined",
+          description:
+            "Icon to be displayed after the children.",
         },
         {
           name: "className",
           type: "string",
           default: '""',
-          description: "Additional CSS classes to apply",
+          description:
+            "Additional CSS classes to apply.",
+        },
+        {
+          name: "children",
+          type: "React.ReactNode",
+          default: "undefined",
+          description:
+            "Content of the button.",
         },
       ],
     },
   ],
+  
   category: "Buttons",
   examples: [
     {
@@ -390,7 +438,7 @@ export const liquidMetalButtonData: ComponentData = {
             base: "bg-gradient-to-b from-purple-300 via-purple-400 to-purple-600",
             highlight: "rgba(230, 200, 255, 0.8)",
             shadow: "rgba(80, 0, 120, 0.4)",
-            text: "text-purple-950",
+            text: "text-purple-950 dark:text-purple-200",
             border: "border-purple-500",
             glow: "shadow-purple-500/50"
           }}
@@ -415,7 +463,7 @@ export const liquidMetalButtonData: ComponentData = {
           base: "bg-gradient-to-b from-purple-300 via-purple-400 to-purple-600",
           highlight: "rgba(230, 200, 255, 0.8)",
           shadow: "rgba(80, 0, 120, 0.4)",
-          text: "text-purple-950",
+          text: "text-purple-950 dark:text-purple-200",
           border: "border-purple-500",
           glow: "shadow-purple-500/50"
         }}

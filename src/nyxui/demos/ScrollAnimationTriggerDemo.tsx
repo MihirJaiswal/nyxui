@@ -227,7 +227,7 @@ export function ScrollAnimationTriggerDemo() {
             </ScrollAnimationTrigger>
           </div>
 
-          {/* Scroll progress based animation with improved visual appeal */}
+          {/* Scroll progress based animation */}
           <ScrollProgressAnimation className="min-h-[100vh] flex flex-col items-center justify-center p-6 mb-24 relative">
             {({ scrollYProgress }) => {
               const textColor = useScrollColor(scrollYProgress, "#3b82f6", "#ec4899")
@@ -293,7 +293,7 @@ export function ScrollAnimationTriggerDemo() {
             }}
           </ScrollProgressAnimation>
 
-          {/* Custom effect with more complex animation */}
+          {/* Custom effect */}
           <ScrollAnimationTrigger
             effect="custom"
             customProps={{

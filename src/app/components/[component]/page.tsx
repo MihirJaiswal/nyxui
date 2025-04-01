@@ -138,8 +138,8 @@ const ComponentPage = async ({ params }: ComponentPageProps) => {
                                 className={`hover:bg-muted/40 transition-colors ${index % 2 === 0 ? 'bg-background' : 'bg-muted/20'}`}
                               >
                                 <td className="px-6 py-4 font-mono text-sm font-semibold border-r "><span className="bg-yellow-50 dark:bg-zinc-800 p-2 rounded-md">{prop.name}</span></td>
-                                <td className="px-6 py-4 font-mono text-sm border-r">{prop.type}</td>
-                                <td className="px-6 py-4 text-sm border-r">{prop.default || "-"}</td>
+                                <td className="px-6 py-4 font-mono text-sm border-r"><span className="bg-yellow-50 dark:bg-zinc-800 p-2 rounded-md">{prop.type}</span></td>
+                                <td className="px-6 py-4 text-sm border-r"><span className="bg-yellow-50 dark:bg-zinc-800 p-2 rounded-md">{prop.default || "-"}</span></td>
                                 <td className="px-6 py-4 text-sm">{prop.description}</td>
                               </tr>
                             ))}

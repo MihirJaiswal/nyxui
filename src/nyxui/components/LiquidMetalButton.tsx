@@ -1,9 +1,8 @@
 "use client"
 
 import type React from "react"
-import { useRef, useEffect, useState } from "react"
+import { useRef, useEffect, useState, useCallback } from "react"
 import { cn } from "@/lib/utils"
-import { Slot } from "@radix-ui/react-slot"
 
 export interface LiquidMetalButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "default" | "outline" | "ghost" | "mercury" | "ripple" | "gradient"
@@ -58,11 +57,12 @@ export function LiquidMetalButton({
   const [droplets, setDroplets] = useState<any[]>([])
   const animationRef = useRef<number>(0)
   const lastRippleTime = useRef<number>(0)
+  const dropletsRef = useRef<any[]>([]) // Add a ref to track droplets without triggering renders
 
   const themeColors = {
     silver: {
-      base: "bg-gradient-to-b from-gray-200 via-gray-300 to-gray-400",
-      text: "text-gray-800",
+      base: "bg-gradient-to-b from-gray-200 via-gray-300 to-gray-400 dark:from-gray-700 dark:via-gray-800 dark:to-gray-900",
+      text: "text-gray-800 dark:text-gray-200",
       highlight: "rgba(255, 255, 255, 0.8)",
       shadow: "rgba(0, 0, 0, 0.3)",
       glow: "shadow-gray-400/50",
@@ -70,8 +70,8 @@ export function LiquidMetalButton({
       texture: "bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyIiBoZWlnaHQ9IjIiPjxyZWN0IHdpZHRoPSIyIiBoZWlnaHQ9IjIiIGZpbGw9InJnYmEoMCwwLDAsMC4wMikiLz48L3N2Zz4=')]",
     },
     gold: {
-      base: "bg-gradient-to-b from-amber-200 via-amber-300 to-amber-500",
-      text: "text-amber-900",
+      base: "bg-gradient-to-b from-amber-200 via-amber-300 to-amber-500 dark:from-amber-700 dark:via-amber-800 dark:to-amber-900",
+      text: "text-amber-900 dark:text-amber-200",
       highlight: "rgba(255, 235, 150, 0.8)",
       shadow: "rgba(120, 80, 0, 0.4)",
       glow: "shadow-amber-400/50",
@@ -79,8 +79,8 @@ export function LiquidMetalButton({
       texture: "bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyIiBoZWlnaHQ9IjIiPjxyZWN0IHdpZHRoPSIyIiBoZWlnaHQ9IjIiIGZpbGw9InJnYmEoMjU1LDIxNSwwLDAuMDIpIi8+PC9zdmc+')]",
     },
     copper: {
-      base: "bg-gradient-to-b from-orange-200 via-orange-300 to-orange-600",
-      text: "text-orange-900",
+      base: "bg-gradient-to-b from-orange-200 via-orange-300 to-orange-600 dark:from-orange-700 dark:via-orange-800 dark:to-orange-900",
+      text: "text-orange-900 dark:text-orange-200",
       highlight: "rgba(255, 200, 150, 0.8)",
       shadow: "rgba(120, 60, 0, 0.4)",
       glow: "shadow-orange-400/50",
@@ -88,8 +88,8 @@ export function LiquidMetalButton({
       texture: "bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyIiBoZWlnaHQ9IjIiPjxyZWN0IHdpZHRoPSIyIiBoZWlnaHQ9IjIiIGZpbGw9InJnYmEoMjU1LDE2MCwwLDAuMDIpIi8+PC9zdmc+')]",
     },
     mercury: {
-      base: "bg-gradient-to-b from-blue-200 via-blue-300 to-blue-400",
-      text: "text-blue-900",
+      base: "bg-gradient-to-b from-blue-200 via-blue-300 to-blue-400 dark:from-blue-700 dark:via-blue-800 dark:to-blue-900",
+      text: "text-blue-900 dark:text-blue-100",
       highlight: "rgba(200, 230, 255, 0.8)",
       shadow: "rgba(0, 50, 120, 0.4)",
       glow: "shadow-blue-400/50",
@@ -97,8 +97,8 @@ export function LiquidMetalButton({
       texture: "bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyIiBoZWlnaHQ9IjIiPjxyZWN0IHdpZHRoPSIyIiBoZWlnaHQ9IjIiIGZpbGw9InJnYmEoMTgwLDIzMCwyNTUsMC4wMikiLz48L3N2Zz4=')]",
     },
     steel: {
-      base: "bg-gradient-to-b from-slate-300 via-slate-400 to-slate-600",
-      text: "text-slate-100",
+      base: "bg-gradient-to-b from-slate-300 via-slate-400 to-slate-600 dark:from-slate-700 dark:via-slate-800 dark:to-slate-900",
+      text: "text-slate-900 dark:text-slate-100",
       highlight: "rgba(220, 230, 240, 0.8)",
       shadow: "rgba(30, 40, 50, 0.4)",
       glow: "shadow-slate-400/50",
@@ -106,8 +106,8 @@ export function LiquidMetalButton({
       texture: "bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyIiBoZWlnaHQ9IjIiPjxyZWN0IHdpZHRoPSIyIiBoZWlnaHQ9IjIiIGZpbGw9InJnYmEoMjIwLDIyMCwyMjAsMC4wMikiLz48L3N2Zz4=')]",
     },
     obsidian: {
-      base: "bg-gradient-to-b from-gray-600 via-gray-700 to-gray-900",
-      text: "text-gray-100",
+      base: "bg-gradient-to-b from-gray-600 via-gray-700 to-gray-900 dark:from-gray-700 dark:via-gray-800 dark:to-gray-900",
+      text: "text-gray-100 dark:text-gray-100",
       highlight: "rgba(180, 180, 180, 0.3)",
       shadow: "rgba(0, 0, 0, 0.5)",
       glow: "shadow-gray-900/70",
@@ -115,8 +115,8 @@ export function LiquidMetalButton({
       texture: "bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyIiBoZWlnaHQ9IjIiPjxyZWN0IHdpZHRoPSIyIiBoZWlnaHQ9IjIiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMSkiLz48L3N2Zz4=')]",
     },
     emerald: {
-      base: "bg-gradient-to-b from-emerald-300 via-emerald-400 to-emerald-600",
-      text: "text-emerald-950",
+      base: "bg-gradient-to-b from-emerald-300 via-emerald-400 to-emerald-600 dark:from-emerald-700 dark:via-emerald-800 dark:to-emerald-900",
+      text: "text-emerald-950 dark:text-emerald-100",
       highlight: "rgba(180, 255, 220, 0.7)",
       shadow: "rgba(0, 80, 60, 0.4)",
       glow: "shadow-emerald-500/50",
@@ -124,8 +124,8 @@ export function LiquidMetalButton({
       texture: "bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyIiBoZWlnaHQ9IjIiPjxyZWN0IHdpZHRoPSIyIiBoZWlnaHQ9IjIiIGZpbGw9InJnYmEoMTAwLDI1NSwxNTAsMC4wMikiLz48L3N2Zz4=')]",
     },
     ruby: {
-      base: "bg-gradient-to-b from-red-300 via-red-400 to-red-600",
-      text: "text-red-950",
+      base: "bg-gradient-to-b from-red-300 via-red-400 to-red-600 dark:from-red-700 dark:via-red-800 dark:to-red-900",
+      text: "text-red-950 dark:text-red-100",
       highlight: "rgba(255, 200, 200, 0.7)",
       shadow: "rgba(100, 0, 0, 0.4)",
       glow: "shadow-red-500/50",
@@ -133,8 +133,8 @@ export function LiquidMetalButton({
       texture: "bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyIiBoZWlnaHQ9IjIiPjxyZWN0IHdpZHRoPSIyIiBoZWlnaHQ9IjIiIGZpbGw9InJnYmEoMjU1LDEwMCwxMDAsMC4wMikiLz48L3N2Zz4=')]",
     },
     sapphire: {
-      base: "bg-gradient-to-b from-indigo-300 via-indigo-400 to-indigo-600",
-      text: "text-indigo-950",
+      base: "bg-gradient-to-b from-indigo-300 via-indigo-400 to-indigo-600 dark:from-indigo-700 dark:via-indigo-800 dark:to-indigo-900",
+      text: "text-indigo-950 dark:text-indigo-100",
       highlight: "rgba(200, 200, 255, 0.7)",
       shadow: "rgba(40, 0, 100, 0.4)",
       glow: "shadow-indigo-500/50",
@@ -189,6 +189,9 @@ export function LiquidMetalButton({
   }
 
   useEffect(() => {
+    dropletsRef.current = droplets;
+  }, [droplets]);
+  useEffect(() => {
     if (!buttonRef.current || !canvasRef.current) return
 
     const updateDimensions = () => {
@@ -216,6 +219,33 @@ export function LiquidMetalButton({
     }
   }, [])
 
+  const createDroplet = useCallback((x: number, y: number) => {
+    if (!isHovered || (variant !== "mercury" && variant !== "ripple")) return false
+
+    const now = Date.now()
+    if (now - lastRippleTime.current > 30) {
+      const factor = intensityFactors[intensity]
+      const size = Math.random() * 8 * factor + 3
+      
+      setDroplets(prev => {
+        const newDroplets = [...prev, {
+          x,
+          y,
+          size,
+          opacity: 0.7,
+          speedX: (Math.random() - 0.5) * 2 * factor,
+          speedY: (Math.random() - 0.5) * 2 * factor,
+          life: 1.0, 
+        }]
+        return newDroplets.length > 25 ? newDroplets.slice(-25) : newDroplets
+      })
+      
+      lastRippleTime.current = now
+      return true
+    }
+    
+    return false
+  }, [isHovered, variant, intensity])
   useEffect(() => {
     if (!buttonRef.current || !isHovered) return
 
@@ -229,31 +259,7 @@ export function LiquidMetalButton({
       setMousePosition({ x, y })
 
       if ((variant === "mercury" || variant === "ripple") && Math.random() > 0.6) {
-        const factor = intensityFactors[intensity]
-        const size = Math.random() * 8 * factor + 3
-        const now = Date.now()
-        
-        // Add a droplet only if there's been enough time since the last ripple
-        if (now - lastRippleTime.current > 30) {
-          setDroplets((prev) => [
-            ...prev,
-            {
-              x,
-              y,
-              size,
-              opacity: 0.7,
-              speedX: (Math.random() - 0.5) * 2 * factor,
-              speedY: (Math.random() - 0.5) * 2 * factor,
-              life: 1.0, // Full life
-            },
-          ])
-          
-          lastRippleTime.current = now
-          
-          if (droplets.length > 25) {
-            setDroplets((prev) => prev.slice(-25))
-          }
-        }
+        createDroplet(x, y)
       }
     }
 
@@ -262,47 +268,51 @@ export function LiquidMetalButton({
     return () => {
       document.removeEventListener("mousemove", handleMouseMove)
     }
-  }, [isHovered, variant, intensity, droplets.length])
+  }, [isHovered, variant, createDroplet])
 
   useEffect(() => {
-    if (!canvasRef.current || !isHovered || (variant !== "mercury" && variant !== "ripple")) return
+    if (!canvasRef.current || (variant !== "mercury" && variant !== "ripple")) return
 
     const ctx = canvasRef.current.getContext("2d")
     if (!ctx) return
 
+    let frameCount = 0;
+    
     const animate = () => {
+      if (!isHovered) {
+        ctx.clearRect(0, 0, buttonDimensions.width, buttonDimensions.height)
+        return
+      }
+      
+      frameCount++;
       ctx.clearRect(0, 0, buttonDimensions.width, buttonDimensions.height)
+      const currentDroplets = dropletsRef.current;
+      const updatedDroplets = currentDroplets
+        .map(droplet => {
+          const gravity = variant === "ripple" ? 0.08 : 0.02
+          
+          return {
+            ...droplet,
+            x: droplet.x + droplet.speedX,
+            y: droplet.y + droplet.speedY + gravity,
+            speedX: droplet.speedX * 0.98, 
+            speedY: droplet.speedY * 0.98 + gravity, 
+            life: droplet.life - 0.015, 
+            size: droplet.size * 0.99,
+          }
+        })
+        .filter(droplet => droplet.life > 0)
 
-      setDroplets((prev) =>
-        prev
-          .map((droplet) => {
-            const gravity = variant === "ripple" ? 0.08 : 0.02
-            
-            return {
-              ...droplet,
-              x: droplet.x + droplet.speedX,
-              y: droplet.y + droplet.speedY + gravity,
-              speedX: droplet.speedX * 0.98, // Friction
-              speedY: droplet.speedY * 0.98 + gravity, // Friction and gravity
-              life: droplet.life - 0.015, // Life decreases faster
-              size: droplet.size * 0.99, // Slight shrink
-            }
-          })
-          .filter((droplet) => droplet.life > 0),
-      )
-
-      droplets.forEach((droplet) => {
+      updatedDroplets.forEach(droplet => {
         const gradientColor = variant === "mercury" ? 
           ctx.createRadialGradient(droplet.x, droplet.y, 0, droplet.x, droplet.y, droplet.size) :
           ctx.createRadialGradient(droplet.x, droplet.y, 0, droplet.x, droplet.y, droplet.size * 1.2)
         
-        // Different colors based on variant
         if (variant === "mercury") {
           gradientColor.addColorStop(0, `rgba(240, 250, 255, ${droplet.life * 0.9})`)
           gradientColor.addColorStop(0.6, `rgba(180, 220, 255, ${droplet.life * 0.7})`)
           gradientColor.addColorStop(1, `rgba(100, 180, 255, ${droplet.life * 0.3})`)
         } else {
-          // Ripple variant
           gradientColor.addColorStop(0, `rgba(255, 255, 255, ${droplet.life * 0.8})`)
           gradientColor.addColorStop(0.7, `rgba(220, 230, 255, ${droplet.life * 0.5})`)
           gradientColor.addColorStop(1, `rgba(200, 210, 255, ${droplet.life * 0.1})`)
@@ -314,6 +324,10 @@ export function LiquidMetalButton({
         ctx.fill()
       })
 
+      if (frameCount % 4 === 0) {
+        setDroplets(updatedDroplets);
+      }
+
       animationRef.current = requestAnimationFrame(animate)
     }
 
@@ -321,8 +335,11 @@ export function LiquidMetalButton({
 
     return () => {
       cancelAnimationFrame(animationRef.current)
+      if (ctx) {
+        ctx.clearRect(0, 0, buttonDimensions.width, buttonDimensions.height)
+      }
     }
-  }, [isHovered, variant, droplets, buttonDimensions])
+  }, [isHovered, variant, buttonDimensions.width, buttonDimensions.height])
 
   useEffect(() => {
     if (!buttonRef.current || !magnetic || !isHovered) return
@@ -371,14 +388,15 @@ export function LiquidMetalButton({
 
   const handleMouseLeave = () => {
     setIsHovered(false)
+    setDroplets([])
+    cancelAnimationFrame(animationRef.current)
     
-    // Add a fade-out effect for droplets
-    setDroplets((prev) => 
-      prev.map(droplet => ({
-        ...droplet,
-        life: droplet.life * 0.7
-      }))
-    )
+    if (canvasRef.current) {
+      const ctx = canvasRef.current.getContext('2d')
+      if (ctx) {
+        ctx.clearRect(0, 0, buttonDimensions.width, buttonDimensions.height)
+      }
+    }
 
     if (buttonRef.current) {
       buttonRef.current.style.transform = ""
@@ -387,30 +405,29 @@ export function LiquidMetalButton({
   }
 
   const handleMouseDown = () => {
-    if (clickEffect) {
-      setIsPressed(true)
+    if (!clickEffect) return
+    
+    setIsPressed(true)
 
-      // Add enhanced ripple effect on click for mercury and ripple variants
-      if (variant === "mercury" || variant === "ripple") {
-        const factor = intensityFactors[intensity]
-        const newDroplets = Array.from({ length: 15 }).map(() => {
-          const angle = Math.random() * Math.PI * 2
-          const distance = Math.random() * 20 * factor
-          const speed = Math.random() * 3 * factor + 2
+    if (variant === "mercury" || variant === "ripple") {
+      const factor = intensityFactors[intensity]
+      const newDroplets = Array.from({ length: 15 }).map(() => {
+        const angle = Math.random() * Math.PI * 2
+        const distance = Math.random() * 20 * factor
+        const speed = Math.random() * 3 * factor + 2
 
-          return {
-            x: mousePosition.x,
-            y: mousePosition.y,
-            size: Math.random() * 12 * factor + 5,
-            opacity: 0.9,
-            speedX: Math.cos(angle) * speed,
-            speedY: Math.sin(angle) * speed,
-            life: 1.0,
-          }
-        })
+        return {
+          x: mousePosition.x,
+          y: mousePosition.y,
+          size: Math.random() * 12 * factor + 5,
+          opacity: 0.9,
+          speedX: Math.cos(angle) * speed,
+          speedY: Math.sin(angle) * speed,
+          life: 1.0,
+        }
+      })
 
-        setDroplets((prev) => [...prev, ...newDroplets])
-      }
+      setDroplets(prev => [...prev, ...newDroplets])
     }
   }
 
@@ -436,7 +453,7 @@ export function LiquidMetalButton({
     }
   }
 
-  const Comp = asChild ? Slot : "button"
+  const Comp = "button"
 
   return (
     <Comp
