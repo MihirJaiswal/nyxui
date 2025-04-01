@@ -63,7 +63,7 @@ import { twMerge } from "tailwind-merge";
           "name": "effect",
           "type": "string",
           "default": "fade",
-          "description": "The animation effect to apply"
+          "description": "The animation effect - (fade, scale, slide, color, rotate, custom)"
         },
         {
           "name": "threshold",
@@ -87,7 +87,7 @@ import { twMerge } from "tailwind-merge";
           "name": "direction",
           "type": "string",
           "default": "up",
-          "description": "Direction for slide animations"
+          "description": "Direction for slide animation - (up, down, left, right)"
         },
         {
           "name": "once",
@@ -105,7 +105,7 @@ import { twMerge } from "tailwind-merge";
           "name": "as",
           "type": "React.ElementType",
           "default": "div",
-          "description": "The element type to render"
+          "description": "The element type to render - (div, span, etc)"
         },
         {
           "name": "className",
