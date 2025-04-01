@@ -119,7 +119,6 @@ export const interactiveTerminalData: ComponentData = {
       ],
     },
   ],
-  
-  category: "Components",
+  category: "Display",
   examples: []
 };

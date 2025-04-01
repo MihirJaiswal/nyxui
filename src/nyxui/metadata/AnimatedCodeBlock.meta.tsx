@@ -144,6 +144,7 @@ export function cn(...inputs: ClassValue[]) {
       ],
     },
   ],
+  
   category: "Display",
   new: true,
   examples:  [
