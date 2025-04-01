@@ -42,7 +42,7 @@ export function LiquidMetalButtonDemo() {
       <div className="grid grid-cols-1 gap-8">
         <div className="bg-gray-100 dark:bg-zinc-950 border p-6 rounded-lg shadow">
           <h3 className="text-lg font-semibold border-b pb-2 mb-4">Premium Finishes</h3>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-8">
             <LiquidMetalButton variant="default" theme="gold" size="lg" rounded="md" textured={true}>
               <div className="flex items-center">
                 <Heart className="mr-2 h-4 w-4" />
@@ -72,11 +72,11 @@ export function LiquidMetalButtonDemo() {
 
         <div className="bg-gray-100 dark:bg-zinc-950 border p-6 rounded-lg shadow">
           <h3 className="text-lg font-semibold border-b pb-2 mb-4">Liquid Effects</h3>
-          <div className="grid grid-cols-1 gap-4">
+          <div className="grid grid-cols-1 gap-8">
             <LiquidMetalButton variant="mercury" theme="mercury" size="lg" intensity={5} rounded="full">
               <div className="flex flex-col md:flex-row gap-2 md:gap-0 items-center">
                 <Download className="mr-2 h-5 w-5 hidden md:block" />
-                <span>Mercury Flow Effect</span>
+                <span>Flow Effect</span>
               </div>
             </LiquidMetalButton>
             <LiquidMetalButton variant="ripple" theme="steel" size="lg" intensity={4} rounded="md">
@@ -90,7 +90,7 @@ export function LiquidMetalButtonDemo() {
 
         <div className="bg-gray-100 dark:bg-zinc-950 border p-6 rounded-lg shadow">
           <h3 className="text-lg font-semibold border-b pb-2 mb-4">Style Variations</h3>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-5">
             <LiquidMetalButton variant="default" theme="obsidian" size="md">
               <div className="flex items-center">
                 <span>Default</span>
