@@ -10,10 +10,9 @@ import {
   useTransform, 
   MotionProps, 
   HTMLMotionProps,
-  AnimationDefinition 
 } from "framer-motion"
 
-export interface FloatingCardProps extends Omit<React.HTMLAttributes<HTMLDivElement>, keyof MotionProps> {
+export interface MajesticCardProps extends Omit<React.HTMLAttributes<HTMLDivElement>, keyof MotionProps> {
   variant?: "parallax" | "tilt" | "float" | "magnetic" | "layered" | "morph" | "breathe" | "glow" | "wave"
   intensity?: 1 | 2 | 3 | 4 | 5
   theme?: "light" | "dark" | "glass" | "gradient" | "neon" | "cosmic" | "custom"
@@ -41,7 +40,7 @@ export interface FloatingCardProps extends Omit<React.HTMLAttributes<HTMLDivElem
   children: React.ReactNode
 }
 
-export function FloatingCard({
+export function MajesticCard({
   variant = "tilt",
   intensity = 3,
   theme = "light",
@@ -64,7 +63,7 @@ export function FloatingCard({
   className,
   children,
   ...props
-}: FloatingCardProps) {
+}: MajesticCardProps) {
   const cardRef = useRef<HTMLDivElement>(null)
   const [isHovered, setIsHovered] = useState(false)
   const [scrollPosition, setScrollPosition] = useState(0)
@@ -75,7 +74,6 @@ export function FloatingCard({
   const [generatedLayers, setGeneratedLayers] = useState<React.ReactNode[]>([])
   const [floatPhase, setFloatPhase] = useState(0)
   
-  // Motion values for animations
   const x = useMotionValue(0)
   const y = useMotionValue(0)
   const rotateX = useMotionValue(0)
@@ -85,7 +83,6 @@ export function FloatingCard({
   const floatX = useMotionValue(0)
   const rotate = useMotionValue(0)
   
-  // Springs for smoother animations
   const springConfig = {
     stiffness: speed === "fast" ? 700 : speed === "slow" ? 200 : 400,
     damping: speed === "fast" ? 20 : speed === "slow" ? 40 : 30,
@@ -110,14 +107,6 @@ export function FloatingCard({
     mass: 1,
   })
   
-  // Glow effect
-  const glowOpacity = useTransform(
-    springScale,
-    [1, 1.05],
-    [0, isHovered && (theme === "neon" || theme === "cosmic" || shadowType === "glow") ? 0.8 : 0.2]
-  )
-
-  // Morph effect
   const borderRadius = useTransform(
     springScale,
     [1, 1.05],
@@ -250,7 +239,6 @@ export function FloatingCard({
       const layerScales = [0.98, 0.96, 0.94, 0.92];
       
       for (let i = 0; i < Math.min(layerCount, 4); i++) {
-        // Create layered backgrounds
         newLayers.push(
           <motion.div
             key={`layer-${i}`}
@@ -315,7 +303,6 @@ export function FloatingCard({
     }
   }, [variant, reduceMotion, speed]);
   
-  // Apply floating effect based on phase
   useEffect(() => {
     if ((variant === "float" || variant === "wave") && !reduceMotion) {
       const factor = intensityFactors[intensity];
@@ -348,7 +335,6 @@ export function FloatingCard({
     }
   }, [floatPhase, variant, intensity, floatPattern, reduceMotion, floatX, floatY, rotate, intensityFactors]);
 
-  // Handle mouse movement for various variants
   useEffect(() => {
     if (!cardRef.current || !hoverEffect || reduceMotion) return
 
@@ -362,7 +348,6 @@ export function FloatingCard({
       const mouseX = e.clientX - centerX
       const mouseY = e.clientY - centerY
       
-      // Update mouse position for glow effect
       setMousePosition({ 
         x: (e.clientX - rect.left) / rect.width, 
         y: (e.clientY - rect.top) / rect.height 
@@ -382,11 +367,9 @@ export function FloatingCard({
           const moveX = mouseX * 0.02 * depth * factor
           const moveY = mouseY * 0.02 * depth * factor
           
-          // Enhanced layered effect with rotation
           layer.style.transform = `translate3d(${moveX}px, ${moveY}px, 0) rotate(${moveX * 0.02}deg) scale(${1 - (depth * 0.01 * factor)})`
         })
       } else if (variant === "wave") {
-        // Calculate a wave pattern based on mouse position
         const dx = mouseX / rect.width
         const dy = mouseY / rect.height
         const distance = Math.sqrt(dx * dx + dy * dy)
@@ -422,7 +405,6 @@ export function FloatingCard({
     }
   }, [variant, intensity, hoverEffect, layers, reduceMotion, x, y, rotateX, rotateY, scale, intensityFactors])
 
-  // Handle scroll effect
   useEffect(() => {
     if (!scrollEffect || reduceMotion) return
 
@@ -432,21 +414,17 @@ export function FloatingCard({
       if (cardRef.current) {
         const rect = cardRef.current.getBoundingClientRect()
         const windowHeight = window.innerHeight
-        
-        // Calculate how much of the card is visible
         const visiblePercentage = Math.min(
           Math.max(0, (windowHeight - rect.top) / windowHeight),
           Math.max(0, (rect.bottom) / windowHeight)
         )
         
-        // Apply scroll-based animations
         const factor = intensityFactors[intensity]
         
         if (variant === "float" || variant === "parallax") {
           y.set(-scrollPosition * 0.05 * factor * visiblePercentage)
         }
         
-        // Scale effect on scroll
         if (rect.top < windowHeight && rect.bottom > 0) {
           const scrollScale = 1 + (visiblePercentage * 0.05 * factor)
           scale.set(Math.min(scrollScale, 1.1))
@@ -461,7 +439,6 @@ export function FloatingCard({
     }
   }, [scrollEffect, variant, intensity, reduceMotion, y, scale, intensityFactors])
 
-  // Handle hover state
   const handleMouseEnter = () => {
     setIsHovered(true)
     if (!reduceMotion) {
@@ -480,8 +457,6 @@ export function FloatingCard({
       scale.set(1)
     }
   }
-
-  // Confetti component
   const Confetti = () => {
     return showConfetti ? (
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -512,8 +487,6 @@ export function FloatingCard({
       </div>
     ) : null
   }
-
-  // Rounded styles
   const roundedStyles = {
     none: "rounded-none",
     sm: "rounded-sm",
@@ -523,8 +496,6 @@ export function FloatingCard({
     full: "rounded-full",
     pill: "rounded-full",
   }
-
-  // Get animation classes based on variant
   const getAnimationClasses = () => {
     if (reduceMotion) return ""
     
@@ -534,7 +505,6 @@ export function FloatingCard({
     return ""
   }
 
-  // Glow gradient for glow variant
   const getGlowGradient = () => {
     if (variant !== "glow" || !isHovered) return ""
     
@@ -557,7 +527,6 @@ export function FloatingCard({
     )
   }
 
-  // CSS for animation
   useEffect(() => {
     if (!confettiEffect && variant !== "float" && variant !== "wave") return
 
@@ -640,13 +609,10 @@ export function FloatingCard({
       {...motionProps}
       {...props}
     >
-      {/* Generated layers for layered variant */}
       {variant === "layered" && generatedLayers}
       
-      {/* Glow overlay */}
       {variant === "glow" && getGlowGradient()}
       
-      {/* Shine effect */}
       {isHovered && (theme === "glass" || borderStyle === "gradient") && (
         <div 
           className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent pointer-events-none"
@@ -662,7 +628,6 @@ export function FloatingCard({
         />
       )}
       
-      {/* Waves for wave variant when hovered */}
       {variant === "wave" && isHovered && (
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {Array.from({ length: 3 }).map((_, i) => (
@@ -687,10 +652,7 @@ export function FloatingCard({
         </div>
       )}
       
-      {/* Confetti effect */}
       {confettiEffect && <Confetti />}
-      
-      {/* Card content */}
       <div className="relative z-10">
         {children}
       </div>

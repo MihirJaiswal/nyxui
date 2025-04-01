@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from "react";
-import { FloatingCard } from "@/nyxui/components/FloatingCard";
+import { MajesticCard } from "@/nyxui/components/MajesticCard";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -17,32 +17,30 @@ import {
   MountainSnowIcon
 } from "lucide-react";
 
-export function FloatingCardDemo() {
+export function MajesticCardDemo() {
   const [activeTab, setActiveTab] = useState("showcase");
 
   return (
-    <div className="p-8 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-zinc-900 dark:to-zinc-950 rounded-xl">
+    <div className="p-6">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-          FloatingCard Component
+        <h2 className="text-3xl text-center font-bold mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          Majestic Cards
         </h2>
-        <p className="text-gray-600 dark:text-gray-400 mb-6">
+        <p className="text-gray-600 text-center dark:text-gray-400 mb-6">
           Explore the versatility and visual effects of our interactive cards
         </p>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-8">
-          <TabsList className="grid grid-cols-4 w-full max-w-xl mx-auto">
+          <TabsList className="flex flex-wrap gap-2 w-full max-w-xl mx-auto mb-8 bg-non dark:text-white text-black">
             <TabsTrigger value="showcase">Showcase</TabsTrigger>
             <TabsTrigger value="themes">Themes</TabsTrigger>
             <TabsTrigger value="variants">Variants</TabsTrigger>
             <TabsTrigger value="interactive">Interactive</TabsTrigger>
           </TabsList>
 
-          {/* SHOWCASE TAB - Highlights diverse premium card designs */}
           <TabsContent value="showcase" className="mt-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {/* Premium Plan Card with Cosmic Theme */}
-              <FloatingCard 
+              <MajesticCard 
                 variant="breathe" 
                 theme="cosmic" 
                 intensity={3} 
@@ -63,7 +61,7 @@ export function FloatingCardDemo() {
                     <span className="text-gray-300 mb-1">/month</span>
                   </div>
                   <ul className="space-y-2 mb-6">
-                    {["Unlimited projects", "Priority support", "Advanced analytics", "Team collaboration"].map((feature, i) => (
+                    {["All components", "All templates", "Early access", "Requested component"].map((feature, i) => (
                       <li key={i} className="flex items-center text-gray-200">
                         <Shield className="h-4 w-4 text-violet-400 mr-2" />
                         <span className="text-sm">{feature}</span>
@@ -74,10 +72,9 @@ export function FloatingCardDemo() {
                     Get Started
                   </Button>
                 </div>
-              </FloatingCard>
+              </MajesticCard>
 
-              {/* Analytics Dashboard Card with Glass Theme */}
-              <FloatingCard 
+              <MajesticCard 
                 variant="tilt" 
                 theme="glass" 
                 intensity={4} 
@@ -114,10 +111,9 @@ export function FloatingCardDemo() {
                     View Full Report
                   </Button>
                 </div>
-              </FloatingCard>
+              </MajesticCard>
 
-              {/* Weather Card with Neon Theme */}
-              <FloatingCard 
+              <MajesticCard 
                 variant="float" 
                 floatPattern="complex" 
                 theme="neon" 
@@ -136,7 +132,7 @@ export function FloatingCardDemo() {
                   </div>
                   <div className="text-center mb-4">
                     <div className="text-4xl font-bold text-white">23°</div>
-                    <div className="text-indigo-300 text-sm">Thunderstorms</div>
+                    <div className="text-indigo-300 text-sm">Thunderstorm in Indore</div>
                   </div>
                   <div className="grid grid-cols-4 gap-2 text-center text-xs text-indigo-200">
                     <div>
@@ -157,11 +153,10 @@ export function FloatingCardDemo() {
                     </div>
                   </div>
                 </div>
-              </FloatingCard>
+              </MajesticCard>
             </div>
           </TabsContent>
 
-          {/* THEMES TAB - Shows different theme options available */}
           <TabsContent value="themes" className="mt-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {[
@@ -172,7 +167,7 @@ export function FloatingCardDemo() {
                 { name: "Neon", theme: "neon", icon: <Zap className="h-6 w-6 text-indigo-300" /> },
                 { name: "Cosmic", theme: "cosmic", icon: <Star className="h-6 w-6 text-pink-400" /> }
               ].map((item, i) => (
-                <FloatingCard 
+                <MajesticCard 
                   key={i} 
                   variant="tilt" 
                   theme={item.theme as any} 
@@ -190,12 +185,11 @@ export function FloatingCardDemo() {
                       {item.theme} theme
                     </p>
                   </div>
-                </FloatingCard>
+                </MajesticCard>
               ))}
             </div>
           </TabsContent>
 
-          {/* VARIANTS TAB - Shows different animation variants */}
           <TabsContent value="variants" className="mt-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
               {[
@@ -208,7 +202,7 @@ export function FloatingCardDemo() {
                 { name: "Glow", variant: "glow", desc: "Interactive glow follows cursor" },
                 { name: "Wave", variant: "wave", desc: "Wave-like motion effects" }
               ].map((item, i) => (
-                <FloatingCard 
+                <MajesticCard 
                   key={i} 
                   variant={item.variant as any} 
                   theme={i % 2 === 0 ? "light" : "dark"} 
@@ -223,18 +217,16 @@ export function FloatingCardDemo() {
                     <h3 className="text-lg font-medium mb-1">{item.name}</h3>
                     <p className="text-sm text-gray-500 dark:text-gray-400">{item.desc}</p>
                   </div>
-                </FloatingCard>
+                </MajesticCard>
               ))}
             </div>
           </TabsContent>
 
-          {/* INTERACTIVE TAB - Shows interactive card experiences */}
           <TabsContent value="interactive" className="mt-6">
             <div className="grid grid-cols-1 gap-10">
-              {/* Interactive Layered Card */}
-              <FloatingCard 
+              <MajesticCard 
                 variant="layered" 
-                theme="light" 
+                theme="dark" 
                 intensity={5} 
                 shadow 
                 shadowType="glow" 
@@ -259,32 +251,31 @@ export function FloatingCardDemo() {
                       { icon: <Globe />, title: "Middle", layer: "0.7", color: "bg-blue-100 text-blue-800" },
                       { icon: <Star />, title: "Foreground", layer: "1", color: "bg-violet-100 text-violet-800" }
                     ].map((item, i) => (
-                      <div key={i} data-layer={item.layer} className="flex flex-col items-center transition-transform duration-300 ease-out p-4 rounded-lg shadow-md bg-white">
+                      <div key={i} data-layer={item.layer} className="flex flex-col items-center transition-transform duration-300 ease-out p-4 rounded-lg shadow-md bg-white dark:bg-zinc-900 border">
                         <div className={`mb-3 p-3 rounded-full ${item.color}`}>
                           {item.icon}
                         </div>
-                        <h4 className="font-medium text-gray-800">{item.title}</h4>
-                        <p className="text-xs text-center mt-2 text-gray-500">
+                        <h4 className="font-medium text-gray-800 dark:text-white">{item.title}</h4>
+                        <p className="text-xs text-center mt-2 text-gray-500 dark:text-gray-100">
                           Layer {item.layer}
                         </p>
                       </div>
                     ))}
                   </div>
                 </div>
-              </FloatingCard>
+              </MajesticCard>
 
-              {/* Interactive Card Gallery */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {/* Morphing Card */}
-                <FloatingCard 
+                <MajesticCard 
                   variant="morph" 
-                  theme="gradient" 
-                  intensity={5} 
+                  theme="custom" 
+                  intensity={2} 
                   shadow 
                   shadowSize="lg" 
                   rounded="lg"
                   hoverEffect
                   confettiEffect
+                  className="bg-blue-100 dark:bg-zinc-900"
                 >
                   <div className="p-5 text-center">
                     <div className="mb-3 mx-auto w-12 h-12 flex items-center justify-center bg-indigo-100 rounded-full">
@@ -296,10 +287,9 @@ export function FloatingCardDemo() {
                     </p>
                     <Button size="sm" className="w-full">Try Me!</Button>
                   </div>
-                </FloatingCard>
+                </MajesticCard>
 
-                {/* Wave Effect Card */}
-                <FloatingCard 
+                <MajesticCard 
                   variant="wave" 
                   theme="neon" 
                   intensity={4} 
@@ -320,10 +310,9 @@ export function FloatingCardDemo() {
                       Interact
                     </Button>
                   </div>
-                </FloatingCard>
+                </MajesticCard>
 
-                {/* Breathing Card */}
-                <FloatingCard 
+                <MajesticCard 
                   variant="breathe" 
                   theme="cosmic" 
                   intensity={3} 
@@ -343,17 +332,15 @@ export function FloatingCardDemo() {
                       Experience
                     </Button>
                   </div>
-                </FloatingCard>
+                </MajesticCard>
               </div>
             </div>
           </TabsContent>
         </Tabs>
 
-        {/* Practical Applications */}
-        <h3 className="text-2xl font-bold mb-4 mt-8">Practical Applications</h3>
+        <h3 className="text-2xl font-bold mb-4 my-8">Practical Applications</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* App Showcase Card */}
-          <FloatingCard 
+          <MajesticCard 
             variant="float" 
             theme="glass" 
             intensity={3} 
@@ -389,22 +376,22 @@ export function FloatingCardDemo() {
                 Download App
               </Button>
             </div>
-          </FloatingCard>
+          </MajesticCard>
 
-          {/* Testimonial Card */}
-          <FloatingCard 
+          <MajesticCard
             variant="tilt" 
             theme="light" 
             intensity={2} 
-            shadow 
-            shadowType="soft" 
+            shadow  
             rounded="lg"
             border
             borderStyle="solid"
           >
             <div className="p-6">
               <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-gray-200 dark:bg-zinc-700 rounded-full mr-3"></div>
+                <div className="w-12 h-12 bg-gray-200 dark:bg-zinc-700 rounded-full mr-3">
+
+                </div>
                 <div>
                   <h3 className="font-medium">Sarah Johnson</h3>
                   <p className="text-xs text-gray-500 dark:text-gray-400">Product Designer</p>
@@ -417,17 +404,16 @@ export function FloatingCardDemo() {
                   ))}
                 </div>
                 <p className="text-sm text-gray-600 dark:text-gray-300">
-                  "The FloatingCard component has transformed our dashboard UI. The subtle animations add a layer of polish that really impresses our clients."
+                  "The Nyx UI is a great way to increase the UI of your website."
                 </p>
               </div>
               <p className="text-xs text-gray-500 dark:text-gray-400 italic">
                 Verified Purchase - March 15, 2025
               </p>
             </div>
-          </FloatingCard>
+          </MajesticCard>
 
-          {/* Social Media Card */}
-          <FloatingCard 
+          <MajesticCard
             variant="breathe" 
             theme="dark" 
             intensity={2} 
@@ -469,7 +455,7 @@ export function FloatingCardDemo() {
                 </button>
               </div>
             </div>
-          </FloatingCard>
+          </MajesticCard>
         </div>
       </div>
     </div>
