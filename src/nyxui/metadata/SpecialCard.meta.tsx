@@ -17,40 +17,7 @@ export const specialCardData: ComponentData = {
   preview: <SpecialCardDemo />,
   usage: CardDemoSource,
   componentCode: CardSource,
-  dependencies: [
-    {
-      name: "Next.js",
-      description: "React framework used to build the component.",
-      install: {
-        npm: "npm install next react react-dom",
-        yarn: "yarn add next react react-dom",
-        pnpm: "pnpm install next react react-dom",
-        bun: "bun install next react react-dom"
-      }
-    },
-    {
-      name: "Tailwind CSS",
-      description:
-        "Utility-first CSS framework used for styling the component.",
-      install: {
-        npm: "npm install tailwindcss postcss autoprefixer && npx tailwindcss init -p",
-        yarn: "yarn add tailwindcss postcss autoprefixer && yarn tailwindcss init -p",
-        pnpm: "pnpm install tailwindcss postcss autoprefixer && pnpm tailwindcss init -p",
-        bun: "bun install tailwindcss postcss autoprefixer && bun tailwindcss init -p"
-      },
-      setup: {
-        description: "Configure Tailwind CSS by creating a tailwind.config.js file.",
-        file: "tailwind.config.js",
-        code: `module.exports = {
-  content: ['./src/**/*.{js,ts,jsx,tsx}'],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-};`
-      }
-    }
-  ],
+  dependencies: [],
   props: [
     {
       name: "Card Props",
@@ -163,50 +130,85 @@ export const specialCardData: ComponentData = {
       ]
     }
   ],
-  category: "Components",
+  category: "Cards",
   examples: [
     {
       name: "Batman Dark",
       preview: (
         <div className="flex flex-col items-center">
-          <h2 className="text-xl font-medium mb-4">Batman Dark</h2>
-          <SpecialCard
-            coverImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/thedarkknightposter.jpg"
-            titleImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/dlogo.png"
-            characterImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/klipart.png"
-            width={300}
-            height={400}
-          />
+          <div className="relative group">
+            <div className="absolute -inset-1 bg-gradient-to-r from-gray-700 to-yellow-500 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
+            <SpecialCard
+              coverImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/thedarkknightposter.jpg"
+              titleImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/dlogo.png"
+              characterImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/klipart.png"
+              width={300}
+              height={400}
+              backgroundColor="#1a1a1a"
+              borderColor="#333333"
+            />
+          </div>
         </div>
       ),
       filename: "BatmanDark.tsx",
       code: `import SpecialCard from "@/nyxui/components/SpecialCard";
-
-export function BatmanDark() {
-  return (
-    <div className="flex flex-col items-center">
-          <h2 className="text-xl font-medium mb-4">Batman Dark</h2>
+  
+  export function BatmanDark() {
+    return (
+      <div className="flex flex-col items-center">
+        <div className="relative group">
+          <div className="absolute -inset-1 bg-gradient-to-r from-gray-700 to-yellow-500 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
           <SpecialCard
             coverImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/thedarkknightposter.jpg"
             titleImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/dlogo.png"
             characterImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/klipart.png"
             width={300}
             height={400}
+            backgroundColor="#1a1a1a"
+            borderColor="#333333"
           />
         </div>
-  );
-}`
+      </div>
+    );
+  }`
     },
     {
-      name: "Iron Man Tech",
+      name: "Hulk Power",
       preview: (
         <div className="flex flex-col items-center">
-          <h2 className="text-xl font-medium mb-4">Iron Man Tech</h2>
+          <div className="relative group">
+            <div className="absolute -inset-1 bg-gradient-to-r from-green-600 to-green-400 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
+            <SpecialCard
+              coverImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/hulkposter.jpg"
+              titleImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/hlogo1.png"
+              characterImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/hulp1.png"
+              backgroundColor="#064001"
+              borderColor="#D4AF37"
+              characterTranslateY={-40}
+              characterTranslateZ={150}
+              titleTranslateY={-70}
+              animation={{
+                duration: 600,
+                delay: 100
+              }}
+              shadow="0px 40px 40px -10px rgba(255,125,0,0.4)"
+            />
+          </div>
+        </div>
+      ),
+      filename: "IronManTech.tsx",
+      code: `import SpecialCard from "@/nyxui/components/SpecialCard";
+  
+  export function IronManTech() {
+    return (
+      <div className="flex flex-col items-center">
+        <div className="relative group">
+          <div className="absolute -inset-1 bg-gradient-to-r from-green-600 to-green-400 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
           <SpecialCard
             coverImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/hulkposter.jpg"
             titleImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/hlogo1.png"
             characterImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/hulp1.png"
-            backgroundColor="#5A1E0A"
+            backgroundColor="#064001"
             borderColor="#D4AF37"
             characterTranslateY={-40}
             characterTranslateZ={150}
@@ -218,32 +220,9 @@ export function BatmanDark() {
             shadow="0px 40px 40px -10px rgba(255,125,0,0.4)"
           />
         </div>
-      ),
-      filename: "IronManTech.tsx",
-      code: `import SpecialCard from "@/nyxui/components/SpecialCard";
-
-export function IronManTech() {
-  return (
-    <div className="flex flex-col items-center">
-      <h2 className="text-xl font-medium mb-4">Iron Man Tech</h2>
-      <SpecialCard
-        coverImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/hulkposter.jpg"
-        titleImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/hlogo1.png"
-        characterImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/hulp1.png"
-        backgroundColor="#5A1E0A"
-        borderColor="#D4AF37"
-        characterTranslateY={-40}
-        characterTranslateZ={150}
-        titleTranslateY={-70}
-        animation={{
-          duration: 600,
-          delay: 100
-        }}
-        shadow="0px 40px 40px -10px rgba(255,125,0,0.4)"
-      />
-    </div>
-  );
-}`
+      </div>
+    );
+  }`
     },
   ]
 };

@@ -80,7 +80,6 @@ const SpecialCard: React.FC<CardProps> = ({
         border: `1px solid ${borderColor}`
       }}
     >
-      {/* Background Container: Clipped content */}
       <div className="absolute inset-0 overflow-hidden z-0">
         <div
           className="absolute inset-0 transition-all duration-500 
@@ -101,15 +100,12 @@ const SpecialCard: React.FC<CardProps> = ({
             priority={priority}
           />
           
-          {/* Top gradient overlay */}
           <div
             className="absolute inset-0
                      bg-gradient-to-t from-transparent via-[rgba(12,13,19,0.5)] to-[rgba(12,13,19)]
                      opacity-0 transition-opacity duration-500 group-hover:opacity-100"
             style={animationStyle}
           ></div>
-          
-          {/* Bottom gradient overlay */}
           <div
             className="absolute bottom-0 left-0 w-full h-[80px]
                      bg-gradient-to-b from-transparent via-[rgba(12,13,19,0.5)] to-[rgba(12,13,19)]
@@ -119,7 +115,6 @@ const SpecialCard: React.FC<CardProps> = ({
         </div>
       </div>
 
-      {/* Character Image: Not clipped so it can overflow */}
       <div className="absolute inset-0 z-10 pointer-events-none">
         <Image
           src={characterImage}
@@ -137,7 +132,6 @@ const SpecialCard: React.FC<CardProps> = ({
         />
       </div>
 
-      {/* Title Image */}
       <div className="relative z-20 w-full">
         <Image
           src={titleImage}
