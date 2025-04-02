@@ -1,9 +1,7 @@
 'use client'
 import React, { useState, useEffect } from 'react';
-import DrawingCanvas from '@/nyxui/components/DrawingCanvas';
-import { Button } from "@/components/ui/button";
+import DrawingCanvas from '@/nyxui/components/MSpaint';
 
-// Custom hook to get window dimensions
 function useWindowSize() {
   const [windowSize, setWindowSize] = useState({
     width: typeof window !== 'undefined' ? window.innerWidth : 0,
@@ -26,8 +24,6 @@ function useWindowSize() {
 }
 
 export default function DrawingCanvasDemo() {
-  // Optionally, you can remove savedImages if you no longer need them.
-  const [showDrawingCanvas, setShowDrawingCanvas] = useState(true);
   const { width, height } = useWindowSize();
 
   const customPalette = [
@@ -53,8 +49,7 @@ export default function DrawingCanvasDemo() {
 
   return (
     <div className="h-screen w-screen bg-gray-100 dark:bg-zinc-900 overflow-hidden relative">
-      {showDrawingCanvas && (
-        <DrawingCanvas
+      <DrawingCanvas
           initialWidth={width - 800}
           initialHeight={height - 200}
           title="My Drawing App"
@@ -64,9 +59,6 @@ export default function DrawingCanvasDemo() {
           menuItems={["File", "Edit", "Tools", "Help"]}
           statusMessage="Click and drag to draw. Use eraser to remove strokes."
         />
-      )}
-
-      {/* Removed the saved images preview box */}
     </div>
   );
 }

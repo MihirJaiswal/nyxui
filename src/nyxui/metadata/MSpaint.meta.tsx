@@ -1,66 +1,34 @@
 import type { ComponentData } from "@/nyxui/ComponentInterfaces"
-import DrawingCanvas from "@/nyxui/components/DrawingCanvas"
-import DrawingCanvasDemo from "@/nyxui/demos/DrawingCanvasDemo"
+import DrawingCanvasDemo from "@/nyxui/demos/MSpaintDemo"
 import fs from "fs";
 import path from "path";
 
-const componentPath = path.join(process.cwd(), "src/nyxui/components/DrawingCanvas.tsx");
-const DrawingCanvasSource = fs.readFileSync(componentPath, "utf8");
+const componentPath = path.join(process.cwd(), "src/nyxui/components/MSpaint.tsx");
+const mspaintSource = fs.readFileSync(componentPath, "utf8");
 
-const demoPath = path.join(process.cwd(), "src/nyxui/demos/DrawingCanvasDemo.tsx");
-const DrawingCanvasDemoSource = fs.readFileSync(demoPath, "utf8");
+const demoPath = path.join(process.cwd(), "src/nyxui/demos/MSpaintDemo.tsx");
+const mspaintDemoSource = fs.readFileSync(demoPath, "utf8");
 
-export const drawingCanvasData: ComponentData = {
-  name: "Drawing Canvas",
+export const mspaintData: ComponentData = {
+  name: "MS Paint",
   description:
     "A customizable drawing canvas component with paint-like interface. Perfect for sketching, drawing tools, annotations, and interactive whiteboard applications. Features include brush and eraser tools, customizable color palette, and save functionality.",
   preview: <DrawingCanvasDemo />,
-  usage: DrawingCanvasDemoSource,
-  componentCode: DrawingCanvasSource,
-  dependencies: [
-    {
-      name: "shadcn/ui Button",
-      description: "UI component library used for the buttons and controls",
-      install: {
-        npm: "npx shadcn-ui@latest add button",
-        pnpm: "pnpm dlx shadcn-ui@latest add button",
-        yarn: "yarn dlx shadcn-ui@latest add button",
-        bun: "bunx shadcn-ui@latest add button",
-      },
-    },
-    {
-      name: "Tailwind CSS",
-      description: "Utility-first CSS framework used for styling the component.",
-      install: {
-        npm: "npm install tailwindcss postcss autoprefixer && npx tailwindcss init -p",
-        pnpm: "pnpm add tailwindcss postcss autoprefixer && pnpx tailwindcss init -p",
-        yarn: "yarn add tailwindcss postcss autoprefixer && yarn tailwindcss init -p",
-        bun: "bun add tailwindcss postcss autoprefixer && bun tailwindcss init -p",
-      },
-    },
-    {
-      name: "lucide-react",
-      description: "Icon library used for the brush, eraser, and other UI elements",
-      install: {
-        npm: "npm install lucide-react",
-        pnpm: "pnpm add lucide-react",
-        yarn: "yarn add lucide-react",
-        bun: "bun add lucide-react",
-      },
-    },
-  ],
+  usage: mspaintDemoSource,
+  componentCode: mspaintSource,
+  dependencies: [],
   props: [
     {
-      name: "Drawing Canvas",
+      name: "MS Paint",
       items: [
         {
-          name: "width",
+          name: "initialWidth",
           type: "number",
           default: "800",
           description: "Width of the drawing canvas container in pixels",
         },
         {
-          name: "height",
+          name: "initialHeight",
           type: "number",
           default: "500",
           description: "Height of the drawing canvas area in pixels",
@@ -136,6 +104,41 @@ export const drawingCanvasData: ComponentData = {
           type: "(canvas: HTMLCanvasElement) => void",
           default: "undefined",
           description: "Callback function when the save button is clicked",
+        },
+      ],
+    },
+    {
+      name: "CustomButton",
+      items: [
+        {
+          name: "children",
+          type: "React.ReactNode",
+          default: "required",
+          description: "Content inside the button",
+        },
+        {
+          name: "className",
+          type: "string",
+          default: "''",
+          description: "Additional CSS classes to apply to the button",
+        },
+        {
+          name: "onClick",
+          type: "() => void",
+          default: "undefined",
+          description: "Function to execute when the button is clicked",
+        },
+        {
+          name: "title",
+          type: "string",
+          default: "''",
+          description: "Tooltip text displayed on hover",
+        },
+        {
+          name: "variant",
+          type: '"default" | "ghost"',
+          default: '"default"',
+          description: "Button style variant",
         },
       ],
     },

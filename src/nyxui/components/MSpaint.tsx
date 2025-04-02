@@ -1,7 +1,7 @@
 'use client'
 import React, { useRef, useState, useEffect } from 'react';
 
-export interface DrawingCanvasProps {
+export interface MSpaintProps {
   initialWidth?: number;
   initialHeight?: number;
   initialBackgroundColor?: string;
@@ -26,13 +26,12 @@ interface CustomButtonProps {
   variant?: "default" | "ghost";
 }
 
-// Custom button component to replace shadcn Button
 const CustomButton: React.FC<CustomButtonProps> = ({ 
   children, 
   className = "", 
   onClick, 
   title = "",
-  variant = "default"  // default, ghost, etc.
+  variant = "default"
 }) => {
   const baseStyles = "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 disabled:opacity-50 disabled:cursor-not-allowed";
   
@@ -59,7 +58,7 @@ const DEFAULT_COLORS = [
   '#FFFFFF', '#C0C0C0', '#FF0000', '#FFFF00', '#00FF00', '#00FFFF', '#0000FF', '#FF00FF', '#FFFF80', '#00FF80', '#80FFFF', '#8080FF', '#FF0080', '#FF8040'
 ];
 
-export default function DrawingCanvas({
+export default function MSpaint({
   initialWidth = 800,
   initialHeight = 500,
   initialBackgroundColor = '#FFFFFF',
@@ -74,7 +73,7 @@ export default function DrawingCanvas({
   className = "",
   style = {},
   onSave
-}: DrawingCanvasProps) {
+}: MSpaintProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const downloadLinkRef = useRef<HTMLAnchorElement>(null);
@@ -89,15 +88,12 @@ export default function DrawingCanvas({
   const [height, setHeight] = useState(initialHeight);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Responsive adjustments
   useEffect(() => {
     const handleResize = () => {
       if (containerRef.current) {
-        // Get the parent element's width or use window width if no parent
         const parentWidth = containerRef.current.parentElement?.clientWidth || window.innerWidth;
         const parentHeight = window.innerHeight;
         
-        // On mobile (screens less than 768px) make it nearly full screen with some padding
         if (parentWidth < 768) {
           setWidth(parentWidth > 20 ? parentWidth - 20 : parentWidth);
           setHeight(Math.min(parentHeight - 100, initialHeight));
@@ -114,7 +110,6 @@ export default function DrawingCanvas({
     return () => window.removeEventListener('resize', handleResize);
   }, [initialWidth, initialHeight]);
 
-  // Initialize canvas with background color
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas?.getContext('2d');
@@ -124,7 +119,6 @@ export default function DrawingCanvas({
     }
   }, [initialBackgroundColor]);
 
-  // Document-level mouse/touch event handlers for dragging
   useEffect(() => {
     if (draggable) {
       const handleMouseMove = (e: MouseEvent) => {
@@ -168,7 +162,6 @@ export default function DrawingCanvas({
     }
   }, [dragging, position.x, position.y, draggable]);
 
-  // Adjust coordinates using scaling factors
   const startDrawing = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
     const canvas = canvasRef.current;
     const context = canvas?.getContext('2d');
@@ -180,16 +173,14 @@ export default function DrawingCanvas({
       let clientX, clientY;
       
       if ('touches' in e) {
-        // Handle touch event
         if (e.touches.length === 1) {
           const touch = e.touches[0];
           clientX = touch.clientX;
           clientY = touch.clientY;
         } else {
-          return; // Multi-touch not handled for drawing
+          return;
         }
       } else {
-        // Handle mouse event
         clientX = e.clientX;
         clientY = e.clientY;
       }
@@ -215,19 +206,16 @@ export default function DrawingCanvas({
       let clientX, clientY;
       
       if ('touches' in e) {
-        // Prevent scrolling while drawing
         e.preventDefault();
         
-        // Handle touch event
         if (e.touches.length === 1) {
           const touch = e.touches[0];
           clientX = touch.clientX;
           clientY = touch.clientY;
         } else {
-          return; // Multi-touch not handled for drawing
+          return;
         }
       } else {
-        // Handle mouse event
         clientX = e.clientX;
         clientY = e.clientY;
       }
@@ -254,16 +242,14 @@ export default function DrawingCanvas({
     let clientX, clientY;
     
     if ('touches' in e) {
-      // Handle touch event
       if (e.touches.length === 1) {
         const touch = e.touches[0];
         clientX = touch.clientX;
         clientY = touch.clientY;
       } else {
-        return; // Multi-touch not handled for dragging
+        return;
       }
     } else {
-      // Handle mouse event
       clientX = e.clientX;
       clientY = e.clientY;
     }
@@ -315,7 +301,6 @@ export default function DrawingCanvas({
     setMenuOpen(!menuOpen);
   };
 
-  // Get visible canvas size based on container
   const canvasVisibleWidth = width - (window.innerWidth < 640 ? 52 : 76);
   const isMobile = width < 640;
 
@@ -332,7 +317,6 @@ export default function DrawingCanvas({
         ...style 
       }}
     >
-      {/* Hidden download link */}
       <a ref={downloadLinkRef} style={{ display: 'none' }} />
       
       <div 
@@ -377,7 +361,6 @@ export default function DrawingCanvas({
               )}
             </>
           ) : (
-            // Desktop menu
             menuItems.map((item, index) => (
               <span 
                 key={index} 

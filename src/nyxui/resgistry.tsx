@@ -16,7 +16,7 @@ import { perspectiveImageData } from "./metadata/PerspectiveImage.meta";
 import { scrollAnimationTriggerData } from "./metadata/ScrollAnimationTrigger.meta";
 import { specialCardData } from "./metadata/SpecialCard.meta";
 import { matrixCodeRainData } from "./metadata/MatrixCodeRain.meta";
-import { drawingCanvasData } from "./metadata/DrawingCanvas.meta";
+import { mspaintData } from "./metadata/MSpaint.meta";
 import { interactiveTerminalData } from "./metadata/Terminal.meta";
 
 export const componentsData = {
@@ -38,6 +38,6 @@ export const componentsData = {
   "scroll-animation-trigger": scrollAnimationTriggerData,
   "special-card": specialCardData,
   "matrix-code-rain": matrixCodeRainData,
-  "drawing-canvas": drawingCanvasData,
+  "ms-paint": mspaintData,
   "interactive-terminal": interactiveTerminalData 
 };
