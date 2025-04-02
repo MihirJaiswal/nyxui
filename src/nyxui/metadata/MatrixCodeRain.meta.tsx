@@ -19,23 +19,23 @@ export const matrixCodeRainData: ComponentData = {
   componentCode: MatrixCodeRainSource,
   dependencies: [
     {
-      name: "Tailwind CSS",
-      description: "Utility-first CSS framework used for styling the component.",
+      name: "Utility Functions",
+      description: "Utility functions for conditional class name merging.",
       install: {
-        npm: "npm install tailwindcss postcss autoprefixer && npx tailwindcss init -p",
-        pnpm: "pnpm add tailwindcss postcss autoprefixer && pnpx tailwindcss init -p",
-        yarn: "yarn add tailwindcss postcss autoprefixer && yarn tailwindcss init -p",
-        bun: "bun add tailwindcss postcss autoprefixer && bun tailwindcss init -p",
+        npm: "npm install clsx tailwind-merge",
+        pnpm: "pnpm add clsx tailwind-merge",
+        yarn: "yarn add clsx tailwind-merge",
+        bun: "bun add clsx tailwind-merge",
       },
-    },
-    {
-      name: "clsx",
-      description: "A tiny utility for constructing className strings conditionally.",
-      install: {
-        npm: "npm install clsx",
-        pnpm: "pnpm add clsx",
-        yarn: "yarn add clsx",
-        bun: "bun add clsx",
+      setup: {
+        description: "Create a utils.ts file with the cn utility function",
+        file: "/lib/utils.ts",
+        code: `import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}`,
       },
     },
   ],
@@ -91,44 +91,15 @@ export const matrixCodeRainData: ComponentData = {
           default: '"400px"',
           description: "The height of the container when not in fullscreen mode",
         },
-        {
-          name: "className",
-          type: "string",
-          default: '""',
-          description: "Additional CSS classes to apply to the container",
-        },
       ],
     },
   ],
   category: "Effects",
-  examples: [
-    {
-      name: "Default Matrix Effect",
-      preview: (
-        <MatrixCodeRain 
-          color="#00ff00"
-          fontSize={16}
-          fps={20}
-          height="300px"
-        />
-      ),
-      filename: "DefaultMatrix.tsx",
-      code: `import { MatrixCodeRain } from "@/nyxui/components/MatrixCodeRain";
-  
-export function DefaultMatrix() {
-  return (
-    <MatrixCodeRain 
-      color="#00ff00"
-      fontSize={16}
-      fps={20}
-      height="300px"
-    />
-  );
-}`,
-    },
-    {
-      name: "Cyberpunk Theme",
-      preview: (
+  examples : [
+  {
+    name: "Cyberpunk Theme",
+    preview: (
+      <div className="h-[300px] w-full relative overflow-hidden">
         <MatrixCodeRain 
           color="#ff00ff"
           charset="01?!×÷@#$%&*HACK"
@@ -136,56 +107,63 @@ export function DefaultMatrix() {
           fps={30}
           opacity={0.08}
           height="300px"
+          width="300px"
         />
-      ),
-      filename: "CyberpunkMatrix.tsx",
-      code: `import { MatrixCodeRain } from "@/nyxui/components/MatrixCodeRain";
-  
+      </div>
+    ),
+    filename: "CyberpunkMatrix.tsx",
+    code: `import { MatrixCodeRain } from "@/nyxui/components/MatrixCodeRain";
+
 export function CyberpunkMatrix() {
   return (
-    <MatrixCodeRain 
-      color="#ff00ff"
-      charset="01?!×÷@#$%&*HACK"
-      fontSize={20}
-      fps={30}
-      opacity={0.08}
-      height="300px"
-    />
+    <div className="h-[300px] w-full relative overflow-hidden">
+      <MatrixCodeRain 
+        color="#ff00ff"
+        charset="01?!×÷@#$%&*HACK"
+        fontSize={20}
+        fps={30}
+        opacity={0.08}
+        height="300px"
+        width="300px"
+      />
+    </div>
   );
 }`,
-    },
-    {
-      name: "Blue Tech Background",
-      preview: (
-        <div className="relative h-64 rounded-lg overflow-hidden">
-          <MatrixCodeRain 
-            color="#0088ff"
-            fontSize={14}
-            fps={15}
-            opacity={0.03}
-            fullScreen={false}
-            height="256px"
-          />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-white text-xl font-bold bg-black/30 px-4 py-2 rounded-lg">
-              Tech Dashboard
-            </div>
+  },
+  {
+    name: "Blue Tech Background",
+    preview: (
+      <div className="relative h-64 rounded-lg overflow-hidden">
+        <MatrixCodeRain 
+          color="#0088ff"
+          fontSize={10}
+          fps={15}
+          opacity={0.03}
+          fullScreen={false}
+          height="500px"
+          width="500px"
+        />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-white text-xl font-bold bg-black/30 px-4 py-2 rounded-lg">
+            Tech Dashboard
           </div>
         </div>
-      ),
-      filename: "BlueTechBackground.tsx",
-      code: `import { MatrixCodeRain } from "@/nyxui/components/MatrixCodeRain";
-  
+      </div>
+    ),
+    filename: "BlueTechBackground.tsx",
+    code: `import { MatrixCodeRain } from "@/nyxui/components/MatrixCodeRain";
+
 export function BlueTechBackground() {
   return (
     <div className="relative h-64 rounded-lg overflow-hidden">
       <MatrixCodeRain 
         color="#0088ff"
-        fontSize={14}
+        fontSize={10}
         fps={15}
         opacity={0.03}
         fullScreen={false}
-        height="256px"
+        height="500px"
+        width="500px"
       />
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="text-white text-xl font-bold bg-black/30 px-4 py-2 rounded-lg">
@@ -195,70 +173,43 @@ export function BlueTechBackground() {
     </div>
   );
 }`,
-    },
-    {
-      name: "Fullscreen Background",
-      preview: (
-        <div className="relative h-64 rounded-lg overflow-hidden">
-          <MatrixCodeRain 
-            color="#00ff88"
-            fontSize={18}
-            fps={25}
-            opacity={0.06}
-            height="256px"
-          />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-white bg-black/50 p-4 rounded-lg max-w-sm text-center">
-              <h3 className="text-lg font-bold mb-2">Fullscreen Mode</h3>
-              <p className="text-sm">Set fullScreen=true to make this effect cover the entire viewport as a background</p>
-            </div>
-          </div>
-        </div>
-      ),
-      filename: "FullscreenMatrix.tsx",
-      code: `import { MatrixCodeRain } from "@/nyxui/components/MatrixCodeRain";
-
-export function FullscreenMatrix() {
-  return (
-    <MatrixCodeRain 
-      color="#00ff88"
-      fontSize={18}
-      fps={25}
-      opacity={0.06}
-      fullScreen={true}
-    />
-  );
-}`,
-    },
-    {
-      name: "Custom Characters",
-      preview: (
+  },
+  {
+    name: "Custom Characters",
+    preview: (
+      <div className="h-[300px] w-full relative overflow-hidden">
         <MatrixCodeRain 
           color="#ffcc00"
           charset="①②③④⑤⑥⑦⑧⑨⑩⓪"
           fontSize={22}
           fps={15}
           height="300px"
+          width="300px"
         />
-      ),
-      filename: "CustomCharactersMatrix.tsx",
-      code: `import { MatrixCodeRain } from "@/nyxui/components/MatrixCodeRain";
-  
+      </div>
+    ),
+    filename: "CustomCharactersMatrix.tsx",
+    code: `import { MatrixCodeRain } from "@/nyxui/components/MatrixCodeRain";
+
 export function CustomCharactersMatrix() {
   return (
-    <MatrixCodeRain 
-      color="#ffcc00"
-      charset="①②③④⑤⑥⑦⑧⑨⑩⓪"
-      fontSize={22}
-      fps={15}
-      height="300px"
-    />
+    <div className="h-[300px] w-full relative overflow-hidden">
+      <MatrixCodeRain 
+        color="#ffcc00"
+        charset="①②③④⑤⑥⑦⑧⑨⑩⓪"
+        fontSize={22}
+        fps={15}
+        height="300px"
+        width="300px"
+      />
+    </div>
   );
 }`,
-    },
-    {
-      name: "Slow Motion Effect",
-      preview: (
+  },
+  {
+    name: "Slow Motion Effect",
+    preview: (
+      <div className="h-[300px] w-full relative overflow-hidden">
         <MatrixCodeRain 
           color="#00ddff"
           charset="01001101"
@@ -266,23 +217,96 @@ export function CustomCharactersMatrix() {
           fps={8}
           opacity={0.1}
           height="300px"
+          width="300px"
         />
-      ),
-      filename: "SlowMotionMatrix.tsx",
-      code: `import { MatrixCodeRain } from "@/nyxui/components/MatrixCodeRain";
-  
+      </div>
+    ),
+    filename: "SlowMotionMatrix.tsx",
+    code: `import { MatrixCodeRain } from "@/nyxui/components/MatrixCodeRain";
+
 export function SlowMotionMatrix() {
   return (
-    <MatrixCodeRain 
-      color="#00ddff"
-      charset="01001101"
-      fontSize={16}
-      fps={8}
-      opacity={0.1}
-      height="300px"
-    />
+    <div className="h-[300px] w-full relative overflow-hidden">
+      <MatrixCodeRain 
+        color="#00ddff"
+        charset="01001101"
+        fontSize={16}
+        fps={8}
+        opacity={0.1}
+        height="300px"
+        width="300px"
+      />
+    </div>
   );
 }`,
-    },
-  ],
+  },
+  {
+    name: "Red Alert Mode",
+    preview: (
+      <div className="h-[300px] w-full relative overflow-hidden">
+        <MatrixCodeRain 
+          color="#ff3300"
+          charset="WARNING!ALERT"
+          fontSize={18}
+          fps={25}
+          opacity={0.08}
+          height="300px"
+          width="300px"
+        />
+      </div>
+    ),
+    filename: "RedAlertMatrix.tsx",
+    code: `import { MatrixCodeRain } from "@/nyxui/components/MatrixCodeRain";
+
+export function RedAlertMatrix() {
+  return (
+    <div className="h-[300px] w-full relative overflow-hidden">
+      <MatrixCodeRain 
+        color="#ff3300"
+        charset="WARNING!ALERT"
+        fontSize={18}
+        fps={25}
+        opacity={0.08}
+        height="300px"
+        width="300px"
+      />
+    </div>
+  );
+}`,
+  },
+  {
+    name: "Hieroglyphic Style",
+    preview: (
+      <div className="h-[300px] w-full relative overflow-hidden">
+        <MatrixCodeRain 
+          color="#d4af37"
+          charset="𓀀𓀁𓀂𓀃𓀄𓀅𓀆𓀇𓀈𓀉𓀊𓀋𓀌𓀍𓀎𓀏"
+          fontSize={24}
+          fps={12}
+          opacity={0.07}
+          height="300px"
+          width="300px"
+        />
+      </div>
+    ),
+    filename: "HieroglyphicMatrix.tsx",
+    code: `import { MatrixCodeRain } from "@/nyxui/components/MatrixCodeRain";
+
+export function HieroglyphicMatrix() {
+  return (
+    <div className="h-[300px] w-full relative overflow-hidden">
+      <MatrixCodeRain 
+        color="#d4af37"
+        charset="𓀀𓀁𓀂𓀃𓀄𓀅𓀆𓀇𓀈𓀉𓀊𓀋𓀌𓀍𓀎𓀏"
+        fontSize={24}
+        fps={12}
+        opacity={0.07}
+        height="300px"
+        width="300px"
+      />
+    </div>
+  );
+}`,
+  },
+]
 }

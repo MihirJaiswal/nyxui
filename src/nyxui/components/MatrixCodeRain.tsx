@@ -1,10 +1,10 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 
-export const MatrixCodeRain = ({ 
-  color = "#00ff00", 
+export const MatrixCodeRain = ({
+  color = "#00ff00",
   charset = '0123#!$^&456789ABCDEFRLY',
   fontSize = 16,
   fps = 20,
@@ -29,12 +29,13 @@ export const MatrixCodeRain = ({
     const frameInterval = 1000 / fps;
     
     const resize = () => {
+      const container = canvas.parentElement;
+      if (!container) return;
+      
       if (fullScreen) {
         w = canvas.width = window.innerWidth;
         h = canvas.height = window.innerHeight;
       } else {
-        const container = canvas.parentElement;
-        if (!container) return;
         w = canvas.width = container.clientWidth;
         h = canvas.height = container.clientHeight;
       }
@@ -78,24 +79,26 @@ export const MatrixCodeRain = ({
     };
   }, [color, charset, fontSize, fps, opacity, fullScreen]);
   
-  const containerStyle = {
-    position: 'relative',
-    width: fullScreen ? '100vw' : width,
-    height: fullScreen ? '100vh' : height,
-    overflow: 'hidden'
-  };
-  
-  const canvasStyle = {
-    display: 'block',
-    position: fullScreen ? 'fixed' : 'absolute',
-    top: 0,
-    left: 0,
-    zIndex: fullScreen ? -1 : 'auto'
-  };
-  
   return (
-    <div className={cn(containerStyle)}>
-      <canvas ref={canvasRef} className={cn(canvasStyle)} />
+    <div 
+      className={cn("relative overflow-hidden")}
+      style={{
+        width: fullScreen ? '100vw' : width,
+        height: fullScreen ? '100vh' : height,
+      }}
+    >
+      <canvas 
+        ref={canvasRef} 
+        className={cn("block")}
+        style={{
+          position: fullScreen ? 'fixed' : 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          zIndex: fullScreen ? -1 : 'auto'
+        }}
+      />
     </div>
   );
 };
