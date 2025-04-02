@@ -26,8 +26,6 @@ export const PreviewCodeToggle = ({
   language = "tsx",
   previewClassName,
   defaultTab = "preview",
-  darkCodeTheme = "vscDarkPlus",
-  lightCodeTheme = "prism"
 }: PreviewCodeToggleProps) => {
   const [copied, setCopied] = useState(false)
   const { theme, systemTheme } = useTheme()

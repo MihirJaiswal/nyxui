@@ -1,7 +1,7 @@
 import type { ComponentData } from "@/nyxui/ComponentInterfaces"
 import { MajesticCard } from "@/nyxui/components/MajesticCard"
 import { MajesticCardDemo } from "@/nyxui/demos/MajesticCardDemo"
-import { Activity, Badge, CloudLightning, Globe, HeartPulse, LineChart, MessageCircle, MoreVertical, MountainSnowIcon, Share2, Shield, Smartphone, Sparkles, Star } from "lucide-react"
+import { Activity, Badge, CloudLightning, HeartPulse, MessageCircle, MoreVertical, Share2, Smartphone } from "lucide-react"
 import fs from "fs";
 import path from "path";
 import { Button } from "@/components/ui/button";

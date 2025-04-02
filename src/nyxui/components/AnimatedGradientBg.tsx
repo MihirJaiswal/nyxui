@@ -31,7 +31,6 @@ export function AnimatedGradientBg({
   pattern = "radial",
   patternIntensity = 1,
   interactive = false,
-  interactiveIntensity = 0.5,
   opacity = 0.8,
   size = "full",
   position = "absolute",
@@ -84,19 +83,11 @@ export function AnimatedGradientBg({
   }
   const getGradientPattern = () => {
     const baseColors = colors.join(", ")
-    const adjustedColors =
-      interactive && isHovered
-        ? colors
-            .map((color) => {
-              const hueShift = (mousePosition.x - 0.5) * 30 * interactiveIntensity
-              const lightnessShift = (mousePosition.y - 0.5) * 20 * interactiveIntensity
-              return color
-            })
-            .join(", ")
-        : baseColors
+    const adjustedColors = interactive && isHovered ? colors.join(", ") : baseColors
+    const focalPoint = dimensions.width && dimensions.height ? `${dimensions.width / 2}px ${dimensions.height / 2}px` : "center"
     switch (pattern) {
       case "radial":
-        return `radial-gradient(circle at ${interactive && isHovered ? `${mousePosition.x * 100}% ${mousePosition.y * 100}%` : "center"}, ${adjustedColors})`
+        return `radial-gradient(circle at ${interactive && isHovered ? `${mousePosition.x * 100}% ${mousePosition.y * 100}%` : focalPoint}, ${adjustedColors})`
       case "linear":
         return `linear-gradient(${interactive && isHovered ? `${mousePosition.x * 360}deg` : "45deg"}, ${adjustedColors})`
       case "conic":
@@ -121,7 +112,7 @@ export function AnimatedGradientBg({
           linear-gradient(${interactive && isHovered ? `${mousePosition.x * 360 + 180}deg` : "315deg"}, ${colors[3]} 30%, transparent 70%)
         `
       default:
-        return `radial-gradient(circle at center, ${adjustedColors})`
+        return `radial-gradient(circle at ${focalPoint}, ${adjustedColors})`
     }
   }
   const variants = {

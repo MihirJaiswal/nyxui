@@ -3,6 +3,16 @@ import type React from "react"
 import { useRef, useEffect, useState } from "react"
 import { cn } from "@/lib/utils"
 
+interface Drop {
+  x: number
+  y: number
+  radius: number
+  maxRadius: number
+  speed: number
+  opacity: number
+  color: string
+}
+
 export interface DynamicRippleProps extends React.HTMLAttributes<HTMLDivElement> {
   theme?: "blue" | "purple" | "green" | "amber" | "rose" | "custom"
   customColors?: {
@@ -35,7 +45,7 @@ export function DynamicRipple({
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
   const animationRef = useRef<number>(0)
-  const dropsRef = useRef<any[]>([])
+  const dropsRef = useRef<Drop[]>([])
 
   const themeColors = {
     blue: {
@@ -114,13 +124,12 @@ export function DynamicRipple({
 
     updateDimensions()
 
+    const container = containerRef.current
     const resizeObserver = new ResizeObserver(updateDimensions)
-    resizeObserver.observe(containerRef.current)
+    resizeObserver.observe(container)
 
     return () => {
-      if (containerRef.current) {
-        resizeObserver.disconnect()
-      }
+      resizeObserver.disconnect()
       cancelAnimationFrame(animationRef.current)
     }
   }, [])
@@ -128,24 +137,25 @@ export function DynamicRipple({
   useEffect(() => {
     if (!canvasRef.current || !dimensions.width || !dimensions.height) return
 
+    const currentIntensityFactors = intensityFactors[intensity]
+    const currentSpeedFactor = speedFactors[speed]
+
     const createDrop = (x: number, y: number, userInitiated = false) => {
-      const factor = intensityFactors[intensity]
-      const maxRadius = Math.min(dimensions.width, dimensions.height) * 0.3 * factor.size
+      const maxRadius = Math.min(dimensions.width, dimensions.height) * 0.3 * currentIntensityFactors.size
 
       return {
         x,
         y,
         radius: 0,
         maxRadius,
-        speed: speedFactors[speed] * (userInitiated ? 1.5 : 1),
-        opacity: factor.opacity * (userInitiated ? 1.2 : 1),
+        speed: currentSpeedFactor * (userInitiated ? 1.5 : 1),
+        opacity: currentIntensityFactors.opacity * (userInitiated ? 1.2 : 1),
         color: Math.random() > 0.5 ? currentTheme.primary : currentTheme.secondary,
       }
     }
 
     if (autoAnimate) {
-      const factor = intensityFactors[intensity]
-      const initialDrops = Array.from({ length: factor.count }).map(() => {
+      const initialDrops = Array.from({ length: currentIntensityFactors.count }).map(() => {
         const x = Math.random() * dimensions.width
         const y = Math.random() * dimensions.height
         return createDrop(x, y)
@@ -178,24 +188,38 @@ export function DynamicRipple({
       }
     }
 
-    if (reactToCursor && containerRef.current) {
-      containerRef.current.addEventListener("mousemove", handlePointerMove)
-      containerRef.current.addEventListener("touchmove", handlePointerMove)
+    const container = containerRef.current
+    if (reactToCursor && container) {
+      container.addEventListener("mousemove", handlePointerMove)
+      container.addEventListener("touchmove", handlePointerMove)
     }
 
     return () => {
-      if (containerRef.current) {
-        containerRef.current.removeEventListener("mousemove", handlePointerMove)
-        containerRef.current.removeEventListener("touchmove", handlePointerMove)
+      if (container) {
+        container.removeEventListener("mousemove", handlePointerMove)
+        container.removeEventListener("touchmove", handlePointerMove)
       }
     }
-  }, [dimensions, intensity, speed, reactToCursor, autoAnimate, currentTheme.primary, currentTheme.secondary])
+  }, [
+    dimensions, 
+    intensity, 
+    speed, 
+    reactToCursor, 
+    autoAnimate, 
+    currentTheme.primary, 
+    currentTheme.secondary,
+    intensityFactors,
+    speedFactors
+  ])
 
   useEffect(() => {
     if (!canvasRef.current || !dimensions.width || !dimensions.height) return
 
     const ctx = canvasRef.current.getContext("2d")
     if (!ctx) return
+
+    const currentIntensityFactors = intensityFactors[intensity]
+    const currentSpeedFactor = speedFactors[speed]
 
     const animate = () => {
       ctx.clearRect(0, 0, dimensions.width, dimensions.height)
@@ -210,7 +234,7 @@ export function DynamicRipple({
         return drop.radius < drop.maxRadius
       })
 
-      if (autoAnimate && Math.random() < 0.05 * speedFactors[speed]) {
+      if (autoAnimate && Math.random() < 0.05 * currentSpeedFactor) {
         const x = Math.random() * dimensions.width
         const y = Math.random() * dimensions.height
 
@@ -218,9 +242,9 @@ export function DynamicRipple({
           x,
           y,
           radius: 0,
-          maxRadius: Math.min(dimensions.width, dimensions.height) * 0.2 * intensityFactors[intensity].size,
-          speed: speedFactors[speed],
-          opacity: intensityFactors[intensity].opacity,
+          maxRadius: Math.min(dimensions.width, dimensions.height) * 0.2 * currentIntensityFactors.size,
+          speed: currentSpeedFactor,
+          opacity: currentIntensityFactors.opacity,
           color: Math.random() > 0.5 ? currentTheme.primary : currentTheme.secondary,
         })
       }
@@ -233,7 +257,16 @@ export function DynamicRipple({
     return () => {
       cancelAnimationFrame(animationRef.current)
     }
-  }, [dimensions, intensity, speed, autoAnimate, currentTheme.primary, currentTheme.secondary])
+  }, [
+    dimensions, 
+    intensity, 
+    speed, 
+    autoAnimate, 
+    currentTheme.primary, 
+    currentTheme.secondary,
+    intensityFactors,
+    speedFactors
+  ])
 
   return (
     <div ref={containerRef} className={cn("relative overflow-hidden", roundedStyles[rounded], className)} {...props}>
@@ -247,4 +280,3 @@ export function DynamicRipple({
     </div>
   )
 }
-

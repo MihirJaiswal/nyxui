@@ -50,7 +50,6 @@ export function ExpandingCircleMenu({
     containedMode = false,
     adaptiveDistance = false,
     color = "rgb(59, 130, 246)",
-    hoverColor = "rgb(37, 99, 235)",
     textColor = "white",
     triggerColor,
     closeOnSelect = true,

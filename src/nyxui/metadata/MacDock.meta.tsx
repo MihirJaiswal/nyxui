@@ -1,5 +1,4 @@
 import type { ComponentData } from "@/nyxui/ComponentInterfaces"
-import { MacDock } from "@/nyxui/components/MacDock"
 import { MacDockDemo } from "@/nyxui/demos/MacDockDemo"
 import fs from "fs";
 import path from "path";

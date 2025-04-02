@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import { MacDock } from "@/nyxui/components/MacDock";
 

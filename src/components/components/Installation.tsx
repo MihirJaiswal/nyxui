@@ -34,7 +34,6 @@ const CollapsibleSection = ({ title, icon, defaultCollapsed = true, children }: 
 };
 
 export const InstallationSection = ({ componentData }: { componentData: ComponentData }) => {
-  const [showFullConfig, setShowFullConfig] = useState(false);
   const [copiedIndex, setCopiedIndex] = useState<string | null>(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
   
@@ -108,7 +107,7 @@ export const InstallationSection = ({ componentData }: { componentData: Componen
                     icon={<Package className="size-4 text-primary" />}
                   >
                     <div className="p-6 space-y-6">
-                      {componentData.dependencies.map((dependency, index) => (
+                      {componentData.dependencies.map((dependency) => (
                         <div key={dependency.name} className="space-y-3">
                           <p className="font-medium text-sm flex items-center gap-2">
                             <span className="w-2 h-2 rounded-full bg-primary inline-block"></span>

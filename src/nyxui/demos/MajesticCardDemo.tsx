@@ -167,6 +167,7 @@ export function MajesticCardDemo() {
                 { name: "Neon", theme: "neon", icon: <Zap className="h-6 w-6 text-indigo-300" /> },
                 { name: "Cosmic", theme: "cosmic", icon: <Star className="h-6 w-6 text-pink-400" /> }
               ].map((item, i) => (
+                // @ts-ignore
                 <MajesticCard 
                   key={i} 
                   variant="tilt" 
@@ -202,6 +203,7 @@ export function MajesticCardDemo() {
                 { name: "Glow", variant: "glow", desc: "Interactive glow follows cursor" },
                 { name: "Wave", variant: "wave", desc: "Wave-like motion effects" }
               ].map((item, i) => (
+                // @ts-ignore
                 <MajesticCard 
                   key={i} 
                   variant={item.variant as any} 
@@ -404,7 +406,7 @@ export function MajesticCardDemo() {
                   ))}
                 </div>
                 <p className="text-sm text-gray-600 dark:text-gray-300">
-                  "The Nyx UI is a great way to increase the UI of your website."
+                  &quot;The Nyx UI is a great way to increase the UI of your website.&quot;
                 </p>
               </div>
               <p className="text-xs text-gray-500 dark:text-gray-400 italic">

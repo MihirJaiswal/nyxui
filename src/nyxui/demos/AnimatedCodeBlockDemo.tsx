@@ -31,9 +31,7 @@ function useDataFetching(url) {
 }`
     }
   ];
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const currentExample = examples[currentIndex];
+  const currentExample = examples[0];
 
   return (
     <div className="w-full flex flex-col gap-4 p-4">

@@ -14,7 +14,7 @@ const ComponentNotFound = () => {
           </div>
           <h1 className="text-4xl font-bold">Component Not Found</h1>
           <p className="max-w-md text-muted-foreground">
-            The component you're looking for doesn't exist or hasn't been documented yet.
+            The component you&apos;re looking for doesn&apos;t exist or hasn&apos;t been documented yet.
           </p>
           <div className="flex gap-2">
             <Button asChild>

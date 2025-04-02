@@ -273,7 +273,7 @@ export function ScrollAnimationTriggerDemo() {
                     
                     <p className="text-gray-600 dark:text-gray-300 text-center md:text-start leading-relaxed mb-6">
                       Watch as this element responds to your scrolling position. The colors shift, the card rotates,
-                      and the size changes based on exactly how far you've scrolled through this section.
+                      and the size changes based on exactly how far you&apos;ve scrolled through this section.
                     </p>
                     
                     <motion.div 

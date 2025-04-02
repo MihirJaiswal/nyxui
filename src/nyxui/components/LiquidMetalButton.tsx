@@ -29,6 +29,16 @@ export interface LiquidMetalButtonProps extends React.ButtonHTMLAttributes<HTMLB
   children: React.ReactNode
 }
 
+interface Droplet {
+  x: number
+  y: number
+  size: number
+  opacity: number
+  speedX: number
+  speedY: number
+  life: number
+}
+
 export function LiquidMetalButton({
   variant = "default",
   size = "md",
@@ -37,7 +47,6 @@ export function LiquidMetalButton({
   intensity = 3,
   magnetic = true,
   clickEffect = true,
-  asChild = false,
   rounded = "md",
   shadow = true,
   hoverAnimation = true,
@@ -54,10 +63,18 @@ export function LiquidMetalButton({
   const [isPressed, setIsPressed] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [buttonDimensions, setButtonDimensions] = useState({ width: 0, height: 0, top: 0, left: 0 })
-  const [droplets, setDroplets] = useState<any[]>([])
+  const [droplets, setDroplets] = useState<Droplet[]>([])
   const animationRef = useRef<number>(0)
   const lastRippleTime = useRef<number>(0)
-  const dropletsRef = useRef<any[]>([]) // Add a ref to track droplets without triggering renders
+  const dropletsRef = useRef<Droplet[]>([])
+
+  const intensityFactors = {
+    1: 0.2,
+    2: 0.4,
+    3: 0.6,
+    4: 0.8,
+    5: 1.0,
+  }
 
   const themeColors = {
     silver: {
@@ -180,17 +197,10 @@ export function LiquidMetalButton({
     false: "",
   }
 
-  const intensityFactors = {
-    1: 0.2,
-    2: 0.4,
-    3: 0.6,
-    4: 0.8,
-    5: 1.0,
-  }
-
   useEffect(() => {
     dropletsRef.current = droplets;
   }, [droplets]);
+
   useEffect(() => {
     if (!buttonRef.current || !canvasRef.current) return
 
@@ -245,7 +255,8 @@ export function LiquidMetalButton({
     }
     
     return false
-  }, [isHovered, variant, intensity])
+  }, [isHovered, variant, intensity, intensityFactors])
+
   useEffect(() => {
     if (!buttonRef.current || !isHovered) return
 
@@ -354,15 +365,15 @@ export function LiquidMetalButton({
       const distanceX = e.clientX - centerX
       const distanceY = e.clientY - centerY
 
-      const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY)
+      const totalDistance = Math.sqrt(distanceX * distanceX + distanceY * distanceY)
 
       const maxDistance = Math.max(rect.width, rect.height) * 1.8
       const factor = intensityFactors[intensity]
-      const pullStrength = Math.max(0, 1 - distance / maxDistance) * 15 * factor
+      const pullStrength = Math.max(0, 1 - totalDistance / maxDistance) * 15 * factor
 
-      if (distance < maxDistance) {
-        const moveX = (distanceX / distance) * pullStrength
-        const moveY = (distanceY / distance) * pullStrength
+      if (totalDistance < maxDistance) {
+        const moveX = (distanceX / totalDistance) * pullStrength
+        const moveY = (distanceY / totalDistance) * pullStrength
 
         buttonRef.current.style.transform = `translate(${moveX}px, ${moveY}px)`
         buttonRef.current.style.transition = "transform 0.1s cubic-bezier(0.2, 0.8, 0.2, 1)"
@@ -377,10 +388,9 @@ export function LiquidMetalButton({
       document.removeEventListener("mousemove", handleMouseMove)
       if (buttonRef.current) {
         buttonRef.current.style.transform = ""
-        buttonRef.current.style.transition = ""
       }
     }
-  }, [magnetic, isHovered, intensity])
+  }, [magnetic, isHovered, intensity, intensityFactors])
 
   const handleMouseEnter = () => {
     setIsHovered(true)
@@ -413,7 +423,6 @@ export function LiquidMetalButton({
       const factor = intensityFactors[intensity]
       const newDroplets = Array.from({ length: 15 }).map(() => {
         const angle = Math.random() * Math.PI * 2
-        const distance = Math.random() * 20 * factor
         const speed = Math.random() * 3 * factor + 2
 
         return {

@@ -1,7 +1,7 @@
 import type { ComponentData } from "@/nyxui/ComponentInterfaces"
 import { ScrollAnimationTrigger } from "@/nyxui/components/ScrollAnimationTrigger"
 import { ScrollAnimationTriggerDemo } from "@/nyxui/demos/ScrollAnimationTriggerDemo"
-import { ArrowUp, FileBadge2, Lightbulb, Maximize, Palette, RotateCw, Sparkles, Star } from "lucide-react"
+import { ArrowUp, FileBadge2, Lightbulb, Maximize, Palette, Sparkles, Star } from "lucide-react"
 import fs from "fs";
 import path from "path";
 

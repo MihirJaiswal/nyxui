@@ -204,7 +204,6 @@ module.exports = {
 }`
   }
 
-  // Copy configuration to clipboard
   const handleCopyConfig = async () => {
     const configString = generateTailwindConfig()
     try {
@@ -212,7 +211,7 @@ module.exports = {
       setIsCopied(true)
       toast("Copied! Tailwind configuration copied to clipboard.")
       setTimeout(() => setIsCopied(false), 2000)
-    } catch (err) {
+    } catch {
       toast("Copy Failed, Unable to copy configuration.")
     }
   }

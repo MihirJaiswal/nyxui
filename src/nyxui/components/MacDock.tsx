@@ -87,40 +87,6 @@ function useCallbackRef<T extends (...args: any[]) => any>(callback: T): T {
   return useMemo(() => ((...args) => callbackRef.current?.(...args)) as T, []);
 }
 
-function useMousePosition(
-  options: { onChange?: (position: { x: number; y: number }) => void } = {},
-  deps: readonly any[] = []
-) {
-  const { onChange } = options;
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  useEffect(() => {
-    const handleMouseMove = (event: MouseEvent) => {
-      x.set(event.clientX);
-      y.set(event.clientY);
-      
-      if (onChange) {
-        onChange({ x: event.clientX, y: event.clientY });
-      }
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, [x, y, onChange, ...deps]);
-
-  return useMemo(
-    () => ({
-      x,
-      y
-    }),
-    [x, y]
-  );
-}
-
 export function MacDock({ apps, className }: MacDockProps) {
   const [hovered, setHovered] = useState(false);
   const [width, setWidth] = useState(0);

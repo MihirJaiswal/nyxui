@@ -50,10 +50,6 @@ const SpecialCard: React.FC<CardProps> = ({
     title: "Title",
     character: "Character"
   },
-  gradientColors = {
-    top: "rgba(12,13,19,1)",
-    bottom: "rgba(12,13,19,1)"
-  },
   animation = {
     duration: 500,
     delay: 0

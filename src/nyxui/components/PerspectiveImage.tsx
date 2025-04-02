@@ -62,6 +62,13 @@ export function PerspectiveImage({
   const springConfig = { damping: 20, stiffness: 300 }
   const springRotateX = useSpring(rotateX, springConfig)
   const springRotateY = useSpring(rotateY, springConfig)
+  const opacityT = useTransform(mouseX, [-0.5, 0, 0.5], [0, 0.5, 0])
+  const opacityY = useTransform(
+    mouseY,
+    [-0.5, 0, 0.5],
+    glarePosition === "top" ? [glareOpacity, 0, 0] : [0, glareOpacity, 0]
+  )
+  
   useEffect(() => {
     if (!isHovering && !disabled) {
       mouseX.set(0)
@@ -123,7 +130,7 @@ export function PerspectiveImage({
             style={{
               background: "linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0) 60%)",
               borderRadius: borderRadius,
-              opacity: useTransform(mouseX, [-0.5, 0, 0.5], [0, 0.5, 0]),
+              opacity: opacityT,
               mixBlendMode: "overlay",
             }}
           />
@@ -137,11 +144,7 @@ export function PerspectiveImage({
                   ? `linear-gradient(to bottom, ${glareColor} 0%, transparent 80%)`
                   : `radial-gradient(circle at 50% 50%, ${glareColor} 0%, transparent 80%)`,
               borderRadius: borderRadius,
-              opacity: useTransform(
-                mouseY,
-                [-0.5, 0, 0.5],
-                glarePosition === "top" ? [glareOpacity, 0, 0] : [0, glareOpacity, 0]
-              ),
+              opacity: opacityY,
               mixBlendMode: "overlay",
             }}
           />

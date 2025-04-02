@@ -48,11 +48,6 @@ export function AnimatedGradientBgDemo() {
   }
 
   const [activeTheme, setActiveTheme] = useState<string>("Cosmic Twilight");
-  
-  // Validate that patternType is a valid PatternType
-  const isValidPatternType = (pattern: string): pattern is PatternType => {
-    return ["radial", "linear", "conic", "mesh", "noise", "waves"].includes(pattern);
-  };
 
   return (
     <div className="w-full min-h-screen text-white p-8">

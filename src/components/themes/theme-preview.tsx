@@ -337,7 +337,7 @@ export const ThemePreview = ({
                           fontFamily: "monospace",
                         }}
                       >
-                        console.log("Hello World")
+                        console.log(&quot;Hello World&quot;)
                       </code>
                     </div>
                   </div>

@@ -52,7 +52,7 @@ export const MatrixCodeRain = ({
         ctx.font = `${fontSize}px monospace`;
         
         for (let i = 0; i < particlesRef.current.length; i++) {
-          let v = particlesRef.current[i];
+          const v = particlesRef.current[i];
           ctx.fillText(random(charset), i * fontSize, v);
           particlesRef.current[i] = v >= h || v >= 10000 * Math.random() ? 0 : v + fontSize;
         }

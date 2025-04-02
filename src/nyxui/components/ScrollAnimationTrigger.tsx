@@ -12,6 +12,8 @@ export interface ScrollAnimationTriggerProps {
   duration?: number
   direction?: "up" | "down" | "left" | "right"
   once?: boolean
+  
+  // @ts-ignore
   customProps?: Record<string, any>
   as?: React.ElementType
   fromColor?: string
@@ -71,6 +73,8 @@ export function ScrollAnimationTrigger({
   }, [threshold, once])
 
   const getAnimationProps = () => {
+
+    // @ts-ignore
     const baseProps: any = {
       initial: {},
       animate: {},

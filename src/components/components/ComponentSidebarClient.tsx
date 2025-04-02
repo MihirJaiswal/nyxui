@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
-import { ChevronRight, Minus } from 'lucide-react';
+import { Minus } from 'lucide-react';
 
 interface CategoryItem {
   name: string;

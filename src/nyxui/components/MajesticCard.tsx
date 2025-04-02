@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useRef, useEffect, useState } from "react"
+import { useRef, useEffect, useState, useCallback, useMemo } from "react"
 import { cn } from "@/lib/utils"
 import { 
   motion, 
@@ -68,7 +68,6 @@ export function MajesticCard({
   const [isHovered, setIsHovered] = useState(false)
   const [scrollPosition, setScrollPosition] = useState(0)
   const [layers, setLayers] = useState<HTMLElement[]>([])
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [showConfetti, setShowConfetti] = useState(false)
   const [generatedLayers, setGeneratedLayers] = useState<React.ReactNode[]>([])
@@ -173,7 +172,34 @@ export function MajesticCard({
 
   const currentTheme = themeStyles[theme]
 
-  const getBorderStyles = () => {
+  // Memoize these objects to avoid recreating them on every render
+  const intensityFactors = useMemo(() => ({
+    1: 0.2,
+    2: 0.4,
+    3: 0.6,
+    4: 0.8,
+    5: 1.0,
+  }), [])
+
+  const separationFactors = useMemo(() => ({
+    1: 4,
+    2: 8,
+    3: 12,
+    4: 16,
+    5: 20,
+  }), [])
+
+  const roundedStyles = useMemo(() => ({
+    none: "rounded-none",
+    sm: "rounded-sm",
+    md: "rounded-md",
+    lg: "rounded-lg",
+    xl: "rounded-xl",
+    full: "rounded-full",
+    pill: "rounded-full",
+  }), [])
+
+  const getBorderStyles = useCallback(() => {
     if (!border) return "";
     
     switch (borderStyle) {
@@ -188,9 +214,9 @@ export function MajesticCard({
       default:
         return `border ${currentTheme.border}`;
     }
-  }
+  }, [border, borderStyle, currentTheme.border, theme])
 
-  const getShadowStyles = () => {
+  const getShadowStyles = useCallback(() => {
     if (!shadow) return "";
     
     const sizes = {
@@ -213,23 +239,7 @@ export function MajesticCard({
       default:
         return `${sizes[shadowSize]} ${currentTheme.shadow}`;
     }
-  }
-
-  const intensityFactors = {
-    1: 0.2,
-    2: 0.4,
-    3: 0.6,
-    4: 0.8,
-    5: 1.0,
-  }
-
-  const separationFactors = {
-    1: 4,
-    2: 8,
-    3: 12,
-    4: 16,
-    5: 20,
-  }
+  }, [shadow, shadowSize, shadowType, currentTheme.shadow, currentTheme.glow, isHovered])
 
   useEffect(() => {
     if (variant === "layered") {
@@ -263,7 +273,7 @@ export function MajesticCard({
       
       setGeneratedLayers(newLayers);
     }
-  }, [variant, layerCount, layerSeparation, theme, border, borderStyle, rounded]);
+  }, [variant, layerCount, layerSeparation, theme, border, borderStyle, rounded, currentTheme.background, getBorderStyles, roundedStyles, separationFactors]);
 
   useEffect(() => {
     if (variant === "layered" && cardRef.current) {
@@ -274,8 +284,9 @@ export function MajesticCard({
 
   useEffect(() => {
     if (cardRef.current) {
-      const rect = cardRef.current.getBoundingClientRect()
-      setDimensions({ width: rect.width, height: rect.height })
+      // We're not using the dimensions so we can remove this state update
+      // const rect = cardRef.current.getBoundingClientRect()
+      // setDimensions({ width: rect.width, height: rect.height })
     }
   }, [children])
 
@@ -335,13 +346,20 @@ export function MajesticCard({
     }
   }, [floatPhase, variant, intensity, floatPattern, reduceMotion, floatX, floatY, rotate, intensityFactors]);
 
+  // Use a ref to store the current callback instance to avoid stale closures
+  const cleanupRef = useRef<(() => void) | null>(null);
+
   useEffect(() => {
     if (!cardRef.current || !hoverEffect || reduceMotion) return
 
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!cardRef.current) return
+    const card = cardRef.current;
+    const factor = intensityFactors[intensity];
+    const layersCopy = [...layers]; // Create a copy to avoid capturing the layers state
 
-      const rect = cardRef.current.getBoundingClientRect()
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!card) return
+
+      const rect = card.getBoundingClientRect()
       const centerX = rect.left + rect.width / 2
       const centerY = rect.top + rect.height / 2
 
@@ -353,8 +371,6 @@ export function MajesticCard({
         y: (e.clientY - rect.top) / rect.height 
       })
 
-      const factor = intensityFactors[intensity]
-
       if (variant === "tilt" || variant === "morph" || variant === "breathe") {
         rotateX.set(-mouseY * 0.01 * factor)
         rotateY.set(mouseX * 0.01 * factor)
@@ -362,7 +378,7 @@ export function MajesticCard({
         x.set(mouseX * 0.1 * factor)
         y.set(mouseY * 0.1 * factor)
       } else if (variant === "layered") {
-        layers.forEach((layer) => {
+        layersCopy.forEach((layer) => {
           const depth = Number.parseFloat(layer.getAttribute("data-layer") || "1")
           const moveX = mouseX * 0.02 * depth * factor
           const moveY = mouseY * 0.02 * depth * factor
@@ -388,28 +404,34 @@ export function MajesticCard({
       scale.set(1)
 
       if (variant === "layered") {
-        layers.forEach((layer) => {
+        layersCopy.forEach((layer) => {
           layer.style.transform = ""
         })
       }
     }
 
     document.addEventListener("mousemove", handleMouseMove)
-    cardRef.current.addEventListener("mouseleave", handleMouseLeave)
+    card.addEventListener("mouseleave", handleMouseLeave)
+
+    // Store cleanup function
+    cleanupRef.current = () => {
+      document.removeEventListener("mousemove", handleMouseMove)
+      card.removeEventListener("mouseleave", handleMouseLeave)
+    }
 
     return () => {
-      document.removeEventListener("mousemove", handleMouseMove)
-      if (cardRef.current) {
-        cardRef.current.removeEventListener("mouseleave", handleMouseLeave)
+      if (cleanupRef.current) {
+        cleanupRef.current()
       }
     }
-  }, [variant, intensity, hoverEffect, layers, reduceMotion, x, y, rotateX, rotateY, scale, intensityFactors])
+  }, [variant, intensity, hoverEffect, layers, reduceMotion, x, y, rotateX, rotateY, scale, intensityFactors]);
 
   useEffect(() => {
     if (!scrollEffect || reduceMotion) return
 
     const handleScroll = () => {
-      setScrollPosition(window.scrollY)
+      const newScrollPosition = window.scrollY;
+      setScrollPosition(newScrollPosition);
       
       if (cardRef.current) {
         const rect = cardRef.current.getBoundingClientRect()
@@ -422,7 +444,7 @@ export function MajesticCard({
         const factor = intensityFactors[intensity]
         
         if (variant === "float" || variant === "parallax") {
-          y.set(-scrollPosition * 0.05 * factor * visiblePercentage)
+          y.set(-newScrollPosition * 0.05 * factor * visiblePercentage)
         }
         
         if (rect.top < windowHeight && rect.bottom > 0) {
@@ -437,7 +459,7 @@ export function MajesticCard({
     return () => {
       window.removeEventListener("scroll", handleScroll)
     }
-  }, [scrollEffect, variant, intensity, reduceMotion, y, scale, intensityFactors])
+  }, [scrollEffect, variant, intensity, reduceMotion, y, scale, intensityFactors]);
 
   const handleMouseEnter = () => {
     setIsHovered(true)
@@ -487,15 +509,7 @@ export function MajesticCard({
       </div>
     ) : null
   }
-  const roundedStyles = {
-    none: "rounded-none",
-    sm: "rounded-sm",
-    md: "rounded-md",
-    lg: "rounded-lg",
-    xl: "rounded-xl",
-    full: "rounded-full",
-    pill: "rounded-full",
-  }
+
   const getAnimationClasses = () => {
     if (reduceMotion) return ""
     

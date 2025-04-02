@@ -1,9 +1,8 @@
 "use client"
-import { useState } from "react"
 import { ThreeDCard } from "@/nyxui/components/3DCard"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { CreditCard, User, Bell, Settings } from "lucide-react"
+import { CreditCard, Bell } from "lucide-react"
 import Image from "next/image"
 
 export function ThreeDCardDemo() {

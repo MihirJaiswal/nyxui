@@ -29,7 +29,6 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({
   promptSymbol = "$",
   inputPlaceholder = "Type your command here...",
   outputHeight = "h-80",
-  className = "",
 }) => {
   const [input, setInput] = useState("")
   const [output, setOutput] = useState<string[]>([])

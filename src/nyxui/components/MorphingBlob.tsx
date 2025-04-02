@@ -262,7 +262,7 @@ export function MorphingBlob({
       
       return () => clearInterval(interval)
     }
-  }, [complexity, speed, isHovered, isClicked, smooth])
+  }, [complexity, speed, isHovered, isClicked, smooth, animate, blobPath, complexityFactors, speedFactors])
 
   const handleMouseEnter = () => {
     if (hoverEffect) {

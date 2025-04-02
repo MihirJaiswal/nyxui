@@ -2,7 +2,7 @@
 
 import React from "react"
 import InteractiveTerminal from "../components/Terminal"
-import { Heart, Terminal, Code, Rocket, Coffee, ChevronDown } from "lucide-react"
+import { Heart, Code, Rocket, Coffee } from "lucide-react"
 
 const TerminalDemo = () => {
   return (

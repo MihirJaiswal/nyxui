@@ -37,7 +37,6 @@ export function ThreeDCard({
   perspective = 1000,
   rotationIntensity = 15,
   glareIntensity = 0.2,
-  shadowIntensity = 0.8,
   hoverScale = 1.05,
   borderRadius = "1rem",
   backgroundColor = "white",
@@ -62,7 +61,8 @@ export function ThreeDCard({
   const rotateYInput = useTransform(mouseX, [-0.5, 0.5], [-rotationIntensity, rotationIntensity])
   const rotateX = useSpring(rotateXInput, springConfig)
   const rotateY = useSpring(rotateYInput, springConfig)
-
+  const opacityValue = useTransform(mouseY, [-0.5, 0, 0.5], [0, glareIntensity, 0]);
+  
   useEffect(() => {
     if (!isHovered && !disabled) {
       mouseX.set(0)
@@ -150,7 +150,7 @@ export function ThreeDCard({
                 135 + (mouseX.get() || 0) * 30
               }deg, ${glareColor} 0%, rgba(255, 255, 255, 0) 80%)`,
               borderRadius,
-              opacity: useTransform(mouseY, [-0.5, 0, 0.5], [0, glareIntensity, 0]),
+              opacity: opacityValue,
               mixBlendMode: "overlay",
             }}
           />

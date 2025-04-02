@@ -294,7 +294,7 @@ export const ThemeCustomizer: React.FC<ThemeCustomizerProps> = ({
         ) : (
           <div className="text-center py-8 text-muted-foreground">
             <p>No custom themes created yet</p>
-            <p className="text-sm mt-2">Click "Create New Theme" to get started</p>
+            <p className="text-sm mt-2">Click &quot;Create New Theme&quot; to get started</p>
           </div>
         )}
       </TabsContent>

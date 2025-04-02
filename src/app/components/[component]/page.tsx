@@ -1,4 +1,4 @@
-import { Github, ExternalLink, Copy, Check } from "lucide-react"
+import { Github, ExternalLink } from "lucide-react"
 import { notFound } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { ComponentSidebar } from "@/components/components/component-sidebar"
@@ -7,10 +7,9 @@ import Header from "@/components/global/Header"
 import { PreviewCodeToggle } from "@/components/components/PreviewCodeToggle"
 import { Badge } from "@/components/ui/badge"
 import { InstallationSection } from "@/components/components/Installation"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { CopyButton } from "@/components/components/CopyButton"
 import React from "react"
+import { Card } from "@/components/ui/card"
 
 const ComponentPage = async ({ params }: { params: Promise<{ component: string }>}) => {
   const component = (await params).component

@@ -135,13 +135,6 @@ export const GradientCustomizer: React.FC<GradientCustomizerProps> = ({
   const dialogContentRef = useRef<HTMLDivElement>(null)
   const [scrollPosition, setScrollPosition] = useState(0)
 
-  // Save scroll position when it changes
-  const handleScroll = () => {
-    if (dialogContentRef.current) {
-      setScrollPosition(dialogContentRef.current.scrollTop)
-    }
-  }
-
   // Restore scroll position after render
   useEffect(() => {
     if (dialogContentRef.current && scrollPosition > 0) {
@@ -739,20 +732,6 @@ export const GradientCustomizer: React.FC<GradientCustomizerProps> = ({
       )
     }
   }
-  
-  // Update colors with scroll preservation
-  const updateGradientColors = (newColors: string[]) => {
-    // Save scroll position first
-    if (dialogContentRef.current) {
-      setScrollPosition(dialogContentRef.current.scrollTop)
-    }
-    
-    // Then update colors
-    setCurrentGradient((prev) => ({
-      ...prev,
-      colors: newColors,
-    }))
-  }  
   // Color Stops Editor
   const ColorStopsEditor = () => {
     return (
@@ -797,7 +776,6 @@ export const GradientCustomizer: React.FC<GradientCustomizerProps> = ({
                         // Add a color that's a mix of the last two colors
                         const colors = currentGradient.colors
                         const lastColor = colors[colors.length - 1]
-                        const secondLastColor = colors[colors.length - 2] || lastColor
 
                         setCurrentGradient((prev) => ({
                           ...prev,
