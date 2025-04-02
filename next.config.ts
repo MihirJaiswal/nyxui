@@ -6,6 +6,12 @@ const nextConfig: NextConfig = {
       {
         hostname: 'raw.githubusercontent.com',
       },
+      {
+        hostname: 'uploads-ssl.webflow.com',
+      },
+      {
+        hostname: 'findicons.com',
+      },
       
     ],
   },

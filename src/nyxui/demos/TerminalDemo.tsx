@@ -46,7 +46,7 @@ const TerminalDemo = () => {
               stepDelay={1000}
             />
           </div>
-          <div className="py-4 rounded-xl px-6 bg-gray-800 dark:bg-gray-700 text-gray-300 mt-4">
+          <div className="py-4 rounded-xl px-6 bg-gray-900 text-gray-300 mt-4">
               <h3 className="font-semibold flex items-center">
                 <Heart size={16} className="text-pink-500 mr-2" /> Love Terminal
               </h3>
@@ -56,7 +56,7 @@ const TerminalDemo = () => {
           
           {/* Hacker Terminal */}
           <div>
-          <div className="rounded-xl overflow-hidden shadow-2xl transform transition-all hover:shadow-green-500/50">
+          <div className="rounded-xl border overflow-hidden shadow-2xl transform transition-all hover:shadow-green-500/50">
             <InteractiveTerminal 
               bgColor="bg-black"
               textColor="text-green-500"
@@ -85,7 +85,7 @@ Connection secured. Press ENTER to continue...
               stepDelay={800}
             />
           </div>
-            <div className="py-4 px-6 bg-gray-800 dark:bg-gray-700 text-gray-300 mt-4 rounded-xl">
+            <div className="py-4 px-6 border text-gray-300 mt-4 rounded-xl">
               <h3 className="font-semibold flex items-center">
                 <Code size={16} className="text-green-500 mr-2" /> Hacker Terminal
               </h3>
@@ -97,7 +97,7 @@ Connection secured. Press ENTER to continue...
           <div>
           <div className="rounded-xl overflow-hidden shadow-2xl transform transition-all hover:shadow-blue-500/50">
             <InteractiveTerminal 
-              bgColor="bg-gray-800"
+              bgColor="bg-zinc-900"
               textColor="text-blue-400"
               command="deploy --production"
               commandMessage="Run this command to deploy:"
@@ -124,7 +124,7 @@ All systems operational. Monitoring dashboard available at /admin/metrics
               stepDelay={800}
             />
           </div>
-          <div className="py-4 px-6 bg-gray-800 dark:bg-gray-700 text-gray-300 mt-4 rounded-xl">
+          <div className="py-4 px-6 bg-zinc-900 text-gray-300 mt-4 rounded-xl">
               <h3 className="font-semibold flex items-center">
                 <Rocket size={16} className="text-blue-400 mr-2" /> Deployment Terminal
               </h3>
@@ -163,7 +163,7 @@ Enjoy your coffee and have a wonderful day!
               promptSymbol="☕"
             />
           </div>
-          <div className="py-4 px-6 bg-gray-800 dark:bg-gray-700 text-gray-300 mt-4 rounded-xl">
+          <div className="py-4 px-6 bg-amber-950 text-gray-300 mt-4 rounded-xl">
               <h3 className="font-semibold flex items-center">
                 <Coffee size={16} className="text-amber-300 mr-2" /> Coffee Order Terminal
               </h3>

@@ -16,6 +16,8 @@ import { specialCardData } from "./metadata/SpecialCard.meta";
 import { matrixCodeRainData } from "./metadata/MatrixCodeRain.meta";
 import { mspaintData } from "./metadata/MSpaint.meta";
 import { interactiveTerminalData } from "./metadata/Terminal.meta";
+import { macDockData } from "./metadata/MacDock.meta";
+import { animatedTextData } from "./metadata/AnimatedText.meta";
 
 export const componentsData = {
   "gradient-button": gradientButtonData,
@@ -35,5 +37,7 @@ export const componentsData = {
   "special-card": specialCardData,
   "matrix-code-rain": matrixCodeRainData,
   "ms-paint": mspaintData,
-  "interactive-terminal": interactiveTerminalData 
+  "interactive-terminal": interactiveTerminalData,
+  "mac-dock": macDockData,
+  "animated-text": animatedTextData 
 };

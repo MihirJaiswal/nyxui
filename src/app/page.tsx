@@ -1,12 +1,13 @@
 import Header from "@/components/global/Header";
 import Hero from "@/components/home/Hero";
-import TunnelScrollDemo from "@/nyxui/demos/tunnel-scroll-demo";
+import { AnimationTextDemo } from "@/nyxui/demos/AnimatedTextDemo";
+
 export default function Home() {
   return (
     <>
     <Header/>
-     <Hero/> 
-     <TunnelScrollDemo/>
+     <Hero/>
+     <AnimationTextDemo/>
     </>
   );
 }

@@ -37,6 +37,7 @@ interface Dependency {
     type: string;
     default: string;
     description: string;
+    subProps?: Prop[];
   }
   
   export interface Example {

@@ -10,6 +10,7 @@ import { InstallationSection } from "@/components/components/Installation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { CopyButton } from "@/components/components/CopyButton"
+import React from "react"
 
 interface ComponentPageProps {
   params: {
@@ -105,67 +106,105 @@ const ComponentPage = async ({ params }: ComponentPageProps) => {
 
             {/* Props Section */}
             <section className="space-y-8">
-              <h2 className="text-3xl font-bold tracking-tight">Props</h2>
-              {componentData.props && componentData.props.length > 0 ? (
-                <Tabs defaultValue={componentData.props[0].name} className="w-full">
-                  <TabsList className="mb-6 bg-zinc-100 dark:bg-zinc-800 p-0 shadow-sm">
-                    {componentData.props.map((propGroup) => (
-                      <TabsTrigger 
-                        key={propGroup.name} 
-                        value={propGroup.name}
-                        className="px-8 py-3 text-base data-[state=active]:bg-white dark:data-[state=active]:bg-zinc-900"
-                      >
-                        {propGroup.name}
-                      </TabsTrigger>
-                    ))}
-                  </TabsList>
-                  
-                  {componentData.props.map((propGroup) => (
-                    <TabsContent key={propGroup.name} value={propGroup.name} className="space-y-4">
-                      <div className="border shadow">
-                        <table className="w-full border-collapse text-sm">
-                          <thead>
-                            <tr className="bg-zinc-50 dark:bg-black border-b">
-                              <th className="px-6 py-4 text-left font-medium w-1/6 border-r">Name</th>
-                              <th className="px-6 py-4 text-left font-medium w-1/6 border-r">Type</th>
-                              <th className="px-6 py-4 text-left font-medium w-1/5 border-r">Default</th>
-                              <th className="px-6 py-4 text-left font-medium w-3/6">Description</th>
-                            </tr>
-                          </thead>
-                          <tbody className="divide-y">
-                            {propGroup.items.map((prop, index) => (
-                              <tr 
-                                key={prop.name} 
-                                className={`transition-colors ${
-                                  index % 2 === 0 
-                                    ? 'bg-white dark:bg-black' 
-                                    : 'bg-zinc-50 dark:bg-zinc-900'
-                                }`}
-                              >
-                                <td className="px-6 py-4 font-mono text-sm font-semibold border-r">
-                                  <code className="bg-yellow-50 dark:bg-zinc-800 px-2 py-1">{prop.name}</code>
-                                </td>
-                                <td className="px-6 py-4 font-mono text-sm border-r">
-                                  <code className="bg-yellow-50 dark:bg-zinc-800 px-2 py-1">{prop.type}</code>
-                                </td>
-                                <td className="px-6 py-4 text-sm border-r">
-                                  <code className="bg-yellow-50 dark:bg-zinc-800 px-2 py-1">{prop.default || "-"}</code>
-                                </td>
-                                <td className="px-6 py-4 text-sm">{prop.description}</td>
-                              </tr>
-                            ))}
-                          </tbody>
-                        </table>
-                      </div>
-                    </TabsContent>
-                  ))}
-                </Tabs>
-              ) : (
-                <Card className="border p-6 shadow">
-                  <p className="text-zinc-500">No props available for this component.</p>
-                </Card>
-              )}
-            </section>
+  <h2 className="text-3xl font-bold tracking-tight">Props</h2>
+  {componentData.props && componentData.props.length > 0 ? (
+    <Tabs defaultValue={componentData.props[0].name} className="w-full">
+      <TabsList className="mb-6 bg-zinc-100 dark:bg-zinc-800 p-0 shadow-sm">
+        {componentData.props.map((propGroup) => (
+          <TabsTrigger 
+            key={propGroup.name} 
+            value={propGroup.name}
+            className="px-8 py-3 text-base data-[state=active]:bg-white dark:data-[state=active]:bg-zinc-900"
+          >
+            {propGroup.name}
+          </TabsTrigger>
+        ))}
+      </TabsList>
+      
+      {componentData.props.map((propGroup) => (
+        <TabsContent key={propGroup.name} value={propGroup.name} className="space-y-4">
+          <div className="border shadow">
+            <table className="w-full border-collapse text-sm">
+              <thead>
+                <tr className="bg-zinc-50 dark:bg-black border-b">
+                  <th className="px-6 py-4 text-left font-medium w-1/6 border-r">Name</th>
+                  <th className="px-6 py-4 text-left font-medium w-1/6 border-r">Type</th>
+                  <th className="px-6 py-4 text-left font-medium w-1/5 border-r">Default</th>
+                  <th className="px-6 py-4 text-left font-medium w-3/6">Description</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y">
+                {propGroup.items.map((prop, index) => (
+                  <React.Fragment key={prop.name}>
+                    <tr 
+                      className={`transition-colors ${
+                        index % 2 === 0 
+                          ? 'bg-white dark:bg-black' 
+                          : 'bg-zinc-50 dark:bg-zinc-900'
+                      }`}
+                    >
+                      <td className="px-6 py-4 font-mono text-sm font-semibold border-r">
+                        <code className="bg-yellow-50 dark:bg-zinc-800 px-2 py-1">{prop.name}</code>
+                      </td>
+                      <td className="px-6 py-4 font-mono text-sm border-r">
+                        <code className="bg-yellow-50 dark:bg-zinc-800 px-2 py-1">{prop.type}</code>
+                      </td>
+                      <td className="px-6 py-4 text-sm border-r">
+                        <code className="bg-yellow-50 dark:bg-zinc-800 px-2 py-1">{prop.default || "-"}</code>
+                      </td>
+                      <td className="px-6 py-4 text-sm">{prop.description}</td>
+                    </tr>
+                    {/* If the prop has subProps, render them with indentation */}
+                    {prop.subProps && prop.subProps.length > 0 && (
+                      <tr>
+                        <td colSpan={4} className="p-0">
+                          <div className="bg-zinc-50 dark:bg-zinc-900 border">
+                            <div className="px-4 py-2 font-medium text-sm bg-white dark:bg-black border-2 border-b">
+                              Properties of {prop.name}
+                            </div>
+                            <table className="w-full border-collapse text-sm">
+                              <tbody className="divide-y">
+                                {prop.subProps.map((subProp, subIndex) => (
+                                  <tr 
+                                    key={subProp.name}
+                                    className={`transition-colors ${
+                                      subIndex % 2 === 0 
+                                        ? 'bg-white/50 dark:bg-black/30' 
+                                        : 'bg-zinc-50/70 dark:bg-zinc-900/70'
+                                    }`}
+                                  >
+                                    <td className="pl-10 pr-6 py-3 font-mono text-sm font-medium border-r w-1/6">
+                                      <code className="bg-yellow-50 dark:bg-zinc-800 px-2 py-1">{subProp.name}</code>
+                                    </td>
+                                    <td className="px-6 py-3 font-mono text-sm border-r w-1/6">
+                                      <code className="bg-yellow-50 dark:bg-zinc-800 px-2 py-1">{subProp.type}</code>
+                                    </td>
+                                    <td className="px-6 py-3 text-sm border-r w-1/5">
+                                      <code className="bg-yellow-50 dark:bg-zinc-800 px-2 py-1">{subProp.default || "-"}</code>
+                                    </td>
+                                    <td className="px-6 py-3 text-sm w-3/6">{subProp.description}</td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </div>
+                        </td>
+                      </tr>
+                    )}
+                  </React.Fragment>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </TabsContent>
+      ))}
+    </Tabs>
+  ) : (
+    <Card className="border p-6 shadow">
+      <p className="text-zinc-500">No props available for this component.</p>
+    </Card>
+  )}
+</section>
 
             {/* Examples Section - only show if examples array is not empty */}
             {componentData.examples && componentData.examples.length > 0 && (
