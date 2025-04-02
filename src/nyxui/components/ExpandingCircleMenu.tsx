@@ -93,9 +93,7 @@ export function ExpandingCircleMenu({
       const parent = containerRef.current.parentElement;
       if (parent) {
         const parentRect = parent.getBoundingClientRect();
-        // Use the smaller dimension (width or height) and apply a margin
         const smallerDimension = Math.min(parentRect.width, parentRect.height);
-        // Set distance to at most 40% of the smaller dimension
         const maxSafeDistance = (smallerDimension / 2) * 0.8 - size;
         const newDistance = Math.min(distance, maxSafeDistance);
         setCalculatedDistance(newDistance > 0 ? newDistance : distance / 2);
@@ -127,11 +125,10 @@ export function ExpandingCircleMenu({
 
   const getItemPosition = (index: number) => {
     const totalItems = items.length;
-    const startRad = (startAngle - 90) * (Math.PI / 180); // -90 to start from top
+    const startRad = (startAngle - 90) * (Math.PI / 180); 
     const endRad = (endAngle - 90) * (Math.PI / 180);
     const angleRange = endRad - startRad;
     
-    // If only one item, place it at the midpoint of the range
     const angleStep = totalItems > 1 ? angleRange / (totalItems - 1) : 0;
     const angle = totalItems > 1 ? startRad + index * angleStep : startRad + angleRange / 2;
     

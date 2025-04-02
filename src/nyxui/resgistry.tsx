@@ -10,8 +10,6 @@ import { morphingBlobData } from "@/nyxui/metadata/morphing-blob.meta";
 import { threeDCardData } from "@/nyxui/metadata/ThreeDcard.meta";
 import { animatedCodeBlockData } from "@/nyxui/metadata/AnimatedCodeBlock.meta";
 import { animatedGradientBgData } from "./metadata/AnimatedGradientBg.meta";
-import { draggableElementData } from "./metadata/DraggableElement.meta";
-import { dynamicGridLayoutData } from "./metadata/DynamicGridLayout.meta";
 import { perspectiveImageData } from "./metadata/PerspectiveImage.meta";
 import { scrollAnimationTriggerData } from "./metadata/ScrollAnimationTrigger.meta";
 import { specialCardData } from "./metadata/SpecialCard.meta";
@@ -32,8 +30,6 @@ export const componentsData = {
   "3d-card": threeDCardData,
   "animated-code-block": animatedCodeBlockData,
   "animated-gradient-background":animatedGradientBgData,
-  "draggable-element": draggableElementData,
-  "dynamic-grid-layout": dynamicGridLayoutData,
   "3d-perspective-image": perspectiveImageData,
   "scroll-animation-trigger": scrollAnimationTriggerData,
   "special-card": specialCardData,

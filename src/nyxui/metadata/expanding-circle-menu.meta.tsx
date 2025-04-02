@@ -27,14 +27,23 @@ export const expandingCircleMenuData: ComponentData = {
   componentCode: ExpandingCircleMenuSource,
   dependencies: [
     {
-      name: "Tailwind CSS",
-      description:
-        "Utility-first CSS framework used for styling the component.",
+      name: "Utility Functions",
+      description: "Utility functions for conditional class name merging.",
       install: {
-        npm: "npm install tailwindcss postcss autoprefixer && npx tailwindcss init -p",
-        pnpm: "pnpm add tailwindcss postcss autoprefixer && pnpx tailwindcss init -p",
-        yarn: "yarn add tailwindcss postcss autoprefixer && yarn tailwindcss init -p",
-        bun: "bun add tailwindcss postcss autoprefixer && bun tailwindcss init -p",
+        npm: "npm install clsx tailwind-merge",
+        pnpm: "pnpm add clsx tailwind-merge",
+        yarn: "yarn add clsx tailwind-merge",
+        bun: "bun add clsx tailwind-merge",
+      },
+      setup: {
+        description: "Create a utils.ts file with the cn utility function",
+        file: "/lib/utils.ts",
+        code: `import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}`,
       },
     },
   ],
@@ -42,32 +51,166 @@ export const expandingCircleMenuData: ComponentData = {
     {
       name: "Expanding Circle Menu",
       items: [
-        { name: "items", type: "array", default: "[]", description: "Array of menu items to display. Each item has icon, label, onClick, and optional color properties." },
-        { name: "config", type: "object", default: "{}", description: "Comprehensive configuration object for customizing the menu" },
-        { name: "config.initiallyOpen", type: "boolean", default: "false", description: "Whether the menu starts in an open state" },
-        { name: "config.size", type: "number", default: "48", description: "Size of the trigger button in pixels" },
-        { name: "config.itemSize", type: "number", default: "80% of trigger size", description: "Size of menu items in pixels" },
-        { name: "config.distance", type: "number", default: "size × 1.8", description: "Distance of menu items from center" },
-        { name: "config.position", type: "string", default: '"bottom-right"', description: "Position of the menu on the screen (top-left, top-right, bottom-left, bottom-right, center)" },
-        { name: "config.color", type: "string", default: '"rgb(59, 130, 246)"', description: "Main color for menu items (supports any CSS color format)" },
-        { name: "config.hoverColor", type: "string", default: '"rgb(37, 99, 235)"', description: "Color on hover (supports any CSS color format)" },
-        { name: "config.textColor", type: "string", default: '"white"', description: "Text/icon color (supports any CSS color format)" },
-        { name: "config.triggerColor", type: "string", default: "same as color", description: "Trigger button color override" },
-        { name: "config.closeOnSelect", type: "boolean", default: "true", description: "Whether to close the menu when an item is clicked" },
-        { name: "config.showLabels", type: "boolean", default: "true", description: "Whether to show labels for menu items" },
-        { name: "config.showLabelOnHover", type: "boolean", default: "true", description: "Show labels only on hover" },
-        { name: "config.backdrop", type: "boolean | 'blur'", default: "false", description: "Show a backdrop when menu is open, with optional blur effect" },
-        { name: "config.animated", type: "boolean", default: "true", description: "Whether to animate menu items" },
-        { name: "config.animationDuration", type: "number", default: "300", description: "Animation duration in milliseconds" },
-        { name: "config.startAngle", type: "number", default: "0", description: "Starting angle in degrees for menu item positioning" },
-        { name: "config.endAngle", type: "number", default: "360", description: "Ending angle in degrees for menu item positioning" },
-        { name: "config.triggerIcon", type: "ReactNode", default: "plus icon", description: "Custom icon for the trigger button" },
-        { name: "config.triggerRotate", type: "boolean", default: "true", description: "Whether to rotate the trigger icon when menu opens" },
-        { name: "className", type: "string", default: '""', description: "Additional CSS classes to apply to the component" },
-        { name: "config.containedMode", type: "boolean", default: "false", description: "Whether to contain menu items within the trigger button bounds" },
+        {
+          name: "items",
+          type: "array",
+          default: "[]",
+          description:
+            "Array of menu items to display. Each item has icon, label, onClick, and optional color properties.",
+        },
+        {
+          name: "config",
+          type: "object",
+          default: "{}",
+          description: "Comprehensive configuration object for customizing the menu.",
+        },
+        {
+          name: "config.initiallyOpen",
+          type: "boolean",
+          default: "false",
+          description: "Whether the menu starts in an open state.",
+        },
+        {
+          name: "config.size",
+          type: "number",
+          default: "48",
+          description: "Size of the trigger button in pixels.",
+        },
+        {
+          name: "config.itemSize",
+          type: "number",
+          default: "80% of trigger size",
+          description: "Size of menu items in pixels.",
+        },
+        {
+          name: "config.distance",
+          type: "number",
+          default: "size × 1.8",
+          description: "Distance of menu items from center.",
+        },
+        {
+          name: "config.position",
+          type: "string",
+          default: '"bottom-right"',
+          description:
+            "Position of the menu on the screen (top-left, top-right, bottom-left, bottom-right, center).",
+        },
+        {
+          name: "config.color",
+          type: "string",
+          default: '"rgb(59, 130, 246)"',
+          description:
+            "Main color for menu items (supports any CSS color format).",
+        },
+        {
+          name: "config.hoverColor",
+          type: "string",
+          default: '"rgb(37, 99, 235)"',
+          description:
+            "Color on hover (supports any CSS color format).",
+        },
+        {
+          name: "config.textColor",
+          type: "string",
+          default: '"white"',
+          description:
+            "Text/icon color (supports any CSS color format).",
+        },
+        {
+          name: "config.triggerColor",
+          type: "string",
+          default: "same as color",
+          description:
+            "Trigger button color override.",
+        },
+        {
+          name: "config.closeOnSelect",
+          type: "boolean",
+          default: "true",
+          description:
+            "Whether to close the menu when an item is clicked.",
+        },
+        {
+          name: "config.showLabels",
+          type: "boolean",
+          default: "true",
+          description:
+            "Whether to show labels for menu items.",
+        },
+        {
+          name: "config.showLabelOnHover",
+          type: "boolean",
+          default: "true",
+          description:
+            "Show labels only on hover.",
+        },
+        {
+          name: "config.backdrop",
+          type: "boolean | 'blur'",
+          default: "false",
+          description:
+            "Show a backdrop when menu is open, with optional blur effect.",
+        },
+        {
+          name: "config.animated",
+          type: "boolean",
+          default: "true",
+          description:
+            "Whether to animate menu items.",
+        },
+        {
+          name: "config.animationDuration",
+          type: "number",
+          default: "300",
+          description:
+            "Animation duration in milliseconds.",
+        },
+        {
+          name: "config.startAngle",
+          type: "number",
+          default: "0",
+          description:
+            "Starting angle in degrees for menu item positioning.",
+        },
+        {
+          name: "config.endAngle",
+          type: "number",
+          default: "360",
+          description:
+            "Ending angle in degrees for menu item positioning.",
+        },
+        {
+          name: "config.triggerIcon",
+          type: "React.ReactNode",
+          default: "plus icon",
+          description:
+            "Custom icon for the trigger button.",
+        },
+        {
+          name: "config.triggerRotate",
+          type: "boolean",
+          default: "true",
+          description:
+            "Whether to rotate the trigger icon when menu opens.",
+        },
+        {
+          name: "config.containedMode",
+          type: "boolean",
+          default: "false",
+          description:
+            "Whether to contain menu items within the trigger button bounds.",
+        },
+        {
+          name: "className",
+          type: "string",
+          default: '""',
+          description:
+            "Additional CSS classes to apply to the component.",
+        },
       ],
     },
   ],
+  
   category: "Navigation",
   examples: [
     {
