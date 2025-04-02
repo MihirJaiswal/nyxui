@@ -12,14 +12,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { CopyButton } from "@/components/components/CopyButton"
 import React from "react"
 
-interface ComponentPageProps {
-  params: {
-    component: string
-  }
-}
-
-const ComponentPage = async ({ params }: ComponentPageProps) => {
-  const component = await params.component
+const ComponentPage = async ({ params }: { params: Promise<{ component: string }>}) => {
+  const component = (await params).component
 
   if (!componentsData) {
     console.error("componentsData is not properly loaded")
