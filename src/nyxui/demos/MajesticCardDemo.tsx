@@ -7,7 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
   Sparkles, Layers, Star, CloudLightning, 
   Zap, Shield, Globe, LineChart, 
-   Moon, Smartphone,  MessageCircle,
+  Moon, Smartphone, MessageCircle,
   Sun,
   Waves,
   HeartPulse,
@@ -16,6 +16,10 @@ import {
   Share2,
   MountainSnowIcon
 } from "lucide-react";
+
+// Define the types for theme and variant
+type MajesticCardTheme = 'light' | 'dark' | 'glass' | 'gradient' | 'neon' | 'cosmic' | 'custom';
+type MajesticCardVariant = 'tilt' | 'float' | 'magnetic' | 'layered' | 'morph' | 'breathe' | 'glow' | 'wave';
 
 export function MajesticCardDemo() {
   const [activeTab, setActiveTab] = useState("showcase");
@@ -167,11 +171,11 @@ export function MajesticCardDemo() {
                 { name: "Neon", theme: "neon", icon: <Zap className="h-6 w-6 text-indigo-300" /> },
                 { name: "Cosmic", theme: "cosmic", icon: <Star className="h-6 w-6 text-pink-400" /> }
               ].map((item, i) => (
-                // @ts-ignore
+               
                 <MajesticCard 
                   key={i} 
                   variant="tilt" 
-                  theme={item.theme as any} 
+                  theme={item.theme as MajesticCardTheme} 
                   intensity={3} 
                   shadow 
                   rounded="lg"
@@ -203,10 +207,9 @@ export function MajesticCardDemo() {
                 { name: "Glow", variant: "glow", desc: "Interactive glow follows cursor" },
                 { name: "Wave", variant: "wave", desc: "Wave-like motion effects" }
               ].map((item, i) => (
-                // @ts-ignore
                 <MajesticCard 
                   key={i} 
-                  variant={item.variant as any} 
+                  variant={item.variant as MajesticCardVariant} 
                   theme={i % 2 === 0 ? "light" : "dark"} 
                   intensity={3} 
                   shadow 

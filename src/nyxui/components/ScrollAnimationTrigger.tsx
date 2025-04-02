@@ -13,7 +13,7 @@ export interface ScrollAnimationTriggerProps {
   direction?: "up" | "down" | "left" | "right"
   once?: boolean
   
-  // @ts-ignore
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   customProps?: Record<string, any>
   as?: React.ElementType
   fromColor?: string
@@ -74,7 +74,7 @@ export function ScrollAnimationTrigger({
 
   const getAnimationProps = () => {
 
-    // @ts-ignore
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const baseProps: any = {
       initial: {},
       animate: {},

@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useRef, useEffect, useState, useCallback } from "react"
+import { useRef, useEffect, useState, useCallback, useMemo } from "react"
 import { cn } from "@/lib/utils"
 
 export interface LiquidMetalButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -68,15 +68,15 @@ export function LiquidMetalButton({
   const lastRippleTime = useRef<number>(0)
   const dropletsRef = useRef<Droplet[]>([])
 
-  const intensityFactors = {
+  const intensityFactors = useMemo(() => ({
     1: 0.2,
     2: 0.4,
     3: 0.6,
     4: 0.8,
     5: 1.0,
-  }
+  }), []);
 
-  const themeColors = {
+  const themeColors = useMemo(() => ({
     silver: {
       base: "bg-gradient-to-b from-gray-200 via-gray-300 to-gray-400 dark:from-gray-700 dark:via-gray-800 dark:to-gray-900",
       text: "text-gray-800 dark:text-gray-200",
@@ -167,9 +167,9 @@ export function LiquidMetalButton({
       border: customColors?.border || "border-gray-400",
       texture: "bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyIiBoZWlnaHQ9IjIiPjxyZWN0IHdpZHRoPSIyIiBoZWlnaHQ9IjIiIGZpbGw9InJnYmEoMCwwLDAsMC4wMikiLz48L3N2Zz4=')]",
     },
-  }
+  }),[customColors]);
 
-  const currentTheme = themeColors[theme]
+  const currentTheme = useMemo(() => themeColors[theme], [theme, themeColors]);
 
   const sizeClasses = {
     xs: "px-2 py-1 text-xs",
@@ -258,12 +258,15 @@ export function LiquidMetalButton({
   }, [isHovered, variant, intensity, intensityFactors])
 
   useEffect(() => {
-    if (!buttonRef.current || !isHovered) return
+    if (!isHovered) return
+
+    const button = buttonRef.current
+    if (!button) return
 
     const handleMouseMove = (e: MouseEvent) => {
-      if (!buttonRef.current) return
+      if (!button) return
 
-      const rect = buttonRef.current.getBoundingClientRect()
+      const rect = button.getBoundingClientRect()
       const x = e.clientX - rect.left
       const y = e.clientY - rect.top
 
@@ -353,12 +356,15 @@ export function LiquidMetalButton({
   }, [isHovered, variant, buttonDimensions.width, buttonDimensions.height])
 
   useEffect(() => {
-    if (!buttonRef.current || !magnetic || !isHovered) return
+    if (!magnetic || !isHovered) return
+
+    const button = buttonRef.current
+    if (!button) return
 
     const handleMouseMove = (e: MouseEvent) => {
-      if (!buttonRef.current) return
+      if (!button) return
 
-      const rect = buttonRef.current.getBoundingClientRect()
+      const rect = button.getBoundingClientRect()
       const centerX = rect.left + rect.width / 2
       const centerY = rect.top + rect.height / 2
 
@@ -375,10 +381,10 @@ export function LiquidMetalButton({
         const moveX = (distanceX / totalDistance) * pullStrength
         const moveY = (distanceY / totalDistance) * pullStrength
 
-        buttonRef.current.style.transform = `translate(${moveX}px, ${moveY}px)`
-        buttonRef.current.style.transition = "transform 0.1s cubic-bezier(0.2, 0.8, 0.2, 1)"
+        button.style.transform = `translate(${moveX}px, ${moveY}px)`
+        button.style.transition = "transform 0.1s cubic-bezier(0.2, 0.8, 0.2, 1)"
       } else {
-        buttonRef.current.style.transform = ""
+        button.style.transform = ""
       }
     }
 
@@ -386,8 +392,8 @@ export function LiquidMetalButton({
 
     return () => {
       document.removeEventListener("mousemove", handleMouseMove)
-      if (buttonRef.current) {
-        buttonRef.current.style.transform = ""
+      if (button) {
+        button.style.transform = ""
       }
     }
   }, [magnetic, isHovered, intensity, intensityFactors])
@@ -446,7 +452,7 @@ export function LiquidMetalButton({
     }
   }
 
-  const getButtonClasses = () => {
+  const getButtonClasses = useCallback(() => {
     switch (variant) {
       case "outline":
         return cn("bg-transparent border-2", currentTheme.text, currentTheme.border)
@@ -460,7 +466,7 @@ export function LiquidMetalButton({
       default:
         return cn(currentTheme.base, currentTheme.text)
     }
-  }
+  }, [variant, currentTheme]);
 
   const Comp = "button"
 

@@ -1,6 +1,6 @@
 "use client"
 import type React from "react"
-import { useRef, useEffect, useState } from "react"
+import { useRef, useEffect, useState, useMemo } from "react"
 import { cn } from "@/lib/utils"
 
 interface Drop {
@@ -47,7 +47,23 @@ export function DynamicRipple({
   const animationRef = useRef<number>(0)
   const dropsRef = useRef<Drop[]>([])
 
-  const themeColors = {
+  const intensityFactors = useMemo(() => ({
+    1: { size: 0.6, opacity: 0.3, count: 3 },
+    2: { size: 0.8, opacity: 0.4, count: 5 },
+    3: { size: 1.0, opacity: 0.5, count: 7 },
+    4: { size: 1.2, opacity: 0.6, count: 9 },
+    5: { size: 1.5, opacity: 0.7, count: 12 },
+  }), []);
+
+  const speedFactors = useMemo(() => ({
+    1: 0.5,
+    2: 0.75,
+    3: 1.0,
+    4: 1.25,
+    5: 1.5,
+  }), []);
+
+  const themeColors = useMemo(() => ({
     blue: {
       primary: "rgba(59, 130, 246, 0.7)",
       secondary: "rgba(6, 182, 212, 0.7)",
@@ -78,34 +94,18 @@ export function DynamicRipple({
       secondary: customColors?.secondary || "rgba(6, 182, 212, 0.7)",
       overlay: "from-gray-500/10 to-gray-400/10",
     },
-  }
+  }), [customColors]);
 
-  const currentTheme = themeColors[theme]
+  const currentTheme = themeColors[theme];
 
-  const intensityFactors = {
-    1: { size: 0.6, opacity: 0.3, count: 3 },
-    2: { size: 0.8, opacity: 0.4, count: 5 },
-    3: { size: 1.0, opacity: 0.5, count: 7 },
-    4: { size: 1.2, opacity: 0.6, count: 9 },
-    5: { size: 1.5, opacity: 0.7, count: 12 },
-  }
-
-  const speedFactors = {
-    1: 0.5,
-    2: 0.75,
-    3: 1.0,
-    4: 1.25,
-    5: 1.5,
-  }
-
-  const roundedStyles = {
+  const roundedStyles = useMemo(() => ({
     none: "rounded-none",
     sm: "rounded-sm",
     md: "rounded-md",
     lg: "rounded-lg",
     xl: "rounded-xl",
     full: "rounded-full",
-  }
+  }), []);
 
   useEffect(() => {
     if (!canvasRef.current || !containerRef.current) return

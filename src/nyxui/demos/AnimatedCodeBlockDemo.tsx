@@ -1,6 +1,4 @@
 "use client"
-
-import { useState } from "react";
 import { AnimatedCodeBlock } from "@/nyxui/components/AnimatedCodeBlock";
 
 type CodeTheme = "dark" | "light" | "terminal" | "cyberpunk" | "minimal";

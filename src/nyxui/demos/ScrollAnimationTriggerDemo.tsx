@@ -227,71 +227,8 @@ export function ScrollAnimationTriggerDemo() {
             </ScrollAnimationTrigger>
           </div>
 
-          {/* Scroll progress based animation */}
-          <ScrollProgressAnimation className="min-h-[100vh] flex flex-col items-center justify-center p-6 mb-24 relative">
-            {({ scrollYProgress }) => {
-              const textColor = useScrollColor(scrollYProgress, "#3b82f6", "#ec4899")
-              const rotation = useScrollRotation(scrollYProgress, 0, 360)
-              const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1.1, 0.8])
-              const yPosition = useTransform(scrollYProgress, [0, 0.5, 1], [100, 0, 100])
-              const gradientFrom = useScrollColor(scrollYProgress, "rgba(59, 130, 246, 0.1)", "rgba(236, 72, 153, 0.1)")
-              const gradientTo = useScrollColor(scrollYProgress, "rgba(139, 92, 246, 0.1)", "rgba(34, 211, 238, 0.1)")
-              
-              return (
-                <>
-                  <motion.div 
-                    className="absolute inset-0 rounded-3xl opacity-40"
-                    style={{
-                      background: `radial-gradient(circle, ${gradientFrom}, ${gradientTo})`,
-                    }}
-                  />
-                  
-                  <motion.div
-                    className="bg-white dark:bg-zinc-800 md:p-10 p-6 rounded-2xl shadow-xl max-w-lg text-center relative z-10 border-2 border-transparent"
-                    style={{
-                      scale,
-                      rotate: rotation,
-                      y: yPosition,
-                      borderImage: "linear-gradient(to right, #3b82f6, #ec4899) 1",
-                      borderImageSlice: 1,
-                    }}
-                  >
-                    <motion.div
-                      className="absolute -top-6 -left-6 p-4 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full shadow-lg"
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 10, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-                    >
-                      <PaintBucket className="h-6 w-6 text-white" />
-                    </motion.div>
-                    
-                    <motion.h3 
-                      className="text-3xl font-bold mb-4" 
-                      style={{ color: textColor }}
-                    >
-                      Scroll Progress Magic
-                    </motion.h3>
-                    
-                    <p className="text-gray-600 dark:text-gray-300 text-center md:text-start leading-relaxed mb-6">
-                      Watch as this element responds to your scrolling position. The colors shift, the card rotates,
-                      and the size changes based on exactly how far you&apos;ve scrolled through this section.
-                    </p>
-                    
-                    <motion.div 
-                      className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden"
-                    >
-                      <motion.div 
-                        className="h-full rounded-full"
-                        style={{ 
-                          width: useTransform(scrollYProgress, [0, 1], ["0%", "100%"]),
-                          background: "linear-gradient(90deg, #3b82f6, #ec4899)"
-                        }}
-                      />
-                    </motion.div>
-                  </motion.div>
-                </>
-              )
-            }}
-          </ScrollProgressAnimation>
+          {/* Scroll progress based animation - Fixed by creating a separate component */}
+          <ScrollProgressAnimationContent />
 
           {/* Custom effect */}
           <ScrollAnimationTrigger
@@ -372,5 +309,81 @@ export function ScrollAnimationTriggerDemo() {
         </div>
       </div>
     </div>
+  )
+}
+
+// Created a separate component to solve the hooks in callback issue
+function ScrollProgressAnimationContent() {
+  return (
+    <ScrollProgressAnimation className="min-h-[100vh] flex flex-col items-center justify-center p-6 mb-24 relative">
+      {({ scrollYProgress }) => {
+        // Now we can use the animation component to properly handle this
+        const ScrollProgressContent = () => {
+          // Hooks used here directly in component
+          const textColor = useScrollColor(scrollYProgress, "#3b82f6", "#ec4899")
+          const rotation = useScrollRotation(scrollYProgress, 0, 360)
+          const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1.1, 0.8])
+          const yPosition = useTransform(scrollYProgress, [0, 0.5, 1], [100, 0, 100])
+          const gradientFrom = useScrollColor(scrollYProgress, "rgba(59, 130, 246, 0.1)", "rgba(236, 72, 153, 0.1)")
+          const gradientTo = useScrollColor(scrollYProgress, "rgba(139, 92, 246, 0.1)", "rgba(34, 211, 238, 0.1)")
+          
+          return (
+            <>
+              <motion.div 
+                className="absolute inset-0 rounded-3xl opacity-40"
+                style={{
+                  background: `radial-gradient(circle, ${gradientFrom}, ${gradientTo})`,
+                }}
+              />
+              
+              <motion.div
+                className="bg-white dark:bg-zinc-800 md:p-10 p-6 rounded-2xl shadow-xl max-w-lg text-center relative z-10 border-2 border-transparent"
+                style={{
+                  scale,
+                  rotate: rotation,
+                  y: yPosition,
+                  borderImage: "linear-gradient(to right, #3b82f6, #ec4899) 1",
+                  borderImageSlice: 1,
+                }}
+              >
+                <motion.div
+                  className="absolute -top-6 -left-6 p-4 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full shadow-lg"
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 10, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+                >
+                  <PaintBucket className="h-6 w-6 text-white" />
+                </motion.div>
+                
+                <motion.h3 
+                  className="text-3xl font-bold mb-4" 
+                  style={{ color: textColor }}
+                >
+                  Scroll Progress Magic
+                </motion.h3>
+                
+                <p className="text-gray-600 dark:text-gray-300 text-center md:text-start leading-relaxed mb-6">
+                  Watch as this element responds to your scrolling position. The colors shift, the card rotates,
+                  and the size changes based on exactly how far you&apos;ve scrolled through this section.
+                </p>
+                
+                <motion.div 
+                  className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden"
+                >
+                  <motion.div 
+                    className="h-full rounded-full"
+                    style={{ 
+                      width: useTransform(scrollYProgress, [0, 1], ["0%", "100%"]),
+                      background: "linear-gradient(90deg, #3b82f6, #ec4899)"
+                    }}
+                  />
+                </motion.div>
+              </motion.div>
+            </>
+          )
+        }
+        
+        return <ScrollProgressContent />
+      }}
+    </ScrollProgressAnimation>
   )
 }

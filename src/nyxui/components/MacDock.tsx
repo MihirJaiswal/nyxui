@@ -15,7 +15,8 @@ import {
   motion,
   useAnimation,
   useMotionValue,
-  useSpring
+  useSpring,
+  MotionValue
 } from "framer-motion"
 import { cn } from "@/lib/utils"
 
@@ -37,8 +38,8 @@ interface DockContextType {
   width: number;
   hovered: boolean;
   setIsZooming: (value: boolean) => void;
-  zoomLevel: any; 
-  mouseX: any;
+  zoomLevel: MotionValue<number>; 
+  mouseX: MotionValue<number>; 
   animatingIndexes: string[];
   setAnimatingIndexes: (indexes: string[]) => void;
   selectedIcon: string | null;
@@ -46,19 +47,17 @@ interface DockContextType {
 }
 
 const INITIAL_WIDTH = 50;
-const DockContext = createContext<DockContextType>({
-  width: 0,
-  hovered: false,
-  setIsZooming: () => {},
-  zoomLevel: null,
-  mouseX: null,
-  animatingIndexes: [],
-  setAnimatingIndexes: () => {},
-  selectedIcon: null,
-  setSelectedIcon: () => {}
-});
+// Create context with null as initial value and properly type it
+const DockContext = createContext<DockContextType | null>(null);
 
-const useDock = () => useContext(DockContext);
+// Create a hook to use the context with a safety check
+const useDock = () => {
+  const context = useContext(DockContext);
+  if (context === null) {
+    throw new Error("useDock must be used within a MacDock provider");
+  }
+  return context;
+}
 
 function useWindowResize(callback: (width: number, height: number) => void) {
   const callbackRef = useCallbackRef(callback);
@@ -77,6 +76,7 @@ function useWindowResize(callback: (width: number, height: number) => void) {
   }, [callbackRef]);
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function useCallbackRef<T extends (...args: any[]) => any>(callback: T): T {
   const callbackRef = useRef(callback);
 
@@ -101,12 +101,11 @@ export function MacDock({ apps, className }: MacDockProps) {
   }, []);
 
   const zoomLevel = useMotionValue(1);
+  const mouseX = useMotionValue<number>(Infinity);
 
   useWindowResize(() => {
     setWidth(dockRef.current?.clientWidth || 0);
   });
-
-  const mouseX = useMotionValue(Infinity);
 
   useEffect(() => {
     const handleGlobalClick = (e: MouseEvent) => {
@@ -126,20 +125,21 @@ export function MacDock({ apps, className }: MacDockProps) {
     };
   }, [animatingIndexes, selectedIcon]);
 
+  // Create context value inside the component
+  const contextValue: DockContextType = {
+    hovered,
+    setIsZooming,
+    width,
+    zoomLevel,
+    mouseX,
+    animatingIndexes,
+    setAnimatingIndexes,
+    selectedIcon,
+    setSelectedIcon
+  };
+
   return (
-    <DockContext.Provider
-      value={{
-        hovered,
-        setIsZooming,
-        width,
-        zoomLevel,
-        mouseX,
-        animatingIndexes,
-        setAnimatingIndexes,
-        selectedIcon,
-        setSelectedIcon
-      }}
-    >
+    <DockContext.Provider value={contextValue}>
       <motion.div
         ref={dockRef}
         className={cn(
@@ -267,7 +267,7 @@ function DockCard({ children, id, name, onClick }: DockCardProps) {
     }
   };
   
-  const resetAnimation = () => {
+  const resetAnimation = useCallback(() => {
     isAnimating.current = false;
     opacity.set(0);
     controls.start({ y: 0, transition: { duration: 0.3 } });
@@ -276,7 +276,7 @@ function DockCard({ children, id, name, onClick }: DockCardProps) {
       clearTimeout(timeoutRef.current);
       timeoutRef.current = null;
     }
-  };
+  }, [opacity, controls]);
 
   useEffect(() => {
     if (!dock.hovered && isAnimating.current && dock.selectedIcon !== id) {
@@ -288,7 +288,7 @@ function DockCard({ children, id, name, onClick }: DockCardProps) {
         clearTimeout(timeoutRef.current);
       }
     };
-  }, [dock.hovered, dock.selectedIcon, id]);
+  }, [dock.hovered, dock.selectedIcon, id, resetAnimation]);
 
   useEffect(() => {
     if (dock.selectedIcon !== id && dock.selectedIcon !== null) {
@@ -296,7 +296,27 @@ function DockCard({ children, id, name, onClick }: DockCardProps) {
         resetAnimation();
       }
     }
-  }, [dock.selectedIcon, id]);
+  }, [dock.selectedIcon, id, resetAnimation]);
+
+  useEffect(() => {
+    if (!dock.hovered && isAnimating.current && dock.selectedIcon !== id) {
+      resetAnimation();
+    }
+    
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, [dock.hovered, dock.selectedIcon, id, resetAnimation ]);
+
+  useEffect(() => {
+    if (dock.selectedIcon !== id && dock.selectedIcon !== null) {
+      if (isAnimating.current) {
+        resetAnimation();
+      }
+    }
+  }, [dock.selectedIcon, id, resetAnimation]);
 
   return (
     <div className="flex flex-col items-center gap-1 mx-0.5 relative">

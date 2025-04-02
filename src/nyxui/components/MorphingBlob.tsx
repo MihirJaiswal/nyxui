@@ -1,6 +1,6 @@
 "use client"
 import type React from "react"
-import { useRef, useEffect, useState, useMemo } from "react"
+import { useRef, useEffect, useState, useMemo, useCallback } from "react"
 import { cn } from "@/lib/utils"
 
 export interface MorphingBlobProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -100,21 +100,21 @@ export function MorphingBlob({
     full: "w-full h-full",
   }
 
-  const complexityFactors = {
+  const complexityFactors = useMemo(() => ({
     1: { points: 6, variance: 0.15, tension: 0.2 },
     2: { points: 8, variance: 0.25, tension: 0.3 },
     3: { points: 10, variance: 0.35, tension: 0.4 },
     4: { points: 12, variance: 0.45, tension: 0.5 },
     5: { points: 16, variance: 0.55, tension: 0.6 },
-  }
+  }), []);
 
-  const speedFactors = {
+  const speedFactors = useMemo(() => ({
     1: 12000,
     2: 9000,
     3: 6000,
     4: 4000,
     5: 2000,
-  }
+  }), []);
 
   const glowIntensityClasses = {
     1: "shadow-md",
@@ -216,26 +216,26 @@ export function MorphingBlob({
     return newPath
   }
 
-  const animate = (time: number) => {
+  const animate = useCallback((time: number) => {
     if (previousTimeRef.current === null) {
-      previousTimeRef.current = time
+      previousTimeRef.current = time;
     }
     
-    const deltaTime = time - (previousTimeRef.current || 0)
-    const factor = complexityFactors[complexity]
-    const duration = speedFactors[speed]
+    const deltaTime = time - (previousTimeRef.current || 0);
+    const factor = complexityFactors[complexity];
+    const duration = speedFactors[speed];
     
-    animationProgress.current += deltaTime / duration
+    animationProgress.current += deltaTime / duration;
     if (animationProgress.current >= 1) {
-      animationProgress.current = 0
-      setPrevBlobPath(blobPath)
-      setBlobPath(generateBlobPath(factor, isHovered, isClicked))
-      setRotation(prev => (prev + 30) % 360)
+      animationProgress.current = 0;
+      setPrevBlobPath(blobPath);
+      setBlobPath(generateBlobPath(factor, isHovered, isClicked));
+      setRotation(prev => (prev + 30) % 360);
     }
     
-    previousTimeRef.current = time
-    requestRef.current = requestAnimationFrame(animate)
-  }
+    previousTimeRef.current = time;
+    requestRef.current = requestAnimationFrame(animate);
+  }, [blobPath, complexity, speed, isHovered, isClicked, complexityFactors, speedFactors]);
 
   useEffect(() => {
     const factor = complexityFactors[complexity]

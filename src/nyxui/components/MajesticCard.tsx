@@ -66,7 +66,6 @@ export function MajesticCard({
 }: MajesticCardProps) {
   const cardRef = useRef<HTMLDivElement>(null)
   const [isHovered, setIsHovered] = useState(false)
-  const [scrollPosition, setScrollPosition] = useState(0)
   const [layers, setLayers] = useState<HTMLElement[]>([])
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [showConfetti, setShowConfetti] = useState(false)
@@ -431,7 +430,6 @@ export function MajesticCard({
 
     const handleScroll = () => {
       const newScrollPosition = window.scrollY;
-      setScrollPosition(newScrollPosition);
       
       if (cardRef.current) {
         const rect = cardRef.current.getBoundingClientRect()
