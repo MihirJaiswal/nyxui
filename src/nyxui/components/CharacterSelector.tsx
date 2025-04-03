@@ -277,12 +277,12 @@ export function CharacterSelector({
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent className={`max-h-[${typeof maxDialogHeight === "number" ? `${maxDialogHeight}px` : maxDialogHeight}] flex flex-col bg-gradient-to-b from-background/50 dark:from-background/30 to-muted/30 backdrop-blur-sm border border-gray-500`} style={{ maxWidth: typeof dialogWidth === "number" ? `${dialogWidth}px` : dialogWidth }}>
           {showDialogHeader && (
-            <DialogHeader className="pb-4 border-b border-muted/10">
+            <DialogHeader className="border-b border-muted/10">
               <DialogTitle className="text-2xl font-bold tracking-tight">{dialogTitle}</DialogTitle>
             </DialogHeader>
           )}
 
-          <div className="flex flex-col gap-6 flex-1 overflow-hidden py-4">
+          <div className="flex flex-col gap-6 flex-1 overflow-hidden py-3">
             {enableSearch && (
               <div className="relative flex-1 mx-4">
                 <Search className="absolute left-3 top-1/2 h-5 w-5 transform -translate-y-1/2 opacity-80" />
