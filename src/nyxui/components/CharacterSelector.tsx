@@ -763,9 +763,13 @@ function ConfirmationModal({
                 <div key={character.id} className="flex flex-col items-center group">
                   <div className="relative h-16 w-16 rounded-lg overflow-hidden shadow-md ring-2 ring-blue-500/20 group-hover:ring-blue-500/50 transition-all duration-300">
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <img
+                    <Image
                       src={character.image || "/placeholder.svg"}
                       alt={character.name}
+                      width={64}
+                      height={64}
+                      loading="lazy"
+                      quality={100}
                       className="h-full w-full object-cover"
                     />
                   </div>
