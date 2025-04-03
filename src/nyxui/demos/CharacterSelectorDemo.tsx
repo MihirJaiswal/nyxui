@@ -113,7 +113,7 @@ const SimpleCharacterSelectorDemo = () => {
       <div className="max-w-6xl mx-auto">
         <div className="mb-10 text-center">
           <h1 className="text-5xl font-bold text-white mb-3 drop-shadow-lg">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 dark:from-cyan-300 to-sky-500 dark:to-sky-300">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-500 via-violet-500 dark:from-cyan-300 to-sky-500 dark:to-sky-300">
               Waifu is laifu!!
             </span>
           </h1>

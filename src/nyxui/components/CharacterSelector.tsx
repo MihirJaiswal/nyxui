@@ -526,7 +526,7 @@ function CharacterCard({
               {showPlus && (
                 <div className="absolute inset-0 flex items-center border border-gray-500 justify-center bg-white dark:bg-black">
                   <motion.div 
-                    className="text-primary p-2 shadow-lg"
+                    className="text-primary p-2 "
                     whileTap={{ scale: 0.95 }}
                   >
                     <Plus className="h-10 w-10" />
