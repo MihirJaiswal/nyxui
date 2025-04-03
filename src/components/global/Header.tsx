@@ -80,13 +80,11 @@ export default function Header() {
           </nav>
         </div>
 
-        {/* Search Bar */}
-        <div className="hidden md:flex items-center flex-1 justify-center px-4">
-          <CommandPalette />
-        </div>
-
         <div className="flex items-center space-x-4">
           <div className="hidden md:flex items-center space-x-2">
+            <div className="hidden md:flex items-center flex-1 justify-center px-4">
+              <CommandPalette />
+            </div>
             <Link href="https://github.com/nyx-ui/components" target="_blank" rel="noreferrer">
               <Button
                 variant="ghost"

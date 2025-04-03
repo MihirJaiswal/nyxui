@@ -10,13 +10,13 @@ const SpecialCardDemo = () => {
             Hover to Reveal the Hero
           </span>
         </h1>
-        <p className="text-gray-300 text-center mb-16 max-w-2xl mx-auto text-lg">
+        <p className="text-gray-600 dark:text-gray-300 text-center mb-16 max-w-2xl mx-auto text-lg">
           Experience interactive hero cards with stunning visual effects. Move your cursor over the card to see the transformation.
         </p>
         
         <div className="flex flex-wrap justify-center gap-12 mb-16">
           <div className="relative group">
-            <div className="absolute -inset-1 bg-gradient-to-b dark:from-red-900 from-red-500 dark:to-blue-900 to-blue-500 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+            <div className="absolute -inset-1 bg-gradient-to-b dark:from-red-900 from-red-200 dark:to-blue-900 to-blue-200 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
             <div className="relative flex flex-col items-center mt-10">
               <SpecialCard
                 coverImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/main/public/spidermanposter.jpg"
@@ -25,7 +25,7 @@ const SpecialCardDemo = () => {
                 backgroundColor="black"
                 borderColor="#222"
               />
-              <p className="mt-6 text-gray-300 text-center max-w-sm">
+              <p className="mt-6 text-gray-600 dark:text-gray-300 text-center max-w-sm">
                 The friendly neighborhood Spider-Man with his iconic red and blue suit.
               </p>
             </div>
