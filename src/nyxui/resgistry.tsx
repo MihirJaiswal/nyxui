@@ -18,6 +18,7 @@ import { mspaintData } from "./metadata/MSpaint.meta";
 import { interactiveTerminalData } from "./metadata/Terminal.meta";
 import { macDockData } from "./metadata/MacDock.meta";
 import { animatedTextData } from "./metadata/AnimatedText.meta";
+import { characterSelectorData } from "./metadata/CharacterSelector.meta";
 
 export const componentsData = {
   "gradient-button": gradientButtonData,
@@ -39,5 +40,6 @@ export const componentsData = {
   "ms-paint": mspaintData,
   "interactive-terminal": interactiveTerminalData,
   "mac-dock": macDockData,
+  "character-selector": characterSelectorData,
   "animated-text": animatedTextData 
 };
