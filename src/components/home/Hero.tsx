@@ -96,11 +96,13 @@ export const Hero = () => {
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-3 flex items-center justify-center rounded-full bg-primary text-primary-foreground font-medium"
               >
-                <span>
-                Browse Components
-                </span>
-                <ChevronRight className="h-4 w-4 ml-1 transition-transform group-hover:translate-x-0.5" />
+                <span>Browse Components</span>
+                <ChevronRight
+                  className="h-4 w-4 ml-1 transition-transform group-hover:translate-x-0.5 align-middle relative"
+                  style={{ top: '1px' }} // Adjust this value as needed
+                />
               </motion.button>
+
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}

@@ -27,9 +27,7 @@ export default function Header() {
   const navLinks = [
     { href: "/components", label: "Components" },
     { href: "/docs", label: "Documentation" },
-    { href: "/themes", label: "Themes" },
     { href: "/playground", label: "Playground" },
-    { href: "/blog", label: "Blog" },
   ]
 
   return (
