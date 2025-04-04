@@ -23,7 +23,7 @@ function useWindowSize() {
   return windowSize;
 }
 
-export default function DrawingCanvasDemo() {
+export default function MSpaintDemo() {
   const { width, height } = useWindowSize();
 
   const customPalette = [

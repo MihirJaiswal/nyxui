@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
 import { ChevronRight, Sparkles } from "lucide-react"
+import TechStack from "./Tech"
 
 export const Hero = () => {
   const [currentTextIndex, setCurrentTextIndex] = useState(0)
@@ -18,16 +19,16 @@ export const Hero = () => {
   }, [textOptions.length])
 
   return (
-    <div className="flex min-h-screen flex-col justify-center items-center bg-gradient-to-b from-background to-background/80">
+    <div className="flex  flex-col justify-center items-center">
       <main className="flex-1 w-full">
-        <section className="space-y-8 pb-12 pt-16 md:pb-16 md:pt-24 lg:py-32" aria-label="Hero Section">
+        <section className="space-y-8 pb-12 pt-16 md:pt-20" aria-label="Hero Section">
           <div className="container max-w-5xl mx-auto flex flex-col items-center justify-center text-center px-4">
             <Badge variant="secondary" className="mb-6 px-4 py-1.5 text-sm font-medium">
-              <Sparkles className="h-3.5 w-3.5 mr-2" />
+              <Sparkles className="h-3.5 w-3.5 mr-2 text-yellow-500" />
               v1.0.0 Now Available
             </Badge>
 
-            <h1 className="text-4xl sm:text-6xl lg:text-[6rem] font-black font-sans leading-tight md:leading-snug pb-4">
+            <h1 className="text-5xl lg:text-[6rem] font-black font-sans leading-tight md:leading-snug pb-4">
               <div className="flex flex-wrap items-center justify-center gap-2 md:gap-4">
                 <motion.span
                   initial={{ opacity: 0, y: 20 }}
@@ -112,6 +113,7 @@ export const Hero = () => {
               </motion.button>
             </motion.div>
           </div>
+          <TechStack/>
         </section>
       </main>
     </div>

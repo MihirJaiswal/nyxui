@@ -16,6 +16,9 @@ export interface MSpaintProps {
   className?: string;
   style?: React.CSSProperties;
   onSave?: (canvas: HTMLCanvasElement) => void;
+  disableScroll?: boolean;
+  brushSize?: number;
+  eraserSize?: number;
 }
 
 interface CustomButtonProps {
@@ -72,12 +75,17 @@ export default function MSpaint({
   draggable = true,
   className = "",
   style = {},
-  onSave
+  onSave,
+  disableScroll = true,
+  brushSize = 2,
+  eraserSize = 20
 }: MSpaintProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const canvasContainerRef = useRef<HTMLDivElement>(null);
   const downloadLinkRef = useRef<HTMLAnchorElement>(null);
   const [isDrawing, setIsDrawing] = useState(false);
+  const [lastPosition, setLastPosition] = useState({ x: 0, y: 0 });
   const [color, setColor] = useState('#000000');
   const [tool, setTool] = useState('brush');
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -87,6 +95,41 @@ export default function MSpaint({
   const [width, setWidth] = useState(initialWidth);
   const [height, setHeight] = useState(initialHeight);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [cursorStyle, setCursorStyle] = useState('crosshair');
+
+  // Determine cursor style based on current tool and color
+  useEffect(() => {
+    if (tool === 'eraser') {
+      setCursorStyle('url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'24\' height=\'24\' viewBox=\'0 0 24 24\' fill=\'white\' stroke=\'black\' stroke-width=\'1\'><circle cx=\'12\' cy=\'12\' r=\'10\'/></svg>") 12 12, auto');
+    } else {
+      // For the brush, create a cursor that's visible against any background
+      // If the selected color is very light, add a dark border, otherwise it's fine as is
+      const isLightColor = isColorLight(color);
+      
+      const encodedSVG = encodeURIComponent(`
+        <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'>
+          <circle cx='8' cy='8' r='6' fill='${color}' ${isLightColor ? 'stroke="black" stroke-width="1"' : ''} />
+        </svg>
+      `);
+      
+      setCursorStyle(`url("data:image/svg+xml;utf8,${encodedSVG}") 8 8, crosshair`);
+    }
+  }, [tool, color]);
+
+  // Function to determine if a color is light or dark
+  const isColorLight = (hexColor: string) => {
+    // Convert hex to RGB
+    const r = parseInt(hexColor.slice(1, 3), 16);
+    const g = parseInt(hexColor.slice(3, 5), 16);
+    const b = parseInt(hexColor.slice(5, 7), 16);
+    
+    // Calculate relative luminance
+    // Formula: 0.299*R + 0.587*G + 0.114*B
+    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+    
+    // If luminance is > 0.7, it's considered a light color
+    return luminance > 0.7;
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -162,13 +205,31 @@ export default function MSpaint({
     }
   }, [dragging, position.x, position.y, draggable]);
 
+  // Update canvas container styles when disableScroll changes
+  useEffect(() => {
+    if (canvasContainerRef.current) {
+      canvasContainerRef.current.style.overflow = disableScroll ? 'hidden' : 'auto';
+    }
+  }, [disableScroll]);
+
+  // Function to get scale factors for the canvas
+  const getCanvasScaleFactors = () => {
+    const canvas = canvasRef.current;
+    if (!canvas) return { scaleX: 1, scaleY: 1 };
+    
+    const rect = canvas.getBoundingClientRect();
+    return {
+      scaleX: canvas.width / rect.width,
+      scaleY: canvas.height / rect.height
+    };
+  };
+
   const startDrawing = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
     const canvas = canvasRef.current;
     const context = canvas?.getContext('2d');
     if (context && canvas) {
       const rect = canvas.getBoundingClientRect();
-      const scaleX = canvas.width / rect.width;
-      const scaleY = canvas.height / rect.height;
+      const { scaleX, scaleY } = getCanvasScaleFactors();
       
       let clientX, clientY;
       
@@ -190,6 +251,7 @@ export default function MSpaint({
       
       context.beginPath();
       context.moveTo(x, y);
+      setLastPosition({ x, y });
       setIsDrawing(true);
     }
   };
@@ -200,8 +262,7 @@ export default function MSpaint({
     const context = canvas?.getContext('2d');
     if (context && canvas) {
       const rect = canvas.getBoundingClientRect();
-      const scaleX = canvas.width / rect.width;
-      const scaleY = canvas.height / rect.height;
+      const { scaleX, scaleY } = getCanvasScaleFactors();
       
       let clientX, clientY;
       
@@ -222,12 +283,22 @@ export default function MSpaint({
       
       const x = (clientX - rect.left) * scaleX;
       const y = (clientY - rect.top) * scaleY;
-      
+
+      // Draw line from last position to current position
+      context.beginPath();
+      context.moveTo(lastPosition.x, lastPosition.y);
       context.lineTo(x, y);
       context.strokeStyle = tool === 'eraser' ? initialBackgroundColor : color;
-      context.lineWidth = tool === 'eraser' ? 20 : 2;
+      
+      // Adjust line width based on scaling factors
+      const lineWidth = tool === 'eraser' ? eraserSize * Math.max(scaleX, scaleY) : brushSize * Math.max(scaleX, scaleY);
+      context.lineWidth = lineWidth;
       context.lineCap = 'round';
+      context.lineJoin = 'round';
       context.stroke();
+      
+      // Update last position
+      setLastPosition({ x, y });
     }
   };
 
@@ -307,7 +378,7 @@ export default function MSpaint({
   return (
     <div 
       ref={containerRef}
-      className={`absolute px-4 md:px-0 bg-gray-200 border-2 border-white shadow-md ${className}`} 
+      className={`absolute md:px-0 bg-gray-200 border-2 border-white shadow-md ${className}`} 
       style={{ 
         width: `${width}px`, 
         left: '50%', 
@@ -347,11 +418,11 @@ export default function MSpaint({
               </CustomButton>
               
               {menuOpen && (
-                <div className="absolute top-full left-0 z-10 bg-gray-300 shadow-md border border-gray-400 py-1">
+                <div className="absolute top-full left-0 z-10 bg-gray-300 shadow-md border border-gray-400 py-1 text-black">
                   {menuItems.map((item, index) => (
                     <div 
                       key={index} 
-                      className="px-4 py-2 hover:bg-gray-400 cursor-pointer"
+                      className="px-4 py-2 hover:bg-gray-400 cursor-pointer text-black"
                       onClick={() => setMenuOpen(false)}
                     >
                       {item}
@@ -364,7 +435,7 @@ export default function MSpaint({
             menuItems.map((item, index) => (
               <span 
                 key={index} 
-                className="mr-4 px-2 py-0.5 hover:bg-gray-400 cursor-pointer rounded"
+                className="mr-4 px-2 py-0.5 hover:bg-gray-400 cursor-pointer rounded text-black"
               >
                 {item}
               </span>
@@ -381,7 +452,7 @@ export default function MSpaint({
             onClick={() => setTool('brush')}
             title="Brush Tool"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
               <path d="M18 12l-8-8-6 6c-2 2-2 5 0 7s5 2 7 0l7-7" />
               <path d="M17 7l3 3" />
             </svg>
@@ -392,7 +463,7 @@ export default function MSpaint({
             onClick={() => setTool('eraser')}
             title="Eraser Tool"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
               <path d="M20 20H7L3 16C2 15 2 13 3 12L13 2L22 11L20 20Z" />
               <path d="M17 17L7 7" />
             </svg>
@@ -403,7 +474,7 @@ export default function MSpaint({
             onClick={clearCanvas}
             title="Clear Canvas"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
               <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
               <line x1="8" y1="12" x2="16" y2="12" />
             </svg>
@@ -414,7 +485,7 @@ export default function MSpaint({
             onClick={handleSave}
             title="Save Image"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-green-700">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-green-700">
               <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
               <polyline points="17 21 17 13 7 13 7 21" />
               <polyline points="7 3 7 8 15 8" />
@@ -422,10 +493,12 @@ export default function MSpaint({
           </CustomButton>
         </div>
         <div 
-          className="flex-grow overflow-auto border border-gray-400" 
+          ref={canvasContainerRef}
+          className="flex-grow border border-gray-400" 
           style={{ 
             width: `${canvasVisibleWidth}px`, 
-            height: `${height - (isMobile ? 130 : 108)}px` 
+            height: `${height - (isMobile ? 130 : 108)}px`,
+            overflow: disableScroll ? 'hidden' : 'auto'
           }}
         >
           <canvas
@@ -440,13 +513,17 @@ export default function MSpaint({
             onTouchMove={draw}
             onTouchEnd={stopDrawing}
             onTouchCancel={stopDrawing}
-            style={{ cursor: tool === 'eraser' ? 'cell' : 'crosshair' }}
+            style={{ 
+              cursor: cursorStyle,
+              width: disableScroll ? '100%' : undefined,
+              height: disableScroll ? '100%' : undefined
+            }}
           />
         </div>
       </div>
       
       <div className="flex bg-gray-300 p-2 border-t border-gray-400 overflow-x-auto">
-        <div className="flex flex-wrap gap-1">
+        <div className="flex flex-wrap gap-2.5">
           {colorPalette.map((c) => (
             <CustomButton
               key={c}
@@ -462,11 +539,7 @@ export default function MSpaint({
       </div>
       
       <div className="bg-gray-300 px-2 py-1.5 text-sm border-t border-gray-400 flex flex-wrap items-center">
-        <div className={`${isMobile ? 'w-full' : 'flex-grow'} truncate`}>{statusText}</div>
-        <div className="flex items-center mt-1">
-          <span className="mr-2 text-xs sm:text-sm">Current:</span>
-          <div className="w-5 h-5 rounded-md border border-gray-600" style={{ backgroundColor: color }} />
-        </div>
+        <div className={`${isMobile ? 'w-full' : 'flex-grow'} truncate text-black`}>{statusText}</div>
       </div>
     </div>
   );

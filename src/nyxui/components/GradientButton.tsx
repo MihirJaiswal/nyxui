@@ -3,7 +3,7 @@ import React from "react";
 export type GradientButtonProps = {
   variant?: "pulse" | "glow" | "sweep" | "shine" | "outline";
   size?: "xs" | "sm" | "md" | "lg" | "xl";
-  theme?: "sunset" | "ocean" | "forest" | "neon" | "berry" | "custom";
+  theme?: "sunset" | "ocean" | "forest" | "neon" | "berry" | "nyx" | "custom";
   customGradient?: string;
   rounded?: "full" | "md" | "lg" | "none";
   shadow?: boolean;
@@ -15,7 +15,7 @@ export type GradientButtonProps = {
 export const GradientButton = ({
   variant = "glow",
   size = "md",
-  theme = "sunset",
+  theme = "nyx",
   customGradient,
   rounded = "md",
   shadow = true,
@@ -53,6 +53,7 @@ export const GradientButton = ({
     forest: "bg-gradient-to-r from-emerald-400 via-green-500 to-teal-600",
     neon: "bg-gradient-to-r from-green-400 via-purple-500 to-pink-500",
     berry: "bg-gradient-to-r from-fuchsia-500 via-purple-600 to-indigo-500",
+    nyx: "bg-gradient-to-r from-purple-800 via-blue-800 to-fuchsia-800",
     custom: customGradient || "bg-gradient-to-r from-violet-500 to-fuchsia-500",
   };
 
@@ -91,6 +92,23 @@ export const GradientButton = ({
       <button className={`${baseClasses} ${themeGradients[theme]} relative overflow-hidden group ${className}`}>
         <span className="relative z-10">{children}</span>
         <span className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 group-hover:translate-x-full transition-all duration-1000 ease-in-out"></span>
+      </button>
+    );
+  }
+  
+  if (variant === "outline") {
+    return (
+      <button 
+        className={`${baseClasses} relative overflow-hidden group bg-transparent ${className}`}
+      >
+        <span className={`relative z-10 bg-clip-text text-transparent ${themeGradients[theme]}`}>
+          {children}
+        </span>
+        <span 
+          className={`absolute inset-0 rounded-lg ${themeGradients[theme]} opacity-100`} 
+          style={{ mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)', maskComposite: 'xor', WebkitMaskComposite: 'xor', padding: '2px' }}
+        ></span>
+        <span className="absolute inset-0 rounded-lg blur opacity-0 group-hover:opacity-20 transition duration-1000 group-hover:duration-200"></span>
       </button>
     );
   }

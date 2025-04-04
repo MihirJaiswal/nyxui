@@ -62,7 +62,7 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({
   }
 
   return (
-      <div className={`max-w-4xl mx-auto p-6 ${bgColor} ${textColor} rounded-lg shadow-lg font-mono`}>
+      <div className={`max-w-4xl mx-auto p-3 md:p-6 ${bgColor} ${textColor} rounded-md shadow-lg font-mono`}>
         <div className="mb-4 p-2 bg-gray-800 rounded flex items-center justify-between">
           <div className="flex items-center">
             {icon}

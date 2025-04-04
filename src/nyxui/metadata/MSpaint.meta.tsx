@@ -1,5 +1,5 @@
 import type { ComponentData } from "@/nyxui/ComponentInterfaces"
-import DrawingCanvasDemo from "@/nyxui/demos/MSpaintDemo"
+import MSpaintDemo from "@/nyxui/demos/MSpaintDemo"
 import fs from "fs";
 import path from "path";
 
@@ -13,7 +13,7 @@ export const mspaintData: ComponentData = {
   name: "MS Paint",
   description:
     "A customizable drawing canvas component with paint-like interface. Perfect for sketching, drawing tools, annotations, and interactive whiteboard applications. Features include brush and eraser tools, customizable color palette, and save functionality.",
-  preview: <DrawingCanvasDemo />,
+  preview: <MSpaintDemo />,
   usage: mspaintDemoSource,
   componentCode: mspaintSource,
   dependencies: [],

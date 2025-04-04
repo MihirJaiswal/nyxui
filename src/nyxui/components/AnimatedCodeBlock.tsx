@@ -6,14 +6,14 @@ import { cn } from "@/lib/utils"
 import { Play, Pause, Copy, Check, Terminal } from "lucide-react"
 
 export interface AnimatedCodeBlockProps {
-  code: string
-  language?: string
-  theme?: "dark" | "light" | "terminal" | "cyberpunk" | "minimal"
-  typingSpeed?: number
-  showLineNumbers?: boolean
-  highlightLines?: number[]
-  title?: string
-  className?: string
+  code: string;
+  language?: string;
+  theme?: "dark" | "light" | "terminal" | "cyberpunk" | "minimal" | "nyx";
+  typingSpeed?: number;
+  showLineNumbers?: boolean;
+  highlightLines?: number[];
+  title?: string;
+  className?: string;
   autoPlay?: boolean
   loop?: boolean
   blurEffect?: boolean
@@ -84,6 +84,14 @@ export function AnimatedCodeBlock({
           lineNumbers: "text-gray-400",
           highlight: "bg-gray-100",
           border: "border-gray-200",
+        }
+      case "nyx":
+        return {
+          background: "bg-black",
+          text: "text-purple-100",
+          lineNumbers: "text-purple-500",
+          highlight: "bg-purple-900/30",
+          border: "border-purple-700",
         }
       default:
         return {
