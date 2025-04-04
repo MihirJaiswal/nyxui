@@ -15,7 +15,7 @@ export const Hero = () => {
     }, 3000)
 
     return () => clearInterval(interval)
-  }, [])
+  }, [textOptions.length])
 
   return (
     <div className="flex min-h-screen flex-col justify-center items-center bg-gradient-to-b from-background to-background/80">
@@ -43,7 +43,7 @@ export const Hero = () => {
                   transition={{ duration: 0.5, delay: 0.2 }}
                   style={{
                     backgroundImage:
-                      "url('https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzM4eHdjMnY1NDgyODdzNHlsdTZjbjhyd2JuOXRrbXBhY21rc3d0NCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3zvbrvbRe7wxBofOBI/giphy.gif')",
+                      "url('/bg.webp')",
                     backgroundSize: "contain",
                     backgroundPosition: "center",
                     backgroundRepeat: "repeat",

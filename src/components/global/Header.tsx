@@ -43,7 +43,7 @@ export default function Header() {
         <div className="flex items-center space-x-4">
           <Link href="/" className="group flex items-center transition-all duration-300 hover:opacity-90">
             <div className="relative flex items-center justify-center overflow-hidden ">
-              <div className="h-12 w-12 border-4 border-white dark:border-black flex items-center justify-center bg-black dark:bg-white rounded-full">
+              <div className="h-10 w-10 border-4 border-white dark:border-black flex items-center justify-center bg-black dark:bg-white rounded-full">
               <svg xmlns="http://www.w3.org/2000/svg" version="1.0" fill="currentColor" viewBox="185.7693927125506 148.35232 684.0200809716599 711.7382399999999" preserveAspectRatio="xMidYMid meet" width="684.0200809716599" height="711.7382399999999">
                 <g id="deeditor_bgCarrier" strokeWidth="0">
                   <rect id="dee_c_e" x="-3" y="-3" width="1030" height="1030" rx="0"/>

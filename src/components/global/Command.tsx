@@ -77,7 +77,7 @@ const CommandList = React.forwardRef<HTMLDivElement, CommandListProps>(
 )
 CommandList.displayName = CommandPrimitive.List.displayName
 
-interface CommandEmptyProps extends React.ComponentPropsWithoutRef<typeof CommandPrimitive.Empty> {}
+type CommandEmptyProps = React.ComponentPropsWithoutRef<typeof CommandPrimitive.Empty>;
 
 const CommandEmpty = React.forwardRef<HTMLDivElement, CommandEmptyProps>((props, ref) => (
   <CommandPrimitive.Empty ref={ref} className="py-6 text-center text-sm" {...props} />
