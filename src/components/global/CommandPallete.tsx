@@ -57,10 +57,10 @@ export function CommandPalette() {
     <TooltipProvider>
       <Button
         variant="outline"
-        className="relative h-9 w-full md:w-64 lg:w-96 justify-start bg-white dark:bg-black text-sm text-muted-foreground rounded-md border px-3 py-2"
+        className="relative h-9 w-full md:w-64 justify-start bg-white dark:bg-black text-sm text-muted-foreground rounded-md border px-3 py-2"
         onClick={() => setOpen(true)}
       >
-        <Search className="mr-2 h-4 w-4" />
+        <Search className="mr-2 h-4 w-4"/>
         <span className="hidden md:inline-flex">Search components...</span>
         <span className="inline-flex md:hidden">Search...</span>
         <kbd className="pointer-events-none absolute right-1.5 top-1.5 hidden h-6 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-xs font-medium opacity-100 sm:flex">
