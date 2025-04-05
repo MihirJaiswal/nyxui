@@ -110,7 +110,7 @@ interface AccordionChildProps {
 }
 
 function AccordionItem({ value, children, className }: AccordionItemProps) {
-  const { expandedValue, toggleItem } = useAccordion();
+  const { expandedValue} = useAccordion();
   const isExpanded = expandedValue === value;
 
   return (

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ChevronRight } from 'lucide-react';
 
 const Text = () => {
@@ -26,7 +26,7 @@ const Text = () => {
     }, 3000);
     
     return () => clearInterval(interval);
-  }, []);
+  }, [adjectives.length]);
   
   return (
     <div className="flex flex-col justify-center py-16 space-y-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">

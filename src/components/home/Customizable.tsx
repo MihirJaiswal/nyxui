@@ -15,7 +15,7 @@ interface MajesticCardProps {
   blurBackground?: boolean;
 }
 
-const MajesticCard = ({ theme, children, rounded, shadow, blurBackground }: MajesticCardProps) => {
+const MajesticCard = ({ theme, children, rounded, shadow,}: MajesticCardProps) => {
   const getThemeStyles = () => {
     const baseStyles = "transition-all duration-300";
     const shadowStyles = shadow ? "shadow-xl" : "";
