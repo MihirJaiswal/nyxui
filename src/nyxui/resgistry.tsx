@@ -19,6 +19,7 @@ import { interactiveTerminalData } from "./metadata/Terminal.meta";
 import { macDockData } from "./metadata/MacDock.meta";
 import { animatedTextData } from "./metadata/AnimatedText.meta";
 import { characterSelectorData } from "./metadata/CharacterSelector.meta";
+import { bubbleBackgroundData } from "./metadata/BubblesBackground.meta";
 
 export const componentsData = {
   "gradient-button": gradientButtonData,
@@ -41,5 +42,6 @@ export const componentsData = {
   "interactive-terminal": interactiveTerminalData,
   "mac-dock": macDockData,
   "character-selector": characterSelectorData,
-  "animated-text": animatedTextData 
+  "animated-text": animatedTextData,
+  "bubbles-background": bubbleBackgroundData
 };

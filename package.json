@@ -30,6 +30,7 @@
     "cmdk": "^1.1.1",
     "dnd-kit": "^0.0.2",
     "framer-motion": "^12.6.2",
+    "gsap": "^3.12.7",
     "lucide-react": "^0.484.0",
     "motion": "^12.6.3",
     "next": "15.2.4",
@@ -41,6 +42,7 @@
     "react-syntax-highlighter": "^15.6.1",
     "sonner": "^2.0.2",
     "tailwind-merge": "^3.0.2",
+    "three": "^0.175.0",
     "tw-animate-css": "^1.2.4"
   },
   "devDependencies": {

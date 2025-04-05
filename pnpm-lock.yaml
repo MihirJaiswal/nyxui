@@ -71,6 +71,9 @@ importers:
       framer-motion:
         specifier: ^12.6.2
         version: 12.6.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      gsap:
+        specifier: ^3.12.7
+        version: 3.12.7
       lucide-react:
         specifier: ^0.484.0
         version: 0.484.0(react@19.0.0)
@@ -104,6 +107,9 @@ importers:
       tailwind-merge:
         specifier: ^3.0.2
         version: 3.0.2
+      three:
+        specifier: ^0.175.0
+        version: 0.175.0
       tw-animate-css:
         specifier: ^1.2.4
         version: 1.2.4
@@ -1817,6 +1823,9 @@ packages:
   graphemer@1.4.0:
     resolution: {integrity: sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==}
 
+  gsap@3.12.7:
+    resolution: {integrity: sha512-V4GsyVamhmKefvcAKaoy0h6si0xX7ogwBoBSs2CTJwt7luW0oZzC0LhdkyuKV8PJAXr7Yaj8pMjCKD4GJ+eEMg==}
+
   has-bigints@1.1.0:
     resolution: {integrity: sha512-R3pbpkcIqv2Pm3dUwgjclDRVmWpTJW2DcMzcIhEXEx1oh/CEMObMm3KLmRJOdvhM7o4uQBnwr8pzRK2sJWIqfg==}
     engines: {node: '>= 0.4'}
@@ -2684,6 +2693,9 @@ packages:
     resolution: {integrity: sha512-LBAhFyLho16harJoWMg/nZsQYgTrg5jXOn2nCYjRUcZZEdE3qa2zb8QEDRUGVZBW4rlazf2fxkg8tztybTaqWw==}
     engines: {node: '>=10'}
     hasBin: true
+
+  three@0.175.0:
+    resolution: {integrity: sha512-nNE3pnTHxXN/Phw768u0Grr7W4+rumGg/H6PgeseNJojkJtmeHJfZWi41Gp2mpXl1pg1pf1zjwR4McM1jTqkpg==}
 
   tinyglobby@0.2.12:
     resolution: {integrity: sha512-qkf4trmKSIiMTs/E63cxH+ojC2unam7rJ0WrauAzpT3ECNTxGRMlaXxVbfxMUC/w0LaYk6jQ4y/nGR9uBO3tww==}
@@ -4650,6 +4662,8 @@ snapshots:
 
   graphemer@1.4.0: {}
 
+  gsap@3.12.7: {}
+
   has-bigints@1.1.0: {}
 
   has-flag@4.0.0: {}
@@ -5564,6 +5578,8 @@ snapshots:
       acorn: 8.14.1
       commander: 2.20.3
       source-map-support: 0.5.21
+
+  three@0.175.0: {}
 
   tinyglobby@0.2.12:
     dependencies:
