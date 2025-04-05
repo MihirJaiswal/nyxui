@@ -30,13 +30,21 @@ export const Hero = () => {
 
             <h1 className="text-5xl lg:text-[6rem] font-black font-sans leading-tight md:leading-snug pb-4">
               <div className="flex flex-wrap items-center justify-center gap-2 md:gap-4">
-                <motion.span
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
-                >
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="flex justify-center"
+              >
+                <span className="relative inline-block">
                   Build
-                </motion.span>
+                  <img
+                    src="/underline.svg"
+                    alt="underline"
+                    className="absolute left-0 bottom-1 md:bottom-2 w-full"
+                  />
+                </span>
+              </motion.p>
 
                 <motion.span
                   initial={{ opacity: 0, y: 20 }}
