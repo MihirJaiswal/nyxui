@@ -3,11 +3,10 @@ import { Hero } from "@/components/home/Hero";
 import { BentoDemo } from "@/nyxui/demos/BentoGridDemo";
 import { AnimatedGradientBg } from "@/nyxui/components/AnimatedGradientBg";
 import Footer from "@/components/global/Footer";
+import Customize from "@/components/home/Customize";
 
 export default function Home() {
   const darkColors = ["#7C3AED", "#DB2777", "#3B82F6", "#A78BFA"];
-
-
   return (
     <>
       <Header />
@@ -26,10 +25,10 @@ export default function Home() {
         colors={darkColors}
       />
       <div className="relative z-10">
-        
         <Hero />
-        </div>
-        <BentoDemo />
+      </div>
+      <BentoDemo />
+      <Customize/>
       </div>
       <Footer/>
     </>
