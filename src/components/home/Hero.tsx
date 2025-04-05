@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
 import { ChevronRight, Sparkles } from "lucide-react"
 import TechStack from "./Tech"
+import Image from "next/image"
 
 export const Hero = () => {
   const [currentTextIndex, setCurrentTextIndex] = useState(0)
@@ -38,9 +39,12 @@ export const Hero = () => {
               >
                 <span className="relative inline-block">
                   Build
-                  <img
+                  <Image
                     src="/underline.svg"
                     alt="underline"
+                    width={0}
+                    height={0}
+                    priority
                     className="absolute left-0 bottom-1 md:bottom-2 w-full"
                   />
                 </span>

@@ -2,8 +2,7 @@ import React from "react"
 import { BentoGrid } from "@/nyxui/components/BentoGrid"
 import { AnimatedGradientBg } from "@/nyxui/components/AnimatedGradientBg"
 import { AnimatedCodeBlock } from "@/nyxui/components/AnimatedCodeBlock"
-import { ChevronRight, Flame, Sparkles, Stars, Zap } from "lucide-react"
-import MSpaint from "../components/MSpaint"
+import { ChevronRight, Sparkles, Zap } from "lucide-react"
 import { MatrixCodeRain } from "../components/MatrixCodeRain"
 import { DynamicRipple } from "../components/DynamicRipple"
 import { MajesticCard } from "../components/MajesticCard"
@@ -11,7 +10,6 @@ import { MorphingBlob } from "@/nyxui/components/MorphingBlob"
 import Image from "next/image"
 import Link from "next/link"
 import InteractiveTerminal from "../components/Terminal"
-import { GradientButton } from "../components/GradientButton"
 
 export const BentoDemo = () => {
   return (
