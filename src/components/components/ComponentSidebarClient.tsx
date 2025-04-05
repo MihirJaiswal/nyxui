@@ -5,11 +5,12 @@ import { usePathname } from "next/navigation";
 import React, { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { Minus } from 'lucide-react';
+import { Separator } from "../ui/separator";
 
 interface CategoryItem {
   name: string;
   href: string;
-  isNew?: boolean; // Added isNew property
+  isNew?: boolean;
 }
 
 interface CategoryType {
@@ -17,11 +18,20 @@ interface CategoryType {
   items: CategoryItem[];
 }
 
-interface ComponentSidebarClientProps {
-  categories: CategoryType[];
+interface GettingStartedSection {
+  title: string;
+  items: CategoryItem[];
 }
 
-export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({ categories }) => {
+interface ComponentSidebarClientProps {
+  categories: CategoryType[];
+  gettingStartedSection: GettingStartedSection;
+}
+
+export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({ 
+  categories,
+  gettingStartedSection 
+}) => {
   const currentPath = usePathname();
   const [isScrolling, setIsScrolling] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -59,15 +69,60 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({ 
     <div
       ref={scrollContainerRef}
       className={cn(
-        "h-full overflow-y-auto transition-all duration-300",
+        "h-full overflow-y-auto transition-all duration-300 py-3",
         isScrolling
           ? "pr-2  hide-scrollbar scrollbar-thumb-primary/20 scrollbar-track-transparent hover:scrollbar-thumb-primary/30"
           : "pr-4 scrollbar-no"
       )}
     >
       <div className="space-y-8 hide-scrollbar">
+        {/* Getting Started Section */}
+        <div className="space-y-3 mb-6">
+          <div className="font-bold tracking-wider px-2">
+            {gettingStartedSection.title}
+          </div>
+          <div className="space-y-0.5">
+            {gettingStartedSection.items.map((item) => {
+              const isActive = currentPath === item.href;
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={cn(
+                    "group flex items-center w-full text-sm py-2 rounded-md transition-all duration-200",
+                    isActive
+                      ? "bg-primary/10 text-primary font-medium"
+                      : "text-foreground/70 hover:text-foreground hover:bg-muted/50"
+                  )}
+                >
+                  {isActive && (
+                    <Minus className="mr-1 text-purple-500" size={24} fill="#9C27B0" style={{ transform: 'rotate(90deg)' }} />
+                  )}
+                  <span className={cn(
+                    "truncate",
+                    isActive ? "ml-0" : "ml-4 group-hover:ml-2 transition-all duration-200"
+                  )}>
+                    {item.name}
+                  </span>
+                  
+                  {/* NEW badge */}
+                  {item.isNew && (
+                    <span className="ml-2 px-1.5 py-0.5 text-xs font-medium border-2 border-blue-500 text-blue-500 dark:text-white rounded-md">
+                      New
+                    </span>
+                  )}
+                </Link>
+              );
+            })}
+          </div>
+         <div className="w-52">
+         <Separator/>
+         </div>
+        </div>    
+      <div><h1 className="font-bold tracking-wider px-2">Components</h1></div>
+        {/* Component Categories */}
         {categories.map((category) => {
-          return (
+          return (         
             <div key={category.category} className="space-y-3">
               <div className="text-xs font-bold text-primary/80 dark:text-primary/70 uppercase tracking-wider px-2">
                 {category.category}
@@ -87,7 +142,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({ 
                       )}
                     >
                       {isActive && (
-                        <Minus className="mr-1 text-blue-500" size={24} fill="#3455eb" style={{ transform: 'rotate(90deg)' }} />
+                        <Minus className="mr-1 text-purple-500" size={24} fill="#3455eb" style={{ transform: 'rotate(90deg)' }} />
                       )}
                       <span className={cn(
                         "truncate",
@@ -98,7 +153,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({ 
                       
                       {/* NEW badge */}
                       {item.isNew && (
-                        <span className="ml-2 px-1.5 py-0.5 text-xs font-medium border-2 border-blue-500 text-blue-500 dark:text-white rounded-md">
+                        <span className="ml-2 px-1.5 py-0.5 text-xs font-medium border-2 border-purple-500 text-purple-500 dark:text-white rounded-md">
                           New
                         </span>
                       )}

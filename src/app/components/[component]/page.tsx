@@ -10,6 +10,7 @@ import { InstallationSection } from "@/components/components/Installation"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import React from "react"
 import { Card } from "@/components/ui/card"
+import Footer from "@/components/global/Footer"
 
 const ComponentPage = async ({ params }: { params: Promise<{ component: string }>}) => {
   const component = (await params).component
@@ -221,6 +222,7 @@ const ComponentPage = async ({ params }: { params: Promise<{ component: string }
           </div>
         </main>
       </div>
+      <Footer/>
     </div>
   )
 }

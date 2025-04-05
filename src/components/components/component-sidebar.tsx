@@ -34,11 +34,17 @@ export const ComponentSidebar = () => {
     <aside className="fixed top-16 z-30 md:sticky hidden h-[calc(100vh-4rem)] w-88 pl-3 pr-3 shrink-0 md:block border-r border-border/10 dark:border-border/5 bg-background/80 backdrop-blur-md hide-scrollbar">
       <div className="h-full py-4 px-4">
         <div className="flex h-full flex-col">
-          <h3 className="font-semibold text-xl text-foreground mb-6 px-2">Components</h3>
-          <ComponentSidebarClient categories={categories} />
+          <ComponentSidebarClient 
+            categories={categories} 
+            gettingStartedSection={{
+              title: "Getting Started",
+              items: [
+                { name: "Introduction", href: "/docs", isNew: false }
+              ]
+            }}
+          />
         </div>
       </div>
     </aside>
   )
 };
-
