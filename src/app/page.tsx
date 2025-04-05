@@ -4,6 +4,7 @@ import { BentoDemo } from "@/nyxui/demos/BentoGridDemo";
 import { AnimatedGradientBg } from "@/nyxui/components/AnimatedGradientBg";
 import Footer from "@/components/global/Footer";
 import Customize from "@/components/home/Customize";
+import { Build } from "@/components/home/Build";
 
 export default function Home() {
   const darkColors = ["#7C3AED", "#DB2777", "#3B82F6", "#A78BFA"];
@@ -17,7 +18,7 @@ export default function Home() {
         speed={0.5}
         opacity={0.5}
         position="fixed"
-        zIndex={-1}
+        zIndex={0}
         animate={true}
         size="full"
         patternIntensity={1.5}
@@ -29,6 +30,7 @@ export default function Home() {
       </div>
       <BentoDemo />
       <Customize/>
+      <Build/>
       </div>
       <Footer/>
     </>

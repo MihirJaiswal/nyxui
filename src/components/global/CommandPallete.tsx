@@ -6,9 +6,9 @@ import {
   CommandGroup,
   CommandInput,
   CommandItem,
-  CommandList
+  CommandList,
 } from "@/components/global/Command";
-import { Search } from "lucide-react";
+import { Search, Link as LinkIcon, Box, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -17,41 +17,54 @@ import componentsJson from "@/nyxui/component.json";
 export function CommandPalette() {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
-  const [selectedComponent, setSelectedComponent] = useState<string | null>(null);
+  const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const router = useRouter();
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
       if ((e.key === "k" && (e.metaKey || e.ctrlKey)) || e.key === "/") {
         e.preventDefault();
-        setOpen((open) => !open);
+        setOpen((o) => !o);
       }
     };
-
     document.addEventListener("keydown", down);
     return () => document.removeEventListener("keydown", down);
   }, []);
 
-  const handleSelect = (componentId: string) => {
-    setSelectedComponent(componentId);
+  const handleSelect = (value: string) => {
+    setSelectedItem(value);
   };
 
-  const handleComponentClick = (componentId: string) => {
-    router.push(`/components/${componentId}`);
+  const handleItemClick = (value: string) => {
+    const [section, id] = value.split(":");
+    const path =
+      section === "links" ? `/${id}` : `/${section}/${id}`;
+    router.push(path);
     setOpen(false);
   };
 
-  const componentsArray = Object.entries(componentsJson).map(([id, name]) => ({
-    id,
-    name,
-    description: "",
-    category: "Components"
-  }));
+  const iconMap: Record<string, React.ComponentType<any>> = {
+    links: LinkIcon,
+    components: Box,
+    templates: FileText,
+  };
 
-  const filteredComponents = componentsArray.filter(item =>
-    item.name.toLowerCase().includes(search.toLowerCase()) ||
-    item.description.toLowerCase().includes(search.toLowerCase())
+  const sections = Object.entries(componentsJson).map(
+    ([sectionKey, itemsObj]) => ({
+      key: sectionKey,
+      items: Object.entries(itemsObj).map(([id, name]) => ({
+        value: `${sectionKey}:${id}`,
+        name,
+      })),
+    })
   );
+  const filteredSections = sections.map(({ key, items }) => ({
+    key,
+    items: items.filter((item) =>
+      item.name.toLowerCase().includes(search.toLowerCase())
+    ),
+  }));
+  const nothingFound = filteredSections.every((s) => s.items.length === 0);
 
   return (
     <TooltipProvider>
@@ -60,46 +73,72 @@ export function CommandPalette() {
         className="relative h-9 w-full md:w-64 justify-start bg-white dark:bg-black text-sm text-muted-foreground rounded-md border px-3 py-2"
         onClick={() => setOpen(true)}
       >
-        <Search className="mr-2 h-4 w-4"/>
-        <span className="hidden md:inline-flex">Search components...</span>
+        <Search className="mr-2 h-4 w-4" />
+        <span className="hidden md:inline-flex">Search Nyx UI...</span>
         <span className="inline-flex md:hidden">Search...</span>
         <kbd className="pointer-events-none absolute right-1.5 top-1.5 hidden h-6 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-xs font-medium opacity-100 sm:flex">
           <span className="text-xs">⌘</span>K
         </kbd>
       </Button>
+
       <CommandDialog open={open} onOpenChange={setOpen}>
         <CommandInput
-          placeholder="Search Nyx UI components..."
+          placeholder="Search Nyx UI..."
           value={search}
           onValueChange={setSearch}
         />
         <CommandList>
-          <CommandEmpty>No components found.</CommandEmpty>
-          <CommandGroup heading="Components">
-            <RadioGroup value={selectedComponent || ""} onValueChange={handleSelect}>
-              {filteredComponents.map((component) => (
-                <div key={component.id} className="flex cursor-pointer" onClick={() => handleComponentClick(component.id)}>
-                  <CommandItem
-                    onSelect={() => handleComponentClick(component.id)}
-                    className="flex items-center justify-between w-full cursor-pointer text-black dark:text-white"
+          {nothingFound && <CommandEmpty>No items found.</CommandEmpty>}
+
+          {filteredSections.map((section) => {
+            const Icon = iconMap[section.key] || Search;
+            const heading =
+              section.key.charAt(0).toUpperCase() + section.key.slice(1);
+
+            return (
+              <CommandGroup key={section.key} heading={heading}>
+                {section.items.length > 0 ? (
+                  <RadioGroup
+                    value={selectedItem || ""}
+                    onValueChange={handleSelect}
                   >
-                    <div className="flex items-center text-black dark:text-white">
-                      <RadioGroupItem
-                        value={component.id}
-                        id={`radio-${component.id}`}
-                        className="mr-2"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleSelect(component.id);
-                        }}
-                      />
-                      <span className="text-gray-800 dark:text-white">{component.name}</span>
-                    </div>
+                    {section.items.map((item) => (
+                      <div
+                        key={item.value}
+                        className="flex cursor-pointer"
+                        onClick={() => handleItemClick(item.value)}
+                      >
+                        <CommandItem
+                          onSelect={() => handleItemClick(item.value)}
+                          className="flex items-center justify-between w-full"
+                        >
+                          <div className="flex items-center">
+                            <RadioGroupItem
+                              value={item.value}
+                              id={`radio-${item.value}`}
+                              className="mr-2"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleSelect(item.value);
+                              }}
+                            />
+                            <Icon className="mr-2 h-4 w-4 text-gray-500" />
+                            <span className="text-gray-800 dark:text-white">
+                              {item.name}
+                            </span>
+                          </div>
+                        </CommandItem>
+                      </div>
+                    ))}
+                  </RadioGroup>
+                ) : (
+                  <CommandItem disabled className="text-muted-foreground">
+                    No {heading.toLowerCase()} found.
                   </CommandItem>
-                </div>
-              ))}
-            </RadioGroup>
-          </CommandGroup>
+                )}
+              </CommandGroup>
+            );
+          })}
         </CommandList>
       </CommandDialog>
     </TooltipProvider>

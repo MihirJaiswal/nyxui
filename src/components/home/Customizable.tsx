@@ -181,7 +181,6 @@ ${theme === "glass" ? "  blurBackground" : ""}>
     </div>
   );
 
-  // Animation variants
   const slideVariants = {
     enterRight: {
       x: 300,
@@ -217,7 +216,7 @@ ${theme === "glass" ? "  blurBackground" : ""}>
   };
 
   return (
-    <div className="min-h-screen p-6">
+    <div className="p-6">
       <div className="max-w-6xl mx-auto">
         <div className="flex md:hidden justify-center mb-6">
           <div className="inline-flex rounded-lg shadow-md overflow-hidden">

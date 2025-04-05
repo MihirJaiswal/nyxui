@@ -3,7 +3,7 @@ import CardThemeCustomizer from './Customizable';
 
 const Customize = () => {
   return (
-    <section className="w-full py-16 lg:py-24 px-4 flex flex-col items-center justify-center gap-8 max-w-7xl mx-auto">
+    <section className="w-full py-16 px-4 flex flex-col items-center justify-center gap-8 max-w-7xl mx-auto">
       <div className="flex flex-col gap-4 items-center justify-center text-center w-full mb-6">
         <div className="flex flex-col md:flex-row gap-2 items-center justify-center flex-wrap">
           <h1 className="tracking-tight font-bold text-5xl lg:text-7xl">
