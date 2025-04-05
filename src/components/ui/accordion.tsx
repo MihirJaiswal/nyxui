@@ -1,66 +1,203 @@
-"use client"
+'use client';
+import {
+  motion,
+  AnimatePresence,
+  Transition,
+  Variants,
+  Variant,
+  MotionConfig,
+} from 'motion/react';
+import { cn } from '@/lib/utils';
+import React, { createContext, useContext, useState, ReactNode } from 'react';
 
-import * as React from "react"
-import * as AccordionPrimitive from "@radix-ui/react-accordion"
-import { ChevronDownIcon } from "lucide-react"
+export type AccordionContextType = {
+  expandedValue: React.Key | null;
+  toggleItem: (value: React.Key) => void;
+  variants?: { expanded: Variant; collapsed: Variant };
+};
 
-import { cn } from "@/lib/utils"
+const AccordionContext = createContext<AccordionContextType | undefined>(
+  undefined
+);
+
+function useAccordion() {
+  const context = useContext(AccordionContext);
+  if (!context) {
+    throw new Error('useAccordion must be used within an AccordionProvider');
+  }
+  return context;
+}
+
+export type AccordionProviderProps = {
+  children: ReactNode;
+  variants?: { expanded: Variant; collapsed: Variant };
+  expandedValue?: React.Key | null;
+  onValueChange?: (value: React.Key | null) => void;
+};
+
+function AccordionProvider({
+  children,
+  variants,
+  expandedValue: externalExpandedValue,
+  onValueChange,
+}: AccordionProviderProps) {
+  const [internalExpandedValue, setInternalExpandedValue] =
+    useState<React.Key | null>(null);
+
+  const expandedValue =
+    externalExpandedValue !== undefined
+      ? externalExpandedValue
+      : internalExpandedValue;
+
+  const toggleItem = (value: React.Key) => {
+    const newValue = expandedValue === value ? null : value;
+    if (onValueChange) {
+      onValueChange(newValue);
+    } else {
+      setInternalExpandedValue(newValue);
+    }
+  };
+
+  return (
+    <AccordionContext.Provider value={{ expandedValue, toggleItem, variants }}>
+      {children}
+    </AccordionContext.Provider>
+  );
+}
+
+export type AccordionProps = {
+  children: ReactNode;
+  className?: string;
+  transition?: Transition;
+  variants?: { expanded: Variant; collapsed: Variant };
+  expandedValue?: React.Key | null;
+  onValueChange?: (value: React.Key | null) => void;
+};
 
 function Accordion({
-  ...props
-}: React.ComponentProps<typeof AccordionPrimitive.Root>) {
-  return <AccordionPrimitive.Root data-slot="accordion" {...props} />
+  children,
+  className,
+  transition,
+  variants,
+  expandedValue,
+  onValueChange,
+}: AccordionProps) {
+  return (
+    <MotionConfig transition={transition}>
+      <div className={cn('relative', className)} aria-orientation='vertical'>
+        <AccordionProvider
+          variants={variants}
+          expandedValue={expandedValue}
+          onValueChange={onValueChange}
+        >
+          {children}
+        </AccordionProvider>
+      </div>
+    </MotionConfig>
+  );
 }
 
-function AccordionItem({
-  className,
-  ...props
-}: React.ComponentProps<typeof AccordionPrimitive.Item>) {
-  return (
-    <AccordionPrimitive.Item
-      data-slot="accordion-item"
-      className={cn("border-b last:border-b-0", className)}
-      {...props}
-    />
-  )
+export type AccordionItemProps = {
+  value: React.Key;
+  children: ReactNode;
+  className?: string;
+};
+
+interface AccordionChildProps {
+  value?: React.Key;
+  expanded?: boolean;
+  [key: string]: any;
 }
+
+function AccordionItem({ value, children, className }: AccordionItemProps) {
+  const { expandedValue, toggleItem } = useAccordion();
+  const isExpanded = expandedValue === value;
+
+  return (
+    <div
+      className={cn('nyxui-accordion-item', className)}
+      {...(isExpanded ? { 'data-expanded': '' } : {'data-closed': ''})}
+    >
+      {React.Children.map(children, (child) => {
+        if (React.isValidElement<AccordionChildProps>(child)) {
+          return React.cloneElement(child, {
+            ...child.props,
+            value,
+            expanded: isExpanded,
+          });
+        }
+        return child;
+      })}
+    </div>
+  );
+}
+
+export type AccordionTriggerProps = {
+  children: ReactNode;
+  className?: string;
+};
 
 function AccordionTrigger({
-  className,
   children,
+  className,
   ...props
-}: React.ComponentProps<typeof AccordionPrimitive.Trigger>) {
+}: AccordionTriggerProps) {
+  const { toggleItem, expandedValue } = useAccordion();
+  const value = (props as { value?: React.Key }).value;
+  const isExpanded = value === expandedValue;
+
   return (
-    <AccordionPrimitive.Header className="flex">
-      <AccordionPrimitive.Trigger
-        data-slot="accordion-trigger"
-        className={cn(
-          "focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-start justify-between gap-4 rounded-md py-4 text-left text-sm font-medium transition-all outline-none hover:underline focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&[data-state=open]>svg]:rotate-180",
-          className
-        )}
-        {...props}
-      >
-        {children}
-        <ChevronDownIcon className="text-muted-foreground pointer-events-none size-4 shrink-0 translate-y-0.5 transition-transform duration-200" />
-      </AccordionPrimitive.Trigger>
-    </AccordionPrimitive.Header>
-  )
+    <button
+      onClick={() => value !== undefined && toggleItem(value)}
+      aria-expanded={isExpanded}
+      type='button'
+      className={cn('group', className)}
+      {...(isExpanded ? { 'data-expanded': '' } : {'data-closed': ''})}
+    >
+      {children}
+    </button>
+  );
 }
+
+export type AccordionContentProps = {
+  children: ReactNode;
+  className?: string;
+};
 
 function AccordionContent({
-  className,
   children,
+  className,
   ...props
-}: React.ComponentProps<typeof AccordionPrimitive.Content>) {
+}: AccordionContentProps) {
+  const { expandedValue, variants } = useAccordion();
+  const value = (props as { value?: React.Key }).value;
+  const isExpanded = value === expandedValue;
+
+  const BASE_VARIANTS: Variants = {
+    expanded: { height: 'auto', opacity: 1 },
+    collapsed: { height: 0, opacity: 0 },
+  };
+
+  const combinedVariants = {
+    expanded: { ...BASE_VARIANTS.expanded, ...variants?.expanded },
+    collapsed: { ...BASE_VARIANTS.collapsed, ...variants?.collapsed },
+  };
+
   return (
-    <AccordionPrimitive.Content
-      data-slot="accordion-content"
-      className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-sm"
-      {...props}
-    >
-      <div className={cn("pt-0 pb-4", className)}>{children}</div>
-    </AccordionPrimitive.Content>
-  )
+    <AnimatePresence initial={false}>
+      {isExpanded && (
+        <motion.div
+          initial='collapsed'
+          animate='expanded'
+          exit='collapsed'
+          variants={combinedVariants}
+          className={className}
+        >
+          {children}
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
 }
 
-export { Accordion, AccordionItem, AccordionTrigger, AccordionContent }
+export { Accordion, AccordionItem, AccordionTrigger, AccordionContent };

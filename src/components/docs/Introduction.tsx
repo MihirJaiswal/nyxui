@@ -1,5 +1,12 @@
 import Image from "next/image"
 import { Separator } from "../ui/separator"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "../ui/accordion"
+import { ChevronUp } from 'lucide-react';
 
 export default function IntroductionPage() {
   return (
@@ -35,35 +42,63 @@ export default function IntroductionPage() {
           <div className="md:col-span-3" id="faq">
             <h2 className="text-3xl font-bold tracking-tight mb-6">Frequently Asked Questions</h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="space-y-3 p-6 rounded-lg border bg-card">
-                <h3 className="text-xl font-semibold">How user-friendly is it?</h3>
-                <p className="text-gray-700 dark:text-gray-300">
-                  Nyx UI offers a library of plug-and-play components that are ready to be integrated into your web projects. Every component is self-contained and developed using contemporary React techniques, ensuring a smooth implementation.
-                </p>
-              </div>
-              
-              <div className="space-y-3 p-6 rounded-lg border bg-card">
-                <h3 className="text-xl font-semibold">Do you plan to release it on NPM?</h3>
-                <p className="text-gray-700 dark:text-gray-300">
-                  Absolutely. We are currently finalizing the package and will soon make it available on NPM, which will simplify installation and future updates.
-                </p>
-              </div>
-              
-              <div className="space-y-3 p-6 rounded-lg border bg-card">
-                <h3 className="text-xl font-semibold">Who can benefit from Nyx UI?</h3>
-                <p className="text-gray-700 dark:text-gray-300">
-                  Nyx UI is tailored for web developers and designers of any proficiency who want to create professional landing pages and marketing content without having to start from scratch.
-                </p>
-              </div>
-              
-              <div className="space-y-3 p-6 rounded-lg border bg-card">
-                <h3 className="text-xl font-semibold">Can I personalize it?</h3>
-                <p className="text-gray-700 dark:text-gray-300">
-                  Certainly! Each component is designed with customization at its core, allowing you to effortlessly adjust colors, dimensions, and behaviors to align with your brand and unique needs.
-                </p>
-              </div>
-            </div>
+            <Accordion
+                className='flex w-full flex-col divide-y divide-zinc-200 dark:divide-zinc-700'
+                transition={{ duration: 0.2, ease: 'easeInOut' }}
+              >
+                <AccordionItem value='getting-started' className='py-2'>
+                  <AccordionTrigger className='w-full text-left text-zinc-950 dark:text-zinc-50'>
+                    <div className='flex items-center justify-between'>
+                      <div>How user-friendly is it?</div>
+                      <ChevronUp className='h-4 w-4 text-zinc-950 transition-transform duration-200 group-data-expanded:-rotate-180 dark:text-zinc-50' />
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <p className='text-zinc-500 dark:text-zinc-400'>
+                    Nyx UI offers a library of plug-and-play components that are ready to be integrated into your web projects. Every component is self-contained and developed using contemporary React techniques, ensuring a smooth implementation.
+                    </p>
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value='animation-properties' className='py-2'>
+                  <AccordionTrigger className='w-full text-left text-zinc-950 dark:text-zinc-50'>
+                    <div className='flex items-center justify-between'>
+                      <div>Do you plan to release it on NPM?</div>
+                      <ChevronUp className='h-4 w-4 text-zinc-950 transition-transform duration-200 group-data-expanded:-rotate-180 dark:text-zinc-50' />
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <p className='text-zinc-500 dark:text-zinc-400'>
+                    Absolutely. We are currently finalizing the package and will soon make it available on NPM, which will simplify installation and future updates.
+                    </p>
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value='advanced-usage' className='py-2'>
+                  <AccordionTrigger className='w-full text-left text-zinc-950 dark:text-zinc-50'>
+                    <div className='flex items-center justify-between'>
+                      <div>Who can benefit from Nyx UI?</div>
+                      <ChevronUp className='h-4 w-4 text-zinc-950 transition-transform duration-200 group-data-expanded:-rotate-180 dark:text-zinc-50' />
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <p className='text-zinc-500 dark:text-zinc-400'>
+                    Nyx UI is tailored for web developers and designers of any proficiency who want to create professional landing pages and marketing content without having to start from scratch.
+                    </p>
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value='community-and-support' className='py-2'>
+                  <AccordionTrigger className='w-full text-left text-zinc-950 dark:text-zinc-50'>
+                    <div className='flex items-center justify-between'>
+                      <div>Can I personalize it?</div>
+                      <ChevronUp className='h-4 w-4 text-zinc-950 transition-transform duration-200 group-data-expanded:-rotate-180 dark:text-zinc-50' />
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <p className='text-zinc-500 dark:text-zinc-400'>
+                    Certainly! Each component is designed with customization at its core, allowing you to effortlessly adjust colors, dimensions, and behaviors to align with your brand and unique needs.
+                    </p>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
           </div>
 
           <Separator className="md:col-span-3 my-2" />
