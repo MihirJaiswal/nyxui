@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus, prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import Image from "next/image";
+import { Tiles } from "../ui/Tiles";
 
 interface MajesticCardProps {
   theme: string;
@@ -218,12 +219,11 @@ ${theme === "glass" ? "  blurBackground" : ""}>
   return (
     <div className="p-6">
       <div className="max-w-6xl mx-auto">
-        {/* Mobile tab switcher */}
         <div className="flex md:hidden justify-center mb-6">
           <div className="inline-flex rounded-lg shadow-md overflow-hidden">
             <button
               onClick={() => setActiveTab("preview")}
-              className={`px-6 py-3 text-sm font-medium transition-all duration-200 ${
+              className={`px-6 bg-white dark:bg-black py-3 text-sm font-medium transition-all duration-200 ${
                 activeTab === "preview" 
                   ? "bg-purple-600 text-white" 
                   : "bg-white text-gray-700 hover:bg-gray-50"
@@ -254,15 +254,13 @@ ${theme === "glass" ? "  blurBackground" : ""}>
             </button>
           </div>
         </div>
-        
-        {/* Medium and up layout */}
         <div className="hidden md:flex flex-col lg:flex-row justify-center items-center lg:items-end gap-8">
           <div className="w-full lg:w-auto">
             <div className="flex flex-wrap gap-4 mb-8 justify-center">
               {themeOptions.map(option => (
                 <button 
                   key={option.value}
-                  className={`flex items-center gap-2 px-4 py-2 border rounded-full transition-all ${
+                  className={`flex bg-white dark:bg-black items-center gap-2 px-4 py-2 border rounded-full transition-all ${
                     theme === option.value 
                       ? `border-${option.value === "dark" ? "slate" : option.value === "light" ? "amber" : "blue"}-400 ${option.color}` 
                       : 'border-gray-300 opacity-70 hover:opacity-100'
@@ -274,7 +272,6 @@ ${theme === "glass" ? "  blurBackground" : ""}>
                 </button>
               ))}
             </div>
-            
             <div className="flex-1 flex items-center justify-center">
               <div className="w-[330px] h-[340px] relative perspective-1000 overflow-hidden">
                 <AnimatePresence initial={false} mode="wait">
@@ -299,8 +296,6 @@ ${theme === "glass" ? "  blurBackground" : ""}>
               </div>
             </div>
           </div>
-          
-          {/* Code editor - adjusted for medium screens */}
           <div className="w-full lg:flex-1 rounded-lg overflow-hidden border border-zinc-300 mt-6 lg:mt-0">
             <div className="flex items-center justify-between px-4 py-2 border-b border-zinc-300">
               <div className="flex space-x-2">
@@ -328,7 +323,6 @@ ${theme === "glass" ? "  blurBackground" : ""}>
                 </motion.button>
               </div>
             </div>
-            
             <div className="overflow-auto max-h-[25rem] md:max-h-[20rem] lg:max-h-[25rem]">
               <AnimatePresence mode="wait">
                 <motion.div
@@ -356,8 +350,6 @@ ${theme === "glass" ? "  blurBackground" : ""}>
             </div>
           </div>
         </div>
-        
-        {/* Mobile layout */}
         <div className="md:hidden">
           <div className="flex flex-col items-center mb-6">
             <div className="flex items-center justify-center w-full mb-4">
@@ -388,7 +380,7 @@ ${theme === "glass" ? "  blurBackground" : ""}>
               {themeOptions.map(option => (
                 <button 
                   key={option.value}
-                  className={`flex items-center gap-1 px-3 py-1.5 border rounded-full transition-all ${
+                  className={`flex bg-white dark:bg-black items-center gap-1 px-3 py-1.5 border rounded-full transition-all ${
                     theme === option.value 
                       ? `border-${option.value === "dark" ? "slate" : option.value === "light" ? "amber" : "blue"}-400 ${option.color}` 
                       : 'border-gray-300 opacity-70 hover:opacity-100'

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ChevronRight } from 'lucide-react';
+import { Tiles } from '../ui/Tiles';
 
 const Text = () => {
   const adjectives = [
@@ -64,6 +65,10 @@ const Text = () => {
               View components
             </button>
           </div>
+        </div>
+        <div className="absolute -bottom-12 -right-12 w-96 h-96 opacity-70 -z-1 overflow-hidden pointer-events-none">
+          <Tiles rows={8} cols={8} className="scale-110" />
+          <div className="absolute inset-0 bg-gradient-to-br dark:from-zinc-950 from-white via-transparent to-background" />
         </div>
       </div>
     </div>

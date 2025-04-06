@@ -236,3 +236,16 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
+.light body {
+  --tile: var(--zinc-100);
+}
+
+.dark body {
+  --tile: var(--zinc-900);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --tile: var(--zinc-900);
+  }
+}

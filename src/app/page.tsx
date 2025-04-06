@@ -26,19 +26,10 @@ export default function Home() {
           colors={darkColors}
         />
         <div className="relative z-10 w-full flex flex-col items-center">
-          <div className="w-full max-w-screen-2xl px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
+          <div className="w-full max-w-screen-2xl md:px-8 lg:px-12 xl:px-16 2xl:px-24">
             <Hero />
-          </div>
-          
-          <div className="w-full max-w-screen-2xl px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
             <BentoDemo />
-          </div>
-          
-          <div className="w-full max-w-screen-2xl px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
             <Customize />
-          </div>
-          
-          <div className="w-full max-w-screen-2xl px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
             <Build />
           </div>
         </div>
