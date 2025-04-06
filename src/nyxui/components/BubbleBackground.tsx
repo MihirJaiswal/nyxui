@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
+import type { CSSProperties } from 'react';
 
 interface BubblesProps {
   backgroundColorA?: string;
@@ -13,7 +14,8 @@ interface BubblesProps {
     colorE?: string;
     interactive?: string;
   };
-  blendMode?: string;
+  /** Any valid CSS `mix-blend-mode` value */
+  blendMode?: CSSProperties['mixBlendMode'];
   bubbleSize?: string;
 }
 
@@ -126,7 +128,7 @@ const BubbleBackground: React.FC<BubblesProps> = ({
               top: `calc(50% - ${bubbleSize} / 2)`,
               left: `calc(50% - ${bubbleSize} / 2)`,
               background: `radial-gradient(circle at center, rgba(${bubbleColors.colorA}, 0.8) 0, rgba(${bubbleColors.colorA}, 0) 50%) no-repeat`,
-              mixBlendMode: blendMode as any,
+              mixBlendMode: blendMode,
               transformOrigin: 'center center',
               animation: 'bounceV 30s ease infinite'
             }}
@@ -140,7 +142,7 @@ const BubbleBackground: React.FC<BubblesProps> = ({
               top: `calc(50% - ${bubbleSize} / 2)`,
               left: `calc(50% - ${bubbleSize} / 2)`,
               background: `radial-gradient(circle at center, rgba(${bubbleColors.colorB}, 0.8) 0, rgba(${bubbleColors.colorB}, 0) 50%) no-repeat`,
-              mixBlendMode: blendMode as any,
+              mixBlendMode: blendMode,
               transformOrigin: 'calc(50% - 400px)',
               animation: 'moveInCircle 20s reverse infinite'
             }}
@@ -154,7 +156,7 @@ const BubbleBackground: React.FC<BubblesProps> = ({
               top: `calc(50% - ${bubbleSize} / 2 + 200px)`,
               left: `calc(50% - ${bubbleSize} / 2 - 500px)`,
               background: `radial-gradient(circle at center, rgba(${bubbleColors.colorC}, 0.8) 0, rgba(${bubbleColors.colorC}, 0) 50%) no-repeat`,
-              mixBlendMode: blendMode as any,
+              mixBlendMode: blendMode,
               transformOrigin: 'calc(50% + 400px)',
               animation: 'moveInCircle 40s linear infinite'
             }}
@@ -167,7 +169,7 @@ const BubbleBackground: React.FC<BubblesProps> = ({
               top: `calc(50% - ${bubbleSize} / 2)`,
               left: `calc(50% - ${bubbleSize} / 2)`,
               background: `radial-gradient(circle at center, rgba(${bubbleColors.colorD}, 0.8) 0, rgba(${bubbleColors.colorD}, 0) 50%) no-repeat`,
-              mixBlendMode: blendMode as any,
+              mixBlendMode: blendMode,
               transformOrigin: 'calc(50% - 200px)',
               animation: 'bounceH 40s ease infinite'
             }}
@@ -181,7 +183,7 @@ const BubbleBackground: React.FC<BubblesProps> = ({
               top: `calc(50% - ${bubbleSize})`,
               left: `calc(50% - ${bubbleSize})`,
               background: `radial-gradient(circle at center, rgba(${bubbleColors.colorE}, 0.8) 0, rgba(${bubbleColors.colorE}, 0) 50%) no-repeat`,
-              mixBlendMode: blendMode as any,
+              mixBlendMode: blendMode,
               transformOrigin: 'calc(50% - 800px) calc(50% + 200px)',
               animation: 'moveInCircle 20s ease infinite'
             }}
@@ -194,7 +196,7 @@ const BubbleBackground: React.FC<BubblesProps> = ({
               top: '-50%',
               left: '-50%',
               background: `radial-gradient(circle at center, rgba(${bubbleColors.interactive}, 0.8) 0, rgba(${bubbleColors.interactive}, 0) 50%) no-repeat`,
-              mixBlendMode: blendMode as any
+              mixBlendMode: blendMode
             }}
           ></div>
         </div>

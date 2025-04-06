@@ -43,7 +43,7 @@ export function CommandPalette() {
     setOpen(false);
   };
 
-  const iconMap: Record<string, React.ComponentType<any>> = {
+  const iconMap = {
     links: LinkIcon,
     components: Box,
     templates: FileText,
@@ -91,7 +91,7 @@ export function CommandPalette() {
           {nothingFound && <CommandEmpty>No items found.</CommandEmpty>}
 
           {filteredSections.map((section) => {
-            const Icon = iconMap[section.key] || Search;
+            const Icon = iconMap[section.key as keyof typeof iconMap] || Search;
             const heading =
               section.key.charAt(0).toUpperCase() + section.key.slice(1);
 

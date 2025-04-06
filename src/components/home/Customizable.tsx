@@ -153,7 +153,7 @@ ${theme === "glass" ? "  blurBackground" : ""}>
     <div className="overflow-hidden">
       <div className="h-40 w-full overflow-hidden">
         <Image
-          src="/api/placeholder/400/320" 
+          src="https://raw.githubusercontent.com/TheSpeedX/AnyaPath/refs/heads/main/sprites/anya/grin_sprite_bg.png" 
           alt="Card image" 
           width={400}
           height={320}

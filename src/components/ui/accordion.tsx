@@ -106,7 +106,7 @@ export type AccordionItemProps = {
 interface AccordionChildProps {
   value?: React.Key;
   expanded?: boolean;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 function AccordionItem({ value, children, className }: AccordionItemProps) {
