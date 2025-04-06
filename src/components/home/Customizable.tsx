@@ -218,6 +218,7 @@ ${theme === "glass" ? "  blurBackground" : ""}>
   return (
     <div className="p-6">
       <div className="max-w-6xl mx-auto">
+        {/* Mobile tab switcher */}
         <div className="flex md:hidden justify-center mb-6">
           <div className="inline-flex rounded-lg shadow-md overflow-hidden">
             <button
@@ -254,8 +255,9 @@ ${theme === "glass" ? "  blurBackground" : ""}>
           </div>
         </div>
         
-        <div className="hidden md:flex flex-col lg:flex-row justify-center items-end gap-8">
-          <div>
+        {/* Medium and up layout */}
+        <div className="hidden md:flex flex-col lg:flex-row justify-center items-center lg:items-end gap-8">
+          <div className="w-full lg:w-auto">
             <div className="flex flex-wrap gap-4 mb-8 justify-center">
               {themeOptions.map(option => (
                 <button 
@@ -298,7 +300,8 @@ ${theme === "glass" ? "  blurBackground" : ""}>
             </div>
           </div>
           
-          <div className="flex-1 rounded-lg overflow-hidden border border-zinc-300">
+          {/* Code editor - adjusted for medium screens */}
+          <div className="w-full lg:flex-1 rounded-lg overflow-hidden border border-zinc-300 mt-6 lg:mt-0">
             <div className="flex items-center justify-between px-4 py-2 border-b border-zinc-300">
               <div className="flex space-x-2">
                 <div className="w-3 h-3 rounded-full bg-pink-500"></div>
@@ -326,7 +329,7 @@ ${theme === "glass" ? "  blurBackground" : ""}>
               </div>
             </div>
             
-            <div className="overflow-auto max-h-[25rem]">
+            <div className="overflow-auto max-h-[25rem] md:max-h-[20rem] lg:max-h-[25rem]">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={theme}
@@ -354,6 +357,7 @@ ${theme === "glass" ? "  blurBackground" : ""}>
           </div>
         </div>
         
+        {/* Mobile layout */}
         <div className="md:hidden">
           <div className="flex flex-col items-center mb-6">
             <div className="flex items-center justify-center w-full mb-4">

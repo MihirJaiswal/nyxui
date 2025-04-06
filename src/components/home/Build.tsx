@@ -223,7 +223,7 @@ export const Build = () => {
               <div className="h-20 w-16 border-t-2 border-l-2 border-blue-400/30 dark:border-blue-500/30 rounded-tl-3xl"></div>
             </div>
             <div className="relative h-full w-full overflow-hidden rounded-lg">
-              <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-gray-50 dark:from-[#09090B] via-gray-50/90 dark:via-[#09090B]/90 to-transparent z-10"></div>
+              <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-white dark:from-[#09090B] via-white/90 dark:via-[#09090B]/90 to-transparent z-10"></div>
               <div
                 ref={scrollRef}
                 className="relative h-full overflow-hidden"
@@ -267,7 +267,7 @@ export const Build = () => {
                   </div>
                 </div>
               </div>
-              <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-gray-50 dark:from-[#09090B] via-gray-50/90 dark:via-[#09090B] to-transparent z-10"></div>
+              <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-white dark:from-[#09090B] via-white/90 dark:via-[#09090B]/90 to-transparent z-10"></div>
               <div className="absolute inset-0 z-0 opacity-50">
                 {[...Array(20)].map((_, i) => (
                   <div

@@ -9,30 +9,41 @@ import { Build } from "@/components/home/Build";
 export default function Home() {
   const darkColors = ["#7C3AED", "#DB2777", "#3B82F6", "#A78BFA"];
   return (
-    <>
+    <div>
       <Header />
-      <div className="relative z-10">
-      <AnimatedGradientBg
-        pattern="mesh"
-        blur={80}
-        speed={0.5}
-        opacity={0.5}
-        position="fixed"
-        zIndex={0}
-        animate={true}
-        size="full"
-        patternIntensity={1.5}
-        interactive={true}
-        colors={darkColors}
-      />
-      <div className="relative z-10">
-        <Hero />
+      <div className="relative w-full flex flex-col items-center">
+        <AnimatedGradientBg
+          pattern="mesh"
+          blur={80}
+          speed={0.5}
+          opacity={0.5}
+          position="fixed"
+          zIndex={0}
+          animate={true}
+          size="full"
+          patternIntensity={1.5}
+          interactive={true}
+          colors={darkColors}
+        />
+        <div className="relative z-10 w-full flex flex-col items-center">
+          <div className="w-full max-w-screen-2xl px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
+            <Hero />
+          </div>
+          
+          <div className="w-full max-w-screen-2xl px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
+            <BentoDemo />
+          </div>
+          
+          <div className="w-full max-w-screen-2xl px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
+            <Customize />
+          </div>
+          
+          <div className="w-full max-w-screen-2xl px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
+            <Build />
+          </div>
+        </div>
       </div>
-      <BentoDemo />
-      <Customize/>
-      <Build/>
-      </div>
-      <Footer/>
-    </>
+      <Footer />
+    </div>
   );
 }

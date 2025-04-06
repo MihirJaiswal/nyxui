@@ -21,7 +21,7 @@ export const Hero = () => {
 
   return (
     <div className="flex  flex-col justify-center items-center">
-      <main className="flex-1 w-full">
+      <main className="flex-1 w-full mx-auto">
         <section className="space-y-8 pb-12 pt-16 md:pt-20" aria-label="Hero Section">
           <div className="container max-w-5xl mx-auto flex flex-col items-center justify-center text-center px-4">
             <Badge variant="secondary" className="mb-6 px-4 py-1.5 text-sm font-medium">

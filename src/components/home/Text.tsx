@@ -36,9 +36,11 @@ const Text = () => {
         
         <div className="relative z-10">
           <h1 className="text-5xl font-bold leading-tight tracking-tight sm:text-6xl lg:text-7xl text-gray-900 dark:text-white">
-            Build <span className="text-purple-500 font-extrabold inline-block transform hover:scale-105 transition-all duration-300">faster</span> &{" "}
+            Build <span className="text-purple-500 font-extrabold inline-block transform hover:scale-105 transition-all duration-300">faster</span> 
+            <br/>
+            &{" "}
             
-            <span className="relative font-extrabold inline-block h-16 sm:h-20">
+            <span className="relative font-extrabold inline-block h-12 md:h-16">
               <span 
                 className={`text-pink-600 dark:text-pink-500 absolute left-0 transition-all duration-300 ${
                   isAnimating ? 'opacity-0 transform -translate-y-6' : 'opacity-100 transform translate-y-0'
