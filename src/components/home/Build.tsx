@@ -212,13 +212,13 @@ export const Build = () => {
   ]
   const allCards = [...cardComponents, ...cardComponents, ...cardComponents]
   return (
-    <div className="relative w-full overflow-hidden text-gray-900 dark:text-white">
-      <div className="mx-auto max-w-7xl px-4 md:py-16 sm:px-6 lg:px-8">
+    <div className="relative w-full overflow-hidden text-gray-900 dark:text-white md:pt-12">
+      <div className="mx-auto max-w-7xl px-4 py-10 md:py-16 sm:px-6 lg:px-8">
         <div className="grid md:gap-12 lg:grid-cols-12">
-          <div className="flex flex-col justify-center md:space-y-8 lg:col-span-5">
+          <div className="flex flex-col justify-center md:space-y-8 lg:col-span-5 pt-4">
             <Text/>
           </div>
-          <div className="relative lg:col-span-7 h-[700px] -z-1">
+          <div className="relative lg:col-span-7 h-[650px] -z-1">
             <div className="absolute left-0 top-20 hidden lg:block">
              
             </div>

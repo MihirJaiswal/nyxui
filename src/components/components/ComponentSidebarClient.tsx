@@ -69,16 +69,16 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
     <div
       ref={scrollContainerRef}
       className={cn(
-        "h-full overflow-y-auto transition-all duration-300 py-3",
+        "h-full overflow-y-auto transition-all duration-300 py-2 md:py-3",
         isScrolling
-          ? "pr-2  hide-scrollbar scrollbar-thumb-primary/20 scrollbar-track-transparent hover:scrollbar-thumb-primary/30"
-          : "pr-4 scrollbar-no"
+          ? "pr-1 md:pr-2 hide-scrollbar scrollbar-thumb-primary/20 scrollbar-track-transparent hover:scrollbar-thumb-primary/30"
+          : "pr-2 md:pr-3 scrollbar-no"
       )}
     >
-      <div className="space-y-8 hide-scrollbar">
+      <div className="space-y-6 md:space-y-8 hide-scrollbar">
         {/* Getting Started Section */}
-        <div className="space-y-3 mb-6">
-          <div className="font-bold tracking-wider px-2">
+        <div className="space-y-2 md:space-y-3 mb-4 md:mb-6">
+          <div className="font-bold tracking-wider px-1 md:px-2 text-sm md:text-base">
             {gettingStartedSection.title}
           </div>
           <div className="space-y-0.5">
@@ -89,25 +89,25 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "group flex items-center w-full text-sm py-2 rounded-md transition-all duration-200",
+                    "group flex items-center w-full text-xs md:text-sm py-1.5 md:py-2 rounded-md transition-all duration-200",
                     isActive
                       ? "bg-primary/10 text-primary font-medium"
                       : "text-foreground/70 hover:text-foreground hover:bg-muted/50"
                   )}
                 >
                   {isActive && (
-                    <Minus className="mr-1 text-purple-500" size={24} fill="#9C27B0" style={{ transform: 'rotate(90deg)' }} />
+                    <Minus className="mr-1 text-purple-500" size={20} fill="#9C27B0" style={{ transform: 'rotate(90deg)' }} />
                   )}
                   <span className={cn(
                     "truncate",
-                    isActive ? "ml-0" : "ml-4 group-hover:ml-2 transition-all duration-200"
+                    isActive ? "ml-0" : "ml-3 md:ml-4 group-hover:ml-2 transition-all duration-200"
                   )}>
                     {item.name}
                   </span>
                   
                   {/* NEW badge */}
                   {item.isNew && (
-                    <span className="ml-2 px-1.5 py-0.5 text-xs font-medium border-2 border-blue-500 text-blue-500 dark:text-white rounded-md">
+                    <span className="ml-1 md:ml-2 px-1 py-0.5 text-xs font-medium border border-blue-500 text-blue-500 dark:text-white rounded-md">
                       New
                     </span>
                   )}
@@ -115,16 +115,16 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
               );
             })}
           </div>
-         <div className="w-52">
-         <Separator/>
+         <div className="w-full">
+           <Separator/>
          </div>
         </div>    
-      <div><h1 className="font-bold tracking-wider px-2">Components</h1></div>
+      <div><h1 className="font-bold tracking-wider px-1 md:px-2 text-sm md:text-base">Components</h1></div>
         {/* Component Categories */}
         {categories.map((category) => {
           return (         
-            <div key={category.category} className="space-y-3">
-              <div className="text-xs font-bold text-primary/80 dark:text-primary/70 uppercase tracking-wider px-2">
+            <div key={category.category} className="space-y-2 md:space-y-3">
+              <div className="text-xs font-bold text-primary/80 dark:text-primary/70 uppercase tracking-wider px-1 md:px-2">
                 {category.category}
               </div>
               <div className="space-y-0.5">
@@ -135,25 +135,25 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
                       key={item.href}
                       href={item.href}
                       className={cn(
-                        "group flex items-center w-full text-sm py-2 rounded-md transition-all duration-200",
+                        "group flex items-center w-full text-xs md:text-sm py-1.5 md:py-2 rounded-md transition-all duration-200",
                         isActive
                           ? "bg-primary/10 text-primary font-medium"
                           : "text-foreground/70 hover:text-foreground hover:bg-muted/50"
                       )}
                     >
                       {isActive && (
-                        <Minus className="mr-1 text-purple-500" size={24} fill="#3455eb" style={{ transform: 'rotate(90deg)' }} />
+                        <Minus className="mr-1 text-purple-500" size={20} fill="#3455eb" style={{ transform: 'rotate(90deg)' }} />
                       )}
                       <span className={cn(
                         "truncate",
-                        isActive ? "ml-0" : "ml-4 group-hover:ml-2 transition-all duration-200"
+                        isActive ? "ml-0" : "ml-3 md:ml-4 group-hover:ml-2 transition-all duration-200"
                       )}>
                         {item.name}
                       </span>
                       
                       {/* NEW badge */}
                       {item.isNew && (
-                        <span className="ml-2 px-1.5 py-0.5 text-xs font-medium border-2 border-purple-500 text-purple-500 dark:text-white rounded-md">
+                        <span className="ml-1 md:ml-2 px-1 py-0.5 text-xs font-medium border border-purple-500 text-purple-500 dark:text-white rounded-md">
                           New
                         </span>
                       )}

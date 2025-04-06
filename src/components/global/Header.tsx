@@ -12,6 +12,7 @@ import { CommandPalette } from "./CommandPallete"
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [activeLink, setActiveLink] = useState("/")
+  
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20)
@@ -20,6 +21,7 @@ export default function Header() {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+  
   useEffect(() => {
     setActiveLink(window.location.pathname)
   }, [])
@@ -30,6 +32,10 @@ export default function Header() {
     { href: "/playground", label: "Playground" },
   ]
 
+  const openSearch = () => {
+    document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'k', 'ctrlKey': true}))
+  }
+
   return (
     <header
       className={cn(
@@ -37,20 +43,17 @@ export default function Header() {
         scrolled ? "bg-background/85 backdrop-blur-xl shadow-sm" : "bg-background/50 backdrop-blur-sm",
       )}
     >
-      <div className="flex h-16 items-center justify-between px-4 md:px-8">
-        <div className="flex items-center space-x-4">
+      <div className="flex h-16 items-center justify-between px-4 md:px-6 lg:px-8">
+        {/* Logo - Left side for both mobile and desktop */}
+        <div className="flex items-center">
           <Link href="/" className="group flex items-center transition-all duration-300 hover:opacity-90">
-            <div className="relative flex items-center justify-center overflow-hidden ">
+            <div className="relative flex items-center justify-center overflow-hidden">
               <div className="h-10 w-10 border-4 border-white dark:border-black flex items-center justify-center bg-black dark:bg-white rounded-full">
-              <svg xmlns="http://www.w3.org/2000/svg" version="1.0" fill="currentColor" viewBox="185.7693927125506 148.35232 684.0200809716599 711.7382399999999" preserveAspectRatio="xMidYMid meet" width="684.0200809716599" height="711.7382399999999">
-                <g id="deeditor_bgCarrier" strokeWidth="0">
-                  <rect id="dee_c_e" x="-3" y="-3" width="1030" height="1030" rx="0"/>
-                </g>
-
-                <g transform="translate(0.000000,1024.000000) scale(0.100000,-0.100000)" fill="currentColor" className="text-white dark:text-black">
-                <path d="M0 5120 l0 -5120 5120 0 5120 0 0 5120 0 5120 -5120 0 -5120 0 0 -5120z m5375 2860 c140 -12 393 -49 415 -61 10 -5 -2 -8 -34 -9 -70 0 -244 -27 -371 -57 -432 -101 -860 -347 -1160 -665 -351 -372 -581 -849 -662 -1368 -27 -173 -24 -540 5 -710 76 -448 246 -823 520 -1151 351 -419 881 -713 1422 -790 141 -20 478 -18 615 4 526 86 976 314 1364 692 151 147 261 280 367 440 126 192 247 443 304 633 12 40 24 71 26 69 2 -2 -1 -57 -7 -123 -71 -841 -511 -1626 -1193 -2132 -693 -513 -1598 -694 -2436 -486 -1191 296 -2083 1312 -2224 2534 -18 155 -21 467 -6 621 68 689 347 1289 819 1760 197 196 400 347 634 473 475 254 1051 372 1602 326z m1946 -570 c13 -112 50 -246 86 -313 71 -130 243 -220 493 -258 l84 -13 -107 -17 c-388 -62 -499 -187 -565 -639 l-8 -55 -17 128 c-10 70 -28 161 -41 202 -69 217 -223 323 -529 365 -45 7 -83 13 -85 14 -1 2 24 6 56 10 166 19 353 90 435 165 85 78 131 204 162 440 8 58 15 111 16 116 1 6 4 -3 5 -20 2 -16 9 -73 15 -125z m-1840 -48 c141 -133 236 -305 293 -532 37 -146 46 -224 46 -408 0 -93 4 -194 10 -223 21 -114 153 -338 301 -510 117 -136 142 -175 147 -228 5 -64 -23 -102 -128 -173 -158 -106 -176 -156 -99 -276 34 -54 38 -103 10 -148 -25 -41 -78 -81 -137 -103 l-46 -18 42 -7 c48 -8 95 -48 106 -91 9 -34 -11 -77 -65 -139 -37 -42 -41 -53 -41 -100 0 -30 7 -73 16 -97 37 -103 16 -206 -58 -276 -105 -101 -280 -109 -623 -25 -122 29 -170 36 -255 36 -92 1 -111 -2 -154 -23 -137 -67 -201 -210 -194 -429 2 -56 0 -102 -3 -102 -11 0 -157 158 -222 240 -174 217 -272 427 -324 695 -27 140 -24 446 6 585 56 262 165 487 344 710 34 41 176 190 317 330 280 278 357 372 443 539 101 194 134 346 124 565 -6 116 -31 276 -53 330 -14 36 114 -44 197 -122z m1730 -1872 c20 -76 56 -136 103 -175 55 -45 172 -92 252 -102 l59 -7 -93 -18 c-221 -44 -303 -134 -333 -367 -16 -120 -21 -127 -30 -41 -29 267 -109 361 -344 409 l-84 17 84 16 c152 29 250 90 294 184 21 44 50 185 52 253 1 24 6 9 15 -44 7 -44 18 -100 25 -125z" />
-                </g>
-              </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.0" fill="currentColor" viewBox="185.7693927125506 148.35232 684.0200809716599 711.7382399999999" preserveAspectRatio="xMidYMid meet" width="684.0200809716599" height="711.7382399999999">
+                  <g transform="translate(0.000000,1024.000000) scale(0.100000,-0.100000)" fill="currentColor" className="text-white dark:text-black">
+                    <path d="M0 5120 l0 -5120 5120 0 5120 0 0 5120 0 5120 -5120 0 -5120 0 0 -5120z m5375 2860 c140 -12 393 -49 415 -61 10 -5 -2 -8 -34 -9 -70 0 -244 -27 -371 -57 -432 -101 -860 -347 -1160 -665 -351 -372 -581 -849 -662 -1368 -27 -173 -24 -540 5 -710 76 -448 246 -823 520 -1151 351 -419 881 -713 1422 -790 141 -20 478 -18 615 4 526 86 976 314 1364 692 151 147 261 280 367 440 126 192 247 443 304 633 12 40 24 71 26 69 2 -2 -1 -57 -7 -123 -71 -841 -511 -1626 -1193 -2132 -693 -513 -1598 -694 -2436 -486 -1191 296 -2083 1312 -2224 2534 -18 155 -21 467 -6 621 68 689 347 1289 819 1760 197 196 400 347 634 473 475 254 1051 372 1602 326z m1946 -570 c13 -112 50 -246 86 -313 71 -130 243 -220 493 -258 l84 -13 -107 -17 c-388 -62 -499 -187 -565 -639 l-8 -55 -17 128 c-10 70 -28 161 -41 202 -69 217 -223 323 -529 365 -45 7 -83 13 -85 14 -1 2 24 6 56 10 166 19 353 90 435 165 85 78 131 204 162 440 8 58 15 111 16 116 1 6 4 -3 5 -20 2 -16 9 -73 15 -125z m-1840 -48 c141 -133 236 -305 293 -532 37 -146 46 -224 46 -408 0 -93 4 -194 10 -223 21 -114 153 -338 301 -510 117 -136 142 -175 147 -228 5 -64 -23 -102 -128 -173 -158 -106 -176 -156 -99 -276 34 -54 38 -103 10 -148 -25 -41 -78 -81 -137 -103 l-46 -18 42 -7 c48 -8 95 -48 106 -91 9 -34 -11 -77 -65 -139 -37 -42 -41 -53 -41 -100 0 -30 7 -73 16 -97 37 -103 16 -206 -58 -276 -105 -101 -280 -109 -623 -25 -122 29 -170 36 -255 36 -92 1 -111 -2 -154 -23 -137 -67 -201 -210 -194 -429 2 -56 0 -102 -3 -102 -11 0 -157 158 -222 240 -174 217 -272 427 -324 695 -27 140 -24 446 6 585 56 262 165 487 344 710 34 41 176 190 317 330 280 278 357 372 443 539 101 194 134 346 124 565 -6 116 -31 276 -53 330 -14 36 114 -44 197 -122z m1730 -1872 c20 -76 56 -136 103 -175 55 -45 172 -92 252 -102 l59 -7 -93 -18 c-221 -44 -303 -134 -333 -367 -16 -120 -21 -127 -30 -41 -29 267 -109 361 -344 409 l-84 17 84 16 c152 29 250 90 294 184 21 44 50 185 52 253 1 24 6 9 15 -44 7 -44 18 -100 25 -125z" />
+                  </g>
+                </svg>
               </div>
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
@@ -59,7 +62,8 @@ export default function Header() {
             </span>
           </Link>
 
-          <nav className="hidden md:flex items-center space-x-1 ml-8">
+          {/* Desktop Navigation Links - now visible at lg breakpoint instead of md */}
+          <nav className="hidden lg:flex items-center space-x-1 ml-8">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -78,18 +82,30 @@ export default function Header() {
           </nav>
         </div>
 
-        <div className="flex items-center space-x-4">
-          <div className="hidden md:flex items-center space-x-2">
-            <div className="hidden md:flex items-center flex-1 justify-center px-4">
-              <CommandPalette />
-            </div>
+        {/* Search Bar - Show on medium screens also now, not just mobile */}
+        <div className="flex lg:hidden flex-1 justify-center mx-2">
+          <Button
+            variant="outline"
+            className="w-full max-w-xs justify-center text-sm text-muted-foreground rounded-full border border-muted/30"
+            onClick={openSearch}
+          >
+            <Search className="mr-2 h-4 w-4 text-black dark:text-white" />
+            <span className="text-black dark:text-white">Search</span>
+          </Button>
+        </div>
+
+        {/* Right Section - Icons for desktop and mobile */}
+        <div className="flex items-center space-x-2">
+          {/* Desktop version with command palette - now visible at lg breakpoint instead of md */}
+          <div className="hidden lg:flex items-center space-x-3">
+            <CommandPalette />
             <Link href="https://github.com/nyx-ui/components" target="_blank" rel="noreferrer">
               <Button
                 variant="ghost"
                 size="icon"
                 className="rounded-full hover:bg-muted/80 transition-all duration-300 hover:scale-105"
               >
-                <Github className="h-5 w-5 text-muted-foreground hover:text-foreground transition-colors" />
+                <Github className="h-5 w-5 text-black dark:text-white transition-colors" />
                 <span className="sr-only">GitHub</span>
               </Button>
             </Link>
@@ -99,32 +115,63 @@ export default function Header() {
                 size="icon"
                 className="rounded-full hover:bg-muted/80 transition-all duration-300 hover:scale-105"
               >
-                <Twitter className="h-5 w-5 text-muted-foreground hover:text-foreground transition-colors" />
+                <svg
+                  height="23"
+                  fill="currentColor"
+                  viewBox="0 0 1200 1227"
+                  width="23"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z" />
+                </svg>
                 <span className="sr-only">Twitter</span>
               </Button>
             </Link>
             <ModeToggle />
           </div>
 
-          <div className="flex md:hidden items-center space-x-2">
-            <Button
-              variant="outline"
-              size="icon"
-              className="border-none hover:bg-muted/80 rounded-full transition-all duration-300"
-              onClick={() => document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'k', 'ctrlKey': true}))}
-            >
-              <Search className="h-5 w-5" />
-              <span className="sr-only">Search</span>
-            </Button>
+          {/* Mobile version with only icons - now visible until lg breakpoint instead of md */}
+          <div className="flex lg:hidden items-center space-x-1">
+            <Link href="https://github.com/nyx-ui/components" target="_blank" rel="noreferrer">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="rounded-full h-8 w-8 p-0 hover:bg-muted/80 transition-all duration-300"
+              >
+                <Github className="h-4 w-4 text-black dark:text-white" />
+                <span className="sr-only">GitHub</span>
+              </Button>
+            </Link>
+            
+            <Link href="https://twitter.com/nyx_ui" target="_blank" rel="noreferrer">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="rounded-full h-8 w-8 p-0 hover:bg-muted/80 transition-all duration-300"
+              >
+                <svg
+                  height="23"
+                  fill="currentColor"
+                  viewBox="0 0 1200 1227"
+                  width="23"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z" />
+                </svg>
+                <span className="sr-only">Twitter</span>
+              </Button>
+            </Link>
+            
             <ModeToggle />
+            
             <Sheet>
               <SheetTrigger asChild>
                 <Button
-                  variant="outline"
+                  variant="ghost"
                   size="icon"
-                  className="border-none hover:bg-muted/80 rounded-full transition-all duration-300"
+                  className="rounded-full h-8 w-8 p-0 hover:bg-muted/80 transition-all duration-300"
                 >
-                  <Menu className="h-5 w-5" />
+                  <Menu className="h-4 w-4 text-black dark:text-white" />
                   <span className="sr-only">Open Menu</span>
                 </Button>
               </SheetTrigger>
@@ -135,15 +182,11 @@ export default function Header() {
                 <SheetHeader className="mb-6">
                   <SheetTitle className="flex items-center gap-2 text-lg font-bold">
                     <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full ">
-                    <svg xmlns="http://www.w3.org/2000/svg" version="1.0" fill="currentColor" viewBox="185.7693927125506 148.35232 684.0200809716599 711.7382399999999" preserveAspectRatio="xMidYMid meet" width="684.0200809716599" height="711.7382399999999">
-                      <g id="deeditor_bgCarrier" strokeWidth="0">
-                        <rect id="dee_c_e" x="-3" y="-3" width="1030" height="1030" rx="0"/>
-                      </g>
-
-                      <g transform="translate(0.000000,1024.000000) scale(0.100000,-0.100000)" fill="currentColor" className="text-white dark:text-black">
-                      <path d="M0 5120 l0 -5120 5120 0 5120 0 0 5120 0 5120 -5120 0 -5120 0 0 -5120z m5375 2860 c140 -12 393 -49 415 -61 10 -5 -2 -8 -34 -9 -70 0 -244 -27 -371 -57 -432 -101 -860 -347 -1160 -665 -351 -372 -581 -849 -662 -1368 -27 -173 -24 -540 5 -710 76 -448 246 -823 520 -1151 351 -419 881 -713 1422 -790 141 -20 478 -18 615 4 526 86 976 314 1364 692 151 147 261 280 367 440 126 192 247 443 304 633 12 40 24 71 26 69 2 -2 -1 -57 -7 -123 -71 -841 -511 -1626 -1193 -2132 -693 -513 -1598 -694 -2436 -486 -1191 296 -2083 1312 -2224 2534 -18 155 -21 467 -6 621 68 689 347 1289 819 1760 197 196 400 347 634 473 475 254 1051 372 1602 326z m1946 -570 c13 -112 50 -246 86 -313 71 -130 243 -220 493 -258 l84 -13 -107 -17 c-388 -62 -499 -187 -565 -639 l-8 -55 -17 128 c-10 70 -28 161 -41 202 -69 217 -223 323 -529 365 -45 7 -83 13 -85 14 -1 2 24 6 56 10 166 19 353 90 435 165 85 78 131 204 162 440 8 58 15 111 16 116 1 6 4 -3 5 -20 2 -16 9 -73 15 -125z m-1840 -48 c141 -133 236 -305 293 -532 37 -146 46 -224 46 -408 0 -93 4 -194 10 -223 21 -114 153 -338 301 -510 117 -136 142 -175 147 -228 5 -64 -23 -102 -128 -173 -158 -106 -176 -156 -99 -276 34 -54 38 -103 10 -148 -25 -41 -78 -81 -137 -103 l-46 -18 42 -7 c48 -8 95 -48 106 -91 9 -34 -11 -77 -65 -139 -37 -42 -41 -53 -41 -100 0 -30 7 -73 16 -97 37 -103 16 -206 -58 -276 -105 -101 -280 -109 -623 -25 -122 29 -170 36 -255 36 -92 1 -111 -2 -154 -23 -137 -67 -201 -210 -194 -429 2 -56 0 -102 -3 -102 -11 0 -157 158 -222 240 -174 217 -272 427 -324 695 -27 140 -24 446 6 585 56 262 165 487 344 710 34 41 176 190 317 330 280 278 357 372 443 539 101 194 134 346 124 565 -6 116 -31 276 -53 330 -14 36 114 -44 197 -122z m1730 -1872 c20 -76 56 -136 103 -175 55 -45 172 -92 252 -102 l59 -7 -93 -18 c-221 -44 -303 -134 -333 -367 -16 -120 -21 -127 -30 -41 -29 267 -109 361 -344 409 l-84 17 84 16 c152 29 250 90 294 184 21 44 50 185 52 253 1 24 6 9 15 -44 7 -44 18 -100 25 -125z" />
-                      </g>
-                    </svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" version="1.0" fill="currentColor" viewBox="185.7693927125506 148.35232 684.0200809716599 711.7382399999999" preserveAspectRatio="xMidYMid meet" width="684.0200809716599" height="711.7382399999999">
+                        <g transform="translate(0.000000,1024.000000) scale(0.100000,-0.100000)" fill="currentColor" className="text-white dark:text-black">
+                          <path d="M0 5120 l0 -5120 5120 0 5120 0 0 5120 0 5120 -5120 0 -5120 0 0 -5120z m5375 2860 c140 -12 393 -49 415 -61 10 -5 -2 -8 -34 -9 -70 0 -244 -27 -371 -57 -432 -101 -860 -347 -1160 -665 -351 -372 -581 -849 -662 -1368 -27 -173 -24 -540 5 -710 76 -448 246 -823 520 -1151 351 -419 881 -713 1422 -790 141 -20 478 -18 615 4 526 86 976 314 1364 692 151 147 261 280 367 440 126 192 247 443 304 633 12 40 24 71 26 69 2 -2 -1 -57 -7 -123 -71 -841 -511 -1626 -1193 -2132 -693 -513 -1598 -694 -2436 -486 -1191 296 -2083 1312 -2224 2534 -18 155 -21 467 -6 621 68 689 347 1289 819 1760 197 196 400 347 634 473 475 254 1051 372 1602 326z m1946 -570 c13 -112 50 -246 86 -313 71 -130 243 -220 493 -258 l84 -13 -107 -17 c-388 -62 -499 -187 -565 -639 l-8 -55 -17 128 c-10 70 -28 161 -41 202 -69 217 -223 323 -529 365 -45 7 -83 13 -85 14 -1 2 24 6 56 10 166 19 353 90 435 165 85 78 131 204 162 440 8 58 15 111 16 116 1 6 4 -3 5 -20 2 -16 9 -73 15 -125z m-1840 -48 c141 -133 236 -305 293 -532 37 -146 46 -224 46 -408 0 -93 4 -194 10 -223 21 -114 153 -338 301 -510 117 -136 142 -175 147 -228 5 -64 -23 -102 -128 -173 -158 -106 -176 -156 -99 -276 34 -54 38 -103 10 -148 -25 -41 -78 -81 -137 -103 l-46 -18 42 -7 c48 -8 95 -48 106 -91 9 -34 -11 -77 -65 -139 -37 -42 -41 -53 -41 -100 0 -30 7 -73 16 -97 37 -103 16 -206 -58 -276 -105 -101 -280 -109 -623 -25 -122 29 -170 36 -255 36 -92 1 -111 -2 -154 -23 -137 -67 -201 -210 -194 -429 2 -56 0 -102 -3 -102 -11 0 -157 158 -222 240 -174 217 -272 427 -324 695 -27 140 -24 446 6 585 56 262 165 487 344 710 34 41 176 190 317 330 280 278 357 372 443 539 101 194 134 346 124 565 -6 116 -31 276 -53 330 -14 36 114 -44 197 -122z m1730 -1872 c20 -76 56 -136 103 -175 55 -45 172 -92 252 -102 l59 -7 -93 -18 c-221 -44 -303 -134 -333 -367 -16 -120 -21 -127 -30 -41 -29 267 -109 361 -344 409 l-84 17 84 16 c152 29 250 90 294 184 21 44 50 185 52 253 1 24 6 9 15 -44 7 -44 18 -100 25 -125z" />
+                        </g>
+                      </svg>
                     </div>
                     <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80">
                       Nyx {" "}
@@ -151,20 +194,6 @@ export default function Header() {
                     </span>
                   </SheetTitle>
                 </SheetHeader>
-
-                {/* Mobile search */}
-                <div className="mb-4">
-                  <Button
-                    variant="outline"
-                    className="w-full justify-start text-sm text-muted-foreground rounded-md"
-                    onClick={() => {
-                      document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'k', 'ctrlKey': true}))
-                    }}
-                  >
-                    <Search className="mr-2 h-4 w-4" />
-                    <span>Search components...</span>
-                  </Button>
-                </div>
 
                 <nav className="flex flex-col space-y-1 mt-2">
                   {navLinks.map((link) => (
@@ -183,31 +212,6 @@ export default function Header() {
                     </Link>
                   ))}
                 </nav>
-
-                <div className="mt-8 flex flex-col space-y-4">
-                  <div className="flex justify-around items-center p-2 rounded-lg bg-muted/30">
-                    <Link href="https://github.com/nyx-ui/components" target="_blank" rel="noreferrer">
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="rounded-full hover:bg-background/80 transition-all duration-300"
-                      >
-                        <Github className="h-5 w-5 text-muted-foreground hover:text-foreground" />
-                        <span className="sr-only">GitHub</span>
-                      </Button>
-                    </Link>
-                    <Link href="https://twitter.com/nyx_ui" target="_blank" rel="noreferrer">
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="rounded-full hover:bg-background/80 transition-all duration-300"
-                      >
-                        <Twitter className="h-5 w-5 text-muted-foreground hover:text-foreground" />
-                        <span className="sr-only">Twitter</span>
-                      </Button>
-                    </Link>
-                  </div>
-                </div>
               </SheetContent>
             </Sheet>
           </div>

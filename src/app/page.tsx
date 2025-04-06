@@ -9,8 +9,8 @@ import { Build } from "@/components/home/Build";
 export default function Home() {
   const darkColors = ["#7C3AED", "#DB2777", "#3B82F6", "#A78BFA"];
   return (
-    <div>
-      <Header />
+    <>
+    <Header />
       <div className="relative w-full flex flex-col items-center">
         <AnimatedGradientBg
           pattern="mesh"
@@ -35,6 +35,6 @@ export default function Home() {
         </div>
       </div>
       <Footer />
-    </div>
+    </>
   );
 }

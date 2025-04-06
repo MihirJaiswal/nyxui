@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Tiles } from '../ui/Tiles';
+import Image from 'next/image';
 
 const Text = () => {
   const adjectives = [
@@ -37,17 +38,40 @@ const Text = () => {
         
         <div className="relative z-10">
           <h1 className="text-5xl font-bold leading-tight sext-6xl lg:text-7xl text-gray-900 dark:text-white">
-            Build <span className="text-purple-500 font-extrabold inline-block transform hover:scale-105 transition-all duration-300">faster</span> 
+            Build{" "}
+            <span className="font-extrabold inline-block transform hover:scale-105 transition-all duration-300"
+            style={{
+              backgroundImage:
+                "url('/bg.webp')",
+              backgroundSize: "contain",
+              backgroundPosition: "center",
+              backgroundRepeat: "repeat",
+              WebkitBackgroundClip: "text",
+              color: "transparent",
+              WebkitTextStrokeWidth: "1px",
+              WebkitTextStrokeColor: "#efcdfa",
+            }}
+            >
+            Faster
+            </span> 
             <br/>
             &{" "}
             
             <span className="relative font-extrabold inline-block h-12 lg:h-20">
               <span 
-                className={`text-pink-600 dark:text-pink-500 absolute left-0 transition-all duration-300 ${
+                className={`text-pink-600 dark:text-pink-500 relative absolute left-0 transition-all duration-300 ${
                   isAnimating ? 'opacity-0 transform -translate-y-6' : 'opacity-100 transform translate-y-0'
                 }`}
               >
                 {adjectives[currentIndex]}
+                <Image
+                  src="/underline.svg"
+                  alt="underline"
+                  width={0}
+                  height={0}
+                  priority
+                  className="absolute left-0 bottom-1 md:bottom-0 w-full"
+                />
               </span>
             </span>
           </h1>
@@ -63,7 +87,7 @@ const Text = () => {
             </button>
           </div>
         </div>
-        <div className="absolute -bottom-12 -right-12 w-96 h-96 opacity-70 -z-1 overflow-hidden pointer-events-none">
+        <div className="absolute -bottom-4 md:-bottom-12 -right-12 w-96 h-96 opacity-40 md:opacity-70 -z-1 overflow-hidden pointer-events-none">
           <Tiles rows={8} cols={8} className="scale-110" />
           <div className="absolute inset-0 bg-gradient-to-br dark:from-zinc-950 from-white via-transparent to-background" />
         </div>

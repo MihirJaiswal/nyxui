@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus, prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import Image from "next/image";
-import { Tiles } from "../ui/Tiles";
 
 interface MajesticCardProps {
   theme: string;
@@ -352,30 +351,6 @@ ${theme === "glass" ? "  blurBackground" : ""}>
         </div>
         <div className="md:hidden">
           <div className="flex flex-col items-center mb-6">
-            <div className="flex items-center justify-center w-full mb-4">
-              <button 
-                onClick={slidePrev}
-                className="p-1.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-              </button>
-              
-              <div className="mx-3 text-sm font-medium">
-                {currentTheme.name}
-              </div>
-              
-              <button 
-                onClick={slideNext}
-                className="p-1.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
-                </svg>
-              </button>
-            </div>
-            
             <div className="flex flex-wrap gap-2 justify-center">
               {themeOptions.map(option => (
                 <button 
