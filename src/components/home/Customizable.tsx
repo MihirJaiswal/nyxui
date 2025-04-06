@@ -217,16 +217,16 @@ ${theme === "glass" ? "  blurBackground" : ""}>
   };
 
   return (
-    <div className="p-6">
+    <div className="px-6">
       <div className="max-w-6xl mx-auto">
         <div className="flex md:hidden justify-center mb-6">
           <div className="inline-flex rounded-lg shadow-md overflow-hidden">
             <button
               onClick={() => setActiveTab("preview")}
-              className={`px-6 bg-white dark:bg-black py-3 text-sm font-medium transition-all duration-200 ${
+              className={`px-6 py-3 text-sm font-medium transition-all duration-200 ${
                 activeTab === "preview" 
                   ? "bg-purple-600 text-white" 
-                  : "bg-white text-gray-700 hover:bg-gray-50"
+                  : "bg-white dark:bg-black dark:text-white text-black hover:bg-gray-50"
               }`}
             >
               <div className="flex items-center space-x-2">
@@ -242,7 +242,7 @@ ${theme === "glass" ? "  blurBackground" : ""}>
               className={`px-6 py-3 text-sm font-medium transition-all duration-200 ${
                 activeTab === "code" 
                   ? "bg-purple-600 text-white" 
-                  : "bg-white text-gray-700 hover:bg-gray-50"
+                  : "bg-white dark:bg-black text-black dark:text-white hover:bg-gray-50"
               }`}
             >
               <div className="flex items-center space-x-2">
@@ -422,7 +422,7 @@ ${theme === "glass" ? "  blurBackground" : ""}>
           
           {activeTab === "code" && (
             <div className="rounded-lg overflow-hidden border border-zinc-300">
-              <div className="flex items-center justify-between px-3 py-2 border-b border-zinc-300">
+              <div className="flex items-center justify-between px-3 py-2 border-b border-zinc-300 bg-white dark:bg-black">
                 <div className="flex space-x-1.5">
                   <div className="w-2.5 h-2.5 rounded-full bg-pink-500"></div>
                   <div className="w-2.5 h-2.5 rounded-full bg-amber-400"></div>

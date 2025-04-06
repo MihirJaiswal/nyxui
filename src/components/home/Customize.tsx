@@ -14,14 +14,14 @@ const Customize = () => {
             your way.
           </h1>
         </div>
-        <p className="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mt-4">
+        <p className="md:text-lg text-gray-700 dark:text-gray-300 max-w-2xl mt-4 bg-white dark:bg-black md:bg-none md:border-none p-4 rounded-lg border border-purple-500">
           Customize your experience with our intuitive theme editor. Choose colors, styles, and layouts that reflect your unique personality.
         </p>
       </div>
       <div className="w-full relative">
-        <div className="absolute -top-12 -left-12 w-96 h-96 opacity-70 -z-1 overflow-hidden pointer-events-none">
+        <div className="absolute -top-44 md:-top-12 -left-12 w-96 h-96 opacity-70 -z-1 overflow-hidden pointer-events-none">
           <Tiles rows={8} cols={8} className="scale-110" />
-          <div className="absolute inset-0 bg-gradient-to-br dark:from-zinc-950 from-white via-transparent to-background" />
+          <div className="absolute inset-0 md:bg-gradient-to-br dark:from-zinc-950 from-white via-transparent to-background" />
         </div>
         <CardThemeCustomizer />
       </div>

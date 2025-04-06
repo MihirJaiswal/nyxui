@@ -213,17 +213,20 @@ export const Build = () => {
   const allCards = [...cardComponents, ...cardComponents, ...cardComponents]
   return (
     <div className="relative w-full overflow-hidden text-gray-900 dark:text-white">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-12">
-          <div className="flex flex-col justify-center space-y-8 lg:col-span-5">
+      <div className="mx-auto max-w-7xl px-4 md:py-16 sm:px-6 lg:px-8">
+        <div className="grid md:gap-12 lg:grid-cols-12">
+          <div className="flex flex-col justify-center md:space-y-8 lg:col-span-5">
             <Text/>
           </div>
-          <div className="relative lg:col-span-7 h-[800px] -z-1">
+          <div className="relative lg:col-span-7 h-[700px] -z-1">
             <div className="absolute left-0 top-20 hidden lg:block">
-              <div className="h-20 w-16 border-t-2 border-l-2 border-blue-400/30 dark:border-blue-500/30 rounded-tl-3xl"></div>
+             
             </div>
             <div className="relative h-full w-full overflow-hidden rounded-lg">
-              <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-white dark:from-[#09090B] via-white/90 dark:via-[#09090B]/90 to-transparent z-10"></div>
+              <div className="absolute inset-0 rounded-lg lg:border-t-2 border-purple-200 dark:border-purple-900 ">
+                <div className="absolute top-0 left-0 h-full hidden lg:block w-0.5 bg-gradient-to-b from-purple-200 dark:from-purple-900 to-transparent"></div>
+                <div className="absolute top-0 right-0 h-full hidden lg:block w-0.5 bg-gradient-to-b from-purple-200 dark:from-purple-900 to-transparent"></div>
+              </div>
               <div
                 ref={scrollRef}
                 className="relative h-full overflow-hidden"
@@ -233,7 +236,7 @@ export const Build = () => {
                 }}
               >
                 <div className="pt-24 pb-24">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:px-4">
                     <div className="space-y-6">
                       {allCards.slice(0, allCards.length/2).map((card, index) => (
                         <div 
