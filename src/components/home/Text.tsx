@@ -84,7 +84,7 @@ const Text = () => {
             </button>
           </div>
         </div>
-        <div className="absolute -bottom-4 md:-bottom-12 -right-12 w-96 h-96 opacity-40 md:opacity-70 -z-1 overflow-hidden pointer-events-none">
+        <div className="absolute -bottom-4 md:-bottom-12 -right-12 w-96 h-96 opacity-30 md:opacity-70 -z-1 overflow-hidden pointer-events-none">
           <Tiles rows={8} cols={8} className="scale-110" />
           <div className="absolute inset-0 bg-gradient-to-br dark:from-zinc-950 from-white via-transparent to-background" />
         </div>
