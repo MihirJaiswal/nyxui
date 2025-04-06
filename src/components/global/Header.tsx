@@ -8,6 +8,8 @@ import { Menu, Github, Twitter, Search } from "lucide-react"
 import { ModeToggle } from "./ThemeToggle"
 import { cn } from "@/lib/utils"
 import { CommandPalette } from "./CommandPallete"
+import componentsJson from "@/nyxui/component.json";
+
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
@@ -29,9 +31,11 @@ export default function Header() {
   const navLinks = [
     { href: "/components", label: "Components" },
     { href: "/docs", label: "Documentation" },
-    { href: "/playground", label: "Playground" },
   ]
 
+  // Components data from your JSON
+  const componentsData = componentsJson.components;
+ 
   const openSearch = () => {
     document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'k', 'ctrlKey': true}))
   }
@@ -176,43 +180,100 @@ export default function Header() {
                 </Button>
               </SheetTrigger>
               <SheetContent
-                side="right"
-                className="w-[300px] bg-background/95 backdrop-blur-xl p-6 border-l border-muted/30"
-              >
-                <SheetHeader className="mb-6">
-                  <SheetTitle className="flex items-center gap-2 text-lg font-bold">
-                    <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full ">
-                      <svg xmlns="http://www.w3.org/2000/svg" version="1.0" fill="currentColor" viewBox="185.7693927125506 148.35232 684.0200809716599 711.7382399999999" preserveAspectRatio="xMidYMid meet" width="684.0200809716599" height="711.7382399999999">
-                        <g transform="translate(0.000000,1024.000000) scale(0.100000,-0.100000)" fill="currentColor" className="text-white dark:text-black">
-                          <path d="M0 5120 l0 -5120 5120 0 5120 0 0 5120 0 5120 -5120 0 -5120 0 0 -5120z m5375 2860 c140 -12 393 -49 415 -61 10 -5 -2 -8 -34 -9 -70 0 -244 -27 -371 -57 -432 -101 -860 -347 -1160 -665 -351 -372 -581 -849 -662 -1368 -27 -173 -24 -540 5 -710 76 -448 246 -823 520 -1151 351 -419 881 -713 1422 -790 141 -20 478 -18 615 4 526 86 976 314 1364 692 151 147 261 280 367 440 126 192 247 443 304 633 12 40 24 71 26 69 2 -2 -1 -57 -7 -123 -71 -841 -511 -1626 -1193 -2132 -693 -513 -1598 -694 -2436 -486 -1191 296 -2083 1312 -2224 2534 -18 155 -21 467 -6 621 68 689 347 1289 819 1760 197 196 400 347 634 473 475 254 1051 372 1602 326z m1946 -570 c13 -112 50 -246 86 -313 71 -130 243 -220 493 -258 l84 -13 -107 -17 c-388 -62 -499 -187 -565 -639 l-8 -55 -17 128 c-10 70 -28 161 -41 202 -69 217 -223 323 -529 365 -45 7 -83 13 -85 14 -1 2 24 6 56 10 166 19 353 90 435 165 85 78 131 204 162 440 8 58 15 111 16 116 1 6 4 -3 5 -20 2 -16 9 -73 15 -125z m-1840 -48 c141 -133 236 -305 293 -532 37 -146 46 -224 46 -408 0 -93 4 -194 10 -223 21 -114 153 -338 301 -510 117 -136 142 -175 147 -228 5 -64 -23 -102 -128 -173 -158 -106 -176 -156 -99 -276 34 -54 38 -103 10 -148 -25 -41 -78 -81 -137 -103 l-46 -18 42 -7 c48 -8 95 -48 106 -91 9 -34 -11 -77 -65 -139 -37 -42 -41 -53 -41 -100 0 -30 7 -73 16 -97 37 -103 16 -206 -58 -276 -105 -101 -280 -109 -623 -25 -122 29 -170 36 -255 36 -92 1 -111 -2 -154 -23 -137 -67 -201 -210 -194 -429 2 -56 0 -102 -3 -102 -11 0 -157 158 -222 240 -174 217 -272 427 -324 695 -27 140 -24 446 6 585 56 262 165 487 344 710 34 41 176 190 317 330 280 278 357 372 443 539 101 194 134 346 124 565 -6 116 -31 276 -53 330 -14 36 114 -44 197 -122z m1730 -1872 c20 -76 56 -136 103 -175 55 -45 172 -92 252 -102 l59 -7 -93 -18 c-221 -44 -303 -134 -333 -367 -16 -120 -21 -127 -30 -41 -29 267 -109 361 -344 409 l-84 17 84 16 c152 29 250 90 294 184 21 44 50 185 52 253 1 24 6 9 15 -44 7 -44 18 -100 25 -125z" />
-                        </g>
-                      </svg>
-                    </div>
-                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80">
-                      Nyx {" "}
-                      <span className="text-purple-500">UI</span>
-                    </span>
-                  </SheetTitle>
-                </SheetHeader>
+  side="right"
+  className="w-[280px] bg-background/95 backdrop-blur-xl p-0 border-l border-muted/30"
+>
+  {/* Header with gradient background */}
+  <div className="bg-gradient-to-r from-purple-50/50 to-background/10 dark:from-purple-950/20 dark:to-background/5 p-4 border-b border-muted/20">
+    <SheetHeader>
+      <SheetTitle className="flex items-center gap-3">
+        <div className="h-8 w-8 flex items-center  justify-center bg-black dark:bg-white rounded-full">
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.0" fill="currentColor" viewBox="185.7693927125506 148.35232 684.0200809716599 711.7382399999999" preserveAspectRatio="xMidYMid meet" width="684.0200809716599" height="711.7382399999999">
+                  <g transform="translate(0.000000,1024.000000) scale(0.100000,-0.100000)" fill="currentColor" className="text-white dark:text-black rounded-full">
+                    <path d="M0 5120 l0 -5120 5120 0 5120 0 0 5120 0 5120 -5120 0 -5120 0 0 -5120z m5375 2860 c140 -12 393 -49 415 -61 10 -5 -2 -8 -34 -9 -70 0 -244 -27 -371 -57 -432 -101 -860 -347 -1160 -665 -351 -372 -581 -849 -662 -1368 -27 -173 -24 -540 5 -710 76 -448 246 -823 520 -1151 351 -419 881 -713 1422 -790 141 -20 478 -18 615 4 526 86 976 314 1364 692 151 147 261 280 367 440 126 192 247 443 304 633 12 40 24 71 26 69 2 -2 -1 -57 -7 -123 -71 -841 -511 -1626 -1193 -2132 -693 -513 -1598 -694 -2436 -486 -1191 296 -2083 1312 -2224 2534 -18 155 -21 467 -6 621 68 689 347 1289 819 1760 197 196 400 347 634 473 475 254 1051 372 1602 326z m1946 -570 c13 -112 50 -246 86 -313 71 -130 243 -220 493 -258 l84 -13 -107 -17 c-388 -62 -499 -187 -565 -639 l-8 -55 -17 128 c-10 70 -28 161 -41 202 -69 217 -223 323 -529 365 -45 7 -83 13 -85 14 -1 2 24 6 56 10 166 19 353 90 435 165 85 78 131 204 162 440 8 58 15 111 16 116 1 6 4 -3 5 -20 2 -16 9 -73 15 -125z m-1840 -48 c141 -133 236 -305 293 -532 37 -146 46 -224 46 -408 0 -93 4 -194 10 -223 21 -114 153 -338 301 -510 117 -136 142 -175 147 -228 5 -64 -23 -102 -128 -173 -158 -106 -176 -156 -99 -276 34 -54 38 -103 10 -148 -25 -41 -78 -81 -137 -103 l-46 -18 42 -7 c48 -8 95 -48 106 -91 9 -34 -11 -77 -65 -139 -37 -42 -41 -53 -41 -100 0 -30 7 -73 16 -97 37 -103 16 -206 -58 -276 -105 -101 -280 -109 -623 -25 -122 29 -170 36 -255 36 -92 1 -111 -2 -154 -23 -137 -67 -201 -210 -194 -429 2 -56 0 -102 -3 -102 -11 0 -157 158 -222 240 -174 217 -272 427 -324 695 -27 140 -24 446 6 585 56 262 165 487 344 710 34 41 176 190 317 330 280 278 357 372 443 539 101 194 134 346 124 565 -6 116 -31 276 -53 330 -14 36 114 -44 197 -122z m1730 -1872 c20 -76 56 -136 103 -175 55 -45 172 -92 252 -102 l59 -7 -93 -18 c-221 -44 -303 -134 -333 -367 -16 -120 -21 -127 -30 -41 -29 267 -109 361 -344 409 l-84 17 84 16 c152 29 250 90 294 184 21 44 50 185 52 253 1 24 6 9 15 -44 7 -44 18 -100 25 -125z" />
+                  </g>
+                </svg>
+        </div>
+        <div>
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80 text-base font-bold">
+            Nyx <span className="text-purple-600 dark:text-purple-400">UI</span>
+          </span>
+        </div>
+      </SheetTitle>
+    </SheetHeader>
+  </div>
 
-                <nav className="flex flex-col space-y-1 mt-2">
-                  {navLinks.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      className={cn(
-                        "flex items-center text-sm font-medium p-3 rounded-md transition-all duration-300",
-                        "hover:translate-x-1",
-                        activeLink === link.href
-                          ? "text-foreground bg-muted/50 border-l-2 border-primary pl-[10px]"
-                          : "text-muted-foreground hover:text-foreground hover:bg-muted/30",
-                      )}
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
-                </nav>
-              </SheetContent>
+  {/* Main content with touch-optimized scrolling for mobile */}
+  <div className="p-3 overflow-auto overscroll-contain touch-pan-y h-[calc(100vh-120px)]">
+    {/* Main navigation section */}
+    <div className="space-y-0.5 mb-5">
+      <h3 className="text-xs uppercase tracking-wider text-muted-foreground/80 font-semibold pl-2 pb-1.5">
+        Navigation
+      </h3>
+      {navLinks.map((link) => (
+        <Link
+          key={link.href}
+          href={link.href}
+          className={cn(
+            "flex items-center text-sm font-medium p-2.5 rounded-md transition-colors",
+            activeLink === link.href
+              ? "text-foreground bg-muted/60 border-l-2 border-primary pl-[8px]"
+              : "text-muted-foreground hover:text-foreground hover:bg-muted/30",
+          )}
+        >
+          {link.label}
+        </Link>
+      ))}
+    </div>
+    
+    {/* Only show Components submenu if not on Components page */}
+    {activeLink !== "/components" && (
+      <div className="relative">
+        {/* Simple divider */}
+        <div className="h-px bg-muted/30 my-3"></div>
+        
+        <h3 className="text-xs uppercase tracking-wider text-muted-foreground/80 font-semibold pl-2 pb-2 flex items-center">
+          <span>Components</span>
+          <span className="ml-2 px-1.5 py-0.5 text-[10px] bg-muted rounded-full">{Object.keys(componentsData).length}</span>
+        </h3>
+        
+        <div className="space-y-0.5">
+          {Object.entries(componentsData).map(([slug, name]) => (
+            <Link
+              key={slug}
+              href={`/components/${slug}`}
+              className={cn(
+                "flex items-center text-sm p-2 rounded-md transition-colors pl-2.5",
+                activeLink === `/components/${slug}`
+                  ? "text-foreground bg-muted/30 border-l-2 border-primary pl-1.5"
+                  : "text-muted-foreground hover:text-foreground hover:bg-muted/20",
+              )}
+            >
+              {name}
+            </Link>
+          ))}
+        </div>
+      </div>
+    )}
+  </div>
+
+  {/* Footer with additional links */}
+  <div className="border-t border-muted/20 p-3">
+    <div className="flex justify-between items-center">
+      <div className="flex gap-2">
+        <Button variant="ghost" size="sm" className="h-7 w-7 rounded-full p-0">
+          <Github className="h-3.5 w-3.5" />
+        </Button>
+        <Button variant="ghost" size="sm" className="h-7 w-7 rounded-full p-0">
+          <svg height="14" fill="currentColor" viewBox="0 0 1200 1227" xmlns="http://www.w3.org/2000/svg">
+            <path d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163Z" />
+          </svg>
+        </Button>
+      </div>
+      <div className="text-xs text-muted-foreground">v1.0.0</div>
+    </div>
+  </div>
+</SheetContent>
             </Sheet>
           </div>
         </div>

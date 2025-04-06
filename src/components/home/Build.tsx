@@ -218,7 +218,7 @@ export const Build = () => {
           <div className="flex flex-col justify-center md:space-y-8 lg:col-span-5 pt-4">
             <Text/>
           </div>
-          <div className="relative lg:col-span-7 h-[650px] -z-1">
+          <div className="relative lg:col-span-7 h-[600px] -z-1">
             <div className="absolute left-0 top-20 hidden lg:block">
              
             </div>

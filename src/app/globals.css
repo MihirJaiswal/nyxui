@@ -3,8 +3,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -139,7 +137,6 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-/* Light Mode Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -161,24 +158,22 @@
   background: #d4d4d4;
 }
 
-/* Dark Mode Scrollbar */
 .dark ::-webkit-scrollbar-track {
-  background-color: #18181b; /* zinc-900 */
+  background-color: #18181b;
   border-radius: 8px;
 }
 
 .dark ::-webkit-scrollbar-thumb {
-  background: #39393a; /* zinc-800 */
+  background: #39393a;
   border-radius: 8px;
   border: 2px solid #18181b;
   transition: background 0.2s ease;
 }
 
 .dark ::-webkit-scrollbar-thumb:hover {
-  background: #58585e; /* zinc-700 */
+  background: #58585e;
 }
 
-/* Hide scrollbar buttons */
 ::-webkit-scrollbar-button {
   display: none;
 }
@@ -207,21 +202,20 @@
   background: #ffffff;
 }
 
-/* Dark Mode Scrollbar */
 .dark .hide-scrollbar::-webkit-scrollbar-track {
-  background-color: #040405; /* zinc-900 */
+  background-color: #09090B;
   border-radius: 8px;
 }
 
 .dark .hide-scrollbar::-webkit-scrollbar-thumb {
-  background: #252525; /* zinc-800 */
+  background: #252525;
   border-radius: 8px;
   border: 2px solid #18181b;
   transition: background 0.2s ease;
 }
 
 .dark .hide-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #1f1f20; /* zinc-700 */
+  background: #1f1f20;
 }
 
 .scrollbar-no::-webkit-scrollbar {

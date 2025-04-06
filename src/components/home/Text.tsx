@@ -7,10 +7,7 @@ const Text = () => {
   const adjectives = [
     'beautiful', 
     'powerful', 
-    'scalable', 
-    'accessible',
-    'responsive',
-    'intuitive'
+    'scalable',
   ];
   
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -37,7 +34,7 @@ const Text = () => {
         <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-pink-100 dark:bg-pink-900/20 rounded-full blur-3xl opacity-40"></div>
         
         <div className="relative z-10">
-          <h1 className="text-5xl font-bold leading-tight sext-6xl lg:text-7xl text-gray-900 dark:text-white">
+          <h1 className="text-5xl font-bold leading-tight tracking-tight lg:text-7xl text-gray-900 dark:text-white">
             Build{" "}
             <span className="font-extrabold inline-block transform hover:scale-105 transition-all duration-300"
             style={{
@@ -70,7 +67,7 @@ const Text = () => {
                   width={0}
                   height={0}
                   priority
-                  className="absolute left-0 bottom-1 md:bottom-0 w-full"
+                  className="absolute left-0 bottom-1 md:bottom-0 w-full -z-1"
                 />
               </span>
             </span>

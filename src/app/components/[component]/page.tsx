@@ -40,17 +40,13 @@ const ComponentPage = async ({ params }: { params: Promise<{ component: string }
     <div className="flex min-h-screen flex-col bg-background">
       <Header />
       <div className="flex w-full flex-1 flex-col md:flex-row">
-        {/* Sidebar - Mobile: Off-canvas menu, Desktop: Fixed sidebar */}
         <aside className="sticky top-16 h-fit w-full shrink-0 md:w-auto md:min-w-[220px] lg:min-w-[280px] xl:min-w-[300px] hidden md:block bg-white dark:bg-zinc-950 border-r">
           <div className="sticky top-16">
             <ComponentSidebar />
           </div>
         </aside>
-
-        {/* Main Content */}
         <main className="flex-1 overflow-hidden bg-white dark:bg-zinc-950">
           <div className="mx-auto w-full max-w-[1200px] px-4 py-6 sm:px-6 md:py-8 lg:px-8 xl:px-10">
-            {/* Component Header Section */}
             <div className="space-y-4 border-b pb-6 md:pb-8">
               <div className="flex flex-wrap items-start gap-3 sm:items-center">
                 <h1 className="scroll-m-20 text-3xl font-bold tracking-tight sm:text-4xl break-words">
@@ -75,7 +71,6 @@ const ComponentPage = async ({ params }: { params: Promise<{ component: string }
               </div>
             </div>
 
-            {/* Preview Section */}
             <div className="mt-8 space-y-4 sm:space-y-6">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                 <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">Preview</h2>
@@ -100,12 +95,10 @@ const ComponentPage = async ({ params }: { params: Promise<{ component: string }
               </div>
             </div>
 
-            {/* Installation Section */}
             <div className="mt-10">
               <InstallationSection componentData={componentData} />
             </div>
 
-            {/* Props Section */}
             <section className="mt-10 space-y-6">
               <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">Props</h2>
               {componentData.props && componentData.props.length > 0 ? (

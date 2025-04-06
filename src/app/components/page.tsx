@@ -2,7 +2,6 @@ import { ComponentSidebar } from "@/components/components/component-sidebar"
 import Header from "@/components/global/Header"
 import { GradientButton } from "@/nyxui/components/GradientButton"
 import { MorphingButton } from "@/nyxui/components/MorphingButton"
-import { Fragment } from "react"
 
 const ComponentsPage = () => {
   const demoComponents = [
@@ -40,14 +39,12 @@ const ComponentsPage = () => {
     <div className="flex min-h-screen flex-col">
       <Header />
       <div className="flex w-full flex-1 flex-col md:flex-row">
-        {/* Sidebar - Mobile: Hidden (could be off-canvas menu), Desktop: Fixed sidebar */}
         <aside className="w-full md:w-auto md:min-w-[220px] lg:min-w-[240px] shrink-0 border-r hidden md:block">
           <div className="sticky top-16">
             <ComponentSidebar />
           </div>
         </aside>
 
-        {/* Main Content */}
         <main className="flex-1 w-full">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 py-6 md:py-8">
             <div className="mb-6 sm:mb-8 md:mb-10">
@@ -67,8 +64,6 @@ const ComponentsPage = () => {
                 />
               ))}
               
-              {/* Add empty placeholders when there are odd number of items 
-                  to maintain consistent grid appearance */}
               {demoComponents.length % 2 !== 0 && (
                 <div className="w-full sm:w-1/2 p-3 sm:p-4" aria-hidden="true"></div>
               )}
