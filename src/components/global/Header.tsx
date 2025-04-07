@@ -77,7 +77,7 @@ export default function Header() {
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
             <span className="hidden md:block text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80">
-              Nyx <span className="text-purple-700 dark:text-purple-400">UI</span>
+              Nyx UI
             </span>
           </Link>
           <nav className="hidden lg:flex items-center space-x-1 ml-8">
