@@ -1,4 +1,4 @@
-import { Github, ExternalLink } from "lucide-react"
+import { ExternalLink } from "lucide-react"
 import { notFound } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { ComponentSidebar } from "@/components/components/component-sidebar"
@@ -10,7 +10,7 @@ import { InstallationSection } from "@/components/components/Installation"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import React from "react"
 import { Card } from "@/components/ui/card"
-import Footer from "@/components/global/Footer"
+import Link from "next/link"
 
 const ComponentPage = async ({ params }: { params: Promise<{ component: string }>}) => {
   const component = (await params).component
@@ -60,14 +60,12 @@ const ComponentPage = async ({ params }: { params: Promise<{ component: string }
                 {componentData.description}
               </p>
               <div className="flex flex-wrap gap-3 pt-2">
-                <Button size="sm" variant="default" className="whitespace-nowrap">
-                  <Github className="mr-2 size-4" />
-                  View Source
-                </Button>
-                <Button size="sm" variant="outline" className="whitespace-nowrap">
-                  <ExternalLink className="mr-2 size-4" />
-                  Documentation
-                </Button>
+                <Link href="/docs" className="whitespace-nowrap">
+                  <Button size="sm" variant="outline">
+                    <ExternalLink className="mr-2 size-4" />
+                    Documentation
+                  </Button>
+                </Link>
               </div>
             </div>
 
@@ -228,7 +226,6 @@ const ComponentPage = async ({ params }: { params: Promise<{ component: string }
           </div>
         </main>
       </div>
-      <Footer/>
     </div>
   )
 }
