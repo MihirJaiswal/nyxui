@@ -1,6 +1,6 @@
 "use client"
 import React, { useState, useEffect } from "react"
-import { Code, Command, Send, Copy, RotateCcw } from "lucide-react"
+import { Command, Send, Copy, RotateCcw } from "lucide-react"
 
 export type TerminalProps = {
   bgColor?: string;

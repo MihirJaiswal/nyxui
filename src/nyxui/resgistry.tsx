@@ -5,7 +5,6 @@ import { dynamicRippleData } from "@/nyxui/metadata/dynamic-ripple.meta";
 import { MajesticCardData } from "@/nyxui/metadata/majestic-card.meta";
 import { liquidMetalButtonData } from "@/nyxui/metadata/liquid-metal-button.meta";
 import { morphingBlobData } from "@/nyxui/metadata/morphing-blob.meta";
-import { threeDCardData } from "@/nyxui/metadata/ThreeDcard.meta";
 import { animatedCodeBlockData } from "@/nyxui/metadata/AnimatedCodeBlock.meta";
 import { animatedGradientBgData } from "./metadata/AnimatedGradientBg.meta";
 import { scrollAnimationTriggerData } from "./metadata/ScrollAnimationTrigger.meta";
@@ -26,7 +25,6 @@ export const componentsData = {
   "majestic-card": MajesticCardData,
   "liquid-metal-button": liquidMetalButtonData,
   "morphing-blob": morphingBlobData,
-  "3d-card": threeDCardData,
   "animated-code-block": animatedCodeBlockData,
   "animated-gradient-background":animatedGradientBgData,
   "scroll-animation-trigger": scrollAnimationTriggerData,
