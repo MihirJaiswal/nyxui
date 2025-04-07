@@ -36,11 +36,11 @@ export function AnimatedCodeBlock({
   showControls = true,
   onCopy,
 }: AnimatedCodeBlockProps) {
-  const [displayedCode, setDisplayedCode] = useState("")
   const [isPlaying, setIsPlaying] = useState(autoPlay)
   const [currentPosition, setCurrentPosition] = useState(0)
   const [copied, setCopied] = useState(false)
   const [completed, setCompleted] = useState(false)
+  const [isPaused, setIsPaused] = useState(false)
   const codeRef = useRef<HTMLDivElement>(null)
   const timerRef = useRef<NodeJS.Timeout | null>(null)
 
@@ -110,18 +110,17 @@ export function AnimatedCodeBlock({
   useEffect(() => {
     if (isPlaying && currentPosition < code.length) {
       timerRef.current = setTimeout(() => {
-        setDisplayedCode(code.substring(0, currentPosition + 1))
         setCurrentPosition(currentPosition + 1)
       }, typingSpeed)
     } else if (isPlaying && currentPosition >= code.length) {
       if (loop) {
         setTimeout(() => {
           setCurrentPosition(0)
-          setDisplayedCode("")
         }, 1000)
       } else {
         setIsPlaying(false)
         setCompleted(true)
+        setIsPaused(false)
       }
     }
 
@@ -131,14 +130,21 @@ export function AnimatedCodeBlock({
   }, [isPlaying, currentPosition, code, typingSpeed, loop])
 
   const togglePlay = () => {
+    if (isPlaying) {
+      setIsPaused(true)
+    } else if (completed) {
+      restartAnimation()
+    } else {
+      setIsPaused(false)
+    }
     setIsPlaying(!isPlaying)
   }
 
   const restartAnimation = () => {
     setCurrentPosition(0)
-    setDisplayedCode("")
     setIsPlaying(true)
     setCompleted(false)
+    setIsPaused(false)
   }
 
   const copyCode = () => {
@@ -171,10 +177,10 @@ export function AnimatedCodeBlock({
     return result
   }
   
-  const displayedLines = isPlaying ? renderLines() : (completed || !isPlaying) ? code.split("\n") : renderLines()
+  const displayedLines = completed ? code.split("\n") : renderLines()
   
   const getCursorLineIndex = () => {
-    if (!isPlaying) return -1
+    if (!isPlaying && !isPaused) return -1
     
     let charsProcessed = 0
     for (let i = 0; i < codeLines.length; i++) {
