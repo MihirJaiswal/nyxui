@@ -57,9 +57,22 @@ const CustomButton: React.FC<CustomButtonProps> = ({
 };
 
 const DEFAULT_COLORS = [
-  '#000000', '#808080', '#800000', '#808000', '#008000', '#008080', '#000080', '#800080', '#808040', '#004040', '#0080FF', '#004080', '#8000FF', '#804000',
-  '#FFFFFF', '#C0C0C0', '#FF0000', '#FFFF00', '#00FF00', '#00FFFF', '#0000FF', '#FF00FF', '#FFFF80', '#00FF80', '#80FFFF', '#8080FF', '#FF0080', '#FF8040'
+  '#000000', // Black
+  '#FFFFFF', // White
+  '#FF0000', // Red
+  '#00FF00', // Green
+  '#0000FF', // Blue
+  '#FFFF00', // Yellow
+  '#00FFFF', // Cyan
+  '#FF00FF', // Magenta
+  '#FFA500', // Orange
+  '#800080', // Purple
+  '#A52A2A', // Brown
+  '#FFC0CB', // Pink
+  '#808080', // Gray
+  '#008080', // Teal
 ];
+
 
 export default function MSpaint({
   initialWidth = 800,
@@ -84,6 +97,7 @@ export default function MSpaint({
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasContainerRef = useRef<HTMLDivElement>(null);
   const downloadLinkRef = useRef<HTMLAnchorElement>(null);
+  const colorPickerRef = useRef<HTMLInputElement>(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [lastPosition, setLastPosition] = useState({ x: 0, y: 0 });
   const [color, setColor] = useState('#000000');
@@ -96,14 +110,12 @@ export default function MSpaint({
   const [height, setHeight] = useState(initialHeight);
   const [menuOpen, setMenuOpen] = useState(false);
   const [cursorStyle, setCursorStyle] = useState('crosshair');
+  const [showColorPicker, setShowColorPicker] = useState(false);
 
-  // Determine cursor style based on current tool and color
   useEffect(() => {
     if (tool === 'eraser') {
       setCursorStyle('url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'24\' height=\'24\' viewBox=\'0 0 24 24\' fill=\'white\' stroke=\'black\' stroke-width=\'1\'><circle cx=\'12\' cy=\'12\' r=\'10\'/></svg>") 12 12, auto');
     } else {
-      // For the brush, create a cursor that's visible against any background
-      // If the selected color is very light, add a dark border, otherwise it's fine as is
       const isLightColor = isColorLight(color);
       
       const encodedSVG = encodeURIComponent(`
@@ -116,18 +128,12 @@ export default function MSpaint({
     }
   }, [tool, color]);
 
-  // Function to determine if a color is light or dark
   const isColorLight = (hexColor: string) => {
-    // Convert hex to RGB
     const r = parseInt(hexColor.slice(1, 3), 16);
     const g = parseInt(hexColor.slice(3, 5), 16);
     const b = parseInt(hexColor.slice(5, 7), 16);
-    
-    // Calculate relative luminance
-    // Formula: 0.299*R + 0.587*G + 0.114*B
     const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
     
-    // If luminance is > 0.7, it's considered a light color
     return luminance > 0.7;
   };
 
@@ -141,7 +147,6 @@ export default function MSpaint({
           setWidth(parentWidth > 20 ? parentWidth - 20 : parentWidth);
           setHeight(Math.min(parentHeight - 100, initialHeight));
         } else {
-          // On larger screens, use the initial values
           setWidth(initialWidth);
           setHeight(initialHeight);
         }
@@ -205,14 +210,12 @@ export default function MSpaint({
     }
   }, [dragging, position.x, position.y, draggable]);
 
-  // Update canvas container styles when disableScroll changes
   useEffect(() => {
     if (canvasContainerRef.current) {
       canvasContainerRef.current.style.overflow = disableScroll ? 'hidden' : 'auto';
     }
   }, [disableScroll]);
 
-  // Function to get scale factors for the canvas
   const getCanvasScaleFactors = () => {
     const canvas = canvasRef.current;
     if (!canvas) return { scaleX: 1, scaleY: 1 };
@@ -284,20 +287,15 @@ export default function MSpaint({
       const x = (clientX - rect.left) * scaleX;
       const y = (clientY - rect.top) * scaleY;
 
-      // Draw line from last position to current position
       context.beginPath();
       context.moveTo(lastPosition.x, lastPosition.y);
       context.lineTo(x, y);
       context.strokeStyle = tool === 'eraser' ? initialBackgroundColor : color;
-      
-      // Adjust line width based on scaling factors
       const lineWidth = tool === 'eraser' ? eraserSize * Math.max(scaleX, scaleY) : brushSize * Math.max(scaleX, scaleY);
       context.lineWidth = lineWidth;
       context.lineCap = 'round';
       context.lineJoin = 'round';
       context.stroke();
-      
-      // Update last position
       setLastPosition({ x, y });
     }
   };
@@ -370,6 +368,19 @@ export default function MSpaint({
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+  };
+
+  const handleColorPickerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setColor(e.target.value);
+    setStatusText(`Color selected: ${e.target.value}`);
+    setTimeout(() => setStatusText(statusMessage), 2000);
+  };
+
+  const toggleColorPicker = () => {
+    setShowColorPicker(!showColorPicker);
+    if (!showColorPicker && colorPickerRef.current) {
+      setTimeout(() => colorPickerRef.current?.click(), 100);
+    }
   };
 
   const canvasVisibleWidth = width - (window.innerWidth < 640 ? 52 : 76);
@@ -522,22 +533,58 @@ export default function MSpaint({
         </div>
       </div>
       
-      <div className="flex bg-gray-300 p-2 border-t border-gray-400 overflow-x-auto">
-        <div className="flex flex-wrap gap-2.5">
+      <div className="flex bg-gray-300 gap-3 p-2 border-t border-gray-400 overflow-x-auto">
+        <div className="relative ml-2">
+            <CustomButton
+              variant="ghost"
+              className={`${isMobile ? 'w-6 h-6' : 'w-8 h-8'} p-0 min-w-0 relative overflow-hidden border-2 border-gray-400 transition-all duration-200 ${showColorPicker ? 'ring-2 ring-offset-2 ring-blue-600 scale-110 shadow-md' : ''}`}
+              onClick={toggleColorPicker}
+              title="Custom Color"
+            >
+              <div 
+                className="w-full h-full bg-gradient-to-br from-red-500 via-green-500 to-blue-500"
+              />
+              <div 
+                className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-70"
+              >
+                <span className="text-xs font-bold">+</span>
+              </div>
+            </CustomButton>
+            
+            <input
+              ref={colorPickerRef}
+              type="color"
+              value={color}
+              onChange={handleColorPickerChange}
+              className="absolute opacity-0 pointer-events-none"
+              style={{ 
+                top: 0, 
+                left: 0,
+                width: '1px',
+                height: '1px'
+              }}
+            />
+            
+            <div 
+              className={`${isMobile ? 'w-6 h-6' : 'w-8 h-8'} border-2 border-gray-400 mt-1`}
+              style={{ backgroundColor: color }}
+              title={`Current Color: ${color}`}
+            />
+          </div>
+          <div className="grid grid-rows-2 grid-flow-col gap-2 justify-center items-center">
           {colorPalette.map((c) => (
             <CustomButton
               key={c}
               variant="ghost"
-              className={`${isMobile ? 'w-6 h-6' : 'w-8 h-8'} p-0 min-w-0 rounded-md transition-all duration-200 ${color === c ? 'ring-2 ring-offset-2 ring-blue-600 scale-110 shadow-md' : ''}`}
+              className={`${isMobile ? 'w-6 h-6' : 'w-8 h-8'} p-0 min-w-0 transition-all duration-200 ${color === c ? 'ring-2 ring-offset-2 ring-blue-600 scale-110 shadow-md' : ''}`}
               onClick={() => setColor(c)}
               title={c}
             >
-              <div style={{ backgroundColor: c }} className="w-full h-full rounded-md" />
+              <div style={{ backgroundColor: c }} className="w-full h-full" />
             </CustomButton>
           ))}
         </div>
       </div>
-      
       <div className="bg-gray-300 px-2 py-1.5 text-sm border-t border-gray-400 flex flex-wrap items-center">
         <div className={`${isMobile ? 'w-full' : 'flex-grow'} truncate text-black`}>{statusText}</div>
       </div>

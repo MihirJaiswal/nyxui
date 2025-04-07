@@ -60,14 +60,6 @@ export const MacDockDemo = () => {
       onClick: () => handleAppClick("Podcasts"),
     },
     {
-      id: "12",
-      name: "TV",
-      iconSrc:
-        "https://uploads-ssl.webflow.com/5f7081c044fb7b3321ac260e/5f708540dd82638d7b8eda70_tv.png",
-      isActive: activeApp === "TV",
-      onClick: () => handleAppClick("TV"),
-    },
-    {
       id: "13",
       name: "App Store",
       iconSrc:
