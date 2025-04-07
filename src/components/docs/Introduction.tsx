@@ -20,7 +20,7 @@ export default function IntroductionPage() {
         </div>
         <div className="relative overflow-hidden rounded-xl border shadow-md">
           <Image
-            src="/docs-cover.webp"
+            src="/docs/docs-cover.png"
             alt="Nyx UI Components Preview"
             width={1200}
             height={630}

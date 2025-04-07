@@ -7,6 +7,7 @@ import { ChevronRight, Sparkles } from "lucide-react"
 import TechStack from "./Tech"
 import Image from "next/image"
 import { Tiles } from "@/components/ui/Tiles" // Import the Tiles component
+import Link from "next/link"
 
 export const Hero = () => {
   const [currentTextIndex, setCurrentTextIndex] = useState(0)
@@ -115,6 +116,7 @@ export const Hero = () => {
               transition={{ duration: 0.5, delay: 0.6 }}
               className="flex flex-col sm:flex-row gap-4 mt-8"
             >
+              <Link href="/components" rel="noopener noreferrer">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -126,7 +128,9 @@ export const Hero = () => {
                   style={{ top: '1px' }}
                 />
               </motion.button>
+              </Link>
 
+              <Link href="/docs" rel="noopener noreferrer">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -134,6 +138,7 @@ export const Hero = () => {
               >
                 Documentation
               </motion.button>
+              </Link>
             </motion.div>
           </div>
           <TechStack/>

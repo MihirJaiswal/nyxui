@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Tiles } from '../ui/Tiles';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Text = () => {
   const adjectives = [
@@ -78,10 +79,12 @@ const Text = () => {
           </p>
           
           <div className="mt-10 w-full flex flex-col sm:flex-row gap-4">
+            <Link href="/components" rel="noopener noreferrer">
             <button className="px-8 py-3 bg-black dark:bg-white text-white dark:text-black font-medium rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center">
               Get started
               <ChevronRight className="ml-2 h-5 w-5" />
             </button>
+            </Link>
           </div>
         </div>
         <div className="absolute -bottom-4 md:-bottom-12 -right-12 w-96 h-96 opacity-30 md:opacity-70 -z-1 overflow-hidden pointer-events-none">

@@ -123,7 +123,7 @@ export const InstallationSection = ({ componentData }: { componentData: Componen
                             <TabsList className="w-full grid grid-cols-4 h-9 bg-muted/40 p-1 rounded-lg dark:bg-black">
                               <TabsTrigger value="npm" className="text-xs h-7 px-2 rounded-md data-[state=active]:bg-background">
                                 <Image
-                                 src="/npm.svg"
+                                 src="/logo/npm.svg"
                                  width={16}
                                  height={16}
                                  alt="npm"
@@ -134,7 +134,7 @@ export const InstallationSection = ({ componentData }: { componentData: Componen
                               </TabsTrigger>
                               <TabsTrigger value="pnpm" className="text-xs h-7 px-2 rounded-md data-[state=active]:bg-background">
                                 <Image
-                                 src="/pnpm.svg"
+                                 src="/logo/pnpm.svg"
                                  width={16}
                                  height={16}
                                  alt="pnpm"
@@ -145,7 +145,7 @@ export const InstallationSection = ({ componentData }: { componentData: Componen
                               </TabsTrigger>
                               <TabsTrigger value="yarn" className="text-xs h-7 px-2 rounded-md data-[state=active]:bg-background">
                                 <Image
-                                 src="/yarn.svg"
+                                 src="/logo/yarn.svg"
                                  width={16}
                                  height={16}
                                  alt="yarn"
@@ -156,7 +156,7 @@ export const InstallationSection = ({ componentData }: { componentData: Componen
                               </TabsTrigger>
                               <TabsTrigger value="bun" className="text-xs h-7 px-2 rounded-md data-[state=active]:bg-background">
                                 <Image
-                                 src="/bun.svg"
+                                 src="/logo/bun.svg"
                                  width={16}
                                  height={16}
                                  alt="bun"
