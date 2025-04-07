@@ -82,7 +82,7 @@ export const PreviewCodeToggle = ({
           </Button>
         </div>
         <TabsContent value="preview" className="p-0 focus-visible:outline-none focus-visible:ring-0">
-        <div className={cn("flex min-h-[400px] relative w-full items-center justify-center md:p-6", previewClassName)}>
+        <div className={cn("flex min-h-[400px] relative w-full items-center justify-center ", previewClassName)}>
   {preview}
 </div>
         </TabsContent>

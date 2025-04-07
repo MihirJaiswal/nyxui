@@ -176,7 +176,7 @@ export function ScrollAnimationTriggerDemo() {
             </motion.div>
           </ScrollAnimationTrigger>
 
-          <div className="grid md:grid-cols-2 gap-12 mb-24">
+          <div className="grid md:grid-cols-1 max-w-xl mx-auto gap-12 mb-24">
             {/* Color effect */}
             <ScrollAnimationTrigger
               effect="color"
@@ -227,7 +227,7 @@ export function ScrollAnimationTriggerDemo() {
             </ScrollAnimationTrigger>
           </div>
 
-          {/* Scroll progress based animation - Fixed by creating a separate component */}
+          {/* Scroll progress based animation */}
           <ScrollProgressAnimationContent />
 
           {/* Custom effect */}
@@ -312,14 +312,11 @@ export function ScrollAnimationTriggerDemo() {
   )
 }
 
-// Created a separate component to solve the hooks in callback issue
 function ScrollProgressAnimationContent() {
   return (
     <ScrollProgressAnimation className="min-h-[100vh] flex flex-col items-center justify-center p-6 mb-24 relative">
       {({ scrollYProgress }) => {
-        // Now we can use the animation component to properly handle this
         const ScrollProgressContent = () => {
-          // Hooks used here directly in component
           const textColor = useScrollColor(scrollYProgress, "#3b82f6", "#ec4899")
           const rotation = useScrollRotation(scrollYProgress, 0, 360)
           const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1.1, 0.8])
