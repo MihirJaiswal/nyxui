@@ -230,7 +230,10 @@ Connection secured. Press ENTER to continue...
                     Once you go Tailwind, there is no going back 😆 <span className="text-blue-500">#webdev</span> <span className="text-blue-500">#tailwindcss</span>
                   </p>
                   <div className="mt-3 bg-gray-100 dark:bg-gray-800 rounded-lg p-3 text-sm font-mono overflow-hidden">
-                    <div className="flex items-center text-gray-500 dark:text-gray-400 text-xs mb-1">
+                    <MajesticCard
+                    variant="magnetic"
+                    >
+                      <div className="flex items-center text-gray-500 dark:text-gray-400 text-xs mb-1">
                       <div className="flex space-x-1 mr-2">
                         <div className="w-3 h-3 rounded-full bg-red-500" />
                         <div className="w-3 h-3 rounded-full bg-yellow-500" />
@@ -246,6 +249,7 @@ Connection secured. Press ENTER to continue...
                         {'}'}
                       </code>
                     </div>
+                    </MajesticCard>
                   </div>
                 </div>
                 <div className="mt-4 flex items-center justify-between text-gray-500 dark:text-gray-400">
