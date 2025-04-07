@@ -79,7 +79,6 @@ const MusicCardThemeCustomizer = () => {
   const [isDarkMode, setIsDarkMode] = useState(true)
   const [activeTab, setActiveTab] = useState("preview")
   const [slideDirection, setSlideDirection] = useState("right")
-  const [themeIndex, setThemeIndex] = useState(0)
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(45)
   const [isAnimating, setIsAnimating] = useState(false)
@@ -115,7 +114,6 @@ const MusicCardThemeCustomizer = () => {
 
     setIsAnimating(true)
     setSlideDirection(newIndex > currentIndex ? "right" : "left")
-    setThemeIndex(newIndex)
     setTheme(newTheme)
 
     setTimeout(() => {
