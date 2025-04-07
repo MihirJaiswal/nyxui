@@ -38,13 +38,13 @@ const Footer = () => {
             ))}
           </div>
 
-          <div className="mt-4 md:mt-0 text-xs text-gray-500 dark:text-gray-400 relative">
-            <span>Brought to you by </span>
+          <div className="mt-4 md:mt-0 text-gray-900 dark:text-gray-100 relative">
+            <span>🚀Brought to you by </span>
             <Link
               href="https://github.com/MihirJaiswal"
               target="_blank"
               rel='noopener noreferrer'
-              className="text-purple-600 dark:text-purple-400 hover:underline"
+              className="text-purple-800 dark:text-purple-300 underline"
             >
               Mihir
             </Link>
