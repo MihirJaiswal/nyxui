@@ -5,7 +5,7 @@ import { ChevronRight, Cpu, Zap, Shield } from "lucide-react"
 
 export const CyberpunkCardDemo = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 rounded-xl">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 py-3 rounded-xl">
       <CyberpunkCard theme="neon-blue" borderStyle="solid" className="h-full">
         <div className="flex flex-col gap-3">
           <div className="flex justify-between items-start">

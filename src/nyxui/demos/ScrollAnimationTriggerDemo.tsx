@@ -19,7 +19,8 @@ export function ScrollAnimationTriggerDemo() {
 
   return (
     <div className="w-full overflow-hidden">
-      <div className="min-h-[60vh] relative flex flex-col items-center justify-center text-center p-6 overflow-hidden">
+      {/* Hero Section */}
+      <div className="min-h-[60vh] relative flex flex-col items-center justify-center text-center px-4 sm:px-6 py-12 sm:py-16 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           {[...Array(20)].map((_, i) => (
             <motion.div
@@ -48,7 +49,7 @@ export function ScrollAnimationTriggerDemo() {
         </div>
 
         <motion.h1 
-          className="text-5xl font-extrabold mb-4 bg-clip-text text-transparent"
+          className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 bg-clip-text text-transparent px-2"
           style={{ 
             backgroundImage: "linear-gradient(135deg, #3b82f6, #ec4899)" 
           }}
@@ -60,7 +61,7 @@ export function ScrollAnimationTriggerDemo() {
         </motion.h1>
         
         <motion.p 
-          className="text-gray-600 dark:text-gray-300 mb-8 max-w-md text-lg"
+          className="text-gray-600 dark:text-gray-300 mb-8 max-w-md text-base sm:text-lg px-4"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
@@ -69,7 +70,7 @@ export function ScrollAnimationTriggerDemo() {
         </motion.p>
         
         <motion.div 
-          className="mt-8 p-3 rounded-full bg-blue-500 shadow-lg cursor-pointer"
+          className="mt-4 sm:mt-8 p-3 rounded-full bg-blue-500 shadow-lg cursor-pointer"
           animate={{ 
             y: [0, 10, 0],
             boxShadow: [
@@ -86,13 +87,14 @@ export function ScrollAnimationTriggerDemo() {
           whileHover={{ scale: 1.2 }}
           whileTap={{ scale: 0.9 }}
         >
-          <ArrowDown className="h-6 w-6 text-white" />
+          <ArrowDown className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
         </motion.div>
       </div>
 
-      <div className="relative h-24 overflow-hidden">
+      {/* Wave Separator */}
+      <div className="relative h-16 sm:h-24 overflow-hidden">
         <svg 
-          className="absolute bottom-0 w-full h-24 text-white dark:text-gray-900"
+          className="absolute bottom-0 w-full h-16 sm:h-24 text-white dark:text-gray-900"
           viewBox="0 0 1200 120" 
           preserveAspectRatio="none"
         >
@@ -102,25 +104,27 @@ export function ScrollAnimationTriggerDemo() {
           ></path>
         </svg>
       </div>
-      <div className="bg-white dark:bg-zinc-950 py-20">
-        <div className="max-w-6xl mx-auto px-6">
+
+      {/* Content Section */}
+      <div className="bg-white dark:bg-zinc-950 py-12 sm:py-16 md:py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
           {/* Fade effect with icon */}
           <ScrollAnimationTrigger 
             effect="fade" 
-            className="flex items-center justify-center p-6 mb-12"
+            className="flex items-center justify-center p-4 sm:p-6 mb-12"
             delay={0.2}
           >
             <motion.div 
-              className="bg-white dark:bg-zinc-800 md:p-8 p-4 rounded-2xl shadow-lg max-w-md border border-blue-100 dark:border-zinc-700"
+              className="bg-white dark:bg-zinc-800 p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg max-w-md w-full border border-blue-100 dark:border-zinc-700"
               {...cardHoverAnimation}
             >
-              <div className="flex flex-col md:flex-row gap-3 md:gap-1 items-center mb-4">
-                <div className="p-3 bg-blue-100 dark:bg-blue-900/30 rounded-full mr-4">
-                  <Sparkles className="h-6 w-6 text-blue-500 dark:text-blue-400" />
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-1 items-center mb-4">
+                <div className="p-2 sm:p-3 bg-blue-100 dark:bg-blue-900/30 rounded-full sm:mr-4">
+                  <Sparkles className="h-5 w-5 sm:h-6 sm:w-6 text-blue-500 dark:text-blue-400" />
                 </div>
-                <h3 className="text-2xl font-bold">Fade In Effect</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-center sm:text-start">Fade In Effect</h3>
               </div>
-              <p className="text-gray-600 dark:text-gray-300 text-center md:text-start leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-300 text-center sm:text-start text-sm sm:text-base leading-relaxed">
                 This content gently fades into view as you scroll down the page, creating a subtle
                 and elegant appearance that draws attention without being distracting.
               </p>
@@ -130,22 +134,22 @@ export function ScrollAnimationTriggerDemo() {
           {/* Scale effect with icon */}
           <ScrollAnimationTrigger 
             effect="scale" 
-            className="min-h-[50vh] flex items-center justify-center p-6 mb-12"
+            className="min-h-[40vh] sm:min-h-[50vh] flex items-center justify-center p-4 sm:p-6 mb-12"
             delay={0.3}
             fromScale={0.7}
             toScale={1}
           >
             <motion.div 
-              className="bg-white dark:bg-zinc-800 md:p-8 p-4 rounded-2xl shadow-lg max-w-md border border-purple-100 dark:border-zinc-700"
+              className="bg-white dark:bg-zinc-800 p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg max-w-md w-full border border-purple-100 dark:border-zinc-700"
               {...cardHoverAnimation}
             >
-              <div className="flex flex-col md:flex-row gap-3 md:gap-1 items-center mb-4">
-                <div className="p-3 bg-purple-100 dark:bg-purple-900/30 rounded-full mr-4">
-                  <Zap className="h-6 w-6 text-purple-500 dark:text-purple-400" />
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-1 items-center mb-4">
+                <div className="p-2 sm:p-3 bg-purple-100 dark:bg-purple-900/30 rounded-full sm:mr-4">
+                  <Zap className="h-5 w-5 sm:h-6 sm:w-6 text-purple-500 dark:text-purple-400" />
                 </div>
-                <h3 className="text-2xl font-bold">Scale Effect</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-center sm:text-start">Scale Effect</h3>
               </div>
-              <p className="text-gray-600 dark:text-gray-300 text-center md:text-start leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-300 text-center sm:text-start text-sm sm:text-base leading-relaxed">
                 Watch as this content smoothly scales from small to full size as you scroll, 
                 creating a dynamic entrance that captures attention and adds visual depth.
               </p>
@@ -156,45 +160,45 @@ export function ScrollAnimationTriggerDemo() {
           <ScrollAnimationTrigger
             effect="slide"
             direction="up"
-            className="flex items-center justify-center p-6 mb-24"
+            className="flex items-center justify-center p-4 sm:p-6 mb-16 sm:mb-24"
             delay={0.2}
           >
             <motion.div 
-              className="bg-white dark:bg-zinc-800 md:p-8 p-4 rounded-2xl shadow-lg max-w-md border border-green-100 dark:border-zinc-700"
+              className="bg-white dark:bg-zinc-800 p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg max-w-md w-full border border-green-100 dark:border-zinc-700"
               {...cardHoverAnimation}
             >
-              <div className="flex flex-col md:flex-row gap-3 md:gap-1 items-center mb-4">
-                <div className="p-3 bg-green-100 dark:bg-green-900/30 rounded-full mr-4">
-                  <Layers className="h-6 w-6 text-green-500 dark:text-green-400" />
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-1 items-center mb-4">
+                <div className="p-2 sm:p-3 bg-green-100 dark:bg-green-900/30 rounded-full sm:mr-4">
+                  <Layers className="h-5 w-5 sm:h-6 sm:w-6 text-green-500 dark:text-green-400" />
                 </div>
-                <h3 className="md:text-2xl text-xl font-bold text-center md:text-start">Slide Up Effect</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-center sm:text-start">Slide Up Effect</h3>
               </div>
-              <p className="text-gray-600 dark:text-gray-300 text-center md:text-start leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-300 text-center sm:text-start text-sm sm:text-base leading-relaxed">
                 This content slides gracefully into view from below, creating a smooth transition
                 that guides the eye naturally as you explore the page content.
               </p>
             </motion.div>
           </ScrollAnimationTrigger>
 
-          <div className="grid md:grid-cols-1 max-w-xl mx-auto gap-12 mb-24">
+          <div className="grid grid-cols-1 max-w-xl mx-auto gap-8 sm:gap-12 mb-16 sm:mb-24 px-4 sm:px-0">
             {/* Color effect */}
             <ScrollAnimationTrigger
               effect="color"
-              className="min-h-[40vh] flex items-center justify-center p-6"
+              className="min-h-[30vh] sm:min-h-[40vh] flex items-center justify-center p-4 sm:p-6"
               fromColor="#2b13c2"
               toColor="#ec4899"
             >
               <motion.div 
-                className="bg-white dark:bg-zinc-800 md:p-8 p-4 rounded-2xl shadow-lg w-full border border-pink-100 dark:border-zinc-700"
+                className="bg-white dark:bg-zinc-800 p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg w-full border border-pink-100 dark:border-zinc-700"
                 {...cardHoverAnimation}
               >
-                <div className="flex flex-col md:flex-row gap-3 md:gap-1 items-center mb-4">
-                  <div className="p-3 bg-pink-100 dark:bg-pink-900/30 rounded-full mr-4">
-                    <Palette className="h-6 w-6 text-pink-500 dark:text-pink-400" />
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-1 items-center mb-4">
+                  <div className="p-2 sm:p-3 bg-pink-100 dark:bg-pink-900/30 rounded-full sm:mr-4">
+                    <Palette className="h-5 w-5 sm:h-6 sm:w-6 text-pink-500 dark:text-pink-400" />
                   </div>
-                  <h3 className="text-2xl font-bold">Color Change</h3>
+                  <h3 className="text-xl sm:text-2xl font-bold text-center sm:text-start">Color Change</h3>
                 </div>
-                <p className="text-center md:text-start leading-relaxed">
+                <p className="text-center sm:text-start text-sm sm:text-base leading-relaxed">
                   Watch the text transform through vibrant colors as you scroll through this section,
                   creating a playful and engaging visual experience tied to your scroll position.
                 </p>
@@ -204,22 +208,22 @@ export function ScrollAnimationTriggerDemo() {
             {/* Rotate effect */}
             <ScrollAnimationTrigger 
               effect="rotate" 
-              className="min-h-[40vh] flex items-center justify-center p-6"
+              className="min-h-[30vh] sm:min-h-[40vh] flex items-center justify-center p-4 sm:p-6"
               delay={0.3}
               fromRotation={-15}
               toRotation={0}
             >
               <motion.div 
-                className="bg-white dark:bg-zinc-800 md:p-8 p-4 rounded-2xl shadow-lg w-full border border-amber-100 dark:border-zinc-700"
+                className="bg-white dark:bg-zinc-800 p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg w-full border border-amber-100 dark:border-zinc-700"
                 {...cardHoverAnimation}
               >
-                <div className="flex flex-col md:flex-row gap-3 md:gap-1 items-center mb-4">
-                  <div className="p-3 bg-amber-100 dark:bg-amber-900/30 rounded-full mr-4">
-                    <RefreshCw className="h-6 w-6 text-amber-500 dark:text-amber-400" />
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-1 items-center mb-4">
+                  <div className="p-2 sm:p-3 bg-amber-100 dark:bg-amber-900/30 rounded-full sm:mr-4">
+                    <RefreshCw className="h-5 w-5 sm:h-6 sm:w-6 text-amber-500 dark:text-amber-400" />
                   </div>
-                  <h3 className="md:text-2xl text-lg font-bold text-center md:text-start">Rotation Effect</h3>
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-center sm:text-start">Rotation Effect</h3>
                 </div>
-                <p className="text-gray-600 dark:text-gray-300 text-center md:text-start leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-300 text-center sm:text-start text-sm sm:text-base leading-relaxed">
                   This content spins into place as you scroll, adding a dynamic and playful
                   element to the page that catches the eye.
                 </p>
@@ -238,10 +242,10 @@ export function ScrollAnimationTriggerDemo() {
               animate: { x: 0, y: 0, opacity: 1, rotate: 0 },
               transition: { type: "spring", stiffness: 100, damping: 10 }
             }}
-            className="min-h-[50vh] flex items-center justify-center p-6 mb-24"
+            className="min-h-[40vh] sm:min-h-[50vh] flex items-center justify-center p-4 sm:p-6 mb-16 sm:mb-24"
           >
             <motion.div 
-              className="bg-gradient-to-br from-indigo-500 to-purple-600 md:p-10 p-6 rounded-2xl shadow-xl max-w-md text-white overflow-hidden relative"
+              className="bg-gradient-to-br from-indigo-500 to-purple-600 p-4 sm:p-6 md:p-10 rounded-2xl shadow-xl max-w-md w-full text-white overflow-hidden relative"
               {...cardHoverAnimation}
             >
               {[...Array(5)].map((_, i) => (
@@ -266,15 +270,15 @@ export function ScrollAnimationTriggerDemo() {
                 />
               ))}
               
-              <h3 className="text-2xl text-center md:text-start font-bold mb-4 relative z-10">Custom Animation Masterpiece</h3>
-              <p className="relative z-10 text-center md:text-start leading-relaxed">
+              <h3 className="text-xl sm:text-2xl text-center sm:text-start font-bold mb-4 relative z-10">Custom Animation Masterpiece</h3>
+              <p className="relative z-10 text-center sm:text-start text-sm sm:text-base leading-relaxed">
                 This content combines multiple animation effects for a truly unique entrance. 
                 The diagonal movement with rotation creates visual interest while the interactive 
                 hover state invites engagement.
               </p>
               
               <motion.button
-                className="mt-6 px-6 py-2 bg-white text-purple-600 rounded-full font-medium relative z-10"
+                className="mt-4 sm:mt-6 px-4 sm:px-6 py-2 bg-white text-purple-600 rounded-full font-medium relative z-10 text-sm sm:text-base w-full sm:w-auto"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -286,19 +290,19 @@ export function ScrollAnimationTriggerDemo() {
           <ScrollAnimationTrigger 
             effect="slide" 
             direction="up"
-            className="min-h-[50vh] flex items-center justify-center p-6 text-center"
+            className="min-h-[40vh] sm:min-h-[50vh] flex items-center justify-center p-4 sm:p-6 text-center"
             delay={0.3}
           >
-            <div className="max-w-2xl">
-              <h2 className="text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-pink-500">
+            <div className="max-w-2xl px-4 sm:px-6">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-pink-500">
                 Bring Your UI to Life
               </h2>
-              <p className="text-xl text-gray-600 dark:text-gray-300 text-center md:text-start mb-8">
+              <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 text-center sm:text-start mb-6 sm:mb-8">
                 Implement these stunning scroll animations in your next project to create
                 memorable, engaging user experiences.
               </p>
               <motion.button
-                className="px-8 py-3 bg-gradient-to-r from-blue-500 to-pink-500 text-white rounded-full font-medium text-lg shadow-lg"
+                className="px-6 sm:px-8 py-2 sm:py-3 bg-gradient-to-r from-blue-500 to-pink-500 text-white rounded-full font-medium text-base sm:text-lg shadow-lg w-full sm:w-auto"
                 whileHover={{ scale: 1.05, boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)" }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -314,7 +318,7 @@ export function ScrollAnimationTriggerDemo() {
 
 function ScrollProgressAnimationContent() {
   return (
-    <ScrollProgressAnimation className="min-h-[100vh] flex flex-col items-center justify-center p-6 mb-24 relative">
+    <ScrollProgressAnimation className="min-h-[80vh] sm:min-h-[100vh] flex flex-col items-center justify-center p-4 sm:p-6 mb-16 sm:mb-24 relative">
       {({ scrollYProgress }) => {
         const ScrollProgressContent = () => {
           const textColor = useScrollColor(scrollYProgress, "#3b82f6", "#ec4899")
@@ -327,14 +331,14 @@ function ScrollProgressAnimationContent() {
           return (
             <>
               <motion.div 
-                className="absolute inset-0 rounded-3xl opacity-40"
+                className="absolute inset-0 rounded-2xl sm:rounded-3xl opacity-40"
                 style={{
                   background: `radial-gradient(circle, ${gradientFrom}, ${gradientTo})`,
                 }}
               />
               
               <motion.div
-                className="bg-white dark:bg-zinc-800 md:p-10 p-6 rounded-2xl shadow-xl max-w-lg text-center relative z-10 border-2 border-transparent"
+                className="bg-white dark:bg-zinc-800 p-4 sm:p-6 md:p-10 rounded-xl sm:rounded-2xl shadow-xl max-w-lg w-full text-center relative z-10 border-2 border-transparent mx-4"
                 style={{
                   scale,
                   rotate: rotation,
@@ -344,27 +348,27 @@ function ScrollProgressAnimationContent() {
                 }}
               >
                 <motion.div
-                  className="absolute -top-6 -left-6 p-4 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full shadow-lg"
+                  className="absolute -top-4 -left-4 sm:-top-6 sm:-left-6 p-3 sm:p-4 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full shadow-lg"
                   animate={{ rotate: 360 }}
                   transition={{ duration: 10, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
                 >
-                  <PaintBucket className="h-6 w-6 text-white" />
+                  <PaintBucket className="h-4 w-4 sm:h-6 sm:w-6 text-white" />
                 </motion.div>
                 
                 <motion.h3 
-                  className="text-3xl font-bold mb-4" 
+                  className="text-xl sm:text-2xl md:text-3xl font-bold mb-3 sm:mb-4" 
                   style={{ color: textColor }}
                 >
                   Scroll Progress Magic
                 </motion.h3>
                 
-                <p className="text-gray-600 dark:text-gray-300 text-center md:text-start leading-relaxed mb-6">
+                <p className="text-gray-600 dark:text-gray-300 text-center sm:text-start text-sm sm:text-base leading-relaxed mb-4 sm:mb-6">
                   Watch as this element responds to your scrolling position. The colors shift, the card rotates,
                   and the size changes based on exactly how far you&apos;ve scrolled through this section.
                 </p>
                 
                 <motion.div 
-                  className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden"
+                  className="w-full h-1.5 sm:h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden"
                 >
                   <motion.div 
                     className="h-full rounded-full"

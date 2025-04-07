@@ -50,7 +50,7 @@ export function AnimatedGradientBgDemo() {
   const [activeTheme, setActiveTheme] = useState<string>("Cosmic Twilight");
 
   return (
-    <div className="w-full min-h-screen text-white p-8">
+    <div className="w-full min-h-screen text-white p-2">
       <div className="w-full max-w-6xl mx-auto">
         <div className="mb-12 text-center">
           <h1 className="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 dark:from-blue-400 via-violet-600 dark:via-violet-400 to-pink-400">Animated Gradient Background</h1>

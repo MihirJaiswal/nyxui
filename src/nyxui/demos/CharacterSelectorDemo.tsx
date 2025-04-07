@@ -130,7 +130,7 @@ const SimpleCharacterSelectorDemo = () => {
             characterImages={characters}
             displayMode='flex'
             cardGap={25}
-            cardsCount={4}
+            cardsCount={3}
             cardWidth={300}
             cardHeight={400}
             hoverEffect="scale"

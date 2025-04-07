@@ -99,7 +99,7 @@ export function cn(...inputs: ClassValue[]) {
   {
     name: "Cyberpunk Theme",
     preview: (
-      <div className="h-[300px] w-full relative overflow-hidden">
+      <div className="h-[300px] flex items-center justify-center w-full relative overflow-hidden">
         <MatrixCodeRain 
           color="#ff00ff"
           charset="01?!×÷@#$%&*HACK"
@@ -116,7 +116,7 @@ export function cn(...inputs: ClassValue[]) {
 
 export function CyberpunkMatrix() {
   return (
-    <div className="h-[300px] w-full relative overflow-hidden">
+    <div className="h-[300px] flex items-center justify-center w-full relative overflow-hidden">
       <MatrixCodeRain 
         color="#ff00ff"
         charset="01?!×÷@#$%&*HACK"
@@ -133,7 +133,7 @@ export function CyberpunkMatrix() {
   {
     name: "Blue Tech Background",
     preview: (
-      <div className="relative h-64 rounded-lg overflow-hidden">
+      <div className="relative h-64 rounded-lg overflow-hidden flex items-center justify-center">
         <MatrixCodeRain 
           color="#0088ff"
           fontSize={10}
@@ -155,7 +155,7 @@ export function CyberpunkMatrix() {
 
 export function BlueTechBackground() {
   return (
-    <div className="relative h-64 rounded-lg overflow-hidden">
+    <div className="relative h-64 rounded-lg overflow-hidden flex items-center justify-center">
       <MatrixCodeRain 
         color="#0088ff"
         fontSize={10}
@@ -177,7 +177,7 @@ export function BlueTechBackground() {
   {
     name: "Custom Characters",
     preview: (
-      <div className="h-[300px] w-full relative overflow-hidden">
+      <div className="h-[300px] flex items-center justify-center w-full relative overflow-hidden">
         <MatrixCodeRain 
           color="#ffcc00"
           charset="①②③④⑤⑥⑦⑧⑨⑩⓪"
@@ -193,7 +193,7 @@ export function BlueTechBackground() {
 
 export function CustomCharactersMatrix() {
   return (
-    <div className="h-[300px] w-full relative overflow-hidden">
+    <div className="h-[300px] flex items-center justify-center w-full relative overflow-hidden">
       <MatrixCodeRain 
         color="#ffcc00"
         charset="①②③④⑤⑥⑦⑧⑨⑩⓪"
@@ -209,7 +209,7 @@ export function CustomCharactersMatrix() {
   {
     name: "Slow Motion Effect",
     preview: (
-      <div className="h-[300px] w-full relative overflow-hidden">
+      <div className="h-[300px] flex items-center justify-center w-full relative overflow-hidden">
         <MatrixCodeRain 
           color="#00ddff"
           charset="01001101"
@@ -226,7 +226,7 @@ export function CustomCharactersMatrix() {
 
 export function SlowMotionMatrix() {
   return (
-    <div className="h-[300px] w-full relative overflow-hidden">
+    <div className="h-[300px] flex items-center justify-center w-full relative overflow-hidden">
       <MatrixCodeRain 
         color="#00ddff"
         charset="01001101"
@@ -243,7 +243,7 @@ export function SlowMotionMatrix() {
   {
     name: "Red Alert Mode",
     preview: (
-      <div className="h-[300px] w-full relative overflow-hidden">
+      <div className="h-[300px] flex items-center justify-center w-full relative overflow-hidden">
         <MatrixCodeRain 
           color="#ff3300"
           charset="WARNING!ALERT"
@@ -260,7 +260,7 @@ export function SlowMotionMatrix() {
 
 export function RedAlertMatrix() {
   return (
-    <div className="h-[300px] w-full relative overflow-hidden">
+    <div className="h-[300px] flex items-center justify-center w-full relative overflow-hidden">
       <MatrixCodeRain 
         color="#ff3300"
         charset="WARNING!ALERT"
@@ -277,7 +277,7 @@ export function RedAlertMatrix() {
   {
     name: "Hieroglyphic Style",
     preview: (
-      <div className="h-[300px] w-full relative overflow-hidden">
+      <div className="h-[300px] flex items-center justify-center w-full relative overflow-hidden">
         <MatrixCodeRain 
           color="#d4af37"
           charset="𓀀𓀁𓀂𓀃𓀄𓀅𓀆𓀇𓀈𓀉𓀊𓀋𓀌𓀍𓀎𓀏"
@@ -294,7 +294,7 @@ export function RedAlertMatrix() {
 
 export function HieroglyphicMatrix() {
   return (
-    <div className="h-[300px] w-full relative overflow-hidden">
+    <div className="h-[300px] flex items-center justify-center w-full relative overflow-hidden">
       <MatrixCodeRain 
         color="#d4af37"
         charset="𓀀𓀁𓀂𓀃𓀄𓀅𓀆𓀇𓀈𓀉𓀊𓀋𓀌𓀍𓀎𓀏"
