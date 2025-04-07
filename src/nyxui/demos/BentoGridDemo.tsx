@@ -109,7 +109,7 @@ const useToggle = (init = false) => {
                 autoPlay
                 title="React Component"
                 showLineNumbers
-                highlightLines={[2, 4, 13]}
+                highlightLines={[1, 3, 6]}
               />
             </div>
           }

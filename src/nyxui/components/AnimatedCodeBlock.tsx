@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
-import { Play, Pause, Copy, Check, Terminal } from "lucide-react"
+import { Play, Pause, Copy, Check, Terminal, RotateCcw } from "lucide-react"
 
 export interface AnimatedCodeBlockProps {
   code: string;
@@ -40,7 +40,8 @@ export function AnimatedCodeBlock({
   const [isPlaying, setIsPlaying] = useState(autoPlay)
   const [currentPosition, setCurrentPosition] = useState(0)
   const [copied, setCopied] = useState(false)
-  const codeRef = useRef<HTMLPreElement>(null)
+  const [completed, setCompleted] = useState(false)
+  const codeRef = useRef<HTMLDivElement>(null)
   const timerRef = useRef<NodeJS.Timeout | null>(null)
 
   const getThemeStyles = () => {
@@ -120,6 +121,7 @@ export function AnimatedCodeBlock({
         }, 1000)
       } else {
         setIsPlaying(false)
+        setCompleted(true)
       }
     }
 
@@ -132,13 +134,62 @@ export function AnimatedCodeBlock({
     setIsPlaying(!isPlaying)
   }
 
+  const restartAnimation = () => {
+    setCurrentPosition(0)
+    setDisplayedCode("")
+    setIsPlaying(true)
+    setCompleted(false)
+  }
+
   const copyCode = () => {
     navigator.clipboard.writeText(code)
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
     if (onCopy) onCopy()
   }
-  const displayedLines = displayedCode.split("\n")
+  
+  const codeLines = code.split("\n")
+  const renderLines = () => {
+    let remainingChars = currentPosition
+    const result = []
+    
+    for (let i = 0; i < codeLines.length; i++) {
+      const line = codeLines[i]
+      const lineLength = line.length + 1 
+      
+      if (remainingChars <= 0) {
+        result.push("")
+      } else if (remainingChars >= lineLength) {
+        result.push(line)
+        remainingChars -= lineLength
+      } else {
+        result.push(line.substring(0, remainingChars))
+        remainingChars = 0
+      }
+    }
+    
+    return result
+  }
+  
+  const displayedLines = isPlaying ? renderLines() : (completed || !isPlaying) ? code.split("\n") : renderLines()
+  
+  const getCursorLineIndex = () => {
+    if (!isPlaying) return -1
+    
+    let charsProcessed = 0
+    for (let i = 0; i < codeLines.length; i++) {
+      const lineLength = codeLines[i].length + 1 
+      charsProcessed += lineLength
+      
+      if (currentPosition < charsProcessed) {
+        return i
+      }
+    }
+    
+    return codeLines.length - 1
+  }
+  
+  const cursorLineIndex = getCursorLineIndex()
 
   return (
     <div
@@ -158,13 +209,23 @@ export function AnimatedCodeBlock({
         </div>
         {showControls && (
           <div className="flex items-center gap-2">
-            <button
-              onClick={togglePlay}
-              className="p-1 rounded hover:bg-gray-700 hover:bg-opacity-30 transition-colors"
-              aria-label={isPlaying ? "Pause" : "Play"}
-            >
-              {isPlaying ? <Pause size={14} /> : <Play size={14} />}
-            </button>
+            {completed ? (
+              <button
+                onClick={restartAnimation}
+                className="p-1 rounded hover:bg-gray-700 hover:bg-opacity-30 transition-colors"
+                aria-label="Repeat animation"
+              >
+                <RotateCcw size={14} />
+              </button>
+            ) : (
+              <button
+                onClick={togglePlay}
+                className="p-1 rounded hover:bg-gray-700 hover:bg-opacity-30 transition-colors"
+                aria-label={isPlaying ? "Pause" : "Play"}
+              >
+                {isPlaying ? <Pause size={14} /> : <Play size={14} />}
+              </button>
+            )}
             <button
               onClick={copyCode}
               className="p-1 rounded hover:bg-gray-700 hover:bg-opacity-30 transition-colors"
@@ -176,45 +237,46 @@ export function AnimatedCodeBlock({
         )}
       </div>
 
-      <div className="relative">
+      <div className="relative overflow-hidden">
         {blurEffect && theme === "terminal" && (
           <div className="absolute inset-0 pointer-events-none bg-green-400 opacity-[0.03] mix-blend-overlay" />
         )}
 
-        <div className="flex">
-          {showLineNumbers && (
-            <div className={cn("text-xs p-4 text-right select-none min-w-[40px]", themeStyles.lineNumbers)}>
-              {displayedLines.map((_, i) => (
-                <div key={i} className="h-6">{i + 1}</div>
-              ))}
-            </div>
-          )}
-          <pre
-            ref={codeRef}
-            className="p-4 overflow-x-auto flex-1 font-mono text-sm w-full"
-            style={{ position: "relative", minWidth: "100%" }}
-          >
-            {highlightLines.map((line) => (
-              <div
-                key={`highlight-${line}`}
-                className={cn("absolute left-0 right-0 h-6", themeStyles.highlight)}
-                style={{ 
-                  top: `${(line - 1) * 24 + 16}px`,
-                  zIndex: 0
-                }}
-              />
-            ))}
-            <code className="relative z-10 block whitespace-pre">
-              {displayedCode}
-            </code>
-            {isPlaying && (
-              <motion.span
-                className="inline-block w-2 h-4 bg-current"
-                animate={{ opacity: [1, 0] }}
-                transition={{ repeat: Number.POSITIVE_INFINITY, duration: 0.8 }}
-              />
+        <div className="overflow-x-auto">
+          <div className="flex min-w-full">
+            {showLineNumbers && (
+              <div className={cn("text-xs py-4 px-2 text-right select-none", themeStyles.lineNumbers)}>
+                {codeLines.map((_, i) => (
+                  <div key={i} className="h-6 flex items-center justify-end">{i + 1}</div>
+                ))}
+              </div>
             )}
-          </pre>
+
+            <div className="relative py-4 flex-grow" ref={codeRef}>
+              {highlightLines.map((lineNum) => (
+                <div
+                  key={`highlight-${lineNum}`}
+                  className={cn("absolute left-0 right-0 h-6", themeStyles.highlight)}
+                  style={{ top: `${(lineNum - 1) * 24 + 16}px` }}
+                />
+              ))}
+
+              <div className="relative z-10 px-4 font-mono text-sm">
+                {codeLines.map((line, i) => (
+                  <div key={i} className="h-6 whitespace-pre">
+                    {displayedLines[i] || ""}
+                    {i === cursorLineIndex && (
+                      <motion.span
+                        className="inline-block w-2 h-5 bg-current -mb-0.5"
+                        animate={{ opacity: [1, 0] }}
+                        transition={{ repeat: Number.POSITIVE_INFINITY, duration: 0.8 }}
+                      />
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
