@@ -10,7 +10,7 @@ const TerminalDemo = () => {
       <div className="max-w-5xl mx-auto space-y-20">
         <div className="text-center space-y-4">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Interactive Terminal <span className="text-blue-500 dark:text-blue-400">Components</span>
+            Interactive Terminal <span className="text-purple-500 dark:text-purple-400">Components</span>
           </h1>
           <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Beautiful, customizable terminal simulations for your web applications.

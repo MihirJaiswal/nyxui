@@ -51,6 +51,18 @@ export const interactiveTerminalData: ComponentData = {
           description: "Command that users need to enter to trigger the terminal sequence.",
         },
         {
+          name: "commandBg",
+          type: "string",
+          default: '"bg-gray-950"',
+          description: "Background color for the command info bar.",
+        },  
+        {
+          name: "rounded",
+          type: "string",
+          default: '"sm"',
+          description: "Border radius for the terminal container.",
+        },
+        {
           name: "commandMessage",
           type: "string",
           default: '"Enter this command:"',

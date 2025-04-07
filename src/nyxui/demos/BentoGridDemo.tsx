@@ -2,7 +2,7 @@ import React from "react";
 import { BentoGrid } from "@/nyxui/components/BentoGrid";
 import { AnimatedGradientBg } from "@/nyxui/components/AnimatedGradientBg";
 import { AnimatedCodeBlock } from "@/nyxui/components/AnimatedCodeBlock";
-import { ChevronRight, Sparkles, Zap } from "lucide-react";
+import { ChevronRight, Code, Sparkles, Zap } from "lucide-react";
 import { MatrixCodeRain } from "../components/MatrixCodeRain";
 import { DynamicRipple } from "../components/DynamicRipple";
 import { MajesticCard } from "../components/MajesticCard";
@@ -117,29 +117,39 @@ const useToggle = (init = false) => {
 
         <BentoGrid
           className="lg:col-span-2 rounded-2xl overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl border border-zinc-200 dark:border-zinc-800 h-[500px]"
-          height="h-96"
-          enableDescription
-          description="Copy and paste commands to activate the terminal."
+          height="h-full"
+          enableDescription={false}
+          enableTitle={false}
           component={
-            <div className="p-4">
-              <InteractiveTerminal
-                bgColor="bg-zinc-900"
-                textColor="text-purple-400"
-                command="npm install"
-                commandMessage="Try running:"
-                processingSteps={[
-                  "Initializing package manager...",
-                  "Resolving dependencies...",
-                  "Fetching packages...",
-                  "Installing modules..."
-                ]}
-                finalMessage="✅ Packages installed successfully!"
-                stepDelay={800}
-                promptSymbol="$"
-                inputPlaceholder="Type your command here..."
-                outputHeight="h-64"
-              />
-            </div>
+            <div className="rounded-xl px-8  mt-3 overflow-hidden shadow-2xl transform transition-all hover:shadow-green-500/50">
+            <InteractiveTerminal 
+              bgColor="bg-black"
+              textColor="text-green-500"
+              command="sudo hack --target=mainframe"
+              commandMessage="Execute this command:"
+              icon={<Code className="mr-2 mt-2" />}
+              processingSteps={[
+                "Initializing exploit framework...",
+                "Scanning for vulnerabilities...",
+                "Bypassing security protocols...",
+                "Accessing restricted files...",
+                "Covering tracks...",
+              ]}
+              finalMessage={`
+⚠️  ACCESS GRANTED  ⚠️
+
+[SYSTEM]: Mainframe successfully compromised
+[SYSTEM]: All security protocols bypassed
+[SYSTEM]: User promoted to root access
+[SYSTEM]: Connection established on port 443
+[SYSTEM]: Remember, with great power comes great responsibility
+
+Connection secured. Press ENTER to continue...
+              `}
+              promptSymbol=">"
+              stepDelay={800}
+            />
+          </div>
           }
         />
 
