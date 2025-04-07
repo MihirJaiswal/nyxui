@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Roboto, Poppins, Montserrat, Lato, Open_Sans } from "next/font/google";
+import { Montserrat, Open_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Banner } from "@/components/global/Banner";
