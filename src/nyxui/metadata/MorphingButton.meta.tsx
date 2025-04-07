@@ -27,7 +27,7 @@ export const morphingButtonData: ComponentData = {
           name: "variant",
           type: "string",
           default: 'expand',
-          description: "Button transformation animation variant - (expand, collapse, rotate, skew, liquid)",
+          description: "Button transformation animation variant - (expand, collapse, rotate, skew, liquid, gradient, glow, pulse, reveal, bounce)",
         },
         {
           name: "size",
@@ -39,7 +39,19 @@ export const morphingButtonData: ComponentData = {
           name: "color",
           type: "string",
           default: 'primary',
-          description: "Button color theme - (primary, secondary, success, danger, warning, info, dark)",
+          description: "Button color theme - (primary, secondary, success, danger, warning, info, dark, slate, violet, indigo, teal, rose, amber, custom)",
+        },
+        {
+          name: "rounded",
+          type: "string",
+          default: 'md',
+          description: "Button corner radius - (none, sm, md, lg, full)",
+        },
+        {
+          name: "shadow",
+          type: "string",
+          default: 'md',
+          description: "Button shadow effect - (none, sm, md, lg, xl, inner, glow)",
         },
         {
           name: "icon",

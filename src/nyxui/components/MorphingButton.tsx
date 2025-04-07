@@ -4,7 +4,7 @@ import React, { useState } from "react";
 export type MorphingButtonProps = {
   variant?: "expand" | "collapse" | "rotate" | "skew" | "liquid" | "gradient" | "glow" | "pulse" | "reveal" | "bounce";
   size?: "xs" | "sm" | "md" | "lg" | "xl";
-  color?: "primary" | "secondary" | "success" | "danger" | "warning" | "info" | "dark" | "slate" | "violet" | "indigo" | "teal" | "rose" | "amber";
+  color?: "primary" | "secondary" | "success" | "danger" | "warning" | "info" | "dark" | "slate" | "violet" | "indigo" | "teal" | "rose" | "amber" | "custom";
   rounded?: "none" | "sm" | "md" | "lg" | "full";
   shadow?: "none" | "sm" | "md" | "lg" | "xl" | "inner" | "glow";
   icon?: React.ReactNode;
@@ -65,6 +65,7 @@ export const MorphingButton = ({
       color === "rose" ? "shadow-rose-400/40" :
       color === "amber" ? "shadow-amber-400/40" :
       color === "slate" ? "shadow-slate-400/40" :
+      color === "custom" ? "" :
       "shadow-gray-400/40"
     }`,
   };
@@ -83,6 +84,7 @@ export const MorphingButton = ({
     teal: "bg-gradient-to-br from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white border border-teal-600",
     rose: "bg-gradient-to-br from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700 text-white border border-rose-600",
     amber: "bg-gradient-to-br from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white border border-amber-600",
+    custom: "", 
   };
 
   const getIconContent = () => {
@@ -124,6 +126,8 @@ export const MorphingButton = ({
         return `transition-all duration-300 ${isHovered ? rounded === "full" ? "rounded-full" : "rounded-2xl" : roundedClasses[rounded]} 
                 ${isActive ? "rounded-full scale-95" : ""}`;
       case "gradient":
+        if (color === "custom") return `transition-all duration-500 ${isActive ? "scale-95" : "scale-100"}`;
+        
         return `transition-all duration-500 bg-gradient-to-r 
                 from-${color === "primary" ? "blue-400" : 
                 color === "secondary" ? "purple-400" : 
@@ -161,11 +165,13 @@ export const MorphingButton = ({
                 color === "rose" ? "rose-600" : 
                 color === "amber" ? "amber-600" : 
                 color === "slate" ? "slate-700" : "gray-800"} 
-                ${isHovered ? "bg-position-100 brightness-110" : "bg-position-0"} 
+                ${isHovered ? "brightness-110" : ""} 
                 ${isActive ? "scale-95" : "scale-100"}
                 border-none
                 `;
       case "glow":
+        if (color === "custom") return `transition-all duration-300 ${isActive ? "scale-95" : "scale-100"}`;
+        
         return `transition-all duration-300 
                 ${isHovered ? `shadow-lg shadow-${
                   color === "primary" ? "blue-400/50" :
@@ -201,14 +207,10 @@ export const MorphingButton = ({
     }
   };
 
-  const baseClasses = `
-    ${sizeClasses[size]} 
-    ${variant === "gradient" ? "" : colorClasses[color]} 
-    ${variant !== "liquid" ? roundedClasses[rounded] : ""} 
-    ${shadow !== "none" ? shadowClasses[shadow] : ""}
-    ${getVariantClasses()} 
-    inline-flex items-center justify-center font-medium 
-    focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-${
+  const getFocusRingColor = () => {
+    if (color === "custom") return "";
+    
+    return `focus:ring-${
       color === "primary" ? "blue" :
       color === "secondary" ? "purple" :
       color === "success" ? "emerald" :
@@ -222,7 +224,17 @@ export const MorphingButton = ({
       color === "amber" ? "amber" :
       color === "slate" ? "slate" :
       "gray"
-    }-400
+    }-400`;
+  };
+
+  const baseClasses = `
+    ${sizeClasses[size]} 
+    ${color !== "custom" ? (variant === "gradient" ? "" : colorClasses[color]) : ""} 
+    ${variant !== "liquid" ? roundedClasses[rounded] : ""} 
+    ${shadow !== "none" && color !== "custom" ? shadowClasses[shadow] : shadow !== "none" && color === "custom" ? `shadow-${shadow}` : ""}
+    ${getVariantClasses()} 
+    inline-flex items-center justify-center font-medium 
+    focus:outline-none focus:ring-2 focus:ring-offset-1 ${getFocusRingColor()}
     transition-all duration-300
     backdrop-filter backdrop-blur-sm
     ${className}
