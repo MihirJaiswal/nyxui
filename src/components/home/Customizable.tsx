@@ -10,7 +10,6 @@ import {
   Heart,
   Repeat,
   Shuffle,
-  MoreHorizontal,
   Sun,
   Moon,
   Check,
@@ -149,34 +148,6 @@ const MusicCardThemeCustomizer = () => {
       if (interval) clearInterval(interval)
     }
   }, [isPlaying])
-
-  const slideNext = () => {
-    if (isAnimating) return
-
-    const nextIndex = (themeIndex + 1) % themeOptions.length
-    setIsAnimating(true)
-    setSlideDirection("right")
-    setThemeIndex(nextIndex)
-    setTheme(themeOptions[nextIndex].value)
-
-    setTimeout(() => {
-      setIsAnimating(false)
-    }, 400)
-  }
-
-  const slidePrev = () => {
-    if (isAnimating) return
-
-    const prevIndex = (themeIndex - 1 + themeOptions.length) % themeOptions.length
-    setIsAnimating(true)
-    setSlideDirection("left")
-    setThemeIndex(prevIndex)
-    setTheme(themeOptions[prevIndex].value)
-
-    setTimeout(() => {
-      setIsAnimating(false)
-    }, 400)
-  }
 
   const generateCode = () => {
     return `<SpotifyCard 

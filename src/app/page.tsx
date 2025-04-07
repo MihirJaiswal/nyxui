@@ -2,7 +2,6 @@ import Header from "@/components/global/Header";
 import { Hero } from "@/components/home/Hero";
 import { BentoDemo } from "@/nyxui/demos/BentoGridDemo";
 import { AnimatedGradientBg } from "@/nyxui/components/AnimatedGradientBg";
-import Footer from "@/components/global/Footer";
 import Customize from "@/components/home/Customize";
 import { Build } from "@/components/home/Build";
 
