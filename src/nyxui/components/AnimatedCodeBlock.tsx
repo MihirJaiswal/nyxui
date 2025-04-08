@@ -54,13 +54,13 @@ export function AnimatedCodeBlock({
           highlight: "bg-gray-800",
           border: "border-gray-700",
         }
-      case "light":
+      case "minimal":
         return {
-          background: "bg-gray-100",
+          background: "bg-yellow-100",
           text: "text-gray-900",
           lineNumbers: "text-gray-500",
-          highlight: "bg-gray-200",
-          border: "border-gray-300",
+          highlight: "bg-yellow-200",
+          border: "border-yellow-300",
         }
       case "terminal":
         return {
@@ -73,12 +73,12 @@ export function AnimatedCodeBlock({
       case "cyberpunk":
         return {
           background: "bg-purple-950",
-          text: "text-pink-400",
+          text: "text-pink-300",
           lineNumbers: "text-purple-600",
           highlight: "bg-pink-900/30",
           border: "border-pink-700",
         }
-      case "minimal":
+      case "light":
         return {
           background: "bg-white",
           text: "text-gray-800",

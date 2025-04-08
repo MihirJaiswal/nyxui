@@ -32,7 +32,7 @@ interface CardProps {
   priority?: boolean;
 }
 
-const SpecialCard: React.FC<CardProps> = ({
+const RevealCard: React.FC<CardProps> = ({
   coverImage,
   titleImage,
   characterImage,
@@ -149,4 +149,4 @@ const SpecialCard: React.FC<CardProps> = ({
   );
 };
 
-export default SpecialCard;
+export default RevealCard;

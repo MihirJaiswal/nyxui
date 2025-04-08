@@ -8,7 +8,7 @@ import { morphingBlobData } from "@/nyxui/metadata/morphing-blob.meta";
 import { animatedCodeBlockData } from "@/nyxui/metadata/AnimatedCodeBlock.meta";
 import { animatedGradientBgData } from "./metadata/AnimatedGradientBg.meta";
 import { scrollAnimationTriggerData } from "./metadata/ScrollAnimationTrigger.meta";
-import { specialCardData } from "./metadata/SpecialCard.meta";
+import { revealCardData } from "./metadata/RevealCard.meta";
 import { matrixCodeRainData } from "./metadata/MatrixCodeRain.meta";
 import { mspaintData } from "./metadata/MSpaint.meta";
 import { interactiveTerminalData } from "./metadata/Terminal.meta";
@@ -28,7 +28,7 @@ export const componentsData = {
   "animated-code-block": animatedCodeBlockData,
   "animated-gradient-background":animatedGradientBgData,
   "scroll-animation-trigger": scrollAnimationTriggerData,
-  "special-card": specialCardData,
+  "reveal-card": revealCardData,
   "matrix-code-rain": matrixCodeRainData,
   "ms-paint": mspaintData,
   "interactive-terminal": interactiveTerminalData,

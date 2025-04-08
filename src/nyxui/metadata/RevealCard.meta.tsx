@@ -1,20 +1,20 @@
 import type { ComponentData } from "@/nyxui/ComponentInterfaces";
-import SpecialCard from "@/nyxui/components/specialCard";
-import SpecialCardDemo from "@/nyxui/demos/SpecialCardDemo";
+import RevealCard from "@/nyxui/components/RevealCard";
+import RevealCardDemo from "@/nyxui/demos/RevealCardDemo";
 import fs from "fs";
 import path from "path";
 
-const componentPath = path.join(process.cwd(), "src/nyxui/components/specialCard.tsx");
+const componentPath = path.join(process.cwd(), "src/nyxui/components/RevealCard.tsx");
 const CardSource = fs.readFileSync(componentPath, "utf8");
 
-const demoPath = path.join(process.cwd(), "src/nyxui/demos/SpecialCardDemo.tsx");
+const demoPath = path.join(process.cwd(), "src/nyxui/demos/RevealCardDemo.tsx");
 const CardDemoSource = fs.readFileSync(demoPath, "utf8");
 
-export const specialCardData: ComponentData = {
-  name: "Special Card",
+export const revealCardData: ComponentData = {
+  name: "Reveal Card",
   description:
     "A dynamic card component with layered images and hover animations. It supports customization for dimensions, colors, animations, and more via props.",
-  preview: <SpecialCardDemo />,
+  preview: <RevealCardDemo />,
   usage: CardDemoSource,
   componentCode: CardSource,
   dependencies: [],
@@ -135,10 +135,10 @@ export const specialCardData: ComponentData = {
     {
       name: "Batman Dark",
       preview: (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center py-12">
           <div className="relative group">
             <div className="absolute -inset-1 bg-gradient-to-r from-gray-700 to-yellow-500 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
-            <SpecialCard
+            <RevealCard
               coverImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/thedarkknightposter.jpg"
               titleImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/dlogo.png"
               characterImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/klipart.png"
@@ -151,14 +151,14 @@ export const specialCardData: ComponentData = {
         </div>
       ),
       filename: "BatmanDark.tsx",
-      code: `import SpecialCard from "@/nyxui/components/SpecialCard";
+      code: `import RevealCard from "@/nyxui/components/RevealCard";
   
   export function BatmanDark() {
     return (
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center py-12">
         <div className="relative group">
           <div className="absolute -inset-1 bg-gradient-to-r from-gray-700 to-yellow-500 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
-          <SpecialCard
+          <RevealCard
             coverImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/thedarkknightposter.jpg"
             titleImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/dlogo.png"
             characterImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/klipart.png"
@@ -175,10 +175,10 @@ export const specialCardData: ComponentData = {
     {
       name: "Hulk Power",
       preview: (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center py-12">
           <div className="relative group">
             <div className="absolute -inset-1 bg-gradient-to-r from-green-600 to-green-400 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
-            <SpecialCard
+            <RevealCard
               coverImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/hulkposter.jpg"
               titleImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/hlogo1.png"
               characterImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/hulp1.png"
@@ -197,14 +197,14 @@ export const specialCardData: ComponentData = {
         </div>
       ),
       filename: "IronManTech.tsx",
-      code: `import SpecialCard from "@/nyxui/components/SpecialCard";
+      code: `import RevealCard from "@/nyxui/components/RevealCard";
   
   export function IronManTech() {
     return (
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center py-12">
         <div className="relative group">
           <div className="absolute -inset-1 bg-gradient-to-r from-green-600 to-green-400 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
-          <SpecialCard
+          <RevealCard
             coverImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/hulkposter.jpg"
             titleImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/hlogo1.png"
             characterImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/hulp1.png"
