@@ -130,7 +130,7 @@ export const InstallationSection = ({ componentData }: { componentData: Componen
                 className="data-[state=active]:bg-background data-[state=active]:shadow-sm rounded-lg h-9 px-4"
               >
                 <FileCode className="size-4 mr-2" />
-                Manual Setup
+                Manual 
               </TabsTrigger>
             </TabsList>
           </div>
@@ -149,7 +149,7 @@ export const InstallationSection = ({ componentData }: { componentData: Componen
             </div>
           </TabsContent>
 
-          <TabsContent value="manual" className="p-8 space-y-10 bg-background">
+          <TabsContent value="manual" className="md:p-8 p-3 space-y-10 bg-background">
             <div className="space-y-8">
               {componentData.dependencies && componentData.dependencies.length > 0 && (
                 <div className="space-y-5">
@@ -368,7 +368,7 @@ export const InstallationSection = ({ componentData }: { componentData: Componen
                         margin: 0,
                         padding: "20px",
                         fontSize: "13px",
-                        maxHeight: "28rem",
+                        maxHeight: "20rem",
                         overflow: "auto",
                       }}
                       showLineNumbers

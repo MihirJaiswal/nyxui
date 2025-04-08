@@ -32,10 +32,10 @@ export function ScrollAnimationTriggerDemo() {
         <ScrollAnimationTrigger
           effect="slide"
           direction="up"
-          className="flex flex-col items-center justify-center p-4 sm:p-6 mb-8 sm:mb-12 w-full max-w-3xl mx-auto"
+          className="flex flex-col items-center justify-center mb-8 sm:mb-12 w-full max-w-3xl mx-auto"
         >
           <h1 
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 bg-clip-text text-transparent px-2"
+            className="text-3xl sm:text-4xl pb-3 md:text-5xl lg:text-6xl font-extrabold mb-4 bg-clip-text text-transparent px-2"
             style={{ 
               backgroundImage: "linear-gradient(135deg, #3b82f6, #ec4899)" 
             }}

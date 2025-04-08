@@ -427,18 +427,18 @@ import { twMerge } from "tailwind-merge";
         >
           <div className="space-y-3">
             <div className="flex items-center gap-2">
-              <Database className="w-6 h-6" />
-              <h3 className="text-xl font-bold tracking-wider">MEMORY VAULT</h3>
+              <Database className="w-6 h-6 text-black dark:text-white" />
+              <h3 className="text-xl font-bold tracking-wider text-black dark:text-white">MEMORY VAULT</h3>
             </div>
-            <p className="text-sm opacity-80">Secure quantum storage solution with 8PB capacity</p>
+            <p className="text-sm opacity-80 text-black dark:text-white">Secure quantum storage solution with 8PB capacity</p>
             <div className="w-full bg-gray-700/50 rounded-full h-2 mt-4">
               <div className="bg-teal-400 h-2 rounded-full w-3/5"></div>
             </div>
-            <div className="flex justify-between text-xs font-mono">
+            <div className="flex justify-between text-xs font-mono text-black dark:text-white">
               <span>USED: 4.8PB</span>
               <span>FREE: 3.2PB</span>
             </div>
-            <div className="mt-3 p-2 bg-gray-700/30 rounded text-xs">
+            <div className="mt-3 p-2 bg-gray-700/30 rounded text-xs text-black dark:text-white">
               <div className="font-bold mb-1">RECENT ARCHIVES:</div>
               <div className="truncate">• Neural Backup [2025-03-28]</div>
               <div className="truncate">• Memory Fragment #37A2 [2025-03-31]</div>
@@ -468,18 +468,18 @@ import { twMerge } from "tailwind-merge";
       >
         <div className="space-y-3">
           <div className="flex items-center gap-2">
-            <Database className="w-6 h-6" />
-            <h3 className="text-xl font-bold tracking-wider">MEMORY VAULT</h3>
+            <Database className="w-6 h-6 text-black dark:text-white" />
+            <h3 className="text-xl font-bold tracking-wider text-black dark:text-white">MEMORY VAULT</h3>
           </div>
-          <p className="text-sm opacity-80">Secure quantum storage solution with 8PB capacity</p>
+          <p className="text-sm opacity-80 text-black dark:text-white">Secure quantum storage solution with 8PB capacity</p>
           <div className="w-full bg-gray-700/50 rounded-full h-2 mt-4">
             <div className="bg-teal-400 h-2 rounded-full w-3/5"></div>
           </div>
-          <div className="flex justify-between text-xs font-mono">
+          <div className="flex justify-between text-xs font-mono text-black dark:text-white">
             <span>USED: 4.8PB</span>
             <span>FREE: 3.2PB</span>
           </div>
-          <div className="mt-3 p-2 bg-gray-700/30 rounded text-xs">
+          <div className="mt-3 p-2 bg-gray-700/30 rounded text-xs text-black dark:text-white">
             <div className="font-bold mb-1">RECENT ARCHIVES:</div>
             <div className="truncate">• Neural Backup [2025-03-28]</div>
             <div className="truncate">• Memory Fragment #37A2 [2025-03-31]</div>

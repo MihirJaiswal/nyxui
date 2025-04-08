@@ -71,6 +71,9 @@ export function MajesticCard({
   const [showConfetti, setShowConfetti] = useState(false)
   const [generatedLayers, setGeneratedLayers] = useState<React.ReactNode[]>([])
   const [floatPhase, setFloatPhase] = useState(0)
+  const [showRipple, setShowRipple] = useState(false)
+  const [ripplePosition, setRipplePosition] = useState({ x: 50, y: 50 })
+  const [waveTime, setWaveTime] = useState(0)
   
   const x = useMotionValue(0)
   const y = useMotionValue(0)
@@ -171,7 +174,6 @@ export function MajesticCard({
 
   const currentTheme = themeStyles[theme]
 
-  // Memoize these objects to avoid recreating them on every render
   const intensityFactors = useMemo(() => ({
     1: 0.2,
     2: 0.4,
@@ -282,12 +284,26 @@ export function MajesticCard({
   }, [variant, generatedLayers])
 
   useEffect(() => {
-    if (cardRef.current) {
-      // We're not using the dimensions so we can remove this state update
-      // const rect = cardRef.current.getBoundingClientRect()
-      // setDimensions({ width: rect.width, height: rect.height })
+    if (variant === "wave" && !reduceMotion) {
+      let animationFrame: number;
+      let lastTime = 0;
+      const animate = (time: number) => {
+        if (!lastTime) lastTime = time;
+        const delta = (time - lastTime) / 1000;
+        lastTime = time;
+        
+        setWaveTime(prev => prev + delta);
+        
+        animationFrame = requestAnimationFrame(animate);
+      };
+      
+      animationFrame = requestAnimationFrame(animate);
+      
+      return () => {
+        cancelAnimationFrame(animationFrame);
+      };
     }
-  }, [children])
+  }, [variant, reduceMotion]);
 
   useEffect(() => {
     if ((variant === "float" || variant === "wave") && !reduceMotion) {
@@ -345,7 +361,6 @@ export function MajesticCard({
     }
   }, [floatPhase, variant, intensity, floatPattern, reduceMotion, floatX, floatY, rotate, intensityFactors]);
 
-  // Use a ref to store the current callback instance to avoid stale closures
   const cleanupRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
@@ -353,7 +368,7 @@ export function MajesticCard({
 
     const card = cardRef.current;
     const factor = intensityFactors[intensity];
-    const layersCopy = [...layers]; // Create a copy to avoid capturing the layers state
+    const layersCopy = [...layers];
 
     const handleMouseMove = (e: MouseEvent) => {
       if (!card) return
@@ -392,6 +407,12 @@ export function MajesticCard({
         
         rotateX.set(-dy * waveIntensity)
         rotateY.set(dx * waveIntensity)
+        if (isHovered) {
+          const rippleX = (e.clientX - rect.left) / rect.width * 100
+          const rippleY = (e.clientY - rect.top) / rect.height * 100
+          setRipplePosition({ x: rippleX, y: rippleY })
+          setShowRipple(true)
+        }
       }
     }
 
@@ -412,7 +433,6 @@ export function MajesticCard({
     document.addEventListener("mousemove", handleMouseMove)
     card.addEventListener("mouseleave", handleMouseLeave)
 
-    // Store cleanup function
     cleanupRef.current = () => {
       document.removeEventListener("mousemove", handleMouseMove)
       card.removeEventListener("mouseleave", handleMouseLeave)
@@ -573,6 +593,16 @@ export function MajesticCard({
         75% { transform: translateX(-5px); }
         100% { transform: translateX(0px); }
       }
+        @keyframes ripple {
+        0% { transform: translate(-50%, -50%) scale(0); opacity: 0.7; }
+        100% { transform: translate(-50%, -50%) scale(3); opacity: 0; }
+      }
+
+      @keyframes waveFlow {
+        0% { transform: translateX(-50%) scaleY(1); }
+        50% { transform: translateX(0%) scaleY(1.2); }
+        100% { transform: translateX(50%) scaleY(1); }
+      }
     `
     document.head.appendChild(style)
     
@@ -581,7 +611,6 @@ export function MajesticCard({
     }
   }, [confettiEffect, variant])
 
-  // Create motion-specific props
   const motionProps: HTMLMotionProps<"div"> = {
     ref: cardRef,
     style: {
@@ -642,25 +671,50 @@ export function MajesticCard({
       
       {variant === "wave" && isHovered && (
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {Array.from({ length: 3 }).map((_, i) => (
+          {Array.from({ length: 5 }).map((_, i) => {
+            const speed = 2 + (i * 0.5);
+            const height = 6 + i * 2;
+            const opacity = 0.3 - (i * 0.05);
+            const delay = i * 0.4;
+            
+            return (
+              <div
+                key={`wave-${i}`}
+                className="absolute bottom-0 left-0 right-0"
+                style={{
+                  height: `${height}px`,
+                  background: `linear-gradient(90deg, 
+                    transparent 0%, 
+                    ${theme === "neon" 
+                      ? `rgba(99, 102, 241, ${opacity})` 
+                      : theme === "cosmic" 
+                      ? `rgba(147, 51, 234, ${opacity})` 
+                      : `rgba(147, 197, 253, ${opacity})`
+                    } 50%, 
+                    transparent 100%)`,
+                  transform: `translateY(${Math.sin(waveTime * speed + delay) * 5}px) 
+                            scaleY(${1 + Math.sin(waveTime * speed * 0.5) * 0.2})`,
+                  bottom: `${i * 12}px`,
+                }}
+              />
+            );
+          })}
+          
+          {showRipple && (
             <div
-              key={`wave-${i}`}
-              className="absolute bottom-0 left-0 right-0 h-8 opacity-30"
+              className="absolute pointer-events-none"
               style={{
-                background: `linear-gradient(90deg, transparent 0%, ${
-                  theme === "neon" 
-                    ? "rgba(99, 102, 241, 0.7)" 
-                    : theme === "cosmic" 
-                    ? "rgba(147, 51, 234, 0.7)" 
-                    : "rgba(147, 197, 253, 0.7)"
-                } 50%, transparent 100%)`,
-                animation: `floatWave ${1.5 + i * 0.5}s ease-in-out infinite`,
-                animationDelay: `${i * 0.2}s`,
-                bottom: `${i * 10}px`,
-                opacity: 0.3 - (i * 0.05),
+                left: `${ripplePosition.x}%`,
+                top: `${ripplePosition.y}%`,
+                width: '100px',
+                height: '100px',
+                borderRadius: '50%',
+                transform: 'translate(-50%, -50%)',
+                background: 'radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%)',
+                animation: 'ripple 1.5s ease-out forwards',
               }}
             />
-          ))}
+          )}
         </div>
       )}
       

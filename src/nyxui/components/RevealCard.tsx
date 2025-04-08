@@ -1,4 +1,5 @@
-import React from 'react';
+'use client'
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 
 interface CardProps {
@@ -14,7 +15,6 @@ interface CardProps {
   titleTranslateY?: number;
   characterTranslateY?: number;
   characterTranslateZ?: number;
-  href?: string;
   alt?: {
     cover?: string;
     title?: string;
@@ -30,6 +30,7 @@ interface CardProps {
   };
   shadow?: string;
   priority?: boolean;
+  threshold?: number; 
 }
 
 const RevealCard: React.FC<CardProps> = ({
@@ -42,9 +43,8 @@ const RevealCard: React.FC<CardProps> = ({
   borderColor = "#ddd",
   hoverRotation = 25,
   titleTranslateY = -50,
-  characterTranslateY = -30,
+  characterTranslateY = -15, // Changed from -30 to -15 for less upward movement
   characterTranslateZ = 100,
-  href = "#",
   alt = {
     cover: "Cover Image",
     title: "Title",
@@ -55,17 +55,80 @@ const RevealCard: React.FC<CardProps> = ({
     delay: 0
   },
   shadow = "2px 35px 32px -8px rgba(0,0,0,0.75)",
-  priority = false
+  priority = false,
+  threshold = 0.3 
 }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isRevealed, setIsRevealed] = useState(false);
+  const [hasBeenRevealed, setHasBeenRevealed] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          if (!hasBeenRevealed) {
+            setIsRevealed(true);
+            setHasBeenRevealed(true);
+          }
+        } else {
+          setIsVisible(false);
+        }
+      },
+      { threshold }
+    );
+    
+    if (cardRef.current) {
+      observer.observe(cardRef.current);
+    }
+    
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+      if (cardRef.current) observer.unobserve(cardRef.current);
+    };
+  }, [threshold, hasBeenRevealed]);
+
+  const handleCardClick = () => {
+    setIsRevealed(!isRevealed);
+    setHasBeenRevealed(true);
+  };
+
   const animationStyle = {
     transitionDuration: `${animation.duration}ms`,
     transitionDelay: `${animation.delay}ms`
   };
 
+  const shouldReveal = isMobile ? isRevealed : (isRevealed || (!hasBeenRevealed && isVisible));
+  
+  const mobileRevealClass = isMobile && shouldReveal ? 
+    "[transform:perspective(900px)_translateY(-5%)_rotateX(25deg)_translateZ(0)] shadow-xl" : "";
+
+  const characterRevealClass = isMobile && shouldReveal ? 
+    "opacity-100 [transform:translate3d(0,-25%,100px)]" : "";
+
+  const titleRevealClass = isMobile && shouldReveal ?
+    "[transform:translate3d(0,-50px,100px)]" : "";
+
+  const desktopHoverClass = !isMobile ? 
+    "group-hover:[transform:perspective(900px)_translateY(-5%)_rotateX(25deg)_translateZ(0)] group-hover:shadow-[2px_35px_32px_-8px_rgba(0,0,0,0.75)]" : "";
+
+  const characterHoverClass = !isMobile ?
+    "group-hover:opacity-100 group-hover:[transform:translate3d(0,-25%,100px)]" : ""; 
+
+  const titleHoverClass = !isMobile ?
+    "group-hover:[transform:translate3d(0,-50px,100px)]" : "";
+
   return (
-    <a
-      href={href}
-      className="group relative flex justify-center items-end no-underline perspective-[2500px]"
+    <div
+      ref={cardRef}
+      className="group relative flex justify-center items-end no-underline perspective-[2500px] cursor-pointer"
       style={{
         width: `${width}px`,
         height: `${height}px`,
@@ -75,12 +138,11 @@ const RevealCard: React.FC<CardProps> = ({
         margin: '0 10px',
         border: `1px solid ${borderColor}`
       }}
+      onClick={handleCardClick}
     >
       <div className="absolute inset-0 overflow-hidden z-0">
         <div
-          className="absolute inset-0 transition-all duration-500 
-                    group-hover:[transform:perspective(900px)_translateY(-5%)_rotateX(25deg)_translateZ(0)]
-                    group-hover:shadow-[2px_35px_32px_-8px_rgba(0,0,0,0.75)]"
+          className={`absolute inset-0 transition-all duration-500 ${desktopHoverClass} ${mobileRevealClass}`}
           style={{
             ...animationStyle,
             '--hover-rotation': `${hoverRotation}deg`,
@@ -97,15 +159,7 @@ const RevealCard: React.FC<CardProps> = ({
           />
           
           <div
-            className="absolute inset-0
-                     bg-gradient-to-t from-transparent via-[rgba(12,13,19,0.5)] to-[rgba(12,13,19)]
-                     opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-            style={animationStyle}
-          ></div>
-          <div
-            className="absolute bottom-0 left-0 w-full h-[80px]
-                     bg-gradient-to-b from-transparent via-[rgba(12,13,19,0.5)] to-[rgba(12,13,19)]
-                     opacity-100 transition-all duration-500 group-hover:h-[120px]"
+            className="absolute bottom-0 left-0 w-full h-[40px] bg-gradient-to-b from-transparent to-[rgba(12,13,19,0.3)]"
             style={animationStyle}
           ></div>
         </div>
@@ -116,8 +170,7 @@ const RevealCard: React.FC<CardProps> = ({
           src={characterImage}
           alt={alt.character || "Character"}
           fill
-          className="object-cover opacity-0 transition-all duration-500
-                   group-hover:opacity-100 group-hover:[transform:translate3d(0,-30%,100px)]"
+          className={`object-cover opacity-0 transition-all duration-500 ${characterHoverClass} ${shouldReveal ? characterRevealClass : ''}`}
           style={{
             ...animationStyle,
             '--character-translate-y': `${characterTranslateY}%`,
@@ -134,8 +187,7 @@ const RevealCard: React.FC<CardProps> = ({
           alt={alt.title || "Title"}
           width={500}
           height={500}
-          className="w-full transition-transform duration-500
-                   group-hover:[transform:translate3d(0,-50px,100px)]"
+          className={`w-full transition-transform duration-500 ${titleHoverClass} ${shouldReveal ? titleRevealClass : ''}`}
           style={{
             ...animationStyle,
             '--title-translate-y': `${titleTranslateY}px`,
@@ -145,7 +197,15 @@ const RevealCard: React.FC<CardProps> = ({
           priority={priority}
         />
       </div>
-    </a>
+      
+      {isMobile && (
+        <div className="absolute bottom-2 right-2 z-30 w-8 h-8 rounded-full bg-white/20 flex items-center justify-center transition-opacity duration-300">
+          <span className="text-white text-xs">
+            {isRevealed ? "×" : "+"}
+          </span>
+        </div>
+      )}
+    </div>
   );
 };
 

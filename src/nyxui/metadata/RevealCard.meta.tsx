@@ -89,12 +89,6 @@ export const revealCardData: ComponentData = {
           description: "Z-axis translation for character image on hover."
         },
         {
-          name: "href",
-          type: "string",
-          default: '"#"',
-          description: "Hyperlink reference for the card."
-        },
-        {
           name: "alt",
           type: "{ cover?: string; title?: string; character?: string; }",
           default:

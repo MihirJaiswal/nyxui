@@ -212,7 +212,7 @@ CMD ["node", "dist/server.js"]\`}
       name: "CSS Animation",
       preview: (
         <AnimatedCodeBlock
-          code={`/* Animated button with hover effects */
+          code={`/* Animated button */
   .button {
     position: relative;
     display: inline-flex;
@@ -243,7 +243,7 @@ CMD ["node", "dist/server.js"]\`}
   export function CSSAnimationExample() {
     return (
       <AnimatedCodeBlock
-        code={\`/* Animated button with hover effects */
+        code={\`/* Animated button */
   .button {
     position: relative;
     display: inline-flex;
