@@ -46,6 +46,7 @@ function useDataFetching(url) {
         typingSpeed={50}
         showLineNumbers={true}
         autoPlay={true}
+        highlightLines={[1, 4, 10]}
       />
     </div>
   );

@@ -1,16 +1,26 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MacDock } from "@/nyxui/components/MacDock";
 
 export const MacDockDemo = () => {
-  const [activeApp, setActiveApp] = useState<string>("Finder");
+  const [activeApp, setActiveApp] = useState("Finder");
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const handleAppClick = (appName: string) => {
     setActiveApp(appName);
     console.log(`Opening ${appName}`);
   };
 
-  const dockApps = [
+  const allDockApps = [
     {
       id: "1",
       name: "Finder",
@@ -86,9 +96,11 @@ export const MacDockDemo = () => {
     },
   ];
 
+  const dockApps = isMobile ? allDockApps.slice(0, 5) : allDockApps;
+
   return (
     <main className="relative w-full flex flex-col items-center justify-center p-6">
-      <div className="bg-white/30 backdrop-blur-lg p-6 rounded-xl shadow-xl mb-8 rounded-xl bg-gradient-to-r from-purple-500 to-indigo-600 ">
+      <div className="bg-white/30 backdrop-blur-lg p-6 rounded-xl shadow-xl mb-8 rounded-xl bg-gradient-to-r from-purple-500 to-indigo-600">
         <h1 className="text-2xl font-bold text-white mb-2">
           Active Application: {activeApp}
         </h1>
@@ -99,4 +111,4 @@ export const MacDockDemo = () => {
       <MacDock apps={dockApps} />
     </main>
   );
-};
+}

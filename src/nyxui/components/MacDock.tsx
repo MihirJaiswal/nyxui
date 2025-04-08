@@ -33,24 +33,28 @@ interface AppIcon {
 interface MacDockProps {
   apps: AppIcon[];
   className?: string;
+  mobilePosition?: 'bottom' | 'left' | 'right';
 }
+
 interface DockContextType {
   width: number;
+  height: number;
   hovered: boolean;
   setIsZooming: (value: boolean) => void;
   zoomLevel: MotionValue<number>; 
-  mouseX: MotionValue<number>; 
+  mouseX: MotionValue<number>;
+  isMobile: boolean;
+  orientation: 'portrait' | 'landscape';
   animatingIndexes: string[];
   setAnimatingIndexes: (indexes: string[]) => void;
   selectedIcon: string | null;
   setSelectedIcon: (id: string | null) => void;
 }
 
-const INITIAL_WIDTH = 50;
-// Create context with null as initial value and properly type it
+const MOBILE_BREAKPOINT = 768;
+const BASE_ICON_SIZE = 50;
+const MOBILE_ICON_SIZE = 40;
 const DockContext = createContext<DockContextType | null>(null);
-
-// Create a hook to use the context with a safety check
 const useDock = () => {
   const context = useContext(DockContext);
   if (context === null) {
@@ -87,9 +91,12 @@ function useCallbackRef<T extends (...args: any[]) => any>(callback: T): T {
   return useMemo(() => ((...args) => callbackRef.current?.(...args)) as T, []);
 }
 
-export function MacDock({ apps, className }: MacDockProps) {
+export function MacDock({ apps, className, mobilePosition = 'bottom' }: MacDockProps) {
   const [hovered, setHovered] = useState(false);
   const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const [orientation, setOrientation] = useState<'portrait' | 'landscape'>('landscape');
   const dockRef = useRef<HTMLDivElement>(null);
   const isZooming = useRef(false);
   const [animatingIndexes, setAnimatingIndexes] = useState<string[]>([]);
@@ -103,8 +110,11 @@ export function MacDock({ apps, className }: MacDockProps) {
   const zoomLevel = useMotionValue(1);
   const mouseX = useMotionValue<number>(Infinity);
 
-  useWindowResize(() => {
+  useWindowResize((windowWidth, windowHeight) => {
     setWidth(dockRef.current?.clientWidth || 0);
+    setHeight(dockRef.current?.clientHeight || 0);
+    setIsMobile(windowWidth < MOBILE_BREAKPOINT);
+    setOrientation(windowWidth > windowHeight ? 'landscape' : 'portrait');
   });
 
   useEffect(() => {
@@ -125,32 +135,57 @@ export function MacDock({ apps, className }: MacDockProps) {
     };
   }, [animatingIndexes, selectedIcon]);
 
-  // Create context value inside the component
   const contextValue: DockContextType = {
     hovered,
     setIsZooming,
     width,
+    height,
     zoomLevel,
     mouseX,
+    isMobile,
+    orientation,
     animatingIndexes,
     setAnimatingIndexes,
     selectedIcon,
     setSelectedIcon
   };
 
+  const positionClasses = isMobile 
+    ? mobilePosition === 'bottom' 
+      ? "fixed bottom-2 left-1/2 transform -translate-x-1/2 flex items-end"
+      : mobilePosition === 'left'
+        ? "fixed left-2 top-1/2 transform -translate-y-1/2 flex flex-col items-center"
+        : "fixed right-2 top-1/2 transform -translate-y-1/2 flex flex-col items-center"
+    : "fixed bottom-5 left-1/2 transform -translate-x-1/2 flex items-end";
+  const gapPaddingClasses = isMobile 
+    ? "p-0.5 gap-0.5" 
+    : "p-1 gap-1";
+
   return (
     <DockContext.Provider value={contextValue}>
       <motion.div
         ref={dockRef}
         className={cn(
-          "fixed bottom-5 left-1/2 transform -translate-x-1/2 flex items-end h-16 p-1 gap-1",
+          positionClasses,
+          gapPaddingClasses,
           "bg-black/25 backdrop-blur-md rounded-2xl border border-white/20",
+          isMobile ? "h-12" : "h-16",
           className
         )}
         onMouseMove={(e) => {
           mouseX.set(e.pageX);
           if (!isZooming.current) {
             setHovered(true);
+          }
+        }}
+        onTouchStart={() => {
+          if (isMobile) {
+            setHovered(true);
+          }
+        }}
+        onTouchEnd={() => {
+          if (isMobile) {
+            setHovered(false);
           }
         }}
         onMouseLeave={() => {
@@ -164,7 +199,7 @@ export function MacDock({ apps, className }: MacDockProps) {
         {apps.map((app) => (
           <DockItem key={app.id} app={app} />
         ))}
-  </motion.div>
+      </motion.div>
     </DockContext.Provider>
   );
 }
@@ -197,7 +232,9 @@ function DockCard({ children, id, name, onClick }: DockCardProps) {
   const cardRef = useRef<HTMLButtonElement>(null);
   const dock = useDock();
   const [showTooltip, setShowTooltip] = useState(false);
-  const size = useSpring(INITIAL_WIDTH, {
+  const initialSize = dock.isMobile ? MOBILE_ICON_SIZE : BASE_ICON_SIZE;
+  
+  const size = useSpring(initialSize, {
     stiffness: 320,
     damping: 20,
     mass: 0.1
@@ -211,6 +248,10 @@ function DockCard({ children, id, name, onClick }: DockCardProps) {
   useEffect(() => {
     const updateSize = () => {
       if (!cardRef.current || !dock.hovered) return;
+      if (dock.isMobile) {
+        size.set(initialSize);
+        return;
+      }
       
       const mouseX = dock.mouseX.get();
       const rect = cardRef.current.getBoundingClientRect();
@@ -220,10 +261,10 @@ function DockCard({ children, id, name, onClick }: DockCardProps) {
       const maxDist = 150;
       if (distance < maxDist) {
         const scaleFactor = 1 - distance / maxDist;
-        const newSize = INITIAL_WIDTH + (30 * scaleFactor * scaleFactor);
+        const newSize = initialSize + (30 * scaleFactor * scaleFactor);
         size.set(newSize);
       } else {
-        size.set(INITIAL_WIDTH);
+        size.set(initialSize);
       }
     };
 
@@ -231,7 +272,7 @@ function DockCard({ children, id, name, onClick }: DockCardProps) {
     return () => {
       unsubscribe();
     };
-  }, [dock.mouseX, dock.hovered, size]);
+  }, [dock.mouseX, dock.hovered, size, dock.isMobile, initialSize]);
 
   const isAnimating = useRef(false);
   const controls = useAnimation();
@@ -240,10 +281,10 @@ function DockCard({ children, id, name, onClick }: DockCardProps) {
   useEffect(() => {
     if (dock.selectedIcon === id) {
       isAnimating.current = true;
-      controls.start({ y: -8 });
+      controls.start({ y: dock.isMobile ? -4 : -8 });
       opacity.set(0.5);
     }
-  }, [dock.selectedIcon, id, controls, opacity]);
+  }, [dock.selectedIcon, id, controls, opacity, dock.isMobile]);
 
   const handleClick = () => {
     if (onClick) {
@@ -257,7 +298,10 @@ function DockCard({ children, id, name, onClick }: DockCardProps) {
       dock.setSelectedIcon(id);
       isAnimating.current = true;
       opacity.set(0.5);
-      controls.start({ y: -8, transition: { duration: 0.3 } });
+      controls.start({ 
+        y: dock.isMobile ? -4 : -8, 
+        transition: { duration: 0.3 } 
+      });
       dock.setAnimatingIndexes([id]);
       
       if (timeoutRef.current) {
@@ -297,39 +341,26 @@ function DockCard({ children, id, name, onClick }: DockCardProps) {
       }
     }
   }, [dock.selectedIcon, id, resetAnimation]);
+  const tooltipPositionClass = dock.isMobile && dock.orientation === 'portrait' 
+    ? "absolute -left-24 top-1/2 -translate-y-1/2" 
+    : "absolute -top-16";
 
-  useEffect(() => {
-    if (!dock.hovered && isAnimating.current && dock.selectedIcon !== id) {
-      resetAnimation();
-    }
-    
-    return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-    };
-  }, [dock.hovered, dock.selectedIcon, id, resetAnimation ]);
-
-  useEffect(() => {
-    if (dock.selectedIcon !== id && dock.selectedIcon !== null) {
-      if (isAnimating.current) {
-        resetAnimation();
-      }
-    }
-  }, [dock.selectedIcon, id, resetAnimation]);
+  const tooltipArrowClass = dock.isMobile && dock.orientation === 'portrait'
+    ? "absolute top-1/2 -right-2 -translate-y-1/2 transform rotate-90 w-0 h-0 border-t-8 border-b-8 border-l-8 border-l-black/70 border-t-transparent border-b-transparent"
+    : "absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-t-black/70 border-l-transparent border-r-transparent";
 
   return (
     <div className="flex flex-col items-center gap-1 mx-0.5 relative">
       <AnimatePresence>
-        {showTooltip && (
+        {showTooltip && !dock.isMobile && (
           <motion.div 
-            className="absolute -top-16 py-2 px-4 bg-black/70 text-white/90 rounded z-20 pointer-events-none"
+            className={`py-2 px-4 bg-black/70 text-white/90 rounded z-20 pointer-events-none ${tooltipPositionClass}`}
             initial={{ opacity: 0, y: 5 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 5 }}
           >
             {name}
-            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-t-black/70 border-l-transparent border-r-transparent" />
+            <div className={tooltipArrowClass} />
           </motion.div>
         )}
       </AnimatePresence>
@@ -339,8 +370,8 @@ function DockCard({ children, id, name, onClick }: DockCardProps) {
           ref={cardRef}
           className="relative rounded-md overflow-hidden transition-all duration-300 ease-out"
           onClick={handleClick}
-          onMouseEnter={() => setShowTooltip(true)}
-          onMouseLeave={() => setShowTooltip(false)}
+          onMouseEnter={() => !dock.isMobile && setShowTooltip(true)}
+          onMouseLeave={() => !dock.isMobile && setShowTooltip(false)}
           animate={controls}
           whileTap={{ scale: 0.95 }}
           style={{
@@ -360,7 +391,7 @@ function DockCard({ children, id, name, onClick }: DockCardProps) {
             >
               <motion.div
                 exit={{ transition: { duration: 0 } }}
-                className="w-1.5 h-1.5 rounded-full bg-white/80"
+                className={`rounded-full bg-white/80 ${dock.isMobile ? "w-1 h-1" : "w-1.5 h-1.5"}`}
                 style={{ opacity }}
               />
             </motion.div>
@@ -378,21 +409,24 @@ interface DockCardInnerProps {
 }
 
 function DockCardInner({ src, id, children }: DockCardInnerProps) {
-  const { animatingIndexes, selectedIcon } = useDock();
+  const dock = useDock();
+  const { animatingIndexes, selectedIcon, isMobile } = dock;
   const isAnimating = animatingIndexes.includes(id) || selectedIcon === id;
+  const shadowScaleClass = isMobile ? "scale-110" : "scale-125";
+  const shadowTranslateClass = isMobile ? "translate-y-1.5" : "translate-y-2.5";
 
   return (
     <span className="relative flex justify-center items-center z-0 overflow-hidden w-full h-full rounded-md">
       {!isAnimating && (
         <motion.div
-          className="absolute z-10 opacity-40 filter blur-md transform translate-y-2.5 scale-125 w-full h-full"
+          className={`absolute z-10 opacity-40 filter blur-md transform ${shadowTranslateClass} ${shadowScaleClass} w-full h-full`}
         >
           <Image
             src={src}
             alt=""
             fill
             className="object-contain"
-            sizes="80px"
+            sizes={isMobile ? "40px" : "80px"}
           />
         </motion.div>
       )}
@@ -430,7 +464,7 @@ function DockCardInner({ src, id, children }: DockCardInnerProps) {
           alt=""
           fill
           className="object-contain"
-          sizes="80px"
+          sizes={isMobile ? "40px" : "80px"}
         />
       </motion.div>
     </span>
@@ -438,13 +472,21 @@ function DockCardInner({ src, id, children }: DockCardInnerProps) {
 }
 
 function DockDivider() {
+  const dock = useDock();
+  
+  const dividerClass = dock.isMobile 
+    ? "w-0.5 h-full rounded bg-white/20" 
+    : "w-0.5 h-full rounded bg-white/20";
+    
+  const marginClass = dock.isMobile ? "mx-1" : "mx-2";
+
   return (
     <motion.div
-      className="h-full flex items-center p-1.5 cursor-ns-resize mx-2"
+      className={`h-full flex items-center p-1.5 cursor-ns-resize ${marginClass}`}
       drag="y"
       dragConstraints={{ top: -100, bottom: 50 }}
     >
-      <span className="w-0.5 h-full rounded bg-white/20"></span>
+      <span className={dividerClass}></span>
     </motion.div>
   );
 }
