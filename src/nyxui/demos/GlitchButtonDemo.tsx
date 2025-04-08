@@ -29,9 +29,9 @@ export const GlitchButtonDemo = () => {
         <div className="flex flex-col items-center p-3 sm:p-4 md:p-6 bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-gray-700 rounded-lg">
           <h2 className="text-lg sm:text-xl mb-3 sm:mb-4 font-semibold text-center">Custom Colors</h2>
           <GlitchButton 
-            glitchColors={{ primary: '#ff0066', secondary: '#00ffcc' }}
+            glitchColors={{ primary: '#be21ed', secondary: '#00ffcc' }}
             glitchIntensity="medium"
-            className="text-sm sm:text-base"
+            className="text-sm sm:text-base bg-purple-950 "
           >
             <div className="flex items-center"><MoonIcon className="mr-1 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5" /><span>NYX UI</span></div>
           </GlitchButton>
