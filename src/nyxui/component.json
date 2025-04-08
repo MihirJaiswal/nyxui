@@ -17,10 +17,10 @@
     "matrix-code-rain": "Matrix Code Rain",
     "ms-paint": "MS Paint",
     "interactive-terminal": "Interactive Terminal",
-    "mac-dock": "Mac Dock",
     "character-selector": "Character Selector",
     "animated-text": "Animated Text",
-    "bubbles-background": "Bubbles Background"
+    "bubbles-background": "Bubbles Background",
+    "glitch-button": "Glitch Button"
   },
   "templates": {}
 }

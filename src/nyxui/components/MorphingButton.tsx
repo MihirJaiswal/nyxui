@@ -11,7 +11,6 @@ export type MorphingButtonProps = {
   iconPosition?: "left" | "right" | "only";
   className?: string;
   children: React.ReactNode;
-  onClick?: () => void;
 };
 
 export const MorphingButton = ({
@@ -24,7 +23,6 @@ export const MorphingButton = ({
   iconPosition = "left",
   className = "",
   children,
-  onClick,
 }: MorphingButtonProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isActive, setIsActive] = useState(false);
@@ -250,7 +248,6 @@ export const MorphingButton = ({
       }}
       onMouseDown={() => setIsActive(true)}
       onMouseUp={() => setIsActive(false)}
-      onClick={onClick}
     >
       {renderContent()}
     </button>

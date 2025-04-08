@@ -12,10 +12,10 @@ import { specialCardData } from "./metadata/SpecialCard.meta";
 import { matrixCodeRainData } from "./metadata/MatrixCodeRain.meta";
 import { mspaintData } from "./metadata/MSpaint.meta";
 import { interactiveTerminalData } from "./metadata/Terminal.meta";
-import { macDockData } from "./metadata/MacDock.meta";
 import { animatedTextData } from "./metadata/AnimatedText.meta";
 import { characterSelectorData } from "./metadata/CharacterSelector.meta";
 import { bubbleBackgroundData } from "./metadata/BubblesBackground.meta";
+import { glitchButtonData } from "./metadata/GlitchButton.meta";
 
 export const componentsData = {
   "gradient-button": gradientButtonData,
@@ -32,8 +32,8 @@ export const componentsData = {
   "matrix-code-rain": matrixCodeRainData,
   "ms-paint": mspaintData,
   "interactive-terminal": interactiveTerminalData,
-  "mac-dock": macDockData,
   "character-selector": characterSelectorData,
   "animated-text": animatedTextData,
-  "bubbles-background": bubbleBackgroundData
+  "bubbles-background": bubbleBackgroundData,
+  "glitch-button": glitchButtonData
 };

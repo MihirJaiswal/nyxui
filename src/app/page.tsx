@@ -4,6 +4,7 @@ import { BentoDemo } from "@/nyxui/demos/BentoGridDemo";
 import { AnimatedGradientBg } from "@/nyxui/components/AnimatedGradientBg";
 import Customize from "@/components/home/Customize";
 import { Build } from "@/components/home/Build";
+import { GlitchButtonDemo } from "@/nyxui/demos/GlitchButtonDemo";
 
 export default function Home() {
   const darkColors = ["#7C3AED", "#DB2777", "#3B82F6", "#A78BFA"];
@@ -32,7 +33,8 @@ export default function Home() {
             <Build />
           </div>
         </div>
-      </div>
+        </div>
+        <GlitchButtonDemo/>
     </>
   );
 }
