@@ -13,6 +13,7 @@ import { Badge } from "@/components/ui/badge"
 import { motion, AnimatePresence } from "framer-motion"
 
 const LIGHT_THEME = prism
+const DARK_THEME = vscDarkPlus
 
 const CollapsibleSection = ({
   title,
@@ -100,7 +101,7 @@ export const InstallationSection = ({ componentData }: { componentData: Componen
     setTimeout(() => setCopiedIndex(null), 2000)
   }
 
-  const codeStyle = isDarkMode ? vscDarkPlus : LIGHT_THEME
+  const codeStyle = isDarkMode ? DARK_THEME : LIGHT_THEME
 
   return (
     <div className="space-y-6">

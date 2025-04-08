@@ -157,6 +157,13 @@ import { twMerge } from "tailwind-merge";
           description:
             "Content of the button.",
         },
+        {
+          name: "onClick",
+          type: "(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void",
+          default: "undefined",
+          description:
+            "Callback function to be called when the button is clicked.",
+        },
       ],
     },
   ],
@@ -184,7 +191,7 @@ import { twMerge } from "tailwind-merge";
   export function MercuryButton() {
     return (
       <LiquidMetalButton 
-        variant="mercury" 
+        variant="mercury"   
         theme="mercury" 
         size="lg"
         intensity={4}

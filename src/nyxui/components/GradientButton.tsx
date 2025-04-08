@@ -53,7 +53,7 @@ export const GradientButton = ({
     forest: "bg-gradient-to-r from-emerald-400 via-green-500 to-teal-600",
     neon: "bg-gradient-to-r from-green-400 via-purple-500 to-pink-500",
     berry: "bg-gradient-to-r from-fuchsia-500 via-purple-600 to-indigo-500",
-    nyx: "bg-gradient-to-r from-purple-800 via-blue-800 to-fuchsia-800",
+    nyx: "bg-gradient-to-r from-purple-800 via-blue-800 to-pink-800",
     custom: customGradient || "bg-gradient-to-r from-violet-500 to-fuchsia-500",
   };
 

@@ -71,6 +71,12 @@ export const morphingButtonData: ComponentData = {
           default: '',
           description: "Additional CSS classes to apply",
         },
+        {
+          name: "onClick",
+          type: "function",
+          default: "undefined",
+          description: "Callback function to be called when the button is clicked",
+        },
       ],
     },
   ],

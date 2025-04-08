@@ -27,6 +27,7 @@ export interface LiquidMetalButtonProps extends React.ButtonHTMLAttributes<HTMLB
   icon?: React.ReactNode
   iconAfter?: React.ReactNode
   children: React.ReactNode
+  onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
 }
 
 interface Droplet {
@@ -55,6 +56,7 @@ export function LiquidMetalButton({
   iconAfter,
   className,
   children,
+  onClick,
   ...props
 }: LiquidMetalButtonProps) {
   const buttonRef = useRef<HTMLButtonElement>(null)

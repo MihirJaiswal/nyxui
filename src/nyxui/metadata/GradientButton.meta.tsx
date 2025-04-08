@@ -18,15 +18,6 @@ export const gradientButtonData: ComponentData = {
   usage: GradientButtonDemoSource,
   componentCode: GradientButtonSource,
   dependencies: [],
-/*   variant = "glow",
-  size = "md",
-  theme = "sunset",
-  customGradient,
-  rounded = "md",
-  shadow = true,
-  hoverEffect = "brightness",
-  className = "",
-  children, */
   props: [
     {
       name: "Gradient Button",
@@ -84,6 +75,12 @@ export const gradientButtonData: ComponentData = {
           type: "string",
           default: '',
           description: "Button text",
+        },
+        {
+          name: "onClick",
+          type: "function",
+          default: "undefined",
+          description: "Callback function to be called when the button is clicked",
         },
       ],
     },
