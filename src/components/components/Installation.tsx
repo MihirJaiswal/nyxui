@@ -1,204 +1,243 @@
-'use client'
-import React, { useState } from 'react';
-import { Copy, Github, Package, FileCode, ChevronDown, ChevronUp, FileWarning, Check } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ComponentData } from '@/nyxui/ComponentInterfaces';
-import Image from 'next/image';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { vscDarkPlus, prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
+"use client"
 
-const LIGHT_THEME = prism;
+import type React from "react"
+import { useState, useEffect } from "react"
+import { Copy, Github, Package, FileCode, ChevronDown, ChevronUp, FileWarning, Check, ExternalLink } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import type { ComponentData } from "@/nyxui/ComponentInterfaces"
+import Image from "next/image"
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
+import { vscDarkPlus, prism } from "react-syntax-highlighter/dist/esm/styles/prism"
+import { Badge } from "@/components/ui/badge"
+import { motion, AnimatePresence } from "framer-motion"
 
-const CollapsibleSection = ({ title, icon, defaultCollapsed = true, children }: { title: string; icon: React.ReactNode; defaultCollapsed?: boolean; children: React.ReactNode }) => {
-  const [isCollapsed, setIsCollapsed] = useState(defaultCollapsed);
-  
+const LIGHT_THEME = prism
+
+const CollapsibleSection = ({
+  title,
+  icon,
+  defaultCollapsed = true,
+  children,
+  badge,
+}: {
+  title: string
+  icon: React.ReactNode
+  defaultCollapsed?: boolean
+  children: React.ReactNode
+  badge?: string
+}) => {
+  const [isCollapsed, setIsCollapsed] = useState(defaultCollapsed)
+
   return (
-    <div className="rounded-xl border overflow-hidden">
-      <div 
-        className="bg-muted/40 px-6 py-3 border-b flex items-center justify-between cursor-pointer"
+    <div className="rounded-xl border shadow-sm overflow-hidden transition-all duration-200 hover:border-primary/20">
+      <div
+        className="bg-muted/30 px-6 py-4 border-b flex items-center justify-between cursor-pointer group"
         onClick={() => setIsCollapsed(!isCollapsed)}
       >
-        <div className="flex items-center gap-2">
-          {icon}
+        <div className="flex items-center gap-3">
+          <div className="text-primary/80 group-hover:text-primary transition-colors">{icon}</div>
           <span className="text-sm font-medium">{title}</span>
+          {badge && (
+            <Badge variant="outline" className="ml-2 text-xs font-normal bg-primary/5 text-primary border-primary/20">
+              {badge}
+            </Badge>
+          )}
         </div>
-        <Button variant="ghost" size="icon" className="h-7 w-7">
-          {isCollapsed ? <ChevronDown className="size-3.5" /> : <ChevronUp className="size-3.5" />}
+        <Button
+          variant="ghost"
+          size="icon"
+          className="h-8 w-8 rounded-full transition-all duration-200 hover:bg-primary/10 hover:text-primary"
+        >
+          {isCollapsed ? <ChevronDown className="size-4" /> : <ChevronUp className="size-4" />}
         </Button>
       </div>
-      
-      {!isCollapsed && children}
+
+      <AnimatePresence>
+        {!isCollapsed && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            {children}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
-  );
-};
+  )
+}
 
 export const InstallationSection = ({ componentData }: { componentData: ComponentData }) => {
-  const [copiedIndex, setCopiedIndex] = useState<string | null>(null);
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  
+  const [copiedIndex, setCopiedIndex] = useState<string | null>(null)
+  const [isDarkMode, setIsDarkMode] = useState(false)
+
   // Check if any dependencies have setup information
-  const hasSetupInfo = componentData.dependencies?.some(dependency => dependency.setup);
-  
-  React.useEffect(() => {
-    const isDark = document.documentElement.classList.contains('dark');
-    setIsDarkMode(isDark);
-    
+  const hasSetupInfo = componentData.dependencies?.some((dependency) => dependency.setup)
+
+  useEffect(() => {
+    const isDark = document.documentElement.classList.contains("dark")
+    setIsDarkMode(isDark)
+
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
-        if (mutation.attributeName === 'class') {
-          const isDark = document.documentElement.classList.contains('dark');
-          setIsDarkMode(isDark);
+        if (mutation.attributeName === "class") {
+          const isDark = document.documentElement.classList.contains("dark")
+          setIsDarkMode(isDark)
         }
-      });
-    });
-    
-    observer.observe(document.documentElement, { attributes: true });
-    
-    return () => observer.disconnect();
-  }, []);
-  
+      })
+    })
+
+    observer.observe(document.documentElement, { attributes: true })
+
+    return () => observer.disconnect()
+  }, [])
+
   const handleCopyClick = (text: string, index: string) => {
-    navigator.clipboard.writeText(text);
-    setCopiedIndex(index);
-    setTimeout(() => setCopiedIndex(null), 2000);
-  };
-  
-  const codeStyle = isDarkMode ? vscDarkPlus : LIGHT_THEME;
-  
+    navigator.clipboard.writeText(text)
+    setCopiedIndex(index)
+    setTimeout(() => setCopiedIndex(null), 2000)
+  }
+
+  const codeStyle = isDarkMode ? vscDarkPlus : LIGHT_THEME
+
   return (
-    <div className="space-y-4">
-      <h2 className="text-2xl font-semibold tracking-tight">Installation</h2>
-      <div className="rounded-xl border overflow-hidden">
+    <div className="space-y-6">
+      <div className="flex items-center justify-between">
+        <h2 className="text-2xl font-semibold tracking-tight">Installation</h2>
+        <Button variant="outline" size="sm" className="gap-1.5 text-xs">
+          <Github className="size-3.5" />
+          View on GitHub
+          <ExternalLink className="size-3 ml-0.5" />
+        </Button>
+      </div>
+
+      <div className="rounded-xl border overflow-hidden shadow-sm">
         <Tabs defaultValue="manual" className="w-full">
-          <div className="border-b bg-white dark:bg-black">
-            <TabsList className="w-full justify-start h-12 px-4 bg-transparent">
-              <TabsTrigger value="cli" className="data-[state=active]:bg-background">
-                CLI
+          <div className="border-b bg-background/50 backdrop-blur-sm">
+            <TabsList className="w-full justify-start h-14 px-6 bg-transparent">
+              <TabsTrigger
+                value="cli"
+                className="data-[state=active]:bg-background data-[state=active]:shadow-sm rounded-lg h-9 px-4"
+              >
+                <Package className="size-4 mr-2" />
+                CLI Installation
               </TabsTrigger>
-              <TabsTrigger value="manual" className="data-[state=active]:bg-background">
-                Manual
+              <TabsTrigger
+                value="manual"
+                className="data-[state=active]:bg-background data-[state=active]:shadow-sm rounded-lg h-9 px-4"
+              >
+                <FileCode className="size-4 mr-2" />
+                Manual Setup
               </TabsTrigger>
             </TabsList>
           </div>
-          
-          <TabsContent value="cli" className="p-6 space-y-6 bg-background">
-            <div className="flex items-center gap-2 p-3 bg-primary/5 border rounded-lg">
-              <div className="p-2 rounded-full bg-primary/10">
-                <FileWarning className="size-4 text-primary" />
+
+          <TabsContent value="cli" className="p-8 space-y-6 bg-background">
+            <div className="flex items-center gap-3 p-4 bg-amber-500/10 border border-amber-200 dark:border-amber-900/30 rounded-lg">
+              <div className="p-2 rounded-full bg-amber-500/20">
+                <FileWarning className="size-5 text-amber-600 dark:text-amber-400" />
               </div>
-              <p className="text-sm font-medium">CLI installation will be available soon.</p>
-            </div>
-            <div className="space-y-2">
+              <div>
+                <p className="text-sm font-medium text-amber-800 dark:text-amber-300">CLI installation coming soon</p>
+                <p className="text-xs text-amber-700/70 dark:text-amber-400/70 mt-0.5">
+                  Our CLI tool is currently in development. Please use the manual installation for now.
+                </p>
+              </div>
             </div>
           </TabsContent>
-          
-          <TabsContent value="manual" className="p-8 space-y-8 bg-background">
-            <div className="space-y-6">
+
+          <TabsContent value="manual" className="p-8 space-y-10 bg-background">
+            <div className="space-y-8">
               {componentData.dependencies && componentData.dependencies.length > 0 && (
-                <div className="space-y-4">
-                  <h3 className="text-lg font-semibold flex items-center gap-2">
-                    <span className="flex items-center justify-center rounded-full bg-primary/10 w-7 h-7 text-xs font-bold text-primary">1</span>
-                    Install Dependencies
+                <div className="space-y-5">
+                  <h3 className="text-lg font-medium flex items-center gap-2.5">
+                    <span className="flex items-center justify-center rounded-full bg-primary/10 w-8 h-8 text-xs font-bold text-primary">
+                      1
+                    </span>
+                    <span>Install Dependencies</span>
                   </h3>
-                  
-                  <CollapsibleSection 
-                    title="Dependencies" 
-                    icon={<Package className="size-4 text-primary" />}
+
+                  <CollapsibleSection
+                    title="Required Dependencies"
+                    icon={<Package className="size-5" />}
+                    badge={`${componentData.dependencies.length} package${componentData.dependencies.length > 1 ? "s" : ""}`}
+                    defaultCollapsed={false}
                   >
-                    <div className="p-6 space-y-6">
-                      {componentData.dependencies.map((dependency) => (
-                        <div key={dependency.name} className="space-y-3">
-                          <p className="font-medium text-sm flex items-center gap-2">
-                            <span className="w-2 h-2 rounded-full bg-primary inline-block"></span>
-                            {dependency.name}
-                            {dependency.description && (
-                              <span className="text-xs text-muted-foreground ml-2">
-                                - {dependency.description}
-                              </span>
-                            )}
-                          </p>
-                          
-                          <Tabs defaultValue="npm" className="w-full">
-                            <TabsList className="w-full grid grid-cols-4 h-9 bg-muted/40 p-1 rounded-lg dark:bg-black">
-                              <TabsTrigger value="npm" className="text-xs h-7 px-2 rounded-md data-[state=active]:bg-background">
-                                <Image
-                                 src="/logo/npm.svg"
-                                 width={16}
-                                 height={16}
-                                 alt="npm"
-                                 quality={100}
-                                 loading="lazy"
-                                 className="size-4 mr-1.5" />
-                                npm
-                              </TabsTrigger>
-                              <TabsTrigger value="pnpm" className="text-xs h-7 px-2 rounded-md data-[state=active]:bg-background">
-                                <Image
-                                 src="/logo/pnpm.svg"
-                                 width={16}
-                                 height={16}
-                                 alt="pnpm"
-                                 quality={100}
-                                 loading="lazy"
-                                 className="size-4 mr-1.5" />
-                                pnpm
-                              </TabsTrigger>
-                              <TabsTrigger value="yarn" className="text-xs h-7 px-2 rounded-md data-[state=active]:bg-background">
-                                <Image
-                                 src="/logo/yarn.svg"
-                                 width={16}
-                                 height={16}
-                                 alt="yarn"
-                                 quality={100}
-                                 loading="lazy"
-                                 className="size-4 mr-1.5" />
-                                yarn
-                              </TabsTrigger>
-                              <TabsTrigger value="bun" className="text-xs h-7 px-2 rounded-md data-[state=active]:bg-background">
-                                <Image
-                                 src="/logo/bun.svg"
-                                 width={16}
-                                 height={16}
-                                 alt="bun"
-                                 quality={100}
-                                 loading="lazy"
-                                 className="size-4 mr-1.5" />
-                                bun
-                              </TabsTrigger>
+                    <div className="p-6 space-y-8 bg-background/50">
+                      {componentData.dependencies.map((dependency, index) => (
+                        <div key={dependency.name} className={`space-y-3 ${index > 0 ? "pt-6 border-t" : ""}`}>
+                          <div className="flex items-start">
+                            <span className="w-2 h-2 rounded-full bg-primary mt-1.5 flex-shrink-0"></span>
+                            <div className="ml-3">
+                              <p className="font-medium text-sm">{dependency.name}</p>
+                              {dependency.description && (
+                                <p className="text-xs text-muted-foreground mt-1">{dependency.description}</p>
+                              )}
+                            </div>
+                          </div>
+
+                          <Tabs defaultValue="npm" className="w-full mt-3">
+                            <TabsList className="w-full max-w-md grid grid-cols-4 h-9 bg-muted/40 p-1 rounded-lg dark:bg-black/20">
+                              {["npm", "pnpm", "yarn", "bun"].map((pkg) => (
+                                <TabsTrigger
+                                  key={pkg}
+                                  value={pkg}
+                                  className="text-xs h-7 px-2 rounded-md data-[state=active]:bg-background data-[state=active]:shadow-sm"
+                                >
+                                  <Image
+                                    src={`/logo/${pkg}.svg`}
+                                    width={16}
+                                    height={16}
+                                    alt={pkg}
+                                    quality={100}
+                                    loading="lazy"
+                                    className="size-4 mr-1.5"
+                                  />
+                                  {pkg}
+                                </TabsTrigger>
+                              ))}
                             </TabsList>
-                            
-                            {dependency.install && Object.entries(dependency.install).map(([packageManager, command]) => (
-                              <TabsContent key={packageManager} value={packageManager} className="mt-3">
-                                <div className="relative">
-                                  <div className="rounded-lg border overflow-hidden">
-                                    <SyntaxHighlighter 
-                                      language="bash" 
-                                      style={codeStyle}
-                                      customStyle={{
-                                        margin: 0,
-                                        padding: '12px',
-                                        borderRadius: '0.5rem',
-                                        fontSize: '12px',
-                                      }}
+
+                            {dependency.install &&
+                              Object.entries(dependency.install).map(([packageManager, command]) => (
+                                <TabsContent key={packageManager} value={packageManager} className="mt-3">
+                                  <div className="relative">
+                                    <div className="rounded-lg border overflow-hidden shadow-sm">
+                                      <SyntaxHighlighter
+                                        language="bash"
+                                        style={codeStyle}
+                                        customStyle={{
+                                          margin: 0,
+                                          padding: "16px",
+                                          borderRadius: "0.5rem",
+                                          fontSize: "13px",
+                                        }}
+                                      >
+                                        {command}
+                                      </SyntaxHighlighter>
+                                    </div>
+                                    <Button
+                                      variant="outline"
+                                      size="icon"
+                                      className={`absolute right-3 top-3 opacity-80 hover:opacity-100 h-7 w-7 bg-background/80 backdrop-blur-sm border shadow-sm transition-all duration-200 ${
+                                        copiedIndex === `${dependency.name}-${packageManager}`
+                                          ? "bg-green-500/10 border-green-500/30 text-green-600"
+                                          : ""
+                                      }`}
+                                      onClick={() => handleCopyClick(command, `${dependency.name}-${packageManager}`)}
                                     >
-                                      {command}
-                                    </SyntaxHighlighter>
+                                      {copiedIndex === `${dependency.name}-${packageManager}` ? (
+                                        <Check className="size-3.5" />
+                                      ) : (
+                                        <Copy className="size-3.5" />
+                                      )}
+                                      <span className="sr-only">Copy command</span>
+                                    </Button>
                                   </div>
-                                  <Button 
-                                    variant="ghost" 
-                                    size="icon" 
-                                    className="absolute right-2 top-2 opacity-70 hover:opacity-100 h-6 w-6"
-                                    onClick={() => handleCopyClick(command, `${dependency.name}-${packageManager}`)}
-                                  >
-                                    {copiedIndex === `${dependency.name}-${packageManager}` ? 
-                                      <Check className="size-3.5" /> : 
-                                      <Copy className="size-3.5" />
-                                    }
-                                    <span className="sr-only">Copy command</span>
-                                  </Button>
-                                </div>
-                              </TabsContent>
-                            ))}
+                                </TabsContent>
+                              ))}
                           </Tabs>
                         </div>
                       ))}
@@ -206,112 +245,151 @@ export const InstallationSection = ({ componentData }: { componentData: Componen
                   </CollapsibleSection>
                 </div>
               )}
-              
+
               {/* Step 2: Setup Configuration (If Available) */}
               {hasSetupInfo && (
-                <div className="space-y-4">
-                  <h3 className="text-lg font-semibold flex items-center gap-2">
-                    <span className="flex items-center justify-center rounded-full bg-primary/10 w-7 h-7 text-xs font-bold text-primary">2</span>
-                    Setup Configuration
+                <div className="space-y-5">
+                  <h3 className="text-lg font-medium flex items-center gap-2.5">
+                    <span className="flex items-center justify-center rounded-full bg-primary/10 w-8 h-8 text-xs font-bold text-primary">
+                      2
+                    </span>
+                    <span>Setup Configuration</span>
                   </h3>
-                  
-                  <CollapsibleSection 
-                    title="Setup Files" 
-                    icon={<FileCode className="size-4 text-primary" />}
+
+                  <CollapsibleSection
+                    title="Configuration Files"
+                    icon={<FileCode className="size-5" />}
+                    defaultCollapsed={false}
                   >
-                    <div className="p-6 space-y-6">
-                      {componentData.dependencies?.filter(dependency => dependency.setup).map((dependency) => (
-                        <div key={`setup-${dependency.name}`} className="space-y-4">
-                          <p className="font-medium text-sm flex items-center gap-2">
-                            <span className="w-2 h-2 rounded-full bg-primary inline-block"></span>
-                            {dependency.name} Setup
-                            {dependency.setup?.description && (
-                              <span className="text-xs text-muted-foreground ml-2">
-                                - {dependency.setup.description}
-                              </span>
-                            )}
-                          </p>
-                          
-                          {dependency.setup?.file && dependency.setup?.code && (
-                            <div className="space-y-2">
-                              <p className="text-xs text-muted-foreground">
-                                Create file: <code className="px-1.5 py-0.5 bg-muted rounded">{dependency.setup.file}</code>
-                              </p>
-                              <div className="relative">
-                                <div className="rounded-lg border overflow-hidden">
-                                  <SyntaxHighlighter 
-                                    language="typescript" 
-                                    style={codeStyle}
-                                    customStyle={{
-                                      margin: 0,
-                                      padding: '12px',
-                                      borderRadius: '0.5rem',
-                                      fontSize: '12px',
-                                    }}
-                                  >
-                                    {dependency.setup.code}
-                                  </SyntaxHighlighter>
-                                </div>
-                                <Button 
-                                  variant="ghost" 
-                                  size="icon" 
-                                  className="absolute right-2 top-2 opacity-70 hover:opacity-100 h-6 w-6"
-                                  onClick={() => handleCopyClick(dependency.setup?.code || '', `${dependency.name}-setup`)}
-                                >
-                                  {copiedIndex === `${dependency.name}-setup` ? 
-                                    <Check className="size-3.5" /> : 
-                                    <Copy className="size-3.5" />
-                                  }
-                                  <span className="sr-only">Copy setup code</span>
-                                </Button>
+                    <div className="p-6 space-y-8 bg-background/50">
+                      {componentData.dependencies
+                        ?.filter((dependency) => dependency.setup)
+                        .map((dependency, index) => (
+                          <div
+                            key={`setup-${dependency.name}`}
+                            className={`space-y-4 ${index > 0 ? "pt-6 border-t" : ""}`}
+                          >
+                            <div className="flex items-start">
+                              <span className="w-2 h-2 rounded-full bg-primary mt-1.5 flex-shrink-0"></span>
+                              <div className="ml-3">
+                                <p className="font-medium text-sm">{dependency.name} Configuration</p>
+                                {dependency.setup?.description && (
+                                  <p className="text-xs text-muted-foreground mt-1">{dependency.setup.description}</p>
+                                )}
                               </div>
                             </div>
-                          )}
-                        </div>
-                      ))}
+
+                            {dependency.setup?.file && dependency.setup?.code && (
+                              <div className="space-y-3 mt-3">
+                                <div className="flex items-center gap-2 px-3 py-2 bg-muted/30 rounded-lg border text-xs text-muted-foreground">
+                                  <FileCode className="size-3.5 text-primary" />
+                                  Create file:{" "}
+                                  <code className="px-1.5 py-0.5 bg-muted rounded font-mono">
+                                    {dependency.setup.file}
+                                  </code>
+                                </div>
+                                <div className="relative">
+                                  <div className="rounded-lg border overflow-hidden shadow-sm">
+                                    <SyntaxHighlighter
+                                      language="typescript"
+                                      style={codeStyle}
+                                      customStyle={{
+                                        margin: 0,
+                                        padding: "16px",
+                                        borderRadius: "0.5rem",
+                                        fontSize: "13px",
+                                      }}
+                                      showLineNumbers
+                                    >
+                                      {dependency.setup.code}
+                                    </SyntaxHighlighter>
+                                  </div>
+                                  <Button
+                                    variant="outline"
+                                    size="icon"
+                                    className={`absolute right-3 top-3 opacity-80 hover:opacity-100 h-7 w-7 bg-background/80 backdrop-blur-sm border shadow-sm transition-all duration-200 ${
+                                      copiedIndex === `${dependency.name}-setup`
+                                        ? "bg-green-500/10 border-green-500/30 text-green-600"
+                                        : ""
+                                    }`}
+                                    onClick={() =>
+                                      handleCopyClick(dependency.setup?.code || "", `${dependency.name}-setup`)
+                                    }
+                                  >
+                                    {copiedIndex === `${dependency.name}-setup` ? (
+                                      <Check className="size-3.5" />
+                                    ) : (
+                                      <Copy className="size-3.5" />
+                                    )}
+                                    <span className="sr-only">Copy setup code</span>
+                                  </Button>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        ))}
                     </div>
                   </CollapsibleSection>
                 </div>
               )}
-              
+
               {/* Step 3: Copy Component Code */}
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold flex items-center gap-2">
-                  <span className="flex items-center justify-center rounded-full bg-primary/10 w-7 h-7 text-xs font-bold text-primary">
+              <div className="space-y-5">
+                <h3 className="text-lg font-medium flex items-center gap-2.5">
+                  <span className="flex items-center justify-center rounded-full bg-primary/10 w-8 h-8 text-xs font-bold text-primary">
                     {componentData.dependencies && componentData.dependencies.length > 0 ? (hasSetupInfo ? 3 : 2) : 1}
                   </span>
-                  Copy Component Code
+                  <span>Copy Component Code</span>
                 </h3>
-                
-                <CollapsibleSection 
-                  title={`${componentData?.name || 'Component'}.tsx`} 
-                  icon={<Github className="size-4 text-primary" />}
+
+                <CollapsibleSection
+                  title={`${componentData?.name || "Component"}.tsx`}
+                  icon={<Github className="size-5" />}
+                  defaultCollapsed={false}
                 >
                   <div className="relative">
-                    <SyntaxHighlighter 
-                      language="typescript" 
+                    <div className="border-b px-4 py-2 bg-muted/20 flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <FileCode className="size-4 text-primary/70" />
+                        <span className="text-xs font-medium">{componentData?.name || "Component"}.tsx</span>
+                      </div>
+                      <Badge
+                        variant="outline"
+                        className="text-xs font-normal bg-primary/5 text-primary border-primary/20"
+                      >
+                        TypeScript
+                      </Badge>
+                    </div>
+                    <SyntaxHighlighter
+                      language="typescript"
                       style={codeStyle}
                       customStyle={{
                         margin: 0,
-                        padding: '24px',
-                        fontSize: '12px',
-                        maxHeight: '24rem',
-                        overflow: 'auto'
+                        padding: "20px",
+                        fontSize: "13px",
+                        maxHeight: "28rem",
+                        overflow: "auto",
                       }}
                       showLineNumbers
                     >
-                      {componentData?.componentCode || '// Component code will appear here'}
+                      {componentData?.componentCode || "// Component code will appear here"}
                     </SyntaxHighlighter>
                     <div className="flex justify-end p-3 bg-background border-t">
-                      <Button 
-                        variant="outline" 
+                      <Button
+                        variant="outline"
                         size="sm"
-                        onClick={() => componentData?.componentCode && handleCopyClick(componentData.componentCode, "component-code")}
-                      >
-                        {copiedIndex === "component-code" ? 
-                          <Check className="size-3.5 mr-2" /> : 
-                          <Copy className="size-3.5 mr-2" />
+                        className={`gap-1.5 transition-all duration-200 ${
+                          copiedIndex === "component-code" ? "bg-green-500/10 border-green-500/30 text-green-600" : ""
+                        }`}
+                        onClick={() =>
+                          componentData?.componentCode && handleCopyClick(componentData.componentCode, "component-code")
                         }
+                      >
+                        {copiedIndex === "component-code" ? (
+                          <Check className="size-3.5" />
+                        ) : (
+                          <Copy className="size-3.5" />
+                        )}
                         Copy Code
                       </Button>
                     </div>
@@ -320,18 +398,42 @@ export const InstallationSection = ({ componentData }: { componentData: Componen
               </div>
 
               {/* Final Step: Update import paths */}
-              <div className="space-y-4">
-                <p className="text-lg font-semibold flex items-center gap-2">
-                  <span className="flex items-center justify-center rounded-full bg-primary/10 w-7 h-7 text-xs font-bold text-primary">
+              <div className="space-y-4 mt-2">
+                <h3 className="text-lg font-medium flex items-center gap-2.5">
+                  <span className="flex items-center justify-center rounded-full bg-primary/10 w-8 h-8 text-xs font-bold text-primary">
                     {componentData.dependencies && componentData.dependencies.length > 0 ? (hasSetupInfo ? 4 : 3) : 2}
                   </span>
-                  Update the import paths to match your project setup.
-                </p>
+                  <span>Final Steps</span>
+                </h3>
+
+                <div className="bg-muted/20 border rounded-xl p-5">
+                  <h4 className="text-sm font-medium mb-3">Update Import Paths</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Make sure to update the import paths in the component code to match your project structure. For
+                    example, change{" "}
+                    <code className="px-1.5 py-0.5 bg-muted rounded font-mono text-xs">@/components/ui/button</code> to
+                    match your UI components location.
+                  </p>
+
+                  <div className="mt-4 pt-4 border-t">
+                    <h4 className="text-sm font-medium mb-2">Need Help?</h4>
+                    <div className="flex gap-2">
+                      <Button variant="outline" size="sm" className="text-xs gap-1.5">
+                        <Github className="size-3.5" />
+                        View Documentation
+                      </Button>
+                      <Button variant="secondary" size="sm" className="text-xs gap-1.5">
+                        <ExternalLink className="size-3.5" />
+                        Join Discord
+                      </Button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </TabsContent>
         </Tabs>
       </div>
     </div>
-  );
-};
+  )
+}

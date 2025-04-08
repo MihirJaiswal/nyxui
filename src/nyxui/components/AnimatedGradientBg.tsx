@@ -20,6 +20,7 @@ export interface AnimatedGradientBgProps {
   zIndex?: number
   animate?: boolean
   as?: React.ElementType
+  onClick?: () => void
 }
 
 export function AnimatedGradientBg({
@@ -37,6 +38,7 @@ export function AnimatedGradientBg({
   zIndex = -1,
   animate = true,
   as = "div",
+  onClick
 }: AnimatedGradientBgProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
@@ -81,6 +83,7 @@ export function AnimatedGradientBg({
         return { width: "100%", height: "100%" }
     }
   }
+  
   const getGradientPattern = () => {
     const baseColors = colors.join(", ")
     const adjustedColors = interactive && isHovered ? colors.join(", ") : baseColors
@@ -134,6 +137,7 @@ export function AnimatedGradientBg({
     <Component
       ref={containerRef}
       className={cn("animated-gradient-bg overflow-hidden", className)}
+      onClick={onClick}
       style={{
         ...getSizeStyles(),
         position,
