@@ -16,6 +16,8 @@ import { animatedTextData } from "./metadata/AnimatedText.meta";
 import { characterSelectorData } from "./metadata/CharacterSelector.meta";
 import { bubbleBackgroundData } from "./metadata/BubblesBackground.meta";
 import { glitchButtonData } from "./metadata/GlitchButton.meta";
+import { githubRepoCardData } from "./metadata/GithubRepoCard.meta";
+import { githubProfileCardData } from "./metadata/GithubProfileCard.meta";
 
 export const componentsData = {
   "gradient-button": gradientButtonData,
@@ -35,5 +37,7 @@ export const componentsData = {
   "character-selector": characterSelectorData,
   "animated-text": animatedTextData,
   "bubbles-background": bubbleBackgroundData,
-  "glitch-button": glitchButtonData
+  "glitch-button": glitchButtonData,
+  "github-repo-card": githubRepoCardData,
+  "github-profile-card": githubProfileCardData
 };

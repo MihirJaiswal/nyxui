@@ -20,7 +20,9 @@
     "character-selector": "Character Selector",
     "animated-text": "Animated Text",
     "bubbles-background": "Bubbles Background",
-    "glitch-button": "Glitch Button"
+    "glitch-button": "Glitch Button",
+    "github-repo-card": "GitHub Repo Card",
+    "github-profile-card": "GitHub Profile Card"
   },
   "templates": {}
 }
