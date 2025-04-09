@@ -50,6 +50,13 @@ export const glitchButtonData: ComponentData = {
             "Whether to trigger glitch effects when hovering over the button.",
         },
         {
+          name: "borderColor",
+          type: "string",
+          default: '"white"',
+          description:
+            "Custom border color for the glitch effect.",
+        },
+        {
           name: "glitchAlways",
           type: "boolean",
           default: "false",

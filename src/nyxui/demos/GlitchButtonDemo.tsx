@@ -20,6 +20,7 @@ export const GlitchButtonDemo = () => {
           <GlitchButton 
             glitchAlways={true}
             glitchIntensity="medium"
+            borderColor="#c702bd"
             className="text-sm sm:text-base"
           >
             <div className="flex items-center"><Power className="mr-1 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5" /><span>ACTIVE</span></div>

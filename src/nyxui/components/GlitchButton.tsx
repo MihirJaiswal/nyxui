@@ -13,6 +13,7 @@ interface GlitchButtonProps {
     primary?: string;
     secondary?: string;
   };
+  borderColor?: string; 
 }
 
 export const GlitchButton: React.FC<GlitchButtonProps> = ({
@@ -25,7 +26,8 @@ export const GlitchButton: React.FC<GlitchButtonProps> = ({
   glitchColors = {
     primary: '#ef00ef',
     secondary: '#00ffff'
-  }
+  },
+  borderColor = 'white'
 }) => {
   const [isHovering, setIsHovering] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
@@ -175,6 +177,10 @@ export const GlitchButton: React.FC<GlitchButtonProps> = ({
 
   const showGlitch = (glitchAlways || (glitchOnHover && isHovering) || isClicked);
 
+  const borderStyle = {
+    boxShadow: `inset ${borderColor} 5px 5px 0px, inset ${borderColor} -5px 5px 0px, inset ${borderColor} 5px -5px 0px, inset ${borderColor} -5px -5px 0px`
+  };
+
   const containerClasses = twMerge(
     'relative cursor-pointer font-mono overflow-hidden',
     'text-4xl', 
@@ -182,7 +188,6 @@ export const GlitchButton: React.FC<GlitchButtonProps> = ({
     'text-white', 
     'p-4 m-1.5',
     'group',
-    'shadow-[inset_white_5px_5px_0px,inset_white_-5px_5px_0px,inset_white_5px_-5px_0px,inset_white_-5px_-5px_0px]',
     'hover:shadow-none',
     'hover:bg-gradient-to-r hover:from-fuchsia-600 hover:via-white hover:to-cyan-400',
     isClicked ? 'click-glitch' : '',
@@ -196,6 +201,18 @@ export const GlitchButton: React.FC<GlitchButtonProps> = ({
     `
   };
 
+  const glitchLayerShadowTop = {
+    boxShadow: `inset ${borderColor} 5px 5px 0px, inset ${borderColor} -5px 0px 0px`
+  };
+  
+  const glitchLayerShadowMiddle = {
+    boxShadow: `inset ${borderColor} 5px 0px 0px, inset ${borderColor} -5px 0px 0px`
+  };
+  
+  const glitchLayerShadowBottom = {
+    boxShadow: `inset ${borderColor} 5px -5px 0px, inset ${borderColor} -5px 0px 0px`
+  };
+
   return (
     <div 
       ref={buttonRef}
@@ -203,6 +220,7 @@ export const GlitchButton: React.FC<GlitchButtonProps> = ({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       className={containerClasses}
+      style={borderStyle}
     >
       <span className={`
         block
@@ -219,15 +237,15 @@ export const GlitchButton: React.FC<GlitchButtonProps> = ({
           overflow-hidden 
           ${isClicked ? 'glitch-skew' : ''}
         `}>
-          {/* Glitch layer 1*/}
           <div className={`
             absolute left-0 w-full h-1/3 top-0 
             ${bgColorClass}
-            shadow-[inset_white_5px_5px_0px,inset_white_-5px_0px_0px]
             ${isRounded ? 'rounded-t-lg' : ''}
             overflow-hidden
             glitch-layer-1
-          `}>
+          `}
+          style={glitchLayerShadowTop}
+          >
             <div 
               className={`
                 absolute w-full ${textColorClass}
@@ -243,14 +261,14 @@ export const GlitchButton: React.FC<GlitchButtonProps> = ({
             </div>
           </div>
           
-          {/* Glitch layer 2*/}
           <div className={`
             absolute left-0 w-full h-1/3 top-1/3 
             ${bgColorClass}
-            shadow-[inset_white_5px_0px_0px,inset_white_-5px_0px_0px]
             overflow-hidden
             glitch-layer-2
-          `}>
+          `}
+          style={glitchLayerShadowMiddle}
+          >
             <div 
               className={`
                 absolute w-full ${textColorClass}
@@ -266,15 +284,15 @@ export const GlitchButton: React.FC<GlitchButtonProps> = ({
             </div>
           </div>
           
-          {/* Glitch layer 3*/}
           <div className={`
             absolute left-0 w-full h-1/3 top-2/3 
             ${bgColorClass}
-            shadow-[inset_white_5px_-5px_0px,inset_white_-5px_0px_0px]
             ${isRounded ? 'rounded-b-lg' : ''}
             overflow-hidden
             glitch-layer-3
-          `}>
+          `}
+          style={glitchLayerShadowBottom}
+          >
             <div 
               className={`
                 absolute w-full ${textColorClass}
