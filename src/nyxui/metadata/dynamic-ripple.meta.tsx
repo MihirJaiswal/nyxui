@@ -122,7 +122,7 @@ import { twMerge } from "tailwind-merge";
     {
       name: "Basic Blue Ripple",
       preview: (
-        <DynamicRipple theme="blue" intensity={3} speed={3} className="p-6">
+        <DynamicRipple theme="blue" intensity={3} speed={3} className="p-6 border border-blue-200 dark:border-blue-800">
           <div className="flex items-center gap-2">
             <Droplets className="w-5 h-5 text-blue-500" />
             <h3 className="text-lg font-semibold">Water Ripple Effect</h3>
@@ -136,7 +136,7 @@ import { twMerge } from "tailwind-merge";
   
   export function BasicRipple() {
     return (
-      <DynamicRipple theme="blue" intensity={3} speed={3} className="p-6">
+      <DynamicRipple theme="blue" intensity={3} speed={3} className="p-6 border border-blue-200 dark:border-blue-800">
         <div className="flex items-center gap-2">
           <Droplets className="w-5 h-5 text-blue-500" />
           <h3 className="text-lg font-semibold">Water Ripple Effect</h3>
@@ -159,7 +159,7 @@ import { twMerge } from "tailwind-merge";
           }} 
           intensity={4} 
           speed={3} 
-          className="p-6"
+          className="p-6 border border-purple-200 dark:border-purple-800"
         >
           <div className="flex items-center gap-2">
             <Palette className="w-5 h-5 text-indigo-600" />
@@ -184,7 +184,7 @@ import { twMerge } from "tailwind-merge";
         }} 
         intensity={4} 
         speed={3} 
-        className="p-6"
+        className="p-6 border border-purple-200 dark:border-purple-800"
       >
         <div className="flex items-center gap-2">
           <Palette className="w-5 h-5 text-indigo-600" />
@@ -200,7 +200,7 @@ import { twMerge } from "tailwind-merge";
     {
       name: "High Intensity Purple Ripple",
       preview: (
-        <DynamicRipple theme="purple" intensity={5} speed={2} className="p-6">
+        <DynamicRipple theme="purple" intensity={5} speed={2} className="p-6 border border-purple-200 dark:border-purple-800">
           <h3 className="text-lg font-semibold">High Intensity Ripple</h3>
           <p className="text-sm text-gray-600 dark:text-gray-300">Maximum intensity with slower speed</p>
         </DynamicRipple>
@@ -210,7 +210,7 @@ import { twMerge } from "tailwind-merge";
   
   export function HighIntensityRipple() {
     return (
-      <DynamicRipple theme="purple" intensity={5} speed={2} className="p-6">
+      <DynamicRipple theme="purple" intensity={5} speed={2} className="p-6 border border-purple-200 dark:border-purple-800">
         <h3 className="text-lg font-semibold">High Intensity Ripple</h3>
         <p className="text-sm text-gray-600 dark:text-gray-300">
           Maximum intensity with slower speed
@@ -222,7 +222,7 @@ import { twMerge } from "tailwind-merge";
     {
       name: "Fast Green Ripple",
       preview: (
-        <DynamicRipple theme="green" intensity={2} speed={5} className="p-6">
+        <DynamicRipple theme="green" intensity={2} speed={5} className="p-6 border border-green-200 dark:border-green-800">
           <h3 className="text-lg font-semibold">Fast Ripple</h3>
           <p className="text-sm text-gray-600 dark:text-gray-300">Low intensity with maximum speed</p>
         </DynamicRipple>
@@ -232,7 +232,7 @@ import { twMerge } from "tailwind-merge";
   
   export function FastRipple() {
     return (
-      <DynamicRipple theme="green" intensity={2} speed={5} className="p-6">
+      <DynamicRipple theme="green" intensity={2} speed={5} className="p-6 border border-green-200 dark:border-green-800">
         <h3 className="text-lg font-semibold">Fast Ripple</h3>
         <p className="text-sm text-gray-600 dark:text-gray-300">
           Low intensity with maximum speed
@@ -244,7 +244,7 @@ import { twMerge } from "tailwind-merge";
     {
       name: "Circular Amber Ripple",
       preview: (
-        <DynamicRipple theme="amber" rounded="full" className="p-6 aspect-square flex items-center justify-center">
+        <DynamicRipple theme="amber" rounded="full" className="p-6 aspect-square flex items-center justify-center border border-amber-200 dark:border-amber-800">
           <div className="text-center">
             <h3 className="text-lg font-semibold">Circular Ripple</h3>
             <p className="text-sm text-gray-600 dark:text-gray-300">With rounded full style</p>
@@ -256,7 +256,7 @@ import { twMerge } from "tailwind-merge";
   
   export function CircularRipple() {
     return (
-      <DynamicRipple theme="amber" rounded="full" className="p-6 aspect-square flex items-center justify-center">
+      <DynamicRipple theme="amber" rounded="full" className="p-6 aspect-square flex items-center justify-center border border-amber-200 dark:border-amber-800">
         <div className="text-center">
           <h3 className="text-lg font-semibold">Circular Ripple</h3>
           <p className="text-sm text-gray-600 dark:text-gray-300">
@@ -270,7 +270,7 @@ import { twMerge } from "tailwind-merge";
     {
       name: "Auto-Animation Disabled",
       preview: (
-        <DynamicRipple theme="rose" autoAnimate={false} className="p-6">
+        <DynamicRipple theme="rose" autoAnimate={false} className="p-6 border border-rose-200 dark:border-rose-800">
           <h3 className="text-lg font-semibold">Cursor-Only Ripple</h3>
           <p className="text-sm text-gray-600 dark:text-gray-300">
             Only reacts to cursor movement, no automatic animation
@@ -282,7 +282,7 @@ import { twMerge } from "tailwind-merge";
   
   export function CursorOnlyRipple() {
     return (
-      <DynamicRipple theme="rose" autoAnimate={false} className="p-6">
+      <DynamicRipple theme="rose" autoAnimate={false} className="p-6 border border-rose-200 dark:border-rose-800">
         <h3 className="text-lg font-semibold">Cursor-Only Ripple</h3>
         <p className="text-sm text-gray-600 dark:text-gray-300">
           Only reacts to cursor movement, no automatic animation
@@ -328,7 +328,7 @@ import { twMerge } from "tailwind-merge";
     {
       name: "Feature Card with Subtle Effect",
       preview: (
-        <DynamicRipple theme="green" intensity={1} speed={1} className="p-6">
+        <DynamicRipple theme="green" intensity={1} speed={1} className="p-6 border border-green-200 dark:border-green-800">
           <div className="flex items-center gap-3 mb-3">
             <ShieldCheck className="w-6 h-6 text-green-500" />
             <h3 className="text-xl font-semibold">Security Features</h3>
@@ -355,7 +355,7 @@ import { twMerge } from "tailwind-merge";
   
   export function FeatureCard() {
     return (
-      <DynamicRipple theme="green" intensity={1} speed={1} className="p-6">
+      <DynamicRipple theme="green" intensity={1} speed={1} className="p-6 border border-green-200 dark:border-green-800">
         <div className="flex items-center gap-3 mb-3">
           <ShieldCheck className="w-6 h-6 text-green-500" />
           <h3 className="text-xl font-semibold">Security Features</h3>
@@ -381,7 +381,7 @@ import { twMerge } from "tailwind-merge";
     {
       name: "Pricing Card",
       preview: (
-        <DynamicRipple theme="purple" rounded="xl" className="p-6">
+        <DynamicRipple theme="purple" rounded="xl" className="p-6 border border-purple-200 dark:border-purple-800">
           <div className="text-center mb-4">
             <h3 className="text-xl font-bold">Premium Plan</h3>
             <div className="mt-2">
@@ -414,7 +414,7 @@ import { twMerge } from "tailwind-merge";
   
   export function PricingCard() {
     return (
-      <DynamicRipple theme="purple" rounded="xl" className="p-6">
+      <DynamicRipple theme="purple" rounded="xl" className="p-6 border border-purple-200 dark:border-purple-800">
         <div className="text-center mb-4">
           <h3 className="text-xl font-bold">Premium Plan</h3>
           <div className="mt-2">
@@ -446,7 +446,7 @@ import { twMerge } from "tailwind-merge";
     {
       name: "Interactive CTA Button",
       preview: (
-        <div className="p-4 flex justify-center">
+        <div className="p-4 flex justify-center border border-rose-200 dark:border-rose-800">
           <DynamicRipple 
             theme="rose" 
             intensity={4} 
@@ -463,7 +463,7 @@ import { twMerge } from "tailwind-merge";
   
   export function RippleButton() {
     return (
-      <div className="p-4 flex justify-center">
+      <div className="p-4 flex justify-center border border-rose-200 dark:border-rose-800">
         <DynamicRipple 
           theme="rose" 
           intensity={4} 

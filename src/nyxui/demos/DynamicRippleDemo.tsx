@@ -7,7 +7,7 @@ export function DynamicRippleDemo() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-2 gap-4 sm:gap-6 p-4 sm:p-6 w-full max-w-7xl mx-auto">
       {/* Blue Theme Card */}
-      <DynamicRipple theme="blue" intensity={3} speed={3} className="p-4 sm:p-6 h-full">
+      <DynamicRipple theme="blue" intensity={3} speed={3} className="p-4 sm:p-6 h-full border border-blue-200 dark:border-blue-800">
         <div className="flex flex-col gap-3 sm:gap-4">
           <div className="flex items-center justify-between flex-wrap gap-2">
             <div className="flex items-center gap-2">
@@ -33,7 +33,7 @@ export function DynamicRippleDemo() {
       </DynamicRipple>
 
       {/* Purple Theme Card */}
-      <DynamicRipple theme="purple" intensity={4} speed={2} className="p-4 sm:p-6 h-full">
+      <DynamicRipple theme="purple" intensity={4} speed={2} className="p-4 sm:p-6 h-full border border-purple-200 dark:border-purple-800">
         <div className="flex flex-col gap-3 sm:gap-4">
           <div className="flex items-center justify-between flex-wrap gap-2">
             <div className="flex items-center gap-2">
@@ -59,7 +59,7 @@ export function DynamicRippleDemo() {
       </DynamicRipple>
 
       {/* Green Theme Card */}
-      <DynamicRipple theme="green" intensity={2} speed={4} rounded="xl" className="p-4 sm:p-6 h-full">
+      <DynamicRipple theme="green" intensity={2} speed={4} rounded="xl" className="p-4 sm:p-6 h-full border border-green-200 dark:border-green-800">
         <div className="flex flex-col gap-3 sm:gap-4">
           <div className="flex items-center justify-between flex-wrap gap-2">
             <div className="flex items-center gap-2">
@@ -84,7 +84,7 @@ export function DynamicRippleDemo() {
       </DynamicRipple>
 
       {/* Amber Theme Card */}
-      <DynamicRipple theme="amber" intensity={5} speed={5} rounded="full" className="p-4 sm:p-6 h-full">
+      <DynamicRipple theme="amber" intensity={5} speed={5} rounded="full" className="p-4 sm:p-6 h-full border border-amber-200 dark:border-amber-800">
         <div className="flex flex-col gap-3 sm:gap-4 items-center text-center">
           <div className="flex flex-col items-center gap-1 sm:gap-2">
             <Droplets className="w-6 h-6 sm:w-8 sm:h-8 text-amber-500" />

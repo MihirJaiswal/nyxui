@@ -78,7 +78,7 @@ export function cn(...inputs: ClassValue[]) {
         {
           name: "theme",
           type: "string",
-          default: '"dark" | "light" | "terminal" | "cyberpunk" | "minimal"',
+          default: '"dark" | "light" | "terminal" | "cyberpunk" | "minimal" | "nyx"',
           description: "The visual theme of the code block",
         },
         {

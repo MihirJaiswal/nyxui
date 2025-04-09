@@ -83,7 +83,7 @@ export function AnimatedCodeBlock({
           background: "bg-white",
           text: "text-gray-800",
           lineNumbers: "text-gray-400",
-          highlight: "bg-gray-100",
+          highlight: "bg-gray-200",
           border: "border-gray-200",
         }
       case "nyx":

@@ -16,7 +16,18 @@ export const mspaintData: ComponentData = {
   preview: <MSpaintDemo />,
   usage: mspaintDemoSource,
   componentCode: mspaintSource,
-  dependencies: [],
+  dependencies: [
+    {
+      name: "Lucide React",
+      description: "Icon library used for terminal icons.",
+      install: {
+        npm: "npm install lucide-react",
+        yarn: "yarn add lucide-react",
+        pnpm: "pnpm install lucide-react",
+        bun: "bun install lucide-react"
+      }
+    }
+  ],
   props: [
     {
       name: "MS Paint",

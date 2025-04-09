@@ -218,7 +218,7 @@ import { twMerge } from "tailwind-merge";
     {
       name: "Slide Up Effect",
       preview: (
-        <div className="p-8 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-green-100 dark:border-green-900/30 transition-all duration-300 hover:shadow-xl">
+        <div className="p-8 bg-white dark:bg-neutral-800 rounded-xl shadow-lg border border-green-100 dark:border-green-900/30 transition-all duration-300 hover:shadow-xl">
           <div className="flex items-center mb-4">
             <div className="p-2 bg-green-100 dark:bg-green-900/30 rounded-full mr-3">
               <ArrowUp className="h-5 w-5 text-green-500" />
@@ -237,10 +237,10 @@ import { twMerge } from "tailwind-merge";
               that guides the user through your content.
             </p>
             <div className="mt-4 grid grid-cols-2 gap-2">
-              <div className="p-3 bg-gray-50 dark:bg-gray-700 rounded-lg flex items-center justify-center">
+              <div className="p-3 bg-gray-50 dark:bg-neutral-700 rounded-lg flex items-center justify-center">
                 <span className="text-xs font-medium text-gray-500 dark:text-gray-400">Smooth</span>
               </div>
-              <div className="p-3 bg-gray-50 dark:bg-gray-700 rounded-lg flex items-center justify-center">
+              <div className="p-3 bg-gray-50 dark:bg-neutral-700 rounded-lg flex items-center justify-center">
                 <span className="text-xs font-medium text-gray-500 dark:text-gray-400">Responsive</span>
               </div>
             </div>
@@ -253,7 +253,7 @@ import { twMerge } from "tailwind-merge";
   
   export function SlideUpEffect() {
     return (
-      <div className="p-8 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-green-100 dark:border-green-900/30 transition-all duration-300 hover:shadow-xl">
+      <div className="p-8 bg-white dark:bg-neutral-800 rounded-xl shadow-lg border border-green-100 dark:border-green-900/30 transition-all duration-300 hover:shadow-xl">
         <div className="flex items-center mb-4">
           <div className="p-2 bg-green-100 dark:bg-green-900/30 rounded-full mr-3">
             <ArrowUp className="h-5 w-5 text-green-500" />
@@ -272,10 +272,10 @@ import { twMerge } from "tailwind-merge";
             that guides the user through your content.
           </p>
           <div className="mt-4 grid grid-cols-2 gap-2">
-            <div className="p-3 bg-gray-50 dark:bg-gray-700 rounded-lg flex items-center justify-center">
+            <div className="p-3 bg-gray-50 dark:bg-neutral-700 rounded-lg flex items-center justify-center">
               <span className="text-xs font-medium text-gray-500 dark:text-gray-400">Smooth</span>
             </div>
-            <div className="p-3 bg-gray-50 dark:bg-gray-700 rounded-lg flex items-center justify-center">
+            <div className="p-3 bg-gray-50 dark:bg-neutral-700 rounded-lg flex items-center justify-center">
               <span className="text-xs font-medium text-gray-500 dark:text-gray-400">Responsive</span>
             </div>
           </div>

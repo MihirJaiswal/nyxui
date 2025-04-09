@@ -1,6 +1,7 @@
 "use client"
 import { useState } from "react"
 import { AnimateText } from "@/nyxui/components/AnimatedText"
+import { RotateCcw } from "lucide-react"
 
 export const AnimationTextDemo = () => {
   const [key, setKey] = useState(0)
@@ -16,10 +17,11 @@ export const AnimationTextDemo = () => {
           <div className="flex justify-center my-4 sm:my-6 md:my-8">
             <button 
               onClick={refreshAnimations}
-              className="px-3 py-2 sm:px-4 sm:py-2 text-sm sm:text-base bg-white text-black border border-gray-600 rounded shadow-md hover:shadow-lg hover:opacity-90 transition-all duration-300"
+              className="px-3 py-2 sm:px-4 sm:py-2 flex items-center gap-2 text-sm sm:text-base bg-white text-black border border-gray-600 rounded shadow-md hover:shadow-lg hover:opacity-90 transition-all duration-300"
               aria-label="Replay all animations"
             >
-              Replay Animations
+             <span> Replay Animations</span>
+             <RotateCcw size={16} className="text-gray-700" />
             </button>
           </div>
           

@@ -90,7 +90,7 @@ export const bubbleBackgroundData: ComponentData = {
     {
       name: "Default Bubble Background",
       preview: (
-        <div className="relative h-[500px] w-[500px] overflow-hidden bg-transparent">
+        <div className="relative h-[400px] w-[1000px] overflow-hidden bg-transparent">
           <BubbleBackground />
         </div>
       ),
@@ -99,7 +99,7 @@ export const bubbleBackgroundData: ComponentData = {
     
   export function DefaultBubbleBackground() {
     return (
-      <div className="relative h-[500px] w-[500px] overflow-hidden bg-transparent">
+      <div className="relative h-[400px] w-[1000px] overflow-hidden bg-transparent">
         <BubbleBackground />
       </div>
     );
@@ -108,7 +108,7 @@ export const bubbleBackgroundData: ComponentData = {
     {
       name: "Custom Colors",
       preview: (
-        <div className="relative h-[500px] w-[500px] overflow-hidden bg-transparent">
+        <div className="relative h-[400px] w-[1000px] overflow-hidden bg-transparent">
           <BubbleBackground
             backgroundColorA="rgb(0, 78, 146)"
             backgroundColorB="rgb(0, 28, 73)"
@@ -128,7 +128,7 @@ export const bubbleBackgroundData: ComponentData = {
     
   export function OceanBubbles() {
     return (
-      <div className="relative h-[500px] w-[500px] overflow-hidden bg-transparent">
+      <div className="relative h-[400px] w-[1000px] overflow-hidden bg-transparent">
         <BubbleBackground
           backgroundColorA="rgb(0, 78, 146)"
           backgroundColorB="rgb(0, 28, 73)"
@@ -148,7 +148,7 @@ export const bubbleBackgroundData: ComponentData = {
     {
       name: "Sunset Theme",
       preview: (
-        <div className="relative h-[500px] w-[500px] overflow-hidden bg-transparent">
+        <div className="relative h-[400px] w-[1000px] overflow-hidden bg-transparent">
           <BubbleBackground
             backgroundColorA="rgb(252, 70, 107)"
             backgroundColorB="rgb(63, 94, 251)"
@@ -169,7 +169,7 @@ export const bubbleBackgroundData: ComponentData = {
     
   export function SunsetBubbles() {
     return (
-      <div className="relative h-[500px] w-[500px] overflow-hidden bg-transparent">
+      <div className="relative h-[400px] w-[1000px] overflow-hidden bg-transparent">
         <BubbleBackground
           backgroundColorA="rgb(252, 70, 107)"
           backgroundColorB="rgb(63, 94, 251)"
@@ -190,7 +190,7 @@ export const bubbleBackgroundData: ComponentData = {
     {
       name: "Neon Theme",
       preview: (
-        <div className="relative h-[500px] w-[500px] overflow-hidden bg-transparent">
+        <div className="relative h-[400px] w-[1000px] overflow-hidden bg-transparent">
           <BubbleBackground
             backgroundColorA="rgb(0, 0, 0)"
             backgroundColorB="rgb(20, 20, 20)"
@@ -212,7 +212,7 @@ export const bubbleBackgroundData: ComponentData = {
     
   export function NeonBubbles() {
     return (
-      <div className="relative h-[500px] w-[500px] overflow-hidden bg-transparent">
+      <div className="relative h-[400px] w-[1000px] overflow-hidden bg-transparent">
         <BubbleBackground
           backgroundColorA="rgb(0, 0, 0)"
           backgroundColorB="rgb(20, 20, 20)"
@@ -234,7 +234,7 @@ export const bubbleBackgroundData: ComponentData = {
     {
       name: "Pastel Theme",
       preview: (
-        <div className="relative h-[500px] w-[500px] overflow-hidden bg-transparent">
+        <div className="relative h-[400px] w-[1000px] overflow-hidden bg-transparent">
           <BubbleBackground
             backgroundColorA="rgb(255, 245, 245)"
             backgroundColorB="rgb(245, 245, 255)"
@@ -255,7 +255,7 @@ export const bubbleBackgroundData: ComponentData = {
     
   export function PastelBubbles() {
     return (
-      <div className="relative h-[500px] w-[500px] overflow-hidden bg-transparent">
+      <div className="relative h-[400px] w-[1000px] overflow-hidden bg-transparent">
         <BubbleBackground 
           backgroundColorA="rgb(255, 245, 245)"
           backgroundColorB="rgb(245, 245, 255)"
@@ -276,7 +276,7 @@ export const bubbleBackgroundData: ComponentData = {
     {
       name: "With Custom Link",
       preview: (
-        <div className="relative h-[500px] w-[500px] overflow-hidden bg-transparent">
+        <div className="relative h-[400px] w-[1000px] overflow-hidden bg-transparent">
           <BubbleBackground/>
         </div>
       ),
@@ -285,7 +285,7 @@ export const bubbleBackgroundData: ComponentData = {
     
   export function BubbleBackgroundWithLink() {
     return (
-      <div className="relative h-[500px] w-[500px] overflow-hidden bg-transparent">
+      <div className="relative h-[400px] w-[1000px] overflow-hidden bg-transparent">
         <BubbleBackground/>
       </div>
     );

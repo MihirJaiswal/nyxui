@@ -143,7 +143,7 @@ export const animatedGradientBgData: ComponentData = {
     {
       name: "Radial Gradient",
       preview: (
-        <div className="relative h-[500px] w-[500px] overflow-hidden bg-transparent">
+        <div className="relative h-[500px] w-[1000px] overflow-hidden bg-transparent">
           <div className="absolute inset-0">
             <AnimatedGradientBg
               pattern="radial"
@@ -164,7 +164,7 @@ export const animatedGradientBgData: ComponentData = {
     
   export function RadialGradient() {
     return (
-      <div className="relative h-[500px] w-[500px] overflow-hidden bg-transparent">
+      <div className="relative h-[500px] w-[1000px] overflow-hidden bg-transparent">
         <div className="absolute inset-0">
           <AnimatedGradientBg
             pattern="radial"
@@ -185,7 +185,7 @@ export const animatedGradientBgData: ComponentData = {
     {
       name: "Linear Gradient",
       preview: (
-        <div className="relative h-[500px] w-[500px] overflow-hidden bg-transparent">
+        <div className="relative h-[500px] w-[1000px] overflow-hidden bg-transparent">
           <div className="absolute inset-0">
             <AnimatedGradientBg
               pattern="linear"
@@ -206,7 +206,7 @@ export const animatedGradientBgData: ComponentData = {
     
   export function LinearGradient() {
     return (
-      <div className="relative h-[500px] w-[500px] overflow-hidden bg-transparent">
+      <div className="relative h-[500px] w-[1000px] overflow-hidden bg-transparent">
         <div className="absolute inset-0">
           <AnimatedGradientBg
             pattern="linear"
@@ -227,7 +227,7 @@ export const animatedGradientBgData: ComponentData = {
     {
       name: "Conic Gradient",
       preview: (
-        <div className="relative h-[500px] w-[500px] overflow-hidden bg-transparent">
+        <div className="relative h-[500px] w-[1000px] overflow-hidden bg-transparent">
           <div className="absolute inset-0">
             <AnimatedGradientBg
               pattern="conic"
@@ -248,7 +248,7 @@ export const animatedGradientBgData: ComponentData = {
     
   export function ConicGradient() {
     return (
-      <div className="relative h-[500px] w-[500px] overflow-hidden bg-transparent">
+      <div className="relative h-[500px] w-[1000px] overflow-hidden bg-transparent">
         <div className="absolute inset-0">
           <AnimatedGradientBg
             pattern="conic"
@@ -269,7 +269,7 @@ export const animatedGradientBgData: ComponentData = {
     {
       name: "Mesh Pattern",
       preview: (
-        <div className="relative h-[500px] w-[500px] overflow-hidden bg-transparent">
+        <div className="relative h-[500px] w-[1000px] overflow-hidden bg-transparent">
           <div className="absolute inset-0">
             <AnimatedGradientBg
               pattern="mesh"
@@ -290,7 +290,7 @@ export const animatedGradientBgData: ComponentData = {
     
   export function MeshPattern() {
     return (
-      <div className="relative h-[500px] w-[500px] overflow-hidden bg-transparent">
+      <div className="relative h-[500px] w-[1000px] overflow-hidden bg-transparent">
         <div className="absolute inset-0">
           <AnimatedGradientBg
             pattern="mesh"
@@ -311,7 +311,7 @@ export const animatedGradientBgData: ComponentData = {
     {
       name: "Noise Gradient",
       preview: (
-        <div className="relative h-[500px] w-[500px] overflow-hidden bg-transparent">
+        <div className="relative h-[500px] w-[1000px] overflow-hidden bg-transparent">
           <div className="absolute inset-0">
             <AnimatedGradientBg
               pattern="noise"
@@ -332,7 +332,7 @@ export const animatedGradientBgData: ComponentData = {
     
   export function NoiseGradient() {
     return (
-      <div className="relative h-[500px] w-[500px] overflow-hidden bg-transparent">
+      <div className="relative h-[500px] w-[1000px] overflow-hidden bg-transparent">
         <div className="absolute inset-0">
           <AnimatedGradientBg
             pattern="noise"
@@ -353,7 +353,7 @@ export const animatedGradientBgData: ComponentData = {
     {
       name: "Waves Gradient",
       preview: (
-        <div className="relative h-[500px] w-[500px] overflow-hidden bg-transparent">
+        <div className="relative h-[500px] w-[1000px] overflow-hidden bg-transparent">
           <div className="absolute inset-0">
             <AnimatedGradientBg
               pattern="waves"
@@ -374,7 +374,7 @@ export const animatedGradientBgData: ComponentData = {
     
   export function WavesGradient() {
     return (
-      <div className="relative h-[500px] w-[500px] overflow-hidden bg-transparent">
+      <div className="relative h-[500px] w-[1000px] overflow-hidden bg-transparent">
         <div className="absolute inset-0">
           <AnimatedGradientBg
             pattern="waves"

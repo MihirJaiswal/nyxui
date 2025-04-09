@@ -2,7 +2,7 @@
 
 import type React from "react"
 import { useState, useEffect } from "react"
-import { Copy, Github, Package, FileCode, ChevronDown, ChevronUp, FileWarning, Check, ExternalLink } from "lucide-react"
+import { Copy, Github, Package, FileCode, ChevronDown, ChevronUp, FileWarning, Check, ExternalLink, Maximize, Minimize } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import type { ComponentData } from "@/nyxui/ComponentInterfaces"
@@ -66,6 +66,59 @@ const CollapsibleSection = ({
           </motion.div>
         )}
       </AnimatePresence>
+    </div>
+  )
+}
+
+const ExpandableCode = ({ 
+  language, 
+  code, 
+  codeStyle, 
+  showLineNumbers = true 
+}: { 
+  language: string, 
+  code: string, 
+  codeStyle: any, 
+  showLineNumbers?: boolean 
+}) => {
+  const [isExpanded, setIsExpanded] = useState(false)
+
+  return (
+    <div className="relative">
+      <div className={`${!isExpanded ? "max-h-80 overflow-hidden" : ""} border shadow-sm`}>
+        <SyntaxHighlighter
+          language={language}
+          style={codeStyle}
+          customStyle={{
+            margin: 0,
+            padding: "16px",
+            fontSize: "13px",
+            height: isExpanded ? "auto" : undefined,
+          }}
+          showLineNumbers={showLineNumbers}
+        >
+          {code}
+        </SyntaxHighlighter>
+      </div>
+      
+      <Button
+        variant="outline"
+        size="sm"
+        className="absolute right-3 bottom-3 gap-1.5 bg-background/80 backdrop-blur-sm shadow-sm z-10"
+        onClick={() => setIsExpanded(!isExpanded)}
+      >
+        {isExpanded ? (
+          <>
+            <Minimize className="size-3.5" />
+            Collapse
+          </>
+        ) : (
+          <>
+            <Maximize className="size-3.5" />
+            Expand
+          </>
+        )}
+      </Button>
     </div>
   )
 }
@@ -247,7 +300,6 @@ export const InstallationSection = ({ componentData }: { componentData: Componen
                 </div>
               )}
 
-              {/* Step 2: Setup Configuration (If Available) */}
               {hasSetupInfo && (
                 <div className="space-y-5">
                   <h3 className="text-lg font-medium flex items-center gap-2.5">
@@ -290,21 +342,11 @@ export const InstallationSection = ({ componentData }: { componentData: Componen
                                   </code>
                                 </div>
                                 <div className="relative">
-                                  <div className="rounded-lg border overflow-hidden shadow-sm">
-                                    <SyntaxHighlighter
-                                      language="typescript"
-                                      style={codeStyle}
-                                      customStyle={{
-                                        margin: 0,
-                                        padding: "16px",
-                                        borderRadius: "0.5rem",
-                                        fontSize: "13px",
-                                      }}
-                                      showLineNumbers
-                                    >
-                                      {dependency.setup.code}
-                                    </SyntaxHighlighter>
-                                  </div>
+                                  <ExpandableCode 
+                                    language="typescript" 
+                                    code={dependency.setup.code} 
+                                    codeStyle={codeStyle} 
+                                  />
                                   <Button
                                     variant="outline"
                                     size="icon"
@@ -361,20 +403,13 @@ export const InstallationSection = ({ componentData }: { componentData: Componen
                         TypeScript
                       </Badge>
                     </div>
-                    <SyntaxHighlighter
-                      language="typescript"
-                      style={codeStyle}
-                      customStyle={{
-                        margin: 0,
-                        padding: "20px",
-                        fontSize: "13px",
-                        maxHeight: "20rem",
-                        overflow: "auto",
-                      }}
-                      showLineNumbers
-                    >
-                      {componentData?.componentCode || "// Component code will appear here"}
-                    </SyntaxHighlighter>
+                    
+                    <ExpandableCode 
+                      language="typescript" 
+                      code={componentData?.componentCode || "// Component code will appear here"} 
+                      codeStyle={codeStyle} 
+                    />
+                    
                     <div className="flex justify-end p-3 bg-background border-t">
                       <Button
                         variant="outline"

@@ -99,16 +99,16 @@ export const animatedTextData: ComponentData = {
     {
       name: "Cascade Title Animation",
       preview: (
-        <div className="p-4 bg-gradient-to-r from-blue-900 to-purple-900 rounded-lg text-center">
+        <div className="p-8 bg-gradient-to-br from-blue-900 via-indigo-800 to-purple-900 rounded-xl text-center shadow-lg border border-blue-700">
           <AnimateText 
             text="Welcome to NyxUI" 
             type="cascade" 
-            className="text-4xl font-bold text-white" 
+            className="text-5xl font-extrabold text-white tracking-tight" 
           />
           <AnimateText 
-            text="Modern Animation Library" 
+            text="Modern UI Library" 
             type="rise" 
-            className="text-xl text-blue-200 mt-2" 
+            className="text-xl font-medium text-blue-100 mt-4 opacity-90" 
             delay={0.5}
           />
         </div>
@@ -118,16 +118,16 @@ export const animatedTextData: ComponentData = {
   
 export function CascadeTitleAnimation() {
   return (
-    <div className="p-4 bg-gradient-to-r from-blue-900 to-purple-900 rounded-lg text-center">
+    <div className="p-8 bg-gradient-to-br from-blue-900 via-indigo-800 to-purple-900 rounded-xl text-center shadow-lg border border-blue-700">
       <AnimateText 
         text="Welcome to NyxUI" 
         type="cascade" 
-        className="text-4xl font-bold text-white" 
+        className="text-5xl font-extrabold text-white tracking-tight" 
       />
       <AnimateText 
-        text="Modern Animation Library" 
+        text="Modern UI Library" 
         type="rise" 
-        className="text-xl text-blue-200 mt-2" 
+        className="text-xl font-medium text-blue-100 mt-4 opacity-90" 
         delay={0.5}
       />
     </div>
@@ -137,24 +137,24 @@ export function CascadeTitleAnimation() {
     {
       name: "Interactive Feature Highlight",
       preview: (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="p-5 border rounded-lg hover:shadow-lg transition-shadow">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-4 bg-gray-50 dark:bg-gray-900 rounded-xl">
+          <div className="p-6 border border-emerald-200 dark:border-emerald-800 rounded-xl hover:shadow-xl transition-all duration-300 bg-white dark:bg-gray-800 transform hover:-translate-y-1">
             <AnimateText 
-              text="Real-time Editing" 
+              text="Modern UI Components" 
               type="flicker" 
-              className="text-lg font-semibold text-emerald-600 mb-2" 
+              className="text-xl font-bold text-emerald-600 dark:text-emerald-400 mb-3" 
             />
-            <p className="text-gray-600 dark:text-gray-300">
-              Edit your designs with instant preview feedback
+            <p className="text-gray-700 dark:text-gray-200">
+              Build beautiful interfaces with ease
             </p>
           </div>
-          <div className="p-5 border rounded-lg hover:shadow-lg transition-shadow">
+          <div className="p-6 border border-purple-200 dark:border-purple-800 rounded-xl hover:shadow-xl transition-all duration-300 bg-white dark:bg-gray-800 transform hover:-translate-y-1">
             <AnimateText 
               text="Responsive Design" 
               type="expand" 
-              className="text-lg font-semibold text-purple-600 mb-2" 
+              className="text-xl font-bold text-purple-600 dark:text-purple-400 mb-3" 
             />
-            <p className="text-gray-600 dark:text-gray-300">
+            <p className="text-gray-700 dark:text-gray-200">
               Ensure your UI looks great on all devices
             </p>
           </div>
@@ -165,24 +165,24 @@ export function CascadeTitleAnimation() {
   
 export function FeatureHighlight() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div className="p-5 border rounded-lg hover:shadow-lg transition-shadow">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-4 bg-gray-50 dark:bg-gray-900 rounded-xl">
+      <div className="p-6 border border-emerald-200 dark:border-emerald-800 rounded-xl hover:shadow-xl transition-all duration-300 bg-white dark:bg-gray-800 transform hover:-translate-y-1">
         <AnimateText 
-          text="Real-time Editing" 
+          text="Modern UI Components" 
           type="flicker" 
-          className="text-lg font-semibold text-emerald-600 mb-2" 
+          className="text-xl font-bold text-emerald-600 dark:text-emerald-400 mb-3" 
         />
-        <p className="text-gray-600 dark:text-gray-300">
-          Edit your designs with instant preview feedback
+        <p className="text-gray-700 dark:text-gray-200">
+          Build beautiful interfaces with ease
         </p>
       </div>
-      <div className="p-5 border rounded-lg hover:shadow-lg transition-shadow">
+      <div className="p-6 border border-purple-200 dark:border-purple-800 rounded-xl hover:shadow-xl transition-all duration-300 bg-white dark:bg-gray-800 transform hover:-translate-y-1">
         <AnimateText 
           text="Responsive Design" 
           type="expand" 
-          className="text-lg font-semibold text-purple-600 mb-2" 
+          className="text-xl font-bold text-purple-600 dark:text-purple-400 mb-3" 
         />
-        <p className="text-gray-600 dark:text-gray-300">
+        <p className="text-gray-700 dark:text-gray-200">
           Ensure your UI looks great on all devices
         </p>
       </div>
@@ -193,15 +193,15 @@ export function FeatureHighlight() {
     {
       name: "Elastic Call-to-Action",
       preview: (
-        <div className="text-center p-6 bg-gray-100 dark:bg-gray-800 rounded-lg">
-          <p className="text-gray-600 dark:text-gray-300 mb-3">Ready to get started?</p>
+        <div className="text-center p-8 bg-gradient-to-t from-gray-100 to-white dark:from-gray-900 dark:to-gray-800 rounded-xl shadow-md border border-gray-200 dark:border-gray-700">
+          <p className="text-gray-600 dark:text-gray-300 mb-4 font-medium">Build fast and beautiful</p>
           <AnimateText 
-            text="Join NyxUI Today" 
+            text="Let's make web beautiful" 
             type="elastic" 
-            className="text-2xl font-bold text-indigo-600 dark:text-indigo-400 cursor-pointer" 
+            className="text-3xl font-extrabold text-indigo-600 dark:text-indigo-400 cursor-pointer hover:text-indigo-500 dark:hover:text-indigo-300 transition-colors" 
           />
-          <p className="text-gray-500 dark:text-gray-400 text-sm mt-3">
-            Start building beautiful interfaces faster
+          <p className="text-gray-500 dark:text-gray-400 text-sm mt-4 max-w-md mx-auto">
+            Start building beautiful interfaces faster than ever before
           </p>
         </div>
       ),
@@ -210,15 +210,15 @@ export function FeatureHighlight() {
   
 export function ElasticCTA() {
   return (
-    <div className="text-center p-6 bg-gray-100 dark:bg-gray-800 rounded-lg">
-      <p className="text-gray-600 dark:text-gray-300 mb-3">Ready to get started?</p>
+    <div className="text-center p-8 bg-gradient-to-t from-gray-100 to-white dark:from-gray-900 dark:to-gray-800 rounded-xl shadow-md border border-gray-200 dark:border-gray-700">
+      <p className="text-gray-600 dark:text-gray-300 mb-4 font-medium">Build fast and beautiful</p>
       <AnimateText 
-        text="Join NyxUI Today" 
+        text="Let's make web beautiful" 
         type="elastic" 
-        className="text-2xl font-bold text-indigo-600 dark:text-indigo-400 cursor-pointer" 
+        className="text-3xl font-extrabold text-indigo-600 dark:text-indigo-400 cursor-pointer hover:text-indigo-500 dark:hover:text-indigo-300 transition-colors" 
       />
-      <p className="text-gray-500 dark:text-gray-400 text-sm mt-3">
-        Start building beautiful interfaces faster
+      <p className="text-gray-500 dark:text-gray-400 text-sm mt-4 max-w-md mx-auto">
+        Start building beautiful interfaces faster than ever before
       </p>
     </div>
   );

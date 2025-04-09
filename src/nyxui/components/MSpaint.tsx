@@ -1,5 +1,6 @@
 'use client'
 import React, { useRef, useState, useEffect } from 'react';
+import { Pencil, Eraser, Square, Save, Menu } from 'lucide-react';
 
 export interface MSpaintProps {
   initialWidth?: number;
@@ -423,9 +424,9 @@ export default function MSpaint({
             <>
               <CustomButton 
                 onClick={toggleMenu}
-                className="text-sm py-0.5 px-2"
+                className="text-sm py-0.5 px-2 flex items-center"
               >
-                Menu ▾
+                <Menu size={14} className="mr-1" /> Menu
               </CustomButton>
               
               {menuOpen && (
@@ -463,10 +464,7 @@ export default function MSpaint({
             onClick={() => setTool('brush')}
             title="Brush Tool"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-              <path d="M18 12l-8-8-6 6c-2 2-2 5 0 7s5 2 7 0l7-7" />
-              <path d="M17 7l3 3" />
-            </svg>
+            <Pencil size={20} className="text-black" />
           </CustomButton>
           <CustomButton
             variant="ghost"
@@ -474,10 +472,7 @@ export default function MSpaint({
             onClick={() => setTool('eraser')}
             title="Eraser Tool"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-              <path d="M20 20H7L3 16C2 15 2 13 3 12L13 2L22 11L20 20Z" />
-              <path d="M17 17L7 7" />
-            </svg>
+            <Eraser size={20} className="text-black" />
           </CustomButton>
           <CustomButton
             variant="ghost"
@@ -485,10 +480,7 @@ export default function MSpaint({
             onClick={clearCanvas}
             title="Clear Canvas"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-              <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-              <line x1="8" y1="12" x2="16" y2="12" />
-            </svg>
+            <Square size={20} className="text-black" />
           </CustomButton>
           <CustomButton
             variant="ghost"
@@ -496,11 +488,7 @@ export default function MSpaint({
             onClick={handleSave}
             title="Save Image"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-green-700">
-              <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
-              <polyline points="17 21 17 13 7 13 7 21" />
-              <polyline points="7 3 7 8 15 8" />
-            </svg>
+            <Save size={20} className="text-green-700" />
           </CustomButton>
         </div>
         <div 

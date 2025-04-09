@@ -138,7 +138,7 @@ export const interactiveTerminalData: ComponentData = {
     {
       name: "Love Terminal",
       preview: (
-        <div>
+        <div className="flex flex-col gap-12 w-full max-w-4xl mx-auto">
           <div className="overflow-hidden shadow-2xl transform transition-all hover:shadow-pink-500/50">
             <InteractiveTerminal
               bgColor="bg-gray-900"
@@ -181,7 +181,7 @@ export const interactiveTerminalData: ComponentData = {
   
   export function LoveTerminal() {
     return (
-      <div>
+      <div className="flex flex-col gap-12 w-full max-w-4xl mx-auto">
         <div className="overflow-hidden shadow-2xl transform transition-all hover:shadow-pink-500/50">
           <InteractiveTerminal
             bgColor="bg-gray-900"
@@ -223,7 +223,7 @@ export const interactiveTerminalData: ComponentData = {
     {
       name: "Deploy Terminal",
       preview: (
-        <div>
+        <div className="flex flex-col gap-12 w-full max-w-4xl mx-auto">
           <div>
             <div className="rounded-xl overflow-hidden shadow-2xl transform transition-all hover:shadow-blue-500/50">
               <InteractiveTerminal 
@@ -271,7 +271,7 @@ export const interactiveTerminalData: ComponentData = {
   
   export function DeployTerminal() {
     return (
-      <div>
+      <div className="flex flex-col gap-12 w-full max-w-4xl mx-auto">
         <div className="rounded-xl overflow-hidden shadow-2xl transform transition-all hover:shadow-blue-500/50">
           <InteractiveTerminal 
             bgColor="bg-zinc-900"
@@ -316,7 +316,7 @@ export const interactiveTerminalData: ComponentData = {
     {
       name: "Coffee Order Terminal",
       preview: (
-        <div>
+        <div className="flex flex-col gap-12 w-full max-w-4xl mx-auto">
           <div className="rounded-xl overflow-hidden shadow-2xl transform transition-all hover:shadow-amber-500/50">
             <InteractiveTerminal 
               bgColor="bg-amber-950"
@@ -362,7 +362,7 @@ export const interactiveTerminalData: ComponentData = {
   
   export function CoffeeOrderTerminal() {
     return (
-      <div>
+      <div className="flex flex-col gap-12 w-full max-w-4xl mx-auto">
         <div className="rounded-xl overflow-hidden shadow-2xl transform transition-all hover:shadow-amber-500/50">
           <InteractiveTerminal 
             bgColor="bg-amber-950"

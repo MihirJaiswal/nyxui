@@ -99,16 +99,21 @@ export function cn(...inputs: ClassValue[]) {
   {
     name: "Cyberpunk Theme",
     preview: (
-      <div className="h-[300px] flex items-center justify-center w-full relative overflow-hidden">
+      <div className="h-[500px] flex items-center justify-center w-full relative overflow-hidden">
         <MatrixCodeRain 
           color="#ff00ff"
           charset="01?!×÷@#$%&*HACK"
           fontSize={20}
           fps={30}
           opacity={0.08}
-          height="300px"
-          width="300px"
+          height="500px"
+          width="1000px"
         />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-white text-xl font-bold bg-black/80 border border-white px-4 py-2 rounded-lg">
+            Cyberpunk Matrix
+          </div>
+        </div>
       </div>
     ),
     filename: "CyberpunkMatrix.tsx",
@@ -116,16 +121,21 @@ export function cn(...inputs: ClassValue[]) {
 
 export function CyberpunkMatrix() {
   return (
-    <div className="h-[300px] flex items-center justify-center w-full relative overflow-hidden">
+    <div className="h-[500px] flex items-center justify-center w-full relative overflow-hidden">
       <MatrixCodeRain 
         color="#ff00ff"
         charset="01?!×÷@#$%&*HACK"
         fontSize={20}
         fps={30}
         opacity={0.08}
-        height="300px"
-        width="300px"
+        height="500px"
+        width="1000px"
       />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="text-white text-xl font-bold bg-black/80 border border-white px-4 py-2 rounded-lg">
+          Cyberpunk Matrix
+        </div>
+      </div>
     </div>
   );
 }`,
@@ -133,7 +143,7 @@ export function CyberpunkMatrix() {
   {
     name: "Blue Tech Background",
     preview: (
-      <div className="relative h-64 rounded-lg overflow-hidden flex items-center justify-center">
+      <div className="relative h-[500px] rounded-lg overflow-hidden flex items-center justify-center">
         <MatrixCodeRain 
           color="#0088ff"
           fontSize={10}
@@ -141,10 +151,10 @@ export function CyberpunkMatrix() {
           opacity={0.03}
           fullScreen={false}
           height="500px"
-          width="500px"
+          width="1000px"
         />
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-white text-xl font-bold bg-black/30 px-4 py-2 rounded-lg">
+          <div className="text-white text-xl font-bold bg-black/80 border border-white px-4 py-2 rounded-lg">
             Tech Dashboard
           </div>
         </div>
@@ -163,10 +173,10 @@ export function BlueTechBackground() {
         opacity={0.03}
         fullScreen={false}
         height="500px"
-        width="500px"
+        width="1000px"
       />
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="text-white text-xl font-bold bg-black/30 px-4 py-2 rounded-lg">
+        <div className="text-white text-xl font-bold bg-black/80 border border-white px-4 py-2 rounded-lg">
           Tech Dashboard
         </div>
       </div>
@@ -177,15 +187,20 @@ export function BlueTechBackground() {
   {
     name: "Custom Characters",
     preview: (
-      <div className="h-[300px] flex items-center justify-center w-full relative overflow-hidden">
+      <div className="h-[500px] flex items-center justify-center w-full relative overflow-hidden">
         <MatrixCodeRain 
           color="#ffcc00"
           charset="①②③④⑤⑥⑦⑧⑨⑩⓪"
           fontSize={22}
           fps={15}
-          height="300px"
-          width="300px"
+          height="500px"
+          width="1000px"
         />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-white text-xl font-bold bg-black/80 border border-white px-4 py-2 rounded-lg">
+            Custom Characters
+          </div>
+        </div>
       </div>
     ),
     filename: "CustomCharactersMatrix.tsx",
@@ -193,15 +208,20 @@ export function BlueTechBackground() {
 
 export function CustomCharactersMatrix() {
   return (
-    <div className="h-[300px] flex items-center justify-center w-full relative overflow-hidden">
+    <div className="h-[500px] flex items-center justify-center w-full relative overflow-hidden">
       <MatrixCodeRain 
         color="#ffcc00"
         charset="①②③④⑤⑥⑦⑧⑨⑩⓪"
         fontSize={22}
         fps={15}
-        height="300px"
-        width="300px"
+        height="500px"
+        width="1000px"
       />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="text-white text-xl font-bold bg-black/80 border border-white px-4 py-2 rounded-lg">
+          Custom Characters
+        </div>
+      </div>
     </div>
   );
 }`,
@@ -209,16 +229,21 @@ export function CustomCharactersMatrix() {
   {
     name: "Slow Motion Effect",
     preview: (
-      <div className="h-[300px] flex items-center justify-center w-full relative overflow-hidden">
+      <div className="h-[500px] flex items-center justify-center w-full relative overflow-hidden">
         <MatrixCodeRain 
           color="#00ddff"
           charset="01001101"
           fontSize={16}
           fps={8}
           opacity={0.1}
-          height="300px"
-          width="300px"
+          height="500px"
+          width="1000px"
         />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-white text-xl font-bold bg-black/80 border border-white px-4 py-2 rounded-lg">
+            Slow Motion
+          </div>
+        </div>
       </div>
     ),
     filename: "SlowMotionMatrix.tsx",
@@ -226,16 +251,21 @@ export function CustomCharactersMatrix() {
 
 export function SlowMotionMatrix() {
   return (
-    <div className="h-[300px] flex items-center justify-center w-full relative overflow-hidden">
+    <div className="h-[500px] flex items-center justify-center w-full relative overflow-hidden">
       <MatrixCodeRain 
         color="#00ddff"
         charset="01001101"
         fontSize={16}
         fps={8}
         opacity={0.1}
-        height="300px"
-        width="300px"
+        height="500px"
+        width="1000px"
       />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="text-white text-xl font-bold bg-black/80 border border-white px-4 py-2 rounded-lg">
+          Slow Motion
+        </div>
+      </div>
     </div>
   );
 }`,
@@ -243,16 +273,21 @@ export function SlowMotionMatrix() {
   {
     name: "Red Alert Mode",
     preview: (
-      <div className="h-[300px] flex items-center justify-center w-full relative overflow-hidden">
+      <div className="h-[500px] flex items-center justify-center w-full relative overflow-hidden">
         <MatrixCodeRain 
           color="#ff3300"
           charset="WARNING!ALERT"
           fontSize={18}
           fps={25}
           opacity={0.08}
-          height="300px"
-          width="300px"
+          height="500px"
+          width="1000px"
         />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-white text-xl font-bold bg-black/80 border border-white px-4 py-2 rounded-lg">
+            Red Alert
+          </div>
+        </div>
       </div>
     ),
     filename: "RedAlertMatrix.tsx",
@@ -260,16 +295,21 @@ export function SlowMotionMatrix() {
 
 export function RedAlertMatrix() {
   return (
-    <div className="h-[300px] flex items-center justify-center w-full relative overflow-hidden">
+    <div className="h-[500px] flex items-center justify-center w-full relative overflow-hidden">
       <MatrixCodeRain 
         color="#ff3300"
         charset="WARNING!ALERT"
         fontSize={18}
         fps={25}
         opacity={0.08}
-        height="300px"
-        width="300px"
+        height="500px"
+        width="1000px"
       />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="text-white text-xl font-bold bg-black/80 border border-white px-4 py-2 rounded-lg">
+          Red Alert
+        </div>
+      </div>
     </div>
   );
 }`,
@@ -277,16 +317,21 @@ export function RedAlertMatrix() {
   {
     name: "Hieroglyphic Style",
     preview: (
-      <div className="h-[300px] flex items-center justify-center w-full relative overflow-hidden">
+      <div className="h-[500px] flex items-center justify-center w-full relative overflow-hidden">
         <MatrixCodeRain 
           color="#d4af37"
           charset="𓀀𓀁𓀂𓀃𓀄𓀅𓀆𓀇𓀈𓀉𓀊𓀋𓀌𓀍𓀎𓀏"
           fontSize={24}
           fps={12}
           opacity={0.07}
-          height="300px"
-          width="300px"
+          height="500px"
+          width="1000px"
         />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-white text-xl font-bold bg-black/80 border border-white px-4 py-2 rounded-lg">
+            Hieroglyphic
+          </div>
+        </div>
       </div>
     ),
     filename: "HieroglyphicMatrix.tsx",
@@ -294,16 +339,21 @@ export function RedAlertMatrix() {
 
 export function HieroglyphicMatrix() {
   return (
-    <div className="h-[300px] flex items-center justify-center w-full relative overflow-hidden">
+    <div className="h-[500px] flex items-center justify-center w-full relative overflow-hidden">
       <MatrixCodeRain 
         color="#d4af37"
         charset="𓀀𓀁𓀂𓀃𓀄𓀅𓀆𓀇𓀈𓀉𓀊𓀋𓀌𓀍𓀎𓀏"
         fontSize={24}
         fps={12}
         opacity={0.07}
-        height="300px"
-        width="300px"
+        height="500px"
+        width="1000px"
       />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="text-white text-xl font-bold bg-black/80 border border-white px-4 py-2 rounded-lg">
+          Hieroglyphic
+        </div>
+      </div>
     </div>
   );
 }`,
