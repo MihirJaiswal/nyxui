@@ -443,7 +443,7 @@ export function MajesticCard({
         cleanupRef.current()
       }
     }
-  }, [variant, intensity, hoverEffect, layers, reduceMotion, x, y, rotateX, rotateY, scale, intensityFactors]);
+  }, [variant, intensity, hoverEffect, layers, reduceMotion, x, y, rotateX, rotateY, scale, intensityFactors, isHovered]);
 
   useEffect(() => {
     if (!scrollEffect || reduceMotion) return

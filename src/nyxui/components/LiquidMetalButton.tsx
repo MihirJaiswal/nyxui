@@ -27,7 +27,7 @@ export interface LiquidMetalButtonProps extends React.ButtonHTMLAttributes<HTMLB
   icon?: React.ReactNode
   iconAfter?: React.ReactNode
   children: React.ReactNode
-  onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
+  onClick?: () => void;
 }
 
 interface Droplet {
@@ -472,9 +472,18 @@ export function LiquidMetalButton({
 
   const Comp = "button"
 
+  const handleClick = () => {
+    if (onClick) {
+      onClick();
+    }
+    setIsPressed(true);
+    setTimeout(() => setIsPressed(false), 500);
+  };
+
   return (
     <Comp
       ref={buttonRef}
+      onClick={handleClick}
       className={cn(
         "relative inline-flex items-center justify-center font-medium transition-all duration-200",
         sizeClasses[size],

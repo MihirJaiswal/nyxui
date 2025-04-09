@@ -1,5 +1,3 @@
-import { Button } from "@/components/ui/button";
-import { GradientButton } from "@/nyxui/components/GradientButton";
 import MorphingButton from "@/nyxui/components/MorphingButton";
 
 export default function page() {

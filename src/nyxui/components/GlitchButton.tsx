@@ -27,7 +27,6 @@ export const GlitchButton: React.FC<GlitchButtonProps> = ({
     secondary: '#00ffff'
   }
 }) => {
-  const [content, setContent] = useState<string>("");
   const [isHovering, setIsHovering] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
   const buttonRef = useRef<HTMLDivElement>(null);
@@ -35,12 +34,6 @@ export const GlitchButton: React.FC<GlitchButtonProps> = ({
   const [textColorClass, setTextColorClass] = useState('text-white');
   const [isRounded, setIsRounded] = useState(false);
   
-  useEffect(() => {
-    if (buttonRef.current) {
-      setContent(buttonRef.current.textContent || "");
-    }
-  }, [children]);
-
   useEffect(() => {
     const bgMatch = className.match(/bg-[a-z]+-[0-9]+/);
     if (bgMatch) {

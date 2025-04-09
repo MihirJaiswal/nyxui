@@ -1,7 +1,7 @@
 import type { ComponentData } from "@/nyxui/ComponentInterfaces"
 import { GlitchButtonDemo } from "@/nyxui/demos/GlitchButtonDemo"
 import { GlitchButton } from "@/nyxui/components/GlitchButton"
-import { ArrowRight, Download, Info, Mail, Power, ShieldCheck, Sparkles, Star } from "lucide-react"
+import { ArrowRight, Download, Info, Mail, Power, ShieldCheck } from "lucide-react"
 import fs from "fs";
 import path from "path";
 

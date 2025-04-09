@@ -1,10 +1,7 @@
 import type { ComponentData } from "@/nyxui/ComponentInterfaces"
-import { MajesticCard } from "@/nyxui/components/MajesticCard"
 import { MajesticCardDemo } from "@/nyxui/demos/MajesticCardDemo"
-import { Activity, Badge, CloudLightning, HeartPulse, MessageCircle, MoreVertical, Share2, Smartphone } from "lucide-react"
 import fs from "fs";
 import path from "path";
-import { Button } from "@/components/ui/button";
 
 const componentPath = path.join(process.cwd(), "src/nyxui/components/MajesticCard.tsx");
 const MajesticCardSource = fs.readFileSync(componentPath, "utf8");

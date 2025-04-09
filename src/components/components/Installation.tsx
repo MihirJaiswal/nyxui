@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useState, useEffect } from "react"
+import { useState, useEffect, CSSProperties } from "react"
 import { Copy, Github, Package, FileCode, ChevronDown, ChevronUp, FileWarning, Check, ExternalLink, Maximize, Minimize } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -78,7 +78,7 @@ const ExpandableCode = ({
 }: { 
   language: string, 
   code: string, 
-  codeStyle: any, 
+  codeStyle: Record<string, CSSProperties>, 
   showLineNumbers?: boolean 
 }) => {
   const [isExpanded, setIsExpanded] = useState(false)

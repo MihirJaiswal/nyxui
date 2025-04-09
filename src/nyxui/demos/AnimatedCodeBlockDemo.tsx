@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { AnimatedCodeBlock } from "@/nyxui/components/AnimatedCodeBlock"
-import { ChevronRight, Code, Sparkles } from "lucide-react"
+import { ChevronRight, Code } from "lucide-react"
 
 type CodeTheme = "dark" | "light" | "terminal" | "cyberpunk" | "minimal" | "nyx"
 

@@ -1,11 +1,10 @@
 'use client'
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Character, CharacterSelector } from '../components/CharacterSelector';
 
 const SimpleCharacterSelectorDemo = () => {
   const selectionSoundRef = useRef<HTMLAudioElement>(null);
   const confirmSoundRef = useRef<HTMLAudioElement>(null);
-  const [previousSelected, setPreviousSelected] = useState<string[]>([]);
   
   const characters = [
     { 

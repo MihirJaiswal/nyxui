@@ -43,7 +43,7 @@ const RevealCard: React.FC<CardProps> = ({
   borderColor = "#ddd",
   hoverRotation = 25,
   titleTranslateY = -50,
-  characterTranslateY = -15, // Changed from -30 to -15 for less upward movement
+  characterTranslateY = -15, 
   characterTranslateZ = 100,
   alt = {
     cover: "Cover Image",
@@ -70,6 +70,9 @@ const RevealCard: React.FC<CardProps> = ({
     };
     checkMobile();
     window.addEventListener('resize', checkMobile);
+    
+    const currentRef = cardRef.current;
+    
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -85,13 +88,13 @@ const RevealCard: React.FC<CardProps> = ({
       { threshold }
     );
     
-    if (cardRef.current) {
-      observer.observe(cardRef.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
     
     return () => {
       window.removeEventListener('resize', checkMobile);
-      if (cardRef.current) observer.unobserve(cardRef.current);
+      if (currentRef) observer.unobserve(currentRef);
     };
   }, [threshold, hasBeenRevealed]);
 
