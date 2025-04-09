@@ -1,20 +1,5 @@
 "use client"
-import {
-  Code,
-  ArrowUp,
-  Sparkles,
-  MessageSquare,
-  CodeSquare,
-  LineChart,
-  Settings,
-  Zap,
-  Database,
-  Layers,
-  Globe,
-  Cpu,
-  Shield,
-  Heart,
-} from "lucide-react"
+import { Heart } from "lucide-react"
 import { BentoGrid } from "@/nyxui/components/BentoGrid"
 import InteractiveTerminal  from "@/nyxui/components/Terminal"
 import BubbleBackground from "../components/BubbleBackground"

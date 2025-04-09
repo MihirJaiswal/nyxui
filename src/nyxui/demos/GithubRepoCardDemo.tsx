@@ -1,11 +1,10 @@
 'use client'
 import { useState } from "react";
 import { GitHubRepoCard, themes } from "@/nyxui/components/GithubRepoCard";
-import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
 export default function GitHubRepoCardDemo() {
-  const [selectedTheme, setSelectedTheme] = useState("github-light");
+  const [selectedTheme, setSelectedTheme] = useState("github-dark");
   
   const sampleRepoData = {
     name: "next.js",
@@ -84,9 +83,9 @@ export default function GitHubRepoCardDemo() {
           </div>
         </div>
 
-        <div className="mb-20 flex items-center justify-center">
-          <div className="max-w-3xl mx-auto">
-            <div className="transform flex items-center gap-8 transition-transform duration-500 hover:-translate-y-1">
+        <div className="mb-12">
+          <div className="max-w-5xl mx-auto">
+            <div className="transform flex flex-col items-center gap-8 transition-transform duration-500 hover:-translate-y-1">
               <GitHubRepoCard 
                 manualMode={true}
                 repoData={sampleRepoData}

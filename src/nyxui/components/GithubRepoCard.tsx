@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import Link from "next/link"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
@@ -29,42 +29,42 @@ export type ThemeOption = {
 }
 
 export const themes: ThemeOption[] = [
-    {
-      id: "github-light",
-      name: "GitHub Light",
-      description: "The classic GitHub light theme",
-      cardBg: "bg-white",
-      cardBorder: "border border-border",
-      cardHoverShadow: "hover:shadow-md",
-      accentColor: "text-[#0550a0]",    
-      accentColorLight: "text-[#0969da]",
-      graphColor: "text-[#0550a0]",    
-      graphBgColor: "text-[#0969da]/10",
-      badgeBg: "bg-[#f6f8fa]",
-      badgeText: "text-[#24292f]",
-      textMuted: "text-gray-700", 
-      textNormal: "text-black", 
-    },
-    {
-      id: "github-dark",
-      name: "GitHub Dark",
-      description: "GitHub's dark mode theme",
-      cardBg: "bg-[#0d1117]",
-      cardBorder: "border border-[#30363d]",
-      cardHoverShadow: "hover:shadow-md hover:shadow-black/20",
-      accentColor: "text-[#58a6ff]",
-      accentColorLight: "text-[#58a6ff]/10",
-      graphColor: "text-[#58a6ff]",
-      graphBgColor: "text-[#58a6ff]/10",
-      badgeBg: "bg-[#21262d]",
-      badgeText: "text-[#c9d1d9]",
-      textMuted: "text-gray-300", 
-      textNormal: "text-white", 
-    },
-    {
-      id: "ocean",
-      name: "Ocean",
-      description: "A calming blue theme",
+  {
+    id: "github-dark",
+    name: "GitHub Dark",
+    description: "GitHub's dark mode theme",
+    cardBg: "bg-[#0d1117]",
+    cardBorder: "border border-[#30363d]",
+    cardHoverShadow: "hover:shadow-md hover:shadow-black/20",
+    accentColor: "text-[#58a6ff]",
+    accentColorLight: "text-[#58a6ff]/10",
+    graphColor: "text-[#58a6ff]",
+    graphBgColor: "text-[#58a6ff]/10",
+    badgeBg: "bg-[#21262d]",
+    badgeText: "text-[#c9d1d9]",
+    textMuted: "text-gray-300", 
+    textNormal: "text-white", 
+  },
+  {
+    id: "github-light",
+    name: "GitHub Light",
+    description: "The classic GitHub light theme",
+    cardBg: "bg-white",
+    cardBorder: "border border-border",
+    cardHoverShadow: "hover:shadow-md",
+    accentColor: "text-[#0550a0]",    
+    accentColorLight: "text-[#0969da]",
+    graphColor: "text-[#0550a0]",    
+    graphBgColor: "text-[#0969da]/10",
+    badgeBg: "bg-[#f6f8fa]",
+    badgeText: "text-[#24292f]",
+    textMuted: "text-gray-700", 
+    textNormal: "text-black", 
+  },
+  {
+    id: "ocean",
+    name: "Ocean",
+    description: "A calming blue theme",
       cardBg: "bg-[#f0f7ff] dark:bg-[#051c33]",
       cardBorder: "border border-[#cce4ff] dark:border-[#0a3866]",
       cardHoverShadow: "hover:shadow-md hover:shadow-blue-200 dark:hover:shadow-md dark:hover:shadow-blue-900/30",
@@ -100,14 +100,14 @@ export const themes: ThemeOption[] = [
       cardBg: "bg-[#fff7ed] dark:bg-[#271807]",
       cardBorder: "border border-[#ffedd5] dark:border-[#4a2912]",
       cardHoverShadow: "hover:shadow-md hover:shadow-orange-200 dark:hover:shadow-md dark:hover:shadow-orange-900/30",
-      accentColor: "text-[#9a3412]", // Darkened for better contrast
+      accentColor: "text-[#9a3412]", 
       accentColorLight: "text-[#c2410c]/10 dark:text-[#fb923c]/10",
-      graphColor: "text-[#9a3412]", // Darkened for better contrast
+      graphColor: "text-[#9a3412]", 
       graphBgColor: "text-[#c2410c]/10 dark:text-[#fb923c]/10",
       badgeBg: "bg-[#ffedd5] dark:bg-[#4a2912]",
-      badgeText: "text-[#9a3412] dark:text-[#fdba74]", // Darkened for better contrast
-      textMuted: "text-gray-700 dark:text-gray-300", // Improved contrast
-      textNormal: "text-black dark:text-white", // Maximum contrast
+      badgeText: "text-[#9a3412] dark:text-[#fdba74]", 
+      textMuted: "text-gray-700 dark:text-gray-300",
+      textNormal: "text-black dark:text-white",
     },
     {
       id: "nyx",
@@ -122,12 +122,11 @@ export const themes: ThemeOption[] = [
       graphBgColor: "text-[#b48eff]/10 dark:text-[#b48eff]/10",
       badgeBg: "bg-[#2a2a3a] dark:bg-[#2a2a3a]",
       badgeText: "text-[#c4b5fd] dark:text-[#c4b5fd]",
-      textMuted: "text-gray-300", // Improved contrast
-      textNormal: "text-white", // Maximum contrast
+      textMuted: "text-gray-300", 
+      textNormal: "text-white", 
     }
   ]
 
-// Language colors for common GitHub languages
 const languageColors = {
   JavaScript: "#f1e05a",
   TypeScript: "#3178c6",
@@ -148,7 +147,6 @@ const languageColors = {
   Shell: "#89e051",
 }
 
-//for manual repository data
 export type ManualRepoData = {
   name: string;
   fullName: string;
@@ -170,16 +168,11 @@ export type ManualRepoData = {
 }
 
 interface GitHubRepoCardProps {
-  // API props
   repoOwner?: string;
   repoName?: string;
   githubToken?: string;
-  
-  // Manual props
   manualMode?: boolean;
   repoData?: ManualRepoData;
-  
-  // Common props
   themeId?: string;
 }
 
@@ -199,19 +192,7 @@ export function GitHubRepoCard({
 
   const currentTheme = themes.find(theme => theme.id === themeId) || themes[0];
 
-  useEffect(() => {
-    if (manualMode && repoData) {
-      setRepo(repoData);
-      setLoading(false);
-      return;
-    }
-
-    if (!manualMode && repoOwner && repoName) {
-      fetchRepoData();
-    }
-  }, [manualMode, repoData, repoOwner, repoName, githubToken]);
-
-  async function fetchRepoData() {
+  const fetchRepoData = useCallback(async () => {
     setLoading(true);
     setError(null);
     
@@ -245,7 +226,6 @@ export function GitHubRepoCard({
       
       const repoData = await repoResponse.json();
       
-      // commit activity for the graph
       const commitsResponse = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/stats/commit_activity`, {
         headers
       });
@@ -255,7 +235,7 @@ export function GitHubRepoCard({
         const commitsData = await commitsResponse.json();
         activityData = commitsData
           .slice(-12)
-          .map((week: any) => week.total)
+          .map((week: { total: number }) => week.total)
           .map((count: number, _ : number, array: number[]) => {
             const max = Math.max(...array, 1);
             return count / max;
@@ -288,7 +268,19 @@ export function GitHubRepoCard({
       setError(err instanceof Error ? err.message : 'An unknown error occurred');
       setLoading(false);
     }
-  }
+  }, [repoOwner, repoName, githubToken]);
+
+  useEffect(() => {
+    if (manualMode && repoData) {
+      setRepo(repoData);
+      setLoading(false);
+      return;
+    }
+
+    if (!manualMode && repoOwner && repoName) {
+      fetchRepoData();
+    }
+  }, [manualMode, repoData, repoOwner, repoName, fetchRepoData]);
 
   const copyToClipboard = () => {
     if (typeof navigator !== 'undefined' && repo) {
@@ -459,7 +451,6 @@ export function GitHubRepoCard({
             </div>
           </div>
 
-          {/* Stats */}
           <div className="grid grid-cols-4 gap-2 text-sm">
             <Tooltip>
               <TooltipTrigger asChild>
@@ -510,7 +501,6 @@ export function GitHubRepoCard({
             </Tooltip>
           </div>
 
-          {/* Language and Topics */}
           <div className="mt-4">
             {repo.language && (
               <div className="mb-2 flex items-center gap-2">

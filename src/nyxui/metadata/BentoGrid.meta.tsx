@@ -1,8 +1,6 @@
 import React from "react";
 import type { ComponentData } from "@/nyxui/ComponentInterfaces";
-import { BentoGrid } from "@/nyxui/components/BentoGrid";
 import { BentoGridDemo } from "@/nyxui/demos/BentoGridDemo";
-import { LayoutGrid, Layers, ScrollText, ArrowUp , Code } from "lucide-react";
 import fs from "fs";
 import path from "path";
 

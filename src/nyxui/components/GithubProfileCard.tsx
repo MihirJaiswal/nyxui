@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import Link from "next/link"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
@@ -159,6 +159,27 @@ export type ManualProfileData = {
   contributionData?: Array<number>
 }
 
+// Define proper types for GitHub API responses
+interface GitHubUserProfile {
+  login: string
+  name: string | null
+  avatar_url: string
+  bio: string | null
+  location: string | null
+  followers: number
+  following: number
+  public_repos: number
+  created_at: string
+}
+
+interface GitHubRepository {
+  name: string
+  description: string | null
+  language: string | null
+  stargazers_count: number
+  forks_count: number
+}
+
 interface GitHubProfileCardProps {
   username?: string
   githubToken?: string
@@ -181,20 +202,7 @@ export function GitHubProfileCard({
   const [profile, setProfile] = useState<ManualProfileData | null>(manualMode ? profileData || null : null)
   const [rateLimit, setRateLimit] = useState<{ remaining: number; limit: number } | null>(null)
 
-  useEffect(() => {
-    if (manualMode && profileData) {
-      setProfile(profileData)
-      setLoading(false)
-      setIsLoaded(true)
-      return
-    }
-
-    if (!manualMode && username) {
-      fetchProfileData()
-    }
-  }, [manualMode, profileData, username, githubToken])
-
-  async function fetchProfileData() {
+  const fetchProfileData = useCallback(async () => {
     setLoading(true)
     setError(null)
 
@@ -226,21 +234,29 @@ export function GitHubProfileCard({
         }
       }
 
-      const profileData = await profileResponse.json()
+      const profileData: GitHubUserProfile = await profileResponse.json()
 
-      let pinnedRepos: Array<any> = []
+      let pinnedRepos: Array<{
+        name: string
+        description?: string
+        language?: string
+        languageColor?: string
+        stars: number
+        forks: number
+      }> = []
+      
       try {
         const reposResponse = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=4`, {
           headers,
         })
 
         if (reposResponse.ok) {
-          const repos = await reposResponse.json()
-          pinnedRepos = repos.map((repo: any) => ({
+          const repos: GitHubRepository[] = await reposResponse.json()
+          pinnedRepos = repos.map((repo) => ({
             name: repo.name,
-            description: repo.description,
-            language: repo.language,
-            languageColor: getLanguageColor(repo.language),
+            description: repo.description || undefined,
+            language: repo.language || undefined,
+            languageColor: getLanguageColor(repo.language || undefined),
             stars: repo.stargazers_count,
             forks: repo.forks_count,
           }))
@@ -261,8 +277,8 @@ export function GitHubProfileCard({
         login: profileData.login,
         name: profileData.name || profileData.login,
         avatarUrl: profileData.avatar_url,
-        bio: profileData.bio,
-        location: profileData.location,
+        bio: profileData.bio || undefined,
+        location: profileData.location || undefined,
         followers: profileData.followers,
         following: profileData.following,
         publicRepos: profileData.public_repos,
@@ -279,7 +295,20 @@ export function GitHubProfileCard({
       setError(err instanceof Error ? err.message : "An unknown error occurred")
       setLoading(false)
     }
-  }
+  }, [username, githubToken])
+
+  useEffect(() => {
+    if (manualMode && profileData) {
+      setProfile(profileData)
+      setLoading(false)
+      setIsLoaded(true)
+      return
+    }
+
+    if (!manualMode && username) {
+      fetchProfileData()
+    }
+  }, [manualMode, profileData, username, githubToken, fetchProfileData])
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
@@ -571,11 +600,10 @@ export function GitHubProfileCard({
                       </div>
                     )}
                   </TabsContent>
-
                   <TabsContent value="repositories" className="mt-3">
                     {profile.pinnedRepos && profile.pinnedRepos.length > 0 ? (
                       <div className={cn("space-y-3", currentTheme.textMuted)}>
-                        {profile.pinnedRepos.slice(0, 2).map((repo, index) => (
+                        {profile.pinnedRepos.slice(0, 2).map((repo) => (
                           <div key={repo.name}>
                             <Card
                               className={cn(
