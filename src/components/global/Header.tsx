@@ -8,7 +8,7 @@ import { Menu, Github, Twitter, Search } from "lucide-react"
 import { ModeToggle } from "./ThemeToggle"
 import { cn } from "@/lib/utils"
 import { CommandPalette } from "./CommandPallete"
-import componentsJson from "@/nyxui/component.json"
+import { componentsData } from "@/nyxui/data/Data"
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
@@ -31,7 +31,8 @@ export default function Header() {
     { href: "/docs", label: "Documentation" },
   ]
 
-  const componentsData = componentsJson.components
+  // Extract the nested components data
+  const { components } = componentsData
 
   const openSearch = () => {
     document.dispatchEvent(
@@ -119,7 +120,7 @@ export default function Header() {
             </Link>
             <Link href="https://twitter.com/nyx_ui" target="_blank" rel="noreferrer">
               <Button variant="ghost" size="icon" className="rounded-full hover:bg-muted/80 transition-all duration-300 hover:scale-105">
-              <svg height="23" width="23" fill="currentColor" viewBox="0 0 1200 1227" xmlns="http://www.w3.org/2000/svg">
+                <svg height="23" width="23" fill="currentColor" viewBox="0 0 1200 1227" xmlns="http://www.w3.org/2000/svg">
                   <path d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z" />
                 </svg>
                 <span className="sr-only">Twitter</span>
@@ -136,9 +137,9 @@ export default function Header() {
             </Link>
             <Link href="https://twitter.com/nyx_ui" target="_blank" rel="noreferrer">
               <Button variant="ghost" size="icon" className="rounded-full h-8 w-8 p-0 hover:bg-muted/80 transition-all duration-300">
-              <svg height="23" width="23" fill="currentColor" viewBox="0 0 1200 1227" xmlns="http://www.w3.org/2000/svg">
-                <path d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z" />
-              </svg>
+                <svg height="23" width="23" fill="currentColor" viewBox="0 0 1200 1227" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z" />
+                </svg>
                 <span className="sr-only">Twitter</span>
               </Button>
             </Link>
@@ -207,11 +208,11 @@ export default function Header() {
                       <h3 className="text-xs uppercase tracking-wider text-muted-foreground/80 font-semibold pl-2 pb-2 flex items-center">
                         <span>Components</span>
                         <span className="ml-2 px-1.5 py-0.5 text-[10px] bg-muted rounded-full">
-                          {Object.keys(componentsData).length}
+                          {Object.keys(components).length}
                         </span>
                       </h3>
                       <div className="space-y-0.5">
-                        {Object.entries(componentsData).map(([slug, name]) => (
+                        {Object.entries(components).map(([slug, comp]) => (
                           <Link
                             key={slug}
                             href={`/components/${slug}`}
@@ -222,7 +223,7 @@ export default function Header() {
                                 : "text-muted-foreground hover:text-foreground hover:bg-muted/20"
                             )}
                           >
-                            {name}
+                            {comp.title}
                           </Link>
                         ))}
                       </div>

@@ -12,7 +12,7 @@ import { Search, Link as LinkIcon, Box, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import componentsJson from "@/nyxui/component.json";
+import { componentsData } from "@/nyxui/data/Data";
 
 export function CommandPalette() {
   const [open, setOpen] = useState(false);
@@ -37,8 +37,7 @@ export function CommandPalette() {
 
   const handleItemClick = (value: string) => {
     const [section, id] = value.split(":");
-    const path =
-      section === "links" ? `/${id}` : `/${section}/${id}`;
+    const path = section === "links" ? `/${id}` : `/${section}/${id}`;
     router.push(path);
     setOpen(false);
   };
@@ -49,15 +48,18 @@ export function CommandPalette() {
     templates: FileText,
   };
 
-  const sections = Object.entries(componentsJson).map(
+  // Updated mapping logic:
+  const sections = Object.entries(componentsData).map(
     ([sectionKey, itemsObj]) => ({
       key: sectionKey,
-      items: Object.entries(itemsObj).map(([id, name]) => ({
+      items: Object.entries(itemsObj).map(([id, item]) => ({
         value: `${sectionKey}:${id}`,
-        name,
+        // If the section is "components", item is an object so use its title
+        name: sectionKey === "components" ? item.title : item,
       })),
     })
   );
+
   const filteredSections = sections.map(({ key, items }) => ({
     key,
     items: items.filter((item) =>
@@ -91,7 +93,8 @@ export function CommandPalette() {
           {nothingFound && <CommandEmpty>No items found.</CommandEmpty>}
 
           {filteredSections.map((section) => {
-            const Icon = iconMap[section.key as keyof typeof iconMap] || Search;
+            const Icon =
+              iconMap[section.key as keyof typeof iconMap] || Search;
             const heading =
               section.key.charAt(0).toUpperCase() + section.key.slice(1);
 
