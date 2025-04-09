@@ -1,10 +1,10 @@
 "use client"
 import Header from "@/components/global/Header";
 import { Hero } from "@/components/home/Hero";
-import { BentoDemo } from "@/nyxui/demos/BentoGridDemo";
 import { AnimatedGradientBg } from "@/nyxui/components/AnimatedGradientBg";
 import Customize from "@/components/home/Customize";
 import { Build } from "@/components/home/Build";
+import { ComponentsDemo } from "@/components/home/ComponentsDemo";
 
 export default function Home() {
   const darkColors = ["#7C3AED", "#DB2777", "#3B82F6", "#A78BFA"];
@@ -28,7 +28,7 @@ export default function Home() {
         <div className="relative z-10 w-full flex flex-col items-center">
           <div className="w-full max-w-screen-2xl md:px-8 lg:px-12 xl:px-16 2xl:px-24">
             <Hero />
-            <BentoDemo />
+            <ComponentsDemo/>
             <Customize />
             <Build />
           </div>

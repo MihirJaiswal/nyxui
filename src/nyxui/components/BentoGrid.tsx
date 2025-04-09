@@ -10,10 +10,10 @@ export function BentoGrid({
   description = "",
   component,
   fade = [],
-  height = "h-88", // Default height
-  enableTitle = true, // Enable/disable title display
-  enableDescription = true, // Enable/disable description display
-  isFull = false, // Whether to use full height mode
+  height = "h-88", 
+  enableTitle = true, 
+  enableDescription = true, 
+  isFull = false, 
 }: {
   dark?: boolean;
   className?: string;
@@ -37,14 +37,14 @@ export function BentoGrid({
         "group relative flex flex-col overflow-hidden rounded-lg",
         "bg-white dark:bg-zinc-950 shadow-sm ring-1 ring-black/5 dark:ring-white/5",
         "data-[dark]:bg-zinc-950 data-[dark]:ring-white/5",
-        isFull && "h-full", // Make the entire component take full height when isFull is true
+        isFull && "h-full", 
       )}
     >
       <div 
         className={clsx(
           "relative shrink-0", 
-          !isFull && height, // Apply height only when not in full mode
-          isFull && "h-full", // Make content area take full height in full mode
+          !isFull && height, 
+          isFull && "h-full", 
         )}
       >
         {component}
@@ -55,7 +55,6 @@ export function BentoGrid({
           <div className="absolute inset-0 bg-gradient-to-t from-white to-50% group-data-[dark]:from-gray-950 group-data-[dark]:from-[-25%]" />
         )}
         
-        {/* Overlay content when in full mode */}
         {isFull && (enableTitle || enableDescription) && (
           <div className="absolute bottom-0 left-0 right-0 p-10 bg-gradient-to-t from-black/70 to-transparent">
             {enableTitle && (
@@ -72,7 +71,6 @@ export function BentoGrid({
         )}
       </div>
       
-      {/* Standard content display when not in full mode */}
       {!isFull && (enableTitle || enableDescription) && (
         <div className="relative p-10">
           {enableTitle && (
