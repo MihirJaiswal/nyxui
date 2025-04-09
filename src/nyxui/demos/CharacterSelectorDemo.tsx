@@ -1,10 +1,11 @@
 'use client'
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Character, CharacterSelector } from '../components/CharacterSelector';
 
 const SimpleCharacterSelectorDemo = () => {
   const selectionSoundRef = useRef<HTMLAudioElement>(null);
   const confirmSoundRef = useRef<HTMLAudioElement>(null);
+  const [previousSelected, setPreviousSelected] = useState<string[]>([]);
   
   const characters = [
     { 
@@ -79,12 +80,36 @@ const SimpleCharacterSelectorDemo = () => {
     },
   ];
   
-  const handleSelectionChange = (selectedCharacters: Character[]) => {  
+  useEffect(() => {
+    const handleMouseDown = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const isCardClick = 
+        target.closest('[data-character-id]') || 
+        target.tagName === 'IMG' || 
+        target.closest('.character-card') || 
+        (target.closest('[role="button"]') && 
+         target.closest('[role="button"]')?.querySelector('img'));
+      
+      if (isCardClick) {
+        playSelectionSound();
+      }
+    };
+    
+    document.addEventListener('mousedown', handleMouseDown);
+    
+    return () => {
+      document.removeEventListener('mousedown', handleMouseDown);
+    };
+  }, []);
+  
+  const playSelectionSound = () => {
     if (selectionSoundRef.current) {
-      selectionSoundRef.current.currentTime = 0; 
+      selectionSoundRef.current.currentTime = 0;
       selectionSoundRef.current.play().catch(err => console.warn("Audio Play Error:", err));
     }
-    
+  };
+  
+  const handleSelectionChange = (selectedCharacters: Character[]) => {
     console.log("Selected characters:", selectedCharacters);
   };
   
@@ -113,11 +138,11 @@ const SimpleCharacterSelectorDemo = () => {
       <div className="max-w-6xl mx-auto">
         <div className="mb-10 text-center">
           <h1 className="text-3xl md:text-5xl font-bold text-white mb-3 px-2 drop-shadow-lg">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-500 via-violet-500 dark:from-cyan-300 to-sky-500 dark:to-sky-300">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-500 via-pink-500 dark:from-purple-00 to-pink-500 dark:to-pink-400">
               Waifu is laifu!!
             </span>
           </h1>
-          <p className="text-cyan-500 text-lg">Pick your Posion</p>
+          <p className="text-cyan-500 text-lg">Pick your Poison</p>
         </div>
         
         <div className="bg-blue/30 backdrop-blur-md rounded-2xl p-8 shadow-2xl border border-cyan-500/20">
