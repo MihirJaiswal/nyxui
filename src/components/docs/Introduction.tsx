@@ -104,12 +104,12 @@ export default function IntroductionPage() {
           <Separator className="md:col-span-3 my-2" />
 
           <div className="md:col-span-3" id="philosophy">
-            <h2 className="text-3xl font-bold tracking-tight mb-6">Our Philosophy</h2>
+            <h2 className="text-3xl font-bold tracking-tight mb-6">What Drives Us</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
               <div className="space-y-4">
                 <p className="leading-7">
-                  I strongly believe that outstanding design forms the foundation of high-quality software. It plays a crucial role in building trust between a company and its users, who might initially be unfamiliar.
+                  We strongly believe that outstanding design forms the foundation of high-quality software. It plays a crucial role in building trust between a company and its users, who might initially be unfamiliar.
                 </p>
 
                 <p className="leading-7">
