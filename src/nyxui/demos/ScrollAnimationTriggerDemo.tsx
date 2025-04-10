@@ -2,14 +2,6 @@ import { ScrollAnimationTrigger } from "@/nyxui/components/ScrollAnimationTrigge
 import { ArrowDown, Sparkles, Zap, Layers, RefreshCw, Palette, ExternalLink, Wand2 } from "lucide-react"
 
 export function ScrollAnimationTriggerDemo() {
-  const cardHoverAnimation = {
-    whileHover: { 
-      scale: 1.05,
-      boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
-      transition: { type: "spring", stiffness: 400, damping: 10 }
-    }
-  }
-
   return (
     <div className="w-full overflow-hidden">
       <div className="min-h-[60vh] md:min-h-[70vh] relative flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 overflow-hidden">
@@ -80,7 +72,6 @@ export function ScrollAnimationTriggerDemo() {
             >
               <div 
                 className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-zinc-900 dark:to-zinc-800 p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl shadow-xl w-full border-t border-l border-blue-200/50 dark:border-blue-500/20 relative overflow-hidden group"
-                {...cardHoverAnimation}
               >
                 <div className="absolute top-0 right-0 w-1/3 h-1/3 rounded-full bg-blue-500/10 -mr-10 -mt-10 dark:bg-blue-500/5"></div>
                 <div className="absolute bottom-0 left-0 w-1/4 h-1/4 rounded-full bg-blue-500/10 -ml-5 -mb-5 dark:bg-blue-500/5"></div>
@@ -118,7 +109,6 @@ export function ScrollAnimationTriggerDemo() {
             >
               <div 
                 className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-zinc-900 dark:to-zinc-800 p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl shadow-xl w-full border-t border-l border-purple-200/50 dark:border-purple-500/20 relative overflow-hidden group"
-                {...cardHoverAnimation}
               >
                 {[...Array(3)].map((_, i) => (
                   <div
@@ -167,7 +157,6 @@ export function ScrollAnimationTriggerDemo() {
             >
               <div 
                 className="bg-gradient-to-br from-green-50 to-green-100 dark:from-zinc-900 dark:to-zinc-800 p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl shadow-xl w-full border-t border-l border-green-200/50 dark:border-green-500/20 relative overflow-hidden group"
-                {...cardHoverAnimation}
               >
                 <svg className="absolute right-0 top-0 h-full opacity-30 dark:opacity-20" viewBox="0 0 100 200" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M20 0C20 110.457 110.457 200 0 200" stroke="#22C55E" strokeWidth="2" />
@@ -207,7 +196,6 @@ export function ScrollAnimationTriggerDemo() {
             >
               <div 
                 className="p-0 rounded-2xl sm:rounded-3xl shadow-xl w-full overflow-hidden relative"
-                {...cardHoverAnimation}
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-indigo-600 to-purple-700">
                   <div className="absolute inset-0" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"40\" height=\"40\" viewBox=\"0 0 40 40\"%3E%3Cpath d=\"M0 20 L20 0 L40 20 L20 40 Z\" fill=\"none\" stroke=\"rgba(255,255,255,0.1)\" /%3E%3C/svg%3E')" }}></div>
@@ -254,7 +242,6 @@ export function ScrollAnimationTriggerDemo() {
                   style={{
                     background: "linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(43, 19, 194, 0.1))",
                   }}
-                  {...cardHoverAnimation}
                 >
                   <div className="absolute inset-0 opacity-5">
                     <svg className="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -307,7 +294,6 @@ export function ScrollAnimationTriggerDemo() {
               >
                 <div 
                   className="bg-gradient-to-br from-amber-50 to-amber-100 dark:from-zinc-900 dark:to-zinc-800 p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl shadow-xl w-full border-t border-l border-amber-200/50 dark:border-amber-500/20 relative overflow-hidden group"
-                  {...cardHoverAnimation}
                 >
                   <div className="absolute top-0 right-0 w-1/4 h-1/4 rounded-full bg-amber-300/20 dark:bg-amber-300/10 -mr-5 -mt-5 blur-xl sm:blur-2xl"></div>
                   <div className="absolute bottom-0 left-0 w-1/5 h-1/5 rounded-full bg-amber-300/20 dark:bg-amber-300/10 -ml-3 -mb-3 blur-md sm:blur-xl"></div>
