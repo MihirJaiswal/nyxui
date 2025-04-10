@@ -250,7 +250,7 @@ const ImageLayer = ({
   loading = 'eager',
   priority = false,
 }: ImageLayerProps) => {
-  const { motionPosition, orientation, contentDimensions } = useContext(SliderContext)!;
+  const { motionPosition, orientation } = useContext(SliderContext)!;
   
   const firstLayerClip = useTransform(
     motionPosition,
@@ -302,7 +302,7 @@ const Divider = ({
   handleIcon,
   hitAreaSize = 20,
 }: DividerProps) => {
-  const { motionPosition, orientation, isDragging, contentDimensions } = useContext(SliderContext)!;
+  const { motionPosition, orientation, isDragging } = useContext(SliderContext)!;
   const dividerPosition = useTransform(
     motionPosition, 
     (value) => `${value}%`
