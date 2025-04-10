@@ -108,6 +108,11 @@ export const componentsData = {
       title: "Bento Grid",
       description: "Modern grid layout inspired by Bento box designs",
       image: "/assets/images/showcase/bento-grid.png"
+    },
+    "image-comparison": {
+      title: "Image Comparison",
+      description: "An interactive image comparison slider that allows users to drag or hover to reveal two different images.",
+      image: "/assets/images/showcase/image-comparison.png"
     }
   },
   "templates": {}
