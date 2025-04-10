@@ -31,7 +31,6 @@ export default function Header() {
     { href: "/docs", label: "Documentation" },
   ]
 
-  // Extract the nested components data
   const { components } = componentsData
 
   const openSearch = () => {
@@ -202,33 +201,31 @@ export default function Header() {
                       </Link>
                     ))}
                   </div>
-                  {activeLink !== "/components" && (
-                    <div className="relative">
-                      <div className="h-px bg-muted/30 my-3" />
-                      <h3 className="text-xs uppercase tracking-wider text-muted-foreground/80 font-semibold pl-2 pb-2 flex items-center">
-                        <span>Components</span>
-                        <span className="ml-2 px-1.5 py-0.5 text-[10px] bg-muted rounded-full">
-                          {Object.keys(components).length}
-                        </span>
-                      </h3>
-                      <div className="space-y-0.5">
-                        {Object.entries(components).map(([slug, comp]) => (
-                          <Link
-                            key={slug}
-                            href={`/components/${slug}`}
-                            className={cn(
-                              "flex items-center text-sm p-2 rounded-md transition-colors pl-2.5",
-                              activeLink === `/components/${slug}`
-                                ? "text-foreground bg-muted/30 border-l-2 border-primary pl-1.5"
-                                : "text-muted-foreground hover:text-foreground hover:bg-muted/20"
-                            )}
-                          >
-                            {comp.title}
-                          </Link>
-                        ))}
-                      </div>
+                  <div className="relative">
+                    <div className="h-px bg-muted/30 my-3" />
+                    <h3 className="text-xs uppercase tracking-wider text-muted-foreground/80 font-semibold pl-2 pb-2 flex items-center">
+                      <span>Components</span>
+                      <span className="ml-2 px-1.5 py-0.5 text-[10px] bg-muted rounded-full">
+                        {Object.keys(components).length}
+                      </span>
+                    </h3>
+                    <div className="space-y-0.5">
+                      {Object.entries(components).map(([slug, comp]) => (
+                        <Link
+                          key={slug}
+                          href={`/components/${slug}`}
+                          className={cn(
+                            "flex items-center text-sm p-2 rounded-md transition-colors pl-2.5",
+                            activeLink === `/components/${slug}`
+                              ? "text-foreground bg-muted/30 border-l-2 border-primary pl-1.5"
+                              : "text-muted-foreground hover:text-foreground hover:bg-muted/20"
+                          )}
+                        >
+                          {comp.title}
+                        </Link>
+                      ))}
                     </div>
-                  )}
+                  </div>
                 </div>
                 <div className="border-t border-muted/20 p-3">
                   <div className="flex justify-between items-center">
