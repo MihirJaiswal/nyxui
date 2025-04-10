@@ -111,7 +111,7 @@ export const Build = () => {
     return (
       <Card 
         key={cardInfo.uniqueKey || cardInfo.id} 
-        className="border-gray-800 dark:border-gray-800 bg-white dark:bg-black backdrop-blur-sm transform transition-all hover:scale-105 shadow-sm dark:shadow-none"
+        className="border-gray-800 dark:border-gray-800 bg-black backdrop-blur-sm transform transition-all hover:scale-105 shadow-sm dark:shadow-none"
       >
         <div className="relative dark:border bg-black flex items-center justify-center rounded-lg dark:border-white/[0.1] overflow-hidden transition duration-200 hover:scale-105">
           <Image
