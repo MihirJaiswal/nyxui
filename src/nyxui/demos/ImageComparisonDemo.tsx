@@ -9,12 +9,12 @@ export const ImageComparisonDemo = () => {
       className="h-96 border rounded-xl overflow-hidden"
     >
       <ImageLayer 
-        src="/assets/images/showcase/cyberpunk-card.png" 
+        src="/assets/images/image-comparison/2.jpg" 
         alt="Original Image" 
         layer="first" 
       />
       <ImageLayer 
-        src="/assets/images/showcase/dynamic-ripple.png" 
+        src="/assets/images/image-comparison/1.jpg" 
         alt="Processed Image" 
         layer="second" 
       />

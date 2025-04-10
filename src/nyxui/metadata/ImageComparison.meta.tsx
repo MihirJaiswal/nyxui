@@ -231,12 +231,12 @@ export function cn(...inputs: ClassValue[]) {
         defaultPosition={40}
       >
         <ImageLayer 
-          src="/assets/images/showcase/cyberpunk-card.png" 
+          src="/assets/images/image-comparison/img1.png" 
           alt="Before Image" 
           layer="first" 
         />
         <ImageLayer 
-          src="/assets/images/showcase/dynamic-ripple.png" 
+          src="/assets/images/image-comparison/img2.png" 
           alt="After Image" 
           layer="second" 
         />
@@ -288,12 +288,12 @@ export function BasicHorizontalSlider() {
         defaultPosition={20}
       >
         <ImageLayer 
-          src="/assets/images/showcase/cyberpunk-card.png" 
+          src="/assets/images/image-comparison/digi1.png" 
           alt="Original Image" 
           layer="first" 
         />
         <ImageLayer 
-          src="/assets/images/showcase/dynamic-ripple.png" 
+          src="/assets/images/image-comparison/digi2.png" 
           alt="Processed Image" 
           layer="second" 
         />
@@ -316,13 +316,13 @@ export function VerticalSlider() {
         defaultPosition={20}
       >
         <ImageLayer 
-          src="/assets/images/showcase/cyberpunk-card.png" 
+          src="/img1.png" 
           alt="Original Image" 
           layer="first" 
           className='object-contain'
         />
         <ImageLayer 
-          src="/assets/images/showcase/dynamic-ripple.png" 
+          src="/img2.png" 
           alt="Processed Image" 
           layer="second" 
         />
@@ -346,12 +346,12 @@ export function VerticalSlider() {
         defaultPosition={70}
       >
         <ImageLayer 
-          src="/assets/images/showcase/cyberpunk-card.png" 
+          src="/assets/images/image-comparison/ss.png" 
           alt="Day Image" 
           layer="first" 
         />
         <ImageLayer 
-          src="/assets/images/showcase/dynamic-ripple.png" 
+          src="/assets/images/image-comparison/ss2.png" 
           alt="Night Image" 
           layer="second" 
         />
@@ -375,64 +375,16 @@ export function HoverSlider() {
         defaultPosition={70}
       >
         <ImageLayer 
-          src="/assets/images/showcase/cyberpunk-card.png" 
+          src="/img1.png" 
           alt="Day Image" 
           layer="first" 
         />
         <ImageLayer 
-          src="/assets/images/showcase/dynamic-ripple.png" 
+          src="/img2.png" 
           alt="Night Image" 
           layer="second" 
         />
         <Divider handleColor="#10b981" handleSize={36} width={3} />
-      </ImageSlider>
-    </div>
-  );
-}`,
-    },
-    {
-      name: "Custom Animation",
-      preview: (
-        <div className="space-y-4 w-full flex flex-col items-center justify-center">
-      <h2 className="text-2xl font-semibold">Minimal Divider</h2>
-      <p className="text-gray-500">Simple divider without handle for a cleaner look.</p>
-      
-      <ImageSlider className="h-96 w-full border rounded-xl overflow-hidden">
-        <ImageLayer 
-          src="/assets/images/showcase/cyberpunk-card.png" 
-          alt="Image A" 
-          layer="first" 
-        />
-        <ImageLayer 
-          src="/assets/images/showcase/dynamic-ripple.png" 
-          alt="Image B" 
-          layer="second" 
-        />
-        <Divider showHandle={false} width={4} />
-      </ImageSlider>
-    </div>
-      ),
-      filename: "CustomAnimationSlider.tsx",
-      code: `import { ImageSlider, ImageLayer, Divider } from "@/nyxui/components/ImageSlider";
-
-export function CustomAnimationSlider() {
-  return (
-    <div className="space-y-4 w-full flex flex-col items-center justify-center">
-      <h2 className="text-2xl font-semibold">Minimal Divider</h2>
-      <p className="text-gray-500">Simple divider without handle for a cleaner look.</p>
-      
-      <ImageSlider className="h-96 w-full border rounded-xl overflow-hidden">
-        <ImageLayer 
-          src="/assets/images/showcase/cyberpunk-card.png" 
-          alt="Image A" 
-          layer="first" 
-        />
-        <ImageLayer 
-          src="/assets/images/showcase/dynamic-ripple.png" 
-          alt="Image B" 
-          layer="second" 
-        />
-        <Divider showHandle={false} width={4} />
       </ImageSlider>
     </div>
   );
