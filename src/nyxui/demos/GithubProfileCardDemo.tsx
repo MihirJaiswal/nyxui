@@ -6,19 +6,19 @@ export default function GitHubProfileCardDemo() {
   const [selectedTheme, setSelectedTheme] = useState("github-light");
 
   const sampleProfileData = {
-    login: "octocat",
-    name: "The Octocat",
-    avatarUrl: "https://avatars.githubusercontent.com/u/583231?v=4",
-    bio: "GitHub mascot & guide. I'm here to help with GitHub questions!",
-    location: "San Francisco, CA",
-    followers: 9876,
-    following: 9,
-    publicRepos: 8,
-    createdAt: "2011-01-25T18:44:36Z",
+    login: "MihirJaiswal",
+    name: "Mihir Jaiswal",
+    avatarUrl: "https://avatars.githubusercontent.com/u/137146214?s=400&u=4f98a71bab33f56d2c388330bf3c06b26039dc6f&v=4",
+    bio: "👨‍💻 Aspiring Web Developer/AI engineer | Engineering 🚀|🤖 Turning coffee ☕ into code... and occasionally, code into coffee. ☕🖥️",
+    location: "Indore, India",
+    followers: 16,
+    following: 0,
+    publicRepos: 41,
+    createdAt: "2023-06-20",
     languages: [
-      { name: "JavaScript", color: "#f1e05a", percentage: 45 },
-      { name: "TypeScript", color: "#3178c6", percentage: 30 },
-      { name: "Python", color: "#3572A5", percentage: 25 },
+      { name: "TypeScript", color: "#3178c6", percentage: 69 },
+      { name: "JavaScript", color: "#f1e05a", percentage: 12 },
+      { name: "HTML", color: "#e00417", percentage: 11 },
     ],
     pinnedRepos: [
       {

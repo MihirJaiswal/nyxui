@@ -3,110 +3,111 @@ export const componentsData = {
     "docs": "Introduction"
   },
   "components": {
-    "gradient-button": {
-      title: "Gradient Button",
-      description: "A beautiful button with smooth gradient animations on hover",
-      image: "/images/components/gradient-button.jpg"
-    },
-    "morphing-button": {
-      title: "Morphing Button",
-      description: "Button that changes shape and animation on different states",
-      image: "/images/components/morphing-button.jpg"
-    },
+    
     "cyberpunk-card": {
       title: "Cyberpunk Card",
       description: "Futuristic card design with neon glows and tech aesthetics",
-      image: "/images/components/cyberpunk-card.jpg"
+      image: "/assets/images/showcase/cyberpunk-card.png"
     },
     "dynamic-ripple": {
       title: "Dynamic Ripple",
       description: "Interactive ripple effect that responds to user clicks",
-      image: "/images/components/dynamic-ripple.jpg"
+      image: "/assets/images/showcase/dynamic-ripple.png"
     },
     "majestic-card": {
       title: "Majestic Card",
       description: "Elegant card design with subtle animations and transitions",
-      image: "/images/components/majestic-card.jpg"
+      image: "/assets/images/showcase/majestic-card.png"
     },
     "liquid-metal-button": {
       title: "Liquid Metal Button",
       description: "Button with fluid metallic animation effects",
-      image: "/images/components/liquid-metal-button.jpg"
+      image: "/assets/images/showcase/liquid-metal-button.png"
     },
     "morphing-blob": {
       title: "Morphing Blob",
       description: "Organic shape that continuously morphs with smooth transitions",
-      image: "/images/components/morphing-blob.jpg"
+      image: "/assets/images/showcase/morphing-blob.png"
     },
     "animated-code-block": {
       title: "Animated Code Block",
       description: "Code snippets with typing and highlighting animations",
-      image: "/images/components/animated-code-block.jpg"
+      image: "/assets/images/showcase/animated-code-block.png"
     },
     "animated-gradient-background": {
       title: "Animated Gradient Background",
       description: "Smooth shifting gradient backgrounds for modern UIs",
-      image: "/images/components/animated-gradient-background.jpg"
+      image: "/assets/images/showcase/animated-gradient-background.png"
     },
     "scroll-animation-trigger": {
       title: "Scroll Animation Trigger",
       description: "Elements that animate as they enter the viewport",
-      image: "/images/components/scroll-animation-trigger.jpg"
+      image: "/assets/images/showcase/scroll-animation-trigger.png"
     },
     "reveal-card": {
       title: "Reveal Card",
       description: "Card with reveal animations that show content progressively",
-      image: "/images/components/reveal-card.jpg"
+      image: "/assets/images/showcase/reveal-card.png"
     },
     "matrix-code-rain": {
       title: "Matrix Code Rain",
       description: "Digital rain animation inspired by The Matrix",
-      image: "/images/components/matrix-code-rain.jpg"
+      image: "/assets/images/showcase/matrix-code-rain.png"
     },
     "ms-paint": {
       title: "MS Paint",
       description: "Nostalgic drawing interface inspired by classic MS Paint",
-      image: "/images/components/ms-paint.jpg"
+      image: "/assets/images/showcase/ms-paint.png"
     },
     "interactive-terminal": {
       title: "Interactive Terminal",
       description: "Command-line interface with typing animations and responses",
-      image: "/images/components/interactive-terminal.jpg"
+      image: "/assets/images/showcase/interactive-terminal.png"
     },
     "character-selector": {
       title: "Character Selector",
       description: "Interactive UI for selecting and customizing characters",
-      image: "/images/components/character-selector.jpg"
+      image: "/assets/images/showcase/character-selector.png"
+    },
+    "gradient-button": {
+      title: "Gradient Button",
+      description: "A beautiful button with smooth gradient animations on hover",
+      image: "/assets/images/showcase/gradient-button.png"
+    },
+    "morphing-button": {
+      title: "Morphing Button",
+      description: "Button that changes shape and animation on different states",
+      image: "/assets/images/showcase/morphing-button.png"
     },
     "animated-text": {
       title: "Animated Text",
       description: "Text with various animation effects and transitions",
-      image: "/images/components/animated-text.jpg"
+      image: "/assets/images/showcase/animated-text.png"
     },
     "bubbles-background": {
       title: "Bubbles Background",
       description: "Floating bubble animations for dynamic backgrounds",
-      image: "/images/components/bubbles-background.jpg"
+      image: "/assets/images/showcase/bubbles-background.png"
     },
     "glitch-button": {
       title: "Glitch Button",
       description: "Button with digital glitch effect on hover or click",
-      image: "/images/components/glitch-button.jpg"
+      image: "/assets/images/showcase/glitch-button.png"
     },
     "github-repo-card": {
       title: "GitHub Repo Card",
       description: "Clean display card for GitHub repository information",
-      image: "/images/components/github-repo-card.jpg"
+      image: "/assets/images/showcase/github-repo-card.png"
     },
     "github-profile-card": {
       title: "GitHub Profile Card",
       description: "Display card showing GitHub user profile information",
-      image: "/images/components/github-profile-card.jpg"
+      image: "/assets/images/showcase/github-profile-card.png"
     },
     "bento-grid": {
       title: "Bento Grid",
       description: "Modern grid layout inspired by Bento box designs",
-      image: "/images/components/bento-grid.jpg"
+      image: "/assets/images/showcase/bento-grid.png"
     }
   },
   "templates": {}

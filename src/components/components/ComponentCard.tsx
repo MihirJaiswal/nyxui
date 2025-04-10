@@ -5,15 +5,17 @@ import { ArrowRight } from 'lucide-react';
 export function ComponentCard({ slug, title, description, imageSrc }: { slug: string; title: string; description: string; imageSrc: string }) {
   return (
     <Link href={`/components/${slug}`} className="block">
-      <div className="rounded-lg overflow-hidden shadow-lg max-w-4xl transition-all duration-300 hover:shadow-xl cursor-pointer h-full">
-        <div className="relative h-72 w-full">
+      <div className="rounded-lg overflow-hidden max-w-4xl transition-all duration-300 cursor-pointer h-full">
+        <div className="relative dark:border bg-black flex items-center justify-center rounded-lg dark:border-white/[0.1] overflow-hidden transition duration-200 hover:scale-105">
           <Image 
             src={imageSrc} 
             alt={title} 
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="object-cover border"
-            priority={false}
+            width={1024}
+            height={650}
+            quality={100}
+            decoding='async'
+            className="transition duration-300 blur-0 rounded-md group-hover:scale-105"
+            loading='lazy'
           />
         </div>
         <div className="p-4">

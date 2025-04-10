@@ -48,7 +48,7 @@ export default function MSpaintDemo() {
   };
 
   return (
-    <div className="h-screen w-screen bg-gray-100 dark:bg-zinc-900 overflow-hidden relative">
+    <div className="h-screen w-screen overflow-hidden relative">
       <DrawingCanvas
           initialWidth={width - 800}
           initialHeight={height - 200}
