@@ -416,6 +416,6 @@ export const characterSelectorData: ComponentData = {
       ],
     },
   ],
-  category: "Selection",
+  category: "Interactive tools",
   examples: [],
 }

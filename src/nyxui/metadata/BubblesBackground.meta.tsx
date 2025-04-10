@@ -84,7 +84,7 @@ export const bubbleBackgroundData: ComponentData = {
     },
   ],
   
-  category: "Effects",
+  category: "Background",
   new: true,
   examples: [
     {

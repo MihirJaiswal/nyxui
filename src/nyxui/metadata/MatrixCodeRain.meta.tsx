@@ -94,7 +94,7 @@ export function cn(...inputs: ClassValue[]) {
       ],
     },
   ],
-  category: "Effects",
+  category: "Background",
   examples : [
   {
     name: "Cyberpunk Theme",

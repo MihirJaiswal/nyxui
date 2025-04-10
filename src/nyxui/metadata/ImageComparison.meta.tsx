@@ -216,7 +216,7 @@ export function cn(...inputs: ClassValue[]) {
     },
   ],
   
-  category: "Media",
+  category: "Interactive tools",
   examples: [
     {
       name: "Basic Horizontal Comparison",

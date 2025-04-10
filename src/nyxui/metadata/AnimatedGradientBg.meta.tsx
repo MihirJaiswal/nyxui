@@ -137,7 +137,7 @@ export const animatedGradientBgData: ComponentData = {
     },
   ],
   
-  category: "Effects",
+  category: "Background",
   new: true,
   examples: [
     {

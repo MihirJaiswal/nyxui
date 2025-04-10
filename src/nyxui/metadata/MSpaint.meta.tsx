@@ -154,6 +154,6 @@ export const mspaintData: ComponentData = {
       ],
     },
   ],
-  category: "Input",
+  category: "Interactive tools",
   examples: [],
 }

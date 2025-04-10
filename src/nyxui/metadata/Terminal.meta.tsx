@@ -133,7 +133,7 @@ export const interactiveTerminalData: ComponentData = {
       ],
     },
   ],
-  category: "Display",
+  category: "Interactive tools",
   examples : [
     {
       name: "Love Terminal",

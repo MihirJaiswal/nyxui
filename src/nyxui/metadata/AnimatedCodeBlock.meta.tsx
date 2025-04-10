@@ -145,7 +145,7 @@ export function cn(...inputs: ClassValue[]) {
     },
   ],
   
-  category: "Display",
+  category: "Interactive tools",
   new: true,
   examples:  [
     {
