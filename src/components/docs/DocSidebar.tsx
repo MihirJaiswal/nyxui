@@ -1,5 +1,6 @@
 import React from 'react';
 import { Lightbulb, ChevronRight, BookOpen, Coffee, MessageSquare } from "lucide-react";
+import Image from 'next/image';
 
 export default function DocsSidebar() {
   const sections = [
@@ -48,14 +49,15 @@ export default function DocsSidebar() {
               <div className="w-full overflow-hidden rounded-lg shadow-lg ring-1 ring-white/20">
                 <div className="relative aspect-video w-full bg-gray-900">
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <video
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      src="/saas.mp4"
+                    <Image
+                      src="/assets/images/docs/template.png"
+                      alt="Nyx UI Portfolio Template"
                       className="w-full h-full object-cover rounded-lg"
-                    ></video>
+                      width={1200}
+                      height={630}
+                      loading="lazy"
+                      quality={100}
+                    />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
                   </div>
                 </div>
