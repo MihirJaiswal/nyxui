@@ -113,6 +113,11 @@ export const componentsData = {
       title: "Image Comparison",
       description: "An interactive image comparison slider that allows users to drag or hover to reveal two different images.",
       image: "/assets/images/showcase/image-comparison.png"
+    },
+    "marquee": {
+      title: "Marquee",
+      description: "A customizable, interactive scrolling marquee component with various animation options, drag capabilities, and responsive design.",
+      image: "/assets/images/showcase/marquee.png"
     }
   },
   "templates": {}

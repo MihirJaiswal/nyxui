@@ -20,6 +20,7 @@ import { githubRepoCardData } from "./metadata/GithubRepoCard.meta";
 import { githubProfileCardData } from "./metadata/GithubProfileCard.meta";
 import { bentoGridData } from "./metadata/BentoGrid.meta";
 import { imageComparisonData } from "./metadata/ImageComparison.meta";
+import { marqueeData } from "./metadata/Marquee.meta";
 
 export const componentsData = {
   "gradient-button": gradientButtonData,
@@ -43,5 +44,6 @@ export const componentsData = {
   "github-repo-card": githubRepoCardData,
   "github-profile-card": githubProfileCardData,
   "bento-grid": bentoGridData,
-  "image-comparison": imageComparisonData
+  "image-comparison": imageComparisonData,
+  "marquee": marqueeData,
 };
