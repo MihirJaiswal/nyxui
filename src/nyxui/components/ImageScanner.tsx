@@ -46,29 +46,29 @@ export const ImageScanner = ({
 
   const colorMap = {
     emerald: {
-      scan: "bg-emerald-400",
-      glow: "bg-emerald-400/20 dark:bg-emerald-400/10",
-      border: "border-emerald-400",
+      scan: "bg-emerald-500",
+      glow: "bg-emerald-500/20 dark:bg-emerald-500/10",
+      border: "border-emerald-500",
     },
     blue: {
-      scan: "bg-blue-400",
-      glow: "bg-blue-400/20 dark:bg-blue-400/10",
-      border: "border-blue-400",
+      scan: "bg-blue-500",
+      glow: "bg-blue-500/20 dark:bg-blue-500/10",
+      border: "border-blue-500",
     },
     purple: {
-      scan: "bg-purple-400",
-      glow: "bg-purple-400/20 dark:bg-purple-400/10",
-      border: "border-purple-400",
+      scan: "bg-purple-500",
+      glow: "bg-purple-500/20 dark:bg-purple-500/10",
+      border: "border-purple-500",
     },
     amber: {
-      scan: "bg-amber-400",
-      glow: "bg-amber-400/20 dark:bg-amber-400/10",
-      border: "border-amber-400",
+      scan: "bg-amber-500",
+      glow: "bg-amber-500/20 dark:bg-amber-500/10",
+      border: "border-amber-500",
     },
     red: {
-      scan: "bg-red-400",
-      glow: "bg-red-400/20 dark:bg-red-400/10",
-      border: "border-red-400",
+      scan: "bg-red-500",
+      glow: "bg-red-500/20 dark:bg-red-500/10",
+      border: "border-red-500",
     },
   }
 
@@ -108,6 +108,7 @@ export const ImageScanner = ({
     
     observer.observe(ref.current);
     return () => observer.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scanAtScroll, hasScanned, isScanning]);
 
   useEffect(() => {
@@ -119,12 +120,14 @@ export const ImageScanner = ({
       if (scanTimer.current) clearTimeout(scanTimer.current);
       if (completeTimer.current) clearTimeout(completeTimer.current);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [autoScan, scanDelay, hasScanned]);
 
   useEffect(() => {
     if (triggerScan && !isScanning) {
       runScan();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [triggerScan]);
 
   useEffect(() => {
@@ -136,6 +139,7 @@ export const ImageScanner = ({
       if (scanTimer.current) clearTimeout(scanTimer.current);
       if (completeTimer.current) clearTimeout(completeTimer.current);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [repeating]);
 
   useEffect(() => {
