@@ -1,7 +1,7 @@
 import React from "react";
 import type { ComponentData } from "@/nyxui/ComponentInterfaces";
 import { GitHubProfileCard } from "../components/GithubProfileCard";
-import GitHubProfileCardDemo from "../demos/GithubProfileCardDemo";
+import GitHubProfileCardDemo from "../demos/GitHubProfileCardDemo";
 import fs from "fs";
 import path from "path";
 
