@@ -174,7 +174,7 @@ export function HorizontalLineScan() {
         <div className="w-full max-w-md mx-auto">
           <h1 className="text-2xl font-bold mb-8 text-center">Scan on scroll</h1>
           <ImageScanner 
-            image="/assets/images/image-scanner/id.jpg" 
+            image="/assets/images/image-scanner/id.png" 
             scanDirection="vertical"
             scanColor="red"
             scanAtScroll
