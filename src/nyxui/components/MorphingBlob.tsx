@@ -124,6 +124,10 @@ export function MorphingBlob({
     5: "shadow-2xl shadow-xl",
   }
 
+  const isValidNumber = (num: number) => {
+    return typeof num === 'number' && !isNaN(num) && isFinite(num)
+  }
+
   const generateBlobPath = (factor: { points: number; variance: number; tension: number }, hover = false, click = false) => {
     const { points, variance, tension } = factor
     const centerX = 50
@@ -136,7 +140,7 @@ export function MorphingBlob({
       const angle = i * angleStep
       const waveVariation = Math.sin(i * 3) * 0.15
       const randomVariance = 1 - variance + (Math.random() * variance * 2) + waveVariation
-      const radius = baseRadius * randomVariance
+      const radius = Math.max(baseRadius * randomVariance, 5)
       
       const x = centerX + Math.cos(angle) * radius
       const y = centerY + Math.sin(angle) * radius
@@ -154,7 +158,12 @@ export function MorphingBlob({
       const cp2x = next.x - (blobPoints[(i + 2) % points].x - current.x) * tension
       const cp2y = next.y - (blobPoints[(i + 2) % points].y - current.y) * tension
       
-      path += ` C${cp1x},${cp1y} ${cp2x},${cp2y} ${next.x},${next.y}`
+      const validCp1x = isValidNumber(cp1x) ? cp1x : current.x
+      const validCp1y = isValidNumber(cp1y) ? cp1y : current.y
+      const validCp2x = isValidNumber(cp2x) ? cp2x : next.x
+      const validCp2y = isValidNumber(cp2y) ? cp2y : next.y
+      
+      path += ` C${validCp1x},${validCp1y} ${validCp2x},${validCp2y} ${next.x},${next.y}`
     }
     
     path += " Z"
@@ -165,24 +174,33 @@ export function MorphingBlob({
     if (!path1 || !path2) return path2 || path1 || ""
     
     const extractPoints = (path: string) => {
-      const commands = path.match(/[MLC][^MLC]*/g) || []
-      const points: number[][] = []
+      const regex = /([MC]) ?([^MC]+)/g
+      const matches = [...path.matchAll(regex)]
       
-      commands.forEach(cmd => {
-        const type = cmd[0]
-        const coords = cmd.slice(1).trim().split(/[ ,]/).filter(Boolean).map(parseFloat)
+      const points: number[][] = []
+      let lastPoint: number[] | null = null
+      
+      for (const match of matches) {
+        const [, command, coordStr] = match
+        const coords = coordStr.trim().split(/[ ,]/).filter(Boolean).map(parseFloat)
         
-        if (type === 'M' || type === 'L') {
-          for (let i = 0; i < coords.length; i += 2) {
-            points.push([coords[i], coords[i + 1]])
+        if (command === 'M' && coords.length >= 2) {
+          const x = coords[0]
+          const y = coords[1]
+          if (isValidNumber(x) && isValidNumber(y)) {
+            lastPoint = [x, y]
+            points.push([x, y])
           }
-        } else if (type === 'C') {
-          const len = coords.length
-          if (len >= 4) {
-            points.push([coords[len - 2], coords[len - 1]])
+        } 
+        else if (command === 'C' && coords.length >= 6) {
+          const endX = coords[4]
+          const endY = coords[5]
+          if (isValidNumber(endX) && isValidNumber(endY)) {
+            lastPoint = [endX, endY]
+            points.push([endX, endY])
           }
         }
-      })
+      }
       
       return points
     }
@@ -190,12 +208,21 @@ export function MorphingBlob({
     const points1 = extractPoints(path1)
     const points2 = extractPoints(path2)
     
-    if (points1.length !== points2.length) return path2
+    if (points1.length !== points2.length || points1.length === 0) {
+      return path2
+    }
     
     const interpolatedPoints = points1.map((point, i) => {
-      const x = point[0] + (points2[i][0] - point[0]) * progress
-      const y = point[1] + (points2[i][1] - point[1]) * progress
-      return [x, y]
+      if (i < points2.length) {
+        const x = point[0] + (points2[i][0] - point[0]) * progress
+        const y = point[1] + (points2[i][1] - point[1]) * progress
+        
+        return [
+          isValidNumber(x) ? x : point[0],
+          isValidNumber(y) ? y : point[1]
+        ]
+      }
+      return point
     })
     
     let newPath = `M${interpolatedPoints[0][0]},${interpolatedPoints[0][1]}`
@@ -204,12 +231,21 @@ export function MorphingBlob({
       const prev = interpolatedPoints[i - 1]
       const curr = interpolatedPoints[i]
       
-      const cpx1 = prev[0] + (curr[0] - prev[0]) * 0.5
-      const cpy1 = prev[1] + (curr[1] - prev[1]) * 0.5
-      const cpx2 = curr[0] - (curr[0] - prev[0]) * 0.5
-      const cpy2 = curr[1] - (curr[1] - prev[1]) * 0.5
+      const tension = 0.4
+      const dx = curr[0] - prev[0]
+      const dy = curr[1] - prev[1]
       
-      newPath += ` C${cpx1},${cpy1} ${cpx2},${cpy2} ${curr[0]},${curr[1]}`
+      const cpx1 = prev[0] + dx * tension
+      const cpy1 = prev[1] + dy * tension
+      const cpx2 = curr[0] - dx * tension
+      const cpy2 = curr[1] - dy * tension
+      
+      const validCpx1 = isValidNumber(cpx1) ? cpx1 : prev[0]
+      const validCpy1 = isValidNumber(cpy1) ? cpy1 : prev[1]
+      const validCpx2 = isValidNumber(cpx2) ? cpx2 : curr[0]
+      const validCpy2 = isValidNumber(cpy2) ? cpy2 : curr[1]
+      
+      newPath += ` C${validCpx1},${validCpy1} ${validCpx2},${validCpy2} ${curr[0]},${curr[1]}`
     }
     
     newPath += " Z"
