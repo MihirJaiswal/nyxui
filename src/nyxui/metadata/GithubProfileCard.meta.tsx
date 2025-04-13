@@ -1,14 +1,14 @@
 import React from "react";
 import type { ComponentData } from "@/nyxui/ComponentInterfaces";
 import { GitHubProfileCard } from "../components/GithubProfileCard";
-import GitHubProfileCardDemo from "../demos/GitHubProfileCardDemo";
+import GitHubProfileCardDemo from "../demos/GithubProfileCardDemo";
 import fs from "fs";
 import path from "path";
 
 const componentPath = path.join(process.cwd(), "src/nyxui/components/GithubProfileCard.tsx");
 const githubProfileCardSource = fs.readFileSync(componentPath, "utf8");
 
-const demoPath = path.join(process.cwd(), "src/nyxui/demos/GitHubProfileCardDemo.tsx");
+const demoPath = path.join(process.cwd(), "src/nyxui/demos/GithubProfileCardDemo.tsx");
 const githubProfileCardDemoSource = fs.readFileSync(demoPath, "utf8");
 
 export const githubProfileCardData: ComponentData = {
