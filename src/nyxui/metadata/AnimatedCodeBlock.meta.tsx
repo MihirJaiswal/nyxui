@@ -146,7 +146,6 @@ export function cn(...inputs: ClassValue[]) {
   ],
   
   category: "Interactive tools",
-  new: true,
   examples:  [
     {
       name: "Terminal Theme Docker Setup",

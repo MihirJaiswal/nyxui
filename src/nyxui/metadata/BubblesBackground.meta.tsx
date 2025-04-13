@@ -85,7 +85,6 @@ export function cn(...inputs: ClassValue[]) {
   ],
   
   category: "Background",
-  new: true,
   examples: [
     {
       name: "Default Bubble Background",

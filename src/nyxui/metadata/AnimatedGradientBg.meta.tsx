@@ -138,7 +138,6 @@ export const animatedGradientBgData: ComponentData = {
   ],
   
   category: "Background",
-  new: true,
   examples: [
     {
       name: "Radial Gradient",

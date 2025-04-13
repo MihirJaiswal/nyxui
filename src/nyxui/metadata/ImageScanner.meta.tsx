@@ -136,7 +136,6 @@ export function cn(...inputs: ClassValue[]) {
   ],
   
   category: "Interactive tools",
-  new: true,
   examples: [
     {
       name: "Horizontal Line Scan",
