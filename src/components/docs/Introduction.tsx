@@ -28,7 +28,6 @@ export default function IntroductionPage() {
             quality={100}
             className="w-full"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">

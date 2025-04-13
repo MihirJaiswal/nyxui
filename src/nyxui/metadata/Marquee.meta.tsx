@@ -18,9 +18,36 @@ export const marqueeData: ComponentData = {
   preview: <MarqueeDemo />,
   usage: MarqueeDemoSource,
   componentCode: MarqueeSource,
-  dependencies: [
-    
-  ],
+  dependencies: [ {
+    name: "Framer Motion",
+    description: "Production-ready motion library for React for creating animations and interactive UI elements.",
+    install: {
+      npm: "npm install framer-motion",
+      pnpm: "pnpm add framer-motion",
+      yarn: "yarn add framer-motion",
+      bun: "bun add framer-motion",
+    },
+  },
+  {
+    name: "Utility Functions",
+    description: "Utility functions for conditional class name merging.",
+    install: {
+      npm: "npm install clsx tailwind-merge",
+      pnpm: "pnpm add clsx tailwind-merge",
+      yarn: "yarn add clsx tailwind-merge",
+      bun: "bun add clsx tailwind-merge",
+    },
+    setup: {
+      description: "Create a utils.ts file with the cn utility function",
+      file: "/lib/utils.ts",
+      code: `import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+return twMerge(clsx(inputs));
+}`,
+    },
+  },],
   props: [
     {
       name: "Marquee",

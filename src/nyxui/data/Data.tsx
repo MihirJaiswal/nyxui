@@ -118,6 +118,11 @@ export const componentsData = {
       title: "Marquee",
       description: "A customizable, interactive scrolling marquee component with various animation options, drag capabilities, and responsive design.",
       image: "/assets/images/showcase/marquee.png"
+    },
+    "image-scanner": {
+      title: "Image Scanner",
+      description: "A dynamic component that applies interactive scanning effects to images.",
+      image: "/assets/images/showcase/image-scanner.png"
     }
   },
   "templates": {}
