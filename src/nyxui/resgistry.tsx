@@ -1,4 +1,4 @@
-/* import { gradientButtonData } from "./metadata/GradientButton.meta"; */
+import { gradientButtonData } from "./metadata/GradientButton.meta"; 
 import { morphingButtonData } from "./metadata/MorphingButton.meta";
 import { cyberpunkCardData } from "./metadata/cyberpunk-card.meta";
 import { dynamicRippleData } from "./metadata/dynamic-ripple.meta";
@@ -24,7 +24,7 @@ import { marqueeData } from "./metadata/Marquee.meta";
 import { imageScannerData } from "./metadata/ImageScanner.meta";
 
 export const componentsData = {
-  /* "gradient-button": gradientButtonData, */
+  "gradient-button": gradientButtonData,
   "morphing-button": morphingButtonData,
   "cyberpunk-card": cyberpunkCardData,
   "dynamic-ripple": dynamicRippleData,
