@@ -1,11 +1,11 @@
-import { gradientButtonData } from "@/nyxui/metadata/GradientButton.meta";
-import { morphingButtonData } from "@/nyxui/metadata/MorphingButton.meta";
-import { cyberpunkCardData } from "@/nyxui/metadata/cyberpunk-card.meta";
-import { dynamicRippleData } from "@/nyxui/metadata/dynamic-ripple.meta";
-import { MajesticCardData } from "@/nyxui/metadata/majestic-card.meta";
-import { liquidMetalButtonData } from "@/nyxui/metadata/liquid-metal-button.meta";
-import { morphingBlobData } from "@/nyxui/metadata/morphing-blob.meta";
-import { animatedCodeBlockData } from "@/nyxui/metadata/AnimatedCodeBlock.meta";
+/* import { gradientButtonData } from "./metadata/GradientButton.meta"; */
+import { morphingButtonData } from "./metadata/MorphingButton.meta";
+import { cyberpunkCardData } from "./metadata/cyberpunk-card.meta";
+import { dynamicRippleData } from "./metadata/dynamic-ripple.meta";
+import { MajesticCardData } from "./metadata/majestic-card.meta";
+import { liquidMetalButtonData } from "./metadata/liquid-metal-button.meta";
+import { morphingBlobData } from "./metadata/morphing-blob.meta";
+import { animatedCodeBlockData } from "./metadata/AnimatedCodeBlock.meta";
 import { animatedGradientBgData } from "./metadata/AnimatedGradientBg.meta";
 import { scrollAnimationTriggerData } from "./metadata/ScrollAnimationTrigger.meta";
 import { revealCardData } from "./metadata/RevealCard.meta";
@@ -24,7 +24,7 @@ import { marqueeData } from "./metadata/Marquee.meta";
 import { imageScannerData } from "./metadata/ImageScanner.meta";
 
 export const componentsData = {
-  "gradient-button": gradientButtonData,
+  /* "gradient-button": gradientButtonData, */
   "morphing-button": morphingButtonData,
   "cyberpunk-card": cyberpunkCardData,
   "dynamic-ripple": dynamicRippleData,
