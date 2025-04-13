@@ -127,7 +127,6 @@ export const InstallationSection = ({ componentData }: { componentData: Componen
   const [copiedIndex, setCopiedIndex] = useState<string | null>(null)
   const [isDarkMode, setIsDarkMode] = useState(false)
 
-  // Check if any dependencies have setup information
   const hasSetupInfo = componentData.dependencies?.some((dependency) => dependency.setup)
 
   useEffect(() => {
@@ -450,20 +449,6 @@ export const InstallationSection = ({ componentData }: { componentData: Componen
                     <code className="px-1.5 py-0.5 bg-muted rounded font-mono text-xs">@/components/ui/button</code> to
                     match your UI components location.
                   </p>
-
-                  <div className="mt-4 pt-4 border-t">
-                    <h4 className="text-sm font-medium mb-2">Need Help?</h4>
-                    <div className="flex gap-2">
-                      <Button variant="outline" size="sm" className="text-xs gap-1.5">
-                        <Github className="size-3.5" />
-                        View Documentation
-                      </Button>
-                      <Button variant="secondary" size="sm" className="text-xs gap-1.5">
-                        <ExternalLink className="size-3.5" />
-                        Join Discord
-                      </Button>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
