@@ -65,10 +65,8 @@ export async function generateMetadata({ params }: { params: Promise<{ component
 
 export default async function ComponentLayout({ children }: LayoutProps) {
   return (
-    <html lang="en">
-      <body>
-        {children}
-      </body>
-    </html>
+    <>
+      {children}
+    </>
   );
 }
