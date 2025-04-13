@@ -78,8 +78,8 @@ export function cn(...inputs: ClassValue[]) {
         {
           name: "theme",
           type: "string",
-          default: '"dark" | "light" | "terminal" | "cyberpunk" | "minimal" | "nyx"',
-          description: "The visual theme of the code block",
+          default: 'dark',
+          description: "The visual theme of the code block (dark, light, terminal, cyberpunk, minimal, nyx)",
         },
         {
           name: "typingSpeed",

@@ -75,9 +75,9 @@ export const animatedGradientBgData: ComponentData = {
         },
         {
           name: "pattern",
-          type: '"radial" | "linear" | "conic" | "mesh" | "noise" | "waves"',
+          type: 'string',
           default: '"radial"',
-          description: "The gradient pattern to display.",
+          description: "The gradient pattern to display (radial, linear, conic, mesh, noise, waves).",
         },
         {
           name: "patternIntensity",
@@ -105,15 +105,15 @@ export const animatedGradientBgData: ComponentData = {
         },
         {
           name: "size",
-          type: '"sm" | "md" | "lg" | "full" | number',
+          type: 'string',
           default: '"full"',
-          description: "Size of the background container.",
+          description: "Size of the background container (sm, md, lg, full, number).",
         },
         {
           name: "position",
-          type: '"fixed" | "absolute" | "relative"',
+          type: 'string',
           default: '"absolute"',
-          description: "CSS position property of the container.",
+          description: "CSS position property of the container (fixed, absolute, relative).",
         },
         {
           name: "zIndex",
