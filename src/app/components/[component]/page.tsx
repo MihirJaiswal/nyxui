@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import { ExternalLink } from "lucide-react"
 import { notFound } from "next/navigation"
 import { Button } from "@/components/ui/button"
@@ -12,13 +13,53 @@ import React from "react"
 import { Card } from "@/components/ui/card"
 import Link from "next/link"
 
-const ComponentPage = async ({ params }: { params: Promise<{ component: string }>}) => {
-  const component = (await params).component
+type Props = {
+  params: { component: string }
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { component } = params;
+  const formattedName = component
+    .split('-')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+  if (!componentsData || !(component in componentsData)) {
+    return {
+      title: 'Component Not Found | Nyx UI',
+      description: 'The requested component could not be found in the Nyx UI library.',
+    };
+  }
+  const componentData = componentsData[component as keyof typeof componentsData];
+  const componentName = componentData?.name || formattedName;
+  const componentDescription = componentData?.description || 
+    `Learn how to use the ${formattedName} component from Nyx UI. API references, examples, and customization options for building beautiful Next.js applications.`;
+  
+  return {
+    title: `${componentName} | Nyx UI`,
+    description: componentDescription,
+    openGraph: {
+      title: `${componentName} - Nyx UI`,
+      description: componentDescription,
+      url: `https://nyx-ui.com/components/${component}`,
+    },
+    twitter: {
+      title: `${componentName} - Nyx UI`,
+      description: componentDescription,
+    },
+    alternates: {
+      canonical: `https://nyx-ui.com/components/${component}`,
+    },
+  };
+}
+
+const ComponentPage = async ({ params }: Props) => {
+  const { component } = params;
 
   if (!componentsData) {
     console.error("componentsData is not properly loaded")
     notFound()
   }
+  
   if (!(component in componentsData)) {
     console.error(`Component "${component}" not found in componentsData`)
     notFound()
@@ -35,6 +76,7 @@ const ComponentPage = async ({ params }: { params: Promise<{ component: string }
     console.error(`Component "${component}" is missing required fields`)
     notFound()
   }
+
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
