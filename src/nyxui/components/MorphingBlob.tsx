@@ -124,11 +124,11 @@ export function MorphingBlob({
     5: "shadow-2xl shadow-xl",
   }
 
-  const isValidNumber = (num: number) => {
+  const isValidNumber = useCallback((num: number) => {
     return typeof num === 'number' && !isNaN(num) && isFinite(num)
-  }
+  }, [])
 
-  const generateBlobPath = (factor: { points: number; variance: number; tension: number }, hover = false, click = false) => {
+  const generateBlobPath = useCallback((factor: { points: number; variance: number; tension: number }, hover = false, click = false) => {
     const { points, variance, tension } = factor
     const centerX = 50
     const centerY = 50
@@ -168,9 +168,9 @@ export function MorphingBlob({
     
     path += " Z"
     return path
-  }
+  }, [isValidNumber])
 
-  const interpolatePaths = (path1: string, path2: string, progress: number) => {
+  const interpolatePaths = useCallback((path1: string, path2: string, progress: number) => {
     if (!path1 || !path2) return path2 || path1 || ""
     
     const extractPoints = (path: string) => {
@@ -178,7 +178,6 @@ export function MorphingBlob({
       const matches = [...path.matchAll(regex)]
       
       const points: number[][] = []
-      let lastPoint: number[] | null = null
       
       for (const match of matches) {
         const [, command, coordStr] = match
@@ -188,7 +187,6 @@ export function MorphingBlob({
           const x = coords[0]
           const y = coords[1]
           if (isValidNumber(x) && isValidNumber(y)) {
-            lastPoint = [x, y]
             points.push([x, y])
           }
         } 
@@ -196,7 +194,6 @@ export function MorphingBlob({
           const endX = coords[4]
           const endY = coords[5]
           if (isValidNumber(endX) && isValidNumber(endY)) {
-            lastPoint = [endX, endY]
             points.push([endX, endY])
           }
         }
@@ -250,7 +247,7 @@ export function MorphingBlob({
     
     newPath += " Z"
     return newPath
-  }
+  }, [isValidNumber])
 
   const animate = useCallback((time: number) => {
     if (previousTimeRef.current === null) {
@@ -271,7 +268,7 @@ export function MorphingBlob({
     
     previousTimeRef.current = time;
     requestRef.current = requestAnimationFrame(animate);
-  }, [blobPath, complexity, speed, isHovered, isClicked, complexityFactors, speedFactors]);
+  }, [blobPath, complexity, speed, isHovered, isClicked, complexityFactors, speedFactors, generateBlobPath]);
 
   useEffect(() => {
     const factor = complexityFactors[complexity]
@@ -298,7 +295,7 @@ export function MorphingBlob({
       
       return () => clearInterval(interval)
     }
-  }, [complexity, speed, isHovered, isClicked, smooth, animate, blobPath, complexityFactors, speedFactors])
+  }, [complexity, speed, isHovered, isClicked, smooth, animate, blobPath, complexityFactors, speedFactors, generateBlobPath])
 
   const handleMouseEnter = () => {
     if (hoverEffect) {

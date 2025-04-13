@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
+import Image from "next/image"
 
 export interface ImageScannerProps {
   image: string
@@ -164,9 +165,12 @@ export const ImageScanner = ({
           scanComplete ? selectedColor.border : "",
         )}
       >
-        <img
+        <Image
           src={image || "/placeholder.svg"}
           alt={alt}
+          height={500}
+          width={500}
+          quality={100}
           className="w-full h-full object-cover"
         />
         <AnimatePresence mode="wait">
