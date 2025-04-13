@@ -16,6 +16,7 @@ const openSans = Open_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://nyx-ui.com"),
   title: "Nyx UI",
   description: "Nyx UI is a premium collection of customizable UI components for Next.js applications. Built with Tailwind CSS, Framer Motion, and TypeScript for responsive, accessible, and beautiful interfaces.",
   keywords: ["Next.js components", "React UI library", "Tailwind CSS components", "TypeScript UI kit", "Framer Motion animations", "Nyx UI", "frontend development", "web components"],
