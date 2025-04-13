@@ -22,16 +22,16 @@ export default function GitHubProfileCardDemo() {
     ],
     pinnedRepos: [
       {
-        name: "github-profile-card",
-        description: "A beautiful React component to display GitHub profiles",
+        name: "Nyx UI",
+        description: "A beautiful component library for Next.js",
         language: "TypeScript",
         languageColor: "#3178c6",
         stars: 542,
         forks: 123,
       },
       {
-        name: "octokit",
-        description: "The all-batteries-included GitHub SDK for Octoverse",
+        name: "CertiGen",
+        description: "A certificate generation tool",
         language: "JavaScript",
         languageColor: "#f1e05a",
         stars: 1243,
