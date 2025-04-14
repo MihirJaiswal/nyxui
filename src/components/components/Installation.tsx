@@ -233,7 +233,7 @@ export const InstallationSection = ({ componentData }: { componentData: Componen
 
                           <Tabs defaultValue="npm" className="w-full mt-3">
                             <TabsList className="w-full max-w-md grid grid-cols-4 h-9 bg-muted/40 p-1 rounded-lg dark:bg-black/20">
-                              {["npm", "pnpm", "yarn", "Bun"].map((pkg) => (
+                              {["npm", "pnpm", "yarn", "bun"].map((pkg) => (
                                 <TabsTrigger
                                   key={pkg}
                                   value={pkg}
