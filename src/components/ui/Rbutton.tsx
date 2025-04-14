@@ -9,8 +9,7 @@ const buttonStyle = {
   "--color-5": "39, 100%, 58%"   /* Yellow/Orange */
 };
 
-interface RbuttonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
+type RbuttonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const Rbutton = React.forwardRef<
   HTMLButtonElement,
