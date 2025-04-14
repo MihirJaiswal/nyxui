@@ -6,8 +6,9 @@ import { Badge } from "@/components/ui/badge"
 import { ChevronRight, Sparkles } from "lucide-react"
 import TechStack from "./Tech"
 import Image from "next/image"
-import { Tiles } from "@/components/ui/Tiles" // Import the Tiles component
+import { Tiles } from "@/components/ui/Tiles" 
 import Link from "next/link"
+import { Rbutton } from "../ui/Rbutton"
 
 export const Hero = () => {
   const [currentTextIndex, setCurrentTextIndex] = useState(0)
@@ -117,24 +118,23 @@ export const Hero = () => {
               className="flex flex-col sm:flex-row gap-4 mt-8"
             >
               <Link href="/components" rel="noopener noreferrer">
-              <motion.button
+              <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 flex items-center justify-center rounded-full bg-primary text-primary-foreground font-medium"
+                className="flex gap-2 items-center"
               >
-                <span>Browse Components</span>
-                <ChevronRight
+                <Rbutton className="relative"><span>Browse Components</span> <ChevronRight
                   className="h-4 w-4 ml-1 transition-transform group-hover:translate-x-0.5 align-middle relative"
                   style={{ top: '1px' }}
-                />
-              </motion.button>
+                /></Rbutton>
+              </motion.div>
               </Link>
 
               <Link href="/docs" rel="noopener noreferrer">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 rounded-full bg-secondary text-secondary-foreground font-medium"
+                className="px-8 py-3 rounded-full text-secondary-foreground font-medium"
               >
                 Documentation
               </motion.button>

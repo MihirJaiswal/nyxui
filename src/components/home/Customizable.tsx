@@ -19,7 +19,7 @@ import {
 } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { vscDarkPlus, prism } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import {prism, nightOwl } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import Image from "next/image"
 
 interface SpotifyCardProps {
@@ -28,6 +28,8 @@ interface SpotifyCardProps {
   rounded?: string
   shadow?: boolean
 }
+
+const nightheme = nightOwl;
 
 const SpotifyCard = ({ theme, children, rounded, shadow }: SpotifyCardProps) => {
   const getThemeStyles = () => {
@@ -414,7 +416,7 @@ const MusicCardThemeCustomizer = () => {
                 >
                   <SyntaxHighlighter
                     language="jsx"
-                    style={isDarkMode ? vscDarkPlus : prism}
+                    style={isDarkMode ? nightheme : prism}
                     showLineNumbers
                     customStyle={{
                       margin: 0,
@@ -517,7 +519,7 @@ const MusicCardThemeCustomizer = () => {
                   >
                     <SyntaxHighlighter
                       language="jsx"
-                      style={isDarkMode ? vscDarkPlus : prism}
+                      style={isDarkMode ? nightheme : prism}
                       showLineNumbers
                       customStyle={{
                         margin: 0,
