@@ -96,7 +96,7 @@ export const animatedTextData: ComponentData = {
       preview: (
         <div className="p-8 bg-gradient-to-br from-blue-900 via-indigo-800 to-purple-900 rounded-xl text-center shadow-lg border border-blue-700">
           <AnimateText 
-            text="Welcome to nuvyxUI" 
+            text="Welcome to NuvyxUI" 
             type="cascade" 
             className="text-5xl font-extrabold text-white tracking-tight" 
           />
@@ -115,7 +115,7 @@ export function CascadeTitleAnimation() {
   return (
     <div className="p-8 bg-gradient-to-br from-blue-900 via-indigo-800 to-purple-900 rounded-xl text-center shadow-lg border border-blue-700">
       <AnimateText 
-        text="Welcome to nuvyxUI" 
+        text="Welcome to NuvyxUI" 
         type="cascade" 
         className="text-5xl font-extrabold text-white tracking-tight" 
       />
