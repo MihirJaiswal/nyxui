@@ -1,12 +1,11 @@
 "use client"
 import Header from "@/components/global/Header";
-import { Hero } from "@/components/home/Hero";\
+import { Hero } from "@/components/home/Hero";
 import Customize from "@/components/home/Customize";
 import { Build } from "@/components/home/Build";
 import { ComponentsDemo } from "@/components/home/ComponentsDemo";
 
 export default function Home() {
-  const darkColors = ["#7C3AED", "#DB2777", "#3B82F6", "#A78BFA"];
   return (
     <>
     <Header />
