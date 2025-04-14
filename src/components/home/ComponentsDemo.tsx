@@ -1,15 +1,15 @@
 import React from "react";
-import { BentoGrid } from "@/nyxui/components/BentoGrid";
-import { AnimatedGradientBg } from "@/nyxui/components/AnimatedGradientBg";
-import { AnimatedCodeBlock } from "@/nyxui/components/AnimatedCodeBlock";
+import { BentoGrid } from "@/nuvyxui/components/BentoGrid";
+import { AnimatedGradientBg } from "@/nuvyxui/components/AnimatedGradientBg";
+import { AnimatedCodeBlock } from "@/nuvyxui/components/AnimatedCodeBlock";
 import { ChevronRight, Code, Sparkles, Zap } from "lucide-react";
-import { MatrixCodeRain } from "@/nyxui/components/MatrixCodeRain";
-import { DynamicRipple } from "@/nyxui/components/DynamicRipple";
-import { MajesticCard } from "@/nyxui/components/MajesticCard";
-import { MorphingBlob } from "@/nyxui/components/MorphingBlob";
+import { MatrixCodeRain } from "@/nuvyxui/components/MatrixCodeRain";
+import { DynamicRipple } from "@/nuvyxui/components/DynamicRipple";
+import { MajesticCard } from "@/nuvyxui/components/MajesticCard";
+import { MorphingBlob } from "@/nuvyxui/components/MorphingBlob";
 import Image from "next/image";
 import Link from "next/link";
-import InteractiveTerminal from "@/nyxui/components/Terminal";
+import InteractiveTerminal from "@/nuvyxui/components/Terminal";
 
 export const ComponentsDemo = () => {
   return (
@@ -104,7 +104,7 @@ const useToggle = (init = false) => {
 };
 `}
                 language="jsx"
-                theme="nyx"
+                theme="nuvyx"
                 typingSpeed={25}
                 autoPlay
                 title="React Component"
@@ -319,7 +319,7 @@ Connection secured. Press ENTER to continue...
               <MorphingBlob theme="secondary" size="lg" pulse glowIntensity={4} effect3D>
                 <div className="text-center flex flex-col items-center justify-center p-6">
                   <Image src="/logo.png" alt="Profile" width={200} height={200} quality={100} loading="lazy" className="rounded-full w-12 h-12" />
-                  <h4 className="text-xl font-bold mb-2">NyXUI</h4>
+                  <h4 className="text-xl font-bold mb-2">nuvyxUI</h4>
                   <p className="text-sm opacity-90 max-w-[180px]">Build awesome UI.</p>
                 </div>
               </MorphingBlob>

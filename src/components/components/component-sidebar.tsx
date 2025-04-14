@@ -1,4 +1,4 @@
-import { componentsData } from "../../nyxui/resgistry"
+import { componentsData } from "../../nuvyxui/resgistry"
 import { ComponentSidebarClient } from "./ComponentSidebarClient"
 
 export const ComponentSidebar = () => {

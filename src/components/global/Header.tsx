@@ -8,7 +8,7 @@ import { Menu, Github, Twitter, Search } from "lucide-react"
 import { ModeToggle } from "./ThemeToggle"
 import { cn } from "@/lib/utils"
 import { CommandPalette } from "./CommandPallete"
-import { componentsData } from "@/nyxui/data/Data"
+import { componentsData } from "@/nuvyxui/data/Data"
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
@@ -77,7 +77,7 @@ export default function Header() {
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
             <span className="hidden md:block text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80">
-              Nyx UI
+              nuvyx UI
             </span>
           </Link>
           <nav className="hidden lg:flex items-center space-x-1 ml-8">
@@ -111,13 +111,13 @@ export default function Header() {
         <div className="flex items-center space-x-2">
           <div className="hidden lg:flex items-center space-x-3">
             <CommandPalette />
-            <Link href="https://github.com/Nyxui-Labs/nyxui" target="_blank" rel="noreferrer">
+            <Link href="https://github.com/nuvyxui-Labs/nuvyxui" target="_blank" rel="noreferrer">
               <Button variant="ghost" size="icon" className="rounded-full hover:bg-muted/80 transition-all duration-300 hover:scale-105">
                 <Github className="h-5 w-5 text-black dark:text-white transition-colors" />
                 <span className="sr-only">GitHub</span>
               </Button>
             </Link>
-            <Link href="https://twitter.com/nyx_ui" target="_blank" rel="noreferrer">
+            <Link href="https://twitter.com/nuvyx_ui" target="_blank" rel="noreferrer">
               <Button variant="ghost" size="icon" className="rounded-full hover:bg-muted/80 transition-all duration-300 hover:scale-105">
                 <svg height="23" width="23" fill="currentColor" viewBox="0 0 1200 1227" xmlns="http://www.w3.org/2000/svg">
                   <path d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z" />
@@ -128,13 +128,13 @@ export default function Header() {
             <ModeToggle />
           </div>
           <div className="flex lg:hidden items-center space-x-1">
-            <Link href="https://github.com/Nyxui-Labs/nyxui" target="_blank" rel="noreferrer">
+            <Link href="https://github.com/nuvyxui-Labs/nuvyxui" target="_blank" rel="noreferrer">
               <Button variant="ghost" size="icon" className="rounded-full h-8 w-8 p-0 hover:bg-muted/80 transition-all duration-300">
                 <Github className="h-4 w-4 text-black dark:text-white" />
                 <span className="sr-only">GitHub</span>
               </Button>
             </Link>
-            <Link href="https://twitter.com/nyx_ui" target="_blank" rel="noreferrer">
+            <Link href="https://twitter.com/nuvyx_ui" target="_blank" rel="noreferrer">
               <Button variant="ghost" size="icon" className="rounded-full h-8 w-8 p-0 hover:bg-muted/80 transition-all duration-300">
                 <svg height="23" width="23" fill="currentColor" viewBox="0 0 1200 1227" xmlns="http://www.w3.org/2000/svg">
                   <path d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z" />
@@ -175,7 +175,7 @@ export default function Header() {
                       </div>
                       <div>
                         <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80 text-base font-bold">
-                          Nyx <span className="text-purple-600 dark:text-purple-400">UI</span>
+                          nuvyx <span className="text-purple-600 dark:text-purple-400">UI</span>
                         </span>
                       </div>
                     </SheetTitle>

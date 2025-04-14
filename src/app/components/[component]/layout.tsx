@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { componentsData } from "@/nyxui/resgistry";
+import { componentsData } from "@/nuvyxui/resgistry";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -11,19 +11,19 @@ export async function generateMetadata({ params }: { params: Promise<{ component
   
   if (!component) {
     return {
-      title: 'Nyx UI Components',
+      title: 'nuvyx UI Components',
       description: 'Modern UI components for building beautiful Next.js applications',
       openGraph: {
-        title: 'Nyx UI Components',
+        title: 'nuvyx UI Components',
         description: 'Modern UI components for building beautiful Next.js applications',
-        url: 'https://nyx-ui.com/components',
+        url: 'https://nuvyx-ui.com/components',
       },
       twitter: {
-        title: 'Nyx UI Components',
+        title: 'nuvyx UI Components',
         description: 'Modern UI components for building beautiful Next.js applications',
       },
       alternates: {
-        canonical: 'https://nyx-ui.com/components',
+        canonical: 'https://nuvyx-ui.com/components',
       },
     };
   }
@@ -35,30 +35,30 @@ export async function generateMetadata({ params }: { params: Promise<{ component
     
   if (!componentsData || !(component in componentsData)) {
     return {
-      title: 'Component Not Found | Nyx UI',
-      description: 'The requested component could not be found in the Nyx UI library.',
+      title: 'Component Not Found | nuvyx UI',
+      description: 'The requested component could not be found in the nuvyx UI library.',
     };
   }
   
   const componentData = componentsData[component as keyof typeof componentsData];
   const componentName = componentData?.name || formattedName;
   const componentDescription = componentData?.description || 
-    `Learn how to use the ${formattedName} component from Nyx UI. API references, examples, and customization options for building beautiful Next.js applications.`;
+    `Learn how to use the ${formattedName} component from nuvyx UI. API references, examples, and customization options for building beautiful Next.js applications.`;
   
   return {
-    title: `${componentName} | Nyx UI`,
+    title: `${componentName} | nuvyx UI`,
     description: componentDescription,
     openGraph: {
-      title: `${componentName} - Nyx UI`,
+      title: `${componentName} - nuvyx UI`,
       description: componentDescription,
-      url: `https://nyx-ui.com/components/${component}`,
+      url: `https://nuvyx-ui.com/components/${component}`,
     },
     twitter: {
-      title: `${componentName} - Nyx UI`,
+      title: `${componentName} - nuvyx UI`,
       description: componentDescription,
     },
     alternates: {
-      canonical: `https://nyx-ui.com/components/${component}`,
+      canonical: `https://nuvyx-ui.com/components/${component}`,
     },
   };
 }

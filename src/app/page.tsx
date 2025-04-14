@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <>
     <Header />
-      <div className="w-full max-w-screen-2xl md:px-8 lg:px-12 xl:px-16 2xl:px-24">
+      <div className="w-full max-w-screen-2xl mx-auto flex flex-col items-center md:px-8 lg:px-12 xl:px-16 2xl:px-24">
         <Hero />
         <ComponentsDemo/>
         <Customize />

@@ -12,7 +12,7 @@ import { Search, Link as LinkIcon, Box, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { componentsData } from "@/nyxui/data/Data";
+import { componentsData } from "@/nuvyxui/data/Data";
 
 export function CommandPalette() {
   const [open, setOpen] = useState(false);
@@ -76,7 +76,7 @@ export function CommandPalette() {
         onClick={() => setOpen(true)}
       >
         <Search className="mr-2 h-4 w-4" />
-        <span className="hidden md:inline-flex">Search Nyx UI...</span>
+        <span className="hidden md:inline-flex">Search nuvyx UI...</span>
         <span className="inline-flex md:hidden">Search...</span>
         <kbd className="pointer-events-none absolute right-1.5 top-1.5 hidden h-6 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-xs font-medium opacity-100 sm:flex">
           <span className="text-xs">⌘</span>K
@@ -85,7 +85,7 @@ export function CommandPalette() {
 
       <CommandDialog open={open} onOpenChange={setOpen}>
         <CommandInput
-          placeholder="Search Nyx UI..."
+          placeholder="Search nuvyx UI..."
           value={search}
           onValueChange={setSearch}
         />

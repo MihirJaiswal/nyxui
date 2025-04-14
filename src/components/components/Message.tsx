@@ -9,7 +9,7 @@ export const Message = () => {
                 Some components may have bugs or unexpected behavior. We&apos;re working to resolve these issues as quickly as possible. Please report any problems you encounter.
             </p>
             <div className="flex gap-2">
-                <Link href="https://github.com/Nyxui-Labs/nyxui/issues/new">
+                <Link href="https://github.com/nuvyxui-Labs/nuvyxui/issues/new">
                     <Button variant="outline" size="sm" className="text-xs gap-1.5 border-amber-300 text-amber-700 hover:bg-amber-100">
                         <Github className="size-3.5" />
                         Report Issue

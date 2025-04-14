@@ -51,7 +51,7 @@ export default function DocsSidebar() {
                   <div className="absolute inset-0 flex items-center justify-center">
                     <Image
                       src="/assets/images/docs/template.png"
-                      alt="Nyx UI Portfolio Template"
+                      alt="nuvyx UI Portfolio Template"
                       className="w-full h-full object-cover rounded-lg"
                       width={1200}
                       height={630}

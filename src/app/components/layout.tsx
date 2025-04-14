@@ -2,9 +2,9 @@ import React from 'react';
 import type { Metadata} from 'next';
 
 export const metadata: Metadata = {
-    metadataBase: new URL('https://nyx-ui.com'),
-    title: 'Components | Nyx UI',
-    description: 'Explore Nyx UI\'s comprehensive component library featuring responsive, accessible, and customizable UI elements built with Tailwind CSS, Framer Motion, and TypeScript for modern Next.js applications.',
+    metadataBase: new URL('https://nuvyx-ui.com'),
+    title: 'Components | nuvyx UI',
+    description: 'Explore nuvyx UI\'s comprehensive component library featuring responsive, accessible, and customizable UI elements built with Tailwind CSS, Framer Motion, and TypeScript for modern Next.js applications.',
     keywords: [
       'React components',
       'UI components',
@@ -14,12 +14,12 @@ export const metadata: Metadata = {
       'Animation components',
       'Framer Motion',
       'UI library',
-      'Nyx UI',
+      'nuvyx UI',
       'Design system',
       'Frontend components'
     ],
     authors: [
-      { name: 'Mihir', url: 'https://x.com/nyx_ui' },
+      { name: 'Mihir', url: 'https://x.com/nuvyx_ui' },
     ],
     creator: 'Mihir',
     publisher: 'Mihir',
@@ -34,35 +34,35 @@ export const metadata: Metadata = {
       },
     },
     alternates: {
-      canonical: 'https://nyx-ui.com/components',
+      canonical: 'https://nuvyx-ui.com/components',
     },
     openGraph: {
       type: 'website',
       locale: 'en_US',
-      url: 'https://nyx-ui.com/components',
-      siteName: 'Nyx UI Components',
-      title: 'Nyx UI - Stunning React Components for Next.js Applications',
+      url: 'https://nuvyx-ui.com/components',
+      siteName: 'nuvyx UI Components',
+      title: 'nuvyx UI - Stunning React Components for Next.js Applications',
       description: 'Browse our collection of premium UI components built with Tailwind CSS, Framer Motion, and TypeScript. Create beautiful user interfaces with minimal effort.',
       images: [
         {
           url: '/docs/docs-cover.png',
           width: 1200,
           height: 630,
-          alt: 'Nyx UI Components Preview',
+          alt: 'nuvyx UI Components Preview',
         },
       ],
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'Nyx UI - Modern React Components Library',
+      title: 'nuvyx UI - Modern React Components Library',
       description: 'Discover beautiful UI components for Next.js applications built with Tailwind CSS, Framer Motion, and TypeScript.',
       images: ['/docs/docs-cover.png'],
-      creator: '@nyx_ui',
-      site: '@nyx_ui',
+      creator: '@nuvyx_ui',
+      site: '@nuvyx_ui',
     },
     category: 'Technology',
     classification: 'Web Development',
-    applicationName: 'Nyx UI',
+    applicationName: 'nuvyx UI',
     generator: 'Next.js',
     referrer: 'origin-when-cross-origin',
     formatDetection: {

@@ -4,7 +4,7 @@ export const Banner = () => {
             <h1 className="text-center">
                 Introducing{' '}
                 <span className="rounded-sm px-1 py-1 font-bold">
-                    Nyx UI v1.0.0
+                    nuvyx UI v1.0.0
                 </span>{' '}
                 <span className="hidden md:inline">
                     - Modern components to craft stunning websites effortlessly.
