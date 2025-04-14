@@ -3,14 +3,9 @@ import type { ComponentData } from "@/nyxui/ComponentInterfaces";
 import { CyberpunkCard } from "@/nyxui/components/CyberpunkCard";
 import { CyberpunkCardDemo } from "@/nyxui/demos/CyberpunkCardDemo";
 import { Cpu, Database, Shield, Terminal, Wifi, Zap } from "lucide-react";
-import fs from "fs";
-import path from "path";
 
-const componentPath = path.join(process.cwd(), "src/nyxui/components/CyberpunkCard.tsx");
-const CyberpunkCardSource = fs.readFileSync(componentPath, "utf8");
-
-const demoPath = path.join(process.cwd(), "src/nyxui/demos/CyberpunkCardDemo.tsx");
-const CyberpunkCardDemoSource = fs.readFileSync(demoPath, "utf8");
+import CyberpunkCardSource from '!!raw-loader!@/nyxui/components/CyberpunkCard.tsx';
+import CyberpunkCardDemoSource from '!!raw-loader!@/nyxui/demos/CyberpunkCardDemo.tsx';
 
 export const cyberpunkCardData: ComponentData = {
   name: "Cyberpunk Card",
