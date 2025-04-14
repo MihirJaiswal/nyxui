@@ -9,12 +9,12 @@ export default function Home() {
   return (
     <>
     <Header />
-          <div className="w-full max-w-screen-2xl md:px-8 lg:px-12 xl:px-16 2xl:px-24">
-            <Hero />
-            <ComponentsDemo/>
-            <Customize />
-            <Build />
-          </div>
+      <div className="w-full max-w-screen-2xl md:px-8 lg:px-12 xl:px-16 2xl:px-24">
+        <Hero />
+        <ComponentsDemo/>
+        <Customize />
+        <Build />
+      </div>
     </>
   );
 }
