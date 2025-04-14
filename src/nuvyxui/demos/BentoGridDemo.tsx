@@ -90,7 +90,7 @@ export const BentoGridDemo = () => {
                       </div>
                     </div>
                     <div className="mt-4">
-                      <span className="text-white">nuvyx UI</span>
+                      <span className="text-white">Nuvyx UI</span>
                     </div>
                   </div>
                 </CyberpunkCard>
