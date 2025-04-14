@@ -116,7 +116,7 @@ export const themes: ThemeOption[] = [
   },
   {
     id: "nuvyx",
-    name: "nuvyx",
+    name: "Nuvyx",
     description: "A cyberpunk theme with purple accents",
     cardBg: "bg-[#0f0f13] dark:bg-[#0f0f13]",
     cardBorder: "border border-[#2a2a3a] dark:border-[#2a2a3a]",
