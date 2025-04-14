@@ -16,14 +16,14 @@ export async function generateMetadata({ params }: { params: Promise<{ component
       openGraph: {
         title: 'Nuvyx UI Components',
         description: 'Modern UI components for building beautiful Next.js applications',
-        url: 'https://nuvyx-ui.com/components',
+        url: 'https://nuvyxui.vercel.app/components',
       },
       twitter: {
         title: 'Nuvyx UI Components',
         description: 'Modern UI components for building beautiful Next.js applications',
       },
       alternates: {
-        canonical: 'https://nuvyx-ui.com/components',
+        canonical: 'https://nuvyxui.vercel.app/components',
       },
     };
   }
@@ -51,14 +51,14 @@ export async function generateMetadata({ params }: { params: Promise<{ component
     openGraph: {
       title: `${componentName} - Nuvyx UI`,
       description: componentDescription,
-      url: `https://nuvyx-ui.com/components/${component}`,
+      url: `https://nuvyxui.vercel.app/components/${component}`,
     },
     twitter: {
       title: `${componentName} - Nuvyx UI`,
       description: componentDescription,
     },
     alternates: {
-      canonical: `https://nuvyx-ui.com/components/${component}`,
+      canonical: `https://nuvyxui.vercel.app/components/${component}`,
     },
   };
 }

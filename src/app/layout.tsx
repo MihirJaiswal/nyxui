@@ -16,7 +16,7 @@ const openSans = Open_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://nuvyx-ui.com"),
+  metadataBase: new URL("https://nuvyxui.vercel.app/"),
   title: "Nuvyx UI",
   description: "Nuvyx UI is a premium collection of customizable UI components for Next.js applications. Built with Tailwind CSS, Framer Motion, and TypeScript for responsive, accessible, and beautiful interfaces.",
   keywords: ["Next.js components", "React UI library", "Tailwind CSS components", "TypeScript UI kit", "Framer Motion animations", "nuvyx UI", "frontend development", "web components"],
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   },
   category: "Web Development",
   alternates: {
-    canonical: "https://nuvyx-ui.com",
+    canonical: "https://nuvyxui.vercel.app/",
   },
 };
 

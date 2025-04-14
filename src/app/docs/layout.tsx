@@ -2,7 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://nuvyx-ui.com'),
+  metadataBase: new URL('https://nuvyxui.vercel.app/'),
   title: 'Docs | Nuvyx UI',
   description: 'Comprehensive documentation for Nuvyx UI - a premium collection of responsive, accessible React components built with Tailwind CSS, Framer Motion, and TypeScript for modern Next.js applications.',
   keywords: [
@@ -34,12 +34,12 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: 'https://nuvyx-ui.com/docs',
+    canonical: 'https://nuvyxui.vercel.app/docs',
   },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://nuvyx-ui.com/docs',
+    url: 'https://nuvyxui.vercel.app/docs',
     siteName: 'Nuvyx UI Documentation',
     title: 'Nuvyx UI - Beautiful React Components for Next.js',
     description: 'Premium UI components for Next.js applications built with Tailwind CSS, Framer Motion, and TypeScript. Create stunning user interfaces with ease.',
