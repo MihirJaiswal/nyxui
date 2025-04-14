@@ -3,14 +3,9 @@ import type { ComponentData } from "@/nyxui/ComponentInterfaces";
 import { MorphingButton } from "@/nyxui/components/MorphingButton";
 import { MorphingButtonDemo } from "@/nyxui/demos/MorphingButtonDemo";
 import { ArrowRight, Bell, Check, Plus, Trash } from "lucide-react";
-import fs from "fs";
-import path from "path";
 
-const componentPath = path.join(process.cwd(), "src/nyxui/components/MorphingButton.tsx");
-const MorphingButtonSource = fs.readFileSync(componentPath, "utf8");
-
-const demoPath = path.join(process.cwd(), "src/nyxui/demos/MorphingButtonDemo.tsx");
-const MorphingButtonDemoSource = fs.readFileSync(demoPath, "utf8");
+import MorphingButtonSource from '!!raw-loader!@/nyxui/components/MorphingButton.tsx';
+import MorphingButtonDemoSource from '!!raw-loader!@/nyxui/demos/MorphingButtonDemo.tsx';
 
 export const morphingButtonData: ComponentData = {
   name: "Morphing Button",
