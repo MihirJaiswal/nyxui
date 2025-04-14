@@ -32,9 +32,9 @@ export default function IntroductionPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           <div className="md:col-span-3">
-            <h2 className="text-3xl font-bold tracking-tight mb-4">What is nuvyx UI?</h2>
+            <h2 className="text-3xl font-bold tracking-tight mb-4">What is Nuvyx UI?</h2>
             <p className="text-lg leading-7 text-gray-700 dark:text-gray-300">
-              nuvyx UI is a top-notch set of reusable components, templates, and blocks designed for seamless integration into your web projects. It focuses on offering components, blocks, and templates ideal for building landing pages and UI elements with a creative touch and meticulous design.
+              Nuvyx UI is a top-notch set of reusable components, templates, and blocks designed for seamless integration into your web projects. It focuses on offering components, blocks, and templates ideal for building landing pages and UI elements with a creative touch and meticulous design.
             </p>
           </div>
           <Separator className="md:col-span-3 my-2" />
@@ -54,7 +54,7 @@ export default function IntroductionPage() {
                   </AccordionTrigger>
                   <AccordionContent>
                     <p className='text-zinc-500 dark:text-zinc-400'>
-                    nuvyx UI offers components that are ready to be integrated into your web projects. Every component is self-contained and developed using contemporary React techniques, ensuring a smooth implementation.
+                    Nuvyx UI offers components that are ready to be integrated into your web projects. Every component is self-contained and developed using contemporary React techniques, ensuring a smooth implementation.
                     </p>
                   </AccordionContent>
                 </AccordionItem>
@@ -74,13 +74,13 @@ export default function IntroductionPage() {
                 <AccordionItem value='advanced-usage' className='py-2'>
                   <AccordionTrigger className='w-full text-left text-zinc-950 dark:text-zinc-50'>
                     <div className='flex items-center justify-between'>
-                      <div>Who can benefit from nuvyx UI?</div>
+                      <div>Who can benefit from Nuvyx UI?</div>
                       <ChevronUp className='h-4 w-4 text-zinc-950 transition-transform duration-200 group-data-expanded:-rotate-180 dark:text-zinc-50' />
                     </div>
                   </AccordionTrigger>
                   <AccordionContent>
                     <p className='text-zinc-500 dark:text-zinc-400'>
-                    nuvyx UI is tailored for web developers and designers of any proficiency who want to create interactive and creative UI elements.
+                    Nuvyx UI is tailored for web developers and designers of any proficiency who want to create interactive and creative UI elements.
                     </p>
                   </AccordionContent>
                 </AccordionItem>
@@ -120,11 +120,11 @@ export default function IntroductionPage() {
               
               <div className="space-y-4">
                 <p className="leading-7">
-                  nuvyx UI exemplifies this belief by offering reusable React components that are both highly functional and visually appealing. Our dedication to quality design ensures that our components are sturdy, refined, and dependable.
+                  Nuvyx UI exemplifies this belief by offering reusable React components that are both highly functional and visually appealing. Our dedication to quality design ensures that our components are sturdy, refined, and dependable.
                 </p>
 
                 <p className="leading-7">
-                Ultimately, at nuvyx UI, our commitment to crafting a vibrant and creative digital experience is evident in every design decision. We infuse every detail with excellence and care, ensuring users feel both inspired and secure.
+                Ultimately, at Nuvyx UI, our commitment to crafting a vibrant and creative digital experience is evident in every design decision. We infuse every detail with excellence and care, ensuring users feel both inspired and secure.
                 </p>
                 
                 <div className="flex items-center gap-2 mt-6">

@@ -77,7 +77,7 @@ export default function Header() {
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
             <span className="hidden md:block text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80">
-              nuvyx UI
+              Nuvyx UI
             </span>
           </Link>
           <nav className="hidden lg:flex items-center space-x-1 ml-8">
@@ -175,7 +175,7 @@ export default function Header() {
                       </div>
                       <div>
                         <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80 text-base font-bold">
-                          nuvyx <span className="text-purple-600 dark:text-purple-400">UI</span>
+                          Nuvyx <span className="text-purple-600 dark:text-purple-400">UI</span>
                         </span>
                       </div>
                     </SheetTitle>

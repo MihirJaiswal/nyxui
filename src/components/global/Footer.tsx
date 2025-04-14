@@ -21,7 +21,7 @@ const Footer = () => {
                 </svg>
               </div>
               <span className="font-bold text-gray-800 dark:text-gray-100">
-                nuvyx <span className="text-purple-700 dark:text-purple-400">UI</span>
+                Nuvyx <span className="text-purple-700 dark:text-purple-400">UI</span>
               </span>
             </Link>
           </div>

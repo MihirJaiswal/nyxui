@@ -319,7 +319,7 @@ Connection secured. Press ENTER to continue...
               <MorphingBlob theme="secondary" size="lg" pulse glowIntensity={4} effect3D>
                 <div className="text-center flex flex-col items-center justify-center p-6">
                   <Image src="/logo.png" alt="Profile" width={200} height={200} quality={100} loading="lazy" className="rounded-full w-12 h-12" />
-                  <h4 className="text-xl font-bold mb-2">nuvyxUI</h4>
+                  <h4 className="text-xl font-bold mb-2">NuvyxUI</h4>
                   <p className="text-sm opacity-90 max-w-[180px]">Build awesome UI.</p>
                 </div>
               </MorphingBlob>
