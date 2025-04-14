@@ -1,14 +1,9 @@
 import type { ComponentData } from "@/nyxui/ComponentInterfaces"
 import { AnimatedGradientBg } from "@/nyxui/components/AnimatedGradientBg"
 import { AnimatedGradientBgDemo } from "@/nyxui/demos/AnimatedGradientBgDemo"
-import fs from "fs"
-import path from "path"
 
-const componentPath = path.join(process.cwd(), "src/nyxui/components/AnimatedGradientBg.tsx")
-const AnimatedGradientBgSource = fs.readFileSync(componentPath, "utf8")
-
-const demoPath = path.join(process.cwd(), "src/nyxui/demos/AnimatedGradientBgDemo.tsx")
-const AnimatedGradientBgDemoSource = fs.readFileSync(demoPath, "utf8")
+import AnimatedGradientBgSource from '!!raw-loader!@/nyxui/components/AnimatedGradientBg.tsx';
+import AnimatedGradientBgDemoSource from '!!raw-loader!@/nyxui/demos/AnimatedGradientBgDemo.tsx'; 
 
 export const animatedGradientBgData: ComponentData = {
   name: "Animated Gradient Background",

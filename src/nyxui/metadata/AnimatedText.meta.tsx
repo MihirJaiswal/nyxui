@@ -1,14 +1,9 @@
 import type { ComponentData } from "@/nyxui/ComponentInterfaces";
 import { AnimateText } from "@/nyxui/components/AnimatedText";
 import { AnimationTextDemo } from "@/nyxui/demos/AnimatedTextDemo";
-import fs from "fs";
-import path from "path";
 
-const componentPath = path.join(process.cwd(), "src/nyxui/components/AnimatedText.tsx");
-const AnimatedTextSource = fs.readFileSync(componentPath, "utf8");
-
-const demoPath = path.join(process.cwd(), "src/nyxui/demos/AnimatedTextDemo.tsx");
-const AnimatedTextDemoSource = fs.readFileSync(demoPath, "utf8");
+import AnimatedTextSource from '!!raw-loader!@/nyxui/components/AnimatedText.tsx';
+import AnimatedTextDemoSource from '!!raw-loader!@/nyxui/demos/AnimatedTextDemo.tsx';
 
 export const animatedTextData: ComponentData = {
   name: "Animated Text",

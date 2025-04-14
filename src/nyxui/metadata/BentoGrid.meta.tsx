@@ -1,14 +1,8 @@
 import React from "react";
 import type { ComponentData } from "@/nyxui/ComponentInterfaces";
 import { BentoGridDemo } from "@/nyxui/demos/BentoGridDemo";
-import fs from "fs";
-import path from "path";
-
-const componentPath = path.join(process.cwd(), "src/nyxui/components/BentoGrid.tsx");
-const BentoGridSource = fs.readFileSync(componentPath, "utf8");
-
-const demoPath = path.join(process.cwd(), "src/nyxui/demos/BentoGridDemo.tsx");
-const BentoGridDemoSource = fs.readFileSync(demoPath, "utf8");
+import BentoGridSource from '!!raw-loader!@/nyxui/components/BentoGrid.tsx';
+import BentoGridDemoSource from '!!raw-loader!@/nyxui/demos/BentoGridDemo.tsx';
 
 export const bentoGridData: ComponentData = {
   name: "Bento Grid",

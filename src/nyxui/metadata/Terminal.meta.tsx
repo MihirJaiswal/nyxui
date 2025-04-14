@@ -1,15 +1,10 @@
 import type { ComponentData } from "@/nyxui/ComponentInterfaces";
 import TerminalDemo from "@/nyxui/demos/TerminalDemo";
-import fs from "fs";
 import { Coffee, Heart, Rocket } from "lucide-react";
-import path from "path";
 import InteractiveTerminal from "../components/Terminal";
 
-const componentPath = path.join(process.cwd(), "src/nyxui/components/Terminal.tsx");
-const TerminalSource = fs.readFileSync(componentPath, "utf8");
-
-const demoPath = path.join(process.cwd(), "src/nyxui/demos/TerminalDemo.tsx");
-const TerminalDemoSource = fs.readFileSync(demoPath, "utf8");
+import TerminalSource from '!!raw-loader!@/nyxui/components/Terminal.tsx';
+import TerminalDemoSource from '!!raw-loader!@/nyxui/demos/TerminalDemo.tsx';
 
 export const interactiveTerminalData: ComponentData = {
   name: "Interactive Terminal",

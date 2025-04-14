@@ -2,21 +2,16 @@ import React from "react";
 import type { ComponentData } from "@/nyxui/ComponentInterfaces";
 import { GitHubRepoCard } from "../components/GithubRepoCard";
 import GitHubRepoCardDemo from "../demos/GithubRepoCardDemo";
-import fs from "fs";
-import path from "path";
 
-const componentPath = path.join(process.cwd(), "src/nyxui/components/GithubRepoCard.tsx");
-const githubRepoCardSource = fs.readFileSync(componentPath, "utf8");
-
-const demoPath = path.join(process.cwd(), "src/nyxui/demos/GithubRepoCardDemo.tsx");
-const githubRepoCardDemoSource = fs.readFileSync(demoPath, "utf8");
+import GithubRepoCardSource from '!!raw-loader!@/nyxui/components/GithubRepoCard.tsx';
+import GithubRepoCardDemoSource from '!!raw-loader!@/nyxui/demos/GithubRepoCardDemo.tsx';
 
 export const githubRepoCardData: ComponentData = {
   name: "GitHub Repo Card",
   description: "Beautiful GitHub repository cards with customizable themes, activity graphs, and real-time data fetching.",
   preview: <GitHubRepoCardDemo />,
-  usage: githubRepoCardDemoSource,
-  componentCode: githubRepoCardSource,
+  usage: GithubRepoCardDemoSource,
+  componentCode: GithubRepoCardSource,
   dependencies: [{
     name: "UI Components",
     description: "Various UI components from the shadcn/ui library",

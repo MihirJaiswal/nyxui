@@ -1,14 +1,9 @@
 import type { ComponentData } from "@/nyxui/ComponentInterfaces";
 import RevealCard from "@/nyxui/components/RevealCard";
 import RevealCardDemo from "@/nyxui/demos/RevealCardDemo";
-import fs from "fs";
-import path from "path";
 
-const componentPath = path.join(process.cwd(), "src/nyxui/components/RevealCard.tsx");
-const CardSource = fs.readFileSync(componentPath, "utf8");
-
-const demoPath = path.join(process.cwd(), "src/nyxui/demos/RevealCardDemo.tsx");
-const CardDemoSource = fs.readFileSync(demoPath, "utf8");
+import CardSource from '!!raw-loader!@/nyxui/components/RevealCard.tsx';
+import CardDemoSource from '!!raw-loader!@/nyxui/demos/RevealCardDemo.tsx';
 
 export const revealCardData: ComponentData = {
   name: "Reveal Card",

@@ -1,14 +1,9 @@
 import type { ComponentData } from "@/nyxui/ComponentInterfaces"
 import { AnimatedCodeBlock } from "@/nyxui/components/AnimatedCodeBlock"
 import { AnimatedCodeBlockDemo } from "@/nyxui/demos/AnimatedCodeBlockDemo"
-import fs from "fs";
-import path from "path";
 
-const componentPath = path.join(process.cwd(), "src/nyxui/components/AnimatedCodeBlock.tsx");
-const AnimatedCodeBlockSource = fs.readFileSync(componentPath, "utf8");
-
-const demoPath = path.join(process.cwd(), "src/nyxui/demos/AnimatedCodeBlockDemo.tsx");
-const AnimatedCodeBlockDemoSource = fs.readFileSync(demoPath, "utf8");
+import AnimatedCodeBlockSource from '!!raw-loader!@/nyxui/components/AnimatedCodeBlock.tsx';
+import AnimatedCodeBlockDemoSource from '!!raw-loader!@/nyxui/demos/AnimatedCodeBlockDemo.tsx';
 
 export const animatedCodeBlockData: ComponentData = {
   name: "Animated Code Block",

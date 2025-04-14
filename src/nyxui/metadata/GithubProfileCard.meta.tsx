@@ -2,21 +2,16 @@ import React from "react";
 import type { ComponentData } from "@/nyxui/ComponentInterfaces";
 import { GitHubProfileCard } from "../components/GithubProfileCard";
 import GitHubProfileCardDemo from "../demos/GithubProfileCardDemo";
-import fs from "fs";
-import path from "path";
 
-const componentPath = path.join(process.cwd(), "src/nyxui/components/GithubProfileCard.tsx");
-const githubProfileCardSource = fs.readFileSync(componentPath, "utf8");
-
-const demoPath = path.join(process.cwd(), "src/nyxui/demos/GithubProfileCardDemo.tsx");
-const githubProfileCardDemoSource = fs.readFileSync(demoPath, "utf8");
+import GithubProfileCardSource from '!!raw-loader!@/nyxui/components/GithubProfileCard.tsx';
+import GithubProfileCardDemoSource from '!!raw-loader!@/nyxui/demos/GithubProfileCardDemo.tsx';
 
 export const githubProfileCardData: ComponentData = {
   name: "GitHub Profile Card",
   description: "Beautiful GitHub profile cards with customizable themes, activity graphs, and real-time data fetching.",
   preview: <GitHubProfileCardDemo />,
-  usage: githubProfileCardDemoSource,
-  componentCode: githubProfileCardSource,
+  usage: GithubProfileCardDemoSource,
+  componentCode: GithubProfileCardSource,
   dependencies: [{
     name: "UI Components",
     description: "Various UI components from the shadcn/ui library",

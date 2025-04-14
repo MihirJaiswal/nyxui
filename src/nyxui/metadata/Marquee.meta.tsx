@@ -2,15 +2,10 @@ import React from "react";
 import type { ComponentData } from "@/nyxui/ComponentInterfaces";
 import { Marquee } from "@/nyxui/components/Marquee";
 import { MarqueeDemo } from "@/nyxui/demos/MarqueeDemo";
-import fs from "fs";
-import path from "path";
 import Image from "next/image";
 
-const componentPath = path.join(process.cwd(), "src/nyxui/components/Marquee.tsx");
-const MarqueeSource = fs.readFileSync(componentPath, "utf8");
-
-const demoPath = path.join(process.cwd(), "src/nyxui/demos/MarqueeDemo.tsx");
-const MarqueeDemoSource = fs.readFileSync(demoPath, "utf8");
+import MarqueeSource from '!!raw-loader!@/nyxui/components/Marquee.tsx';
+import MarqueeDemoSource from '!!raw-loader!@/nyxui/demos/MarqueeDemo.tsx';
 
 export const marqueeData: ComponentData = {
   name: "Marquee",

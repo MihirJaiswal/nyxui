@@ -1,14 +1,9 @@
 import type { ComponentData } from "@/nyxui/ComponentInterfaces"
 import { MatrixCodeRain } from "@/nyxui/components/MatrixCodeRain"
 import { MatrixCodeRainDemo } from "@/nyxui/demos/MatrixCodeRainDemo"
-import fs from "fs";
-import path from "path";
 
-const componentPath = path.join(process.cwd(), "src/nyxui/components/MatrixCodeRain.tsx");
-const MatrixCodeRainSource = fs.readFileSync(componentPath, "utf8");
-
-const demoPath = path.join(process.cwd(), "src/nyxui/demos/MatrixCodeRainDemo.tsx");
-const MatrixCodeRainDemoSource = fs.readFileSync(demoPath, "utf8");
+import MatrixCodeRainSource from '!!raw-loader!@/nyxui/components/MatrixCodeRain.tsx';
+import MatrixCodeRainDemoSource from '!!raw-loader!@/nyxui/demos/MatrixCodeRainDemo.tsx';
 
 export const matrixCodeRainData: ComponentData = {
   name: "Matrix Code Rain",

@@ -2,14 +2,9 @@ import type { ComponentData } from "@/nyxui/ComponentInterfaces"
 import { GlitchButtonDemo } from "@/nyxui/demos/GlitchButtonDemo"
 import { GlitchButton } from "@/nyxui/components/GlitchButton"
 import { ArrowRight, Download, Info, Mail, Power, ShieldCheck } from "lucide-react"
-import fs from "fs";
-import path from "path";
 
-const componentPath = path.join(process.cwd(), "src/nyxui/components/GlitchButton.tsx");
-const GlitchButtonSource = fs.readFileSync(componentPath, "utf8");
-
-const demoPath = path.join(process.cwd(), "src/nyxui/demos/GlitchButtonDemo.tsx");
-const GlitchButtonDemoSource = fs.readFileSync(demoPath, "utf8");
+import GlitchButtonSource from '!!raw-loader!@/nyxui/components/GlitchButton.tsx';
+import GlitchButtonDemoSource from '!!raw-loader!@/nyxui/demos/GlitchButtonDemo.tsx';
 
 export const glitchButtonData: ComponentData = {
   name: "Glitch Button",

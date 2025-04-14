@@ -2,14 +2,9 @@ import type { ComponentData } from "@/nyxui/ComponentInterfaces"
 import { ImageSlider, ImageLayer, Divider } from "@/nyxui/components/ImageComparison"
 import { ImageComparisonDemo } from "@/nyxui/demos/ImageComparisonDemo"
 import { ArrowUpDown } from "lucide-react"
-import fs from "fs";
-import path from "path";
 
-const componentPath = path.join(process.cwd(), "src/nyxui/components/ImageComparison.tsx");
-const ImageComparisonSource = fs.readFileSync(componentPath, "utf8");
-
-const demoPath = path.join(process.cwd(), "src/nyxui/demos/ImageComparisonDemo.tsx");
-const ImageComparisonDemoSource = fs.readFileSync(demoPath, "utf8");
+import ImageComparisonSource from '!!raw-loader!@/nyxui/components/ImageComparison.tsx';
+import ImageComparisonDemoSource from '!!raw-loader!@/nyxui/demos/ImageComparisonDemo.tsx';
 
 export const imageComparisonData: ComponentData = {
   name: "Image Comparison",

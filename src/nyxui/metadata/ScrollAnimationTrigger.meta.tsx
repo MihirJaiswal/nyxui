@@ -2,14 +2,9 @@ import type { ComponentData } from "@/nyxui/ComponentInterfaces"
 import { ScrollAnimationTrigger } from "@/nyxui/components/ScrollAnimationTrigger"
 import { ScrollAnimationTriggerDemo } from "@/nyxui/demos/ScrollAnimationTriggerDemo"
 import { ArrowUp, FileBadge2, Lightbulb, Maximize, Palette, Sparkles, Star } from "lucide-react"
-import fs from "fs";
-import path from "path";
 
-const componentPath = path.join(process.cwd(), "src/nyxui/components/ScrollAnimationTrigger.tsx");
-const ScrollAnimationTriggerSource = fs.readFileSync(componentPath, "utf8");
-
-const demoPath = path.join(process.cwd(), "src/nyxui/demos/ScrollAnimationTriggerDemo.tsx");
-const ScrollAnimationTriggerDemoSource = fs.readFileSync(demoPath, "utf8");
+import ScrollAnimationTriggerSource from '!!raw-loader!@/nyxui/components/ScrollAnimationTrigger.tsx';
+import ScrollAnimationTriggerDemoSource from '!!raw-loader!@/nyxui/demos/ScrollAnimationTriggerDemo.tsx';
 
 export const scrollAnimationTriggerData: ComponentData = {
   name: "Scroll Animation Trigger",

@@ -1,21 +1,16 @@
 import type { ComponentData } from "@/nyxui/ComponentInterfaces"
 import MSpaintDemo from "@/nyxui/demos/MSpaintDemo"
-import fs from "fs";
-import path from "path";
 
-const componentPath = path.join(process.cwd(), "src/nyxui/components/MSpaint.tsx");
-const mspaintSource = fs.readFileSync(componentPath, "utf8");
-
-const demoPath = path.join(process.cwd(), "src/nyxui/demos/MSpaintDemo.tsx");
-const mspaintDemoSource = fs.readFileSync(demoPath, "utf8");
+import MSpaintSource from '!!raw-loader!@/nyxui/components/MSpaint.tsx';
+import MSpaintDemoSource from '!!raw-loader!@/nyxui/demos/MSpaintDemo.tsx';
 
 export const mspaintData: ComponentData = {
   name: "MS Paint",
   description:
     "A customizable drawing canvas component with paint-like interface. Perfect for sketching, drawing tools, annotations, and interactive whiteboard applications. Features include brush and eraser tools, customizable color palette, and save functionality.",
   preview: <MSpaintDemo />,
-  usage: mspaintDemoSource,
-  componentCode: mspaintSource,
+  usage: MSpaintDemoSource,
+  componentCode: MSpaintSource,
   dependencies: [
     {
       name: "Lucide React",

@@ -1,14 +1,8 @@
 import type { ComponentData } from "@/nyxui/ComponentInterfaces"
 import BubbleBackground from "@/nyxui/components/BubbleBackground"
 import {BubblesBackgroundDemo} from "@/nyxui/demos/BubblesBackgroundDemo"
-import fs from "fs"
-import path from "path"
-
-const componentPath = path.join(process.cwd(), "src/nyxui/components/BubbleBackground.tsx")
-const BubbleBackgroundSource = fs.readFileSync(componentPath, "utf8")
-
-const demoPath = path.join(process.cwd(), "src/nyxui/demos/BubblesBackgroundDemo.tsx")
-const BubblesBackgroundDemoSource = fs.readFileSync(demoPath, "utf8")
+import BubbleBackgroundSource from '!!raw-loader!@/nyxui/components/BubbleBackground.tsx';
+import BubblesBackgroundDemoSource from '!!raw-loader!@/nyxui/demos/BubblesBackgroundDemo.tsx';
 
 export const bubbleBackgroundData: ComponentData = {
   name: "Bubbles Background",

@@ -1,21 +1,16 @@
 import type { ComponentData } from "@/nyxui/ComponentInterfaces"
 import CharacterSelectorDemo from "@/nyxui/demos/CharacterSelectorDemo"
-import fs from "fs";
-import path from "path";
 
-const componentPath = path.join(process.cwd(), "src/nyxui/components/CharacterSelector.tsx");
-const characterSelectorSource = fs.readFileSync(componentPath, "utf8");
-
-const demoPath = path.join(process.cwd(), "src/nyxui/demos/CharacterSelectorDemo.tsx");
-const characterSelectorDemoSource = fs.readFileSync(demoPath, "utf8");
+import CharacterSelectorSource from '!!raw-loader!@/nyxui/components/CharacterSelector.tsx';
+import CharacterSelectorDemoSource from '!!raw-loader!@/nyxui/demos/CharacterSelectorDemo.tsx';
 
 export const characterSelectorData: ComponentData = {
   name: "Character Selector",
   description:
     "A highly customizable character selection component with grid and dialog interfaces. Perfect for game character selection, avatar pickers, user profiles, and interactive galleries. Features include search functionality, multi-select mode, confirmation dialogs, and animated transitions.",
   preview: <CharacterSelectorDemo />,
-  usage: characterSelectorDemoSource,
-  componentCode: characterSelectorSource,
+  usage: CharacterSelectorDemoSource,
+  componentCode: CharacterSelectorSource,
   dependencies: [
     {
       name: "UI Components",

@@ -1,14 +1,9 @@
 import type { ComponentData } from "@/nyxui/ComponentInterfaces"
 import { ImageScanner } from "@/nyxui/components/ImageScanner"
 import { ImageScannerDemo } from "@/nyxui/demos/ImageScannerDemo"
-import fs from "fs"
-import path from "path"
 
-const componentPath = path.join(process.cwd(), "src/nyxui/components/ImageScanner.tsx")
-const ImageScannerSource = fs.readFileSync(componentPath, "utf8")
-
-const demoPath = path.join(process.cwd(), "src/nyxui/demos/ImageScannerDemo.tsx")
-const ImageScannerDemoSource = fs.readFileSync(demoPath, "utf8")
+import ImageScannerSource from '!!raw-loader!@/nyxui/components/ImageScanner.tsx';
+import ImageScannerDemoSource from '!!raw-loader!@/nyxui/demos/ImageScannerDemo.tsx';
 
 export const imageScannerData: ComponentData = {
   name: "Image Scanner",
