@@ -2,14 +2,9 @@ import React from "react";
 import type { ComponentData } from "@/nyxui/ComponentInterfaces";
 import { GradientButton } from "@/nyxui/components/GradientButton";
 import { GradientButtonDemo } from "@/nyxui/demos/GradientButtonDemo";
-import fs from "fs";
-import path from "path";
 
-const componentPath = path.join(process.cwd(), "src/nyxui/components/GradientButton.tsx");
-const GradientButtonSource = fs.readFileSync(componentPath, "utf8");
-
-const demoPath = path.join(process.cwd(), "src/nyxui/demos/GradientButtonDemo.tsx");
-const GradientButtonDemoSource = fs.readFileSync(demoPath, "utf8");
+import GradientButtonSource from '!!raw-loader!@/nyxui/components/GradientButton.tsx';
+import GradientButtonDemoSource from '!!raw-loader!@/nyxui/demos/GradientButtonDemo.tsx';
 
 export const gradientButtonData: ComponentData = {
   name: "Gradient Button",
