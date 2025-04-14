@@ -11,29 +11,12 @@ export default function Home() {
   return (
     <>
     <Header />
-      <div className="relative w-full flex flex-col items-center">
-        <AnimatedGradientBg
-          pattern="mesh"
-          blur={80}
-          speed={0.5}
-          opacity={0.5}
-          position="fixed"
-          zIndex={0}
-          animate={true}
-          size="full"
-          patternIntensity={1.5}
-          interactive={true}
-          colors={darkColors}
-        />
-        <div className="relative z-10 w-full flex flex-col items-center">
           <div className="w-full max-w-screen-2xl md:px-8 lg:px-12 xl:px-16 2xl:px-24">
             <Hero />
             <ComponentsDemo/>
             <Customize />
             <Build />
           </div>
-        </div>
-      </div>
     </>
   );
 }
