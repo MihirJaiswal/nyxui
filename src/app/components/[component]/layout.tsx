@@ -11,15 +11,15 @@ export async function generateMetadata({ params }: { params: Promise<{ component
   
   if (!component) {
     return {
-      title: 'nuvyx UI Components',
+      title: 'Nuvyx UI Components',
       description: 'Modern UI components for building beautiful Next.js applications',
       openGraph: {
-        title: 'nuvyx UI Components',
+        title: 'Nuvyx UI Components',
         description: 'Modern UI components for building beautiful Next.js applications',
         url: 'https://nuvyx-ui.com/components',
       },
       twitter: {
-        title: 'nuvyx UI Components',
+        title: 'Nuvyx UI Components',
         description: 'Modern UI components for building beautiful Next.js applications',
       },
       alternates: {
@@ -35,26 +35,26 @@ export async function generateMetadata({ params }: { params: Promise<{ component
     
   if (!componentsData || !(component in componentsData)) {
     return {
-      title: 'Component Not Found | nuvyx UI',
-      description: 'The requested component could not be found in the nuvyx UI library.',
+      title: 'Component Not Found | Nuvyx UI',
+      description: 'The requested component could not be found in the Nuvyx UI library.',
     };
   }
   
   const componentData = componentsData[component as keyof typeof componentsData];
   const componentName = componentData?.name || formattedName;
   const componentDescription = componentData?.description || 
-    `Learn how to use the ${formattedName} component from nuvyx UI. API references, examples, and customization options for building beautiful Next.js applications.`;
+    `Learn how to use the ${formattedName} component from Nuvyx UI. API references, examples, and customization options for building beautiful Next.js applications.`;
   
   return {
-    title: `${componentName} | nuvyx UI`,
+    title: `${componentName} | Nuvyx UI`,
     description: componentDescription,
     openGraph: {
-      title: `${componentName} - nuvyx UI`,
+      title: `${componentName} - Nuvyx UI`,
       description: componentDescription,
       url: `https://nuvyx-ui.com/components/${component}`,
     },
     twitter: {
-      title: `${componentName} - nuvyx UI`,
+      title: `${componentName} - Nuvyx UI`,
       description: componentDescription,
     },
     alternates: {
