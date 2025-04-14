@@ -2,14 +2,9 @@ import type { ComponentData } from "@/nyxui/ComponentInterfaces"
 import { LiquidMetalButtonDemo } from "@/nyxui/demos/LiquidMetalButtonDemo"
 import { LiquidMetalButton } from "@/nyxui/components/LiquidMetalButton"
 import { ArrowRight, Download, Leaf, Mail, ShieldCheck, Sparkles, Star } from "lucide-react"
-import fs from "fs";
-import path from "path";
 
-const componentPath = path.join(process.cwd(), "src/nyxui/components/LiquidMetalButton.tsx");
-const LiquidMetalButtonSource = fs.readFileSync(componentPath, "utf8");
-
-const demoPath = path.join(process.cwd(), "src/nyxui/demos/LiquidMetalButtonDemo.tsx");
-const LiquidMetalButtonDemoSource = fs.readFileSync(demoPath, "utf8");
+import LiquidMetalButtonSource from '!!raw-loader!@/nyxui/components/LiquidMetalButton.tsx';
+import LiquidMetalButtonDemoSource from '!!raw-loader!@/nyxui/demos/LiquidMetalButtonDemo.tsx';
 
 export const liquidMetalButtonData: ComponentData = {
   name: "Liquid Metal Button",

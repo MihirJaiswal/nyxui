@@ -3,14 +3,9 @@ import type { ComponentData } from "@/nyxui/ComponentInterfaces";
 import { DynamicRipple } from "@/nyxui/components/DynamicRipple";
 import { DynamicRippleDemo } from "@/nyxui/demos/DynamicRippleDemo";
 import { Check, Droplets, Palette, ShieldCheck } from "lucide-react";
-import fs from "fs";
-import path from "path";
 
-const componentPath = path.join(process.cwd(), "src/nyxui/components/DynamicRipple.tsx");
-const DynamicRippleSource = fs.readFileSync(componentPath, "utf8");
-
-const demoPath = path.join(process.cwd(), "src/nyxui/demos/DynamicRippleDemo.tsx");
-const DynamicRippleDemoSource = fs.readFileSync(demoPath, "utf8");
+import DynamicRippleSource from '!!raw-loader!@/nyxui/components/DynamicRipple.tsx';
+import DynamicRippleDemoSource from '!!raw-loader!@/nyxui/demos/DynamicRippleDemo.tsx';
 
 export const dynamicRippleData: ComponentData = {
   name: "Dynamic Ripple",

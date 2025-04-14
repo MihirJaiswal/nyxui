@@ -2,14 +2,9 @@ import type { ComponentData } from "@/nyxui/ComponentInterfaces"
 import { MorphingBlob } from "@/nyxui/components/MorphingBlob"
 import { MorphingBlobDemo } from "@/nyxui/demos/MorphingBlobDemo"
 import { Atom, Brain, Rocket, Shield, Star, Zap } from "lucide-react"
-import fs from "fs";
-import path from "path";
 
-const componentPath = path.join(process.cwd(), "src/nyxui/components/MorphingBlob.tsx");
-const MorphingBlobSource = fs.readFileSync(componentPath, "utf8");
-
-const demoPath = path.join(process.cwd(), "src/nyxui/demos/MorphingBlobDemo.tsx");
-const MorphingBlobDemoSource = fs.readFileSync(demoPath, "utf8");
+import MorphingBlobSource from '!!raw-loader!@/nyxui/components/MorphingBlob.tsx';
+import MorphingBlobDemoSource from '!!raw-loader!@/nyxui/demos/MorphingBlobDemo.tsx';
 
 export const morphingBlobData: ComponentData = {
   name: "Morphing Blob",

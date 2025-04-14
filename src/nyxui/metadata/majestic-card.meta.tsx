@@ -1,13 +1,8 @@
 import type { ComponentData } from "@/nyxui/ComponentInterfaces"
 import { MajesticCardDemo } from "@/nyxui/demos/MajesticCardDemo"
-import fs from "fs";
-import path from "path";
 
-const componentPath = path.join(process.cwd(), "src/nyxui/components/MajesticCard.tsx");
-const MajesticCardSource = fs.readFileSync(componentPath, "utf8");
-
-const demoPath = path.join(process.cwd(), "src/nyxui/demos/MajesticCardDemo.tsx");
-const MajesticCardDemoSource = fs.readFileSync(demoPath, "utf8");
+import MajesticCardSource from '!!raw-loader!@/nyxui/components/MajesticCard.tsx';
+import MajesticCardDemoSource from '!!raw-loader!@/nyxui/demos/MajesticCardDemo.tsx';
 
 
 export const MajesticCardData: ComponentData = {
