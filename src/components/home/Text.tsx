@@ -97,9 +97,9 @@ const Text = () => {
           Increase productivity with our collection of professionally crafted components and templates.
           </p>
           
-          <div className="mt-10 w-full flex flex-col sm:flex-row items-center gap-4">
+          <div className="mt-10 w-full flex sm:flex-row items-center gap-4">
             <Link href="/components" rel="noopener noreferrer">
-            <Rbutton><span>Get started</span> <ChevronRight className='ml-2 h-3 w-5' /></Rbutton>
+            <Rbutton><span>Browse</span> <ChevronRight className='ml-2 h-3 w-5' /></Rbutton>
             </Link>
             <Link 
               href="https://github.com/MihirJaiswal/nuvyxui" 
