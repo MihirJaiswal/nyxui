@@ -10,6 +10,7 @@ import { MorphingBlob } from "@/nuvyxui/components/MorphingBlob";
 import Image from "next/image";
 import Link from "next/link";
 import InteractiveTerminal from "@/nuvyxui/components/Terminal";
+import { Rbutton } from "../ui/Rbutton";
 
 export const ComponentsDemo = () => {
   return (
@@ -330,10 +331,10 @@ Connection secured. Press ENTER to continue...
 
       <div className="flex items-center justify-center my-16">
         <Link href="/components" rel="noopener noreferrer">
-          <button className="flex items-center gap-2 bg-white py-2.5 px-6 rounded-lg shadow-md text-gray-800 font-medium transition-all duration-200 hover:bg-gray-100 hover:shadow-lg hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2">
+          <Rbutton className="flex items-center gap-2 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2">
             All Components
             <ChevronRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-0.5" />
-          </button>
+          </Rbutton>
         </Link>
       </div>
     </div>
