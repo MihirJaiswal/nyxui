@@ -22,6 +22,7 @@ import { bentoGridData } from "./metadata/BentoGrid.meta";
 import { imageComparisonData } from "./metadata/ImageComparison.meta";
 import { marqueeData } from "./metadata/Marquee.meta";
 import { imageScannerData } from "./metadata/ImageScanner.meta";
+import { lampHeadingData } from "./metadata/LampHeading.meta";
 
 export const componentsData = {
   "gradient-button": gradientButtonData,
@@ -48,4 +49,5 @@ export const componentsData = {
   "image-comparison": imageComparisonData,
   "marquee": marqueeData,
   "image-scanner": imageScannerData,
+  "lamp-heading": lampHeadingData,
 };

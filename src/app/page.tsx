@@ -1,4 +1,3 @@
-"use client"
 import Header from "@/components/global/Header";
 import { Hero } from "@/components/home/Hero";
 import Customize from "@/components/home/Customize";

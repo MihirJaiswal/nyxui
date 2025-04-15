@@ -123,6 +123,11 @@ export const componentsData = {
       title: "Image Scanner",
       description: "A dynamic component that applies interactive scanning effects to images.",
       image: "/assets/images/showcase/image-scanner.png"
+    },
+    "lamp-heading": {
+      title: "Lamp Heading",
+      description: "An elegant section heading with a customizable gradient underline and a subtle lamp-like glow effect with a nice little animation.",
+      image: "/assets/images/showcase/lamp-heading.png"
     }
   },
   "templates": {}
