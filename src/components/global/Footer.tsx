@@ -8,7 +8,7 @@ const navLinks = [
 
 const Footer = () => {
   return (
-    <footer className="bg-white dark:bg-black text-gray-600 dark:text-gray-400 py-6 px-4 md:px-8 font-sans border-t border-gray-200 dark:border-zinc-900">
+    <footer className="text-gray-600 dark:text-gray-400 py-6 px-4 md:px-8 font-sans border-t border-gray-200 dark:border-zinc-900">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between relative">
           <div className="flex items-center mb-4 md:mb-0">

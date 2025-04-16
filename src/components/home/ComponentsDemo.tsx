@@ -15,10 +15,10 @@ import { Rbutton } from "../ui/Rbutton";
 export const ComponentsDemo = () => {
   return (
     <div className="container max-w-7xl mx-auto px-6">
-      <h2 className="mb-2 text-center text-3xl md:text-5xl font-bold leading-[1.2] tracking-tighter text-foreground">
+      <h2 className="mb-2 text-center text-5xl font-bold leading-[1.2] tracking-tighter text-foreground">
         Component Demos
       </h2>
-      <h3 className="mx-auto mb-8 text-balance text-center md:text-lg tracking-tight text-gray-700 dark:text-gray-300 mb-12">
+      <h3 className="mx-auto mb-8 mt-2 text-balance text-center text-base md:text-lg font-medium tracking-tight text-foreground/80">
         Here are some of the components that you can use to build your landing pages.
       </h3>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -27,7 +27,7 @@ export const ComponentsDemo = () => {
           enableDescription={false}
           enableTitle={false}
           height="h-full"
-          className="lg:col-span-2 rounded-2xl overflow-hidden shadow-xl transition-all duration-500 hover:shadow-2xl hover:scale-[1.02] border border-zinc-200/50 dark:border-zinc-800/50"
+          className="lg:col-span-2 rounded-2xl overflow-hidden shadow-xl transition-all duration-500 hover:shadow-2xl hover:scale-[1.02] border border-zinc-200/50 dark:border-zinc-800/50 tracking-wider"
           title="Animated Gradient Background"
           description="Customizable gradient backgrounds with mesh pattern. Interactive and visually striking."
           component={
@@ -48,8 +48,8 @@ export const ComponentsDemo = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
               <div className="relative z-10 h-full flex flex-col justify-center items-center text-white p-8">
-                <Sparkles className="mb-4 h-16 w-16 drop-shadow-lg animate-pulse text-white/90" />
-                <span className="text-lg md:text-2xl text-center font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white to-purple-200">
+                <Sparkles className="mb-4 h-10 w-10 drop-shadow-lg animate-pulse text-white/90" />
+                <span className="text-lg md:text-3xl text-center font-bold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-white to-purple-200">
                   ANIMATED GRADIENT
                 </span>
                 <p className="mt-2 text-sm text-white/80 text-center max-w-xs">
@@ -82,7 +82,7 @@ export const ComponentsDemo = () => {
             >
               <div className="text-center">
                 <Zap className="h-10 w-10 mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-2">Interactive Ripple Effect</h3>
+                <h3 className="text-xl font-bold mb-2 tracking-wide">Interactive Ripple Effect</h3>
                 <p className="text-sm opacity-70">Move your cursor to create dynamic ripples</p>
               </div>
             </DynamicRipple>

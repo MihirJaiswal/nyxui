@@ -37,11 +37,13 @@ export const Hero = () => {
       <main className="flex-1 w-full mx-auto z-10">
         <section className="space-y-8 pb-12 pt-16 md:pt-20" aria-label="Hero Section">
           <div className="container max-w-5xl mx-auto flex flex-col items-center justify-center text-center px-4">
-            <Badge variant="secondary" className="mb-6 px-4 py-1.5 text-sm font-medium">
-              <Sparkles className="h-3.5 w-3.5 mr-2 text-yellow-500" />
-              v1.0.0 Now Available
-            </Badge>
-
+          <Badge
+            variant="secondary"
+            className="mb-6 inline-flex items-center text-black dark:text-white gap-2 rounded-lg border border-purple-300 px-4 py-1.5 text-sm font-semibold shadow-sm dark:border-purple-800"
+          >
+            <Sparkles className="h-4 w-4 text-yellow-500 dark:text-yellow-300" />
+            v1.0.0 Now Available
+          </Badge>
             <h1 className="text-5xl lg:text-[6rem] font-black font-sans leading-tight md:leading-snug pb-4">
               <div className="flex flex-wrap items-center justify-center gap-2 md:gap-4">
               <motion.p
@@ -101,15 +103,20 @@ export const Hero = () => {
               </div>
             </h1>
 
-            <motion.p
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="max-w-3xl mx-auto leading-normal text-gray-700 dark:text-gray-300 sm:text-xl text-center sm:leading-8"
+              className="prose dark:prose-invert mx-auto max-w-3xl text-center"
             >
-              A modern UI component library for React applications. Accessible, customizable, and developer-friendly
-              with stunning animations.
-            </motion.p>
+              <p className="font-sans text-gray-900 dark:text-gray-100 sm:text-xl tracking-wide font-medium leading-relaxed">
+                Ready to use modern components built with 
+                <span className="font-bold text-black dark:text-white"> React</span>, 
+                <span className="font-bold text-black dark:text-white"> TypeScript</span>, 
+                <span className="font-bold text-black dark:text-white"> Tailwind CSS</span>, and 
+                <span className="font-bold text-black dark:text-white"> Framer Motion</span>.
+              </p>
+            </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}

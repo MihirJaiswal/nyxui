@@ -33,13 +33,11 @@ export const Build = () => {
       const scrollSpeed = 0.03
       const scrollPosition = elapsed * scrollSpeed
       
-      const contentHeight = scrollContainer.scrollHeight - scrollContainer.clientHeight
-      
-      if (scrollContainer.scrollTop >= contentHeight - 20) {
-        scrollContainer.scrollTop = 10
-        startTime = timestamp
+      if (scrollContainer.scrollTop >= scrollContainer.scrollHeight / 2) {
+        scrollContainer.scrollTop = scrollContainer.scrollHeight / 3
+        startTime = timestamp - (scrollContainer.scrollHeight / 3) / scrollSpeed
       } else {
-        scrollContainer.scrollTop = scrollPosition % contentHeight
+        scrollContainer.scrollTop = scrollPosition % scrollContainer.scrollHeight
       }
 
       animationId = requestAnimationFrame(scroll)
@@ -129,35 +127,35 @@ export const Build = () => {
     )
   }
 
-  const generateCards = (repeat = 3): CardInfo[] => {
-    const repeatedCards: CardInfo[] = []
+  const generateCards = (repeat = 3): CardInfo[][] => {
+    const columns: CardInfo[][] = [[], [], []];
     for (let i = 0; i < repeat; i++) {
-      cardData.forEach(card => {
-        repeatedCards.push({...card, uniqueKey: `${card.id}-${i}`})
-      })
+      for (let j = 0; j < cardData.length; j++) {
+        const card = cardData[j];
+        const columnIndex = j % 3; 
+        columns[columnIndex].push({...card, uniqueKey: `${card.id}-${i}-${columnIndex}`});
+      }
     }
-    return repeatedCards
+    
+    return columns;
   }
 
-  const allCards = generateCards()
-  const halfLength = Math.ceil(allCards.length / 2)
-  const leftColumnCards = allCards.slice(0, halfLength)
-  const rightColumnCards = allCards.slice(halfLength)
+  const columnsData = generateCards(9);
 
   return (
-    <div className="relative w-full overflow-hidden text-gray-900 dark:text-white md:pt-12">
-      <div className="mx-auto max-w-7xl px-4 py-10 md:py-16 sm:px-6 lg:px-8">
-        <div className="grid md:gap-12 lg:grid-cols-12">
-          <div className="flex flex-col justify-center md:space-y-8 lg:col-span-6 pt-4">
+    <div className="relative w-full overflow-hidden text-gray-900 dark:text-white">
+      <div className="mx-auto max-w-7xl px-4 py-10 md:py-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col">
+          <div className="flex flex-col justify-center pt-4">
             <Text />
           </div>
-          <div className="relative lg:col-span-6 h-[600px] -z-1">
+          <div className="relative lg:col-span-6 h-[700px] -z-1">
             <div className="absolute left-0 top-20 hidden lg:block">
             </div>
             <div className="relative h-full w-full overflow-hidden rounded-lg">
-              <div className="absolute inset-0 rounded-lg lg:border-t border-gray-500 dark:border-gray-700">
-                <div className="absolute top-0 left-0 h-full hidden lg:block w-[1px] bg-gradient-to-b from-gray-500 dark:from-gray-700 to-transparent"></div>
-                <div className="absolute top-0 right-0 h-full hidden lg:block w-[1px] bg-gradient-to-b from-gray-500 dark:from-gray-700 to-transparent"></div>
+              <div className="absolute inset-0 rounded-lg">
+                <div className="absolute top-0 left-0 h-full hidden lg:block w-[1px] bg-gradient-to-b from-gray-300 dark:from-gray-700 to-transparent"></div>
+                <div className="absolute top-0 right-0 h-full hidden lg:block w-[1px] bg-gradient-to-b from-gray-300 dark:from-gray-700 to-transparent"></div>
               </div>
               <div
                 ref={scrollRef}
@@ -168,32 +166,34 @@ export const Build = () => {
                 }}
               >
                 <div className="pt-24 pb-24">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:px-4">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:px-4">
                     <div className="space-y-6">
-                      {leftColumnCards.map((card, index) => (
+                      {columnsData[0].map((card) => (
                         <div 
                           key={card.uniqueKey} 
-                          className="opacity-0 animate-fadeIn" 
-                          style={{ 
-                            animationDelay: `${index * 0.15}s`, 
-                            animationFillMode: 'forwards',
-                            animationDuration: '0.8s'
-                          }}
+                          className={isLoaded ? "" : "opacity-0"} 
                         >
                           {renderCard(card)}
                         </div>
                       ))}
                     </div>
-                    <div className="space-y-6 mt-12 md:mt-24">
-                      {rightColumnCards.map((card, index) => (
+                    
+                    <div className="space-y-6 mt-16 md:mt-24">
+                      {columnsData[1].map((card) => (
                         <div 
                           key={card.uniqueKey} 
-                          className="opacity-0 animate-fadeIn" 
-                          style={{ 
-                            animationDelay: `${(index + 4) * 0.15}s`, 
-                            animationFillMode: 'forwards',
-                            animationDuration: '0.8s'
-                          }}
+                          className={isLoaded ? "" : "opacity-0"}
+                        >
+                          {renderCard(card)}
+                        </div>
+                      ))}
+                    </div>
+                    
+                    <div className="space-y-6 mt-32 md:mt-36">
+                      {columnsData[2].map((card) => (
+                        <div 
+                          key={card.uniqueKey} 
+                          className={isLoaded ? "" : "opacity-0"}
                         >
                           {renderCard(card)}
                         </div>
@@ -235,21 +235,6 @@ export const Build = () => {
             transform: translateY(-100px) translateX(20px);
             opacity: 0;
           }
-        }
-        
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        .animate-fadeIn {
-          animation: fadeIn 0.8s ease-out forwards;
         }
       `}</style>
     </div>

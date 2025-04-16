@@ -42,12 +42,15 @@ export default function Header() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full transition-all duration-300 bg-white dark:bg-black border-b",
+        "sticky top-0 z-50 w-full transition-all duration-300",
         scrolled
           ? "bg-background/85 backdrop-blur-xl shadow-sm"
           : "bg-background/50 backdrop-blur-sm"
       )}
     >
+    <div className="absolute left-0 top-full h-px w-full pointer-events-none">
+      <div className="w-full h-full bg-gradient-to-r from-transparent via-zinc-300 to-transparent dark:via-zinc-600"></div>
+    </div>
       <div className="flex h-16 items-center justify-between px-4 md:px-6 lg:px-8">
         <div className="flex items-center">
           <Link
@@ -76,7 +79,7 @@ export default function Header() {
               </div>
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
-            <span className="hidden md:block text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80">
+            <span className="hidden md:block text-xl font-bold bg-clip-text text-black dark:text-white bg-gradient-to-r from-foreground to-foreground/80">
               Nuvyx UI
             </span>
           </Link>

@@ -518,9 +518,8 @@ const MusicCardThemeCustomizer = () => {
                     transition={{ duration: 0.3 }}
                   >
                     <SyntaxHighlighter
-                      language="jsx"
+                      language="tsx"
                       style={isDarkMode ? nightheme : prism}
-                      showLineNumbers
                       customStyle={{
                         margin: 0,
                         padding: '0.75rem',
