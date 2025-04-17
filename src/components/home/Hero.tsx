@@ -44,7 +44,7 @@ export const Hero = () => {
             <Sparkles className="h-4 w-4 text-yellow-500 dark:text-yellow-300" />
             v1.0.0 Now Available
           </Badge>
-            <h1 className="text-5xl lg:text-[6rem] font-black font-sans leading-tight md:leading-snug pb-4">
+            <h1 className="text-6xl lg:text-[6rem] font-black font-sans leading-tight md:leading-snug pb-4">
               <div className="flex flex-wrap items-center justify-center gap-2 md:gap-4">
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
