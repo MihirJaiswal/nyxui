@@ -19,8 +19,11 @@ import {
 } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import {prism, nightOwl } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import {  
+  duotoneLight, 
+  vscDarkPlus} from 'react-syntax-highlighter/dist/esm/styles/prism'
 import Image from "next/image"
+import { useTheme } from "next-themes"
 
 interface SpotifyCardProps {
   theme: string
@@ -29,7 +32,31 @@ interface SpotifyCardProps {
   shadow?: boolean
 }
 
-const nightheme = nightOwl;
+const pitchBlackTheme = {
+  ...vscDarkPlus,
+  'pre[class*="language-"]': {
+    ...vscDarkPlus['pre[class*="language-"]'],
+    background: '#09090B', 
+  },
+  'code[class*="language-"]': {
+    ...vscDarkPlus['code[class*="language-"]'],
+    background: '#09090B', 
+  }
+};
+
+const nightheme = pitchBlackTheme;
+const lighTheme = {
+  ...duotoneLight,
+  'pre[class*="language-"]': {
+    ...duotoneLight['pre[class*="language-"]'],
+    background: '#ffffff'
+  },
+  'code[class*="language-"]': {
+    ...duotoneLight['code[class*="language-"]'],
+    background: '#ffffff'
+  }
+};
+
 
 const SpotifyCard = ({ theme, children, rounded, shadow }: SpotifyCardProps) => {
   const getThemeStyles = () => {
@@ -39,13 +66,6 @@ const SpotifyCard = ({ theme, children, rounded, shadow }: SpotifyCardProps) => 
 
     switch (theme) {
       case "spotify":
-        return `
-          bg-emerald-50 text-emerald-900
-          dark:bg-gradient-to-br dark:from-emerald-900 dark:to-emerald-700 dark:text-white
-          ${shadowStyles} ${roundedStyles} ${baseStyles}
-        `.replace(/\s+/g, ' ').trim()
-
-      case "neon":
         return `
           bg-white text-green-600 border-2 border-green-400
           dark:bg-black dark:text-green-400 dark:border-green-400
@@ -59,6 +79,15 @@ const SpotifyCard = ({ theme, children, rounded, shadow }: SpotifyCardProps) => 
           ${shadowStyles} ${roundedStyles} ${baseStyles}
         `.replace(/\s+/g, ' ').trim()
 
+        case "nebula":
+      case "nebula":
+        return `
+          bg-purple-100 text-purple-700 border border-purple-300
+          dark:bg-gradient-to-br dark:from-purple-900 dark:to-indigo-900
+          dark:text-purple-200 dark:border-purple-600
+          ${shadowStyles} ${roundedStyles} ${baseStyles}
+        `.replace(/\s+/g, ' ').trim()
+      
       default:
         return `
           bg-white text-zinc-900
@@ -76,27 +105,27 @@ const SpotifyCard = ({ theme, children, rounded, shadow }: SpotifyCardProps) => 
 }
 
 const MusicCardThemeCustomizer = () => {
-  const [theme, setTheme] = useState("gradient")
+  const { theme: systemTheme, setTheme } = useTheme()
+  const [cardTheme, setCardTheme] = useState("spotify")
   const [copied, setCopied] = useState(false)
-  const [isDarkMode, setIsDarkMode] = useState(true)
+  const [syntaxDarkMode, setSyntaxDarkMode] = useState(true)
   const [activeTab, setActiveTab] = useState("preview")
   const [slideDirection, setSlideDirection] = useState("right")
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(45)
   const [isAnimating, setIsAnimating] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const songDuration = 217
+  
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+  const isDarkMode = mounted && (systemTheme === 'dark' || (systemTheme === 'system' && syntaxDarkMode))
 
   const themeOptions = [
     {
       name: "Spotify",
-      value: "gradient",
-      icon: <Volume2 className="h-3.5 w-3.5" />,
-      color: "text-green-400",
-      bg: "bg-green-800"
-    },
-    {
-      name: "Neon",
-      value: "neon",
+      value: "spotify",
       icon: <Volume2 className="h-3.5 w-3.5" />,
       color: "text-green-400"
     },
@@ -105,22 +134,40 @@ const MusicCardThemeCustomizer = () => {
       value: "cosmic",
       icon: <Volume2 className="h-3.5 w-3.5" />,
       color: "text-indigo-400"
+    },
+    {
+      name: "Nebula",
+      value: "nebula",
+      icon: <Volume2 className="h-3.5 w-3.5" />,
+      color: "text-purple-400"
     }
   ]
 
   const handleThemeChange = (newTheme: string) => {
-    if (isAnimating || newTheme === theme) return
+    if (isAnimating || newTheme === cardTheme) return
 
-    const currentIndex = themeOptions.findIndex(opt => opt.value === theme)
+    const currentIndex = themeOptions.findIndex(opt => opt.value === cardTheme)
     const newIndex = themeOptions.findIndex(opt => opt.value === newTheme)
 
     setIsAnimating(true)
     setSlideDirection(newIndex > currentIndex ? "right" : "left")
-    setTheme(newTheme)
+    setCardTheme(newTheme)
 
     setTimeout(() => {
       setIsAnimating(false)
     }, 400)
+  }
+
+  const toggleDarkMode = () => {
+    if (!mounted) return
+    
+    if (systemTheme === 'dark') {
+      setTheme('light')
+    } else if (systemTheme === 'light') {
+      setTheme('dark')
+    } else {
+      setSyntaxDarkMode(!syntaxDarkMode)
+    }
   }
 
   const formatTime = (seconds: number) => {
@@ -150,70 +197,25 @@ const MusicCardThemeCustomizer = () => {
   }, [isPlaying])
 
   const generateCode = () => {
-    return `<SpotifyCard 
-  theme="${theme}" 
-  shadow 
-  rounded="xl">
-  <div className="overflow-hidden">
-    <div className="w-full h-64 relative">
-      <Image
-        src="/cover.png"
-        alt="Album artwork"
-        width={400}
-        height={256}
-        className="w-full h-full object-cover"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-    </div>
-    
-    <div className="p-6 flex flex-col">
-      <div className="flex items-start justify-between mb-6">
-        <div>
-          <h3 className="text-xl font-bold mb-1">Blinding Lights</h3>
-          <p className="text-sm text-gray-400">The Weeknd • After Hours</p>
-        </div>
-        <button className="text-gray-400 hover:text-white transition-colors">
-          <Heart className="h-6 w-6" />
-        </button>
+    return `<SpotifyCard theme="dark" shadow rounded="xl" className="overflow-hidden">
+        <Image src="/cover.png" alt="Art" layout="fill" objectFit="cover" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
       </div>
-      
-      <div className="mb-5">
-        <div className="relative h-1.5 bg-gray-700 rounded-full overflow-hidden cursor-pointer">
-          <div 
-            className="absolute top-0 left-0 h-full bg-green-500 rounded-full"
-            style={{ width: '20%' }}
-          ></div>
-        </div>
-        <div className="flex justify-between mt-2">
-          <span className="text-xs text-gray-400">0:45</span>
-          <span className="text-xs text-gray-400">3:37</span>
-        </div>
-      </div>
-      
-      <div className="flex flex-col gap-5">
-        <div className="flex justify-between items-center">
-          <button className="text-gray-400 hover:text-white transition-colors">
-            <Shuffle className="h-5 w-5" />
-          </button>
-          <div className="flex items-center gap-5">
-            <button className="text-gray-400 hover:text-white transition-colors">
-              <SkipBack className="h-6 w-6" />
-            </button>
-            <button className="bg-white text-black rounded-full p-3 hover:scale-105 transition-transform">
-              <Play className="h-6 w-6 fill-current" />
-            </button>
-            <button className="text-gray-400 hover:text-white transition-colors">
-              <SkipForward className="h-6 w-6" />
-            </button>
+      <div className="p-4 space-y-4">
+        <div className="flex justify-between">
+          <div>
+            <h3>Blinding Lights</h3>
+            <p className="text-sm text-gray-400">The Weeknd • After Hours</p>
           </div>
-          <button className="text-gray-400 hover:text-white transition-colors">
-            <Repeat className="h-5 w-5" />
-          </button>
+          <Heart />
         </div>
-      </div>
-    </div>
-  </div>
-</SpotifyCard>`
+        <div className="h-1 bg-gray-700 rounded-full overflow-hidden">
+          <div className="w-1/5 h-full bg-green-500" />
+        </div>
+        <div className="flex justify-between items-center text-gray-400">
+          <Shuffle /><SkipBack /><Play /><SkipForward /><Repeat />
+        </div>
+    </SpotifyCard>`
   }
 
   const copyToClipboard = () => {
@@ -224,7 +226,7 @@ const MusicCardThemeCustomizer = () => {
 
   useEffect(() => {
     setCopied(false)
-  }, [theme])
+  }, [cardTheme])
 
   const cardContent = (
     <div className="overflow-hidden">
@@ -331,6 +333,10 @@ const MusicCardThemeCustomizer = () => {
     }
   }
 
+  if (!mounted) {
+    return null;
+  }
+
   return (
     <div className="px-6">
       <div className="max-w-6xl mx-auto">
@@ -341,9 +347,9 @@ const MusicCardThemeCustomizer = () => {
                 <button
                   key={option.value}
                   className={`flex bg-white dark:bg-black items-center gap-2 px-4 py-2 border rounded-full transition-all ${
-                    theme === option.value
+                    cardTheme === option.value
                       ? `border-${option.value === "neon" ? "green" : option.value === "cosmic" ? "indigo" : "green"}-400 ${option.color}`
-                      : 'border-gray-300 opacity-70 hover:opacity-100'
+                      : 'border-gray-300 dark:border-gray-700 opacity-70 hover:opacity-100'
                   }`}
                   onClick={() => handleThemeChange(option.value)}
                   disabled={isAnimating}
@@ -361,7 +367,7 @@ const MusicCardThemeCustomizer = () => {
               >
                 <AnimatePresence initial={false} custom={slideDirection} mode="popLayout">
                   <motion.div
-                    key={theme}
+                    key={cardTheme}
                     variants={slideVariants}
                     initial={slideDirection === "right" ? "enterRight" : "enterLeft"}
                     animate="center"
@@ -369,7 +375,7 @@ const MusicCardThemeCustomizer = () => {
                     className="absolute inset-0 will-change-transform"
                     style={{ backfaceVisibility: "hidden" }}
                   >
-                    <SpotifyCard theme={theme} shadow rounded="xl">
+                    <SpotifyCard theme={cardTheme} shadow rounded="xl">
                       {cardContent}
                     </SpotifyCard>
                   </motion.div>
@@ -378,8 +384,8 @@ const MusicCardThemeCustomizer = () => {
             </div>
           </div>
 
-          <div className="w-full lg:flex-1 rounded-lg overflow-hidden border border-zinc-300 mt-6 lg:mt-0 overflow-hidden">
-            <div className="flex items-center justify-between px-4 py-2 border-b border-zinc-300">
+          <div className="w-full lg:flex-1 rounded-lg overflow-hidden border border-zinc-300 dark:border-zinc-700 mt-6 lg:mt-0 overflow-hidden">
+            <div className="flex items-center justify-between px-4 py-2 border-b border-zinc-300 dark:border-zinc-700 bg-white dark:bg-black">
               <div className="flex space-x-2">
                 <div className="w-3 h-3 rounded-full bg-pink-500"></div>
                 <div className="w-3 h-3 rounded-full bg-amber-400"></div>
@@ -387,9 +393,9 @@ const MusicCardThemeCustomizer = () => {
               </div>
               <div className="flex items-center gap-2">
                 <button
-                  onClick={() => setIsDarkMode(!isDarkMode)}
-                  className="p-1.5 rounded-md border border-zinc-300 hover:border-zinc-400 text-xs"
-                  title="Toggle syntax theme"
+                  onClick={toggleDarkMode}
+                  className="p-1.5 rounded-md border border-zinc-300 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-600 text-xs"
+                  title="Toggle theme"
                 >
                   {isDarkMode ? <Sun className="h-3.5 w-3.5" /> : <Moon className="h-3.5 w-3.5" />}
                 </button>
@@ -397,7 +403,7 @@ const MusicCardThemeCustomizer = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={copyToClipboard}
-                  className="border border-zinc-300 hover:border-zinc-400 p-1.5 rounded-md text-xs flex items-center gap-1 transition-colors"
+                  className="border border-zinc-300 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-600 p-1.5 rounded-md text-xs flex items-center gap-1 transition-colors"
                   title="Copy code"
                 >
                   {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
@@ -405,10 +411,10 @@ const MusicCardThemeCustomizer = () => {
                 </motion.button>
               </div>
             </div>
-            <div className="overflow-hidden max-h-[25rem] md:max-h-[20rem] lg:max-h-[28rem]">
+            <div className="overflow-hidden" style={{ height: '28rem' }}>
               <AnimatePresence mode="wait">
                 <motion.div
-                  key={theme}
+                  key={cardTheme}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
@@ -416,13 +422,15 @@ const MusicCardThemeCustomizer = () => {
                 >
                   <SyntaxHighlighter
                     language="jsx"
-                    style={isDarkMode ? nightheme : prism}
+                    style={isDarkMode ? nightheme : lighTheme}
                     showLineNumbers
                     customStyle={{
                       margin: 0,
                       padding: '1rem',
                       fontSize: '0.875rem',
-                      borderRadius: 0
+                      borderRadius: 0,
+                      height: '28rem',
+                      minHeight: '28rem'
                     }}
                     className="overflow-hidden scrollbar-hide"
                   >
@@ -441,9 +449,9 @@ const MusicCardThemeCustomizer = () => {
                 <button
                   key={option.value}
                   className={`flex bg-white dark:bg-black items-center gap-1 px-3 py-1.5 border rounded-full transition-all ${
-                    theme === option.value
+                    cardTheme === option.value
                       ? `border-${option.value === "neon" ? "green" : option.value === "cosmic" ? "indigo" : "green"}-400 ${option.color}`
-                      : 'border-gray-300 opacity-70 hover:opacity-100'
+                      : 'border-gray-300 dark:border-gray-700 opacity-70 hover:opacity-100'
                   }`}
                   onClick={() => handleThemeChange(option.value)}
                   disabled={isAnimating}
@@ -463,7 +471,7 @@ const MusicCardThemeCustomizer = () => {
               >
                 <AnimatePresence initial={false} custom={slideDirection} mode="popLayout">
                   <motion.div
-                    key={theme}
+                    key={cardTheme}
                     variants={slideVariants}
                     initial={slideDirection === "right" ? "enterRight" : "enterLeft"}
                     animate="center"
@@ -471,7 +479,7 @@ const MusicCardThemeCustomizer = () => {
                     className="w-full will-change-transform"
                     style={{ backfaceVisibility: "hidden" }}
                   >
-                    <SpotifyCard theme={theme} shadow rounded="xl">
+                    <SpotifyCard theme={cardTheme} shadow rounded="xl">
                       {cardContent}
                     </SpotifyCard>
                   </motion.div>
@@ -481,8 +489,8 @@ const MusicCardThemeCustomizer = () => {
           )}
 
           {activeTab === "code" && (
-            <div className="rounded-lg overflow-hidden border border-zinc-300">
-              <div className="flex items-center justify-between px-3 py-2 border-b border-zinc-300 bg-white dark:bg-black">
+            <div className="rounded-lg overflow-hidden border border-zinc-300 dark:border-zinc-700">
+              <div className="flex items-center justify-between px-3 py-2 border-b border-zinc-300 dark:border-zinc-700 bg-white dark:bg-black">
                 <div className="flex space-x-1.5">
                   <div className="w-2.5 h-2.5 rounded-full bg-pink-500"></div>
                   <div className="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
@@ -490,16 +498,16 @@ const MusicCardThemeCustomizer = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <button
-                    onClick={() => setIsDarkMode(!isDarkMode)}
-                    className="p-1 rounded-md border border-zinc-300 hover:border-zinc-400 text-xs"
-                    title="Toggle syntax theme"
+                    onClick={toggleDarkMode}
+                    className="p-1 rounded-md border border-zinc-300 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-600 text-xs"
+                    title="Toggle theme"
                   >
                     {isDarkMode ? <Sun className="h-3 w-3" /> : <Moon className="h-3 w-3" />}
                   </button>
                   <motion.button
                     whileTap={{ scale: 0.95 }}
                     onClick={copyToClipboard}
-                    className="border border-zinc-300 hover:border-zinc-400 p-1 rounded-md text-xs flex items-center gap-1 transition-colors"
+                    className="border border-zinc-300 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-600 p-1 rounded-md text-xs flex items-center gap-1 transition-colors"
                     title="Copy code"
                   >
                     {copied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
@@ -508,10 +516,10 @@ const MusicCardThemeCustomizer = () => {
                 </div>
               </div>
 
-              <div className="overflow-auto max-h-[60vh]">
+              <div className="overflow-auto" style={{ height: '60vh', minHeight: '400px' }}>
                 <AnimatePresence mode="wait">
                   <motion.div
-                    key={theme}
+                    key={cardTheme}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
@@ -519,12 +527,13 @@ const MusicCardThemeCustomizer = () => {
                   >
                     <SyntaxHighlighter
                       language="tsx"
-                      style={isDarkMode ? nightheme : prism}
+                      style={isDarkMode ? nightheme : lighTheme}
                       customStyle={{
                         margin: 0,
                         padding: '0.75rem',
                         fontSize: '0.7rem',
-                        borderRadius: 0
+                        borderRadius: 0,
+                        minHeight: '400px'
                       }}
                     >
                       {generateCode()}
@@ -539,7 +548,7 @@ const MusicCardThemeCustomizer = () => {
             <button
               onClick={() => setActiveTab(activeTab === "code" ? "preview" : "code")}
               className={`
-                relative px-5 py-2 flex items-center justify-center gap-2 transition-all duration-200 rounded-md bg-black border border-black dark:border-gray-400
+                relative px-5 py-2 flex items-center justify-center gap-2 transition-all duration-200 rounded-md bg-black dark:bg-zinc-800 border border-black dark:border-zinc-700
                 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500
                 ${activeTab === "code"
                   ? "text-gray-300"
