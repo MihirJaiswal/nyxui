@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Tiles } from '../ui/Tiles';
 import { HTMLMotionProps, AnimatePresence, motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
 interface WordRotateProps {
   words: string[]
@@ -95,13 +96,23 @@ const Text = () => {
             </span>
           </span>
             {" "}and{" "}
-            <WordRotate
-              words={adjectives}
-              className="text-transparent inline-block bg-clip-text bg-gradient-to-r from-pink-600 to-purple-500 dark:from-pink-500 dark:to-purple-400"
-            />
-            
+            <span className="relative flex flex-col items-center justify-center">
+            <div className="relative">
+              <WordRotate
+                words={adjectives}
+                className="text-transparent inline-block bg-clip-text bg-gradient-to-r from-pink-600 to-purple-500 dark:from-pink-500 dark:to-purple-400"
+              />
+              <Image
+                src="/underline.svg"
+                alt="underline"
+                width={300}
+                height={10}
+                priority
+                className="absolute left-1/2 -bottom-1 transform -translate-x-1/2 mt-1 -z-1"
+              />
+            </div>
+          </span>
           </h1>
-          
           <p className="mx-auto mb-8 mt-4 text-balance text-center text-base md:text-lg font-medium tracking-tight text-foreground/80">
           Increase productivity with our collection of modern components and templates.
           </p>
