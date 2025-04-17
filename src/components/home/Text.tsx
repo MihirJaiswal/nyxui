@@ -62,21 +62,37 @@ const Text = () => {
         <div className="relative z-10">
           <h1 className="text-5xl text-center font-extrabold leading-tight tracking-tight lg:text-7xl text-gray-900 dark:text-white">
             Build{" "}
-            <span className="font-extrabold inline-block transform hover:scale-105 transition-all duration-300"
-            style={{
-              backgroundImage:
-                "url('/bg.webp')",
-              backgroundSize: "contain",
-              backgroundPosition: "center",
-              backgroundRepeat: "repeat",
-              WebkitBackgroundClip: "text",
-              color: "transparent",
-              WebkitTextStrokeWidth: "0.5px",
-              WebkitTextStrokeColor: "#efcdfa",
-            }}
+            <span className="font-extrabold inline-block transform hover:scale-105 transition-all duration-300 relative">
+            <span 
+              className="absolute inset-0 z-10"
+              style={{
+                backgroundImage: "url('/bg.webp')",
+                backgroundSize: "contain",
+                backgroundPosition: "center",
+                backgroundRepeat: "repeat",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+                color: "transparent",
+              }}
             >
-            Faster
-            </span> 
+              Faster
+            </span>
+            
+            <span 
+              className="relative z-0"
+              style={{
+                color: "transparent",
+                textShadow: `
+                  -0.5px -0.5px 0 #efcdfa,  
+                  0.5px -0.5px 0 #efcdfa,
+                  -0.5px 0.5px 0 #efcdfa,
+                  0.5px 0.5px 0 #efcdfa
+                `,
+              }}
+            >
+              Faster
+            </span>
+          </span>
             {" "}and{" "}
             <WordRotate
               words={adjectives}
