@@ -1,7 +1,6 @@
 import React from "react";
 import { BentoGrid } from "@/nuvyxui/components/BentoGrid";
 import { AnimatedGradientBg } from "@/nuvyxui/components/AnimatedGradientBg";
-import { AnimatedCodeBlock } from "@/nuvyxui/components/AnimatedCodeBlock";
 import { ChevronRight, Code, Sparkles, Zap } from "lucide-react";
 import { MatrixCodeRain } from "@/nuvyxui/components/MatrixCodeRain";
 import { DynamicRipple } from "@/nuvyxui/components/DynamicRipple";
@@ -89,40 +88,31 @@ export const ComponentsDemo = () => {
           }
         />
 
-        <BentoGrid
-          className="rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-xl border"
-          title="Animated Code Typing"
-          height="h-88"
-          description="Auto code blocks with customizable themes."
+<BentoGrid
+          className="rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-xl border border-zinc-200 dark:border-zinc-800"
+          title="Morphing Blob"
+          height="h-80"
+          description="Modern morphing blob with animated effects."
           component={
-            <div className="w-full h-full flex items-center justify-center px-4 py-6 overflow-hidden">
-              <AnimatedCodeBlock
-                code={`import { useState } from 'react';
-
-const useToggle = (init = false) => {
-  const [state, set] = useState(init);
-  return [state, () => set(!state)];
-};
-`}
-                language="jsx"
-                theme="nuvyx"
-                typingSpeed={25}
-                autoPlay
-                title="React Component"
-                showLineNumbers
-                highlightLines={[1, 3, 6]}
-              />
+            <div className="py-6 flex items-center justify-center relative">
+              <MorphingBlob theme="secondary" size="lg" glowIntensity={4} effect3D>
+                <div className="text-center flex flex-col items-center justify-center p-6">
+                  <Image src="/logo.png" alt="Profile" width={200} height={200} quality={100} loading="lazy" className="rounded-full w-12 h-12" />
+                  <h4 className="text-xl font-bold mb-2">NuvyxUI</h4>
+                  <p className="text-sm opacity-90 max-w-[180px]">Build awesome UI.</p>
+                </div>
+              </MorphingBlob>
             </div>
           }
         />
 
         <BentoGrid
-          className="lg:col-span-2 rounded-2xl overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl border border-zinc-200 dark:border-zinc-800 h-[530px]"
-          height="h-full"
+          className="lg:col-span-2  overflow-hidden shadow-xl transition-all duration-300 border border-zinc-200 dark:border-zinc-800 h-[470px]"
           enableDescription={false}
           enableTitle={false}
+          height="h-full"
           component={
-            <div className="rounded-xl md:px-8 lg:mt-8 overflow-hidden shadow-2xl transform transition-all hover:shadow-green-500/50">
+            <div className="rounded-xl  overflow-hidden">
             <InteractiveTerminal 
               bgColor="bg-black"
               textColor="text-green-500"
@@ -160,12 +150,12 @@ Connection secured. Press ENTER to continue...
           enableDescription={false}
           enableTitle={false}
           height="h-full"
-          className="rounded-2xl overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] border border-zinc-200 dark:border-zinc-800"
+          className="rounded-2xl lg:col-span-2 overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] border border-zinc-200 dark:border-zinc-800"
           component={
             <div className="w-full h-full relative min-h-[300px]">
               <MatrixCodeRain
                 color="#00ff00"
-                charset="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ$#%@!"
+                charset="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ$#%@!nuvyxui"
                 fontSize={14}
                 fps={30}
                 opacity={0.05}
@@ -233,9 +223,10 @@ Connection secured. Press ENTER to continue...
           <p className="text-xs sm:text-sm text-gray-800 dark:text-gray-200">
             Once you go Tailwind, there is no going back 😆 <span className="text-blue-500">#webdev</span> <span className="text-blue-500">#tailwindcss</span>
           </p>
-          <div className="mt-2 sm:mt-3 bg-gray-100 dark:bg-gray-800 rounded-lg p-2 sm:p-3 text-xs sm:text-sm font-mono overflow-hidden">
+          <div className="mt-2 sm:mt-3 bg-gray-100 dark:bg-zinc-950 rounded-lg p-2 sm:p-3 text-xs sm:text-sm font-mono overflow-hidden">
             <MajesticCard
               variant="magnetic"
+              className="hidden md:block"
             >
               <div className="flex items-center p-1 sm:p-2 text-gray-500 dark:text-gray-400 text-xs mb-1">
                 <div className="flex space-x-1 mr-2">
@@ -260,6 +251,30 @@ Connection secured. Press ENTER to continue...
                 </pre>
               </div>
             </MajesticCard>
+            <div className="md:hidden border border-gray-300 dark:border-gray-800 p-2 rounded-md">
+            <div className="flex items-center p-1 sm:p-2 text-gray-500 dark:text-gray-400 text-xs mb-1">
+                <div className="flex space-x-1 mr-2">
+                  <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-red-500" />
+                  <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-yellow-500" />
+                  <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-green-500" />
+                </div>
+                <span className="text-xs">Card.tsx</span>
+              </div>
+              <div className="text-gray-700 text-xs p-1 sm:p-2 dark:text-gray-300 overflow-x-auto">
+                <pre className="text-xs">
+                  <code>
+                    {`<div className="max-w-sm p-6">
+  <p className="text-gray-600">
+    Tap on the card
+  </p>
+  <button className="bg-blue-500">
+    Click me
+  </button>
+</div>`}
+                  </code>
+                </pre>
+              </div>
+            </div>
           </div>
         </div>
         <div className="mt-3 sm:mt-4 flex items-center justify-between text-gray-500 dark:text-gray-400">
@@ -309,24 +324,7 @@ Connection secured. Press ENTER to continue...
   }
 />
 
-        <BentoGrid
-          dark
-          className="rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-xl border border-zinc-800"
-          title="Morphing Blob"
-          height="h-88"
-          description="Modern morphing blob with animated effects."
-          component={
-            <div className="py-6 flex items-center justify-center relative">
-              <MorphingBlob theme="secondary" size="lg" pulse glowIntensity={4} effect3D>
-                <div className="text-center flex flex-col items-center justify-center p-6">
-                  <Image src="/logo.png" alt="Profile" width={200} height={200} quality={100} loading="lazy" className="rounded-full w-12 h-12" />
-                  <h4 className="text-xl font-bold mb-2">NuvyxUI</h4>
-                  <p className="text-sm opacity-90 max-w-[180px]">Build awesome UI.</p>
-                </div>
-              </MorphingBlob>
-            </div>
-          }
-        />
+      
       </div>
 
       <div className="flex items-center justify-center my-16">
