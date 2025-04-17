@@ -65,24 +65,28 @@ export const Hero = () => {
                 </span>
               </motion.p>
 
-                <motion.span
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                  style={{
-                    backgroundImage:
-                      "url('/bg.webp')",
-                    backgroundSize: "contain",
-                    backgroundPosition: "center",
-                    backgroundRepeat: "repeat",
-                    WebkitBackgroundClip: "text",
-                    color: "transparent",
-                    WebkitTextStrokeWidth: "1px",
-                    WebkitTextStrokeColor: "#efcdfa",
-                  }}
-                >
-                    Beautiful
-                </motion.span>
+              <motion.span
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                style={{
+                  backgroundImage: "url('/bg.webp')",
+                  backgroundSize: "contain",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "repeat",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text", 
+                  color: "transparent",
+                  WebkitTextStrokeWidth: "0.5px", 
+                  WebkitTextStrokeColor: "#efcdfa",
+                  textRendering: "geometricPrecision",
+                  fontSmooth: "always",
+                  WebkitFontSmoothing: "antialiased",
+                  MozOsxFontSmoothing: "grayscale",
+                }}
+              >
+                Beautiful
+              </motion.span>
 
                 <div className="inline-flex items-center justify-center overflow-hidden h-[1.2em] min-w-[1.5em]">
                   <AnimatePresence mode="wait">
