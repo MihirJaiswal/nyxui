@@ -5,20 +5,19 @@ export default function MusicPlayerCardsDemo() {
   const albums = [
     {
       theme: "spotify",
-      artwork: "/api/placeholder/400/400",
-      trackTitle: "Bad Guy",
-      artist: "Billie Eilish",
-      album: "When We All Fall Asleep",
+      artwork: "/assets/images/music-player/song.jpg",
+      trackTitle: "Blinding Lights",
+      artist: "The Weeknd",
+      album: "After Hours",
       initialTime: 30,
       totalDuration: 194
     }
   ];
 
   return (
-    <div className="flex flex-col items-center">
-      <div className="flex items-center justify-center">
+    <div className="flex flex-col items-center w-full">
         {albums.map((album, index) => (
-          <div key={index} className="flex flex-col">
+          <div key={index} className="flex flex-col w-full max-w-xs">
             <MusicPlayer
               theme={album.theme}
               shadow={true}
@@ -38,6 +37,5 @@ export default function MusicPlayerCardsDemo() {
           </div>
         ))}
       </div>
-    </div>
   );
 }

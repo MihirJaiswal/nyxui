@@ -30,9 +30,9 @@ export const musicPlayerData: ComponentData = {
       items: [
         {
           name: "theme",
-          type: '"default" | "spotify" | "cosmic" | "nebula" | string',
+          type: 'string',
           default: '"default"',
-          description: "Visual theme of the music player."
+          description: "Visual theme of the music player (default, spotify, cosmic, nebula, or custom)."
         },
         {
           name: "shadow",
@@ -42,26 +42,26 @@ export const musicPlayerData: ComponentData = {
         },
         {
           name: "rounded",
-          type: '"sm" | "md" | "lg" | "xl" | "2xl" | "full"',
+          type: 'string',
           default: '"xl"',
           description: "Corner radius of the player component."
         },
         {
           name: "artwork",
           type: "string",
-          default: '"/assets/images/song.png"',
+          default: '"/placeholder.svg"',
           description: "Path to the album artwork image."
         },
         {
           name: "trackTitle",
           type: "string",
-          default: '"Blinding Lights"',
+          default: '"undefined"',
           description: "Title of the track being played."
         },
         {
           name: "artist",
           type: "string",
-          default: '"The Weeknd"',
+          default: '"undefined"',
           description: "Name of the artist or band."
         },
         {
@@ -73,7 +73,7 @@ export const musicPlayerData: ComponentData = {
         {
           name: "initialTime",
           type: "number",
-          default: "45",
+          default: "0",
           description: "Initial playback position in seconds."
         },
         {
@@ -96,19 +96,19 @@ export const musicPlayerData: ComponentData = {
         },
         {
           name: "onPlayPause",
-          type: "(isPlaying: boolean) => void",
+          type: "function",
           default: "undefined",
           description: "Callback function triggered when play/pause is toggled."
         },
         {
           name: "onTimeChange",
-          type: "(time: number) => void",
+          type: "function",
           default: "undefined",
           description: "Callback function triggered when playback time changes."
         },
         {
           name: "onTrackEnd",
-          type: "() => void",
+          type: "function",
           default: "undefined",
           description: "Callback function triggered when track playback ends."
         },
@@ -126,13 +126,14 @@ export const musicPlayerData: ComponentData = {
     {
       name: "Default Theme Player",
       preview: (
-        <div className="max-w-sm mx-auto">
+        <div className="w-full max-w-xs mx-auto border border-gray-300 dark:border-gray-700 rounded-md">
           <MusicPlayer 
             theme="default"
-            trackTitle="Bohemian Rhapsody" 
-            artist="Queen" 
-            album="A Night at the Opera"
-            artwork="/api/placeholder/400/400"
+            trackTitle="changes" 
+            artist="XXXTENTACION" 
+            album="?"
+            rounded="md"
+            artwork="/assets/images/music-player/cover.jpg"
           />
         </div>
       ),
@@ -141,14 +142,15 @@ export const musicPlayerData: ComponentData = {
   
 export function DefaultThemePlayer() {
   return (
-    <div className="max-w-sm mx-auto">
-      <MusicPlayer 
-        theme="default"
-        trackTitle="Bohemian Rhapsody" 
-        artist="Queen" 
-        album="A Night at the Opera"
-        artwork="/path/to/artwork.jpg"
-      />
+    <div className="w-full max-w-xs mx-auto border border-gray-300 dark:border-gray-700 rounded-md">
+          <MusicPlayer 
+            theme="default"
+            trackTitle="changes" 
+            artist="XXXTENTACION" 
+            album="?"
+            rounded="md"
+            artwork="/assets/images/music-player/cover.jpg"
+          />
     </div>
   );
 }`
@@ -156,13 +158,13 @@ export function DefaultThemePlayer() {
     {
       name: "Cosmic Theme with Custom Controls",
       preview: (
-        <div className="max-w-sm mx-auto">
+        <div className="w-full max-w-xs mx-auto border border-gray-300 dark:border-gray-700 rounded-2xl">
           <MusicPlayer 
             theme="cosmic"
-            trackTitle="Starboy" 
-            artist="The Weeknd" 
-            album="Starboy"
-            artwork="/api/placeholder/400/400"
+            trackTitle="Sugar" 
+            artist="Maroon 5" 
+            album="V"
+            artwork="/assets/images/music-player/cover2.jpg"
             rounded="2xl"
             shadow={true}
             controls={{
@@ -196,40 +198,6 @@ export function CosmicThemePlayer() {
     </div>
   );
 }`
-    },
-    {
-      name: "Nebula Theme Player in Card",
-      preview: (
-        <div className="rounded-xl shadow-xl max-w-sm mx-auto">
-          <MusicPlayer 
-            theme="nebula"
-            trackTitle="Blinding Lights" 
-            artist="The Weeknd" 
-            album="After Hours"
-            artwork="/api/placeholder/400/400"
-            rounded="lg"
-            className="shadow-lg"
-          />
-        </div>
-      ),
-      filename: "NebulaThemePlayerCard.tsx",
-      code: `import { MusicPlayer } from "@/nuvyxui/components/MusicPlayer";
-  
-export function NebulaThemePlayerCard() {
-  return (
-    <div className="rounded-xl shadow-xl max-w-sm mx-auto">
-      <MusicPlayer 
-        theme="nebula"
-        trackTitle="Blinding Lights" 
-        artist="The Weeknd" 
-        album="After Hours"
-        artwork="/path/to/artwork.jpg"
-        rounded="lg"
-        className="shadow-lg"
-      />
-    </div>
-  );
-}`
-    },
+    }
   ]
 };

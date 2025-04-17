@@ -79,7 +79,13 @@ const MusicCardThemeCustomizer = () => {
       icon: <Volume2 className="h-3.5 w-3.5" />,
       color: "text-purple-400"
     }
-  ]
+  ];
+
+  const borderColors: Record<string, string> = {
+    cosmic: 'border-indigo-400',
+    nebula: 'border-purple-400',
+    default: 'border-green-400',
+  };
 
   const handleThemeChange = (newTheme: string) => {
     if (isAnimating || newTheme === cardTheme) return
@@ -115,22 +121,16 @@ export default function PlayerExample() {
   return (
     <MusicPlayer
       theme="${cardTheme}"
-      shadow
       rounded="xl"
-      artwork="/assets/images/song.png"
+      artwork="/cover.png"
       trackTitle="Blinding Lights"
       artist="The Weeknd"
       album="After Hours"
       initialTime={45}
       totalDuration={217}
-      controls={{
-        shuffle: true,
-        repeat: true,
-        heart: true
-      }}
-      onPlayPause={(isPlaying) => console.log("Playing:", isPlaying)}
-      onTimeChange={(time) => console.log("Current time:", time)}
-      onTrackEnd={() => console.log("Track ended")}
+      controls={
+      {shuffle: true, repeat: true, heart: true}
+      }
     />
   )
 }`
@@ -201,7 +201,7 @@ export default function PlayerExample() {
                   key={option.value}
                   className={`flex bg-white dark:bg-black items-center gap-2 px-4 py-2 border rounded-full transition-all ${
                     cardTheme === option.value
-                      ? `border-${option.value === "cosmic" ? "indigo" : option.value === "nebula" ? "purple" : "green"}-400 ${option.color}`
+                      ? `${borderColors[option.value] || borderColors.default} ${option.color}`
                       : 'border-gray-300 dark:border-gray-700 opacity-70 hover:opacity-100'
                   }`}
                   onClick={() => handleThemeChange(option.value)}
@@ -230,10 +230,14 @@ export default function PlayerExample() {
                   >
                     <MusicPlayer 
                       theme={cardTheme} 
+                      artwork="/assets/images/song.jpg"
                       shadow 
                       rounded="xl"
+                      trackTitle="Blinding Lights"
+                      artist="The Weeknd"
+                      album="After Hours"
                       initialTime={45}
-                      totalDuration={217} 
+                      totalDuration={217}
                     />
                   </motion.div>
                 </AnimatePresence>
