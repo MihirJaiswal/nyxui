@@ -230,7 +230,7 @@ export default function PlayerExample() {
                   >
                     <MusicPlayer 
                       theme={cardTheme} 
-                      artwork="/assets/images/song.jpg"
+                      artwork="/assets/images/music-player/song.jpg"
                       shadow 
                       rounded="xl"
                       trackTitle="Blinding Lights"
