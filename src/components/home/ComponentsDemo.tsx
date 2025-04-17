@@ -91,7 +91,7 @@ export const ComponentsDemo = () => {
 <BentoGrid
           className="rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-xl border border-zinc-200 dark:border-zinc-800"
           title="Morphing Blob"
-          height="h-80"
+          height="h-76"
           description="Modern morphing blob with animated effects."
           component={
             <div className="py-6 flex items-center justify-center relative">
@@ -107,17 +107,20 @@ export const ComponentsDemo = () => {
         />
 
         <BentoGrid
-          className="lg:col-span-2  overflow-hidden shadow-xl transition-all duration-300 border border-zinc-200 dark:border-zinc-800 h-[470px]"
+          className="lg:col-span-2 hover:scale-[1.02] overflow-hidden shadow-xl transition-all duration-300 border border-zinc-200 dark:border-zinc-800 h-[450px]"
           enableDescription={false}
           enableTitle={false}
           height="h-full"
+          dark
           component={
             <div className="rounded-xl  overflow-hidden">
             <InteractiveTerminal 
               bgColor="bg-black"
-              textColor="text-green-500"
-              command="sudo hack --target=mainframe"
-              commandMessage="Execute this command:"
+              textColor="text-purple-500"
+              autoMode={true}
+              command="sudo hack -m"
+              className="overflow-hidden"
+              commandMessage="Auto-executing:"
               icon={<Code className="mr-2 mt-2" />}
               processingSteps={[
                 "Initializing exploit framework...",

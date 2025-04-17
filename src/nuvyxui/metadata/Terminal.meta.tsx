@@ -30,6 +30,12 @@ export const interactiveTerminalData: ComponentData = {
       name: "Terminal Props",
       items: [
         {
+          name: "autoMode",
+          type: "boolean",
+          default: "false",
+          description: "Enables automatic command execution.",
+        },
+        {
           name: "bgColor",
           type: "string",
           default: '"bg-gray-900"',
