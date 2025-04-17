@@ -82,6 +82,7 @@ const Text = () => {
               className="relative z-0"
               style={{
                 color: "transparent",
+                WebkitTextStrokeWidth: "1px",
                 textShadow: `
                   -0.5px -0.5px 0 #efcdfa,  
                   0.5px -0.5px 0 #efcdfa,
