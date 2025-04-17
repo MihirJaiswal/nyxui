@@ -66,27 +66,40 @@ export const Hero = () => {
               </motion.p>
 
               <motion.span
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                style={{
-                  backgroundImage: "url('/bg.webp')",
-                  backgroundSize: "contain",
-                  backgroundPosition: "center",
-                  backgroundRepeat: "repeat",
-                  WebkitBackgroundClip: "text",
-                  backgroundClip: "text", 
-                  color: "transparent",
-                  WebkitTextStrokeWidth: "0.5px", 
-                  WebkitTextStrokeColor: "#efcdfa",
-                  textRendering: "geometricPrecision",
-                  fontSmooth: "always",
-                  WebkitFontSmoothing: "antialiased",
-                  MozOsxFontSmoothing: "grayscale",
-                }}
-              >
-                Beautiful
-              </motion.span>
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  className="relative"
+                >
+                  <span 
+                    className="absolute inset-0 z-10"
+                    style={{
+                      backgroundImage: "url('/bg.webp')",
+                      backgroundSize: "contain",
+                      backgroundPosition: "center",
+                      backgroundRepeat: "repeat",
+                      WebkitBackgroundClip: "text",
+                      backgroundClip: "text",
+                      color: "transparent",
+                    }}
+                  >
+                    Beautiful
+                  </span>
+                    <span 
+                      className="relative z-0"
+                      style={{
+                        color: "transparent",
+                        textShadow: `
+                          -1px -1px 0 #efcdfa,  
+                          1px -1px 0 #efcdfa,
+                          -1px 1px 0 #efcdfa,
+                          1px 1px 0 #efcdfa
+                        `,
+                      }}
+                    >
+                      Beautiful
+                    </span>
+                  </motion.span>
 
                 <div className="inline-flex items-center justify-center overflow-hidden h-[1.2em] min-w-[1.5em]">
                   <AnimatePresence mode="wait">
