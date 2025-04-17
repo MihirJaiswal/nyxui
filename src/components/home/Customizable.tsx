@@ -341,10 +341,14 @@ export default function PlayerExample() {
                   >
                     <MusicPlayer 
                       theme={cardTheme} 
+                      artwork="/assets/images/music-player/song.jpg"
                       shadow 
                       rounded="xl"
+                      trackTitle="Blinding Lights"
+                      artist="The Weeknd"
+                      album="After Hours"
                       initialTime={45}
-                      totalDuration={217} 
+                      totalDuration={217}
                     />
                   </motion.div>
                 </AnimatePresence>
