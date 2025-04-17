@@ -153,10 +153,6 @@ export const Build = () => {
             <div className="absolute left-0 top-20 hidden lg:block">
             </div>
             <div className="relative h-full w-full overflow-hidden rounded-lg">
-              <div className="absolute inset-0 rounded-lg">
-                <div className="absolute top-0 left-0 h-full hidden lg:block w-[1px] bg-gradient-to-b from-gray-300 dark:from-gray-700 to-transparent"></div>
-                <div className="absolute top-0 right-0 h-full hidden lg:block w-[1px] bg-gradient-to-b from-gray-300 dark:from-gray-700 to-transparent"></div>
-              </div>
               <div
                 ref={scrollRef}
                 className="relative h-full overflow-hidden"

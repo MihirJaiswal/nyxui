@@ -13,12 +13,22 @@ import {
 import { motion, AnimatePresence } from "framer-motion"
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import {  
-  ghcolors, 
   vscDarkPlus
 } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import { useTheme } from "next-themes"
 import { MusicPlayer } from "@/nuvyxui/components/MusicPlayer"
 
+const lightTheme = {
+  ...vscDarkPlus,
+  'pre[class*="language-"]': {
+    ...vscDarkPlus['pre[class*="language-"]'],
+    background: '#000000'
+  },
+  'code[class*="language-"]': {
+    ...vscDarkPlus['code[class*="language-"]'],
+    background: '#000000'
+  }
+};
 const pitchBlackTheme = {
   ...vscDarkPlus,
   'pre[class*="language-"]': {
@@ -32,17 +42,6 @@ const pitchBlackTheme = {
 };
 
 const nightTheme = pitchBlackTheme;
-const lightTheme = {
-  ...ghcolors,
-  'pre[class*="language-"]': {
-    ...ghcolors['pre[class*="language-"]'],
-    background: '#ffffff'
-  },
-  'code[class*="language-"]': {
-    ...ghcolors['code[class*="language-"]'],
-    background: '#ffffff'
-  }
-};
 
 const MusicCardThemeCustomizer = () => {
   const { theme: systemTheme, setTheme } = useTheme()

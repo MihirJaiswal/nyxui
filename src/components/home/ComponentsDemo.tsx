@@ -14,11 +14,11 @@ import { Rbutton } from "../ui/Rbutton";
 export const ComponentsDemo = () => {
   return (
     <div className="container max-w-7xl mx-auto px-6">
-      <h2 className="mb-2 text-center text-5xl font-bold leading-[1.2] tracking-tighter text-foreground">
+      <h2 className="text-3xl sm:text-5xl text-center lg:text-5xl font-extrabold tracking-tight leading-tight">
         Component Demos
       </h2>
       <h3 className="mx-auto mb-8 mt-2 text-balance text-center text-base md:text-lg font-medium tracking-tight text-foreground/80">
-        Here are some of the components that you can use to build your landing pages.
+        These are a few components that you can easily plug into your next project.
       </h3>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <BentoGrid

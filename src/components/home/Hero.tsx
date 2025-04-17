@@ -6,7 +6,6 @@ import { Badge } from "@/components/ui/badge"
 import { ChevronRight, Sparkles } from "lucide-react"
 import TechStack from "./Tech"
 import Image from "next/image"
-import { Tiles } from "@/components/ui/Tiles" 
 import Link from "next/link"
 import { Rbutton } from "../ui/Rbutton"
 
@@ -24,16 +23,6 @@ export const Hero = () => {
 
   return (
     <div className="flex flex-col justify-center items-center relative overflow-hidden">
-      <div className="absolute bottom-28 md:-bottom-8 -left-8 w-44 h-32 md:w-[30rem] md:h-58 opacity-50 -z-1 overflow-hidden pointer-events-none">
-        <Tiles rows={8} cols={8} className="scale-150 md:scale-110" />
-        <div className="absolute hidden md:block inset-0 bg-gradient-to-br from-white dark:from-zinc-950 via-transparent to-white dark:to-zinc-950" />
-      </div>
-      
-      <div className="absolute bottom-28 md:-bottom-8 -right-8 w-44 h-32 md:w-[30rem] md:h-58 -z-1 opacity-50 overflow-hidden pointer-events-none">
-        <Tiles rows={8} cols={8} className="scale-150 md:scale-110"/>
-        <div className="absolute inset-0 hidden md:block bg-gradient-to-bl from-white dark:from-zinc-950 via-transparent to-white dark:to-zinc-950" />
-      </div>
-
       <main className="flex-1 w-full mx-auto z-10">
         <section className="space-y-8 pb-12 pt-16 md:pt-20" aria-label="Hero Section">
           <div className="container max-w-5xl mx-auto flex flex-col items-center justify-center text-center px-4">
