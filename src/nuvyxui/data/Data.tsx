@@ -128,7 +128,12 @@ export const componentsData = {
       title: "Lamp Heading",
       description: "An elegant section heading with a customizable gradient underline and a subtle lamp-like glow effect with a nice little animation.",
       image: "/assets/images/showcase/lamp-heading.png"
-    }
+    },
+    "music-player": {
+      title: "Music Player",
+      description: "A customizable music player component with various animation options and responsive design.",
+      image: "/assets/images/showcase/music-player.png"
+    },
   },
   "templates": {}
 };

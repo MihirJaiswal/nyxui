@@ -132,7 +132,7 @@ export const ComponentsDemo = () => {
 ⚠️  ACCESS GRANTED  ⚠️
 
 [SYSTEM]: Mainframe successfully compromised
-[SYSTEM]: All security protocols bypassed
+[SYSTEM]: All security protocols bypassed=
 [SYSTEM]: Remember, with great power comes great responsibility
 
 Connection secured. Press ENTER to continue...
