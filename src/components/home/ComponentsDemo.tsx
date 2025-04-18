@@ -1,7 +1,7 @@
 import React from "react";
 import { BentoGrid } from "@/nuvyxui/components/BentoGrid";
 import { AnimatedGradientBg } from "@/nuvyxui/components/AnimatedGradientBg";
-import { ChevronRight, Code, Sparkles, Zap } from "lucide-react";
+import { ChevronRight, Code, Sparkles } from "lucide-react";
 import { MatrixCodeRain } from "@/nuvyxui/components/MatrixCodeRain";
 import { DynamicRipple } from "@/nuvyxui/components/DynamicRipple";
 import { MajesticCard } from "@/nuvyxui/components/MajesticCard";
@@ -11,6 +11,8 @@ import InteractiveTerminal from "@/nuvyxui/components/Terminal";
 import { Rbutton } from "../ui/Rbutton";
 import InteractiveKeyboard from "@/nuvyxui/components/Keyboard";
 import { ImageSlider, ImageLayer, Divider } from "@/nuvyxui/components/ImageComparison";
+import { ImageScanner } from "@/nuvyxui/components/ImageScanner";
+import LampHeading from "@/nuvyxui/components/LampHeading";
 
 export const ComponentsDemo = () => {
   return (
@@ -22,103 +24,8 @@ export const ComponentsDemo = () => {
         These are a few components that you can easily plug into your next project.
       </h3>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
         <BentoGrid
-          dark
-          enableDescription={false}
-          enableTitle={false}
-          height="h-full"
-          className="lg:col-span-2 rounded-2xl overflow-hidden shadow-xl transition-all duration-500 hover:shadow-2xl hover:scale-[1.02] border border-zinc-200/50 dark:border-zinc-800/50 tracking-wider"
-          title="Animated Gradient Background"
-          description="Customizable gradient backgrounds with mesh pattern. Interactive and visually striking."
-          component={
-            <div className="relative w-full h-full overflow-hidden">
-              <AnimatedGradientBg
-                colors={["#4f46e5", "#ec4899", "#8b5cf6", "#06b6d4"]}
-                pattern="mesh"
-                blur={25}
-                speed={1.5}
-                opacity={0.8}
-                position="absolute"
-                size="full"
-                zIndex={0}
-                animate
-                interactive
-                patternIntensity={1.8}
-                className="bg-gradient-to-b from-white/10 to-50% dark:from-gray-950/20 dark:from-[-25%]"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-              <div className="relative z-10 h-full flex flex-col justify-center items-center text-white p-8">
-                <Sparkles className="mb-4 h-10 w-10 drop-shadow-lg animate-pulse text-white/90" />
-                <span className="text-lg md:text-3xl text-center font-bold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-white to-purple-200">
-                  ANIMATED GRADIENT
-                </span>
-                <p className="mt-2 text-sm text-white/80 text-center max-w-xs">
-                  Interactive and visually striking animated gradient background
-                </p>
-              </div>
-              <div className="absolute -bottom-6 -right-6 w-24 h-24 rounded-full bg-purple-500/20 blur-xl" />
-              <div className="absolute -top-6 -left-6 w-16 h-16 rounded-full bg-blue-500/20 blur-xl" />
-            </div>
-          }
-        />
-
-        <BentoGrid
-          title="Dynamic Ripple Effect"
-          description="Circular color transitions with interactive hover effects and smooth animations."
-          enableDescription={false}
-          enableTitle={false}
-          height="h-full"
-          className="rounded-2xl overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] border border-zinc-200 dark:border-zinc-800"
-          component={
-            <ImageSlider 
-              className="h-96 border rounded-xl overflow-hidden"
-              hoverControl
-            >
-              <ImageLayer 
-                src="/assets/images/landing-page/img2.jpg" 
-                alt="Original Image" 
-                layer="first" 
-              />
-              <ImageLayer 
-                src="/assets/images/landing-page/img1.jpg" 
-                alt="Processed Image" 
-                layer="second" 
-              />
-              <Divider width={2} handleSize={0} />
-            </ImageSlider>
-          }
-        />
-
-<BentoGrid
-          className="rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-xl border border-zinc-200 dark:border-zinc-800"
-          height="h-full"
-          enableDescription={false}
-          enableTitle={false}
-          component={
-            <DynamicRipple
-              theme="purple"
-              intensity={5}
-              speed={5}
-              reactToCursor
-              autoAnimate
-              rounded="xl"
-              className="w-full h-full min-h-[300px] p-6 flex items-center justify-center"
-            >
-               <div className="text-center relative z-10 bg-white/70 dark:bg-black/40 p-6 rounded-xl backdrop-blur-md border border-purple-100 dark:border-purple-900/30 transition-all duration-300 hover:scale-105">
-                  <div className="absolute -top-5 left-1/2 transform -translate-x-1/2 p-3 rounded-xl">
-                    <Zap className="h-10 w-10" />
-                  </div>
-                  <h3 className="text-xl font-bold mt-4 mb-3 tracking-wide">
-                    Interactive Ripple Effect
-                  </h3>
-                  <p className="text-sm text-zinc-600 dark:text-zinc-300">
-                    Move your cursor to create dynamic ripples
-                  </p>
-                </div>
-            </DynamicRipple>
-          }
-        />
-<BentoGrid
   className="lg:col-span-2 hover:scale-[1.01] overflow-hidden shadow-2xl transition-all duration-300 border border-zinc-800 h-[550px] rounded-xl"
   enableDescription={false}
   enableTitle={false}
@@ -192,6 +99,111 @@ Press ENTER to continue...
             </div>
           }
         />
+
+<BentoGrid
+          className="rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-xl border border-zinc-200 dark:border-zinc-800"
+          height="h-full"
+          enableDescription={false}
+          enableTitle={false}
+          component={
+            <DynamicRipple
+              theme="purple"
+              intensity={5}
+              speed={5}
+              reactToCursor
+              autoAnimate
+              rounded="xl"
+              className="w-full h-full min-h-[300px] p-6 flex items-center justify-center"
+            >
+                <div className="relative flex flex-col items-center justify-center">
+                             <ImageScanner 
+                               image="/logo.png" 
+                               scanType="line"
+                               scanColor="purple"
+                               repeating={true}
+                               scanSpeed={3}
+                               className="w-48 h-48 rounded-lg border-2 border-purple-200 dark:border-purple-900"
+                             />
+                             <div className="text-center mt-3 w-full flex flex-col items-center justify-center gap-3">
+                              <LampHeading text="Nuvyx UI" gradientColors={{ from: "#6e15ad", to: "#d413ad"}} className="text-2xl font-bold" />
+                              <p className="text-sm text-zinc-600 dark:text-zinc-300">
+                                Collection of ready-to-use components.
+                              </p>
+                            <Link href="/components">
+                            <Rbutton className="mt-2 bg-purple-500/20 flex items-center justify-center text-purple-100 dark:bg-purple-500/20 dark:text-purple-700 hover:bg-purple-500/40 w-full">
+                              Check more<ChevronRight className="w-4 h-4 ml-2 " />
+                            </Rbutton>
+                            </Link>
+                            </div>
+                          </div>
+            </DynamicRipple>
+          }
+        />
+
+<BentoGrid
+          enableDescription={false}
+          enableTitle={false}
+          height="h-full"
+          className="rounded-2xl overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] border border-zinc-200 dark:border-zinc-800"
+          component={
+            <ImageSlider 
+              className="h-96 border rounded-xl overflow-hidden"
+              hoverControl
+            >
+              <ImageLayer 
+                src="/assets/images/landing-page/img1.jpg" 
+                alt="Original Image" 
+                layer="first" 
+              />
+              <ImageLayer 
+                src="/assets/images/landing-page/img2.jpg" 
+                alt="Processed Image" 
+                layer="second" 
+              />
+              <Divider width={2} handleSize={0} />
+            </ImageSlider>
+          }
+        />
+        <BentoGrid
+          dark
+          enableDescription={false}
+          enableTitle={false}
+          height="h-full"
+          className="lg:col-span-2 rounded-2xl overflow-hidden shadow-xl transition-all duration-500 hover:shadow-2xl hover:scale-[1.02] border border-zinc-200/50 dark:border-zinc-800/50 tracking-wider"
+          title="Animated Gradient Background"
+          description="Customizable gradient backgrounds with mesh pattern. Interactive and visually striking."
+          component={
+            <div className="relative w-full h-full overflow-hidden">
+              <AnimatedGradientBg
+                colors={["#4f46e5", "#ec4899", "#8b5cf6", "#06b6d4"]}
+                pattern="mesh"
+                blur={25}
+                speed={1.5}
+                opacity={0.8}
+                position="absolute"
+                size="full"
+                zIndex={0}
+                animate
+                interactive
+                patternIntensity={1.8}
+                className="bg-gradient-to-b from-white/10 to-50% dark:from-gray-950/20 dark:from-[-25%]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              <div className="relative z-10 h-full flex flex-col justify-center items-center text-white p-8">
+                <Sparkles className="mb-4 h-10 w-10 drop-shadow-lg animate-pulse text-white/90" />
+                <span className="text-lg md:text-3xl text-center font-bold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-white to-purple-200">
+                  ANIMATED GRADIENT
+                </span>
+                <p className="mt-2 text-sm text-white/80 text-center max-w-xs">
+                  Interactive and visually striking animated gradient background
+                </p>
+              </div>
+              <div className="absolute -bottom-6 -right-6 w-24 h-24 rounded-full bg-purple-500/20 blur-xl" />
+              <div className="absolute -top-6 -left-6 w-16 h-16 rounded-full bg-blue-500/20 blur-xl" />
+            </div>
+          }
+        />
+
         <BentoGrid
           title="Matrix Code Rain"
           description="Digital rain effect inspired by The Matrix, creating a mesmerizing cyberpunk atmosphere."
