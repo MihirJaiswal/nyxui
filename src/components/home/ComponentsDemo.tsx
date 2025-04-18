@@ -127,15 +127,12 @@ export const ComponentsDemo = () => {
                 "Scanning for vulnerabilities...",
                 "Bypassing security protocols...",
                 "Accessing restricted files...",
-                "Covering tracks...",
               ]}
               finalMessage={`
 ⚠️  ACCESS GRANTED  ⚠️
 
 [SYSTEM]: Mainframe successfully compromised
 [SYSTEM]: All security protocols bypassed
-[SYSTEM]: User promoted to root access
-[SYSTEM]: Connection established on port 443
 [SYSTEM]: Remember, with great power comes great responsibility
 
 Connection secured. Press ENTER to continue...
