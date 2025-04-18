@@ -124,7 +124,7 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({
   }
 
   return (
-    <div className={`max-w-4xl mx-auto p-3 md:p-6 ${bgColor} ${textColor} rounded-${rounded} shadow-lg font-mono overflow-y-auto scrollbar-thin`}>
+    <div className={`max-w-4xl mx-auto p-3 md:p-6 ${bgColor} ${textColor} rounded-${rounded} shadow-lg font-mono scrollbar-thin`}>
       <div className={`mb-4 p-2 ${commandBg} border-${textColor} rounded flex items-center justify-between`}>
         <div className="flex items-center gap-1">
           <div className="-mt-1">
@@ -174,7 +174,7 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({
       </div>
       <div 
         ref={outputRef}
-        className={`${outputHeight} mb-4 p-2 bg-black rounded overflow-y-auto hide-scrollbar`}
+        className={`${outputHeight} mb-4 p-2 bg-black rounded hide-scrollbar`}
       >
         {output.map((line, index) => (
           <pre key={index} className="whitespace-pre-wrap">

@@ -5,11 +5,12 @@ import { ChevronRight, Code, Sparkles, Zap } from "lucide-react";
 import { MatrixCodeRain } from "@/nuvyxui/components/MatrixCodeRain";
 import { DynamicRipple } from "@/nuvyxui/components/DynamicRipple";
 import { MajesticCard } from "@/nuvyxui/components/MajesticCard";
-import { MorphingBlob } from "@/nuvyxui/components/MorphingBlob";
 import Image from "next/image";
 import Link from "next/link";
 import InteractiveTerminal from "@/nuvyxui/components/Terminal";
 import { Rbutton } from "../ui/Rbutton";
+import InteractiveKeyboard from "@/nuvyxui/components/Keyboard";
+import { ImageSlider, ImageLayer, Divider } from "@/nuvyxui/components/ImageComparison";
 
 export const ComponentsDemo = () => {
   return (
@@ -69,81 +70,128 @@ export const ComponentsDemo = () => {
           height="h-full"
           className="rounded-2xl overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] border border-zinc-200 dark:border-zinc-800"
           component={
-            <DynamicRipple
-              theme="purple"
-              intensity={4}
-              speed={3}
-              reactToCursor
-              autoAnimate
-              rounded="xl"
-              gradientOverlay
-              className="w-full h-full min-h-[300px] p-6 flex items-center justify-center"
+            <ImageSlider 
+              className="h-96 border rounded-xl overflow-hidden"
+              hoverControl
             >
-              <div className="text-center">
-                <Zap className="h-10 w-10 mx-auto mb-4" />
-                <h3 className="text-xl font-bold mb-2 tracking-wide">Interactive Ripple Effect</h3>
-                <p className="text-sm opacity-70">Move your cursor to create dynamic ripples</p>
-              </div>
-            </DynamicRipple>
+              <ImageLayer 
+                src="/assets/images/landing-page/img2.jpg" 
+                alt="Original Image" 
+                layer="first" 
+              />
+              <ImageLayer 
+                src="/assets/images/landing-page/img1.jpg" 
+                alt="Processed Image" 
+                layer="second" 
+              />
+              <Divider width={2} handleSize={0} />
+            </ImageSlider>
           }
         />
 
 <BentoGrid
           className="rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-xl border border-zinc-200 dark:border-zinc-800"
-          title="Morphing Blob"
-          height="h-76"
-          description="Modern morphing blob with animated effects."
+          height="h-full"
+          enableDescription={false}
+          enableTitle={false}
           component={
-            <div className="py-6 flex items-center justify-center relative">
-              <MorphingBlob theme="secondary" size="lg" glowIntensity={4} effect3D>
-                <div className="text-center flex flex-col items-center justify-center p-6">
-                  <Image src="/logo.png" alt="Profile" width={200} height={200} quality={100} loading="lazy" className="rounded-full w-12 h-12" />
-                  <h4 className="text-xl font-bold mb-2">NuvyxUI</h4>
-                  <p className="text-sm opacity-90 max-w-[180px]">Build awesome UI.</p>
+            <DynamicRipple
+              theme="purple"
+              intensity={5}
+              speed={5}
+              reactToCursor
+              autoAnimate
+              rounded="xl"
+              className="w-full h-full min-h-[300px] p-6 flex items-center justify-center"
+            >
+               <div className="text-center relative z-10 bg-white/70 dark:bg-black/40 p-6 rounded-xl backdrop-blur-md border border-purple-100 dark:border-purple-900/30 transition-all duration-300 hover:scale-105">
+                  <div className="absolute -top-5 left-1/2 transform -translate-x-1/2 p-3 rounded-xl">
+                    <Zap className="h-10 w-10" />
+                  </div>
+                  <h3 className="text-xl font-bold mt-4 mb-3 tracking-wide">
+                    Interactive Ripple Effect
+                  </h3>
+                  <p className="text-sm text-zinc-600 dark:text-zinc-300">
+                    Move your cursor to create dynamic ripples
+                  </p>
                 </div>
-              </MorphingBlob>
+            </DynamicRipple>
+          }
+        />
+<BentoGrid
+  className="lg:col-span-2 hover:scale-[1.01] overflow-hidden shadow-2xl transition-all duration-300 border border-zinc-800 h-[550px] rounded-xl"
+  enableDescription={false}
+  enableTitle={false}
+  height="h-full"
+  dark
+  component={
+    <div className="rounded-xl overflow-hidden relative w-full h-full bg-gradient-to-br from-zinc-900 to-black">
+      <div className="w-full h-76 overflow-hidden overscroll-none bg-zinc-800 rounded-t-lg shadow-lg">
+  <div className="bg-zinc-900 p-1 rounded-t-lg flex items-center justify-between border-b border-zinc-700">
+    <div className="flex space-x-2 ml-2">
+      <div className="w-2 h-2 rounded-full bg-red-500"></div>
+      <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
+      <div className="w-2 h-2 rounded-full bg-green-500"></div>
+    </div>
+    <div className="text-xs text-zinc-400">Terminal</div>
+    <div className="w-12"></div>
+  </div>
+  <div className="bg-black h-76 overflow-hidden overscroll-none">
+    <InteractiveTerminal 
+      bgColor="bg-black"
+      textColor="text-green-400"
+      autoMode={true}
+      command="sudo hack -m"
+      className="!overflow-hidden !overscroll-none !scrollbar-hide font-mono text-sm pb-2"
+      commandMessage="Auto-executing:"
+      outputHeight="h-72"
+      icon={<Code className="mr-1 mt-1 text-green-500 w-4 h-4" />}
+      processingSteps={[
+        "Initializing exploit frames...",
+        "Scanning for vulnerabilities...",
+        "Bypassing security protocols...",
+        "Accessing restricted files..."
+      ]}
+      finalMessage={`
+⚠️  ACCESS GRANTED  ⚠️
+
+[SYSTEM]: Mainframe compromised
+[SYSTEM]: Security bypassed
+
+Press ENTER to continue...
+      `}
+      promptSymbol="#"
+      stepDelay={500}
+    />
+  </div>
+</div>
+      
+          <div className="flex-grow bg-black relative w-full flex items-center justify-end lg:justify-start">
+            <div className="transform scale-70 md:scale-80 origin-center lg:origin-top -mt-6 lg:mt-0">
+              <InteractiveKeyboard
+                layout="standard"
+                showFunctionKeys={false}
+                showNavigationCluster={false}
+                activeKeys={["Enter"]}
+                activeKeyGlowColor="#22c55e"
+                activeKeyGlowIntensity={2}
+                theme="cyberpunk"
+                keyPressAnimationDuration={800}
+                allowPhysicalKeyboard={true}
+                perspective={800}
+                rotateX={15}
+              />
+            </div>
+              </div>
+              <div className="absolute bottom-2 right-4">
+                <div className="px-2 py-1 bg-zinc-800 rounded text-xs text-green-400 flex items-center">
+                  <span className="w-2 h-2 bg-green-500 rounded-full mr-1 animate-pulse"></span>
+                  ONLINE
+                </div>
+              </div>
             </div>
           }
         />
-
-        <BentoGrid
-          className="lg:col-span-2 hover:scale-[1.02] overflow-hidden shadow-xl transition-all duration-300 border border-zinc-200 dark:border-zinc-800 h-[450px]"
-          enableDescription={false}
-          enableTitle={false}
-          height="h-full"
-          dark
-          component={
-            <div className="rounded-xl  overflow-hidden">
-            <InteractiveTerminal 
-              bgColor="bg-black"
-              textColor="text-purple-500"
-              autoMode={true}
-              command="sudo hack -m"
-              className="overflow-hidden"
-              commandMessage="Auto-executing:"
-              icon={<Code className="mr-2 mt-2" />}
-              processingSteps={[
-                "Initializing exploit framework...",
-                "Scanning for vulnerabilities...",
-                "Bypassing security protocols...",
-                "Accessing restricted files...",
-              ]}
-              finalMessage={`
-⚠️  ACCESS GRANTED  ⚠️
-
-[SYSTEM]: Mainframe successfully compromised
-[SYSTEM]: All security protocols bypassed=
-[SYSTEM]: Remember, with great power comes great responsibility
-
-Connection secured. Press ENTER to continue...
-              `}
-              promptSymbol=">"
-              stepDelay={800}
-            />
-          </div>
-          }
-        />
-
         <BentoGrid
           title="Matrix Code Rain"
           description="Digital rain effect inspired by The Matrix, creating a mesmerizing cyberpunk atmosphere."
