@@ -6,8 +6,6 @@ import {
   Moon,
   Check,
   Copy,
-  Eye,
-  Code,
   Volume2
 } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
@@ -413,30 +411,38 @@ export default function PlayerExample() {
           )}
 
           <div className="flex justify-center my-6 md:hidden">
-            <button
-              onClick={() => setActiveTab(activeTab === "code" ? "preview" : "code")}
-              className={`
-                relative px-5 py-2 flex items-center justify-center gap-2 transition-all duration-200 rounded-md bg-black dark:bg-zinc-800 border border-black dark:border-zinc-700
-                focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500
-                ${activeTab === "code"
-                  ? "text-gray-300"
-                  : "text-gray-300 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200"
-                }
-              `}
-              aria-label={activeTab === "code" ? "Show Preview" : "Show Code"}
-            >
-              {activeTab === "code" ? (
-                <>
-                  <Eye className="w-5 h-5" aria-hidden="true" />
-                  <span>Preview</span>
-                </>
-              ) : (
-                <>
-                  <Code className="w-5 h-5" aria-hidden="true" />
-                  <span>Code</span>
-                </>
-              )}
-            </button>
+          <button
+            onClick={() => setActiveTab(activeTab === "code" ? "preview" : "code")}
+            className={`
+              relative px-5 py-2.5 flex items-center justify-center gap-2
+              font-medium rounded-md transition-all duration-300 ease-in-out
+              ${activeTab === "code"
+                ? "bg-zinc-800 text-white shadow-sm"
+                : "bg-white dark:bg-zinc-700 text-zinc-700 dark:text-gray-200 hover:bg-zinc-100 dark:hover:bg-zinc-600"}
+              border ${activeTab === "code" 
+                ? "border-purple-500" 
+                : "border-zinc-300 dark:border-zinc-600"}
+              focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2
+            `}
+            aria-label={activeTab === "code" ? "Show Preview" : "Show Code"}
+          >
+            {activeTab === "code" ? (
+              <>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" className="inline-block">
+                  <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                  <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                </svg>
+                <span>Preview</span>
+              </>
+            ) : (
+              <>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" className="inline-block">
+                  <path d="M10.478 1.647a.5.5 0 1 0-.956-.294l-4 13a.5.5 0 0 0 .956.294l4-13zM4.854 4.146a.5.5 0 0 1 0 .708L1.707 8l3.147 3.146a.5.5 0 0 1-.708.708l-3.5-3.5a.5.5 0 0 1 0-.708l3.5-3.5a.5.5 0 0 1 .708 0zm6.292 0a.5.5 0 0 0 0 .708L14.293 8l-3.147 3.146a.5.5 0 0 0 .708.708l3.5-3.5a.5.5 0 0 0 0-.708l-3.5-3.5a.5.5 0 0 0-.708 0z"/>
+                </svg>
+                <span>Code</span>
+              </>
+            )}
+          </button>
           </div>
         </div>
       </div>

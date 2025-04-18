@@ -144,7 +144,7 @@ export const Build = () => {
 
   return (
     <div className="relative w-full overflow-hidden text-gray-900 dark:text-white">
-      <div className="mx-auto max-w-7xl px-4 py-10 md:py-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 pb-10 md:py-4 sm:px-6 lg:px-8">
         <div className="flex flex-col">
           <div className="flex flex-col justify-center pt-4">
             <Text />
