@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { vscDarkPlus, prism } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import { useTheme } from "next-themes"
 
 interface PreviewCodeToggleProps {
@@ -16,9 +16,32 @@ interface PreviewCodeToggleProps {
   language?: string
   previewClassName?: string
   defaultTab?: "preview" | "code"
-  darkCodeTheme?: "vscDarkPlus" 
-  lightCodeTheme?: "prism"
+  darkCodeTheme?: "pitchBlackTheme" 
+  lightCodeTheme?: "lightTheme"
 }
+
+const lightTheme = {
+  ...vscDarkPlus,
+  'pre[class*="language-"]': {
+    ...vscDarkPlus['pre[class*="language-"]'],
+    background: '#000000'
+  },
+  'code[class*="language-"]': {
+    ...vscDarkPlus['code[class*="language-"]'],
+    background: '#000000'
+  }
+};
+const pitchBlackTheme = {
+  ...vscDarkPlus,
+  'pre[class*="language-"]': {
+    ...vscDarkPlus['pre[class*="language-"]'],
+    background: '#09090B', 
+  },
+  'code[class*="language-"]': {
+    ...vscDarkPlus['code[class*="language-"]'],
+    background: '#09090B', 
+  }
+};
 
 export const PreviewCodeToggle = ({
   preview,
@@ -46,7 +69,7 @@ export const PreviewCodeToggle = ({
     }
   }
 
-  const codeStyle = currentTheme === 'light' ? prism : vscDarkPlus
+  const codeStyle = currentTheme === 'light' ? lightTheme : pitchBlackTheme
 
   return (
     <div className="rounded-lg border shadow-sm">

@@ -8,12 +8,36 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import type { ComponentData } from "@/nuvyxui/ComponentInterfaces"
 import Image from "next/image"
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
-import { vscDarkPlus, prism } from "react-syntax-highlighter/dist/esm/styles/prism"
+import { vscDarkPlus, } from "react-syntax-highlighter/dist/esm/styles/prism"
 import { Badge } from "@/components/ui/badge"
 import { motion, AnimatePresence } from "framer-motion"
 
-const LIGHT_THEME = prism
-const DARK_THEME = vscDarkPlus
+
+const lightTheme = {
+  ...vscDarkPlus,
+  'pre[class*="language-"]': {
+    ...vscDarkPlus['pre[class*="language-"]'],
+    background: '#000000'
+  },
+  'code[class*="language-"]': {
+    ...vscDarkPlus['code[class*="language-"]'],
+    background: '#000000'
+  }
+};
+const pitchBlackTheme = {
+  ...vscDarkPlus,
+  'pre[class*="language-"]': {
+    ...vscDarkPlus['pre[class*="language-"]'],
+    background: '#09090B', 
+  },
+  'code[class*="language-"]': {
+    ...vscDarkPlus['code[class*="language-"]'],
+    background: '#09090B', 
+  }
+};
+
+const LIGHT_THEME = lightTheme
+const DARK_THEME = pitchBlackTheme
 
 const CollapsibleSection = ({
   title,
