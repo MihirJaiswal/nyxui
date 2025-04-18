@@ -95,7 +95,7 @@ export const TwitterCard = () => {
                   <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-yellow-500" />
                   <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-green-500" />
                 </div>
-                <span className="text-xs">Card.tsx</span>
+                <span className="text-xs text-white">Card.tsx</span>
               </div>
               <div className="text-gray-700 text-xs p-1 sm:p-2 dark:text-gray-300 overflow-x-auto">
                 <pre className="text-xs">
