@@ -1,10 +1,11 @@
 "use client";
-import { useRef, useEffect, useState, type ReactNode } from "react";
+import { useRef, useEffect, useState, useMemo, type ReactNode } from "react";
 import {
   motion,
   useScroll,
   useTransform,
   type MotionValue,
+  type MotionProps,
 } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -17,10 +18,8 @@ export interface ScrollAnimationTriggerProps {
   duration?: number;
   direction?: "up" | "down" | "left" | "right";
   once?: boolean;
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  customProps?: Record<string, any>;
-  as?: React.ElementType;
+  customProps?: MotionProps;
+  as?: keyof typeof motionElementMap;
   fromColor?: string;
   toColor?: string;
   fromRotation?: number;
@@ -28,6 +27,28 @@ export interface ScrollAnimationTriggerProps {
   fromScale?: number;
   toScale?: number;
 }
+
+const motionElementMap = {
+  div: motion.div,
+  span: motion.span,
+  p: motion.p,
+  h1: motion.h1,
+  h2: motion.h2,
+  h3: motion.h3,
+  h4: motion.h4,
+  h5: motion.h5,
+  h6: motion.h6,
+  section: motion.section,
+  article: motion.article,
+  aside: motion.aside,
+  nav: motion.nav,
+  ul: motion.ul,
+  ol: motion.ol,
+  li: motion.li,
+  button: motion.button,
+};
+
+type MotionElementKey = keyof typeof motionElementMap;
 
 export function ScrollAnimationTrigger({
   children,
@@ -64,6 +85,7 @@ export function ScrollAnimationTrigger({
 
   useEffect(() => {
     if (!ref.current) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
@@ -78,21 +100,23 @@ export function ScrollAnimationTrigger({
     );
 
     observer.observe(ref.current);
-    return () => observer.disconnect();
+
+    return () => {
+      observer.disconnect();
+    };
   }, [threshold, once]);
 
-  const getAnimationProps = () => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const baseProps: any = {
-      initial: {},
-      animate: {},
+  const animationProps = useMemo(() => {
+    const baseProps: MotionProps = {
       transition: { duration, delay, ease: "easeOut" },
     };
 
     switch (effect) {
       case "fade":
         baseProps.initial = { opacity: 0 };
-        baseProps.animate = isInView ? { opacity: 1 } : { opacity: 0 };
+        baseProps.animate = isInView 
+          ? { opacity: 1 }
+          : { opacity: 0 };
         break;
       case "scale":
         baseProps.initial = { scale: fromScale, opacity: 0 };
@@ -102,82 +126,50 @@ export function ScrollAnimationTrigger({
         break;
       case "slide":
         const offset = 50;
-        const directionMap = {
-          up: { y: offset },
-          down: { y: -offset },
-          left: { x: offset },
-          right: { x: -offset },
+        const directionOffsets = {
+          up: { y: offset, x: 0 },
+          down: { y: -offset, x: 0 },
+          left: { x: offset, y: 0 },
+          right: { x: -offset, y: 0 },
         };
-        baseProps.initial = { ...directionMap[direction], opacity: 0 };
+        baseProps.initial = { ...directionOffsets[direction], opacity: 0 };
         baseProps.animate = isInView
           ? { x: 0, y: 0, opacity: 1 }
-          : { ...directionMap[direction], opacity: 0 };
+          : { ...directionOffsets[direction], opacity: 0 };
         break;
       case "color":
         baseProps.style = { color: textColor };
         break;
       case "rotate":
-        baseProps.style = { rotate: rotation, opacity: isInView ? 1 : 0 };
+        baseProps.style = {
+          rotate: rotation,
+          opacity: scrollYProgress
+        };
         break;
       case "custom":
         return {
           ...baseProps,
           ...customProps,
           animate: isInView
-            ? { ...customProps.animate }
-            : { ...customProps.initial },
+            ? customProps.animate
+            : customProps.initial,
         };
-      default:
-        break;
     }
     return baseProps;
-  };
+  }, [effect, isInView, duration, delay, fromScale, toScale, direction, textColor, rotation, scrollYProgress, customProps]);
 
-  const MotionComponent =
-    as === "div"
-      ? motion.div
-      : as === "span"
-      ? motion.span
-      : as === "p"
-      ? motion.p
-      : as === "h1"
-      ? motion.h1
-      : as === "h2"
-      ? motion.h2
-      : as === "h3"
-      ? motion.h3
-      : as === "h4"
-      ? motion.h4
-      : as === "h5"
-      ? motion.h5
-      : as === "h6"
-      ? motion.h6
-      : as === "section"
-      ? motion.section
-      : as === "article"
-      ? motion.article
-      : as === "aside"
-      ? motion.aside
-      : as === "nav"
-      ? motion.nav
-      : as === "ul"
-      ? motion.ul
-      : as === "ol"
-      ? motion.ol
-      : as === "li"
-      ? motion.li
-      : as === "button"
-      ? motion.button
-      : motion.div;
-
+  const MotionComponent = motionElementMap[as as MotionElementKey] || motion.div;
+  
   return (
-    <MotionComponent
-      ref={ref}
-      className={cn("scroll-animation-trigger", className)}
-      {...getAnimationProps()}
-    >
-      {children}
-    </MotionComponent>
+    <div ref={ref} style={{ width: '100%', height: '100%' }} data-testid="scroll-wrapper">
+      <MotionComponent
+        className={cn("scroll-animation-trigger", className)}
+        data-testid="scroll-animation"
+        {...animationProps}
+      >
+        {children}
+      </MotionComponent>
+    </div>
   );
 }
 
@@ -191,36 +183,44 @@ export function useScrollProgress(options = {}) {
   return { ref, scrollYProgress };
 }
 
+export function useScrollTransform<T>(
+  scrollYProgress: MotionValue<number>,
+  inputRange = [0, 1] as [number, number],
+  outputRange: [T, T]
+) {
+  return useTransform(scrollYProgress, inputRange, outputRange);
+}
+
 export function useScrollColor(
   scrollYProgress: MotionValue<number>,
-  fromColor: string,
-  toColor: string
+  fromColor = "var(--color-muted)",
+  toColor = "var(--color-primary)"
 ) {
-  return useTransform(scrollYProgress, [0, 1], [fromColor, toColor]);
+  return useScrollTransform(scrollYProgress, [0, 1], [fromColor, toColor]);
 }
 
 export function useScrollSize(
   scrollYProgress: MotionValue<number>,
-  fromSize: number,
-  toSize: number
+  fromSize = 0.8,
+  toSize = 1
 ) {
-  return useTransform(scrollYProgress, [0, 1], [fromSize, toSize]);
+  return useScrollTransform(scrollYProgress, [0, 1], [fromSize, toSize]);
 }
 
 export function useScrollRotation(
   scrollYProgress: MotionValue<number>,
-  fromRotation: number,
-  toRotation: number
+  fromRotation = -10,
+  toRotation = 0
 ) {
-  return useTransform(scrollYProgress, [0, 1], [fromRotation, toRotation]);
+  return useScrollTransform(scrollYProgress, [0, 1], [fromRotation, toRotation]);
 }
 
 export interface ScrollProgressAnimationProps {
   children:
-    | ReactNode
-    | ((props: { scrollYProgress: MotionValue<number> }) => ReactNode);
+  | ReactNode
+  | ((props: { scrollYProgress: MotionValue<number> }) => ReactNode);
   className?: string;
-  offset?: ["start end", "end start"] | [string, string];
+  offset?: [string, string];
 }
 
 export function ScrollProgressAnimation({
@@ -234,7 +234,11 @@ export function ScrollProgressAnimation({
   });
 
   return (
-    <div ref={ref} className={cn("scroll-progress-animation", className)}>
+    <div
+      ref={ref}
+      className={cn("scroll-progress-animation", className)}
+      data-testid="scroll-progress"
+    >
       {typeof children === "function"
         ? children({ scrollYProgress })
         : children}

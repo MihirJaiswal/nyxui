@@ -104,8 +104,8 @@ export const ComponentsDemo = () => {
           component={
             <DynamicRipple
               theme="purple"
-              intensity={5}
-              speed={5}
+              intensity={2}
+              speed={1}
               reactToCursor
               autoAnimate
               rounded="xl"
@@ -113,7 +113,7 @@ export const ComponentsDemo = () => {
             >
               <Particles
                 className="absolute inset-0 z-0"
-                quantity={100}
+                quantity={20}
                 ease={80}
                 color="#ffffff"
                 refresh

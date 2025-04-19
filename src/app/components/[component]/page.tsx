@@ -55,7 +55,7 @@ const ComponentPage = async ({
         </aside>
         <main className="flex-1 overflow-hidden bg-white dark:bg-black pr-12">
           <div className="mx-auto w-full max-w-[1200px] px-4 py-6 sm:px-6 md:py-8 lg:px-8 xl:px-10">
-            <div className="space-y-4 pb-6 md:pb-8">
+            <div className="space-y-4 pb-6 md:pb-8 mt-3">
               <div className="flex flex-wrap items-start gap-3 sm:items-center">
                 <h1 className="scroll-m-20 text-3xl font-bold tracking-tight sm:text-4xl break-words">
                   {componentData.name}

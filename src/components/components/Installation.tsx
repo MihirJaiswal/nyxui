@@ -122,7 +122,12 @@ const ExpandableCode = ({
         </div>
       )}
 
-      <div className={!isExpanded ? "max-h-80 overflow-hidden" : ""}>
+      <div 
+        className={cn(
+          "overflow-auto",
+          isExpanded ? "max-h-[700px]" : "max-h-80 overflow-hidden"
+        )}
+      >
         <SyntaxHighlighter
           language={language}
           style={codeStyle}
@@ -130,7 +135,6 @@ const ExpandableCode = ({
             margin: 0,
             padding: "16px",
             fontSize: "13px",
-            height: isExpanded ? "auto" : undefined,
           }}
           showLineNumbers={showLineNumbers}
         >
