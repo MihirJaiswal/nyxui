@@ -138,7 +138,6 @@ Press ENTER to continue...
                             <Link href="/components">
                             <Rbutton className="mt-2 px-4 py-3 bg-purple-500/20 flex items-center justify-center text-purple-100 dark:bg-purple-500/20 dark:text-purple-700 hover:bg-purple-500/40 w-full">
                               Check more
-                              <ChevronRight className="w-4 h-4 ml-2" />
                             </Rbutton>  
                             </Link>
                             </div>
