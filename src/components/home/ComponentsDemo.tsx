@@ -136,7 +136,7 @@ Press ENTER to continue...
                                 Collection of ready-to-use components.
                               </p>
                             <Link href="/components">
-                            <Rbutton className="px-6 py-5 min-h-[44px] min-w-48 flex items-center justify-center text-purple-100 bg-purple-500/20 dark:bg-purple-500/20 text-white dark:text-black hover:bg-purple-500/40 w-full my-2">
+                            <Rbutton className="p-6 min-h-[48px] min-w-48 flex my-4 mx-1 items-center justify-center text-purple-100 bg-purple-500/20 dark:bg-purple-500/20 text-white dark:text-black hover:bg-purple-500/40 w-full my-2 touch-manipulation">
                               Check more
                             </Rbutton> 
                             </Link>
