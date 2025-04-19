@@ -1,22 +1,29 @@
-"use client"
-import type React from "react"
-import { useState, useEffect } from "react"
-import { cn } from "@/lib/utils"
+"use client";
+import type React from "react";
+import { useState, useEffect } from "react";
+import { cn } from "@/lib/utils";
 
-export interface CyberpunkCardProps extends React.HTMLAttributes<HTMLDivElement> {
-  theme?: "neon-blue" | "neon-pink" | "neon-green" | "neon-orange" | "neon-purple" | "custom"
+export interface CyberpunkCardProps
+  extends React.HTMLAttributes<HTMLDivElement> {
+  theme?:
+    | "neon-blue"
+    | "neon-pink"
+    | "neon-green"
+    | "neon-orange"
+    | "neon-purple"
+    | "custom";
   customColors?: {
-    primary: string
-    secondary: string
-    accent: string
-  }
-  borderStyle?: "solid" | "dashed" | "glitch" | "corners"
-  colorShift?: boolean
-  lightTrail?: boolean
-  rounded?: "none" | "sm" | "md" | "lg"
-  glow?: boolean
-  glowIntensity?: 1 | 2 | 3 | 4 | 5
-  children: React.ReactNode
+    primary: string;
+    secondary: string;
+    accent: string;
+  };
+  borderStyle?: "solid" | "dashed" | "glitch" | "corners";
+  colorShift?: boolean;
+  lightTrail?: boolean;
+  rounded?: "none" | "sm" | "md" | "lg";
+  glow?: boolean;
+  glowIntensity?: 1 | 2 | 3 | 4 | 5;
+  children: React.ReactNode;
 }
 
 export const CyberpunkCard = ({
@@ -32,37 +39,37 @@ export const CyberpunkCard = ({
   children,
   ...props
 }: CyberpunkCardProps) => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-  const [isHovered, setIsHovered] = useState(false)
-  const [colorPhase, setColorPhase] = useState(0)
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
+  const [colorPhase, setColorPhase] = useState(0);
 
   useEffect(() => {
-    if (!colorShift || !isHovered) return
+    if (!colorShift || !isHovered) return;
 
     const interval = setInterval(() => {
-      setColorPhase((prev) => (prev + 1) % 100)
-    }, 50)
+      setColorPhase((prev) => (prev + 1) % 100);
+    }, 50);
 
-    return () => clearInterval(interval)
-  }, [colorShift, isHovered])
+    return () => clearInterval(interval);
+  }, [colorShift, isHovered]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!lightTrail) return
+    if (!lightTrail) return;
 
-    const rect = e.currentTarget.getBoundingClientRect()
+    const rect = e.currentTarget.getBoundingClientRect();
     setMousePosition({
       x: e.clientX - rect.left,
       y: e.clientY - rect.top,
-    })
-  }
+    });
+  };
 
   const handleMouseEnter = () => {
-    setIsHovered(true)
-  }
+    setIsHovered(true);
+  };
 
   const handleMouseLeave = () => {
-    setIsHovered(false)
-  }
+    setIsHovered(false);
+  };
 
   const themeColors = {
     "neon-blue": {
@@ -109,11 +116,13 @@ export const CyberpunkCard = ({
         : "from-blue-600 to-cyan-500",
       accent: customColors ? `bg-[${customColors.accent}]` : "bg-blue-400",
       text: "text-gray-50",
-      glow: customColors ? `shadow-[${customColors.primary}]/50` : "shadow-blue-500/50",
+      glow: customColors
+        ? `shadow-[${customColors.primary}]/50`
+        : "shadow-blue-500/50",
     },
-  }
+  };
 
-  const currentTheme = themeColors[theme]
+  const currentTheme = themeColors[theme];
 
   const borderStyles = {
     solid: "border-2",
@@ -122,14 +131,14 @@ export const CyberpunkCard = ({
       "before:content-[''] before:absolute before:inset-0 before:border-2 before:translate-x-1 before:translate-y-1 before:border-white/30 before:z-[-1]",
     corners:
       "border-0 before:content-[''] before:absolute before:w-8 before:h-8 before:border-t-2 before:border-l-2 before:top-0 before:left-0 after:content-[''] after:absolute after:w-8 after:h-8 after:border-b-2 after:border-r-2 after:bottom-0 after:right-0",
-  }
+  };
 
   const roundedStyles = {
     none: "rounded-none",
     sm: "rounded-sm",
     md: "rounded-md",
     lg: "rounded-lg",
-  }
+  };
 
   const glowIntensityStyles = {
     1: "shadow-md",
@@ -137,7 +146,7 @@ export const CyberpunkCard = ({
     3: "shadow-xl",
     4: "shadow-2xl",
     5: "shadow-2xl shadow-lg",
-  }
+  };
 
   return (
     <div
@@ -149,10 +158,13 @@ export const CyberpunkCard = ({
         glow && glowIntensityStyles[glowIntensity],
         glow && currentTheme.glow,
         currentTheme.text,
-        className,
+        className
       )}
       style={{
-        borderColor: colorShift && isHovered ? `hsl(${(colorPhase * 3.6) % 360}, 100%, 70%)` : undefined,
+        borderColor:
+          colorShift && isHovered
+            ? `hsl(${(colorPhase * 3.6) % 360}, 100%, 70%)`
+            : undefined,
       }}
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
@@ -171,9 +183,11 @@ export const CyberpunkCard = ({
       )}
       <div className="relative z-10">{children}</div>
       <div
-        className={cn("absolute -bottom-2 -right-2 w-16 h-16 transform rotate-45 opacity-70", currentTheme.accent)}
+        className={cn(
+          "absolute -bottom-2 -right-2 w-16 h-16 transform rotate-45 opacity-70",
+          currentTheme.accent
+        )}
       />
     </div>
-  )
-}
-
+  );
+};

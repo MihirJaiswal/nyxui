@@ -1,12 +1,26 @@
-import React from 'react';
-import { Lightbulb, ChevronRight, BookOpen, Coffee, MessageSquare } from "lucide-react";
-import Image from 'next/image';
+import React from "react";
+import {
+  Lightbulb,
+  ChevronRight,
+  BookOpen,
+  Coffee,
+  MessageSquare,
+} from "lucide-react";
+import Image from "next/image";
 
 export default function DocsSidebar() {
   const sections = [
-    { id: "introduction", name: "Introduction", icon: <BookOpen className="size-4" /> },
+    {
+      id: "introduction",
+      name: "Introduction",
+      icon: <BookOpen className="size-4" />,
+    },
     { id: "faq", name: "FAQ", icon: <MessageSquare className="size-4" /> },
-    { id: "philosophy", name: "Philosophy", icon: <Lightbulb className="size-4" /> },
+    {
+      id: "philosophy",
+      name: "Philosophy",
+      icon: <Lightbulb className="size-4" />,
+    },
   ];
 
   return (
@@ -14,7 +28,9 @@ export default function DocsSidebar() {
       <div className="rounded-xl">
         <div className="space-y-6 p-3">
           <div className="space-y-4">
-            <p className="font-semibold text-base tracking-tight border-b pb-2 mb-1">On This Page</p>
+            <p className="font-semibold text-base tracking-tight border-b pb-2 mb-1">
+              On This Page
+            </p>
             <ul className="list-none m-0 space-y-3">
               {sections.map((section) => (
                 <li key={section.id}>

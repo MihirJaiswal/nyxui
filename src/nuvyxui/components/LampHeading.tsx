@@ -1,6 +1,6 @@
-'use client';
-import { useRef, useEffect } from 'react';
-import { motion } from 'framer-motion';
+"use client";
+import { useRef, useEffect } from "react";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface LampHeadingProps {
@@ -23,7 +23,7 @@ export const LampHeading = ({
   lineHeight = 2,
   glowIntensity = 0.7,
   glowSize = 20,
-  animationSpeed = 3
+  animationSpeed = 3,
 }: LampHeadingProps) => {
   const mainLineRef = useRef<HTMLDivElement>(null);
   const flowAnimation = {
@@ -33,8 +33,8 @@ export const LampHeading = ({
         duration: animationSpeed,
         ease: "easeInOut",
         repeat: Infinity,
-      }
-    }
+      },
+    },
   };
 
   useEffect(() => {
@@ -45,9 +45,7 @@ export const LampHeading = ({
 
   return (
     <div className={cn("flex flex-col items-start", className)}>
-      <h2 className="font-medium tracking-wide">
-        {text}
-      </h2>
+      <h2 className="font-medium tracking-wide">{text}</h2>
       <div className="w-full relative mt-1">
         <motion.div
           variants={flowAnimation}
@@ -104,6 +102,6 @@ export const LampHeading = ({
       </div>
     </div>
   );
-}
+};
 
 export default LampHeading;

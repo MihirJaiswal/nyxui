@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useRef } from "react"
-import { motion } from "framer-motion"
-import { cn } from "@/lib/utils"
-import { Play, Pause, Copy, Check, Terminal, RotateCcw } from "lucide-react"
+import { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
+import { Play, Pause, Copy, Check, Terminal, RotateCcw } from "lucide-react";
 
 export interface AnimatedCodeBlockProps {
   code: string;
@@ -14,11 +14,11 @@ export interface AnimatedCodeBlockProps {
   highlightLines?: number[];
   title?: string;
   className?: string;
-  autoPlay?: boolean
-  loop?: boolean
-  blurEffect?: boolean
-  showControls?: boolean
-  onCopy?: () => void
+  autoPlay?: boolean;
+  loop?: boolean;
+  blurEffect?: boolean;
+  showControls?: boolean;
+  onCopy?: () => void;
 }
 
 export function AnimatedCodeBlock({
@@ -36,13 +36,13 @@ export function AnimatedCodeBlock({
   showControls = true,
   onCopy,
 }: AnimatedCodeBlockProps) {
-  const [isPlaying, setIsPlaying] = useState(autoPlay)
-  const [currentPosition, setCurrentPosition] = useState(0)
-  const [copied, setCopied] = useState(false)
-  const [completed, setCompleted] = useState(false)
-  const [isPaused, setIsPaused] = useState(false)
-  const codeRef = useRef<HTMLDivElement>(null)
-  const timerRef = useRef<NodeJS.Timeout | null>(null)
+  const [isPlaying, setIsPlaying] = useState(autoPlay);
+  const [currentPosition, setCurrentPosition] = useState(0);
+  const [copied, setCopied] = useState(false);
+  const [completed, setCompleted] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const codeRef = useRef<HTMLDivElement>(null);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const getThemeStyles = () => {
     switch (theme) {
@@ -53,7 +53,7 @@ export function AnimatedCodeBlock({
           lineNumbers: "text-gray-500",
           highlight: "bg-gray-800",
           border: "border-gray-700",
-        }
+        };
       case "minimal":
         return {
           background: "bg-yellow-100",
@@ -61,7 +61,7 @@ export function AnimatedCodeBlock({
           lineNumbers: "text-gray-500",
           highlight: "bg-yellow-200",
           border: "border-yellow-300",
-        }
+        };
       case "terminal":
         return {
           background: "bg-black",
@@ -69,7 +69,7 @@ export function AnimatedCodeBlock({
           lineNumbers: "text-green-700",
           highlight: "bg-green-900/30",
           border: "border-green-900",
-        }
+        };
       case "cyberpunk":
         return {
           background: "bg-purple-950",
@@ -77,7 +77,7 @@ export function AnimatedCodeBlock({
           lineNumbers: "text-purple-600",
           highlight: "bg-pink-900/30",
           border: "border-pink-700",
-        }
+        };
       case "light":
         return {
           background: "bg-white",
@@ -85,7 +85,7 @@ export function AnimatedCodeBlock({
           lineNumbers: "text-gray-400",
           highlight: "bg-gray-200",
           border: "border-gray-200",
-        }
+        };
       case "nuvyx":
         return {
           background: "bg-black",
@@ -93,7 +93,7 @@ export function AnimatedCodeBlock({
           lineNumbers: "text-purple-500",
           highlight: "bg-purple-900/30",
           border: "border-purple-700",
-        }
+        };
       default:
         return {
           background: "bg-gray-900",
@@ -101,101 +101,101 @@ export function AnimatedCodeBlock({
           lineNumbers: "text-gray-500",
           highlight: "bg-gray-800",
           border: "border-gray-700",
-        }
+        };
     }
-  }
+  };
 
-  const themeStyles = getThemeStyles()
+  const themeStyles = getThemeStyles();
 
   useEffect(() => {
     if (isPlaying && currentPosition < code.length) {
       timerRef.current = setTimeout(() => {
-        setCurrentPosition(currentPosition + 1)
-      }, typingSpeed)
+        setCurrentPosition(currentPosition + 1);
+      }, typingSpeed);
     } else if (isPlaying && currentPosition >= code.length) {
       if (loop) {
         setTimeout(() => {
-          setCurrentPosition(0)
-        }, 1000)
+          setCurrentPosition(0);
+        }, 1000);
       } else {
-        setIsPlaying(false)
-        setCompleted(true)
-        setIsPaused(false)
+        setIsPlaying(false);
+        setCompleted(true);
+        setIsPaused(false);
       }
     }
 
     return () => {
-      if (timerRef.current) clearTimeout(timerRef.current)
-    }
-  }, [isPlaying, currentPosition, code, typingSpeed, loop])
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, [isPlaying, currentPosition, code, typingSpeed, loop]);
 
   const togglePlay = () => {
     if (isPlaying) {
-      setIsPaused(true)
+      setIsPaused(true);
     } else if (completed) {
-      restartAnimation()
+      restartAnimation();
     } else {
-      setIsPaused(false)
+      setIsPaused(false);
     }
-    setIsPlaying(!isPlaying)
-  }
+    setIsPlaying(!isPlaying);
+  };
 
   const restartAnimation = () => {
-    setCurrentPosition(0)
-    setIsPlaying(true)
-    setCompleted(false)
-    setIsPaused(false)
-  }
+    setCurrentPosition(0);
+    setIsPlaying(true);
+    setCompleted(false);
+    setIsPaused(false);
+  };
 
   const copyCode = () => {
-    navigator.clipboard.writeText(code)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-    if (onCopy) onCopy()
-  }
-  
-  const codeLines = code.split("\n")
+    navigator.clipboard.writeText(code);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+    if (onCopy) onCopy();
+  };
+
+  const codeLines = code.split("\n");
   const renderLines = () => {
-    let remainingChars = currentPosition
-    const result = []
-    
+    let remainingChars = currentPosition;
+    const result = [];
+
     for (let i = 0; i < codeLines.length; i++) {
-      const line = codeLines[i]
-      const lineLength = line.length + 1 
-      
+      const line = codeLines[i];
+      const lineLength = line.length + 1;
+
       if (remainingChars <= 0) {
-        result.push("")
+        result.push("");
       } else if (remainingChars >= lineLength) {
-        result.push(line)
-        remainingChars -= lineLength
+        result.push(line);
+        remainingChars -= lineLength;
       } else {
-        result.push(line.substring(0, remainingChars))
-        remainingChars = 0
+        result.push(line.substring(0, remainingChars));
+        remainingChars = 0;
       }
     }
-    
-    return result
-  }
-  
-  const displayedLines = completed ? code.split("\n") : renderLines()
-  
+
+    return result;
+  };
+
+  const displayedLines = completed ? code.split("\n") : renderLines();
+
   const getCursorLineIndex = () => {
-    if (!isPlaying && !isPaused) return -1
-    
-    let charsProcessed = 0
+    if (!isPlaying && !isPaused) return -1;
+
+    let charsProcessed = 0;
     for (let i = 0; i < codeLines.length; i++) {
-      const lineLength = codeLines[i].length + 1 
-      charsProcessed += lineLength
-      
+      const lineLength = codeLines[i].length + 1;
+      charsProcessed += lineLength;
+
       if (currentPosition < charsProcessed) {
-        return i
+        return i;
       }
     }
-    
-    return codeLines.length - 1
-  }
-  
-  const cursorLineIndex = getCursorLineIndex()
+
+    return codeLines.length - 1;
+  };
+
+  const cursorLineIndex = getCursorLineIndex();
 
   return (
     <div
@@ -205,7 +205,7 @@ export function AnimatedCodeBlock({
         themeStyles.text,
         themeStyles.border,
         "border",
-        className,
+        className
       )}
     >
       <div className="flex items-center justify-between p-2 border-b border-opacity-20">
@@ -251,9 +251,16 @@ export function AnimatedCodeBlock({
         <div className="overflow-x-auto">
           <div className="flex min-w-full">
             {showLineNumbers && (
-              <div className={cn("text-xs py-4 px-2 text-right select-none", themeStyles.lineNumbers)}>
+              <div
+                className={cn(
+                  "text-xs py-4 px-2 text-right select-none",
+                  themeStyles.lineNumbers
+                )}
+              >
                 {codeLines.map((_, i) => (
-                  <div key={i} className="h-6 flex items-center justify-end">{i + 1}</div>
+                  <div key={i} className="h-6 flex items-center justify-end">
+                    {i + 1}
+                  </div>
                 ))}
               </div>
             )}
@@ -262,7 +269,10 @@ export function AnimatedCodeBlock({
               {highlightLines.map((lineNum) => (
                 <div
                   key={`highlight-${lineNum}`}
-                  className={cn("absolute left-0 right-0 h-6", themeStyles.highlight)}
+                  className={cn(
+                    "absolute left-0 right-0 h-6",
+                    themeStyles.highlight
+                  )}
                   style={{ top: `${(lineNum - 1) * 24 + 16}px` }}
                 />
               ))}
@@ -275,7 +285,10 @@ export function AnimatedCodeBlock({
                       <motion.span
                         className="inline-block w-2 h-5 bg-current -mb-0.5"
                         animate={{ opacity: [1, 0] }}
-                        transition={{ repeat: Number.POSITIVE_INFINITY, duration: 0.8 }}
+                        transition={{
+                          repeat: Number.POSITIVE_INFINITY,
+                          duration: 0.8,
+                        }}
                       />
                     )}
                   </div>
@@ -286,5 +299,5 @@ export function AnimatedCodeBlock({
         </div>
       </div>
     </div>
-  )
+  );
 }

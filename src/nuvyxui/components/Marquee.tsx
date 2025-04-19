@@ -1,14 +1,14 @@
-'use client';
-import { cn } from '@/lib/utils';
-import { useMotionValue, animate, motion } from 'framer-motion';
-import { useState, useEffect, useRef } from 'react';
+"use client";
+import { cn } from "@/lib/utils";
+import { useMotionValue, animate, motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
 
 export type MarqueeProps = {
   children: React.ReactNode;
   gap?: number;
   speed?: number;
   speedOnHover?: number;
-  direction?: 'horizontal' | 'vertical';
+  direction?: "horizontal" | "vertical";
   reverse?: boolean;
   className?: string;
   fadeEdges?: boolean;
@@ -22,7 +22,7 @@ export function Marquee({
   gap = 16,
   speed = 100,
   speedOnHover,
-  direction = 'horizontal',
+  direction = "horizontal",
   reverse = false,
   className,
   fadeEdges = false,
@@ -42,55 +42,55 @@ export function Marquee({
 
   useEffect(() => {
     if (!containerRef.current) return;
-    
+
     const currentRef = containerRef.current;
-    
+
     const updateDimensions = () => {
       if (currentRef) {
         const rect = currentRef.getBoundingClientRect();
         setDimensions({
           width: rect.width,
-          height: rect.height
+          height: rect.height,
         });
       }
     };
-    
+
     updateDimensions();
-    
+
     const resizeObserver = new ResizeObserver(updateDimensions);
     resizeObserver.observe(currentRef);
-    
+
     return () => {
       resizeObserver.unobserve(currentRef);
       resizeObserver.disconnect();
     };
   }, []);
-  
+
   const { width, height } = dimensions;
 
   useEffect(() => {
     let controls;
-    
+
     if (isPaused || isDragging || (!width && !height)) {
       return () => {};
     }
-    
-    const size = direction === 'horizontal' ? width : height;
+
+    const size = direction === "horizontal" ? width : height;
     const contentSize = size + gap;
-    
+
     if (!size) return () => {};
-    
+
     const from = reverse ? -contentSize / 2 : 0;
     const to = reverse ? 0 : -contentSize / 2;
     const distanceToTravel = Math.abs(to - from);
     const duration = distanceToTravel / currentSpeed;
-    
+
     if (isTransitioning) {
       const remainingDistance = Math.abs(translation.get() - to);
       const transitionDuration = remainingDistance / currentSpeed;
-      
+
       controls = animate(translation, [translation.get(), to], {
-        ease: 'linear',
+        ease: "linear",
         duration: transitionDuration,
         onComplete: () => {
           setIsTransitioning(false);
@@ -99,17 +99,17 @@ export function Marquee({
       });
     } else {
       controls = animate(translation, [from, to], {
-        ease: 'linear',
+        ease: "linear",
         duration: duration,
         repeat: Infinity,
-        repeatType: 'loop',
+        repeatType: "loop",
         repeatDelay: 0,
         onRepeat: () => {
           translation.set(from);
         },
       });
     }
-    
+
     return controls?.stop;
   }, [
     key,
@@ -127,21 +127,29 @@ export function Marquee({
 
   const fadeGradientStyles = (() => {
     if (!fadeEdges) return {};
-    
-    const size = direction === 'horizontal' ? width : height;
+
+    const size = direction === "horizontal" ? width : height;
     if (size === 0) return {};
-    
+
     const fadePercentage = Math.min(100, Math.round((fadeWidth / size) * 100));
-    
-    if (direction === 'horizontal') {
+
+    if (direction === "horizontal") {
       return {
-        maskImage: `linear-gradient(to right, transparent, black ${fadePercentage}%, black ${100 - fadePercentage}%, transparent 100%)`,
-        WebkitMaskImage: `linear-gradient(to right, transparent, black ${fadePercentage}%, black ${100 - fadePercentage}%, transparent 100%)`
+        maskImage: `linear-gradient(to right, transparent, black ${fadePercentage}%, black ${
+          100 - fadePercentage
+        }%, transparent 100%)`,
+        WebkitMaskImage: `linear-gradient(to right, transparent, black ${fadePercentage}%, black ${
+          100 - fadePercentage
+        }%, transparent 100%)`,
       };
     } else {
       return {
-        maskImage: `linear-gradient(to bottom, transparent, black ${fadePercentage}%, black ${100 - fadePercentage}%, transparent 100%)`,
-        WebkitMaskImage: `linear-gradient(to bottom, transparent, black ${fadePercentage}%, black ${100 - fadePercentage}%, transparent 100%)`
+        maskImage: `linear-gradient(to bottom, transparent, black ${fadePercentage}%, black ${
+          100 - fadePercentage
+        }%, transparent 100%)`,
+        WebkitMaskImage: `linear-gradient(to bottom, transparent, black ${fadePercentage}%, black ${
+          100 - fadePercentage
+        }%, transparent 100%)`,
       };
     }
   })();
@@ -153,7 +161,7 @@ export function Marquee({
       setKey((prevKey) => prevKey + 1);
     }
   };
-  
+
   const hoverProps = speedOnHover
     ? {
         onHoverStart: () => {
@@ -166,25 +174,25 @@ export function Marquee({
         },
       }
     : {};
-  
+
   const handleDragStart = () => {
     if (!draggable) return;
-    
+
     setIsDragging(true);
     dragStartPosition.current = translation.get();
   };
-  
+
   const handleDragEnd = () => {
     if (!draggable) return;
-    
+
     setIsDragging(false);
     setIsTransitioning(true);
     setKey((prevKey) => prevKey + 1);
   };
-  
+
   const dragConstraints = (() => {
-    const contentSize = direction === 'horizontal' ? width : height;
-    
+    const contentSize = direction === "horizontal" ? width : height;
+
     return {
       left: -contentSize,
       right: contentSize,
@@ -194,12 +202,12 @@ export function Marquee({
   })();
 
   return (
-    <div 
+    <div
       className={cn(
-        'overflow-hidden relative', 
-        className, 
-        (pauseOnTap || draggable) && 'cursor-pointer',
-        isDragging && 'cursor-grabbing'
+        "overflow-hidden relative",
+        className,
+        (pauseOnTap || draggable) && "cursor-pointer",
+        isDragging && "cursor-grabbing"
       )}
       style={fadeGradientStyles}
       onClick={handleTap}
@@ -207,13 +215,15 @@ export function Marquee({
       <motion.div
         className={cn("flex w-max", draggable && "cursor-grab")}
         style={{
-          ...(direction === 'horizontal' ? { x: translation } : { y: translation }),
-          flexDirection: direction === 'horizontal' ? 'row' : 'column',
+          ...(direction === "horizontal"
+            ? { x: translation }
+            : { y: translation }),
+          flexDirection: direction === "horizontal" ? "row" : "column",
           gap: `${gap}px`,
         }}
         ref={containerRef}
         {...hoverProps}
-        drag={draggable ? (direction === 'horizontal' ? 'x' : 'y') : false}
+        drag={draggable ? (direction === "horizontal" ? "x" : "y") : false}
         dragConstraints={dragConstraints}
         onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}

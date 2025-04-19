@@ -1,12 +1,12 @@
-import * as React from "react"
-import { Command as CommandPrimitive } from "cmdk"
-import { Search } from "lucide-react"
+import * as React from "react";
+import { Command as CommandPrimitive } from "cmdk";
+import { Search } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 
-import { cn } from "@/lib/utils"
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
-
-interface CommandProps extends React.ComponentPropsWithoutRef<typeof CommandPrimitive> {
-  className?: string
+interface CommandProps
+  extends React.ComponentPropsWithoutRef<typeof CommandPrimitive> {
+  className?: string;
 }
 
 const Command = React.forwardRef<HTMLDivElement, CommandProps>(
@@ -20,29 +20,35 @@ const Command = React.forwardRef<HTMLDivElement, CommandProps>(
       {...props}
     />
   )
-)
-Command.displayName = CommandPrimitive.displayName
+);
+Command.displayName = CommandPrimitive.displayName;
 
-interface CommandDialogProps extends React.ComponentPropsWithoutRef<typeof Dialog> {
-  children: React.ReactNode
-  title?: string
+interface CommandDialogProps
+  extends React.ComponentPropsWithoutRef<typeof Dialog> {
+  children: React.ReactNode;
+  title?: string;
 }
 
-const CommandDialog: React.FC<CommandDialogProps> = ({ children, title = "Command Menu", ...props }) => {
+const CommandDialog: React.FC<CommandDialogProps> = ({
+  children,
+  title = "Command Menu",
+  ...props
+}) => {
   return (
     <Dialog {...props}>
       <DialogContent className="overflow-hidden p-0 shadow-lg">
-        <DialogTitle className="sr-only text-black dark:text-white">{title}</DialogTitle>
-        <Command>
-          {children}
-        </Command>
+        <DialogTitle className="sr-only text-black dark:text-white">
+          {title}
+        </DialogTitle>
+        <Command>{children}</Command>
       </DialogContent>
     </Dialog>
-  )
-}
+  );
+};
 
-interface CommandInputProps extends React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input> {
-  className?: string
+interface CommandInputProps
+  extends React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input> {
+  className?: string;
 }
 
 const CommandInput = React.forwardRef<HTMLInputElement, CommandInputProps>(
@@ -59,33 +65,46 @@ const CommandInput = React.forwardRef<HTMLInputElement, CommandInputProps>(
       />
     </div>
   )
-)
-CommandInput.displayName = CommandPrimitive.Input.displayName
+);
+CommandInput.displayName = CommandPrimitive.Input.displayName;
 
-interface CommandListProps extends React.ComponentPropsWithoutRef<typeof CommandPrimitive.List> {
-  className?: string
+interface CommandListProps
+  extends React.ComponentPropsWithoutRef<typeof CommandPrimitive.List> {
+  className?: string;
 }
 
 const CommandList = React.forwardRef<HTMLDivElement, CommandListProps>(
   ({ className, ...props }, ref) => (
     <CommandPrimitive.List
       ref={ref}
-      className={cn("max-h-[300px] overflow-y-auto overflow-x-hidden", className)}
+      className={cn(
+        "max-h-[300px] overflow-y-auto overflow-x-hidden",
+        className
+      )}
       {...props}
     />
   )
-)
-CommandList.displayName = CommandPrimitive.List.displayName
+);
+CommandList.displayName = CommandPrimitive.List.displayName;
 
-type CommandEmptyProps = React.ComponentPropsWithoutRef<typeof CommandPrimitive.Empty>;
+type CommandEmptyProps = React.ComponentPropsWithoutRef<
+  typeof CommandPrimitive.Empty
+>;
 
-const CommandEmpty = React.forwardRef<HTMLDivElement, CommandEmptyProps>((props, ref) => (
-  <CommandPrimitive.Empty ref={ref} className="py-6 text-center text-sm" {...props} />
-))
-CommandEmpty.displayName = CommandPrimitive.Empty.displayName
+const CommandEmpty = React.forwardRef<HTMLDivElement, CommandEmptyProps>(
+  (props, ref) => (
+    <CommandPrimitive.Empty
+      ref={ref}
+      className="py-6 text-center text-sm"
+      {...props}
+    />
+  )
+);
+CommandEmpty.displayName = CommandPrimitive.Empty.displayName;
 
-interface CommandGroupProps extends React.ComponentPropsWithoutRef<typeof CommandPrimitive.Group> {
-  className?: string
+interface CommandGroupProps
+  extends React.ComponentPropsWithoutRef<typeof CommandPrimitive.Group> {
+  className?: string;
 }
 
 const CommandGroup = React.forwardRef<HTMLDivElement, CommandGroupProps>(
@@ -99,24 +118,27 @@ const CommandGroup = React.forwardRef<HTMLDivElement, CommandGroupProps>(
       {...props}
     />
   )
-)
-CommandGroup.displayName = CommandPrimitive.Group.displayName
+);
+CommandGroup.displayName = CommandPrimitive.Group.displayName;
 
-interface CommandSeparatorProps extends React.ComponentPropsWithoutRef<typeof CommandPrimitive.Separator> {
-  className?: string
+interface CommandSeparatorProps
+  extends React.ComponentPropsWithoutRef<typeof CommandPrimitive.Separator> {
+  className?: string;
 }
-const CommandSeparator = React.forwardRef<HTMLDivElement, CommandSeparatorProps>(
-  ({ className, ...props }, ref) => (
-    <CommandPrimitive.Separator
-      ref={ref}
-      className={cn("-mx-1 h-px bg-border", className)}
-      {...props}
-    />
-  )
-)
-CommandSeparator.displayName = CommandPrimitive.Separator.displayName
-interface CommandItemProps extends React.ComponentPropsWithoutRef<typeof CommandPrimitive.Item> {
-  className?: string
+const CommandSeparator = React.forwardRef<
+  HTMLDivElement,
+  CommandSeparatorProps
+>(({ className, ...props }, ref) => (
+  <CommandPrimitive.Separator
+    ref={ref}
+    className={cn("-mx-1 h-px bg-border", className)}
+    {...props}
+  />
+));
+CommandSeparator.displayName = CommandPrimitive.Separator.displayName;
+interface CommandItemProps
+  extends React.ComponentPropsWithoutRef<typeof CommandPrimitive.Item> {
+  className?: string;
 }
 
 const CommandItem = React.forwardRef<HTMLDivElement, CommandItemProps>(
@@ -130,21 +152,27 @@ const CommandItem = React.forwardRef<HTMLDivElement, CommandItemProps>(
       {...props}
     />
   )
-)
-CommandItem.displayName = CommandPrimitive.Item.displayName
+);
+CommandItem.displayName = CommandPrimitive.Item.displayName;
 interface CommandShortcutProps extends React.HTMLAttributes<HTMLSpanElement> {
-  className?: string
+  className?: string;
 }
 
-const CommandShortcut: React.FC<CommandShortcutProps> = ({ className, ...props }) => {
+const CommandShortcut: React.FC<CommandShortcutProps> = ({
+  className,
+  ...props
+}) => {
   return (
     <span
-      className={cn("ml-auto text-xs tracking-widest text-black dark:text-white", className)}
+      className={cn(
+        "ml-auto text-xs tracking-widest text-black dark:text-white",
+        className
+      )}
       {...props}
     />
-  )
-}
-CommandShortcut.displayName = "CommandShortcut"
+  );
+};
+CommandShortcut.displayName = "CommandShortcut";
 export {
   Command,
   CommandDialog,
@@ -155,4 +183,4 @@ export {
   CommandItem,
   CommandShortcut,
   CommandSeparator,
-}
+};

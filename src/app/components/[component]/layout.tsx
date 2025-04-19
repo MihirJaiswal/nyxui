@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+import { Metadata } from "next";
 import { componentsData } from "@/nuvyxui/resgistry";
 
 type LayoutProps = {
@@ -6,45 +6,55 @@ type LayoutProps = {
   params: Promise<{ component: string }>;
 };
 
-export async function generateMetadata({ params }: { params: Promise<{ component: string }> }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ component: string }>;
+}): Promise<Metadata> {
   const { component } = await params;
-  
+
   if (!component) {
     return {
-      title: 'Nuvyx UI Components',
-      description: 'Modern UI components for building beautiful Next.js applications',
+      title: "Nuvyx UI Components",
+      description:
+        "Modern UI components for building beautiful Next.js applications",
       openGraph: {
-        title: 'Nuvyx UI Components',
-        description: 'Modern UI components for building beautiful Next.js applications',
-        url: 'https://nuvyxui.vercel.app/components',
+        title: "Nuvyx UI Components",
+        description:
+          "Modern UI components for building beautiful Next.js applications",
+        url: "https://nuvyxui.vercel.app/components",
       },
       twitter: {
-        title: 'Nuvyx UI Components',
-        description: 'Modern UI components for building beautiful Next.js applications',
+        title: "Nuvyx UI Components",
+        description:
+          "Modern UI components for building beautiful Next.js applications",
       },
       alternates: {
-        canonical: 'https://nuvyxui.vercel.app/components',
+        canonical: "https://nuvyxui.vercel.app/components",
       },
     };
   }
-  
+
   const formattedName = component
-    .split('-')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
-    
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+
   if (!componentsData || !(component in componentsData)) {
     return {
-      title: 'Component Not Found | Nuvyx UI',
-      description: 'The requested component could not be found in the Nuvyx UI library.',
+      title: "Component Not Found | Nuvyx UI",
+      description:
+        "The requested component could not be found in the Nuvyx UI library.",
     };
   }
-  
-  const componentData = componentsData[component as keyof typeof componentsData];
+
+  const componentData =
+    componentsData[component as keyof typeof componentsData];
   const componentName = componentData?.name || formattedName;
-  const componentDescription = componentData?.description || 
+  const componentDescription =
+    componentData?.description ||
     `Learn how to use the ${formattedName} component from Nuvyx UI. API references, examples, and customization options for building beautiful Next.js applications.`;
-  
+
   return {
     title: `${componentName} | Nuvyx UI`,
     description: componentDescription,
@@ -64,9 +74,5 @@ export async function generateMetadata({ params }: { params: Promise<{ component
 }
 
 export default async function ComponentLayout({ children }: LayoutProps) {
-  return (
-    <>
-      {children}
-    </>
-  );
+  return <>{children}</>;
 }

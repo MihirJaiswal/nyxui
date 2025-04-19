@@ -61,7 +61,9 @@ export const GradientButton = ({
 
   if (variant === "pulse") {
     return (
-      <button className={`${baseClasses} ${themeGradients[theme]} relative overflow-hidden group ${className}`}>
+      <button
+        className={`${baseClasses} ${themeGradients[theme]} relative overflow-hidden group ${className}`}
+      >
         <span className="relative z-10">{children}</span>
         <span className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300 ease-in-out"></span>
         <span className="absolute inset-0 animate-pulse bg-white opacity-0 group-hover:opacity-10"></span>
@@ -71,7 +73,9 @@ export const GradientButton = ({
 
   if (variant === "glow") {
     return (
-      <button className={`${baseClasses} ${themeGradients[theme]} relative group ${className}`}>
+      <button
+        className={`${baseClasses} ${themeGradients[theme]} relative group ${className}`}
+      >
         <span className="relative z-10">{children}</span>
         <span className="absolute -inset-1 rounded-lg blur opacity-0 group-hover:opacity-20 transition duration-1000 group-hover:duration-200"></span>
       </button>
@@ -80,7 +84,9 @@ export const GradientButton = ({
 
   if (variant === "sweep") {
     return (
-      <button className={`${baseClasses} ${themeGradients[theme]} relative overflow-hidden group ${className}`}>
+      <button
+        className={`${baseClasses} ${themeGradients[theme]} relative overflow-hidden group ${className}`}
+      >
         <span className="relative z-10">{children}</span>
         <span className="absolute top-0 -right-full h-full w-1/2 z-0 block transform -skew-x-12 bg-white opacity-20 group-hover:right-0 transition-all duration-700"></span>
       </button>
@@ -89,24 +95,33 @@ export const GradientButton = ({
 
   if (variant === "shine") {
     return (
-      <button className={`${baseClasses} ${themeGradients[theme]} relative overflow-hidden group ${className}`}>
+      <button
+        className={`${baseClasses} ${themeGradients[theme]} relative overflow-hidden group ${className}`}
+      >
         <span className="relative z-10">{children}</span>
         <span className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 group-hover:translate-x-full transition-all duration-1000 ease-in-out"></span>
       </button>
     );
   }
-  
+
   if (variant === "outline") {
     return (
-      <button 
+      <button
         className={`${baseClasses} relative overflow-hidden group bg-transparent ${className}`}
       >
-        <span className={`relative z-10 bg-clip-text text-transparent ${themeGradients[theme]}`}>
+        <span
+          className={`relative z-10 bg-clip-text text-transparent ${themeGradients[theme]}`}
+        >
           {children}
         </span>
-        <span 
-          className={`absolute inset-0 rounded-lg ${themeGradients[theme]} opacity-100`} 
-          style={{ mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)', maskComposite: 'xor', WebkitMaskComposite: 'xor', padding: '2px' }}
+        <span
+          className={`absolute inset-0 rounded-lg ${themeGradients[theme]} opacity-100`}
+          style={{
+            mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+            maskComposite: "xor",
+            WebkitMaskComposite: "xor",
+            padding: "2px",
+          }}
         ></span>
         <span className="absolute inset-0 rounded-lg blur opacity-0 group-hover:opacity-20 transition duration-1000 group-hover:duration-200"></span>
       </button>
@@ -119,4 +134,3 @@ export const GradientButton = ({
     </button>
   );
 };
-

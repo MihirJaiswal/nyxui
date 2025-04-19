@@ -1,7 +1,12 @@
-"use client"
+"use client";
 
-import { FC, useRef, useEffect } from "react"
-import { HTMLMotionProps, motion, useAnimation, useInView } from "framer-motion"
+import { FC, useRef, useEffect } from "react";
+import {
+  HTMLMotionProps,
+  motion,
+  useAnimation,
+  useInView,
+} from "framer-motion";
 
 type AnimationType =
   | "blink"
@@ -11,14 +16,14 @@ type AnimationType =
   | "cascade"
   | "flicker"
   | "elastic"
-  | "float"
+  | "float";
 
 interface Props extends HTMLMotionProps<"div"> {
-  text: string
-  type?: AnimationType
-  delay?: number
-  duration?: number
-  custom?: number
+  text: string;
+  type?: AnimationType;
+  delay?: number;
+  duration?: number;
+  custom?: number;
 }
 
 const animationVariants = {
@@ -41,8 +46,8 @@ const animationVariants = {
           y: {
             type: "keyframes",
             times: [0, 0.5, 1],
-            values: [0, -10, 0]
-          }
+            values: [0, -10, 0],
+          },
         },
       },
       hidden: { opacity: 0, y: 10 },
@@ -74,15 +79,15 @@ const animationVariants = {
       visible: {
         opacity: 1,
         scale: 1,
-        transition: { 
-          type: "spring", 
-          damping: 15, 
+        transition: {
+          type: "spring",
+          damping: 15,
           stiffness: 400,
           scale: {
             type: "keyframes",
             times: [0, 0.6, 1],
-            values: [0, 1.1, 1]
-          }
+            values: [0, 1.1, 1],
+          },
         },
       },
       hidden: { opacity: 0, scale: 0 },
@@ -150,7 +155,7 @@ const animationVariants = {
         transition: {
           type: "spring",
           stiffness: 400,
-          damping: 10
+          damping: 10,
         },
       },
     },
@@ -195,7 +200,7 @@ const animationVariants = {
       },
     },
   },
-}
+};
 
 export const AnimateText: FC<Props> = ({
   text,
@@ -204,10 +209,10 @@ export const AnimateText: FC<Props> = ({
   className = "",
   ...props
 }: Props) => {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: false })
-  const ctrls = useAnimation()
-  
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false });
+  const ctrls = useAnimation();
+
   useEffect(() => {
     if (isInView) {
       ctrls.start("visible");
@@ -216,12 +221,12 @@ export const AnimateText: FC<Props> = ({
     }
   }, [isInView, ctrls]);
 
-  const letters = Array.from(text)
-  const { container, child } = animationVariants[type]
+  const letters = Array.from(text);
+  const { container, child } = animationVariants[type];
 
   if (type === "cascade" || type === "flicker") {
     return (
-      <h2 
+      <h2
         ref={ref}
         className={`mt-6 text-3xl font-bold text-black dark:text-neutral-100 py-4 px-4 md:text-4xl ${className}`}
       >
@@ -249,13 +254,13 @@ export const AnimateText: FC<Props> = ({
                   >
                     {character}
                   </motion.span>
-                )
+                );
               })}
             </motion.span>
-          )
+          );
         })}
       </h2>
-    )
+    );
   }
 
   return (
@@ -276,5 +281,5 @@ export const AnimateText: FC<Props> = ({
         </motion.span>
       ))}
     </motion.h2>
-  )
-}
+  );
+};

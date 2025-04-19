@@ -10,10 +10,10 @@ export function BentoGrid({
   description = "",
   component,
   fade = [],
-  height = "h-88", 
-  enableTitle = true, 
-  enableDescription = true, 
-  isFull = false, 
+  height = "h-88",
+  enableTitle = true,
+  enableDescription = true,
+  isFull = false,
 }: {
   dark?: boolean;
   className?: string;
@@ -37,14 +37,14 @@ export function BentoGrid({
         "group relative flex flex-col overflow-hidden rounded-lg",
         "bg-white dark:bg-zinc-950 shadow-sm ring-1 ring-black/5 dark:ring-white/5",
         "data-[dark]:bg-zinc-950 data-[dark]:ring-white/5",
-        isFull && "h-full", 
+        isFull && "h-full"
       )}
     >
-      <div 
+      <div
         className={clsx(
-          "relative shrink-0", 
-          !isFull && height, 
-          isFull && "h-full", 
+          "relative shrink-0",
+          !isFull && height,
+          isFull && "h-full"
         )}
       >
         {component}
@@ -54,7 +54,7 @@ export function BentoGrid({
         {fade.includes("bottom") && (
           <div className="absolute inset-0 bg-gradient-to-t from-white to-50% group-data-[dark]:from-gray-950 group-data-[dark]:from-[-25%]" />
         )}
-        
+
         {isFull && (enableTitle || enableDescription) && (
           <div className="absolute bottom-0 left-0 right-0 p-10 bg-gradient-to-t from-black/70 to-transparent">
             {enableTitle && (
@@ -70,7 +70,7 @@ export function BentoGrid({
           </div>
         )}
       </div>
-      
+
       {!isFull && (enableTitle || enableDescription) && (
         <div className="relative p-10">
           {enableTitle && (

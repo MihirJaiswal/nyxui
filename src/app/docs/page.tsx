@@ -1,7 +1,7 @@
-import { ComponentSidebar } from "@/components/components/component-sidebar"
-import Header from "@/components/global/Header"
-import IntroductionPage from "@/components/docs/Introduction"
-import DocsSidebar from "@/components/docs/DocSidebar"
+import { ComponentSidebar } from "@/components/components/component-sidebar";
+import Header from "@/components/global/Header";
+import IntroductionPage from "@/components/docs/Introduction";
+import DocsSidebar from "@/components/docs/DocSidebar";
 
 const DocsPage = () => {
   return (
@@ -29,7 +29,7 @@ const DocsPage = () => {
         </main>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default DocsPage
+export default DocsPage;

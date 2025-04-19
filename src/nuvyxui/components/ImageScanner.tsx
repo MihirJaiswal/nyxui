@@ -1,24 +1,24 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useRef } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { cn } from "@/lib/utils"
-import Image from "next/image"
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 export interface ImageScannerProps {
-  image: string
-  alt?: string
-  scanDirection?: "horizontal" | "vertical"
-  scanSpeed?: number
-  scanColor?: "emerald" | "blue" | "purple" | "amber" | "red"
-  scanType?: "line" | "corners" | "both"
-  className?: string
-  onScanComplete?: () => void
-  autoScan?: boolean
-  scanDelay?: number
-  scanAtScroll?: boolean
-  repeating?: boolean
-  triggerScan?: boolean
+  image: string;
+  alt?: string;
+  scanDirection?: "horizontal" | "vertical";
+  scanSpeed?: number;
+  scanColor?: "emerald" | "blue" | "purple" | "amber" | "red";
+  scanType?: "line" | "corners" | "both";
+  className?: string;
+  onScanComplete?: () => void;
+  autoScan?: boolean;
+  scanDelay?: number;
+  scanAtScroll?: boolean;
+  repeating?: boolean;
+  triggerScan?: boolean;
 }
 
 export const ImageScanner = ({
@@ -36,13 +36,13 @@ export const ImageScanner = ({
   repeating = false,
   triggerScan = false,
 }: ImageScannerProps) => {
-  const [isScanning, setIsScanning] = useState(false)
-  const [scanComplete, setScanComplete] = useState(false)
-  const [hasScanned, setHasScanned] = useState(false)
-  const [scanCycle, setScanCycle] = useState(0)
-  const ref = useRef<HTMLDivElement>(null)
-  const scanTimer = useRef<NodeJS.Timeout | null>(null)
-  const completeTimer = useRef<NodeJS.Timeout | null>(null)
+  const [isScanning, setIsScanning] = useState(false);
+  const [scanComplete, setScanComplete] = useState(false);
+  const [hasScanned, setHasScanned] = useState(false);
+  const [scanCycle, setScanCycle] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const scanTimer = useRef<NodeJS.Timeout | null>(null);
+  const completeTimer = useRef<NodeJS.Timeout | null>(null);
 
   const colorMap = {
     emerald: {
@@ -70,32 +70,32 @@ export const ImageScanner = ({
       glow: "bg-red-500/20 dark:bg-red-500/10",
       border: "border-red-500",
     },
-  }
+  };
 
   const runScan = () => {
     if (!isScanning) {
-      setIsScanning(true)
-      setScanCycle(prev => prev + 1)
-      
+      setIsScanning(true);
+      setScanCycle((prev) => prev + 1);
+
       completeTimer.current = setTimeout(() => {
-        setScanComplete(true)
-        setHasScanned(true)
-        if (onScanComplete) onScanComplete()
+        setScanComplete(true);
+        setHasScanned(true);
+        if (onScanComplete) onScanComplete();
 
         setTimeout(() => {
-          setScanComplete(false)
-          setIsScanning(false)
+          setScanComplete(false);
+          setIsScanning(false);
           if (repeating) {
             scanTimer.current = setTimeout(runScan, 1000);
           }
-        }, 1000)
-      }, scanSpeed * 1000)
+        }, 1000);
+      }, scanSpeed * 1000);
     }
-  }
+  };
 
   useEffect(() => {
     if (!scanAtScroll || !ref.current) return;
-    
+
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
@@ -105,7 +105,7 @@ export const ImageScanner = ({
       },
       { threshold: 0.5 }
     );
-    
+
     observer.observe(ref.current);
     return () => observer.disconnect();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -134,7 +134,7 @@ export const ImageScanner = ({
     if (repeating && !isScanning && !scanComplete) {
       runScan();
     }
-    
+
     return () => {
       if (scanTimer.current) clearTimeout(scanTimer.current);
       if (completeTimer.current) clearTimeout(completeTimer.current);
@@ -153,7 +153,7 @@ export const ImageScanner = ({
     if (!isScanning && !autoScan && !repeating) {
       runScan();
     }
-  }
+  };
   const selectedColor = colorMap[scanColor] || colorMap.emerald;
 
   return (
@@ -166,7 +166,7 @@ export const ImageScanner = ({
         className={cn(
           "w-full h-full relative overflow-hidden",
           scanComplete ? "ring-2 ring-offset-2 dark:ring-offset-gray-900" : "",
-          scanComplete ? selectedColor.border : "",
+          scanComplete ? selectedColor.border : ""
         )}
       >
         <Image
@@ -185,14 +185,26 @@ export const ImageScanner = ({
                   key={`scanline-${scanCycle}`}
                   className={cn(
                     "absolute pointer-events-none",
-                    scanDirection === "horizontal" ? "left-0 right-0 h-1" : "top-0 bottom-0 w-1",
-                    selectedColor.scan,
+                    scanDirection === "horizontal"
+                      ? "left-0 right-0 h-1"
+                      : "top-0 bottom-0 w-1",
+                    selectedColor.scan
                   )}
-                  initial={scanDirection === "horizontal" ? { top: 0, opacity: 0.7 } : { left: 0, opacity: 0.7 }}
-                  animate={
-                    scanDirection === "horizontal" ? { top: "100%", opacity: 0.7 } : { left: "100%", opacity: 0.7 }
+                  initial={
+                    scanDirection === "horizontal"
+                      ? { top: 0, opacity: 0.7 }
+                      : { left: 0, opacity: 0.7 }
                   }
-                  exit={scanDirection === "horizontal" ? { top: "100%", opacity: 0 } : { left: "100%", opacity: 0 }}
+                  animate={
+                    scanDirection === "horizontal"
+                      ? { top: "100%", opacity: 0.7 }
+                      : { left: "100%", opacity: 0.7 }
+                  }
+                  exit={
+                    scanDirection === "horizontal"
+                      ? { top: "100%", opacity: 0 }
+                      : { left: "100%", opacity: 0 }
+                  }
                   transition={{
                     duration: scanSpeed,
                     ease: "linear",
@@ -206,7 +218,7 @@ export const ImageScanner = ({
                     className={cn(
                       "absolute top-0 left-0 w-6 h-6 pointer-events-none",
                       "border-t-2 border-l-2",
-                      selectedColor.border,
+                      selectedColor.border
                     )}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -218,7 +230,7 @@ export const ImageScanner = ({
                     className={cn(
                       "absolute top-0 right-0 w-6 h-6 pointer-events-none",
                       "border-t-2 border-r-2",
-                      selectedColor.border,
+                      selectedColor.border
                     )}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -230,7 +242,7 @@ export const ImageScanner = ({
                     className={cn(
                       "absolute bottom-0 left-0 w-6 h-6 pointer-events-none",
                       "border-b-2 border-l-2",
-                      selectedColor.border,
+                      selectedColor.border
                     )}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -242,7 +254,7 @@ export const ImageScanner = ({
                     className={cn(
                       "absolute bottom-0 right-0 w-6 h-6 pointer-events-none",
                       "border-b-2 border-r-2",
-                      selectedColor.border,
+                      selectedColor.border
                     )}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -253,12 +265,15 @@ export const ImageScanner = ({
               )}
               <motion.div
                 key={`glow-${scanCycle}`}
-                className={cn("absolute inset-0 pointer-events-none", selectedColor.glow)}
+                className={cn(
+                  "absolute inset-0 pointer-events-none",
+                  selectedColor.glow
+                )}
                 initial={{ opacity: 0 }}
                 animate={{
                   opacity: [0, 0.5, 0],
                   transition: {
-                    repeat: 0, 
+                    repeat: 0,
                     duration: scanSpeed / 2,
                     repeatType: "reverse",
                   },
@@ -271,7 +286,10 @@ export const ImageScanner = ({
         <AnimatePresence>
           {scanComplete && (
             <motion.div
-              className={cn("absolute inset-0 pointer-events-none", selectedColor.glow)}
+              className={cn(
+                "absolute inset-0 pointer-events-none",
+                selectedColor.glow
+              )}
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.7 }}
               exit={{ opacity: 0 }}
@@ -281,5 +299,5 @@ export const ImageScanner = ({
         </AnimatePresence>
       </div>
     </div>
-  )
-}
+  );
+};

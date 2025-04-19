@@ -1,8 +1,8 @@
-"use client"
-import { useEffect, useRef, useState } from "react"
-import { Card } from "@/components/ui/card"
-import Text from "./Text"
-import Image from "next/image"
+"use client";
+import { useEffect, useRef, useState } from "react";
+import { Card } from "@/components/ui/card";
+import Text from "./Text";
+import Image from "next/image";
 
 interface CardInfo {
   id: string;
@@ -11,104 +11,107 @@ interface CardInfo {
 }
 
 export const Build = () => {
-  const scrollRef = useRef<HTMLDivElement>(null)
-  const textHighlightRef = useRef<HTMLDivElement>(null)
-  const [isLoaded, setIsLoaded] = useState(false)
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const textHighlightRef = useRef<HTMLDivElement>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    setIsLoaded(true)
-  }, [])
+    setIsLoaded(true);
+  }, []);
 
   useEffect(() => {
-    const scrollContainer = scrollRef.current
-    if (!scrollContainer || !isLoaded) return
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer || !isLoaded) return;
 
-    let animationId: number
-    let startTime: number
+    let animationId: number;
+    let startTime: number;
 
     const scroll = (timestamp: number) => {
-      if (!startTime) startTime = timestamp
-      const elapsed = timestamp - startTime
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
 
-      const scrollSpeed = 0.03
-      const scrollPosition = elapsed * scrollSpeed
-      
+      const scrollSpeed = 0.03;
+      const scrollPosition = elapsed * scrollSpeed;
+
       if (scrollContainer.scrollTop >= scrollContainer.scrollHeight / 2) {
-        scrollContainer.scrollTop = scrollContainer.scrollHeight / 3
-        startTime = timestamp - (scrollContainer.scrollHeight / 3) / scrollSpeed
+        scrollContainer.scrollTop = scrollContainer.scrollHeight / 3;
+        startTime = timestamp - scrollContainer.scrollHeight / 3 / scrollSpeed;
       } else {
-        scrollContainer.scrollTop = scrollPosition % scrollContainer.scrollHeight
+        scrollContainer.scrollTop =
+          scrollPosition % scrollContainer.scrollHeight;
       }
 
-      animationId = requestAnimationFrame(scroll)
-    }
+      animationId = requestAnimationFrame(scroll);
+    };
 
-    animationId = requestAnimationFrame(scroll)
+    animationId = requestAnimationFrame(scroll);
 
     return () => {
-      cancelAnimationFrame(animationId)
-    }
-  }, [isLoaded])
+      cancelAnimationFrame(animationId);
+    };
+  }, [isLoaded]);
 
   useEffect(() => {
-    const textElement = textHighlightRef.current
-    if (!textElement) return
+    const textElement = textHighlightRef.current;
+    if (!textElement) return;
 
-    let pulseAnimationId: number
-    let pulseStartTime: number
+    let pulseAnimationId: number;
+    let pulseStartTime: number;
 
     const pulseAnimation = (timestamp: number) => {
-      if (!pulseStartTime) pulseStartTime = timestamp
-      const elapsed = timestamp - pulseStartTime
-      
-      const intensity = Math.sin(elapsed * 0.002) * 0.2 + 0.8
-      textElement.style.textShadow = `0 0 ${Math.round(intensity * 10)}px rgba(59, 130, 246, ${intensity * 0.6})`
-      
-      pulseAnimationId = requestAnimationFrame(pulseAnimation)
-    }
+      if (!pulseStartTime) pulseStartTime = timestamp;
+      const elapsed = timestamp - pulseStartTime;
 
-    pulseAnimationId = requestAnimationFrame(pulseAnimation)
+      const intensity = Math.sin(elapsed * 0.002) * 0.2 + 0.8;
+      textElement.style.textShadow = `0 0 ${Math.round(
+        intensity * 10
+      )}px rgba(59, 130, 246, ${intensity * 0.6})`;
+
+      pulseAnimationId = requestAnimationFrame(pulseAnimation);
+    };
+
+    pulseAnimationId = requestAnimationFrame(pulseAnimation);
 
     return () => {
-      cancelAnimationFrame(pulseAnimationId)
-    }
-  }, [])
+      cancelAnimationFrame(pulseAnimationId);
+    };
+  }, []);
 
   const cardData: CardInfo[] = [
     {
       id: "cyberpunk-card",
-      imageSrc: "/assets/images/showcase/cyberpunk-card.png"
+      imageSrc: "/assets/images/showcase/cyberpunk-card.png",
     },
     {
       id: "liquid-metal-button",
-      imageSrc: "/assets/images/showcase/liquid-metal-button.png"
+      imageSrc: "/assets/images/showcase/liquid-metal-button.png",
     },
     {
       id: "matrix-code-rain",
-      imageSrc: "/assets/images/showcase/matrix-code-rain.png"
+      imageSrc: "/assets/images/showcase/matrix-code-rain.png",
     },
     {
       id: "character-selector",
-      imageSrc: "/assets/images/showcase/character-selector.png"
+      imageSrc: "/assets/images/showcase/character-selector.png",
     },
     {
       id: "animated-code-block",
-      imageSrc: "/assets/images/showcase/animated-code-block.png"
+      imageSrc: "/assets/images/showcase/animated-code-block.png",
     },
     {
       id: "scroll-animation-trigger",
-      imageSrc: "/assets/images/showcase/scroll-animation-trigger.png"
+      imageSrc: "/assets/images/showcase/scroll-animation-trigger.png",
     },
     {
       id: "majestic-card",
-      imageSrc: "/assets/images/showcase/majestic-card.png"
-    }
-  ]
+      imageSrc: "/assets/images/showcase/majestic-card.png",
+    },
+  ];
 
   const renderCard = (cardInfo: CardInfo) => {
     return (
-      <Card 
-        key={cardInfo.uniqueKey || cardInfo.id} 
+      <Card
+        key={cardInfo.uniqueKey || cardInfo.id}
         className="border-gray-800 dark:border-gray-800 bg-black backdrop-blur-sm transform transition-all hover:scale-105 shadow-sm dark:shadow-none"
       >
         <div className="relative dark:border bg-black flex items-center justify-center rounded-lg dark:border-white/[0.1] overflow-hidden transition duration-200 hover:scale-105">
@@ -124,21 +127,24 @@ export const Build = () => {
           />
         </div>
       </Card>
-    )
-  }
+    );
+  };
 
   const generateCards = (repeat = 3): CardInfo[][] => {
     const columns: CardInfo[][] = [[], [], []];
     for (let i = 0; i < repeat; i++) {
       for (let j = 0; j < cardData.length; j++) {
         const card = cardData[j];
-        const columnIndex = j % 3; 
-        columns[columnIndex].push({...card, uniqueKey: `${card.id}-${i}-${columnIndex}`});
+        const columnIndex = j % 3;
+        columns[columnIndex].push({
+          ...card,
+          uniqueKey: `${card.id}-${i}-${columnIndex}`,
+        });
       }
     }
-    
+
     return columns;
-  }
+  };
 
   const columnsData = generateCards(9);
 
@@ -150,45 +156,46 @@ export const Build = () => {
             <Text />
           </div>
           <div className="relative lg:col-span-6 h-[700px] -z-1">
-            <div className="absolute left-0 top-20 hidden lg:block">
-            </div>
+            <div className="absolute left-0 top-20 hidden lg:block"></div>
             <div className="relative h-full w-full overflow-hidden rounded-lg">
               <div
                 ref={scrollRef}
                 className="relative h-full overflow-hidden"
                 style={{
-                  maskImage: "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
-                  WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)"
+                  maskImage:
+                    "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
+                  WebkitMaskImage:
+                    "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
                 }}
               >
                 <div className="pt-24 pb-24">
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:px-4">
                     <div className="space-y-6">
                       {columnsData[0].map((card) => (
-                        <div 
-                          key={card.uniqueKey} 
-                          className={isLoaded ? "" : "opacity-0"} 
-                        >
-                          {renderCard(card)}
-                        </div>
-                      ))}
-                    </div>
-                    
-                    <div className="space-y-6 mt-16 md:mt-24">
-                      {columnsData[1].map((card) => (
-                        <div 
-                          key={card.uniqueKey} 
+                        <div
+                          key={card.uniqueKey}
                           className={isLoaded ? "" : "opacity-0"}
                         >
                           {renderCard(card)}
                         </div>
                       ))}
                     </div>
-                    
+
+                    <div className="space-y-6 mt-16 md:mt-24">
+                      {columnsData[1].map((card) => (
+                        <div
+                          key={card.uniqueKey}
+                          className={isLoaded ? "" : "opacity-0"}
+                        >
+                          {renderCard(card)}
+                        </div>
+                      ))}
+                    </div>
+
                     <div className="space-y-6 mt-32 md:mt-36">
                       {columnsData[2].map((card) => (
-                        <div 
-                          key={card.uniqueKey} 
+                        <div
+                          key={card.uniqueKey}
                           className={isLoaded ? "" : "opacity-0"}
                         >
                           {renderCard(card)}
@@ -207,8 +214,10 @@ export const Build = () => {
                     style={{
                       top: `${Math.random() * 100}%`,
                       left: `${Math.random() * 100}%`,
-                      animation: `float ${5 + Math.random() * 10}s linear infinite`,
-                      animationDelay: `${Math.random() * 5}s`
+                      animation: `float ${
+                        5 + Math.random() * 10
+                      }s linear infinite`,
+                      animationDelay: `${Math.random() * 5}s`,
                     }}
                   ></div>
                 ))}
@@ -217,7 +226,7 @@ export const Build = () => {
           </div>
         </div>
       </div>
-      
+
       <style jsx global>{`
         @keyframes float {
           0% {
@@ -234,5 +243,5 @@ export const Build = () => {
         }
       `}</style>
     </div>
-  )
-}
+  );
+};

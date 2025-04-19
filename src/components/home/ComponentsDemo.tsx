@@ -21,45 +21,45 @@ export const ComponentsDemo = () => {
         Component Demos
       </h2>
       <h3 className="mx-auto mb-8 mt-2 text-balance text-center text-base md:text-lg font-medium tracking-tight text-foreground/80">
-        These are a few components that you can easily plug into your next project.
+        These are a few components that you can easily plug into your next
+        project.
       </h3>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        
         <BentoGrid
-  className="lg:col-span-2 hover:scale-[1.01] overflow-hidden shadow-2xl transition-all duration-300 border border-zinc-800 h-[550px] rounded-xl"
-  enableDescription={false}
-  enableTitle={false}
-  height="h-full"
-  dark
-  component={
-    <div className="rounded-xl overflow-hidden relative w-full h-full bg-gradient-to-br from-zinc-900 to-black">
-      <div className="w-full h-76 overflow-hidden overscroll-none bg-zinc-800 rounded-t-lg shadow-lg">
-  <div className="bg-zinc-900 p-1 rounded-t-lg flex items-center justify-between border-b border-zinc-700">
-    <div className="flex space-x-2 ml-2">
-      <div className="w-2 h-2 rounded-full bg-red-500"></div>
-      <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
-      <div className="w-2 h-2 rounded-full bg-green-500"></div>
-    </div>
-    <div className="text-xs text-zinc-400">Terminal</div>
-    <div className="w-12"></div>
-  </div>
-  <div className="bg-black h-76 overflow-hidden overscroll-none">
-    <InteractiveTerminal 
-      bgColor="bg-black"
-      textColor="text-green-400"
-      autoMode={true}
-      command="sudo hack -m"
-      className="!overflow-hidden !overscroll-none !scrollbar-hide font-mono text-sm pb-2"
-      commandMessage="Auto-executing:"
-      outputHeight="h-72"
-      icon={<Code className="mr-1 mt-1 text-green-500 w-4 h-4" />}
-      processingSteps={[
-        "Booting exploit frames...",
-        "Scanning for Issues...",
-        "Bypassing security...",
-        "Unlocking files..."
-      ]}
-      finalMessage={`
+          className="lg:col-span-2 hover:scale-[1.01] overflow-hidden shadow-2xl transition-all duration-300 border border-zinc-800 h-[550px] rounded-xl"
+          enableDescription={false}
+          enableTitle={false}
+          height="h-full"
+          dark
+          component={
+            <div className="rounded-xl overflow-hidden relative w-full h-full bg-gradient-to-br from-zinc-900 to-black">
+              <div className="w-full h-76 overflow-hidden overscroll-none bg-zinc-800 rounded-t-lg shadow-lg">
+                <div className="bg-zinc-900 p-1 rounded-t-lg flex items-center justify-between border-b border-zinc-700">
+                  <div className="flex space-x-2 ml-2">
+                    <div className="w-2 h-2 rounded-full bg-red-500"></div>
+                    <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
+                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                  </div>
+                  <div className="text-xs text-zinc-400">Terminal</div>
+                  <div className="w-12"></div>
+                </div>
+                <div className="bg-black h-76 overflow-hidden overscroll-none">
+                  <InteractiveTerminal
+                    bgColor="bg-black"
+                    textColor="text-green-400"
+                    autoMode={true}
+                    command="sudo hack -m"
+                    className="!overflow-hidden !overscroll-none !scrollbar-hide font-mono text-sm pb-2"
+                    commandMessage="Auto-executing:"
+                    outputHeight="h-72"
+                    icon={<Code className="mr-1 mt-1 text-green-500 w-4 h-4" />}
+                    processingSteps={[
+                      "Booting exploit frames...",
+                      "Scanning for Issues...",
+                      "Bypassing security...",
+                      "Unlocking files...",
+                    ]}
+                    finalMessage={`
 ⚠️  ACCESS GRANTED  ⚠️
 
 [SYSTEM]: Mainframe compromised
@@ -67,28 +67,28 @@ export const ComponentsDemo = () => {
 
 Press ENTER to continue...
       `}
-      promptSymbol="#"
-      stepDelay={500}
-    />
-  </div>
-</div>
-      
-          <div className="flex-grow bg-black relative w-full flex items-center justify-end lg:justify-start">
-            <div className="transform scale-70 md:scale-80 origin-center lg:origin-top -mt-6 lg:mt-0">
-              <InteractiveKeyboard
-                layout="standard"
-                showFunctionKeys={false}
-                showNavigationCluster={false}
-                activeKeys={["Enter"]}
-                activeKeyGlowColor="#22c55e"
-                activeKeyGlowIntensity={2}
-                theme="cyberpunk"
-                keyPressAnimationDuration={800}
-                allowPhysicalKeyboard={true}
-                perspective={800}
-                rotateX={15}
-              />
-            </div>
+                    promptSymbol="#"
+                    stepDelay={500}
+                  />
+                </div>
+              </div>
+
+              <div className="flex-grow bg-black relative w-full flex items-center justify-end lg:justify-start">
+                <div className="transform scale-70 md:scale-80 origin-center lg:origin-top -mt-6 lg:mt-0">
+                  <InteractiveKeyboard
+                    layout="standard"
+                    showFunctionKeys={false}
+                    showNavigationCluster={false}
+                    activeKeys={["Enter"]}
+                    activeKeyGlowColor="#22c55e"
+                    activeKeyGlowIntensity={2}
+                    theme="cyberpunk"
+                    keyPressAnimationDuration={800}
+                    allowPhysicalKeyboard={true}
+                    perspective={800}
+                    rotateX={15}
+                  />
+                </div>
               </div>
               <div className="absolute bottom-2 right-4">
                 <div className="px-2 py-1 bg-zinc-800 rounded text-xs text-green-400 flex items-center">
@@ -100,68 +100,68 @@ Press ENTER to continue...
           }
         />
 
-<BentoGrid
+        <BentoGrid
           className="rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-xl border border-zinc-200 dark:border-zinc-800"
           height="h-full"
           enableDescription={false}
           enableTitle={false}
           component={
             <DynamicRipple
-            theme="purple"
-            intensity={5}
-            speed={5}
-            reactToCursor
-            autoAnimate
-            rounded="xl"
-            className="w-full h-full min-h-[300px] p-6 flex items-center justify-center bg-white dark:bg-black"
-          >
-            <Particles
-              className="absolute inset-0 z-0"
-              quantity={100}
-              ease={80}
-              color="#ffffff"
-              refresh
-            />
-            <div className="relative flex flex-col items-center justify-center">
-              <ImageScanner 
-                image="/logo.png" 
-                scanType="line"
-                scanColor="purple"
-                repeating={true}
-                scanSpeed={3}
-                className="w-48 h-48 rounded-lg border-2 border-purple-200 dark:border-purple-900"
+              theme="purple"
+              intensity={5}
+              speed={5}
+              reactToCursor
+              autoAnimate
+              rounded="xl"
+              className="w-full h-full min-h-[300px] p-6 flex items-center justify-center bg-white dark:bg-black"
+            >
+              <Particles
+                className="absolute inset-0 z-0"
+                quantity={100}
+                ease={80}
+                color="#ffffff"
+                refresh
               />
-              <div className="text-center mt-3 w-full flex flex-col items-center justify-center gap-3">
-                <LampHeading text="Nuvyx UI" gradientColors={{ from: "#6e15ad", to: "#d413ad"}} className="text-2xl font-bold" />
-                <p className="text-sm text-zinc-600 dark:text-zinc-300">
-                  Collection of ready-to-use components.
-                </p>
-                <Link 
-                  href="/components" 
-                  className="block w-full p-4"
-                  aria-label="Check more components"
-                >
-                  <div className="w-full min-h-[60px] rounded-xl flex items-center justify-center text-white dark:text-black touch-manipulation">
-                    <Rbutton>
-                      Check more
-                    </Rbutton>
-                  </div>
-                </Link>
+              <div className="relative flex flex-col items-center justify-center">
+                <ImageScanner
+                  image="/logo.png"
+                  scanType="line"
+                  scanColor="purple"
+                  repeating={true}
+                  scanSpeed={3}
+                  className="w-48 h-48 rounded-lg border-2 border-purple-200 dark:border-purple-900"
+                />
+                <div className="text-center mt-3 w-full flex flex-col items-center justify-center gap-3">
+                  <LampHeading
+                    text="Nuvyx UI"
+                    gradientColors={{ from: "#6e15ad", to: "#d413ad" }}
+                    className="text-2xl font-bold"
+                  />
+                  <p className="text-sm text-zinc-600 dark:text-zinc-300">
+                    Collection of ready-to-use components.
+                  </p>
+                  <Link
+                    href="/components"
+                    className="block w-full p-4"
+                    aria-label="Check more components"
+                  >
+                    <div className="w-full min-h-[60px] rounded-xl flex items-center justify-center text-white dark:text-black touch-manipulation">
+                      <Rbutton>Check more</Rbutton>
+                    </div>
+                  </Link>
+                </div>
               </div>
-            </div>
-          </DynamicRipple>
+            </DynamicRipple>
           }
         />
 
-<BentoGrid
-  className="rounded-2xl overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] border"
-  height="h-full"
-  enableDescription={false}
-  enableTitle={false}
-  component={
-    <TwitterCard/>
-  }
-/>
+        <BentoGrid
+          className="rounded-2xl overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] border"
+          height="h-full"
+          enableDescription={false}
+          enableTitle={false}
+          component={<TwitterCard />}
+        />
         <BentoGrid
           dark
           enableDescription={false}
@@ -229,51 +229,57 @@ Press ENTER to continue...
           }
         />
 
-
-
-<BentoGrid
+        <BentoGrid
           enableDescription={false}
           enableTitle={false}
           height="h-72"
           className="rounded-2xl overflow-hidden shadow-xl bg-white dark:bg-black transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] border border-zinc-200 dark:border-zinc-800"
           component={
             <div className="p-6 h-76 dark:bg-black">
-              <CyberpunkCard theme="neon-purple" borderStyle="glitch" glowIntensity={4} className="h-56 bg-gradient-to-br from-black to-purple-900 dark:from-black dark:to-purple-900">
-        <div className="space-y-3">
-          <div className="flex items-center gap-2">
-            <Shield className="w-6 h-6" />
-            <h3 className="text-xl font-bold tracking-wider">UI ENGINE</h3>
-          </div>
-          <p className="text-sm opacity-80 mb-1">A fast, flexible, and accessible component system built for modern web apps.</p>
-          <div className="grid grid-cols-3 gap-2 mt-3">
-            <div className="text-center p-1 bg-pink-600/20 rounded text-xs flex flex-col gap-1">
-              <div className="font-bold">Per</div>
-              <div>96%</div>
-            </div>
-            <div className="text-center p-1 bg-pink-600/20 rounded text-xs flex flex-col gap-1">
-              <div className="font-bold">Flex</div>
-              <div>87%</div>
-            </div>
-            <div className="text-center p-1 bg-pink-600/20 rounded text-xs flex flex-col gap-1">
-              <div className="font-bold">Custom</div>
-              <div>92%</div>
-            </div>
-          </div>
-          <div className="text-right text-xs font-mono mt-2">
-          STABILITY: PRODUCTION-READY
-          </div>
-        </div>
-      </CyberpunkCard>
+              <CyberpunkCard
+                theme="neon-purple"
+                borderStyle="glitch"
+                glowIntensity={4}
+                className="h-56 bg-gradient-to-br from-black to-purple-900 dark:from-black dark:to-purple-900"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2">
+                    <Shield className="w-6 h-6" />
+                    <h3 className="text-xl font-bold tracking-wider">
+                      UI ENGINE
+                    </h3>
+                  </div>
+                  <p className="text-sm opacity-80 mb-1">
+                    A fast, flexible, and accessible component system built for
+                    modern web apps.
+                  </p>
+                  <div className="grid grid-cols-3 gap-2 mt-3">
+                    <div className="text-center p-1 bg-pink-600/20 rounded text-xs flex flex-col gap-1">
+                      <div className="font-bold">Per</div>
+                      <div>96%</div>
+                    </div>
+                    <div className="text-center p-1 bg-pink-600/20 rounded text-xs flex flex-col gap-1">
+                      <div className="font-bold">Flex</div>
+                      <div>87%</div>
+                    </div>
+                    <div className="text-center p-1 bg-pink-600/20 rounded text-xs flex flex-col gap-1">
+                      <div className="font-bold">Custom</div>
+                      <div>92%</div>
+                    </div>
+                  </div>
+                  <div className="text-right text-xs font-mono mt-2">
+                    STABILITY: PRODUCTION-READY
+                  </div>
+                </div>
+              </CyberpunkCard>
             </div>
           }
         />
-
-      
       </div>
 
       <div className="relative mt-8 flex w-full flex-col justify-center space-y-2 sm:flex-row sm:space-y-0 sm:space-x-4 my-16 px-8">
         <Link href="/components" rel="noopener noreferrer">
-          <Rbutton className="relative bg-slate-900 dark:bg-white dark:text-black no-underline flex space-x-2 group cursor-pointer relative hover:shadow-2xl transition duration-200 shadow-zinc-900 p-px font-semibold text-white px-4 py-2 h-14 w-full items-center justify-center rounded-2xl text-center text-sm sm:w-52">
+          <Rbutton className="bg-slate-900 dark:bg-white dark:text-black no-underline flex space-x-2 group cursor-pointer relative hover:shadow-2xl transition duration-200 shadow-zinc-900 p-px font-semibold text-white px-4 py-2 h-14 w-full items-center justify-center rounded-2xl text-center text-sm sm:w-52">
             All Components
             <ChevronRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-0.5" />
           </Rbutton>

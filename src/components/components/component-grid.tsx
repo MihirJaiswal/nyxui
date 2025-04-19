@@ -1,8 +1,24 @@
-import Link from "next/link"
-import { Sparkles, Layers, BadgeCheck, CreditCard, Loader, Star, Palette, BoxIcon as Box3d } from "lucide-react"
+import Link from "next/link";
+import {
+  Sparkles,
+  Layers,
+  BadgeCheck,
+  CreditCard,
+  Loader,
+  Star,
+  Palette,
+  BoxIcon as Box3d,
+} from "lucide-react";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 const featuredComponents = [
   {
@@ -13,7 +29,8 @@ const featuredComponents = [
   },
   {
     name: "Glass Card",
-    description: "Modern glassmorphism cards with blur effects and gradient borders.",
+    description:
+      "Modern glassmorphism cards with blur effects and gradient borders.",
     href: "/components/glass-card",
     icon: Layers,
   },
@@ -37,13 +54,15 @@ const featuredComponents = [
   },
   {
     name: "Animated Loader",
-    description: "Modern loading animations and spinners with gradients and effects.",
+    description:
+      "Modern loading animations and spinners with gradients and effects.",
     href: "/components/animated-loader",
     icon: Loader,
   },
   {
     name: "Pricing Card",
-    description: "Modern pricing cards with gradients, animations, and feature lists.",
+    description:
+      "Modern pricing cards with gradients, animations, and feature lists.",
     href: "/components/pricing-card",
     icon: CreditCard,
   },
@@ -53,7 +72,7 @@ const featuredComponents = [
     href: "/components/color-palette",
     icon: Palette,
   },
-]
+];
 
 export function ComponentGrid() {
   return (
@@ -70,7 +89,9 @@ export function ComponentGrid() {
             <CardTitle className="text-xl">{component.name}</CardTitle>
           </CardHeader>
           <CardContent>
-            <CardDescription className="line-clamp-2 min-h-[40px]">{component.description}</CardDescription>
+            <CardDescription className="line-clamp-2 min-h-[40px]">
+              {component.description}
+            </CardDescription>
           </CardContent>
           <CardFooter>
             <Button
@@ -85,6 +106,5 @@ export function ComponentGrid() {
         </Card>
       ))}
     </div>
-  )
+  );
 }
-

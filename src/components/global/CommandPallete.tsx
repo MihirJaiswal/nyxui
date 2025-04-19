@@ -93,8 +93,7 @@ export function CommandPalette() {
           {nothingFound && <CommandEmpty>No items found.</CommandEmpty>}
 
           {filteredSections.map((section) => {
-            const Icon =
-              iconMap[section.key as keyof typeof iconMap] || Search;
+            const Icon = iconMap[section.key as keyof typeof iconMap] || Search;
             const heading =
               section.key.charAt(0).toUpperCase() + section.key.slice(1);
 

@@ -1,30 +1,30 @@
-"use client"
+"use client";
 
-import React, { useState, useRef, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import React, { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const TechStack = () => {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (containerRef.current) {
-        const rect = containerRef.current.getBoundingClientRect()
+        const rect = containerRef.current.getBoundingClientRect();
         setMousePosition({
           x: e.clientX - rect.left,
           y: e.clientY - rect.top,
-        })
+        });
       }
-    }
+    };
 
-    const container = containerRef.current
+    const container = containerRef.current;
     if (container) {
-      container.addEventListener("mousemove", handleMouseMove)
-      return () => container.removeEventListener("mousemove", handleMouseMove)
+      container.addEventListener("mousemove", handleMouseMove);
+      return () => container.removeEventListener("mousemove", handleMouseMove);
     }
-  }, [])
+  }, []);
 
   const techItems = [
     {
@@ -146,7 +146,7 @@ const TechStack = () => {
       hoverColor: "text-slate-400",
       bgColor: "bg-slate-500/10",
     },
-  ]
+  ];
 
   return (
     <div className="flex flex-col items-center justify-center gap-6 md:mt-8 md:mb-10 w-full max-w-4xl mx-auto md:px-4">
@@ -158,14 +158,17 @@ const TechStack = () => {
           }}
         />
 
-        <div ref={containerRef} className="relative flex flex-col items-center justify-center p-6 rounded-lg">
-          <div 
+        <div
+          ref={containerRef}
+          className="relative flex flex-col items-center justify-center p-6 rounded-lg"
+        >
+          <div
             className="w-full py-8 px-4"
             style={{
               perspective: "1200px",
             }}
           >
-            <div className="grid grid-cols-5 gap-6 gap-10">
+            <div className="grid grid-cols-5 gap-10">
               {techItems.map((item, index) => {
                 const isHovered = hoveredIndex === index;
 
@@ -176,7 +179,11 @@ const TechStack = () => {
                     initial={{ y: 0 }}
                     whileHover={{
                       y: -8,
-                      transition: { type: "spring", stiffness: 300, damping: 15 },
+                      transition: {
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 15,
+                      },
                     }}
                     onMouseEnter={() => setHoveredIndex(index)}
                     onMouseLeave={() => setHoveredIndex(null)}
@@ -205,7 +212,9 @@ const TechStack = () => {
                           animate={{ opacity: 0.3 }}
                           exit={{ opacity: 0 }}
                           style={{
-                            background: `radial-gradient(circle, ${getComputedColor(item.color)}, transparent 70%)`,
+                            background: `radial-gradient(circle, ${getComputedColor(
+                              item.color
+                            )}, transparent 70%)`,
                           }}
                         />
                       )}
@@ -218,7 +227,7 @@ const TechStack = () => {
                     </motion.div>
 
                     <AnimatePresence>
-                      {(isHovered) && (
+                      {isHovered && (
                         <motion.span
                           className="absolute -bottom-6 whitespace-nowrap text-xs sm:text-sm font-medium"
                           initial={{ opacity: 0, y: -5 }}
@@ -231,31 +240,31 @@ const TechStack = () => {
                       )}
                     </AnimatePresence>
                   </motion.div>
-                )
+                );
               })}
             </div>
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 function getComputedColor(colorClass: string) {
   switch (colorClass) {
     case "text-cyan-500":
-      return "rgba(6, 182, 212, 0.5)"
+      return "rgba(6, 182, 212, 0.5)";
     case "text-sky-500":
-      return "rgba(14, 165, 233, 0.5)"
+      return "rgba(14, 165, 233, 0.5)";
     case "text-teal-500":
-      return "rgba(20, 184, 166, 0.5)"
+      return "rgba(20, 184, 166, 0.5)";
     case "text-purple-500":
-      return "rgba(168, 85, 247, 0.5)"
+      return "rgba(168, 85, 247, 0.5)";
     case "text-slate-500":
-      return "rgba(100, 116, 139, 0.5)"
+      return "rgba(100, 116, 139, 0.5)";
     default:
-      return "rgba(100, 116, 139, 0.5)"
+      return "rgba(100, 116, 139, 0.5)";
   }
 }
 
-export default TechStack
+export default TechStack;

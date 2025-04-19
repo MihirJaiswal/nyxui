@@ -1,40 +1,49 @@
-import { ExternalLink } from "lucide-react"
-import { notFound } from "next/navigation"
-import { Button } from "@/components/ui/button"
-import { ComponentSidebar } from "@/components/components/component-sidebar"
-import { componentsData } from "@/nuvyxui/resgistry"
-import Header from "@/components/global/Header"
-import { PreviewCodeToggle } from "@/components/components/PreviewCodeToggle"
-import { Badge } from "@/components/ui/badge"
-import { InstallationSection } from "@/components/components/Installation"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import React from "react"
-import { Card } from "@/components/ui/card"
-import Link from "next/link"
+import { ExternalLink } from "lucide-react";
+import { notFound } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { ComponentSidebar } from "@/components/components/component-sidebar";
+import { componentsData } from "@/nuvyxui/resgistry";
+import Header from "@/components/global/Header";
+import { PreviewCodeToggle } from "@/components/components/PreviewCodeToggle";
+import { Badge } from "@/components/ui/badge";
+import { InstallationSection } from "@/components/components/Installation";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import React from "react";
+import { Card } from "@/components/ui/card";
+import Link from "next/link";
 
-const ComponentPage = async ({ params }: { params: Promise<{ component: string }> }) => {
-  const { component } = await params
+const ComponentPage = async ({
+  params,
+}: {
+  params: Promise<{ component: string }>;
+}) => {
+  const { component } = await params;
 
   if (!componentsData) {
-    console.error("componentsData is not properly loaded")
-    return notFound()
+    console.error("componentsData is not properly loaded");
+    return notFound();
   }
 
   if (!(component in componentsData)) {
-    console.error(`Component "${component}" not found in componentsData`)
-    return notFound()
+    console.error(`Component "${component}" not found in componentsData`);
+    return notFound();
   }
 
-  const componentData = componentsData[component as keyof typeof componentsData]
+  const componentData =
+    componentsData[component as keyof typeof componentsData];
 
   if (!componentData) {
-    console.error(`Component data for "${component}" is undefined`)
-    return notFound()
+    console.error(`Component data for "${component}" is undefined`);
+    return notFound();
   }
 
-  if (!componentData.name || !componentData.description || !componentData.preview) {
-    console.error(`Component "${component}" is missing required fields`)
-    return notFound()
+  if (
+    !componentData.name ||
+    !componentData.description ||
+    !componentData.preview
+  ) {
+    console.error(`Component "${component}" is missing required fields`);
+    return notFound();
   }
 
   return (
@@ -53,7 +62,10 @@ const ComponentPage = async ({ params }: { params: Promise<{ component: string }
                 <h1 className="scroll-m-20 text-3xl font-bold tracking-tight sm:text-4xl break-words">
                   {componentData.name}
                 </h1>
-                <Badge variant="outline" className="font-medium whitespace-nowrap">
+                <Badge
+                  variant="outline"
+                  className="font-medium whitespace-nowrap"
+                >
                   UI Component
                 </Badge>
               </div>
@@ -72,7 +84,9 @@ const ComponentPage = async ({ params }: { params: Promise<{ component: string }
 
             <div className="mt-8 space-y-4 sm:space-y-6">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">Preview</h2>
+                <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">
+                  Preview
+                </h2>
                 <div className="flex flex-wrap items-center gap-2">
                   <Badge variant="secondary" className="font-medium">
                     Responsive
@@ -99,9 +113,14 @@ const ComponentPage = async ({ params }: { params: Promise<{ component: string }
             </div>
 
             <section className="mt-10 space-y-6">
-              <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">Props</h2>
+              <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+                Props
+              </h2>
               {componentData.props && componentData.props.length > 0 ? (
-                <Tabs defaultValue={componentData.props[0].name} className="w-full">
+                <Tabs
+                  defaultValue={componentData.props[0].name}
+                  className="w-full"
+                >
                   <div className="overflow-x-auto">
                     <TabsList className="mb-4 sm:mb-6 bg-zinc-100 dark:bg-zinc-800 p-0 shadow-sm flex">
                       {componentData.props.map((propGroup) => (
@@ -117,7 +136,11 @@ const ComponentPage = async ({ params }: { params: Promise<{ component: string }
                   </div>
 
                   {componentData.props.map((propGroup) => (
-                    <TabsContent key={propGroup.name} value={propGroup.name} className="space-y-4">
+                    <TabsContent
+                      key={propGroup.name}
+                      value={propGroup.name}
+                      className="space-y-4"
+                    >
                       <div className="border shadow overflow-hidden">
                         <div className="overflow-x-auto">
                           <table className="w-full border-collapse text-sm">
@@ -139,10 +162,14 @@ const ComponentPage = async ({ params }: { params: Promise<{ component: string }
                             </thead>
                             <tbody className="divide-y">
                               {propGroup.items.map((prop, index) => (
-                                <React.Fragment key={`${propGroup.name}-${prop.name}`}>
+                                <React.Fragment
+                                  key={`${propGroup.name}-${prop.name}`}
+                                >
                                   <tr
                                     className={`transition-colors ${
-                                      index % 2 === 0 ? "bg-white dark:bg-black" : "bg-zinc-50 dark:bg-zinc-900"
+                                      index % 2 === 0
+                                        ? "bg-white dark:bg-black"
+                                        : "bg-zinc-50 dark:bg-zinc-900"
                                     }`}
                                   >
                                     <td className="px-3 py-3 sm:px-6 sm:py-4 font-mono text-xs sm:text-sm font-semibold border-r break-all">
@@ -160,54 +187,62 @@ const ComponentPage = async ({ params }: { params: Promise<{ component: string }
                                         {prop.default || "-"}
                                       </code>
                                     </td>
-                                    <td className="px-3 py-3 sm:px-6 sm:py-4 text-xs sm:text-sm">{prop.description}</td>
+                                    <td className="px-3 py-3 sm:px-6 sm:py-4 text-xs sm:text-sm">
+                                      {prop.description}
+                                    </td>
                                   </tr>
-                                  {prop.subProps && prop.subProps.length > 0 && (
-                                    <tr key={`${propGroup.name}-${prop.name}-subprops`}>
-                                      <td colSpan={4} className="p-0">
-                                        <div className="bg-zinc-50 dark:bg-zinc-900 border">
-                                          <div className="px-3 py-2 sm:px-4 sm:py-2 font-medium text-xs sm:text-sm bg-white dark:bg-black border-2 border-b">
-                                            Properties of {prop.name}
+                                  {prop.subProps &&
+                                    prop.subProps.length > 0 && (
+                                      <tr
+                                        key={`${propGroup.name}-${prop.name}-subprops`}
+                                      >
+                                        <td colSpan={4} className="p-0">
+                                          <div className="bg-zinc-50 dark:bg-zinc-900 border">
+                                            <div className="px-3 py-2 sm:px-4 sm:py-2 font-medium text-xs sm:text-sm bg-white dark:bg-black border-2 border-b">
+                                              Properties of {prop.name}
+                                            </div>
+                                            <div className="overflow-x-auto">
+                                              <table className="w-full border-collapse text-sm">
+                                                <tbody className="divide-y">
+                                                  {prop.subProps.map(
+                                                    (subProp, subIndex) => (
+                                                      <tr
+                                                        key={`${propGroup.name}-${prop.name}-${subProp.name}`}
+                                                        className={`transition-colors ${
+                                                          subIndex % 2 === 0
+                                                            ? "bg-white/50 dark:bg-black/30"
+                                                            : "bg-zinc-50/70 dark:bg-zinc-900/70"
+                                                        }`}
+                                                      >
+                                                        <td className="pl-6 sm:pl-10 pr-3 sm:pr-6 py-2 sm:py-3 font-mono text-xs sm:text-sm font-medium border-r w-1/6 min-w-[100px] break-all">
+                                                          <code className="bg-yellow-50 dark:bg-zinc-800 px-1 py-0.5 sm:px-2 sm:py-1">
+                                                            {subProp.name}
+                                                          </code>
+                                                        </td>
+                                                        <td className="px-3 py-2 sm:px-6 sm:py-3 font-mono text-xs sm:text-sm border-r w-1/6 min-w-[100px] break-all">
+                                                          <code className="bg-yellow-50 dark:bg-zinc-800 px-1 py-0.5 sm:px-2 sm:py-1">
+                                                            {subProp.type}
+                                                          </code>
+                                                        </td>
+                                                        <td className="px-3 py-2 sm:px-6 sm:py-3 text-xs sm:text-sm border-r w-1/5 min-w-[100px] break-all">
+                                                          <code className="bg-yellow-50 dark:bg-zinc-800 px-1 py-0.5 sm:px-2 sm:py-1">
+                                                            {subProp.default ||
+                                                              "-"}
+                                                          </code>
+                                                        </td>
+                                                        <td className="px-3 py-2 sm:px-6 sm:py-3 text-xs sm:text-sm w-3/6 min-w-[200px]">
+                                                          {subProp.description}
+                                                        </td>
+                                                      </tr>
+                                                    )
+                                                  )}
+                                                </tbody>
+                                              </table>
+                                            </div>
                                           </div>
-                                          <div className="overflow-x-auto">
-                                            <table className="w-full border-collapse text-sm">
-                                              <tbody className="divide-y">
-                                                {prop.subProps.map((subProp, subIndex) => (
-                                                  <tr
-                                                    key={`${propGroup.name}-${prop.name}-${subProp.name}`}
-                                                    className={`transition-colors ${
-                                                      subIndex % 2 === 0
-                                                        ? "bg-white/50 dark:bg-black/30"
-                                                        : "bg-zinc-50/70 dark:bg-zinc-900/70"
-                                                    }`}
-                                                  >
-                                                    <td className="pl-6 sm:pl-10 pr-3 sm:pr-6 py-2 sm:py-3 font-mono text-xs sm:text-sm font-medium border-r w-1/6 min-w-[100px] break-all">
-                                                      <code className="bg-yellow-50 dark:bg-zinc-800 px-1 py-0.5 sm:px-2 sm:py-1">
-                                                        {subProp.name}
-                                                      </code>
-                                                    </td>
-                                                    <td className="px-3 py-2 sm:px-6 sm:py-3 font-mono text-xs sm:text-sm border-r w-1/6 min-w-[100px] break-all">
-                                                      <code className="bg-yellow-50 dark:bg-zinc-800 px-1 py-0.5 sm:px-2 sm:py-1">
-                                                        {subProp.type}
-                                                      </code>
-                                                    </td>
-                                                    <td className="px-3 py-2 sm:px-6 sm:py-3 text-xs sm:text-sm border-r w-1/5 min-w-[100px] break-all">
-                                                      <code className="bg-yellow-50 dark:bg-zinc-800 px-1 py-0.5 sm:px-2 sm:py-1">
-                                                        {subProp.default || "-"}
-                                                      </code>
-                                                    </td>
-                                                    <td className="px-3 py-2 sm:px-6 sm:py-3 text-xs sm:text-sm w-3/6 min-w-[200px]">
-                                                      {subProp.description}
-                                                    </td>
-                                                  </tr>
-                                                ))}
-                                              </tbody>
-                                            </table>
-                                          </div>
-                                        </div>
-                                      </td>
-                                    </tr>
-                                  )}
+                                        </td>
+                                      </tr>
+                                    )}
                                 </React.Fragment>
                               ))}
                             </tbody>
@@ -219,7 +254,9 @@ const ComponentPage = async ({ params }: { params: Promise<{ component: string }
                 </Tabs>
               ) : (
                 <Card className="border p-4 sm:p-6 shadow">
-                  <p className="text-zinc-500">No props available for this component.</p>
+                  <p className="text-zinc-500">
+                    No props available for this component.
+                  </p>
                 </Card>
               )}
             </section>
@@ -227,9 +264,14 @@ const ComponentPage = async ({ params }: { params: Promise<{ component: string }
             {/* Examples Section */}
             {componentData.examples && componentData.examples.length > 0 && (
               <div className="mt-10 space-y-6">
-                <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">Examples</h2>
+                <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">
+                  Examples
+                </h2>
                 {componentData.examples.map((example, idx) => (
-                  <div key={`example-${idx}-${example.name}`} className="space-y-4">
+                  <div
+                    key={`example-${idx}-${example.name}`}
+                    className="space-y-4"
+                  >
                     <div className="rounded-xl border overflow-hidden bg-white dark:bg-black">
                       <PreviewCodeToggle
                         preview={
@@ -248,7 +290,7 @@ const ComponentPage = async ({ params }: { params: Promise<{ component: string }
         </main>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ComponentPage
+export default ComponentPage;
