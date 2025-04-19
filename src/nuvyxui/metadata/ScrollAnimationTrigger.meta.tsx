@@ -30,7 +30,7 @@ export const scrollAnimationTriggerData: ComponentData = {
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
-    return twMerge(clsx(inputs));
+  return twMerge(clsx(inputs));
 }`,
       },
     },
@@ -49,8 +49,7 @@ export function cn(...inputs: ClassValue[]) {
           name: "effect",
           type: "string",
           default: "fade",
-          description:
-            "The animation effect - (fade, scale, slide, color, rotate, custom)",
+          description: "The animation effect - (fade, scale, slide, color, rotate, custom)",
         },
         {
           name: "threshold",
@@ -74,8 +73,7 @@ export function cn(...inputs: ClassValue[]) {
           name: "direction",
           type: "string",
           default: "up",
-          description:
-            "Direction for slide animation - (up, down, left, right)",
+          description: "Direction for slide animation - (up, down, left, right)",
         },
         {
           name: "once",
@@ -116,8 +114,8 @@ export function cn(...inputs: ClassValue[]) {
         {
           name: "fromRotation",
           type: "number",
-          default: 'direction === "left" ? -10 : 10',
-          description: "Initial rotation angle for rotate effect",
+          default: "-10",
+          description: "Initial rotation angle for rotate effect (default is -10, adjusted dynamically by direction if needed)",
         },
         {
           name: "toRotation",
