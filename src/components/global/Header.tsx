@@ -55,6 +55,7 @@ export default function Header() {
         <div className="flex items-center">
           <Link
             href="/"
+            aria-label="Home"
             className="group flex items-center transition-all duration-300 hover:opacity-90"
           >
             <div className="relative flex items-center justify-center overflow-hidden">
@@ -88,6 +89,7 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
+                aria-label={link.label}
                 className={cn(
                   "relative px-3 py-2 text-sm font-medium rounded-md transition-all duration-300 hover:text-foreground hover:bg-muted/50",
                   "after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-0.5 after:bg-primary after:rounded-full after:transition-all after:duration-300 hover:after:w-4/5",
@@ -102,6 +104,7 @@ export default function Header() {
         <div className="flex lg:hidden flex-1 justify-center mx-2">
           <Button
             variant="outline"
+            aria-label="Search"
             className="w-full max-w-xs justify-center text-sm text-muted-foreground rounded-full border border-muted/30"
             onClick={openSearch}
           >
@@ -112,14 +115,14 @@ export default function Header() {
         <div className="flex items-center space-x-2">
           <div className="hidden lg:flex items-center space-x-3">
             <CommandPalette />
-            <Link href="https://github.com/MihirJaiswal/nuvyxui" target="_blank" rel="noreferrer">
-              <Button variant="ghost" size="icon" className="rounded-full hover:bg-muted/80 transition-all duration-300 hover:scale-105">
+            <Link aria-label="GitHub" href="https://github.com/MihirJaiswal/nuvyxui" target="_blank" rel="noreferrer">
+              <Button aria-label="GitHub" variant="ghost" size="icon" className="rounded-full hover:bg-muted/80 transition-all duration-300 hover:scale-105">
                 <Github className="h-5 w-5 text-black dark:text-white transition-colors" />
                 <span className="sr-only">GitHub</span>
               </Button>
             </Link>
-            <Link href="https://twitter.com/nuvyx_ui" target="_blank" rel="noreferrer">
-              <Button variant="ghost" size="icon" className="rounded-full hover:bg-muted/80 transition-all duration-300 hover:scale-105">
+            <Link aria-label="Twitter" href="https://twitter.com/nuvyx_ui" target="_blank" rel="noreferrer">
+              <Button aria-label="Twitter" variant="ghost" size="icon" className="rounded-full hover:bg-muted/80 transition-all duration-300 hover:scale-105">
                 <svg height="23" width="23" fill="currentColor" viewBox="0 0 1200 1227" xmlns="http://www.w3.org/2000/svg">
                   <path d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z" />
                 </svg>
@@ -129,14 +132,14 @@ export default function Header() {
             <ModeToggle />
           </div>
           <div className="flex lg:hidden items-center space-x-1">
-            <Link href="https://github.com/MihirJaiswal/nuvyxui" target="_blank" rel="noreferrer">
-              <Button variant="ghost" size="icon" className="rounded-full h-8 w-8 p-0 hover:bg-muted/80 transition-all duration-300">
+            <Link aria-label="GitHub" href="https://github.com/MihirJaiswal/nuvyxui" target="_blank" rel="noreferrer">
+              <Button aria-label="GitHub" variant="ghost" size="icon" className="rounded-full h-8 w-8 p-0 hover:bg-muted/80 transition-all duration-300">
                 <Github className="h-4 w-4 text-black dark:text-white" />
                 <span className="sr-only">GitHub</span>
               </Button>
             </Link>
-            <Link href="https://twitter.com/nuvyx_ui" target="_blank" rel="noreferrer">
-              <Button variant="ghost" size="icon" className="rounded-full h-8 w-8 p-0 hover:bg-muted/80 transition-all duration-300">
+            <Link aria-label="Twitter" href="https://twitter.com/nuvyx_ui" target="_blank" rel="noreferrer">
+              <Button aria-label="Twitter" variant="ghost" size="icon" className="rounded-full h-8 w-8 p-0 hover:bg-muted/80 transition-all duration-300">
                 <svg height="23" width="23" fill="currentColor" viewBox="0 0 1200 1227" xmlns="http://www.w3.org/2000/svg">
                   <path d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z" />
                 </svg>
@@ -146,7 +149,7 @@ export default function Header() {
             <ModeToggle />
             <Sheet>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="rounded-full h-8 w-8 p-0 hover:bg-muted/80 transition-all duration-300">
+                <Button aria-label="Open Menu" variant="ghost" size="icon" className="rounded-full h-8 w-8 p-0 hover:bg-muted/80 transition-all duration-300">
                   <Menu className="h-4 w-4 text-black dark:text-white" />
                   <span className="sr-only">Open Menu</span>
                 </Button>
@@ -191,6 +194,7 @@ export default function Header() {
                       <Link
                         key={link.href}
                         href={link.href}
+                        aria-label={link.label}
                         className={cn(
                           "flex items-center text-sm font-medium p-2.5 rounded-md transition-colors",
                           activeLink === link.href
@@ -215,6 +219,7 @@ export default function Header() {
                         <Link
                           key={slug}
                           href={`/components/${slug}`}
+                          aria-label={comp.title}
                           className={cn(
                             "flex items-center text-sm p-2 rounded-md transition-colors pl-2.5",
                             activeLink === `/components/${slug}`
@@ -231,10 +236,10 @@ export default function Header() {
                 <div className="border-t border-muted/20 p-3">
                   <div className="flex justify-between items-center">
                     <div className="flex gap-2">
-                      <Link href="https://github.com/MihirJaiswal/nuvyxui" target="_blank" rel="noreferrer" className="h-7 w-7 rounded-full p-0">
+                      <Link aria-label="GitHub" href="https://github.com/MihirJaiswal/nuvyxui" target="_blank" rel="noreferrer" className="h-7 w-7 rounded-full p-0">
                         <Github className="h-3.5 w-3.5" />
                       </Link>
-                      <Link href="https://twitter.com/nuvyx_ui" target="_blank" rel="noreferrer" className="h-7 w-7 rounded-full p-0">
+                      <Link aria-label="Twitter" href="https://twitter.com/nuvyx_ui" target="_blank" rel="noreferrer" className="h-7 w-7 rounded-full p-0">
                         <svg height="12" width="12" fill="currentColor" viewBox="0 0 1200 1227" xmlns="http://www.w3.org/2000/svg">
                           <path d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z" />
                         </svg>

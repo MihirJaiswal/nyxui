@@ -184,12 +184,13 @@ export const MusicPlayer = ({
       <div className="p-6 flex flex-col">
         <div className="flex items-start justify-between mb-6">
           <div>
-            <h3 className="text-xl font-bold mb-1">{trackTitle}</h3>
+            <h1 className="text-xl font-bold mb-1">{trackTitle}</h1>
             <p className="text-sm opacity-70">{artist} • {album}</p>
           </div>
           {controls.heart && (
             <button 
               onClick={toggleLike}
+              aria-label="Like"
               className={`transition-colors hover:scale-105 ${liked ? 'text-red-500' : 'text-gray-400 hover:text-white'}`}
             >
               <Heart className={`h-6 w-6 ${liked ? 'fill-current' : ''}`} />
@@ -216,26 +217,27 @@ export const MusicPlayer = ({
         <div className="flex flex-col gap-5">
           <div className="flex justify-between items-center">
             {controls.shuffle && (
-              <button className="opacity-70 hover:opacity-100 transition-opacity">
+              <button aria-label="Shuffle" className="opacity-70 hover:opacity-100 transition-opacity">
                 <Shuffle className="h-5 w-5" />
               </button>
             )}
             <div className="flex items-center gap-5">
-              <button className="opacity-70 hover:opacity-100 transition-opacity">
+              <button aria-label="Skip Back" className="opacity-70 hover:opacity-100 transition-opacity">
                 <SkipBack className="h-6 w-6" />
               </button>
               <button
+                aria-label="Play/Pause"
                 className={`${theme === 'spotify' ? 'bg-green-500' : theme === 'cosmic' ? 'bg-indigo-500' : theme === 'nebula' ? 'bg-purple-500' : 'bg-white'} text-black rounded-full p-3 hover:scale-105 transition-transform`}
                 onClick={togglePlay}
               >
                 {isPlaying ? <Pause className="h-6 w-6" /> : <Play className="h-6 w-6 fill-current" />}
               </button>
-              <button className="opacity-70 hover:opacity-100 transition-opacity">
+              <button aria-label="Skip Forward" className="opacity-70 hover:opacity-100 transition-opacity">
                 <SkipForward className="h-6 w-6" />
               </button>
             </div>
             {controls.repeat && (
-              <button className="opacity-70 hover:opacity-100 transition-opacity">
+              <button aria-label="Repeat" className="opacity-70 hover:opacity-100 transition-opacity">
                 <Repeat className="h-5 w-5" />
               </button>
             )}
