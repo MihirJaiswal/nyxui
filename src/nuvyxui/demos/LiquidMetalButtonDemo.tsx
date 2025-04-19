@@ -1,5 +1,12 @@
-import { LiquidMetalButton } from "@/nuvyxui/components/LiquidMetalButton"
-import { Download, ArrowRight, Zap, ShoppingCart, CreditCard, Heart } from "lucide-react"
+import { LiquidMetalButton } from "@/nuvyxui/components/LiquidMetalButton";
+import {
+  Download,
+  ArrowRight,
+  Zap,
+  ShoppingCart,
+  CreditCard,
+  Heart,
+} from "lucide-react";
 
 export function LiquidMetalButtonDemo() {
   return (
@@ -41,27 +48,53 @@ export function LiquidMetalButtonDemo() {
 
       <div className="grid grid-cols-1 gap-4 md:gap-8">
         <div className="bg-gray-100 dark:bg-zinc-950 border p-4 md:p-6 rounded-lg shadow">
-          <h3 className="text-base md:text-lg font-semibold border-b pb-2 mb-3 md:mb-4">Premium Finishes</h3>
+          <h3 className="text-base md:text-lg font-semibold border-b pb-2 mb-3 md:mb-4">
+            Premium Finishes
+          </h3>
           <div className="grid grid-cols-1 xs:grid-cols-2 gap-3 md:gap-8">
-            <LiquidMetalButton variant="default" theme="gold" size="md" rounded="md" textured={true}>
+            <LiquidMetalButton
+              variant="default"
+              theme="gold"
+              size="md"
+              rounded="md"
+              textured={true}
+            >
               <div className="flex items-center">
                 <Heart className="mr-2 h-3 w-3 md:h-4 md:w-4" />
                 <span className="text-sm md:text-base">Gold</span>
               </div>
             </LiquidMetalButton>
-            <LiquidMetalButton variant="default" theme="silver" size="md" rounded="md" textured={true}>
+            <LiquidMetalButton
+              variant="default"
+              theme="silver"
+              size="md"
+              rounded="md"
+              textured={true}
+            >
               <div className="flex items-center">
                 <Zap className="mr-2 h-3 w-3 md:h-4 md:w-4" />
                 <span className="text-sm md:text-base">Silver</span>
               </div>
             </LiquidMetalButton>
-            <LiquidMetalButton variant="default" theme="copper" size="md" rounded="md" textured={true}>
+            <LiquidMetalButton
+              variant="default"
+              theme="copper"
+              size="md"
+              rounded="md"
+              textured={true}
+            >
               <div className="flex items-center">
                 <Heart className="mr-2 h-3 w-3 md:h-4 md:w-4" />
                 <span className="text-sm md:text-base">Copper</span>
               </div>
             </LiquidMetalButton>
-            <LiquidMetalButton variant="default" theme="steel" size="md" rounded="md" textured={true}>
+            <LiquidMetalButton
+              variant="default"
+              theme="steel"
+              size="md"
+              rounded="md"
+              textured={true}
+            >
               <div className="flex items-center">
                 <Zap className="mr-2 h-3 w-3 md:h-4 md:w-4" />
                 <span className="text-sm md:text-base">Steel</span>
@@ -71,15 +104,29 @@ export function LiquidMetalButtonDemo() {
         </div>
 
         <div className="bg-gray-100 dark:bg-zinc-950 border p-4 md:p-6 rounded-lg shadow">
-          <h3 className="text-base md:text-lg font-semibold border-b pb-2 mb-3 md:mb-4">Liquid Effects</h3>
+          <h3 className="text-base md:text-lg font-semibold border-b pb-2 mb-3 md:mb-4">
+            Liquid Effects
+          </h3>
           <div className="grid grid-cols-1 gap-4 md:gap-8">
-            <LiquidMetalButton variant="mercury" theme="mercury" size="md" intensity={5} rounded="full">
+            <LiquidMetalButton
+              variant="mercury"
+              theme="mercury"
+              size="md"
+              intensity={5}
+              rounded="full"
+            >
               <div className="flex items-center justify-center">
                 <Download className="mr-2 h-4 w-4 md:h-5 md:w-5" />
                 <span className="text-sm md:text-base">Flow Effect</span>
               </div>
             </LiquidMetalButton>
-            <LiquidMetalButton variant="ripple" theme="steel" size="md" intensity={4} rounded="md">
+            <LiquidMetalButton
+              variant="ripple"
+              theme="steel"
+              size="md"
+              intensity={4}
+              rounded="md"
+            >
               <div className="flex items-center justify-center">
                 <ShoppingCart className="mr-2 h-4 w-4 md:h-5 md:w-5" />
                 <span className="text-sm md:text-base">Ripple Wave Effect</span>
@@ -89,7 +136,9 @@ export function LiquidMetalButtonDemo() {
         </div>
 
         <div className="bg-gray-100 dark:bg-zinc-950 border p-4 md:p-6 rounded-lg shadow">
-          <h3 className="text-base md:text-lg font-semibold border-b pb-2 mb-3 md:mb-4">Style Variations</h3>
+          <h3 className="text-base md:text-lg font-semibold border-b pb-2 mb-3 md:mb-4">
+            Style Variations
+          </h3>
           <div className="grid grid-cols-2 md:flex flex-wrap gap-2 md:gap-5 justify-center">
             <LiquidMetalButton variant="default" theme="obsidian" size="sm">
               <div className="flex items-center">
@@ -123,19 +172,43 @@ export function LiquidMetalButtonDemo() {
           </p>
         </div>
         <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 md:gap-6">
-          <LiquidMetalButton variant="mercury" theme="gold" size="md"  intensity={5} shadow="lg" rounded="lg" textured={true}>
+          <LiquidMetalButton
+            variant="mercury"
+            theme="gold"
+            size="md"
+            intensity={5}
+            shadow="lg"
+            rounded="lg"
+            textured={true}
+          >
             <div className="flex items-center">
               <Heart className="mr-2 h-4 w-4 md:h-5 md:w-5" />
               <span className="text-sm md:text-base">Gold Premium</span>
             </div>
           </LiquidMetalButton>
-          <LiquidMetalButton variant="ripple" theme="steel" size="md" intensity={5} shadow="lg" rounded="lg" textured={true}>
+          <LiquidMetalButton
+            variant="ripple"
+            theme="steel"
+            size="md"
+            intensity={5}
+            shadow="lg"
+            rounded="lg"
+            textured={true}
+          >
             <div className="flex items-center">
               <Zap className="mr-2 h-4 w-4 md:h-5 md:w-5" />
               <span className="text-sm md:text-base">Steel Elite</span>
             </div>
           </LiquidMetalButton>
-          <LiquidMetalButton variant="mercury" theme="mercury" size="md" intensity={5} shadow="lg" rounded="lg" textured={true}>
+          <LiquidMetalButton
+            variant="mercury"
+            theme="mercury"
+            size="md"
+            intensity={5}
+            shadow="lg"
+            rounded="lg"
+            textured={true}
+          >
             <div className="flex items-center">
               <ShoppingCart className="mr-2 h-4 w-4 md:h-5 md:w-5" />
               <span className="text-sm md:text-base">Mercury Pro</span>
@@ -144,5 +217,5 @@ export function LiquidMetalButtonDemo() {
         </div>
       </div>
     </div>
-  )
+  );
 }

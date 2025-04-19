@@ -1,4 +1,4 @@
-import  LampHeading  from '@/nuvyxui/components/LampHeading';
+import LampHeading from "@/nuvyxui/components/LampHeading";
 
 export const LampHeadingDemo = () => {
   return (
@@ -24,7 +24,7 @@ export const LampHeadingDemo = () => {
             glowSize={15}
           />
         </div>
-        
+
         <div className="p-8">
           <LampHeading
             text="Data Analysis"
@@ -38,4 +38,4 @@ export const LampHeadingDemo = () => {
       </div>
     </div>
   );
-}
+};

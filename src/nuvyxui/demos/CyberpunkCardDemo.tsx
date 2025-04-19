@@ -1,7 +1,7 @@
-import { CyberpunkCard } from "@/nuvyxui/components/CyberpunkCard"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { ChevronRight, Cpu, Zap, Shield } from "lucide-react"
+import { CyberpunkCard } from "@/nuvyxui/components/CyberpunkCard";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { ChevronRight, Cpu, Zap, Shield } from "lucide-react";
 
 export const CyberpunkCardDemo = () => {
   return (
@@ -9,10 +9,16 @@ export const CyberpunkCardDemo = () => {
       <CyberpunkCard theme="neon-blue" borderStyle="solid" className="h-full">
         <div className="flex flex-col gap-3">
           <div className="flex justify-between items-start">
-            <h3 className="text-lg font-bold tracking-tight">NEURAL INTERFACE</h3>
-            <Badge className="bg-blue-500/20 text-blue-300 hover:bg-blue-500/30">ONLINE</Badge>
+            <h3 className="text-lg font-bold tracking-tight">
+              NEURAL INTERFACE
+            </h3>
+            <Badge className="bg-blue-500/20 text-blue-300 hover:bg-blue-500/30">
+              ONLINE
+            </Badge>
           </div>
-          <p className="text-sm text-blue-100/70">Advanced cybernetic enhancement for neural processing</p>
+          <p className="text-sm text-blue-100/70">
+            Advanced cybernetic enhancement for neural processing
+          </p>
           <div className="flex items-center gap-2 mt-2">
             <Cpu className="w-4 h-4 text-blue-300" />
             <div className="h-1.5 bg-blue-900/50 rounded-full w-full">
@@ -31,9 +37,13 @@ export const CyberpunkCardDemo = () => {
         <div className="flex flex-col gap-3">
           <div className="flex justify-between items-start">
             <h3 className="text-lg font-bold tracking-tight">COMBAT SYSTEM</h3>
-            <Badge className="bg-pink-500/20 text-pink-300 hover:bg-pink-500/30">ARMED</Badge>
+            <Badge className="bg-pink-500/20 text-pink-300 hover:bg-pink-500/30">
+              ARMED
+            </Badge>
           </div>
-          <p className="text-sm text-pink-100/70">Military-grade tactical enhancement module</p>
+          <p className="text-sm text-pink-100/70">
+            Military-grade tactical enhancement module
+          </p>
           <div className="flex items-center gap-2 mt-2">
             <Zap className="w-4 h-4 text-pink-300" />
             <div className="h-1.5 bg-pink-900/50 rounded-full w-full">
@@ -48,13 +58,21 @@ export const CyberpunkCardDemo = () => {
       </CyberpunkCard>
 
       {/* Neon Green Card */}
-      <CyberpunkCard theme="neon-green" borderStyle="corners" className="h-full">
+      <CyberpunkCard
+        theme="neon-green"
+        borderStyle="corners"
+        className="h-full"
+      >
         <div className="flex flex-col gap-3">
           <div className="flex justify-between items-start">
             <h3 className="text-lg font-bold tracking-tight">STEALTH SYSTEM</h3>
-            <Badge className="bg-green-500/20 text-green-300 hover:bg-green-500/30">ACTIVE</Badge>
+            <Badge className="bg-green-500/20 text-green-300 hover:bg-green-500/30">
+              ACTIVE
+            </Badge>
           </div>
-          <p className="text-sm text-green-100/70">Optical camouflage and sound dampening technology</p>
+          <p className="text-sm text-green-100/70">
+            Optical camouflage and sound dampening technology
+          </p>
           <div className="flex items-center gap-2 mt-2">
             <Shield className="w-4 h-4 text-green-300" />
             <div className="h-1.5 bg-green-900/50 rounded-full w-full">
@@ -69,13 +87,21 @@ export const CyberpunkCardDemo = () => {
       </CyberpunkCard>
 
       {/* Neon Purple Card */}
-      <CyberpunkCard theme="neon-purple" borderStyle="dashed" className="h-full">
+      <CyberpunkCard
+        theme="neon-purple"
+        borderStyle="dashed"
+        className="h-full"
+      >
         <div className="flex flex-col gap-3">
           <div className="flex justify-between items-start">
             <h3 className="text-lg font-bold tracking-tight">HACKING SUITE</h3>
-            <Badge className="bg-purple-500/20 text-purple-300 hover:bg-purple-500/30">READY</Badge>
+            <Badge className="bg-purple-500/20 text-purple-300 hover:bg-purple-500/30">
+              READY
+            </Badge>
           </div>
-          <p className="text-sm text-purple-100/70">Advanced intrusion and security bypass tools</p>
+          <p className="text-sm text-purple-100/70">
+            Advanced intrusion and security bypass tools
+          </p>
           <div className="flex items-center gap-2 mt-2">
             <Cpu className="w-4 h-4 text-purple-300" />
             <div className="h-1.5 bg-purple-900/50 rounded-full w-full">
@@ -89,6 +115,5 @@ export const CyberpunkCardDemo = () => {
         </div>
       </CyberpunkCard>
     </div>
-  )
-}
-
+  );
+};

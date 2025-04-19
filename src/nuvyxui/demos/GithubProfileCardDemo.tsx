@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState } from "react";
 import { GitHubProfileCard, themes } from "../components/GithubProfileCard";
 
@@ -8,7 +8,8 @@ export default function GitHubProfileCardDemo() {
   const sampleProfileData = {
     login: "MihirJaiswal",
     name: "Mihir Jaiswal",
-    avatarUrl: "https://avatars.githubusercontent.com/u/137146214?s=400&u=4f98a71bab33f56d2c388330bf3c06b26039dc6f&v=4",
+    avatarUrl:
+      "https://avatars.githubusercontent.com/u/137146214?s=400&u=4f98a71bab33f56d2c388330bf3c06b26039dc6f&v=4",
     bio: "👨‍💻 Aspiring Web Developer/AI engineer | Engineering 🚀|🤖 Turning coffee ☕ into code... and occasionally, code into coffee. ☕🖥️",
     location: "Indore, India",
     followers: 16,
@@ -39,8 +40,8 @@ export default function GitHubProfileCardDemo() {
       },
     ],
     contributionData: [
-      0.13, 0.27, 0.5, 0.4, 0.77, 0.6, 0.83, 1.0, 0.53, 0.67, 0.93, 0.73, 0.47, 0.63, 0.87, 0.7,
-      0.57, 0.37, 0.8, 0.97, 0.33, 0.3, 0.43, 0.9
+      0.13, 0.27, 0.5, 0.4, 0.77, 0.6, 0.83, 1.0, 0.53, 0.67, 0.93, 0.73, 0.47,
+      0.63, 0.87, 0.7, 0.57, 0.37, 0.8, 0.97, 0.33, 0.3, 0.43, 0.9,
     ],
   };
 

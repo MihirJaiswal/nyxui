@@ -1,16 +1,22 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { AnimatedCodeBlock } from "@/nuvyxui/components/AnimatedCodeBlock"
-import { ChevronRight, Code } from "lucide-react"
+import { useState } from "react";
+import { AnimatedCodeBlock } from "@/nuvyxui/components/AnimatedCodeBlock";
+import { ChevronRight, Code } from "lucide-react";
 
-type CodeTheme = "dark" | "light" | "terminal" | "cyberpunk" | "minimal" | "nuvyx"
+type CodeTheme =
+  | "dark"
+  | "light"
+  | "terminal"
+  | "cyberpunk"
+  | "minimal"
+  | "nuvyx";
 
 interface CodeExample {
-  title: string
-  language: string
-  theme: CodeTheme
-  code: string
+  title: string;
+  language: string;
+  theme: CodeTheme;
+  code: string;
 }
 
 export const AnimatedCodeBlockDemo = () => {
@@ -31,14 +37,24 @@ function useDataFetching(url) {
   return data;
 }`,
     },
-  ]
+  ];
 
-  const [currentTheme, setCurrentTheme] = useState<CodeTheme>("dark")
-  const currentExample = examples[0]
+  const [currentTheme, setCurrentTheme] = useState<CodeTheme>("dark");
+  const currentExample = examples[0];
 
-  const themes: CodeTheme[] = ["dark", "light", "terminal", "cyberpunk", "minimal", "nuvyx"]
+  const themes: CodeTheme[] = [
+    "dark",
+    "light",
+    "terminal",
+    "cyberpunk",
+    "minimal",
+    "nuvyx",
+  ];
 
-  const themeColors: Record<CodeTheme, { bg: string; hover: string; text: string; border: string; icon: string }> = {
+  const themeColors: Record<
+    CodeTheme,
+    { bg: string; hover: string; text: string; border: string; icon: string }
+  > = {
     dark: {
       bg: "bg-gray-800",
       hover: "hover:bg-gray-700",
@@ -81,7 +97,7 @@ function useDataFetching(url) {
       border: "border-purple-500",
       icon: "text-purple-400",
     },
-  }
+  };
 
   return (
     <div className="w-full max-w-4xl mx-auto rounded-xl overflow-hidden">
@@ -92,8 +108,12 @@ function useDataFetching(url) {
               <Code className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-xl font-bold text-gray-800 dark:text-white">Animated Code Block</h2>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Select a theme to customize the code display</p>
+              <h2 className="text-xl font-bold text-gray-800 dark:text-white">
+                Animated Code Block
+              </h2>
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                Select a theme to customize the code display
+              </p>
             </div>
           </div>
         </div>
@@ -130,13 +150,21 @@ function useDataFetching(url) {
                       : `bg-gradient-to-br ${themeColors[theme].bg} opacity-80`
                   }
                   border ${themeColors[theme].border}
-                  ${currentTheme === theme ? "scale-110" : "group-hover:scale-110"}
+                  ${
+                    currentTheme === theme
+                      ? "scale-110"
+                      : "group-hover:scale-110"
+                  }
                   transition-transform duration-200
                 `}
                 >
-                  {currentTheme === theme && <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></div>}
+                  {currentTheme === theme && (
+                    <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></div>
+                  )}
                 </div>
-                <span className="text-xs font-medium">{theme.charAt(0).toUpperCase() + theme.slice(1)}</span>
+                <span className="text-xs font-medium">
+                  {theme.charAt(0).toUpperCase() + theme.slice(1)}
+                </span>
               </button>
             ))}
           </div>
@@ -157,13 +185,16 @@ function useDataFetching(url) {
 
         <div className="mt-4 flex justify-end">
           <div className="text-xs text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-zinc-800 px-3 py-1.5 rounded-full flex items-center gap-1.5">
-            <div className={`w-2 h-2 rounded-full ${themeColors[currentTheme].bg} animate-pulse`}></div>
+            <div
+              className={`w-2 h-2 rounded-full ${themeColors[currentTheme].bg} animate-pulse`}
+            ></div>
             <span>
-              Active theme: <span className="font-semibold">{currentTheme}</span>
+              Active theme:{" "}
+              <span className="font-semibold">{currentTheme}</span>
             </span>
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
