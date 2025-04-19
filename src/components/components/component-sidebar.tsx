@@ -35,8 +35,8 @@ export const ComponentSidebar = () => {
 
   return (
     <aside className="fixed top-16 z-30 md:sticky hidden h-[calc(100vh-4rem)] md:w-64 lg:w-72 shrink-0 md:block border-r border-border/10 dark:border-border/5 bg-background/80 backdrop-blur-md">
-      <div className="h-full py-4 px-2 md:px-3">
-        <div className="flex h-full flex-col">
+      <div className="h-full py-4">
+        <div className="flex h-full flex-col ml-14">
           <ComponentSidebarClient
             categories={categories}
             gettingStartedSection={{

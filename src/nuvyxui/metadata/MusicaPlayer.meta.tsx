@@ -124,7 +124,7 @@ export const musicPlayerData: ComponentData = {
       ],
     },
   ],
-  category: "Media",
+  category: "Interactive tools",
   examples: [
     {
       name: "Default Theme Player",

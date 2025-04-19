@@ -78,7 +78,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
       <div className="space-y-6 md:space-y-8 hide-scrollbar">
         {/* Getting Started Section */}
         <div className="space-y-2 md:space-y-3 mb-4 md:mb-6">
-          <div className="font-bold tracking-wider px-1 md:px-2 text-sm md:text-base">
+          <div className="font-bold tracking-wider text-black dark:text-white px-1 md:px-2 text-sm md:text-base">
             {gettingStartedSection.title}
           </div>
           <div className="space-y-0.5">
@@ -91,8 +91,8 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
                   className={cn(
                     "group flex items-center w-full text-xs md:text-sm py-1.5 md:py-2 rounded-md transition-all duration-200",
                     isActive
-                      ? "bg-primary/10 text-primary font-medium"
-                      : "text-foreground/70 hover:text-foreground hover:bg-muted/50"
+                      ? "bg-primary/10 text-gray-800 dark:text-gray-200 font-medium"
+                      : "hover:text-foreground hover:bg-muted/50"
                   )}
                 >
                   {isActive && (
@@ -108,7 +108,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
                       "truncate",
                       isActive
                         ? "ml-0"
-                        : "ml-3 md:ml-4 group-hover:ml-2 transition-all duration-200"
+                        : "ml-2 group-hover:ml-2 transition-all duration-200"
                     )}
                   >
                     {item.name}
@@ -137,7 +137,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
         {categories.map((category) => {
           return (
             <div key={category.category} className="space-y-2 md:space-y-3">
-              <div className="text-xs font-bold text-primary/80 dark:text-primary/70 uppercase tracking-wider px-1 md:px-2">
+              <div className="text-xs font-bold text-black dark:text-white uppercase tracking-wider px-1 md:px-2">
                 {category.category}
               </div>
               <div className="space-y-0.5">
@@ -167,7 +167,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
                           "truncate",
                           isActive
                             ? "ml-0"
-                            : "ml-3 md:ml-4 group-hover:ml-2 transition-all duration-200"
+                            : "ml-2 group-hover:ml-2 transition-all duration-200 text-gray-800 dark:text-gray-200"
                         )}
                       >
                         {item.name}
