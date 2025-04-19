@@ -88,7 +88,7 @@ export const TwitterCard = () => {
                 </pre>
               </div>
             </MajesticCard>
-            <div className="md:hidden border border-gray-300 dark:border-gray-800 p-2 rounded-md">
+            <div className="md:hidden p-2 rounded-md border-none">
               <div className="flex items-center p-1 sm:p-2 text-gray-500 dark:text-gray-400 text-xs mb-1">
                 <div className="flex space-x-1 mr-2">
                   <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-red-500" />
