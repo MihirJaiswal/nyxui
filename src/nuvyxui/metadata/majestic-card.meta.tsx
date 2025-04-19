@@ -7,7 +7,7 @@ import MajesticCardDemoSource from "!!raw-loader!@/nuvyxui/demos/MajesticCardDem
 export const MajesticCardData: ComponentData = {
   name: "Majestic Card",
   description:
-    "Cards that float in layers when scrolling. Tilt and rotate subtly based on mouse movement. Adds realistic depth to UI components.",
+    "Cards that float in layers when scrolling. Tilt and rotate subtly based on mouse movement.",
   preview: <MajesticCardDemo />,
   usage: MajesticCardDemoSource,
   componentCode: MajesticCardSource,

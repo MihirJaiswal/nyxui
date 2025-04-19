@@ -8,7 +8,7 @@ import MatrixCodeRainDemoSource from "!!raw-loader!@/nuvyxui/demos/MatrixCodeRai
 export const matrixCodeRainData: ComponentData = {
   name: "Matrix Code Rain",
   description:
-    "A customizable Matrix-style digital rain effect that can be used as a background or in a container. Creates the iconic falling character animation from 'The Matrix' with configurable colors, characters, and animation speed.",
+    "A customizable Matrix-style digital rain effect that can be used as a background or in a container.",
   preview: <MatrixCodeRainDemo />,
   usage: MatrixCodeRainDemoSource,
   componentCode: MatrixCodeRainSource,

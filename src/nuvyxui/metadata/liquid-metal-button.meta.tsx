@@ -17,7 +17,7 @@ import LiquidMetalButtonDemoSource from "!!raw-loader!@/nuvyxui/demos/LiquidMeta
 export const liquidMetalButtonData: ComponentData = {
   name: "Liquid Metal Button",
   description:
-    "Buttons that behave like mercury when clicked. A fluid effect that reacts to the mouse pointer. Can be combined with neon cyberpunk themes.",
+    "Buttons that behave like mercury when clicked. A fluid effect that reacts to the mouse pointer.",
   preview: <LiquidMetalButtonDemo />,
   usage: LiquidMetalButtonDemoSource,
   componentCode: LiquidMetalButtonSource,

@@ -8,7 +8,7 @@ import CardDemoSource from "!!raw-loader!@/nuvyxui/demos/RevealCardDemo.tsx";
 export const revealCardData: ComponentData = {
   name: "Reveal Card",
   description:
-    "A dynamic card component with layered images and hover animations. It supports customization for dimensions, colors, animations, and more via props.",
+    "A dynamic card component with layered images and hover animations.",
   preview: <RevealCardDemo />,
   usage: CardDemoSource,
   componentCode: CardSource,

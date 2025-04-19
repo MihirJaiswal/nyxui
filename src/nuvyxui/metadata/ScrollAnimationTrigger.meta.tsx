@@ -17,7 +17,7 @@ import ScrollAnimationTriggerDemoSource from "!!raw-loader!@/nuvyxui/demos/Scrol
 export const scrollAnimationTriggerData: ComponentData = {
   name: "Scroll Animation Trigger",
   description:
-    "UI elements that change color, size, or shape based on scroll progress. Text that reveals dynamically when entering the viewport. Ideal for storytelling-based UI experiences.",
+    "UI elements that change color, size, or shape based on scroll progress. Text that reveals dynamically when entering the viewport.",
   preview: <ScrollAnimationTriggerDemo />,
   usage: ScrollAnimationTriggerDemoSource,
   componentCode: ScrollAnimationTriggerSource,

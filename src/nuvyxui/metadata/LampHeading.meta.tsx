@@ -8,7 +8,7 @@ import LampHeadingDemoSource from "!!raw-loader!@/nuvyxui/demos/LampHeadingDemo.
 export const lampHeadingData: ComponentData = {
   name: "lamp heading",
   description:
-    "An elegant section heading with a customizable gradient underline and a subtle lamp-like glow effect and nice little animation. Ideal for creating visually engaging section dividers on dark backgrounds.",
+    "An elegant section heading with a customizable gradient underline and a subtle lamp-like glow effect and nice little animation.",
   preview: <LampHeadingDemo />,
   usage: LampHeadingDemoSource,
   componentCode: LampHeadingSource,

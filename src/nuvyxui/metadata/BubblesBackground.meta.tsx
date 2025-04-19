@@ -7,7 +7,7 @@ import BubblesBackgroundDemoSource from "!!raw-loader!@/nuvyxui/demos/BubblesBac
 export const bubbleBackgroundData: ComponentData = {
   name: "Bubbles Background",
   description:
-    "An interactive fluid bubble background component with animated colorful blobs that respond to user interaction, perfect for creating engaging and playful UI backgrounds.",
+    "An interactive fluid bubble background component with animated colorful blobs that respond to user interaction.",
   preview: <BubblesBackgroundDemo />,
   usage: BubblesBackgroundDemoSource,
   componentCode: BubbleBackgroundSource,

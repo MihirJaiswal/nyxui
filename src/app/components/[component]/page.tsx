@@ -1,11 +1,9 @@
-import { ExternalLink } from "lucide-react";
 import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { ComponentSidebar } from "@/components/components/component-sidebar";
 import { componentsData } from "@/nuvyxui/resgistry";
 import Header from "@/components/global/Header";
 import { PreviewCodeToggle } from "@/components/components/PreviewCodeToggle";
-import { Badge } from "@/components/ui/badge";
 import { InstallationSection } from "@/components/components/Installation";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import React from "react";
@@ -57,45 +55,33 @@ const ComponentPage = async ({
         </aside>
         <main className="flex-1 overflow-hidden bg-white dark:bg-zinc-950">
           <div className="mx-auto w-full max-w-[1200px] px-4 py-6 sm:px-6 md:py-8 lg:px-8 xl:px-10">
-            <div className="space-y-4 border-b pb-6 md:pb-8">
+            <div className="space-y-4 pb-6 md:pb-8">
               <div className="flex flex-wrap items-start gap-3 sm:items-center">
                 <h1 className="scroll-m-20 text-3xl font-bold tracking-tight sm:text-4xl break-words">
                   {componentData.name}
                 </h1>
-                <Badge
-                  variant="outline"
-                  className="font-medium whitespace-nowrap"
-                >
-                  UI Component
-                </Badge>
               </div>
-              <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed">
+              <div>
+              <p className="text-muted-foreground dark:text-[#A1A1AA] text-lg">
+              <span className="inline-block align-top no-underline [text-wrap:balance]">
                 {componentData.description}
+              </span>
               </p>
               <div className="flex flex-wrap gap-3 pt-2">
-                <Link href="/docs" className="whitespace-nowrap">
-                  <Button size="sm" variant="outline">
-                    <ExternalLink className="mr-2 size-4" />
-                    Documentation
-                  </Button>
-                </Link>
+              {
+                  (componentData.tags || []).map((tag, index) => (
+                    <Link key={index} href="/docs" className="whitespace-nowrap">
+                      <Button size="sm" variant="outline" className="text-xs">
+                        {tag}
+                      </Button>
+                    </Link>
+                  ))
+                }
+              </div>
               </div>
             </div>
 
             <div className="mt-8 space-y-4 sm:space-y-6">
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">
-                  Preview
-                </h2>
-                <div className="flex flex-wrap items-center gap-2">
-                  <Badge variant="secondary" className="font-medium">
-                    Responsive
-                  </Badge>
-                  <Badge variant="secondary" className="font-medium">
-                    Accessible
-                  </Badge>
-                </div>
-              </div>
               <div className="rounded-xl border bg-white dark:bg-black backdrop-blur-sm overflow-hidden">
                 <PreviewCodeToggle
                   preview={

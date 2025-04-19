@@ -8,7 +8,7 @@ import AnimatedGradientBgDemoSource from "!!raw-loader!@/nuvyxui/demos/AnimatedG
 export const animatedGradientBgData: ComponentData = {
   name: "Animated Gradient Background",
   description:
-    "A dynamic animated gradient background component that supports various gradient patterns, interactive effects, and customizable properties for creating engaging UI backgrounds.",
+    "A dynamic animated gradient background component that supports various gradient patterns.",
   preview: <AnimatedGradientBgDemo />,
   usage: AnimatedGradientBgDemoSource,
   componentCode: AnimatedGradientBgSource,

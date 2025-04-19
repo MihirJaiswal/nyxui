@@ -8,7 +8,7 @@ import AnimatedCodeBlockDemoSource from "!!raw-loader!@/nuvyxui/demos/AnimatedCo
 export const animatedCodeBlockData: ComponentData = {
   name: "Animated Code Block",
   description:
-    "A code display component with real-time typing effects. Supports syntax highlighting and customizable themes. Can have a terminal-like blur effect.",
+    "A code display component with real-time typing effects. Supports syntax highlighting and customizable themes.",
   preview: <AnimatedCodeBlockDemo />,
   usage: AnimatedCodeBlockDemoSource,
   componentCode: AnimatedCodeBlockSource,

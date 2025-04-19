@@ -25,6 +25,7 @@ export interface ComponentData {
   dependencies: Dependency[];
   category: string;
   new?: boolean;
+  tags?: string[];  
 }
 
 export interface PropGroup {

@@ -13,7 +13,7 @@ import ImageComparisonDemoSource from "!!raw-loader!@/nuvyxui/demos/ImageCompari
 export const imageComparisonData: ComponentData = {
   name: "Image Comparison",
   description:
-    "An interactive image comparison slider that allows users to drag or hover to reveal two different images. Perfect for before/after comparisons with horizontal or vertical orientations.",
+    "An interactive image comparison slider that allows users to drag or hover to reveal two different images.",
   preview: <ImageComparisonDemo />,
   usage: ImageComparisonDemoSource,
   componentCode: ImageComparisonSource,

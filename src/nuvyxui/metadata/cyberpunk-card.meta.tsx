@@ -10,7 +10,7 @@ import CyberpunkCardDemoSource from "!!raw-loader!@/nuvyxui/demos/CyberpunkCardD
 export const cyberpunkCardData: ComponentData = {
   name: "Cyberpunk Card",
   description:
-    "A futuristic glowing card that shifts colors dynamically. Supports hover-triggered light trails around the border. Perfect for gaming or tech-related UIs.",
+    "A futuristic glowing card that shifts colors dynamically. Supports hover-triggered light trails around the border.",
   preview: <CyberpunkCardDemo />,
   usage: CyberpunkCardDemoSource,
   componentCode: CyberpunkCardSource,

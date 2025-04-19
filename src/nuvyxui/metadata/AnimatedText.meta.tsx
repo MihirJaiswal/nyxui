@@ -8,7 +8,7 @@ import AnimatedTextDemoSource from "!!raw-loader!@/nuvyxui/demos/AnimatedTextDem
 export const animatedTextData: ComponentData = {
   name: "Animated Text",
   description:
-    "A versatile text animation component that offers multiple animation types including cascade, flicker, blink, expand, rise, glide, elastic, and float effects.",
+    "A versatile text animation component that offers multiple animation types.",
   preview: <AnimationTextDemo />,
   usage: AnimatedTextDemoSource,
   componentCode: AnimatedTextSource,

@@ -10,7 +10,7 @@ import DynamicRippleDemoSource from "!!raw-loader!@/nuvyxui/demos/DynamicRippleD
 export const dynamicRippleData: ComponentData = {
   name: "Dynamic Ripple",
   description:
-    "A fluid, water ripple effect that reacts to cursor movement or touch. Can be used in cards, buttons, or section dividers. Works well with gradient-based morphing.",
+    "A fluid, water ripple effect that reacts to cursor movement or touch. Can be used in cards, buttons, or section dividers.",
   preview: <DynamicRippleDemo />,
   usage: DynamicRippleDemoSource,
   componentCode: DynamicRippleSource,

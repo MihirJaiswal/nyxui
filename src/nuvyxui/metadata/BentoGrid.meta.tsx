@@ -7,7 +7,7 @@ import BentoGridDemoSource from "!!raw-loader!@/nuvyxui/demos/BentoGridDemo.tsx"
 export const bentoGridData: ComponentData = {
   name: "Bento Grid",
   description:
-    "A versatile container component inspired by bento box designs, perfect for creating modern, visually appealing grid layouts. Ideal for showcasing content cards, feature highlights, or portfolio items.",
+    "A versatile container component inspired by bento box designs, perfect for creating modern, visually appealing grid layouts.",
   preview: <BentoGridDemo />,
   usage: BentoGridDemoSource,
   componentCode: BentoGridSource,

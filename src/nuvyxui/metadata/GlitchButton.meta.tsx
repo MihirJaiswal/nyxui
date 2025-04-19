@@ -16,7 +16,7 @@ import GlitchButtonDemoSource from "!!raw-loader!@/nuvyxui/demos/GlitchButtonDem
 export const glitchButtonData: ComponentData = {
   name: "Glitch Button",
   description:
-    "Cyberpunk-inspired buttons with glitch effects that can be triggered on hover or click. Features customizable colors, intensities, and animations for a digital distortion effect.",
+    "Cyberpunk-inspired buttons with glitch effects that can be triggered on hover or click.",
   preview: <GlitchButtonDemo />,
   usage: GlitchButtonDemoSource,
   componentCode: GlitchButtonSource,

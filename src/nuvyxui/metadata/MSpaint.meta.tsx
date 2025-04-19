@@ -7,7 +7,7 @@ import MSpaintDemoSource from "!!raw-loader!@/nuvyxui/demos/MSpaintDemo.tsx";
 export const mspaintData: ComponentData = {
   name: "MS Paint",
   description:
-    "A customizable drawing canvas component with paint-like interface. Perfect for sketching, drawing tools, annotations, and interactive whiteboard applications. Features include brush and eraser tools, customizable color palette, and save functionality.",
+    "A customizable drawing canvas component with paint-like interface.",
   preview: <MSpaintDemo />,
   usage: MSpaintDemoSource,
   componentCode: MSpaintSource,

@@ -7,7 +7,7 @@ import CharacterSelectorDemoSource from "!!raw-loader!@/nuvyxui/demos/CharacterS
 export const characterSelectorData: ComponentData = {
   name: "Character Selector",
   description:
-    "A highly customizable character selection component with grid and dialog interfaces. Perfect for game character selection, avatar pickers, user profiles, and interactive galleries. Features include search functionality, multi-select mode, confirmation dialogs, and animated transitions.",
+    "A highly customizable character selection component with grid and dialog interfaces.",
   preview: <CharacterSelectorDemo />,
   usage: CharacterSelectorDemoSource,
   componentCode: CharacterSelectorSource,
@@ -23,33 +23,13 @@ export const characterSelectorData: ComponentData = {
       },
     },
     {
-      name: "Framer Motion",
-      description: "Animation library for React",
-      install: {
-        npm: "npm install framer-motion",
-        pnpm: "pnpm add framer-motion",
-        yarn: "yarn add framer-motion",
-        bun: "bun add framer-motion",
-      },
-    },
-    {
-      name: "Lucide React",
-      description: "Beautiful & consistent icon toolkit for React",
-      install: {
-        npm: "npm install lucide-react",
-        pnpm: "pnpm add lucide-react",
-        yarn: "yarn add lucide-react",
-        bun: "bun add lucide-react",
-      },
-    },
-    {
-      name: "Utility Functions",
+      name: "Framer Motion + Lucide React + Utility Functions",
       description: "Utility functions for conditional class name merging.",
       install: {
-        npm: "npm install clsx tailwind-merge",
-        pnpm: "pnpm add clsx tailwind-merge",
-        yarn: "yarn add clsx tailwind-merge",
-        bun: "bun add clsx tailwind-merge",
+        npm: "npm install framer-motion lucide-react clsx tailwind-merge",
+        pnpm: "pnpm add framer-motion lucide-react clsx tailwind-merge",
+        yarn: "yarn add framer-motion lucide-react clsx tailwind-merge",
+        bun: "bun add framer-motion lucide-react clsx tailwind-merge",
       },
       setup: {
         description: "Create a utils.ts file with the cn utility function",

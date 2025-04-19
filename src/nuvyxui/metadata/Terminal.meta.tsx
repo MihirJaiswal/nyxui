@@ -9,7 +9,7 @@ import TerminalDemoSource from "!!raw-loader!@/nuvyxui/demos/TerminalDemo.tsx";
 export const interactiveTerminalData: ComponentData = {
   name: "Interactive Terminal",
   description:
-    "A customizable terminal component with animated output and command processing. It supports different themes, icons, and interactive behavior via props.",
+    "A customizable terminal component with animated output and command processing.",
   preview: <TerminalDemo />,
   usage: TerminalDemoSource,
   componentCode: TerminalSource,
@@ -25,6 +25,7 @@ export const interactiveTerminalData: ComponentData = {
       },
     },
   ],
+  tags: ["interactive", "Mock"],
   props: [
     {
       name: "Terminal Props",

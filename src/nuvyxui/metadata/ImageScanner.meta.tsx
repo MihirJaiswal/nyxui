@@ -8,7 +8,7 @@ import ImageScannerDemoSource from "!!raw-loader!@/nuvyxui/demos/ImageScannerDem
 export const imageScannerData: ComponentData = {
   name: "Image Scanner",
   description:
-    "A dynamic component that applies interactive scanning effects to images, supporting various scan patterns, directions, and customizable properties for creating engaging visual elements.",
+    "A dynamic component that applies interactive scanning effects to images, supporting various scan patterns, directions, and customizable.",
   preview: <ImageScannerDemo />,
   usage: ImageScannerDemoSource,
   componentCode: ImageScannerSource,

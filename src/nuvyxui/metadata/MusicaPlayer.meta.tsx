@@ -8,7 +8,7 @@ import MusicPlayerDemoSource from "!!raw-loader!@/nuvyxui/demos/MusicPlayerDemo.
 export const musicPlayerData: ComponentData = {
   name: "Music Player",
   description:
-    "A customizable music player component with multiple themes, playback controls, progress tracking, and responsive design for creating music player interfaces.",
+    "A customizable music player component with multiple themes, playback controls, progress tracking, and responsive design.",
   preview: <MusicPlayerDemo />,
   usage: MusicPlayerDemoSource,
   componentCode: MusicPlayerSource,

@@ -9,7 +9,7 @@ import MorphingBlobDemoSource from "!!raw-loader!@/nuvyxui/demos/MorphingBlobDem
 export const morphingBlobData: ComponentData = {
   name: "Morphing Blob",
   description:
-    "Interactive blob elements that change shape dynamically. Works as background visuals, buttons, or section transitions. Inspired by AI-generated abstract designs.",
+    "Interactive blob elements that change shape dynamically. Works as background visuals, buttons, or section transitions.",
   preview: <MorphingBlobDemo />,
   usage: MorphingBlobDemoSource,
   componentCode: MorphingBlobSource,
