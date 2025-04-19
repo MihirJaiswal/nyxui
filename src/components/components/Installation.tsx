@@ -240,7 +240,7 @@ export const InstallationSection = ({
 
       <div className="backdrop-blur-sm">
         <Tabs defaultValue="manual" className="w-full">
-          <div className="border-b bg-background/80 backdrop-blur-sm sticky top-0 z-10 flex items-center justify-items-start">
+          <div className="border-b backdrop-blur-sm sticky top-0 z-10 flex items-center justify-items-start">
             <TabsList className="h-14 px-6 bg-transparent">
               <TabsTrigger
                 value="cli"
@@ -259,7 +259,7 @@ export const InstallationSection = ({
             </TabsList>
           </div>
 
-          <TabsContent value="cli" className="py-8 space-y-6 bg-background">
+          <TabsContent value="cli" className="py-8 space-y-6">
             <div className="flex items-center gap-3 p-4 bg-amber-500/10 border border-amber-200 dark:border-amber-900/30 rounded-lg">
               <div className="p-2 rounded-full bg-amber-500/20">
                 <FileWarning className="size-5 text-amber-600 dark:text-amber-400" />
@@ -276,7 +276,7 @@ export const InstallationSection = ({
             </div>
           </TabsContent>
 
-          <TabsContent value="manual" className="py-8 space-y-12 bg-background">
+          <TabsContent value="manual" className="py-8 space-y-12">
             <div className="space-y-12">
               {componentData.dependencies &&
                 componentData.dependencies.length > 0 && (

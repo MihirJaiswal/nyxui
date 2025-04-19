@@ -45,11 +45,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
 
     const handleScroll = () => {
       setIsScrolling(true);
-
-      // Clear the existing timer
       clearTimeout(scrollTimer);
-
-      // Set a new timer to hide the scrollbar after scrolling stops
       scrollTimer = setTimeout(() => {
         setIsScrolling(false);
       }, 1000);
@@ -76,7 +72,6 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
       )}
     >
       <div className="space-y-6 md:space-y-8 hide-scrollbar">
-        {/* Getting Started Section */}
         <div className="space-y-2 md:space-y-3 mb-4 md:mb-6">
           <div className="font-bold tracking-wider text-black dark:text-white px-1 md:px-2 text-sm md:text-base">
             {gettingStartedSection.title}
@@ -91,8 +86,8 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
                   className={cn(
                     "group flex items-center w-full text-xs md:text-sm py-1.5 md:py-2 rounded-md transition-all duration-200",
                     isActive
-                      ? "bg-primary/10 text-gray-800 dark:text-gray-200 font-medium"
-                      : "hover:text-foreground hover:bg-muted/50"
+                      ? "bg-primary/10 text-gray-800 dark:text-white font-medium"
+                      : "hover:text-foreground text-black dark:text-[#A1A1AA] hover:bg-muted/50"
                   )}
                 >
                   {isActive && (
@@ -116,7 +111,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
 
                   {/* NEW badge */}
                   {item.isNew && (
-                    <span className="ml-1 md:ml-2 px-1 py-0.5 text-xs font-medium border border-blue-500 text-blue-500 dark:text-white rounded-md">
+                    <span className="ml-1 md:ml-2 px-1 py-0.5 text-xs font-medium border border-blue-500 text-blue-500 dark:text-[#A1A1AA] rounded-md">
                       New
                     </span>
                   )}
@@ -167,7 +162,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
                           "truncate",
                           isActive
                             ? "ml-0"
-                            : "ml-2 group-hover:ml-2 transition-all duration-200 text-gray-800 dark:text-gray-200"
+                            : "ml-2 group-hover:ml-2 transition-all duration-200 text-gray-800 dark:text-[#A1A1AA]"
                         )}
                       >
                         {item.name}

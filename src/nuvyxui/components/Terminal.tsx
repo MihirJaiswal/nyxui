@@ -19,6 +19,8 @@ export type TerminalProps = {
   rounded?: string;
   className?: string;
   autoMode?: boolean;
+  repeat?: boolean;
+  repeatDelay?: number;
 };
 
 const InteractiveTerminal: React.FC<TerminalProps> = ({
@@ -37,6 +39,8 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({
   inputPlaceholder = "Type your command here...",
   outputHeight = "h-80",
   autoMode = false,
+  repeat = false,
+  repeatDelay = 3000,
 }) => {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState<string[]>([]);
@@ -47,6 +51,15 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({
   const outputRef = useRef<HTMLDivElement>(null);
   const [commandExecuted, setCommandExecuted] = useState(false);
   const [completed, setCompleted] = useState(false);
+
+  const resetTerminal = useCallback(() => {
+    setOutput([]);
+    setStep(0);
+    setCharIndex(0);
+    setTyping(false);
+    setCommandExecuted(false);
+    setCompleted(false);
+  }, []);
 
   const executeCommand = useCallback(() => {
     setOutput((prev) => [...prev, `${promptSymbol} ${input}`]);
@@ -69,6 +82,15 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({
       return () => clearTimeout(timer);
     }
   }, [autoMode, typing, commandExecuted]);
+
+  useEffect(() => {
+    if (autoMode && repeat && completed) {
+      const repeatTimer = setTimeout(() => {
+        resetTerminal();
+      }, repeatDelay);
+      return () => clearTimeout(repeatTimer);
+    }
+  }, [autoMode, repeat, completed, resetTerminal, repeatDelay]);
 
   useEffect(() => {
     if (typing && charIndex < command.length) {
@@ -104,15 +126,6 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({
     setCommandExecuted(true);
   };
 
-  const resetTerminal = () => {
-    setOutput([]);
-    setStep(0);
-    setCharIndex(0);
-    setTyping(false);
-    setCommandExecuted(false);
-    setCompleted(false);
-  };
-
   const copyCommand = () => {
     navigator.clipboard.writeText(command);
     setCopied(true);
@@ -138,7 +151,8 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({
         </div>
         <div className="flex gap-2">
           {autoMode ? (
-            completed && (
+            completed &&
+            !repeat && (
               <button
                 onClick={replayCommand}
                 className={`px-2 py-1 ${textColor} rounded text-sm flex items-center cursor-pointer`}
@@ -174,7 +188,7 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({
       </div>
       <div
         ref={outputRef}
-        className={`${outputHeight} mb-4 p-2 bg-black rounded hide-scrollbar`}
+        className={`${outputHeight} mb-4 p-2 bg-black rounded hide-scrollbar overflow-y-auto`}
       >
         {output.map((line, index) => (
           <pre key={index} className="whitespace-pre-wrap">
@@ -184,6 +198,11 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({
         {typing && (
           <pre className="whitespace-pre-wrap cursor-typing">
             {promptSymbol} {input}
+          </pre>
+        )}
+        {autoMode && repeat && completed && (
+          <pre className="text-gray-500 italic mt-2">
+            Repeating command in {Math.ceil(repeatDelay / 1000)} seconds...
           </pre>
         )}
       </div>

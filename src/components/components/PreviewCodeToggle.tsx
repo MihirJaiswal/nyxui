@@ -77,19 +77,19 @@ export const PreviewCodeToggle = ({
     <div className="rounded-lg border shadow-sm">
       <Tabs defaultValue={defaultTab} className="w-full">
         <div className="flex items-center justify-between border-b px-4 py-2">
-          <TabsList className="h-9 grid-cols-2 rounded-lg border">
+        <TabsList className="h-10 bg-background rounded-lg flex gap-2 items-center">
             <TabsTrigger
               value="preview"
-              className="flex items-center gap-1.5 px-3"
+              className="flex items-center gap-2 py-2 px-4 text-sm font-medium rounded-md data-[state=active]:bg-white dark:data-[state=active]:bg-zinc-800 data-[state=active]:text-zinc-900 dark:data-[state=active]:text-white data-[state=active]:shadow-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
             >
-              <Eye className="h-3.5 w-3.5" />
+              <Eye className="h-4 w-4" />
               <span>Preview</span>
             </TabsTrigger>
             <TabsTrigger
               value="code"
-              className="flex items-center gap-1.5 px-3"
+              className="flex items-center gap-2 py-2 px-4 text-sm font-medium rounded-md data-[state=active]:bg-white dark:data-[state=active]:bg-zinc-800 data-[state=active]:text-zinc-900 dark:data-[state=active]:text-white data-[state=active]:shadow-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
             >
-              <Code className="h-3.5 w-3.5" />
+              <Code className="h-4 w-4" />
               <span>Code</span>
             </TabsTrigger>
           </TabsList>

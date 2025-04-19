@@ -45,15 +45,15 @@ const ComponentPage = async ({
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-background">
+    <div className="flex min-h-screen flex-col">
       <Header />
       <div className="flex w-full flex-1 flex-col md:flex-row">
-        <aside className="sticky top-16 h-fit w-full shrink-0 md:w-auto md:min-w-[220px] lg:min-w-[280px] xl:min-w-[300px] hidden md:block bg-white dark:bg-zinc-950 border-r">
+        <aside className="sticky top-16 h-fit w-full shrink-0 md:w-auto md:min-w-[220px] lg:min-w-[280px] xl:min-w-[300px] hidden md:block">
           <div className="sticky top-16">
             <ComponentSidebar />
           </div>
         </aside>
-        <main className="flex-1 overflow-hidden bg-white dark:bg-zinc-950">
+        <main className="flex-1 overflow-hidden bg-white dark:bg-black pr-12">
           <div className="mx-auto w-full max-w-[1200px] px-4 py-6 sm:px-6 md:py-8 lg:px-8 xl:px-10">
             <div className="space-y-4 pb-6 md:pb-8">
               <div className="flex flex-wrap items-start gap-3 sm:items-center">

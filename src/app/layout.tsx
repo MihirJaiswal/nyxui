@@ -70,7 +70,7 @@ export default function RootLayout({
       className={`${montserrat.variable} ${openSans.variable}`}
       suppressHydrationWarning
     >
-      <body>
+      <body className="bg-white dark:bg-black">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

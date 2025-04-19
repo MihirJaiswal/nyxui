@@ -51,6 +51,7 @@ export const ComponentsDemo = () => {
                     command="sudo hack -m"
                     className="!overflow-hidden !overscroll-none !scrollbar-hide font-mono text-sm pb-2"
                     commandMessage="Auto-executing:"
+                    repeat={true}
                     outputHeight="h-72"
                     icon={<Code className="mr-1 mt-1 text-green-500 w-4 h-4" />}
                     processingSteps={[
@@ -61,11 +62,6 @@ export const ComponentsDemo = () => {
                     ]}
                     finalMessage={`
 ⚠️  ACCESS GRANTED  ⚠️
-
-[SYSTEM]: Mainframe compromised
-[SYSTEM]: Security bypassed
-
-Press ENTER to continue...
       `}
                     promptSymbol="#"
                     stepDelay={500}
