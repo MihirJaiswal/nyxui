@@ -107,42 +107,49 @@ Press ENTER to continue...
           enableTitle={false}
           component={
             <DynamicRipple
-              theme="purple"
-              intensity={5}
-              speed={5}
-              reactToCursor
-              autoAnimate
-              rounded="xl"
-              className="w-full h-full min-h-[300px] p-6 flex items-center justify-center bg-white dark:bg-black"
-            ><Particles
-            className="absolute inset-0 z-0"
-            quantity={100}
-            ease={80}
-            color="#ffffff"
-            refresh
-          />
-                <div className="relative flex flex-col items-center justify-center">
-                             <ImageScanner 
-                               image="/logo.png" 
-                               scanType="line"
-                               scanColor="purple"
-                               repeating={true}
-                               scanSpeed={3}
-                               className="w-48 h-48 rounded-lg border-2 border-purple-200 dark:border-purple-900"
-                             />
-                             <div className="text-center mt-3 w-full flex flex-col items-center justify-center gap-3">
-                              <LampHeading text="Nuvyx UI" gradientColors={{ from: "#6e15ad", to: "#d413ad"}} className="text-2xl font-bold" />
-                              <p className="text-sm text-zinc-600 dark:text-zinc-300">
-                                Collection of ready-to-use components.
-                              </p>
-                            <Link href="/components">
-                            <Rbutton className="p-6 min-h-[48px] min-w-48 flex my-4 mx-1 items-center justify-center text-purple-100 bg-purple-500/20 dark:bg-purple-500/20 text-white dark:text-black hover:bg-purple-500/40 w-full my-2 touch-manipulation">
-                              Check more
-                            </Rbutton> 
-                            </Link>
-                            </div>
-                          </div>
-            </DynamicRipple>
+            theme="purple"
+            intensity={5}
+            speed={5}
+            reactToCursor
+            autoAnimate
+            rounded="xl"
+            className="w-full h-full min-h-[300px] p-6 flex items-center justify-center bg-white dark:bg-black"
+          >
+            <Particles
+              className="absolute inset-0 z-0"
+              quantity={100}
+              ease={80}
+              color="#ffffff"
+              refresh
+            />
+            <div className="relative flex flex-col items-center justify-center">
+              <ImageScanner 
+                image="/logo.png" 
+                scanType="line"
+                scanColor="purple"
+                repeating={true}
+                scanSpeed={3}
+                className="w-48 h-48 rounded-lg border-2 border-purple-200 dark:border-purple-900"
+              />
+              <div className="text-center mt-3 w-full flex flex-col items-center justify-center gap-3">
+                <LampHeading text="Nuvyx UI" gradientColors={{ from: "#6e15ad", to: "#d413ad"}} className="text-2xl font-bold" />
+                <p className="text-sm text-zinc-600 dark:text-zinc-300">
+                  Collection of ready-to-use components.
+                </p>
+                <Link 
+                  href="/components" 
+                  className="block w-full p-4"
+                  aria-label="Check more components"
+                >
+                  <div className="w-full min-h-[60px] rounded-xl flex items-center justify-center text-white dark:text-black touch-manipulation">
+                    <Rbutton>
+                      Check more
+                    </Rbutton>
+                  </div>
+                </Link>
+              </div>
+            </div>
+          </DynamicRipple>
           }
         />
 
