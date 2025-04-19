@@ -178,8 +178,7 @@ export const ComponentsDemo = () => {
                 size="full"
                 zIndex={0}
                 animate
-                interactive
-                patternIntensity={2}
+                intensity={2}
                 className="bg-gradient-to-b from-white/10 to-50% dark:from-gray-950/20 dark:from-[-25%]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
@@ -188,9 +187,6 @@ export const ComponentsDemo = () => {
                 <span className="text-lg md:text-3xl text-center font-bold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-white to-purple-200">
                   ANIMATED GRADIENT
                 </span>
-                <p className="mt-2 text-sm text-white/80 text-center max-w-xs">
-                  Interactive and visually striking animated gradient background
-                </p>
               </div>
               <div className="absolute -bottom-6 -right-6 w-24 h-24 rounded-full bg-purple-500/20 blur-xl" />
               <div className="absolute -top-6 -left-6 w-16 h-16 rounded-full bg-blue-500/20 blur-xl" />
