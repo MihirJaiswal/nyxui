@@ -115,7 +115,7 @@ export const Hero = () => {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="mx-auto max-w-3xl text-center"
             >
-              <p className="font-sans text-gray-900 dark:text-gray-100 sm:text-xl tracking-wide font-medium leading-relaxed">
+              <p className="text-gray-900 dark:text-gray-100 sm:text-xl tracking-wide font-medium leading-relaxed">
                 Ready to use modern components built with 
                 <span className="font-bold text-black dark:text-white"> React</span>, 
                 <span className="font-bold text-black dark:text-white"> TypeScript</span>, 
