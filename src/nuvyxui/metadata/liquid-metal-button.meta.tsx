@@ -1,10 +1,18 @@
-import type { ComponentData } from "@/nuvyxui/ComponentInterfaces"
-import { LiquidMetalButtonDemo } from "@/nuvyxui/demos/LiquidMetalButtonDemo"
-import { LiquidMetalButton } from "@/nuvyxui/components/LiquidMetalButton"
-import { ArrowRight, Download, Leaf, Mail, ShieldCheck, Sparkles, Star } from "lucide-react"
+import type { ComponentData } from "@/nuvyxui/ComponentInterfaces";
+import { LiquidMetalButtonDemo } from "@/nuvyxui/demos/LiquidMetalButtonDemo";
+import { LiquidMetalButton } from "@/nuvyxui/components/LiquidMetalButton";
+import {
+  ArrowRight,
+  Download,
+  Leaf,
+  Mail,
+  ShieldCheck,
+  Sparkles,
+  Star,
+} from "lucide-react";
 
-import LiquidMetalButtonSource from '!!raw-loader!@/nuvyxui/components/LiquidMetalButton.tsx';
-import LiquidMetalButtonDemoSource from '!!raw-loader!@/nuvyxui/demos/LiquidMetalButtonDemo.tsx';
+import LiquidMetalButtonSource from "!!raw-loader!@/nuvyxui/components/LiquidMetalButton.tsx";
+import LiquidMetalButtonDemoSource from "!!raw-loader!@/nuvyxui/demos/LiquidMetalButtonDemo.tsx";
 
 export const liquidMetalButtonData: ComponentData = {
   name: "Liquid Metal Button",
@@ -32,10 +40,10 @@ import { twMerge } from "tailwind-merge";
   export function cn(...inputs: ClassValue[]) {
       return twMerge(clsx(inputs));
   }`,
-            },
       },
+    },
   ],
-  
+
   props: [
     {
       name: "Liquid Metal Button",
@@ -72,29 +80,25 @@ import { twMerge } from "tailwind-merge";
           name: "intensity",
           type: "number",
           default: "3",
-          description:
-            "The intensity of the liquid effect (1-5).",
+          description: "The intensity of the liquid effect (1-5).",
         },
         {
           name: "magnetic",
           type: "boolean",
           default: "true",
-          description:
-            "Whether to enable the magnetic pull effect.",
+          description: "Whether to enable the magnetic pull effect.",
         },
         {
           name: "clickEffect",
           type: "boolean",
           default: "true",
-          description:
-            "Whether to enable the click animation.",
+          description: "Whether to enable the click animation.",
         },
         {
           name: "asChild",
           type: "boolean",
           default: "false",
-          description:
-            "Whether to render the button as a child element.",
+          description: "Whether to render the button as a child element.",
         },
         {
           name: "rounded",
@@ -114,43 +118,37 @@ import { twMerge } from "tailwind-merge";
           name: "hoverAnimation",
           type: "boolean",
           default: "true",
-          description:
-            "Whether to enable hover animation.",
+          description: "Whether to enable hover animation.",
         },
         {
           name: "textured",
           type: "boolean",
           default: "false",
-          description:
-            "Whether to apply a textured effect.",
+          description: "Whether to apply a textured effect.",
         },
         {
           name: "icon",
           type: "React.ReactNode",
           default: "undefined",
-          description:
-            "Icon to be displayed before the children.",
+          description: "Icon to be displayed before the children.",
         },
         {
           name: "iconAfter",
           type: "React.ReactNode",
           default: "undefined",
-          description:
-            "Icon to be displayed after the children.",
+          description: "Icon to be displayed after the children.",
         },
         {
           name: "className",
           type: "string",
           default: '""',
-          description:
-            "Additional CSS classes to apply.",
+          description: "Additional CSS classes to apply.",
         },
         {
           name: "children",
           type: "React.ReactNode",
           default: "undefined",
-          description:
-            "Content of the button.",
+          description: "Content of the button.",
         },
         {
           name: "onClick",
@@ -162,21 +160,24 @@ import { twMerge } from "tailwind-merge";
       ],
     },
   ],
-  
+
   category: "Buttons",
   examples: [
     {
       name: "Shimmering Mercury Effect",
       preview: (
-        <LiquidMetalButton 
-          variant="mercury" 
-          theme="mercury" 
-          size="lg" 
+        <LiquidMetalButton
+          variant="mercury"
+          theme="mercury"
+          size="lg"
           intensity={4}
           shadow="xl"
           hoverAnimation={true}
         >
-         <div className="flex items-center"><Download className="mr-2 h-5 w-5" /><span>Download Files</span></div>
+          <div className="flex items-center">
+            <Download className="mr-2 h-5 w-5" />
+            <span>Download Files</span>
+          </div>
         </LiquidMetalButton>
       ),
       filename: "MercuryButton.tsx",
@@ -201,9 +202,9 @@ import { twMerge } from "tailwind-merge";
     {
       name: "Luxurious Gold Button",
       preview: (
-        <LiquidMetalButton 
-          variant="default" 
-          theme="gold" 
+        <LiquidMetalButton
+          variant="default"
+          theme="gold"
           size="md"
           textured={true}
           shadow="lg"
@@ -233,15 +234,18 @@ import { twMerge } from "tailwind-merge";
     {
       name: "Dynamic Ripple Effect",
       preview: (
-        <LiquidMetalButton 
-          variant="ripple" 
-          theme="steel" 
-          size="lg" 
+        <LiquidMetalButton
+          variant="ripple"
+          theme="steel"
+          size="lg"
           intensity={5}
           shadow="xl"
           clickEffect={true}
         >
-          <div className="flex items-center"><Star className="mr-2 h-5 w-5" /><span>Add to Favorites</span></div>
+          <div className="flex items-center">
+            <Star className="mr-2 h-5 w-5" />
+            <span>Add to Favorites</span>
+          </div>
         </LiquidMetalButton>
       ),
       filename: "RippleButton.tsx",
@@ -266,15 +270,18 @@ import { twMerge } from "tailwind-merge";
     {
       name: "Elegant Copper Outline",
       preview: (
-        <LiquidMetalButton 
-          variant="outline" 
-          theme="copper" 
+        <LiquidMetalButton
+          variant="outline"
+          theme="copper"
           size="md"
           shadow="md"
           hoverAnimation={true}
           rounded="lg"
         >
-          <div className="flex items-center"><Mail className="mr-2 h-4 w-4" /><span>Subscribe</span></div>
+          <div className="flex items-center">
+            <Mail className="mr-2 h-4 w-4" />
+            <span>Subscribe</span>
+          </div>
         </LiquidMetalButton>
       ),
       filename: "OutlineButton.tsx",
@@ -299,16 +306,19 @@ import { twMerge } from "tailwind-merge";
     {
       name: "Premium Circular Button",
       preview: (
-        <LiquidMetalButton 
-          variant="mercury" 
-          theme="silver" 
-          size="lg" 
+        <LiquidMetalButton
+          variant="mercury"
+          theme="silver"
+          size="lg"
           rounded="full"
           shadow="xl"
           textured={true}
           intensity={4}
         >
-          <div className="flex items-center"><Star className="mr-2 h-5 w-5" /><span>Premium</span></div>
+          <div className="flex items-center">
+            <Star className="mr-2 h-5 w-5" />
+            <span>Premium</span>
+          </div>
         </LiquidMetalButton>
       ),
       filename: "RoundedButton.tsx",
@@ -334,15 +344,18 @@ import { twMerge } from "tailwind-merge";
     {
       name: "Obsidian Dark Button",
       preview: (
-        <LiquidMetalButton 
-          variant="default" 
-          theme="obsidian" 
+        <LiquidMetalButton
+          variant="default"
+          theme="obsidian"
           size="lg"
           shadow="lg"
           textured={true}
           hoverAnimation={true}
         >
-          <div className="flex items-center"><ShieldCheck className="mr-2 h-5 w-5" /><span>Secure Connection</span></div>
+          <div className="flex items-center">
+            <ShieldCheck className="mr-2 h-5 w-5" />
+            <span>Secure Connection</span>
+          </div>
         </LiquidMetalButton>
       ),
       filename: "ObsidianButton.tsx",
@@ -366,16 +379,19 @@ import { twMerge } from "tailwind-merge";
     },
     {
       name: "Emerald Gradient Button",
-        preview: (
-        <LiquidMetalButton 
-          variant="gradient" 
-          theme="emerald" 
+      preview: (
+        <LiquidMetalButton
+          variant="gradient"
+          theme="emerald"
           size="md"
           shadow="lg"
           rounded="lg"
           hoverAnimation={true}
         >
-          <div className="flex items-center"><Leaf className="mr-2 h-4 w-4" /><span>Eco Friendly</span></div>
+          <div className="flex items-center">
+            <Leaf className="mr-2 h-4 w-4" />
+            <span>Eco Friendly</span>
+          </div>
         </LiquidMetalButton>
       ),
       filename: "EmeraldButton.tsx",
@@ -400,15 +416,18 @@ import { twMerge } from "tailwind-merge";
     {
       name: "Ruby Action Button",
       preview: (
-        <LiquidMetalButton 
-          variant="ripple" 
-          theme="ruby" 
+        <LiquidMetalButton
+          variant="ripple"
+          theme="ruby"
           size="lg"
           shadow="xl"
           clickEffect={true}
           intensity={4}
         >
-          <div className="flex items-center"><ArrowRight className="ml-2 h-5 w-5" /><span>Get Started</span></div>
+          <div className="flex items-center">
+            <ArrowRight className="ml-2 h-5 w-5" />
+            <span>Get Started</span>
+          </div>
         </LiquidMetalButton>
       ),
       filename: "RubyButton.tsx",
@@ -433,23 +452,26 @@ import { twMerge } from "tailwind-merge";
     {
       name: "Custom Themed Button",
       preview: (
-        <LiquidMetalButton 
-          variant="default" 
-          theme="custom" 
+        <LiquidMetalButton
+          variant="default"
+          theme="custom"
           customColors={{
             base: "bg-gradient-to-b from-purple-300 via-purple-400 to-purple-600",
             highlight: "rgba(230, 200, 255, 0.8)",
             shadow: "rgba(80, 0, 120, 0.4)",
             text: "text-purple-950 dark:text-purple-200",
             border: "border-purple-500",
-            glow: "shadow-purple-500/50"
+            glow: "shadow-purple-500/50",
           }}
           size="lg"
           shadow="lg"
           rounded="md"
           textured={true}
         >
-          <div className="flex items-center"><Sparkles className="mr-2 h-5 w-5" /><span>Custom Magic</span></div>
+          <div className="flex items-center">
+            <Sparkles className="mr-2 h-5 w-5" />
+            <span>Custom Magic</span>
+          </div>
         </LiquidMetalButton>
       ),
       filename: "CustomButton.tsx",
@@ -479,6 +501,5 @@ import { twMerge } from "tailwind-merge";
     );
   }`,
     },
-  ]
-}
-
+  ],
+};

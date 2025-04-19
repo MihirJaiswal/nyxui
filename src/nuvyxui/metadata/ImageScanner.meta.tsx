@@ -1,9 +1,9 @@
-import type { ComponentData } from "@/nuvyxui/ComponentInterfaces"
-import { ImageScanner } from "@/nuvyxui/components/ImageScanner"
-import { ImageScannerDemo } from "@/nuvyxui/demos/ImageScannerDemo"
+import type { ComponentData } from "@/nuvyxui/ComponentInterfaces";
+import { ImageScanner } from "@/nuvyxui/components/ImageScanner";
+import { ImageScannerDemo } from "@/nuvyxui/demos/ImageScannerDemo";
 
-import ImageScannerSource from '!!raw-loader!@/nuvyxui/components/ImageScanner.tsx';
-import ImageScannerDemoSource from '!!raw-loader!@/nuvyxui/demos/ImageScannerDemo.tsx';
+import ImageScannerSource from "!!raw-loader!@/nuvyxui/components/ImageScanner.tsx";
+import ImageScannerDemoSource from "!!raw-loader!@/nuvyxui/demos/ImageScannerDemo.tsx";
 
 export const imageScannerData: ComponentData = {
   name: "Image Scanner",
@@ -15,7 +15,8 @@ export const imageScannerData: ComponentData = {
   dependencies: [
     {
       name: "Framer Motion",
-      description: "Animation library used for creating fluid scanning effects.",
+      description:
+        "Animation library used for creating fluid scanning effects.",
       install: {
         npm: "npm install framer-motion",
         pnpm: "pnpm add framer-motion",
@@ -24,13 +25,13 @@ export const imageScannerData: ComponentData = {
       },
     },
     {
-        name: "Utility Functions",
-        description: "Utility functions for conditional class name merging.",
-        install: {
-          npm: "npm install clsx tailwind-merge",
-          pnpm: "pnpm add clsx tailwind-merge",
-          yarn: "yarn add clsx tailwind-merge",
-          bun: "bun add clsx tailwind-merge",
+      name: "Utility Functions",
+      description: "Utility functions for conditional class name merging.",
+      install: {
+        npm: "npm install clsx tailwind-merge",
+        pnpm: "pnpm add clsx tailwind-merge",
+        yarn: "yarn add clsx tailwind-merge",
+        bun: "bun add clsx tailwind-merge",
       },
       setup: {
         description: "Create a utils.ts file with the cn utility function",
@@ -40,7 +41,7 @@ import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
-}`, 
+}`,
       },
     },
   ],
@@ -129,17 +130,17 @@ export function cn(...inputs: ClassValue[]) {
       ],
     },
   ],
-  
+
   category: "Interactive tools",
   examples: [
     {
       name: "Horizontal Line Scan",
       preview: (
         <div className="w-full max-w-md mx-auto">
-        <h1 className="text-2xl font-bold mb-8 text-center">Repeating</h1>
-          <ImageScanner 
-            image="/assets/images/image-scanner/resume.png" 
-            scanDirection="horizontal" 
+          <h1 className="text-2xl font-bold mb-8 text-center">Repeating</h1>
+          <ImageScanner
+            image="/assets/images/image-scanner/resume.png"
+            scanDirection="horizontal"
             scanColor="emerald"
             repeating
           />
@@ -166,9 +167,11 @@ export function HorizontalLineScan() {
       name: "Vertical Line Scan",
       preview: (
         <div className="w-full max-w-md mx-auto">
-          <h1 className="text-2xl font-bold mb-8 text-center">Scan on scroll</h1>
-          <ImageScanner 
-            image="/assets/images/image-scanner/id.png" 
+          <h1 className="text-2xl font-bold mb-8 text-center">
+            Scan on scroll
+          </h1>
+          <ImageScanner
+            image="/assets/images/image-scanner/id.png"
             scanDirection="vertical"
             scanColor="red"
             scanAtScroll
@@ -194,5 +197,5 @@ export function VerticalLineScan() {
   );
 }`,
     },
-  ]
-}
+  ],
+};

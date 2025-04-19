@@ -2,8 +2,8 @@ import type { ComponentData } from "@/nuvyxui/ComponentInterfaces";
 import { MusicPlayer } from "@/nuvyxui/components/MusicPlayer";
 import MusicPlayerDemo from "@/nuvyxui/demos/MusicPlayerDemo";
 
-import MusicPlayerSource from '!!raw-loader!@/nuvyxui/components/MusicPlayer.tsx';
-import MusicPlayerDemoSource from '!!raw-loader!@/nuvyxui/demos/MusicPlayerDemo.tsx';
+import MusicPlayerSource from "!!raw-loader!@/nuvyxui/components/MusicPlayer.tsx";
+import MusicPlayerDemoSource from "!!raw-loader!@/nuvyxui/demos/MusicPlayerDemo.tsx";
 
 export const musicPlayerData: ComponentData = {
   name: "Music Player",
@@ -30,96 +30,99 @@ export const musicPlayerData: ComponentData = {
       items: [
         {
           name: "theme",
-          type: 'string',
+          type: "string",
           default: '"default"',
-          description: "Visual theme of the music player (default, spotify, cosmic, nebula, or custom)."
+          description:
+            "Visual theme of the music player (default, spotify, cosmic, nebula, or custom).",
         },
         {
           name: "shadow",
           type: "boolean",
           default: "true",
-          description: "Whether to display shadow effect on the player."
+          description: "Whether to display shadow effect on the player.",
         },
         {
           name: "rounded",
-          type: 'string',
+          type: "string",
           default: '"xl"',
-          description: "Corner radius of the player component."
+          description: "Corner radius of the player component.",
         },
         {
           name: "artwork",
           type: "string",
           default: '"/placeholder.svg"',
-          description: "Path to the album artwork image."
+          description: "Path to the album artwork image.",
         },
         {
           name: "trackTitle",
           type: "string",
           default: '"undefined"',
-          description: "Title of the track being played."
+          description: "Title of the track being played.",
         },
         {
           name: "artist",
           type: "string",
           default: '"undefined"',
-          description: "Name of the artist or band."
+          description: "Name of the artist or band.",
         },
         {
           name: "album",
           type: "string",
           default: '"After Hours"',
-          description: "Name of the album."
+          description: "Name of the album.",
         },
         {
           name: "initialTime",
           type: "number",
           default: "0",
-          description: "Initial playback position in seconds."
+          description: "Initial playback position in seconds.",
         },
         {
           name: "totalDuration",
           type: "number",
           default: "217",
-          description: "Total duration of the track in seconds."
+          description: "Total duration of the track in seconds.",
         },
         {
           name: "className",
           type: "string",
           default: '""',
-          description: "Additional CSS classes to apply to the component."
+          description: "Additional CSS classes to apply to the component.",
         },
         {
           name: "autoPlay",
           type: "boolean",
           default: "false",
-          description: "Whether to start playback automatically."
+          description: "Whether to start playback automatically.",
         },
         {
           name: "onPlayPause",
           type: "function",
           default: "undefined",
-          description: "Callback function triggered when play/pause is toggled."
+          description:
+            "Callback function triggered when play/pause is toggled.",
         },
         {
           name: "onTimeChange",
           type: "function",
           default: "undefined",
-          description: "Callback function triggered when playback time changes."
+          description:
+            "Callback function triggered when playback time changes.",
         },
         {
           name: "onTrackEnd",
           type: "function",
           default: "undefined",
-          description: "Callback function triggered when track playback ends."
+          description: "Callback function triggered when track playback ends.",
         },
         {
           name: "controls",
           type: "{ shuffle?: boolean; repeat?: boolean; heart?: boolean; }",
           default: "{ shuffle: true, repeat: true, heart: true }",
-          description: "Controls visibility of additional player controls."
-        }
-      ]
-    }
+          description: "Controls visibility of additional player controls.",
+        },
+      ],
+    },
   ],
   category: "Media",
   examples: [
@@ -127,10 +130,10 @@ export const musicPlayerData: ComponentData = {
       name: "Default Theme Player",
       preview: (
         <div className="w-full max-w-xs mx-auto border border-gray-300 dark:border-gray-700 rounded-md">
-          <MusicPlayer 
+          <MusicPlayer
             theme="default"
-            trackTitle="changes" 
-            artist="XXXTENTACION" 
+            trackTitle="changes"
+            artist="XXXTENTACION"
             album="?"
             rounded="md"
             artwork="/assets/images/music-player/cover.jpg"
@@ -153,16 +156,16 @@ export function DefaultThemePlayer() {
           />
     </div>
   );
-}`
+}`,
     },
     {
       name: "Cosmic Theme with Custom Controls",
       preview: (
         <div className="w-full max-w-xs mx-auto border border-gray-300 dark:border-gray-700 rounded-2xl">
-          <MusicPlayer 
+          <MusicPlayer
             theme="cosmic"
-            trackTitle="Sugar" 
-            artist="Maroon 5" 
+            trackTitle="Sugar"
+            artist="Maroon 5"
             album="V"
             artwork="/assets/images/music-player/cover2.jpg"
             rounded="2xl"
@@ -170,7 +173,7 @@ export function DefaultThemePlayer() {
             controls={{
               shuffle: true,
               repeat: false,
-              heart: true
+              heart: true,
             }}
           />
         </div>
@@ -197,7 +200,7 @@ export function CosmicThemePlayer() {
       />
     </div>
   );
-}`
-    }
-  ]
+}`,
+    },
+  ],
 };

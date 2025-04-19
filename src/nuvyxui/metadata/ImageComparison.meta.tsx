@@ -1,10 +1,14 @@
-import type { ComponentData } from "@/nuvyxui/ComponentInterfaces"
-import { ImageSlider, ImageLayer, Divider } from "@/nuvyxui/components/ImageComparison"
-import { ImageComparisonDemo } from "@/nuvyxui/demos/ImageComparisonDemo"
-import { ArrowUpDown } from "lucide-react"
+import type { ComponentData } from "@/nuvyxui/ComponentInterfaces";
+import {
+  ImageSlider,
+  ImageLayer,
+  Divider,
+} from "@/nuvyxui/components/ImageComparison";
+import { ImageComparisonDemo } from "@/nuvyxui/demos/ImageComparisonDemo";
+import { ArrowUpDown } from "lucide-react";
 
-import ImageComparisonSource from '!!raw-loader!@/nuvyxui/components/ImageComparison.tsx';
-import ImageComparisonDemoSource from '!!raw-loader!@/nuvyxui/demos/ImageComparisonDemo.tsx';
+import ImageComparisonSource from "!!raw-loader!@/nuvyxui/components/ImageComparison.tsx";
+import ImageComparisonDemoSource from "!!raw-loader!@/nuvyxui/demos/ImageComparisonDemo.tsx";
 
 export const imageComparisonData: ComponentData = {
   name: "Image Comparison",
@@ -45,7 +49,7 @@ export function cn(...inputs: ClassValue[]) {
       },
     },
   ],
-  
+
   props: [
     {
       name: "ImageComparison",
@@ -61,8 +65,7 @@ export function cn(...inputs: ClassValue[]) {
           name: "className",
           type: "string",
           default: '""',
-          description:
-            "Additional CSS classes to apply to the container.",
+          description: "Additional CSS classes to apply to the container.",
         },
         {
           name: "hoverControl",
@@ -96,8 +99,7 @@ export function cn(...inputs: ClassValue[]) {
           name: "dividerColor",
           type: "string",
           default: '"#ffffff"',
-          description:
-            "Color of the divider line.",
+          description: "Color of the divider line.",
         },
       ],
     },
@@ -108,22 +110,19 @@ export function cn(...inputs: ClassValue[]) {
           name: "className",
           type: "string",
           default: '""',
-          description:
-            "Additional CSS classes to apply to the image.",
+          description: "Additional CSS classes to apply to the image.",
         },
         {
           name: "alt",
           type: "string",
           default: "undefined",
-          description:
-            "Alt text for the image (required for accessibility).",
+          description: "Alt text for the image (required for accessibility).",
         },
         {
           name: "src",
           type: "string",
           default: "undefined",
-          description:
-            "Source URL of the image.",
+          description: "Source URL of the image.",
         },
         {
           name: "layer",
@@ -155,36 +154,31 @@ export function cn(...inputs: ClassValue[]) {
           name: "className",
           type: "string",
           default: '""',
-          description:
-            "Additional CSS classes to apply to the divider.",
+          description: "Additional CSS classes to apply to the divider.",
         },
         {
           name: "children",
           type: "React.ReactNode",
           default: "undefined",
-          description:
-            "Custom content to display in the handle.",
+          description: "Custom content to display in the handle.",
         },
         {
           name: "width",
           type: "number",
           default: "2",
-          description:
-            "Width of the divider line in pixels.",
+          description: "Width of the divider line in pixels.",
         },
         {
           name: "showHandle",
           type: "boolean",
           default: "true",
-          description:
-            "Whether to show the handle on the divider.",
+          description: "Whether to show the handle on the divider.",
         },
         {
           name: "handleSize",
           type: "number",
           default: "24",
-          description:
-            "Size of the handle in pixels.",
+          description: "Size of the handle in pixels.",
         },
         {
           name: "handleColor",
@@ -197,8 +191,7 @@ export function cn(...inputs: ClassValue[]) {
           name: "handleIcon",
           type: "React.ReactNode",
           default: "undefined",
-          description:
-            "Custom icon to display in the handle.",
+          description: "Custom icon to display in the handle.",
         },
         {
           name: "hitAreaSize",
@@ -210,34 +203,36 @@ export function cn(...inputs: ClassValue[]) {
       ],
     },
   ],
-  
+
   category: "Interactive tools",
   examples: [
     {
       name: "Basic Horizontal Comparison",
       preview: (
         <div className="space-y-4 w-full flex flex-col items-center justify-center">
-      <h2 className="text-2xl font-semibold">Vertical Slider</h2>
-      <p className="text-gray-500">Compare images with a vertical divider.</p>
-      
-      <ImageSlider 
-        className="h-96 border rounded-xl overflow-hidden" 
-        orientation="vertical"
-        defaultPosition={40}
-      >
-        <ImageLayer 
-          src="/assets/images/image-comparison/img1.png" 
-          alt="Before Image" 
-          layer="first" 
-        />
-        <ImageLayer 
-          src="/assets/images/image-comparison/img2.png" 
-          alt="After Image" 
-          layer="second" 
-        />
-        <Divider handleIcon={<ArrowUpDown size={16} />} />
-      </ImageSlider>
-    </div>
+          <h2 className="text-2xl font-semibold">Vertical Slider</h2>
+          <p className="text-gray-500">
+            Compare images with a vertical divider.
+          </p>
+
+          <ImageSlider
+            className="h-96 border rounded-xl overflow-hidden"
+            orientation="vertical"
+            defaultPosition={40}
+          >
+            <ImageLayer
+              src="/assets/images/image-comparison/img1.png"
+              alt="Before Image"
+              layer="first"
+            />
+            <ImageLayer
+              src="/assets/images/image-comparison/img2.png"
+              alt="After Image"
+              layer="second"
+            />
+            <Divider handleIcon={<ArrowUpDown size={16} />} />
+          </ImageSlider>
+        </div>
       ),
       filename: "BasicHorizontalSlider.tsx",
       code: `import { ImageSlider, ImageLayer, Divider } from "@/nuvyxui/components/ImageSlider";
@@ -274,27 +269,29 @@ export function BasicHorizontalSlider() {
       name: "Vertical Comparison",
       preview: (
         <div className="space-y-4 w-full flex flex-col items-center justify-center">
-      <h2 className="text-2xl font-semibold">Hover Control</h2>
-      <p className="text-gray-500">Simply hover over the image to reveal - no clicking required.</p>
-      
-      <ImageSlider 
-        className="h-96 border rounded-xl overflow-hidden" 
-        hoverControl={true}
-        defaultPosition={20}
-      >
-        <ImageLayer 
-          src="/assets/images/image-comparison/digi1.png" 
-          alt="Original Image" 
-          layer="first" 
-        />
-        <ImageLayer 
-          src="/assets/images/image-comparison/digi2.png" 
-          alt="Processed Image" 
-          layer="second" 
-        />
-        <Divider width={4} handleSize={32} />
-      </ImageSlider>
-    </div>
+          <h2 className="text-2xl font-semibold">Hover Control</h2>
+          <p className="text-gray-500">
+            Simply hover over the image to reveal - no clicking required.
+          </p>
+
+          <ImageSlider
+            className="h-96 border rounded-xl overflow-hidden"
+            hoverControl={true}
+            defaultPosition={20}
+          >
+            <ImageLayer
+              src="/assets/images/image-comparison/digi1.png"
+              alt="Original Image"
+              layer="first"
+            />
+            <ImageLayer
+              src="/assets/images/image-comparison/digi2.png"
+              alt="Processed Image"
+              layer="second"
+            />
+            <Divider width={4} handleSize={32} />
+          </ImageSlider>
+        </div>
       ),
       filename: "VerticalSlider.tsx",
       code: `import { ImageSlider, ImageLayer, Divider } from "@/nuvyxui/components/ImageSlider";
@@ -331,28 +328,30 @@ export function VerticalSlider() {
       name: "Hover-Controlled Slider",
       preview: (
         <div className="space-y-4 w-full flex flex-col items-center justify-center">
-      <h2 className="text-2xl font-semibold">Custom Styling</h2>
-      <p className="text-gray-500">Customize divider color, handle size, and animation speed.</p>
-      
-      <ImageSlider 
-        className="h-96 w-full border-2 border-purple-600 rounded-xl overflow-hidden" 
-        dividerColor="#10b981"
-        animationConfig={{ damping: 30, stiffness: 300 }}
-        defaultPosition={70}
-      >
-        <ImageLayer 
-          src="/assets/images/image-comparison/ss.png" 
-          alt="Day Image" 
-          layer="first" 
-        />
-        <ImageLayer 
-          src="/assets/images/image-comparison/ss2.png" 
-          alt="Night Image" 
-          layer="second" 
-        />
-        <Divider handleColor="#10b981" handleSize={36} width={3} />
-      </ImageSlider>
-    </div>
+          <h2 className="text-2xl font-semibold">Custom Styling</h2>
+          <p className="text-gray-500">
+            Customize divider color, handle size, and animation speed.
+          </p>
+
+          <ImageSlider
+            className="h-96 w-full border-2 border-purple-600 rounded-xl overflow-hidden"
+            dividerColor="#10b981"
+            animationConfig={{ damping: 30, stiffness: 300 }}
+            defaultPosition={70}
+          >
+            <ImageLayer
+              src="/assets/images/image-comparison/ss.png"
+              alt="Day Image"
+              layer="first"
+            />
+            <ImageLayer
+              src="/assets/images/image-comparison/ss2.png"
+              alt="Night Image"
+              layer="second"
+            />
+            <Divider handleColor="#10b981" handleSize={36} width={3} />
+          </ImageSlider>
+        </div>
       ),
       filename: "HoverSlider.tsx",
       code: `import { ImageSlider, ImageLayer, Divider } from "@/nuvyxui/components/ImageSlider";
@@ -385,5 +384,5 @@ export function HoverSlider() {
   );
 }`,
     },
-  ]
-}
+  ],
+};

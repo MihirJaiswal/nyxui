@@ -1,9 +1,9 @@
-import type { ComponentData } from "@/nuvyxui/ComponentInterfaces"
-import { AnimatedCodeBlock } from "@/nuvyxui/components/AnimatedCodeBlock"
-import { AnimatedCodeBlockDemo } from "@/nuvyxui/demos/AnimatedCodeBlockDemo"
+import type { ComponentData } from "@/nuvyxui/ComponentInterfaces";
+import { AnimatedCodeBlock } from "@/nuvyxui/components/AnimatedCodeBlock";
+import { AnimatedCodeBlockDemo } from "@/nuvyxui/demos/AnimatedCodeBlockDemo";
 
-import AnimatedCodeBlockSource from '!!raw-loader!@/nuvyxui/components/AnimatedCodeBlock.tsx';
-import AnimatedCodeBlockDemoSource from '!!raw-loader!@/nuvyxui/demos/AnimatedCodeBlockDemo.tsx';
+import AnimatedCodeBlockSource from "!!raw-loader!@/nuvyxui/components/AnimatedCodeBlock.tsx";
+import AnimatedCodeBlockDemoSource from "!!raw-loader!@/nuvyxui/demos/AnimatedCodeBlockDemo.tsx";
 
 export const animatedCodeBlockData: ComponentData = {
   name: "Animated Code Block",
@@ -15,7 +15,8 @@ export const animatedCodeBlockData: ComponentData = {
   dependencies: [
     {
       name: "Framer Motion",
-      description: "Production-ready motion library for React for creating animations and interactive UI elements.",
+      description:
+        "Production-ready motion library for React for creating animations and interactive UI elements.",
       install: {
         npm: "npm install framer-motion",
         pnpm: "pnpm add framer-motion",
@@ -73,8 +74,9 @@ export function cn(...inputs: ClassValue[]) {
         {
           name: "theme",
           type: "string",
-          default: 'dark',
-          description: "The visual theme of the code block (dark, light, terminal, cyberpunk, minimal, nuvyx)",
+          default: "dark",
+          description:
+            "The visual theme of the code block (dark, light, terminal, cyberpunk, minimal, nuvyx)",
         },
         {
           name: "typingSpeed",
@@ -139,9 +141,9 @@ export function cn(...inputs: ClassValue[]) {
       ],
     },
   ],
-  
+
   category: "Interactive tools",
-  examples:  [
+  examples: [
     {
       name: "Terminal Theme Docker Setup",
       preview: (
@@ -227,7 +229,7 @@ CMD ["node", "dist/server.js"]\`}
           theme="cyberpunk"
           typingSpeed={40}
           autoPlay={true}
-          highlightLines={[2,17]}
+          highlightLines={[2, 17]}
           title="Advanced Button Animation"
         />
       ),
@@ -264,6 +266,5 @@ CMD ["node", "dist/server.js"]\`}
     );
   }`,
     },
-  ]
-}
-
+  ],
+};

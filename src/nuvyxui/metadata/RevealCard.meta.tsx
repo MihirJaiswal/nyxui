@@ -2,8 +2,8 @@ import type { ComponentData } from "@/nuvyxui/ComponentInterfaces";
 import RevealCard from "@/nuvyxui/components/RevealCard";
 import RevealCardDemo from "@/nuvyxui/demos/RevealCardDemo";
 
-import CardSource from '!!raw-loader!@/nuvyxui/components/RevealCard.tsx';
-import CardDemoSource from '!!raw-loader!@/nuvyxui/demos/RevealCardDemo.tsx';
+import CardSource from "!!raw-loader!@/nuvyxui/components/RevealCard.tsx";
+import CardDemoSource from "!!raw-loader!@/nuvyxui/demos/RevealCardDemo.tsx";
 
 export const revealCardData: ComponentData = {
   name: "Reveal Card",
@@ -21,103 +21,102 @@ export const revealCardData: ComponentData = {
           name: "coverImage",
           type: "string",
           default: '""',
-          description: "URL for the cover image."
+          description: "URL for the cover image.",
         },
         {
           name: "titleImage",
           type: "string",
           default: '""',
-          description: "URL for the title image."
+          description: "URL for the title image.",
         },
         {
           name: "characterImage",
           type: "string",
           default: '""',
-          description: "URL for the character image."
+          description: "URL for the character image.",
         },
         {
           name: "width",
           type: "number",
           default: "266",
-          description: "Width of the card in pixels."
+          description: "Width of the card in pixels.",
         },
         {
           name: "height",
           type: "number",
           default: "400",
-          description: "Height of the card in pixels."
+          description: "Height of the card in pixels.",
         },
         {
           name: "backgroundColor",
           type: "string",
           default: '"#192740"',
-          description: "Background color of the card."
+          description: "Background color of the card.",
         },
         {
           name: "borderColor",
           type: "string",
           default: '"#ddd"',
-          description: "Border color of the card."
+          description: "Border color of the card.",
         },
         {
           name: "hoverRotation",
           type: "number",
           default: "25",
-          description: "Rotation angle on hover."
+          description: "Rotation angle on hover.",
         },
         {
           name: "titleTranslateY",
           type: "number",
           default: "-50",
-          description: "Y-axis translation for title image on hover."
+          description: "Y-axis translation for title image on hover.",
         },
         {
           name: "characterTranslateY",
           type: "number",
           default: "-30",
-          description: "Y-axis translation for character image on hover."
+          description: "Y-axis translation for character image on hover.",
         },
         {
           name: "characterTranslateZ",
           type: "number",
           default: "100",
-          description: "Z-axis translation for character image on hover."
+          description: "Z-axis translation for character image on hover.",
         },
         {
           name: "alt",
           type: "{ cover?: string; title?: string; character?: string; }",
           default:
             '{ cover: "Cover Image", title: "Title", character: "Character" }',
-          description: "Alternate text for the images."
+          description: "Alternate text for the images.",
         },
         {
           name: "gradientColors",
           type: "{ top?: string; bottom?: string; }",
-          default:
-            '{ top: "rgba(12,13,19,1)", bottom: "rgba(12,13,19,1)" }',
-          description: "Gradient overlay colors for the cover image."
+          default: '{ top: "rgba(12,13,19,1)", bottom: "rgba(12,13,19,1)" }',
+          description: "Gradient overlay colors for the cover image.",
         },
         {
           name: "animation",
           type: "{ duration?: number; delay?: number; }",
-          default: '{ duration: 500, delay: 0 }',
-          description: "Animation duration and delay in milliseconds."
+          default: "{ duration: 500, delay: 0 }",
+          description: "Animation duration and delay in milliseconds.",
         },
         {
           name: "shadow",
           type: "string",
           default: '"2px 35px 32px -8px rgba(0,0,0,0.75)"',
-          description: "Shadow effect applied on hover."
+          description: "Shadow effect applied on hover.",
         },
         {
           name: "priority",
           type: "boolean",
           default: "false",
           description:
-            "If true, images are prioritized for loading (eager loading)."
-        }
-      ]
-    }
+            "If true, images are prioritized for loading (eager loading).",
+        },
+      ],
+    },
   ],
   category: "Cards",
   examples: [
@@ -159,7 +158,7 @@ export const revealCardData: ComponentData = {
         </div>
       </div>
     );
-  }`
+  }`,
     },
     {
       name: "Hulk Power",
@@ -178,7 +177,7 @@ export const revealCardData: ComponentData = {
               titleTranslateY={-70}
               animation={{
                 duration: 600,
-                delay: 100
+                delay: 100,
               }}
               shadow="0px 40px 40px -10px rgba(255,125,0,0.4)"
             />
@@ -211,7 +210,7 @@ export const revealCardData: ComponentData = {
         </div>
       </div>
     );
-  }`
+  }`,
     },
-  ]
+  ],
 };

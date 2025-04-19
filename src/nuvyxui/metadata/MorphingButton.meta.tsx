@@ -4,12 +4,13 @@ import { MorphingButton } from "@/nuvyxui/components/MorphingButton";
 import { MorphingButtonDemo } from "@/nuvyxui/demos/MorphingButtonDemo";
 import { ArrowRight, Bell, Check, Plus, Trash } from "lucide-react";
 
-import MorphingButtonSource from '!!raw-loader!@/nuvyxui/components/MorphingButton.tsx';
-import MorphingButtonDemoSource from '!!raw-loader!@/nuvyxui/demos/MorphingButtonDemo.tsx';
+import MorphingButtonSource from "!!raw-loader!@/nuvyxui/components/MorphingButton.tsx";
+import MorphingButtonDemoSource from "!!raw-loader!@/nuvyxui/demos/MorphingButtonDemo.tsx";
 
 export const morphingButtonData: ComponentData = {
   name: "Morphing Button",
-  description: "Interactive buttons with shape-changing animations and multi-state visual feedback.",
+  description:
+    "Interactive buttons with shape-changing animations and multi-state visual feedback.",
   preview: <MorphingButtonDemo />,
   usage: MorphingButtonDemoSource,
   componentCode: MorphingButtonSource,
@@ -21,32 +22,35 @@ export const morphingButtonData: ComponentData = {
         {
           name: "variant",
           type: "string",
-          default: 'expand',
-          description: "Button transformation animation variant - (expand, collapse, rotate, skew, liquid, gradient, glow, pulse, reveal, bounce)",
+          default: "expand",
+          description:
+            "Button transformation animation variant - (expand, collapse, rotate, skew, liquid, gradient, glow, pulse, reveal, bounce)",
         },
         {
           name: "size",
           type: "string",
-          default: 'md',
+          default: "md",
           description: "Button size - (xs, sm, md, lg, xl)",
         },
         {
           name: "color",
           type: "string",
-          default: 'primary',
-          description: "Button color theme - (primary, secondary, success, danger, warning, info, dark, slate, violet, indigo, teal, rose, amber, custom)",
+          default: "primary",
+          description:
+            "Button color theme - (primary, secondary, success, danger, warning, info, dark, slate, violet, indigo, teal, rose, amber, custom)",
         },
         {
           name: "rounded",
           type: "string",
-          default: 'md',
+          default: "md",
           description: "Button corner radius - (none, sm, md, lg, full)",
         },
         {
           name: "shadow",
           type: "string",
-          default: 'md',
-          description: "Button shadow effect - (none, sm, md, lg, xl, inner, glow)",
+          default: "md",
+          description:
+            "Button shadow effect - (none, sm, md, lg, xl, inner, glow)",
         },
         {
           name: "icon",
@@ -57,20 +61,22 @@ export const morphingButtonData: ComponentData = {
         {
           name: "iconPosition",
           type: "string",
-          default: 'left',
-          description: "Position of the icon relative to button text - (left, right, only)",
+          default: "left",
+          description:
+            "Position of the icon relative to button text - (left, right, only)",
         },
         {
           name: "className",
           type: "string",
-          default: '',
+          default: "",
           description: "Additional CSS classes to apply",
         },
         {
           name: "onClick",
           type: "function",
           default: "undefined",
-          description: "Callback function to be called when the button is clicked",
+          description:
+            "Callback function to be called when the button is clicked",
         },
       ],
     },
@@ -98,7 +104,12 @@ export function ExpandButton() {
     {
       name: "Collapse Effect Button",
       preview: (
-        <MorphingButton variant="collapse" color="secondary" icon={<ArrowRight />} iconPosition="right">
+        <MorphingButton
+          variant="collapse"
+          color="secondary"
+          icon={<ArrowRight />}
+          iconPosition="right"
+        >
           Collapse Effect
         </MorphingButton>
       ),
@@ -117,7 +128,12 @@ export function CollapseButton() {
     {
       name: "Rotate Effect Button",
       preview: (
-        <MorphingButton variant="rotate" color="success" icon={<Plus />} iconPosition="left">
+        <MorphingButton
+          variant="rotate"
+          color="success"
+          icon={<Plus />}
+          iconPosition="left"
+        >
           Rotate Effect
         </MorphingButton>
       ),
@@ -154,7 +170,12 @@ export function SkewButton() {
     {
       name: "Liquid Effect Button",
       preview: (
-        <MorphingButton variant="liquid" color="danger" icon={<Trash />} iconPosition="left">
+        <MorphingButton
+          variant="liquid"
+          color="danger"
+          icon={<Trash />}
+          iconPosition="left"
+        >
           Liquid Effect
         </MorphingButton>
       ),
@@ -173,7 +194,13 @@ export function LiquidButton() {
     {
       name: "Icon Only Button",
       preview: (
-        <MorphingButton variant="expand" color="info" icon={<Bell />} iconPosition="only" size="lg">
+        <MorphingButton
+          variant="expand"
+          color="info"
+          icon={<Bell />}
+          iconPosition="only"
+          size="lg"
+        >
           Icon Only
         </MorphingButton>
       ),
@@ -197,10 +224,22 @@ export function IconOnlyButton() {
       name: "Combined Effects Button",
       preview: (
         <div className="flex space-x-2">
-          <MorphingButton variant="liquid" color="dark" size="sm" icon={<Check />} iconPosition="left">
+          <MorphingButton
+            variant="liquid"
+            color="dark"
+            size="sm"
+            icon={<Check />}
+            iconPosition="left"
+          >
             Confirm
           </MorphingButton>
-          <MorphingButton variant="skew" color="danger" size="sm" icon={<Trash />} iconPosition="left">
+          <MorphingButton
+            variant="skew"
+            color="danger"
+            size="sm"
+            icon={<Trash />}
+            iconPosition="left"
+          >
             Delete
           </MorphingButton>
         </div>

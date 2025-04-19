@@ -1,9 +1,9 @@
 import type { ComponentData } from "@/nuvyxui/ComponentInterfaces";
-import { LampHeading }  from "@/nuvyxui/components/LampHeading";
+import { LampHeading } from "@/nuvyxui/components/LampHeading";
 import { LampHeadingDemo } from "@/nuvyxui/demos/LampHeadingDemo";
 
-import LampHeadingSource from '!!raw-loader!@/nuvyxui/components/LampHeading.tsx';
-import LampHeadingDemoSource from '!!raw-loader!@/nuvyxui/demos/LampHeadingDemo.tsx';
+import LampHeadingSource from "!!raw-loader!@/nuvyxui/components/LampHeading.tsx";
+import LampHeadingDemoSource from "!!raw-loader!@/nuvyxui/demos/LampHeadingDemo.tsx";
 
 export const lampHeadingData: ComponentData = {
   name: "lamp heading",
@@ -42,8 +42,7 @@ export function cn(...inputs: ClassValue[]) {
           name: "text",
           type: "string",
           default: '""',
-          description:
-            "The text content of the heading.",
+          description: "The text content of the heading.",
         },
         {
           name: "className",
@@ -63,27 +62,24 @@ export function cn(...inputs: ClassValue[]) {
           name: "lineHeight",
           type: "number",
           default: "2",
-          description:
-            "The height of the underline in pixels.",
+          description: "The height of the underline in pixels.",
         },
         {
           name: "glowIntensity",
           type: "number",
           default: "0.7",
-          description:
-            "The intensity of the glow effect (0-1).",
+          description: "The intensity of the glow effect (0-1).",
         },
         {
           name: "glowSize",
           type: "number",
           default: "20",
-          description:
-            "The size of the glow effect in pixels.",
+          description: "The size of the glow effect in pixels.",
         },
       ],
     },
   ],
-  
+
   category: "Typography",
   examples: [
     {
@@ -214,5 +210,5 @@ export function NeuralNetworkTrainingHeading() {
   );
 }`,
     },
-  ]
+  ],
 };

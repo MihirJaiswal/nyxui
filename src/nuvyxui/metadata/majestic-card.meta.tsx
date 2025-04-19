@@ -1,9 +1,8 @@
-import type { ComponentData } from "@/nuvyxui/ComponentInterfaces"
-import { MajesticCardDemo } from "@/nuvyxui/demos/MajesticCardDemo"
+import type { ComponentData } from "@/nuvyxui/ComponentInterfaces";
+import { MajesticCardDemo } from "@/nuvyxui/demos/MajesticCardDemo";
 
-import MajesticCardSource from '!!raw-loader!@/nuvyxui/components/MajesticCard.tsx';
-import MajesticCardDemoSource from '!!raw-loader!@/nuvyxui/demos/MajesticCardDemo.tsx';
-
+import MajesticCardSource from "!!raw-loader!@/nuvyxui/components/MajesticCard.tsx";
+import MajesticCardDemoSource from "!!raw-loader!@/nuvyxui/demos/MajesticCardDemo.tsx";
 
 export const MajesticCardData: ComponentData = {
   name: "Majestic Card",
@@ -15,7 +14,8 @@ export const MajesticCardData: ComponentData = {
   dependencies: [
     {
       name: "Framer Motion",
-      description: "Production-ready motion library for React for creating animations and interactive UI elements.",
+      description:
+        "Production-ready motion library for React for creating animations and interactive UI elements.",
       install: {
         npm: "npm install framer-motion",
         pnpm: "pnpm add framer-motion",
@@ -59,8 +59,7 @@ export function cn(...inputs: ClassValue[]) {
           name: "intensity",
           type: "number",
           default: "3",
-          description:
-            "The intensity of the effect (1-5).",
+          description: "The intensity of the effect (1-5).",
         },
         {
           name: "theme",
@@ -74,7 +73,7 @@ export function cn(...inputs: ClassValue[]) {
           type: "object",
           default: "undefined",
           description:
-            'Custom colors object with properties: background, and optionally border, shadow, and glow.',
+            "Custom colors object with properties: background, and optionally border, shadow, and glow.",
         },
         {
           name: "rounded",
@@ -87,8 +86,7 @@ export function cn(...inputs: ClassValue[]) {
           name: "shadow",
           type: "boolean",
           default: "true",
-          description:
-            "Whether to show a shadow effect.",
+          description: "Whether to show a shadow effect.",
         },
         {
           name: "shadowSize",
@@ -108,8 +106,7 @@ export function cn(...inputs: ClassValue[]) {
           name: "border",
           type: "boolean",
           default: "false",
-          description:
-            "Whether to show a border.",
+          description: "Whether to show a border.",
         },
         {
           name: "borderStyle",
@@ -122,29 +119,25 @@ export function cn(...inputs: ClassValue[]) {
           name: "hoverEffect",
           type: "boolean",
           default: "true",
-          description:
-            "Whether to enable the hover effect.",
+          description: "Whether to enable the hover effect.",
         },
         {
           name: "scrollEffect",
           type: "boolean",
           default: "false",
-          description:
-            "Whether to enable scroll-based animations.",
+          description: "Whether to enable scroll-based animations.",
         },
         {
           name: "reduceMotion",
           type: "boolean",
           default: "false",
-          description:
-            "Reduce or disable animations for accessibility.",
+          description: "Reduce or disable animations for accessibility.",
         },
         {
           name: "confettiEffect",
           type: "boolean",
           default: "false",
-          description:
-            "Adds a confetti animation effect on hover.",
+          description: "Adds a confetti animation effect on hover.",
         },
         {
           name: "speed",
@@ -157,22 +150,19 @@ export function cn(...inputs: ClassValue[]) {
           name: "blurBackground",
           type: "boolean",
           default: "false",
-          description:
-            "Applies a backdrop blur effect to the background.",
+          description: "Applies a backdrop blur effect to the background.",
         },
         {
           name: "layerCount",
           type: "number",
           default: "3",
-          description:
-            "Number of layers for layered variant (1-5).",
+          description: "Number of layers for layered variant (1-5).",
         },
         {
           name: "layerSeparation",
           type: "number",
           default: "2",
-          description:
-            "Distance between layers for layered variant (1-5).",
+          description: "Distance between layers for layered variant (1-5).",
         },
         {
           name: "floatPattern",
@@ -185,20 +175,18 @@ export function cn(...inputs: ClassValue[]) {
           name: "className",
           type: "string",
           default: "undefined",
-          description:
-            "Additional CSS classes to apply.",
+          description: "Additional CSS classes to apply.",
         },
         {
           name: "children",
           type: "React.ReactNode",
           default: "undefined",
-          description:
-            "The content to display inside the card.",
+          description: "The content to display inside the card.",
         },
       ],
     },
   ],
-  
+
   category: "Cards",
-  examples:[]
-}
+  examples: [],
+};

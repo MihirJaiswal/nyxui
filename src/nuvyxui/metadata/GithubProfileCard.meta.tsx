@@ -3,44 +3,48 @@ import type { ComponentData } from "@/nuvyxui/ComponentInterfaces";
 import { GitHubProfileCard } from "../components/GithubProfileCard";
 import GitHubProfileCardDemo from "../demos/GithubProfileCardDemo";
 
-import GithubProfileCardSource from '!!raw-loader!@/nuvyxui/components/GithubProfileCard.tsx';
-import GithubProfileCardDemoSource from '!!raw-loader!@/nuvyxui/demos/GithubProfileCardDemo.tsx';
+import GithubProfileCardSource from "!!raw-loader!@/nuvyxui/components/GithubProfileCard.tsx";
+import GithubProfileCardDemoSource from "!!raw-loader!@/nuvyxui/demos/GithubProfileCardDemo.tsx";
 
 export const githubProfileCardData: ComponentData = {
   name: "GitHub Profile Card",
-  description: "Beautiful GitHub profile cards with customizable themes, activity graphs, and real-time data fetching.",
+  description:
+    "Beautiful GitHub profile cards with customizable themes, activity graphs, and real-time data fetching.",
   preview: <GitHubProfileCardDemo />,
   usage: GithubProfileCardDemoSource,
   componentCode: GithubProfileCardSource,
-  dependencies: [{
-    name: "UI Components",
-    description: "Various UI components from the shadcn/ui library",
-    install: {
-      npm: "npx shadcn@latest init",
-      pnpm: "pnpm dlx shadcn@latest init",
-      yarn: "npx shadcn@latest init",
-      bun: "bunx --bun shadcn@latest init",
+  dependencies: [
+    {
+      name: "UI Components",
+      description: "Various UI components from the shadcn/ui library",
+      install: {
+        npm: "npx shadcn@latest init",
+        pnpm: "pnpm dlx shadcn@latest init",
+        yarn: "npx shadcn@latest init",
+        bun: "bunx --bun shadcn@latest init",
+      },
     },
-  }, {
-    name: "Utility Functions",
-    description: "Utility functions for conditional class name merging.",
-    install: {
-      npm: "npm install clsx tailwind-merge",
-      pnpm: "pnpm add clsx tailwind-merge",
-      yarn: "yarn add clsx tailwind-merge",
-      bun: "bun add clsx tailwind-merge",
-    },
-    setup: {
-      description: "Create a utils.ts file with the cn utility function",
-      file: "/lib/utils.ts",
-      code: `import { clsx, type ClassValue } from "clsx";
+    {
+      name: "Utility Functions",
+      description: "Utility functions for conditional class name merging.",
+      install: {
+        npm: "npm install clsx tailwind-merge",
+        pnpm: "pnpm add clsx tailwind-merge",
+        yarn: "yarn add clsx tailwind-merge",
+        bun: "bun add clsx tailwind-merge",
+      },
+      setup: {
+        description: "Create a utils.ts file with the cn utility function",
+        file: "/lib/utils.ts",
+        code: `import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
 }`,
+      },
     },
-  }],
+  ],
   props: [
     {
       name: "GitHub Profile Card",
@@ -49,31 +53,36 @@ export function cn(...inputs: ClassValue[]) {
           name: "username",
           type: "string",
           default: "undefined",
-          description: "GitHub username to fetch profile data for. Required when not using manualMode.",
+          description:
+            "GitHub username to fetch profile data for. Required when not using manualMode.",
         },
         {
           name: "githubToken",
           type: "string",
           default: "undefined",
-          description: "Optional GitHub API token for increased rate limits (unauthenticated: 60/hr, authenticated: 5,000/hr). Store securely using environment variables.",
+          description:
+            "Optional GitHub API token for increased rate limits (unauthenticated: 60/hr, authenticated: 5,000/hr). Store securely using environment variables.",
         },
         {
           name: "manualMode",
           type: "boolean",
           default: "false",
-          description: "When true, uses provided profileData instead of fetching from GitHub API. Useful for avoiding rate limits or displaying custom profile data.",
+          description:
+            "When true, uses provided profileData instead of fetching from GitHub API. Useful for avoiding rate limits or displaying custom profile data.",
         },
         {
           name: "profileData",
           type: "ManualProfileData",
           default: "undefined",
-          description: "Profile data object for manual mode. Required when manualMode is true. Includes fields for username, name, followers, etc.",
+          description:
+            "Profile data object for manual mode. Required when manualMode is true. Includes fields for username, name, followers, etc.",
         },
         {
           name: "themeId",
           type: "string",
           default: "github-light",
-          description: "Visual theme for the card. Options: github-light, github-dark, ocean, forest, sunset, nuvyx. Some themes support automatic light/dark mode switching.",
+          description:
+            "Visual theme for the card. Options: github-light, github-dark, ocean, forest, sunset, nuvyx. Some themes support automatic light/dark mode switching.",
         },
       ],
     },
@@ -138,19 +147,22 @@ export function cn(...inputs: ClassValue[]) {
           name: "languages",
           type: "Array<{ name: string, color: string, percentage: number }>",
           default: "undefined",
-          description: "Array of most used programming languages with name, color, and usage percentage.",
+          description:
+            "Array of most used programming languages with name, color, and usage percentage.",
         },
         {
           name: "pinnedRepos",
           type: "Array<{ name: string, description?: string, language?: string, languageColor?: string, stars: number, forks: number }>",
           default: "undefined",
-          description: "Array of pinned or featured repositories with their details.",
+          description:
+            "Array of pinned or featured repositories with their details.",
         },
         {
           name: "contributionData",
           type: "Array<number>",
           default: "undefined",
-          description: "Array of 12 normalized values (0-1) representing GitHub contribution activity for the graph display.",
+          description:
+            "Array of 12 normalized values (0-1) representing GitHub contribution activity for the graph display.",
         },
       ],
     },
@@ -160,7 +172,7 @@ export function cn(...inputs: ClassValue[]) {
     {
       name: "GitHub Light Theme Profile Card",
       preview: (
-        <GitHubProfileCard 
+        <GitHubProfileCard
           manualMode={true}
           themeId="github-light"
           profileData={{
@@ -176,7 +188,7 @@ export function cn(...inputs: ClassValue[]) {
             languages: [
               { name: "JavaScript", color: "#f1e05a", percentage: 45 },
               { name: "TypeScript", color: "#3178c6", percentage: 35 },
-              { name: "CSS", color: "#563d7c", percentage: 20 }
+              { name: "CSS", color: "#563d7c", percentage: 20 },
             ],
             pinnedRepos: [
               {
@@ -185,7 +197,7 @@ export function cn(...inputs: ClassValue[]) {
                 language: "TypeScript",
                 languageColor: "#3178c6",
                 stars: 560,
-                forks: 120
+                forks: 120,
               },
               {
                 name: "tailwind-components",
@@ -193,10 +205,12 @@ export function cn(...inputs: ClassValue[]) {
                 language: "JavaScript",
                 languageColor: "#f1e05a",
                 stars: 340,
-                forks: 85
-              }
+                forks: 85,
+              },
             ],
-            contributionData: [0.3, 0.5, 0.8, 0.6, 0.9, 1.0, 0.7, 0.5, 0.6, 0.8, 0.7, 0.9]
+            contributionData: [
+              0.3, 0.5, 0.8, 0.6, 0.9, 1.0, 0.7, 0.5, 0.6, 0.8, 0.7, 0.9,
+            ],
           }}
         />
       ),
@@ -215,7 +229,7 @@ export function GitHubProfileCardExample() {
     {
       name: "GitHub Dark Theme Profile Card",
       preview: (
-        <GitHubProfileCard 
+        <GitHubProfileCard
           manualMode={true}
           themeId="github-dark"
           profileData={{
@@ -231,7 +245,7 @@ export function GitHubProfileCardExample() {
             languages: [
               { name: "TypeScript", color: "#3178c6", percentage: 50 },
               { name: "Go", color: "#00ADD8", percentage: 30 },
-              { name: "Python", color: "#3572A5", percentage: 20 }
+              { name: "Python", color: "#3572A5", percentage: 20 },
             ],
             pinnedRepos: [
               {
@@ -240,7 +254,7 @@ export function GitHubProfileCardExample() {
                 language: "Go",
                 languageColor: "#00ADD8",
                 stars: 780,
-                forks: 230
+                forks: 230,
               },
               {
                 name: "node-api-toolkit",
@@ -248,10 +262,12 @@ export function GitHubProfileCardExample() {
                 language: "TypeScript",
                 languageColor: "#3178c6",
                 stars: 520,
-                forks: 140
-              }
+                forks: 140,
+              },
             ],
-            contributionData: [0.4, 0.6, 0.8, 1.0, 0.9, 0.7, 0.8, 0.9, 0.9, 0.8, 0.7, 0.9]
+            contributionData: [
+              0.4, 0.6, 0.8, 1.0, 0.9, 0.7, 0.8, 0.9, 0.9, 0.8, 0.7, 0.9,
+            ],
           }}
         />
       ),
@@ -270,7 +286,7 @@ export function GitHubProfileCardDarkExample() {
     {
       name: "Ocean Theme Profile Card",
       preview: (
-        <GitHubProfileCard 
+        <GitHubProfileCard
           manualMode={true}
           themeId="ocean"
           profileData={{
@@ -286,7 +302,7 @@ export function GitHubProfileCardDarkExample() {
             languages: [
               { name: "JavaScript", color: "#f1e05a", percentage: 40 },
               { name: "TypeScript", color: "#3178c6", percentage: 35 },
-              { name: "Python", color: "#3572A5", percentage: 25 }
+              { name: "Python", color: "#3572A5", percentage: 25 },
             ],
             pinnedRepos: [
               {
@@ -295,7 +311,7 @@ export function GitHubProfileCardDarkExample() {
                 language: "TypeScript",
                 languageColor: "#3178c6",
                 stars: 450,
-                forks: 120
+                forks: 120,
               },
               {
                 name: "express-api-boilerplate",
@@ -303,10 +319,12 @@ export function GitHubProfileCardDarkExample() {
                 language: "JavaScript",
                 languageColor: "#f1e05a",
                 stars: 320,
-                forks: 95
-              }
+                forks: 95,
+              },
             ],
-            contributionData: [0.5, 0.6, 0.4, 0.5, 0.7, 0.8, 0.9, 1.0, 0.8, 0.6, 0.7, 0.8]
+            contributionData: [
+              0.5, 0.6, 0.4, 0.5, 0.7, 0.8, 0.9, 1.0, 0.8, 0.6, 0.7, 0.8,
+            ],
           }}
         />
       ),
@@ -325,7 +343,7 @@ export function GitHubProfileCardOceanExample() {
     {
       name: "Forest Theme Profile Card",
       preview: (
-        <GitHubProfileCard 
+        <GitHubProfileCard
           manualMode={true}
           themeId="forest"
           profileData={{
@@ -341,7 +359,7 @@ export function GitHubProfileCardOceanExample() {
             languages: [
               { name: "Java", color: "#b07219", percentage: 45 },
               { name: "Kotlin", color: "#A97BFF", percentage: 30 },
-              { name: "Rust", color: "#dea584", percentage: 25 }
+              { name: "Rust", color: "#dea584", percentage: 25 },
             ],
             pinnedRepos: [
               {
@@ -350,7 +368,7 @@ export function GitHubProfileCardOceanExample() {
                 language: "Java",
                 languageColor: "#b07219",
                 stars: 680,
-                forks: 230
+                forks: 230,
               },
               {
                 name: "kotlin-coroutines-demo",
@@ -358,10 +376,12 @@ export function GitHubProfileCardOceanExample() {
                 language: "Kotlin",
                 languageColor: "#A97BFF",
                 stars: 420,
-                forks: 85
-              }
+                forks: 85,
+              },
             ],
-            contributionData: [0.7, 0.6, 0.8, 0.9, 1.0, 0.8, 0.9, 0.7, 0.8, 0.9, 0.8, 0.7]
+            contributionData: [
+              0.7, 0.6, 0.8, 0.9, 1.0, 0.8, 0.9, 0.7, 0.8, 0.9, 0.8, 0.7,
+            ],
           }}
         />
       ),
@@ -380,7 +400,7 @@ export function GitHubProfileCardForestExample() {
     {
       name: "Sunset Theme Profile Card",
       preview: (
-        <GitHubProfileCard 
+        <GitHubProfileCard
           manualMode={true}
           themeId="sunset"
           profileData={{
@@ -396,7 +416,7 @@ export function GitHubProfileCardForestExample() {
             languages: [
               { name: "TypeScript", color: "#3178c6", percentage: 40 },
               { name: "CSS", color: "#563d7c", percentage: 35 },
-              { name: "HTML", color: "#e34c26", percentage: 25 }
+              { name: "HTML", color: "#e34c26", percentage: 25 },
             ],
             pinnedRepos: [
               {
@@ -405,7 +425,7 @@ export function GitHubProfileCardForestExample() {
                 language: "TypeScript",
                 languageColor: "#3178c6",
                 stars: 390,
-                forks: 75
+                forks: 75,
               },
               {
                 name: "css-animations",
@@ -413,10 +433,12 @@ export function GitHubProfileCardForestExample() {
                 language: "CSS",
                 languageColor: "#563d7c",
                 stars: 260,
-                forks: 65
-              }
+                forks: 65,
+              },
             ],
-            contributionData: [0.3, 0.4, 0.6, 0.8, 0.7, 0.5, 0.6, 0.8, 0.9, 1.0, 0.9, 0.8]
+            contributionData: [
+              0.3, 0.4, 0.6, 0.8, 0.7, 0.5, 0.6, 0.8, 0.9, 1.0, 0.9, 0.8,
+            ],
           }}
         />
       ),
@@ -435,7 +457,7 @@ export function GitHubProfileCardSunsetExample() {
     {
       name: "nuvyx Theme Profile Card",
       preview: (
-        <GitHubProfileCard 
+        <GitHubProfileCard
           manualMode={true}
           themeId="nuvyx"
           profileData={{
@@ -451,16 +473,17 @@ export function GitHubProfileCardSunsetExample() {
             languages: [
               { name: "Python", color: "#3572A5", percentage: 45 },
               { name: "Go", color: "#00ADD8", percentage: 30 },
-              { name: "Shell", color: "#89e051", percentage: 25 }
+              { name: "Shell", color: "#89e051", percentage: 25 },
             ],
             pinnedRepos: [
               {
                 name: "terraform-patterns",
-                description: "Common Terraform patterns for cloud infrastructure",
+                description:
+                  "Common Terraform patterns for cloud infrastructure",
                 language: "Go",
                 languageColor: "#00ADD8",
                 stars: 540,
-                forks: 175
+                forks: 175,
               },
               {
                 name: "kubernetes-toolkit",
@@ -468,10 +491,12 @@ export function GitHubProfileCardSunsetExample() {
                 language: "Python",
                 languageColor: "#3572A5",
                 stars: 490,
-                forks: 130
-              }
+                forks: 130,
+              },
             ],
-            contributionData: [0.4, 0.5, 0.6, 0.8, 0.7, 0.9, 1.0, 0.9, 0.8, 0.7, 0.9, 1.0]
+            contributionData: [
+              0.4, 0.5, 0.6, 0.8, 0.7, 0.9, 1.0, 0.9, 0.8, 0.7, 0.9, 1.0,
+            ],
           }}
         />
       ),

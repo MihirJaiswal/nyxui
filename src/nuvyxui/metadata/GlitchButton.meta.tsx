@@ -1,10 +1,17 @@
-import type { ComponentData } from "@/nuvyxui/ComponentInterfaces"
-import { GlitchButtonDemo } from "@/nuvyxui/demos/GlitchButtonDemo"
-import { GlitchButton } from "@/nuvyxui/components/GlitchButton"
-import { ArrowRight, Download, Info, Mail, Power, ShieldCheck } from "lucide-react"
+import type { ComponentData } from "@/nuvyxui/ComponentInterfaces";
+import { GlitchButtonDemo } from "@/nuvyxui/demos/GlitchButtonDemo";
+import { GlitchButton } from "@/nuvyxui/components/GlitchButton";
+import {
+  ArrowRight,
+  Download,
+  Info,
+  Mail,
+  Power,
+  ShieldCheck,
+} from "lucide-react";
 
-import GlitchButtonSource from '!!raw-loader!@/nuvyxui/components/GlitchButton.tsx';
-import GlitchButtonDemoSource from '!!raw-loader!@/nuvyxui/demos/GlitchButtonDemo.tsx';
+import GlitchButtonSource from "!!raw-loader!@/nuvyxui/components/GlitchButton.tsx";
+import GlitchButtonDemoSource from "!!raw-loader!@/nuvyxui/demos/GlitchButtonDemo.tsx";
 
 export const glitchButtonData: ComponentData = {
   name: "Glitch Button",
@@ -25,7 +32,7 @@ export const glitchButtonData: ComponentData = {
       },
     },
   ],
-  
+
   props: [
     {
       name: "Glitch Button",
@@ -48,8 +55,7 @@ export const glitchButtonData: ComponentData = {
           name: "borderColor",
           type: "string",
           default: '"white"',
-          description:
-            "Custom border color for the glitch effect.",
+          description: "Custom border color for the glitch effect.",
         },
         {
           name: "glitchAlways",
@@ -76,29 +82,24 @@ export const glitchButtonData: ComponentData = {
           name: "onClick",
           type: "function",
           default: "undefined",
-          description:
-            "Function to call when the button is clicked.",
+          description: "Function to call when the button is clicked.",
         },
         {
           name: "children",
           type: "React.ReactNode",
           default: "undefined",
-          description:
-            "Content of the button.",
+          description: "Content of the button.",
         },
       ],
     },
   ],
-  
+
   category: "Buttons",
   examples: [
     {
       name: "Default Cyberpunk Style",
       preview: (
-        <GlitchButton 
-          glitchIntensity="medium" 
-          glitchOnHover={true}
-        >
+        <GlitchButton glitchIntensity="medium" glitchOnHover={true}>
           SYSTEM ACCESS
         </GlitchButton>
       ),
@@ -119,11 +120,11 @@ export function DefaultGlitchButton() {
     {
       name: "Continuous Glitch Effect",
       preview: (
-        <GlitchButton 
-          glitchIntensity="low" 
-          glitchAlways={true}
-        >
-          <div className="flex items-center"><Power className="mr-2 h-5 w-5" /><span>SYSTEM ACTIVE</span></div>
+        <GlitchButton glitchIntensity="low" glitchAlways={true}>
+          <div className="flex items-center">
+            <Power className="mr-2 h-5 w-5" />
+            <span>SYSTEM ACTIVE</span>
+          </div>
         </GlitchButton>
       ),
       filename: "AlwaysGlitchButton.tsx",
@@ -144,12 +145,15 @@ export function AlwaysGlitchButton() {
     {
       name: "High Intensity Download Button",
       preview: (
-        <GlitchButton 
-          glitchIntensity="high" 
+        <GlitchButton
+          glitchIntensity="high"
           glitchOnHover={true}
           className="bg-black text-green-400 rounded-md"
         >
-          <div className="flex items-center"><Download className="mr-2 h-5 w-5" /><span>DOWNLOAD</span></div>
+          <div className="flex items-center">
+            <Download className="mr-2 h-5 w-5" />
+            <span>DOWNLOAD</span>
+          </div>
         </GlitchButton>
       ),
       filename: "HighIntensityButton.tsx",
@@ -171,16 +175,19 @@ export function HighIntensityButton() {
     {
       name: "Custom Colors Warning Button",
       preview: (
-        <GlitchButton 
-          glitchIntensity="medium" 
+        <GlitchButton
+          glitchIntensity="medium"
           glitchOnHover={true}
           glitchColors={{
-            primary: '#ff3e00',
-            secondary: '#ffcc00'
+            primary: "#ff3e00",
+            secondary: "#ffcc00",
           }}
           className="bg-red-900 text-yellow-300 rounded-lg"
         >
-          <div className="flex items-center"><ShieldCheck className="mr-2 h-5 w-5" /><span>WARNING</span></div>
+          <div className="flex items-center">
+            <ShieldCheck className="mr-2 h-5 w-5" />
+            <span>WARNING</span>
+          </div>
         </GlitchButton>
       ),
       filename: "WarningGlitchButton.tsx",
@@ -206,16 +213,19 @@ export function WarningGlitchButton() {
     {
       name: "Neon Blue Subscribe Button",
       preview: (
-        <GlitchButton 
-          glitchIntensity="medium" 
+        <GlitchButton
+          glitchIntensity="medium"
           glitchOnHover={true}
           glitchColors={{
-            primary: '#00aaff',
-            secondary: '#0044ff'
+            primary: "#00aaff",
+            secondary: "#0044ff",
           }}
           className="bg-blue-950 text-blue-300"
         >
-          <div className="flex items-center"><Mail className="mr-2 h-5 w-5" /><span>SUBSCRIBE</span></div>
+          <div className="flex items-center">
+            <Mail className="mr-2 h-5 w-5" />
+            <span>SUBSCRIBE</span>
+          </div>
         </GlitchButton>
       ),
       filename: "NeonBlueButton.tsx",
@@ -241,7 +251,7 @@ export function NeonBlueButton() {
     {
       name: "Call To Action Button",
       preview: (
-        <GlitchButton 
+        <GlitchButton
           glitchIntensity="high"
           glitchOnHover={true}
           className="bg-slate-900 text-white text-xl"
@@ -274,16 +284,19 @@ export function CTAGlitchButton() {
     {
       name: "Info Button with Subtle Glitch",
       preview: (
-        <GlitchButton 
+        <GlitchButton
           glitchIntensity="low"
           glitchOnHover={true}
           glitchColors={{
-            primary: '#5500ff',
-            secondary: '#00ddff'
+            primary: "#5500ff",
+            secondary: "#00ddff",
           }}
           className="bg-indigo-800 text-indigo-100 rounded-lg"
         >
-          <div className="flex items-center"><Info className="mr-2 h-5 w-5" /><span>MORE INFO</span></div>
+          <div className="flex items-center">
+            <Info className="mr-2 h-5 w-5" />
+            <span>MORE INFO</span>
+          </div>
         </GlitchButton>
       ),
       filename: "InfoGlitchButton.tsx",
@@ -306,5 +319,5 @@ export function InfoGlitchButton() {
   );
 }`,
     },
-  ]
-}
+  ],
+};

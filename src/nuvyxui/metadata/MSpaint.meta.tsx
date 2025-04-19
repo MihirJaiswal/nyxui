@@ -1,8 +1,8 @@
-import type { ComponentData } from "@/nuvyxui/ComponentInterfaces"
-import MSpaintDemo from "@/nuvyxui/demos/MSpaintDemo"
+import type { ComponentData } from "@/nuvyxui/ComponentInterfaces";
+import MSpaintDemo from "@/nuvyxui/demos/MSpaintDemo";
 
-import MSpaintSource from '!!raw-loader!@/nuvyxui/components/MSpaint.tsx';
-import MSpaintDemoSource from '!!raw-loader!@/nuvyxui/demos/MSpaintDemo.tsx';
+import MSpaintSource from "!!raw-loader!@/nuvyxui/components/MSpaint.tsx";
+import MSpaintDemoSource from "!!raw-loader!@/nuvyxui/demos/MSpaintDemo.tsx";
 
 export const mspaintData: ComponentData = {
   name: "MS Paint",
@@ -19,9 +19,9 @@ export const mspaintData: ComponentData = {
         npm: "npm install lucide-react",
         yarn: "yarn add lucide-react",
         pnpm: "pnpm install lucide-react",
-        bun: "bun install lucide-react"
-      }
-    }
+        bun: "bun install lucide-react",
+      },
+    },
   ],
   props: [
     {
@@ -49,13 +49,15 @@ export const mspaintData: ComponentData = {
           name: "canvasWidth",
           type: "number",
           default: "2000",
-          description: "Width of the actual canvas element (determines draw area)",
+          description:
+            "Width of the actual canvas element (determines draw area)",
         },
         {
           name: "canvasHeight",
           type: "number",
           default: "2000",
-          description: "Height of the actual canvas element (determines draw area)",
+          description:
+            "Height of the actual canvas element (determines draw area)",
         },
         {
           name: "colorPalette",
@@ -67,7 +69,8 @@ export const mspaintData: ComponentData = {
           name: "showWindowControls",
           type: "boolean",
           default: "true",
-          description: "Whether to show the window-like controls (minimize, maximize, close)",
+          description:
+            "Whether to show the window-like controls (minimize, maximize, close)",
         },
         {
           name: "title",
@@ -85,7 +88,8 @@ export const mspaintData: ComponentData = {
           name: "statusMessage",
           type: "string",
           default: "'For Help, click Help Topics on the Help Menu.'",
-          description: "Status message displayed at the bottom of the component",
+          description:
+            "Status message displayed at the bottom of the component",
         },
         {
           name: "draggable",
@@ -151,4 +155,4 @@ export const mspaintData: ComponentData = {
   ],
   category: "Interactive tools",
   examples: [],
-}
+};

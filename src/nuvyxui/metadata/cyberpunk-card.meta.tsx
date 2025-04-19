@@ -4,8 +4,8 @@ import { CyberpunkCard } from "@/nuvyxui/components/CyberpunkCard";
 import { CyberpunkCardDemo } from "@/nuvyxui/demos/CyberpunkCardDemo";
 import { Cpu, Database, Shield, Terminal, Wifi, Zap } from "lucide-react";
 
-import CyberpunkCardSource from '!!raw-loader!@/nuvyxui/components/CyberpunkCard.tsx';
-import CyberpunkCardDemoSource from '!!raw-loader!@/nuvyxui/demos/CyberpunkCardDemo.tsx';
+import CyberpunkCardSource from "!!raw-loader!@/nuvyxui/components/CyberpunkCard.tsx";
+import CyberpunkCardDemoSource from "!!raw-loader!@/nuvyxui/demos/CyberpunkCardDemo.tsx";
 
 export const cyberpunkCardData: ComponentData = {
   name: "Cyberpunk Card",
@@ -65,15 +65,13 @@ export function cn(...inputs: ClassValue[]) {
           name: "colorShift",
           type: "boolean",
           default: "true",
-          description:
-            "Whether to enable the color shift effect.",
+          description: "Whether to enable the color shift effect.",
         },
         {
           name: "lightTrail",
           type: "boolean",
           default: "true",
-          description:
-            "Whether to enable the light trail effect.",
+          description: "Whether to enable the light trail effect.",
         },
         {
           name: "rounded",
@@ -86,36 +84,32 @@ export function cn(...inputs: ClassValue[]) {
           name: "glow",
           type: "boolean",
           default: "true",
-          description:
-            "Whether to show a glow effect.",
+          description: "Whether to show a glow effect.",
         },
         {
           name: "glowIntensity",
           type: "number",
           default: "3",
-          description:
-            "The intensity of the glow effect (1-5).",
+          description: "The intensity of the glow effect (1-5).",
         },
         {
           name: "className",
           type: "string",
           default: '""',
-          description:
-            "Additional CSS classes to apply.",
+          description: "Additional CSS classes to apply.",
         },
         {
           name: "children",
           type: "React.ReactNode",
           default: "undefined",
-          description:
-            "Content of the card.",
+          description: "Content of the card.",
         },
       ],
     },
   ],
-  
+
   category: "Cards",
-  examples : [
+  examples: [
     {
       name: "Neon Blue Neural Interface",
       preview: (
@@ -123,9 +117,14 @@ export function cn(...inputs: ClassValue[]) {
           <div className="space-y-3">
             <div className="flex items-center gap-2">
               <Cpu className="w-6 h-6" />
-              <h3 className="text-xl font-bold tracking-wider">NEURAL INTERFACE</h3>
+              <h3 className="text-xl font-bold tracking-wider">
+                NEURAL INTERFACE
+              </h3>
             </div>
-            <p className="text-sm opacity-80">Advanced cybernetic enhancement system with direct neural pathway integration</p>
+            <p className="text-sm opacity-80">
+              Advanced cybernetic enhancement system with direct neural pathway
+              integration
+            </p>
             <div className="flex justify-between items-center mt-4 text-xs">
               <span className="px-2 py-1 bg-blue-600/30 rounded">v4.2.1</span>
               <span className="font-mono">CERTIFIED</span>
@@ -162,9 +161,14 @@ export function cn(...inputs: ClassValue[]) {
           <div className="space-y-3">
             <div className="flex items-center gap-2">
               <Shield className="w-6 h-6" />
-              <h3 className="text-xl font-bold tracking-wider">COMBAT SYSTEM</h3>
+              <h3 className="text-xl font-bold tracking-wider">
+                COMBAT SYSTEM
+              </h3>
             </div>
-            <p className="text-sm opacity-80">Military-grade tactical enhancement with reactive armor and weapon synchronization</p>
+            <p className="text-sm opacity-80">
+              Military-grade tactical enhancement with reactive armor and weapon
+              synchronization
+            </p>
             <div className="grid grid-cols-3 gap-2 mt-3">
               <div className="text-center p-1 bg-pink-600/20 rounded text-xs">
                 <div className="font-bold">ATK</div>
@@ -227,9 +231,14 @@ export function cn(...inputs: ClassValue[]) {
           <div className="space-y-3">
             <div className="flex items-center gap-2">
               <Zap className="w-6 h-6" />
-              <h3 className="text-xl font-bold tracking-wider">STEALTH SYSTEM</h3>
+              <h3 className="text-xl font-bold tracking-wider">
+                STEALTH SYSTEM
+              </h3>
             </div>
-            <p className="text-sm opacity-80">Optical camouflage technology with thermal dampening and sound suppression</p>
+            <p className="text-sm opacity-80">
+              Optical camouflage technology with thermal dampening and sound
+              suppression
+            </p>
             <div className="w-full bg-green-900/30 rounded-full h-2 mt-4">
               <div className="bg-green-400 h-2 rounded-full w-4/5"></div>
             </div>
@@ -276,13 +285,22 @@ export function cn(...inputs: ClassValue[]) {
     {
       name: "Neon Purple Hacking Suite",
       preview: (
-        <CyberpunkCard theme="neon-purple" borderStyle="dashed" glowIntensity={5}>
+        <CyberpunkCard
+          theme="neon-purple"
+          borderStyle="dashed"
+          glowIntensity={5}
+        >
           <div className="space-y-3">
             <div className="flex items-center gap-2">
               <Terminal className="w-6 h-6" />
-              <h3 className="text-xl font-bold tracking-wider">HACKING SUITE</h3>
+              <h3 className="text-xl font-bold tracking-wider">
+                HACKING SUITE
+              </h3>
             </div>
-            <p className="text-sm opacity-80">Advanced intrusion tools with ICE-breaking capabilities and self-modifying algorithms</p>
+            <p className="text-sm opacity-80">
+              Advanced intrusion tools with ICE-breaking capabilities and
+              self-modifying algorithms
+            </p>
             <div className="grid grid-cols-2 gap-2 mt-3">
               <div className="bg-purple-600/20 p-2 rounded text-xs">
                 <div className="font-mono text-purple-300">ACTIVE MODULES:</div>
@@ -339,13 +357,20 @@ export function cn(...inputs: ClassValue[]) {
     {
       name: "Neon Orange NetworkHub",
       preview: (
-        <CyberpunkCard theme="neon-orange" rounded="lg" glow={true} glowIntensity={3}>
+        <CyberpunkCard
+          theme="neon-orange"
+          rounded="lg"
+          glow={true}
+          glowIntensity={3}
+        >
           <div className="space-y-3">
             <div className="flex items-center gap-2">
               <Wifi className="w-6 h-6" />
               <h3 className="text-xl font-bold tracking-wider">NETWORK HUB</h3>
             </div>
-            <p className="text-sm opacity-80">Distributed mesh network controller with quantum encryption</p>
+            <p className="text-sm opacity-80">
+              Distributed mesh network controller with quantum encryption
+            </p>
             <div className="flex flex-wrap gap-2 mt-3">
               <div className="px-2 py-1 bg-orange-600/30 rounded-full text-xs flex items-center gap-1">
                 <span className="w-2 h-2 bg-orange-300 rounded-full"></span>
@@ -406,12 +431,12 @@ export function cn(...inputs: ClassValue[]) {
     {
       name: "Custom Storage Card",
       preview: (
-        <CyberpunkCard 
-          theme="custom" 
+        <CyberpunkCard
+          theme="custom"
           customColors={{
             primary: "#2D3748",
             secondary: "#1A202C",
-            accent: "#38B2AC"
+            accent: "#38B2AC",
           }}
           borderStyle="corners"
           colorShift={true}
@@ -423,9 +448,13 @@ export function cn(...inputs: ClassValue[]) {
           <div className="space-y-3">
             <div className="flex items-center gap-2">
               <Database className="w-6 h-6 text-black dark:text-white" />
-              <h3 className="text-xl font-bold tracking-wider text-black dark:text-white">MEMORY VAULT</h3>
+              <h3 className="text-xl font-bold tracking-wider text-black dark:text-white">
+                MEMORY VAULT
+              </h3>
             </div>
-            <p className="text-sm opacity-80 text-black dark:text-white">Secure quantum storage solution with 8PB capacity</p>
+            <p className="text-sm opacity-80 text-black dark:text-white">
+              Secure quantum storage solution with 8PB capacity
+            </p>
             <div className="w-full bg-gray-700/50 rounded-full h-2 mt-4">
               <div className="bg-teal-400 h-2 rounded-full w-3/5"></div>
             </div>
@@ -436,7 +465,9 @@ export function cn(...inputs: ClassValue[]) {
             <div className="mt-3 p-2 bg-gray-700/30 rounded text-xs text-black dark:text-white">
               <div className="font-bold mb-1">RECENT ARCHIVES:</div>
               <div className="truncate">• Neural Backup [2025-03-28]</div>
-              <div className="truncate">• Memory Fragment #37A2 [2025-03-31]</div>
+              <div className="truncate">
+                • Memory Fragment #37A2 [2025-03-31]
+              </div>
             </div>
           </div>
         </CyberpunkCard>
@@ -484,5 +515,5 @@ export function cn(...inputs: ClassValue[]) {
     );
   }`,
     },
-  ]
+  ],
 };

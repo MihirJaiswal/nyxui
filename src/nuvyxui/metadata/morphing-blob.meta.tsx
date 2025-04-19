@@ -1,10 +1,10 @@
-import type { ComponentData } from "@/nuvyxui/ComponentInterfaces"
-import { MorphingBlob } from "@/nuvyxui/components/MorphingBlob"
-import { MorphingBlobDemo } from "@/nuvyxui/demos/MorphingBlobDemo"
-import { Atom, Brain, Rocket, Shield, Star, Zap } from "lucide-react"
+import type { ComponentData } from "@/nuvyxui/ComponentInterfaces";
+import { MorphingBlob } from "@/nuvyxui/components/MorphingBlob";
+import { MorphingBlobDemo } from "@/nuvyxui/demos/MorphingBlobDemo";
+import { Atom, Brain, Rocket, Shield, Star, Zap } from "lucide-react";
 
-import MorphingBlobSource from '!!raw-loader!@/nuvyxui/components/MorphingBlob.tsx';
-import MorphingBlobDemoSource from '!!raw-loader!@/nuvyxui/demos/MorphingBlobDemo.tsx';
+import MorphingBlobSource from "!!raw-loader!@/nuvyxui/components/MorphingBlob.tsx";
+import MorphingBlobDemoSource from "!!raw-loader!@/nuvyxui/demos/MorphingBlobDemo.tsx";
 
 export const morphingBlobData: ComponentData = {
   name: "Morphing Blob",
@@ -32,8 +32,8 @@ import { twMerge } from "tailwind-merge";
   export function cn(...inputs: ClassValue[]) {
       return twMerge(clsx(inputs));
   }`,
-        },
       },
+    },
   ],
   props: [
     {
@@ -131,23 +131,22 @@ import { twMerge } from "tailwind-merge";
           name: "children",
           type: "React.ReactNode",
           default: "undefined",
-          description:
-            "Content to be rendered inside the blob component.",
+          description: "Content to be rendered inside the blob component.",
         },
       ],
     },
   ],
-  
+
   category: "Effects",
   examples: [
     {
       name: "Hero Blob",
       preview: (
-        <MorphingBlob 
-          theme="primary" 
-          size="lg" 
-          complexity={4} 
-          speed={3} 
+        <MorphingBlob
+          theme="primary"
+          size="lg"
+          complexity={4}
+          speed={3}
           glowIntensity={4}
           effect3D={true}
         >
@@ -188,10 +187,10 @@ import { twMerge } from "tailwind-merge";
     {
       name: "Interactive Icon",
       preview: (
-        <MorphingBlob 
-          theme="secondary" 
-          size="md" 
-          complexity={3} 
+        <MorphingBlob
+          theme="secondary"
+          size="md"
+          complexity={3}
           speed={4}
           hoverEffect={true}
           clickEffect={true}
@@ -223,10 +222,10 @@ import { twMerge } from "tailwind-merge";
     {
       name: "Pulsing Feature Card",
       preview: (
-        <MorphingBlob 
-          theme="success" 
-          size="lg" 
-          pulse 
+        <MorphingBlob
+          theme="success"
+          size="lg"
+          pulse
           glowIntensity={4}
           effect3D={true}
         >
@@ -266,8 +265,8 @@ import { twMerge } from "tailwind-merge";
     {
       name: "Vibrant Gradient",
       preview: (
-        <MorphingBlob 
-          theme="custom" 
+        <MorphingBlob
+          theme="custom"
           customColors={{
             from: "#8A2387",
             via: "#E94057",
@@ -319,9 +318,9 @@ import { twMerge } from "tailwind-merge";
     {
       name: "3D Effect Blob",
       preview: (
-        <MorphingBlob 
-          theme="warning" 
-          size="lg" 
+        <MorphingBlob
+          theme="warning"
+          size="lg"
           complexity={4}
           speed={3}
           glowIntensity={4}
@@ -364,8 +363,8 @@ import { twMerge } from "tailwind-merge";
     {
       name: "App Button",
       preview: (
-        <MorphingBlob 
-          theme="accent" 
+        <MorphingBlob
+          theme="accent"
           size="md"
           complexity={3}
           speed={2}
@@ -401,5 +400,4 @@ import { twMerge } from "tailwind-merge";
   }`,
     },
   ],
-}
-
+};

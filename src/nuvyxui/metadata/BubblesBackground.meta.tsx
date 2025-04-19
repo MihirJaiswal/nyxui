@@ -1,8 +1,8 @@
-import type { ComponentData } from "@/nuvyxui/ComponentInterfaces"
-import BubbleBackground from "@/nuvyxui/components/BubbleBackground"
-import {BubblesBackgroundDemo} from "@/nuvyxui/demos/BubblesBackgroundDemo"
-import BubbleBackgroundSource from '!!raw-loader!@/nuvyxui/components/BubbleBackground.tsx';
-import BubblesBackgroundDemoSource from '!!raw-loader!@/nuvyxui/demos/BubblesBackgroundDemo.tsx';
+import type { ComponentData } from "@/nuvyxui/ComponentInterfaces";
+import BubbleBackground from "@/nuvyxui/components/BubbleBackground";
+import { BubblesBackgroundDemo } from "@/nuvyxui/demos/BubblesBackgroundDemo";
+import BubbleBackgroundSource from "!!raw-loader!@/nuvyxui/components/BubbleBackground.tsx";
+import BubblesBackgroundDemoSource from "!!raw-loader!@/nuvyxui/demos/BubblesBackgroundDemo.tsx";
 
 export const bubbleBackgroundData: ComponentData = {
   name: "Bubbles Background",
@@ -14,7 +14,8 @@ export const bubbleBackgroundData: ComponentData = {
   dependencies: [
     {
       name: "Tailwind CSS",
-      description: "Utility-first CSS framework used for styling the component.",
+      description:
+        "Utility-first CSS framework used for styling the component.",
       install: {
         npm: "npm install tailwindcss postcss autoprefixer && npx tailwindcss init -p",
         pnpm: "pnpm add tailwindcss postcss autoprefixer && pnpx tailwindcss init -p",
@@ -60,7 +61,8 @@ export function cn(...inputs: ClassValue[]) {
             colorE: "180, 180, 50",
             interactive: "148, 100, 255"
           }`,
-          description: "RGB color values for different bubbles and the interactive bubble.",
+          description:
+            "RGB color values for different bubbles and the interactive bubble.",
         },
         {
           name: "blendMode",
@@ -77,7 +79,7 @@ export function cn(...inputs: ClassValue[]) {
       ],
     },
   ],
-  
+
   category: "Background",
   examples: [
     {
@@ -111,7 +113,7 @@ export function cn(...inputs: ClassValue[]) {
               colorC: "0, 180, 216",
               colorD: "144, 224, 239",
               colorE: "72, 149, 239",
-              interactive: "0, 119, 182"
+              interactive: "0, 119, 182",
             }}
           />
         </div>
@@ -151,7 +153,7 @@ export function cn(...inputs: ClassValue[]) {
               colorC: "255, 207, 115",
               colorD: "240, 169, 135",
               colorE: "251, 215, 134",
-              interactive: "242, 112, 89"
+              interactive: "242, 112, 89",
             }}
             blendMode="screen"
           />
@@ -193,7 +195,7 @@ export function cn(...inputs: ClassValue[]) {
               colorC: "255, 0, 255",
               colorD: "0, 255, 255",
               colorE: "255, 255, 0",
-              interactive: "0, 255, 0"
+              interactive: "0, 255, 0",
             }}
             blendMode="screen"
             bubbleSize="85%"
@@ -237,7 +239,7 @@ export function cn(...inputs: ClassValue[]) {
               colorC: "203, 249, 188",
               colorD: "244, 188, 249",
               colorE: "249, 236, 188",
-              interactive: "188, 249, 245"
+              interactive: "188, 249, 245",
             }}
             blendMode="multiply"
           />
@@ -270,7 +272,7 @@ export function cn(...inputs: ClassValue[]) {
       name: "With Custom Link",
       preview: (
         <div className="relative h-[400px] w-[1000px] overflow-hidden bg-transparent">
-          <BubbleBackground/>
+          <BubbleBackground />
         </div>
       ),
       filename: "BubbleBackgroundWithLink.tsx",
@@ -284,5 +286,5 @@ export function cn(...inputs: ClassValue[]) {
     );
   }`,
     },
-  ]
-}
+  ],
+};

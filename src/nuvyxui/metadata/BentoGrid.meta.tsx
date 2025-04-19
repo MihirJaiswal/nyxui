@@ -1,8 +1,8 @@
 import React from "react";
 import type { ComponentData } from "@/nuvyxui/ComponentInterfaces";
 import { BentoGridDemo } from "@/nuvyxui/demos/BentoGridDemo";
-import BentoGridSource from '!!raw-loader!@/nuvyxui/components/BentoGrid.tsx';
-import BentoGridDemoSource from '!!raw-loader!@/nuvyxui/demos/BentoGridDemo.tsx';
+import BentoGridSource from "!!raw-loader!@/nuvyxui/components/BentoGrid.tsx";
+import BentoGridDemoSource from "!!raw-loader!@/nuvyxui/demos/BentoGridDemo.tsx";
 
 export const bentoGridData: ComponentData = {
   name: "Bento Grid",
@@ -41,29 +41,25 @@ export const bentoGridData: ComponentData = {
           name: "dark",
           type: "boolean",
           default: "false",
-          description:
-            "Enables dark mode styling for the component.",
+          description: "Enables dark mode styling for the component.",
         },
         {
           name: "className",
           type: "string",
           default: '""',
-          description:
-            "Additional CSS classes to apply to the component.",
+          description: "Additional CSS classes to apply to the component.",
         },
         {
           name: "title",
           type: "React.ReactNode",
           default: '""',
-          description:
-            "Title content to be displayed in the component.",
+          description: "Title content to be displayed in the component.",
         },
         {
           name: "description",
           type: "React.ReactNode",
           default: '""',
-          description:
-            "Description text to be displayed in the component.",
+          description: "Description text to be displayed in the component.",
         },
         {
           name: "component",
@@ -90,15 +86,13 @@ export const bentoGridData: ComponentData = {
           name: "enableTitle",
           type: "boolean",
           default: "true",
-          description:
-            "Whether to display the title element.",
+          description: "Whether to display the title element.",
         },
         {
           name: "enableDescription",
           type: "boolean",
           default: "true",
-          description:
-            "Whether to display the description element.",
+          description: "Whether to display the description element.",
         },
         {
           name: "isFull",
@@ -110,7 +104,7 @@ export const bentoGridData: ComponentData = {
       ],
     },
   ],
-  
+
   category: "Layout",
-  examples: []
+  examples: [],
 };

@@ -1,8 +1,8 @@
-import type { ComponentData } from "@/nuvyxui/ComponentInterfaces"
-import CharacterSelectorDemo from "@/nuvyxui/demos/CharacterSelectorDemo"
+import type { ComponentData } from "@/nuvyxui/ComponentInterfaces";
+import CharacterSelectorDemo from "@/nuvyxui/demos/CharacterSelectorDemo";
 
-import CharacterSelectorSource from '!!raw-loader!@/nuvyxui/components/CharacterSelector.tsx';
-import CharacterSelectorDemoSource from '!!raw-loader!@/nuvyxui/demos/CharacterSelectorDemo.tsx';
+import CharacterSelectorSource from "!!raw-loader!@/nuvyxui/components/CharacterSelector.tsx";
+import CharacterSelectorDemoSource from "!!raw-loader!@/nuvyxui/demos/CharacterSelectorDemo.tsx";
 
 export const characterSelectorData: ComponentData = {
   name: "Character Selector",
@@ -30,7 +30,7 @@ export const characterSelectorData: ComponentData = {
         pnpm: "pnpm add framer-motion",
         yarn: "yarn add framer-motion",
         bun: "bun add framer-motion",
-      }
+      },
     },
     {
       name: "Lucide React",
@@ -43,25 +43,25 @@ export const characterSelectorData: ComponentData = {
       },
     },
     {
-        name: "Utility Functions",
-        description: "Utility functions for conditional class name merging.",
-        install: {
-          npm: "npm install clsx tailwind-merge",
-          pnpm: "pnpm add clsx tailwind-merge",
-          yarn: "yarn add clsx tailwind-merge",
-          bun: "bun add clsx tailwind-merge",
-        },
-        setup: {
-          description: "Create a utils.ts file with the cn utility function",
-          file: "/lib/utils.ts",
-          code: `import { clsx, type ClassValue } from "clsx";
+      name: "Utility Functions",
+      description: "Utility functions for conditional class name merging.",
+      install: {
+        npm: "npm install clsx tailwind-merge",
+        pnpm: "pnpm add clsx tailwind-merge",
+        yarn: "yarn add clsx tailwind-merge",
+        bun: "bun add clsx tailwind-merge",
+      },
+      setup: {
+        description: "Create a utils.ts file with the cn utility function",
+        file: "/lib/utils.ts",
+        code: `import { clsx, type ClassValue } from "clsx";
   import { twMerge } from "tailwind-merge";
   
     export function cn(...inputs: ClassValue[]) {
         return twMerge(clsx(inputs));
     }`,
-              },
-        },
+      },
+    },
   ],
   props: [
     {
@@ -83,7 +83,8 @@ export const characterSelectorData: ComponentData = {
           name: "characterImages",
           type: "Character[]",
           default: "[]",
-          description: "Array of character objects with id, name, and image properties",
+          description:
+            "Array of character objects with id, name, and image properties",
         },
         {
           name: "gridColumns",
@@ -95,19 +96,22 @@ export const characterSelectorData: ComponentData = {
           name: "multiSelect",
           type: "boolean",
           default: "true",
-          description: "Whether multiple characters can be selected simultaneously",
+          description:
+            "Whether multiple characters can be selected simultaneously",
         },
         {
           name: "enableSearch",
           type: "boolean",
           default: "true",
-          description: "Whether to show a search input for filtering characters",
+          description:
+            "Whether to show a search input for filtering characters",
         },
         {
           name: "lazyLoad",
           type: "boolean",
           default: "true",
-          description: "Whether to load characters gradually for better performance",
+          description:
+            "Whether to load characters gradually for better performance",
         },
         {
           name: "animationType",
@@ -119,7 +123,8 @@ export const characterSelectorData: ComponentData = {
           name: "enableConfirmation",
           type: "boolean",
           default: "true",
-          description: "Whether to show a confirmation dialog before finalizing selection",
+          description:
+            "Whether to show a confirmation dialog before finalizing selection",
         },
         {
           name: "enableReset",
@@ -406,11 +411,12 @@ export const characterSelectorData: ComponentData = {
           name: "demoImage",
           type: "string",
           default: "undefined",
-          description: "Optional alternate image URL for display in selection grid",
+          description:
+            "Optional alternate image URL for display in selection grid",
         },
       ],
     },
   ],
   category: "Interactive tools",
   examples: [],
-}
+};

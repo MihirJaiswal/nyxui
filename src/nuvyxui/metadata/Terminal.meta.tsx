@@ -3,8 +3,8 @@ import TerminalDemo from "@/nuvyxui/demos/TerminalDemo";
 import { Coffee, Heart, Rocket } from "lucide-react";
 import InteractiveTerminal from "../components/Terminal";
 
-import TerminalSource from '!!raw-loader!@/nuvyxui/components/Terminal.tsx';
-import TerminalDemoSource from '!!raw-loader!@/nuvyxui/demos/TerminalDemo.tsx';
+import TerminalSource from "!!raw-loader!@/nuvyxui/components/Terminal.tsx";
+import TerminalDemoSource from "!!raw-loader!@/nuvyxui/demos/TerminalDemo.tsx";
 
 export const interactiveTerminalData: ComponentData = {
   name: "Interactive Terminal",
@@ -21,9 +21,9 @@ export const interactiveTerminalData: ComponentData = {
         npm: "npm install lucide-react",
         yarn: "yarn add lucide-react",
         pnpm: "pnpm install lucide-react",
-        bun: "bun install lucide-react"
-      }
-    }
+        bun: "bun install lucide-react",
+      },
+    },
   ],
   props: [
     {
@@ -51,14 +51,15 @@ export const interactiveTerminalData: ComponentData = {
           name: "command",
           type: "string",
           default: '"help"',
-          description: "Command that users need to enter to trigger the terminal sequence.",
+          description:
+            "Command that users need to enter to trigger the terminal sequence.",
         },
         {
           name: "commandBg",
           type: "string",
           default: '"bg-gray-950"',
           description: "Background color for the command info bar.",
-        },  
+        },
         {
           name: "rounded",
           type: "string",
@@ -135,7 +136,7 @@ export const interactiveTerminalData: ComponentData = {
     },
   ],
   category: "Interactive tools",
-  examples : [
+  examples: [
     {
       name: "Love Terminal",
       preview: (
@@ -219,7 +220,7 @@ export const interactiveTerminalData: ComponentData = {
         </div>
       </div>
     );
-  }`
+  }`,
     },
     {
       name: "Deploy Terminal",
@@ -227,7 +228,7 @@ export const interactiveTerminalData: ComponentData = {
         <div className="flex flex-col gap-12 w-full max-w-4xl mx-auto">
           <div>
             <div className="rounded-xl overflow-hidden shadow-2xl transform transition-all hover:shadow-blue-500/50">
-              <InteractiveTerminal 
+              <InteractiveTerminal
                 bgColor="bg-zinc-900"
                 textColor="text-blue-400"
                 command="deploy --production"
@@ -257,7 +258,8 @@ export const interactiveTerminalData: ComponentData = {
             </div>
             <div className="py-4 px-6 bg-zinc-900 text-gray-300 mt-4 rounded-md">
               <h3 className="font-semibold flex items-center">
-                <Rocket size={16} className="text-blue-400 mr-2" /> Deployment Terminal
+                <Rocket size={16} className="text-blue-400 mr-2" /> Deployment
+                Terminal
               </h3>
               <p className="text-sm text-gray-400">
                 Visualize your CI/CD deployment process
@@ -312,14 +314,14 @@ export const interactiveTerminalData: ComponentData = {
         </div>
       </div>
     );
-  }`
+  }`,
     },
     {
       name: "Coffee Order Terminal",
       preview: (
         <div className="flex flex-col gap-12 w-full max-w-4xl mx-auto">
           <div className="rounded-xl overflow-hidden shadow-2xl transform transition-all hover:shadow-amber-500/50">
-            <InteractiveTerminal 
+            <InteractiveTerminal
               bgColor="bg-amber-950"
               textColor="text-amber-200"
               command="brew --coffee latte"
@@ -349,7 +351,8 @@ export const interactiveTerminalData: ComponentData = {
           </div>
           <div className="py-4 px-6 bg-amber-950 text-gray-300 mt-4 rounded-md">
             <h3 className="font-semibold flex items-center">
-              <Coffee size={16} className="text-amber-300 mr-2" /> Coffee Order Terminal
+              <Coffee size={16} className="text-amber-300 mr-2" /> Coffee Order
+              Terminal
             </h3>
             <p className="text-sm text-gray-400">
               Showcase products with fun interactions
@@ -403,8 +406,7 @@ export const interactiveTerminalData: ComponentData = {
         </div>
       </div>
     );
-  }`
-    }
-  ]
+  }`,
+    },
+  ],
 };
-

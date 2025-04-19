@@ -4,8 +4,8 @@ import { DynamicRipple } from "@/nuvyxui/components/DynamicRipple";
 import { DynamicRippleDemo } from "@/nuvyxui/demos/DynamicRippleDemo";
 import { Check, Droplets, Palette, ShieldCheck } from "lucide-react";
 
-import DynamicRippleSource from '!!raw-loader!@/nuvyxui/components/DynamicRipple.tsx';
-import DynamicRippleDemoSource from '!!raw-loader!@/nuvyxui/demos/DynamicRippleDemo.tsx';
+import DynamicRippleSource from "!!raw-loader!@/nuvyxui/components/DynamicRipple.tsx";
+import DynamicRippleDemoSource from "!!raw-loader!@/nuvyxui/demos/DynamicRippleDemo.tsx";
 
 export const dynamicRippleData: ComponentData = {
   name: "Dynamic Ripple",
@@ -33,8 +33,8 @@ import { twMerge } from "tailwind-merge";
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
 }`,
-        },
       },
+    },
   ],
   props: [
     {
@@ -77,8 +77,7 @@ export function cn(...inputs: ClassValue[]) {
           name: "autoAnimate",
           type: "boolean",
           default: "true",
-          description:
-            "Whether to enable the automatic ripple animation.",
+          description: "Whether to enable the automatic ripple animation.",
         },
         {
           name: "rounded",
@@ -91,38 +90,42 @@ export function cn(...inputs: ClassValue[]) {
           name: "gradientOverlay",
           type: "boolean",
           default: "true",
-          description:
-            "Whether to apply a gradient overlay.",
+          description: "Whether to apply a gradient overlay.",
         },
         {
           name: "className",
           type: "string",
           default: '""',
-          description:
-            "Additional CSS classes to apply.",
+          description: "Additional CSS classes to apply.",
         },
         {
           name: "children",
           type: "React.ReactNode",
           default: "undefined",
-          description:
-            "Content to be rendered inside the ripple component.",
+          description: "Content to be rendered inside the ripple component.",
         },
       ],
     },
   ],
-  
+
   category: "Effects",
   examples: [
     {
       name: "Basic Blue Ripple",
       preview: (
-        <DynamicRipple theme="blue" intensity={3} speed={3} className="p-6 border border-blue-200 dark:border-blue-800">
+        <DynamicRipple
+          theme="blue"
+          intensity={3}
+          speed={3}
+          className="p-6 border border-blue-200 dark:border-blue-800"
+        >
           <div className="flex items-center gap-2">
             <Droplets className="w-5 h-5 text-blue-500" />
             <h3 className="text-lg font-semibold">Water Ripple Effect</h3>
           </div>
-          <p className="text-sm text-gray-600 dark:text-gray-300">Move your cursor over this card to create ripples</p>
+          <p className="text-sm text-gray-600 dark:text-gray-300">
+            Move your cursor over this card to create ripples
+          </p>
         </DynamicRipple>
       ),
       filename: "BasicRipple.tsx",
@@ -146,14 +149,14 @@ export function cn(...inputs: ClassValue[]) {
     {
       name: "Custom Colors Ripple",
       preview: (
-        <DynamicRipple 
-          theme="custom" 
-          customColors={{ 
-            primary: "rgba(79, 70, 229, 0.7)", 
-            secondary: "rgba(236, 72, 153, 0.7)" 
-          }} 
-          intensity={4} 
-          speed={3} 
+        <DynamicRipple
+          theme="custom"
+          customColors={{
+            primary: "rgba(79, 70, 229, 0.7)",
+            secondary: "rgba(236, 72, 153, 0.7)",
+          }}
+          intensity={4}
+          speed={3}
           className="p-6 border border-purple-200 dark:border-purple-800"
         >
           <div className="flex items-center gap-2">
@@ -195,9 +198,16 @@ export function cn(...inputs: ClassValue[]) {
     {
       name: "High Intensity Purple Ripple",
       preview: (
-        <DynamicRipple theme="purple" intensity={5} speed={2} className="p-6 border border-purple-200 dark:border-purple-800">
+        <DynamicRipple
+          theme="purple"
+          intensity={5}
+          speed={2}
+          className="p-6 border border-purple-200 dark:border-purple-800"
+        >
           <h3 className="text-lg font-semibold">High Intensity Ripple</h3>
-          <p className="text-sm text-gray-600 dark:text-gray-300">Maximum intensity with slower speed</p>
+          <p className="text-sm text-gray-600 dark:text-gray-300">
+            Maximum intensity with slower speed
+          </p>
         </DynamicRipple>
       ),
       filename: "HighIntensityRipple.tsx",
@@ -217,9 +227,16 @@ export function cn(...inputs: ClassValue[]) {
     {
       name: "Fast Green Ripple",
       preview: (
-        <DynamicRipple theme="green" intensity={2} speed={5} className="p-6 border border-green-200 dark:border-green-800">
+        <DynamicRipple
+          theme="green"
+          intensity={2}
+          speed={5}
+          className="p-6 border border-green-200 dark:border-green-800"
+        >
           <h3 className="text-lg font-semibold">Fast Ripple</h3>
-          <p className="text-sm text-gray-600 dark:text-gray-300">Low intensity with maximum speed</p>
+          <p className="text-sm text-gray-600 dark:text-gray-300">
+            Low intensity with maximum speed
+          </p>
         </DynamicRipple>
       ),
       filename: "FastRipple.tsx",
@@ -239,10 +256,16 @@ export function cn(...inputs: ClassValue[]) {
     {
       name: "Circular Amber Ripple",
       preview: (
-        <DynamicRipple theme="amber" rounded="full" className="p-6 aspect-square flex items-center justify-center border border-amber-200 dark:border-amber-800">
+        <DynamicRipple
+          theme="amber"
+          rounded="full"
+          className="p-6 aspect-square flex items-center justify-center border border-amber-200 dark:border-amber-800"
+        >
           <div className="text-center">
             <h3 className="text-lg font-semibold">Circular Ripple</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-300">With rounded full style</p>
+            <p className="text-sm text-gray-600 dark:text-gray-300">
+              With rounded full style
+            </p>
           </div>
         </DynamicRipple>
       ),
@@ -265,7 +288,11 @@ export function cn(...inputs: ClassValue[]) {
     {
       name: "Auto-Animation Disabled",
       preview: (
-        <DynamicRipple theme="rose" autoAnimate={false} className="p-6 border border-rose-200 dark:border-rose-800">
+        <DynamicRipple
+          theme="rose"
+          autoAnimate={false}
+          className="p-6 border border-rose-200 dark:border-rose-800"
+        >
           <h3 className="text-lg font-semibold">Cursor-Only Ripple</h3>
           <p className="text-sm text-gray-600 dark:text-gray-300">
             Only reacts to cursor movement, no automatic animation
@@ -289,7 +316,11 @@ export function cn(...inputs: ClassValue[]) {
     {
       name: "Interactive Card with Gradient Disabled",
       preview: (
-        <DynamicRipple theme="blue" gradientOverlay={false} className="p-6 border border-blue-200 dark:border-blue-800">
+        <DynamicRipple
+          theme="blue"
+          gradientOverlay={false}
+          className="p-6 border border-blue-200 dark:border-blue-800"
+        >
           <div className="flex flex-col gap-3">
             <h3 className="text-lg font-semibold">Clean Interface</h3>
             <p className="text-sm text-gray-600 dark:text-gray-300">
@@ -323,7 +354,12 @@ export function cn(...inputs: ClassValue[]) {
     {
       name: "Feature Card with Subtle Effect",
       preview: (
-        <DynamicRipple theme="green" intensity={1} speed={1} className="p-6 border border-green-200 dark:border-green-800">
+        <DynamicRipple
+          theme="green"
+          intensity={1}
+          speed={1}
+          className="p-6 border border-green-200 dark:border-green-800"
+        >
           <div className="flex items-center gap-3 mb-3">
             <ShieldCheck className="w-6 h-6 text-green-500" />
             <h3 className="text-xl font-semibold">Security Features</h3>
@@ -376,7 +412,11 @@ export function cn(...inputs: ClassValue[]) {
     {
       name: "Pricing Card",
       preview: (
-        <DynamicRipple theme="purple" rounded="xl" className="p-6 border border-purple-200 dark:border-purple-800">
+        <DynamicRipple
+          theme="purple"
+          rounded="xl"
+          className="p-6 border border-purple-200 dark:border-purple-800"
+        >
           <div className="text-center mb-4">
             <h3 className="text-xl font-bold">Premium Plan</h3>
             <div className="mt-2">
@@ -442,11 +482,11 @@ export function cn(...inputs: ClassValue[]) {
       name: "Interactive CTA Button",
       preview: (
         <div className="p-4 flex justify-center border border-rose-200 dark:border-rose-800">
-          <DynamicRipple 
-            theme="rose" 
-            intensity={4} 
-            speed={4} 
-            rounded="lg" 
+          <DynamicRipple
+            theme="rose"
+            intensity={4}
+            speed={4}
+            rounded="lg"
             className="px-6 py-3 bg-rose-600 text-white font-semibold hover:bg-rose-700 transition-colors text-center"
           >
             <span>Get Started Today</span>
@@ -471,6 +511,6 @@ export function cn(...inputs: ClassValue[]) {
       </div>
     );
   }`,
-    }
-  ]
+    },
+  ],
 };

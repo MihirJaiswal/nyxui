@@ -1,9 +1,9 @@
-import type { ComponentData } from "@/nuvyxui/ComponentInterfaces"
-import { AnimatedGradientBg } from "@/nuvyxui/components/AnimatedGradientBg"
-import { AnimatedGradientBgDemo } from "@/nuvyxui/demos/AnimatedGradientBgDemo"
+import type { ComponentData } from "@/nuvyxui/ComponentInterfaces";
+import { AnimatedGradientBg } from "@/nuvyxui/components/AnimatedGradientBg";
+import { AnimatedGradientBgDemo } from "@/nuvyxui/demos/AnimatedGradientBgDemo";
 
-import AnimatedGradientBgSource from '!!raw-loader!@/nuvyxui/components/AnimatedGradientBg.tsx';
-import AnimatedGradientBgDemoSource from '!!raw-loader!@/nuvyxui/demos/AnimatedGradientBgDemo.tsx'; 
+import AnimatedGradientBgSource from "!!raw-loader!@/nuvyxui/components/AnimatedGradientBg.tsx";
+import AnimatedGradientBgDemoSource from "!!raw-loader!@/nuvyxui/demos/AnimatedGradientBgDemo.tsx";
 
 export const animatedGradientBgData: ComponentData = {
   name: "Animated Gradient Background",
@@ -15,7 +15,8 @@ export const animatedGradientBgData: ComponentData = {
   dependencies: [
     {
       name: "Tailwind CSS",
-      description: "Utility-first CSS framework used for styling the component.",
+      description:
+        "Utility-first CSS framework used for styling the component.",
       install: {
         npm: "npm install tailwindcss postcss autoprefixer && npx tailwindcss init -p",
         pnpm: "pnpm add tailwindcss postcss autoprefixer && pnpx tailwindcss init -p",
@@ -70,9 +71,10 @@ export const animatedGradientBgData: ComponentData = {
         },
         {
           name: "pattern",
-          type: 'string',
+          type: "string",
           default: '"radial"',
-          description: "The gradient pattern to display (radial, linear, conic, mesh, noise, waves).",
+          description:
+            "The gradient pattern to display (radial, linear, conic, mesh, noise, waves).",
         },
         {
           name: "patternIntensity",
@@ -100,15 +102,17 @@ export const animatedGradientBgData: ComponentData = {
         },
         {
           name: "size",
-          type: 'string',
+          type: "string",
           default: '"full"',
-          description: "Size of the background container (sm, md, lg, full, number).",
+          description:
+            "Size of the background container (sm, md, lg, full, number).",
         },
         {
           name: "position",
-          type: 'string',
+          type: "string",
           default: '"absolute"',
-          description: "CSS position property of the container (fixed, absolute, relative).",
+          description:
+            "CSS position property of the container (fixed, absolute, relative).",
         },
         {
           name: "zIndex",
@@ -131,7 +135,7 @@ export const animatedGradientBgData: ComponentData = {
       ],
     },
   ],
-  
+
   category: "Background",
   examples: [
     {
@@ -386,5 +390,5 @@ export const animatedGradientBgData: ComponentData = {
     );
   }`,
     },
-  ]
-}
+  ],
+};
