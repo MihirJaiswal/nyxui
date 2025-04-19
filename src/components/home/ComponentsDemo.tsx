@@ -264,9 +264,9 @@ Press ENTER to continue...
       
       </div>
 
-      <div className="flex items-center justify-center my-16">
+      <div className="relative mt-8 flex w-full flex-col justify-center space-y-2 sm:flex-row sm:space-y-0 sm:space-x-4 my-16 px-8">
         <Link href="/components" rel="noopener noreferrer">
-          <Rbutton className="flex items-center gap-2 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2">
+          <Rbutton className="relative bg-slate-900 dark:bg-white dark:text-black no-underline flex space-x-2 group cursor-pointer relative hover:shadow-2xl transition duration-200 shadow-zinc-900 p-px font-semibold text-white px-4 py-2 h-14 w-full items-center justify-center rounded-2xl text-center text-sm sm:w-52">
             All Components
             <ChevronRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-0.5" />
           </Rbutton>
