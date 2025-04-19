@@ -149,7 +149,7 @@ const TechStack = () => {
   ]
 
   return (
-    <div className="flex flex-col items-center justify-center gap-6 my-12 w-full max-w-4xl mx-auto px-4">
+    <div className="flex flex-col items-center justify-center gap-6 md:my-12 w-full max-w-4xl mx-auto md:px-4">
       <div className="w-full">
         <div
           className="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none bg-gradient-to-br from-slate-50/20 to-transparent rounded-xl"
