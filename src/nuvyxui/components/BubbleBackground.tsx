@@ -4,8 +4,8 @@ import React, { useEffect, useRef } from "react";
 import type { CSSProperties } from "react";
 
 interface BubblesProps {
-  backgroundColorA?: string;
-  backgroundColorB?: string;
+  bgColorA?: string;
+  bgColorB?: string;
   bubbleColors?: {
     colorA?: string;
     colorB?: string;
@@ -14,22 +14,23 @@ interface BubblesProps {
     colorE?: string;
     interactive?: string;
   };
-  /** Any valid CSS `mix-blend-mode` value */
   blendMode?: CSSProperties["mixBlendMode"];
   bubbleSize?: string;
 }
 
+const defaultBubbleColors = {
+  colorA: "18, 113, 255",
+  colorB: "221, 74, 255",
+  colorC: "100, 220, 255",
+  colorD: "200, 50, 50",
+  colorE: "180, 180, 50",
+  interactive: "148, 100, 255"
+}
+
 const BubbleBackground: React.FC<BubblesProps> = ({
-  backgroundColorA = "rgb(108, 0, 162)",
-  backgroundColorB = "rgb(0, 17, 82)",
-  bubbleColors = {
-    colorA: "18, 113, 255",
-    colorB: "221, 74, 255",
-    colorC: "100, 220, 255",
-    colorD: "200, 50, 50",
-    colorE: "180, 180, 50",
-    interactive: "148, 100, 255",
-  },
+  bgColorA = "rgb(108, 0, 162)",
+  bgColorB = "rgb(0, 17, 82)",
+  bubbleColors = defaultBubbleColors,
   blendMode = "hard-light",
   bubbleSize = "80%",
 }) => {
@@ -41,6 +42,7 @@ const BubbleBackground: React.FC<BubblesProps> = ({
     let tgX = 0;
     let tgY = 0;
     const easeFactor = 10;
+    let animationFrameId: number;
 
     function move() {
       if (!interactiveRef.current) return;
@@ -48,10 +50,8 @@ const BubbleBackground: React.FC<BubblesProps> = ({
       curX += (tgX - curX) / easeFactor;
       curY += (tgY - curY) / easeFactor;
 
-      interactiveRef.current.style.transform = `translate(${Math.round(
-        curX
-      )}px, ${Math.round(curY)}px)`;
-      requestAnimationFrame(move);
+      interactiveRef.current.style.transform = `translate(${curX}px, ${curY}px)`;
+      animationFrameId = requestAnimationFrame(move);
     }
 
     const handlePointerMove = (e: PointerEvent) => {
@@ -60,65 +60,50 @@ const BubbleBackground: React.FC<BubblesProps> = ({
     };
 
     window.addEventListener("pointermove", handlePointerMove);
-    move();
+    animationFrameId = requestAnimationFrame(move);
 
     return () => {
       window.removeEventListener("pointermove", handlePointerMove);
+      cancelAnimationFrame(animationFrameId);
     };
   }, []);
-
-  const bounceVAnimation = `
-    @keyframes bounceV {
-      0% { transform: translateY(-50%); }
-      50% { transform: translateY(50%); }
-      100% { transform: translateY(-50%); }
-    }
-  `;
-
-  const bounceHAnimation = `
-    @keyframes bounceH {
-      0% { transform: translateX(-50%) translateY(-10%); }
-      50% { transform: translateX(50%) translateY(10%); }
-      100% { transform: translateX(-50%) translateY(-10%); }
-    }
-  `;
-
-  const moveInCircleAnimation = `
-    @keyframes moveInCircle {
-      0% { transform: rotate(0deg); }
-      50% { transform: rotate(180deg); }
-      100% { transform: rotate(360deg); }
-    }
-  `;
-
-  const gooFilter = `
-    <filter id="goo">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
-      <feBlend in="SourceGraphic" in2="goo" />
-    </filter>
-  `;
 
   return (
     <>
       <style jsx global>{`
-        @import url("https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap");
-        ${bounceVAnimation}
-        ${bounceHAnimation}
-        ${moveInCircleAnimation}
+        @keyframes bounceV {
+          0%, 100% { transform: translateY(-50%); }
+          50% { transform: translateY(50%); }
+        }
+        
+        @keyframes bounceH {
+          0%, 100% { transform: translateX(-50%) translateY(-10%); }
+          50% { transform: translateX(50%) translateY(10%); }
+        }
+        
+        @keyframes moveInCircle {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
       `}</style>
 
       <div
         className="w-screen h-screen relative overflow-hidden"
         style={{
-          background: `linear-gradient(40deg, ${backgroundColorA}, ${backgroundColorB})`,
+          background: `linear-gradient(40deg, ${bgColorA}, ${bgColorB})`,
         }}
       >
         <svg
-          className="hidden"
+          className="absolute w-0 h-0"
+          aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
-          dangerouslySetInnerHTML={{ __html: gooFilter }}
-        />
+        >
+          <filter id="goo">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
+            <feBlend in="SourceGraphic" in2="goo" />
+          </filter>
+        </svg>
 
         <div
           className="w-full h-full"
@@ -138,7 +123,7 @@ const BubbleBackground: React.FC<BubblesProps> = ({
               transformOrigin: "center center",
               animation: "bounceV 30s ease infinite",
             }}
-          ></div>
+          />
 
           <div
             className="absolute opacity-100"
@@ -152,7 +137,7 @@ const BubbleBackground: React.FC<BubblesProps> = ({
               transformOrigin: "calc(50% - 400px)",
               animation: "moveInCircle 20s reverse infinite",
             }}
-          ></div>
+          />
 
           <div
             className="absolute opacity-100"
@@ -166,7 +151,8 @@ const BubbleBackground: React.FC<BubblesProps> = ({
               transformOrigin: "calc(50% + 400px)",
               animation: "moveInCircle 40s linear infinite",
             }}
-          ></div>
+          />
+          
           <div
             className="absolute opacity-70"
             style={{
@@ -179,7 +165,7 @@ const BubbleBackground: React.FC<BubblesProps> = ({
               transformOrigin: "calc(50% - 200px)",
               animation: "bounceH 40s ease infinite",
             }}
-          ></div>
+          />
 
           <div
             className="absolute opacity-100"
@@ -193,7 +179,7 @@ const BubbleBackground: React.FC<BubblesProps> = ({
               transformOrigin: "calc(50% - 800px) calc(50% + 200px)",
               animation: "moveInCircle 20s ease infinite",
             }}
-          ></div>
+          />
 
           <div
             ref={interactiveRef}
@@ -204,7 +190,7 @@ const BubbleBackground: React.FC<BubblesProps> = ({
               background: `radial-gradient(circle at center, rgba(${bubbleColors.interactive}, 0.8) 0, rgba(${bubbleColors.interactive}, 0) 50%) no-repeat`,
               mixBlendMode: blendMode,
             }}
-          ></div>
+          />
         </div>
       </div>
     </>

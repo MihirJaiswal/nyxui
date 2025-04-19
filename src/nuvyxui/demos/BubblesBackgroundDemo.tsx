@@ -2,9 +2,10 @@ import BubbleBackground from "@/nuvyxui/components/BubbleBackground";
 
 export const BubblesBackgroundDemo = () => {
   return (
-    <BubbleBackground
-      backgroundColorA="rgb(30, 0, 60)"
-      backgroundColorB="rgb(0, 30, 90)"
+    <div className="h-[300px] -mt-28">
+      <BubbleBackground
+      bgColorA="rgb(30, 0, 60)"
+      bgColorB="rgb(0, 30, 90)"
       bubbleColors={{
         colorA: "50, 150, 255",
         colorB: "200, 80, 255",
@@ -16,5 +17,6 @@ export const BubblesBackgroundDemo = () => {
       bubbleSize="70%"
       blendMode="screen"
     />
+    </div>
   );
 };

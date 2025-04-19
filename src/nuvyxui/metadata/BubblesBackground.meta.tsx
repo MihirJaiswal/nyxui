@@ -11,41 +11,20 @@ export const bubbleBackgroundData: ComponentData = {
   preview: <BubblesBackgroundDemo />,
   usage: BubblesBackgroundDemoSource,
   componentCode: BubbleBackgroundSource,
-  dependencies: [
-    {
-      name: "Tailwind CSS",
-      description:
-        "Utility-first CSS framework used for styling the component.",
-      install: {
-        npm: "npm install tailwindcss postcss autoprefixer && npx tailwindcss init -p",
-        pnpm: "pnpm add tailwindcss postcss autoprefixer && pnpx tailwindcss init -p",
-        yarn: "yarn add tailwindcss postcss autoprefixer && yarn tailwindcss init -p",
-        bun: "bun add tailwindcss postcss autoprefixer && bun tailwindcss init -p",
-      },
-      setup: {
-        description: "Create a utils.ts file with the cn utility function",
-        file: "/lib/utils.ts",
-        code: `import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
-
-export function cn(...inputs: ClassValue[]) {
-    return twMerge(clsx(inputs));
-}`,
-      },
-    },
-  ],
+  dependencies: [],
+  tags: ["Background", "Animation", "Interactive"],
   props: [
     {
       name: "Bubble Background",
       items: [
         {
-          name: "backgroundColorA",
+          name: "bgColorA",
           type: "string",
           default: '"rgb(108, 0, 162)"',
           description: "First color for the background gradient.",
         },
         {
-          name: "backgroundColorB",
+          name: "bgColorB",
           type: "string",
           default: '"rgb(0, 17, 82)"',
           description: "Second color for the background gradient.",
@@ -53,14 +32,7 @@ export function cn(...inputs: ClassValue[]) {
         {
           name: "bubbleColors",
           type: "object",
-          default: `{
-            colorA: "18, 113, 255",
-            colorB: "221, 74, 255", 
-            colorC: "100, 220, 255",
-            colorD: "200, 50, 50",
-            colorE: "180, 180, 50",
-            interactive: "148, 100, 255"
-          }`,
+          default: "defaultBubbleColors" ,
           description:
             "RGB color values for different bubbles and the interactive bubble.",
         },
@@ -101,52 +73,12 @@ export function cn(...inputs: ClassValue[]) {
   }`,
     },
     {
-      name: "Custom Colors",
-      preview: (
-        <div className="relative h-[400px] w-[1000px] overflow-hidden bg-transparent">
-          <BubbleBackground
-            backgroundColorA="rgb(0, 78, 146)"
-            backgroundColorB="rgb(0, 28, 73)"
-            bubbleColors={{
-              colorA: "0, 153, 255",
-              colorB: "72, 202, 228",
-              colorC: "0, 180, 216",
-              colorD: "144, 224, 239",
-              colorE: "72, 149, 239",
-              interactive: "0, 119, 182",
-            }}
-          />
-        </div>
-      ),
-      filename: "OceanBubbles.tsx",
-      code: `import { BubbleBackground } from "@/nuvyxui/components/BubbleBackground";
-    
-  export function OceanBubbles() {
-    return (
-      <div className="relative h-[400px] w-[1000px] overflow-hidden bg-transparent">
-        <BubbleBackground
-          backgroundColorA="rgb(0, 78, 146)"
-          backgroundColorB="rgb(0, 28, 73)"
-          bubbleColors={{
-            colorA: "0, 153, 255",
-            colorB: "72, 202, 228",
-            colorC: "0, 180, 216",
-            colorD: "144, 224, 239",
-            colorE: "72, 149, 239",
-            interactive: "0, 119, 182"
-          }}
-        />
-      </div>
-    );
-  }`,
-    },
-    {
       name: "Sunset Theme",
       preview: (
         <div className="relative h-[400px] w-[1000px] overflow-hidden bg-transparent">
           <BubbleBackground
-            backgroundColorA="rgb(252, 70, 107)"
-            backgroundColorB="rgb(63, 94, 251)"
+            bgColorA="rgb(252, 70, 107)"
+            bgColorB="rgb(63, 94, 251)"
             bubbleColors={{
               colorA: "252, 70, 107",
               colorB: "254, 130, 68",
@@ -166,8 +98,8 @@ export function cn(...inputs: ClassValue[]) {
     return (
       <div className="relative h-[400px] w-[1000px] overflow-hidden bg-transparent">
         <BubbleBackground
-          backgroundColorA="rgb(252, 70, 107)"
-          backgroundColorB="rgb(63, 94, 251)"
+          bgColorA="rgb(252, 70, 107)"
+          bgColorB="rgb(63, 94, 251)"
           bubbleColors={{
             colorA: "252, 70, 107",
             colorB: "254, 130, 68",
@@ -187,8 +119,8 @@ export function cn(...inputs: ClassValue[]) {
       preview: (
         <div className="relative h-[400px] w-[1000px] overflow-hidden bg-transparent">
           <BubbleBackground
-            backgroundColorA="rgb(0, 0, 0)"
-            backgroundColorB="rgb(20, 20, 20)"
+            bgColorA="rgb(0, 0, 0)"
+            bgColorB="rgb(20, 20, 20)"
             bubbleColors={{
               colorA: "255, 0, 153",
               colorB: "0, 255, 179",
@@ -209,8 +141,8 @@ export function cn(...inputs: ClassValue[]) {
     return (
       <div className="relative h-[400px] w-[1000px] overflow-hidden bg-transparent">
         <BubbleBackground
-          backgroundColorA="rgb(0, 0, 0)"
-          backgroundColorB="rgb(20, 20, 20)"
+          bgColorA="rgb(0, 0, 0)"
+          bgColorB="rgb(20, 20, 20)"
           bubbleColors={{
             colorA: "255, 0, 153",
             colorB: "0, 255, 179",
@@ -225,66 +157,6 @@ export function cn(...inputs: ClassValue[]) {
       </div>
     );
   }`,
-    },
-    {
-      name: "Pastel Theme",
-      preview: (
-        <div className="relative h-[400px] w-[1000px] overflow-hidden bg-transparent">
-          <BubbleBackground
-            backgroundColorA="rgb(255, 245, 245)"
-            backgroundColorB="rgb(245, 245, 255)"
-            bubbleColors={{
-              colorA: "249, 188, 188",
-              colorB: "188, 209, 246",
-              colorC: "203, 249, 188",
-              colorD: "244, 188, 249",
-              colorE: "249, 236, 188",
-              interactive: "188, 249, 245",
-            }}
-            blendMode="multiply"
-          />
-        </div>
-      ),
-      filename: "PastelBubbles.tsx",
-      code: `import { BubbleBackground } from "@/nuvyxui/components/BubbleBackground";
-    
-  export function PastelBubbles() {
-    return (
-      <div className="relative h-[400px] w-[1000px] overflow-hidden bg-transparent">
-        <BubbleBackground 
-          backgroundColorA="rgb(255, 245, 245)"
-          backgroundColorB="rgb(245, 245, 255)"
-          bubbleColors={{
-            colorA: "249, 188, 188",
-            colorB: "188, 209, 246",
-            colorC: "203, 249, 188",
-            colorD: "244, 188, 249",
-            colorE: "249, 236, 188",
-            interactive: "188, 249, 245"
-          }}
-          blendMode="multiply"
-        />
-      </div>
-    );
-  }`,
-    },
-    {
-      name: "With Custom Link",
-      preview: (
-        <div className="relative h-[400px] w-[1000px] overflow-hidden bg-transparent">
-          <BubbleBackground />
-        </div>
-      ),
-      filename: "BubbleBackgroundWithLink.tsx",
-      code: `import { BubbleBackground } from "@/nuvyxui/components/BubbleBackground";
-    
-  export function BubbleBackgroundWithLink() {
-    return (
-      <div className="relative h-[400px] w-[1000px] overflow-hidden bg-transparent">
-        <BubbleBackground/>
-      </div>
-    );
-  }`,
-    },
+    }
   ],
 };
