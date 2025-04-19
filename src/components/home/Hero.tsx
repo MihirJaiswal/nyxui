@@ -113,7 +113,7 @@ export const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="prose dark:prose-invert mx-auto max-w-3xl text-center"
+              className="mx-auto max-w-3xl text-center"
             >
               <p className="font-sans text-gray-900 dark:text-gray-100 sm:text-xl tracking-wide font-medium leading-relaxed">
                 Ready to use modern components built with 
