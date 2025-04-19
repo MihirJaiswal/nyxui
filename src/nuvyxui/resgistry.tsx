@@ -1,4 +1,4 @@
-import { gradientButtonData } from "./metadata/GradientButton.meta"; 
+import { gradientButtonData } from "./metadata/GradientButton.meta";
 import { morphingButtonData } from "./metadata/MorphingButton.meta";
 import { cyberpunkCardData } from "./metadata/cyberpunk-card.meta";
 import { dynamicRippleData } from "./metadata/dynamic-ripple.meta";
@@ -34,7 +34,7 @@ export const componentsData = {
   "liquid-metal-button": liquidMetalButtonData,
   "morphing-blob": morphingBlobData,
   "animated-code-block": animatedCodeBlockData,
-  "animated-gradient-background":animatedGradientBgData,
+  "animated-gradient-background": animatedGradientBgData,
   "scroll-animation-trigger": scrollAnimationTriggerData,
   "reveal-card": revealCardData,
   "matrix-code-rain": matrixCodeRainData,
