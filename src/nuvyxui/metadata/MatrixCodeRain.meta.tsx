@@ -34,6 +34,7 @@ export function cn(...inputs: ClassValue[]) {
       },
     },
   ],
+  tags: ["Background", "Animation"],
   props: [
     {
       name: "MatrixCodeRain",
@@ -47,7 +48,7 @@ export function cn(...inputs: ClassValue[]) {
         {
           name: "charset",
           type: "string",
-          default: '"0123#!$^&456789ABCDEFRLY"',
+          default: '"0123#!$^&456789ABC"',
           description: "The set of characters to display in the animation",
         },
         {
@@ -93,50 +94,6 @@ export function cn(...inputs: ClassValue[]) {
   ],
   category: "Background",
   examples: [
-    {
-      name: "Cyberpunk Theme",
-      preview: (
-        <div className="h-[500px] flex items-center justify-center w-full relative overflow-hidden">
-          <MatrixCodeRain
-            color="#ff00ff"
-            charset="01?!×÷@#$%&*HACK"
-            fontSize={20}
-            fps={30}
-            opacity={0.08}
-            height="500px"
-            width="1000px"
-          />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-white text-xl font-bold bg-black/80 border border-white px-4 py-2 rounded-lg">
-              Cyberpunk Matrix
-            </div>
-          </div>
-        </div>
-      ),
-      filename: "CyberpunkMatrix.tsx",
-      code: `import { MatrixCodeRain } from "@/nuvyxui/components/MatrixCodeRain";
-
-export function CyberpunkMatrix() {
-  return (
-    <div className="h-[500px] flex items-center justify-center w-full relative overflow-hidden">
-      <MatrixCodeRain 
-        color="#ff00ff"
-        charset="01?!×÷@#$%&*HACK"
-        fontSize={20}
-        fps={30}
-        opacity={0.08}
-        height="500px"
-        width="1000px"
-      />
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="text-white text-xl font-bold bg-black/80 border border-white px-4 py-2 rounded-lg">
-          Cyberpunk Matrix
-        </div>
-      </div>
-    </div>
-  );
-}`,
-    },
     {
       name: "Blue Tech Background",
       preview: (
@@ -186,7 +143,7 @@ export function BlueTechBackground() {
       preview: (
         <div className="h-[500px] flex items-center justify-center w-full relative overflow-hidden">
           <MatrixCodeRain
-            color="#ffcc00"
+            color="#b30000"
             charset="①②③④⑤⑥⑦⑧⑨⑩⓪"
             fontSize={22}
             fps={15}
@@ -207,7 +164,7 @@ export function CustomCharactersMatrix() {
   return (
     <div className="h-[500px] flex items-center justify-center w-full relative overflow-hidden">
       <MatrixCodeRain 
-        color="#ffcc00"
+        color="#b30000"
         charset="①②③④⑤⑥⑦⑧⑨⑩⓪"
         fontSize={22}
         fps={15}
@@ -217,94 +174,6 @@ export function CustomCharactersMatrix() {
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="text-white text-xl font-bold bg-black/80 border border-white px-4 py-2 rounded-lg">
           Custom Characters
-        </div>
-      </div>
-    </div>
-  );
-}`,
-    },
-    {
-      name: "Slow Motion Effect",
-      preview: (
-        <div className="h-[500px] flex items-center justify-center w-full relative overflow-hidden">
-          <MatrixCodeRain
-            color="#00ddff"
-            charset="01001101"
-            fontSize={16}
-            fps={8}
-            opacity={0.1}
-            height="500px"
-            width="1000px"
-          />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-white text-xl font-bold bg-black/80 border border-white px-4 py-2 rounded-lg">
-              Slow Motion
-            </div>
-          </div>
-        </div>
-      ),
-      filename: "SlowMotionMatrix.tsx",
-      code: `import { MatrixCodeRain } from "@/nuvyxui/components/MatrixCodeRain";
-
-export function SlowMotionMatrix() {
-  return (
-    <div className="h-[500px] flex items-center justify-center w-full relative overflow-hidden">
-      <MatrixCodeRain 
-        color="#00ddff"
-        charset="01001101"
-        fontSize={16}
-        fps={8}
-        opacity={0.1}
-        height="500px"
-        width="1000px"
-      />
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="text-white text-xl font-bold bg-black/80 border border-white px-4 py-2 rounded-lg">
-          Slow Motion
-        </div>
-      </div>
-    </div>
-  );
-}`,
-    },
-    {
-      name: "Red Alert Mode",
-      preview: (
-        <div className="h-[500px] flex items-center justify-center w-full relative overflow-hidden">
-          <MatrixCodeRain
-            color="#ff3300"
-            charset="WARNING!ALERT"
-            fontSize={18}
-            fps={25}
-            opacity={0.08}
-            height="500px"
-            width="1000px"
-          />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-white text-xl font-bold bg-black/80 border border-white px-4 py-2 rounded-lg">
-              Red Alert
-            </div>
-          </div>
-        </div>
-      ),
-      filename: "RedAlertMatrix.tsx",
-      code: `import { MatrixCodeRain } from "@/nuvyxui/components/MatrixCodeRain";
-
-export function RedAlertMatrix() {
-  return (
-    <div className="h-[500px] flex items-center justify-center w-full relative overflow-hidden">
-      <MatrixCodeRain 
-        color="#ff3300"
-        charset="WARNING!ALERT"
-        fontSize={18}
-        fps={25}
-        opacity={0.08}
-        height="500px"
-        width="1000px"
-      />
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="text-white text-xl font-bold bg-black/80 border border-white px-4 py-2 rounded-lg">
-          Red Alert
         </div>
       </div>
     </div>

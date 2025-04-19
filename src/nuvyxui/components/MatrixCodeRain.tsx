@@ -1,7 +1,17 @@
 "use client";
-
 import { cn } from "@/lib/utils";
 import React, { useEffect, useRef } from "react";
+
+type MatrixCodeRainProps = {
+  color?: string;
+  charset?: string;
+  fontSize?: number;
+  fps?: number;
+  opacity?: number;
+  fullScreen?: boolean;
+  width?: string;
+  height?: string;
+};
 
 export const MatrixCodeRain = ({
   color = "#00ff00",
@@ -12,7 +22,7 @@ export const MatrixCodeRain = ({
   fullScreen = false,
   width = "100%",
   height = "400px",
-}) => {
+}: MatrixCodeRainProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number | null>(null);
   const particlesRef = useRef<number[]>([]);
@@ -40,7 +50,8 @@ export const MatrixCodeRain = ({
         w = canvas.width = container.clientWidth;
         h = canvas.height = container.clientHeight;
       }
-      particlesRef.current = Array(Math.ceil(w / fontSize)).fill(0);
+
+      particlesRef.current = new Array(Math.ceil(w / fontSize)).fill(0);
     };
 
     const random = (items: string) =>
@@ -66,9 +77,7 @@ export const MatrixCodeRain = ({
       animationRef.current = requestAnimationFrame(draw);
     };
 
-    const handleResize = () => {
-      resize();
-    };
+    const handleResize = () => resize();
 
     window.addEventListener("resize", handleResize);
     resize();
@@ -92,7 +101,7 @@ export const MatrixCodeRain = ({
     >
       <canvas
         ref={canvasRef}
-        className={cn("block")}
+        className="block"
         style={{
           position: fullScreen ? "fixed" : "absolute",
           top: 0,

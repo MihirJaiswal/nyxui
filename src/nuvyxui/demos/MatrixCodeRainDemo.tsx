@@ -23,16 +23,9 @@ export const MatrixCodeRainDemo = () => {
   return (
     <div className="h-[300px] w-full relative overflow-hidden">
       <div className="space-y-8 p-6">
-        <h1 className="text-3xl font-bold relative text-white text-center">
-          Matrix Code Rain
-        </h1>
-        <p className="text-white text-center text-lg">
-          A customizable Matrix-style digital rain effect that can be used as a
-          background or in a container.
-        </p>
-        <div className="flex justify-center gap-4">
+        <div className="flex justify-center items-center gap-4">
           <button
-            className="bg-white text-black px-4 py-2 rounded-lg"
+            className="bg-black text-white border-2 text-2xl px-4 py-2 border-white"
             onClick={handleColorChange}
           >
             Change Color
