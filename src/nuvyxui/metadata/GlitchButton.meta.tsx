@@ -93,7 +93,7 @@ export const glitchButtonData: ComponentData = {
       ],
     },
   ],
-
+  tags: ["Button"],
   category: "Buttons",
   examples: [
     {

@@ -85,5 +85,6 @@ export const gradientButtonData: ComponentData = {
     },
   ],
   category: "Buttons",
+  tags: ["Button"],
   examples: []
 };
