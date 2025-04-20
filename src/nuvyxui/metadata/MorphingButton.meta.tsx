@@ -12,7 +12,22 @@ export const morphingButtonData: ComponentData = {
   preview: <MorphingButtonDemo />,
   usage: MorphingButtonDemoSource,
   componentCode: MorphingButtonSource,
-  dependencies: [],
+  dependencies: [
+    {
+      setup: {
+        description: "Paste this code into your globals.css file",
+        file: "/globals.css",
+        code: `@keyframes smoothBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}`,
+      },
+    }
+  ],
   props: [
     {
       name: "Morphing Button",
@@ -22,33 +37,13 @@ export const morphingButtonData: ComponentData = {
           type: "string",
           default: "expand",
           description:
-            "Button transformation animation variant - (expand, collapse, rotate, skew, liquid, gradient, glow, pulse, reveal, bounce)",
+            "Button transformation animation variant - (expand, collapse, rotate, skew, liquid, bounce)",
         },
         {
           name: "size",
           type: "string",
           default: "md",
           description: "Button size - (xs, sm, md, lg, xl)",
-        },
-        {
-          name: "color",
-          type: "string",
-          default: "primary",
-          description:
-            "Button color theme - (primary, secondary, success, danger, warning, info, dark, slate, violet, indigo, teal, rose, amber, custom)",
-        },
-        {
-          name: "rounded",
-          type: "string",
-          default: "md",
-          description: "Button corner radius - (none, sm, md, lg, full)",
-        },
-        {
-          name: "shadow",
-          type: "string",
-          default: "md",
-          description:
-            "Button shadow effect - (none, sm, md, lg, xl, inner, glow)",
         },
         {
           name: "icon",
@@ -70,15 +65,27 @@ export const morphingButtonData: ComponentData = {
           description: "Additional CSS classes to apply",
         },
         {
-          name: "onClick",
-          type: "function",
+          name: "disabled",
+          type: "boolean",
+          default: "false",
+          description: "Disables the button and prevents interaction",
+        },
+        {
+          name: "loading",
+          type: "boolean",
+          default: "false",
+          description: "Indicates that the button is in a loading state",
+        },
+        {
+          name: "children",
+          type: "React.ReactNode",
           default: "undefined",
-          description:
-            "Callback function to be called when the button is clicked",
+          description: "Button content",
         },
       ],
     },
   ],
+  tags: ["Button"],
   category: "Buttons",
   examples: []
 };

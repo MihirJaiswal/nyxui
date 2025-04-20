@@ -11,7 +11,28 @@ export const bubbleBackgroundData: ComponentData = {
   preview: <BubblesBackgroundDemo />,
   usage: BubblesBackgroundDemoSource,
   componentCode: BubbleBackgroundSource,
-  dependencies: [],
+  dependencies: [
+    {
+      setup: {
+        file: "globals.css",
+        code: `@keyframes bounceV {
+  0%, 100% { transform: translateY(-50%); }
+  50% { transform: translateY(50%); }
+}
+
+@keyframes bounceH {
+  0%, 100% { transform: translateX(-50%) translateY(-10%); }
+  50% { transform: translateX(50%) translateY(10%); }
+}
+        
+@keyframes moveInCircle {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}`, 
+        description: "Copy and paste this code into your globals.css file",
+      },
+    }
+  ],
   tags: ["Background", "Animation", "Interactive"],
   props: [
     {
@@ -32,7 +53,7 @@ export const bubbleBackgroundData: ComponentData = {
         {
           name: "bubbleColors",
           type: "object",
-          default: "defaultBubbleColors" ,
+          default: "defaultBubbleColors",
           description:
             "RGB color values for different bubbles and the interactive bubble.",
         },

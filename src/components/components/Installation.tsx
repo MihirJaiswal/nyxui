@@ -184,11 +184,17 @@ export const InstallationSection = ({
   const [copiedIndex, setCopiedIndex] = useState<string | null>(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  const hasDependencies = componentData.dependencies && componentData.dependencies.length > 0;
+  // Check if there are dependencies with install instructions
+  const hasInstallDependencies = componentData.dependencies && 
+    componentData.dependencies.length > 0 && 
+    componentData.dependencies.some(dep => dep.install);
   
-  const hasSetupInfo = hasDependencies && componentData.dependencies.some(
-    (dependency) => dependency.setup
-  );
+  // Check if there are any setup instructions (with or without dependencies)
+  const hasSetupInstructions = componentData.dependencies && 
+    componentData.dependencies.some(dep => dep.setup);
+  
+  // Track current step number
+  let currentStep = 1;
 
   useEffect(() => {
     const isDark = document.documentElement.classList.contains("dark");
@@ -215,15 +221,6 @@ export const InstallationSection = ({
   };
 
   const codeStyle = isDarkMode ? darkTheme : lightTheme;
-
-  const getStepNumber = (step: 'component' | 'final') => {
-    if (step === 'component') {
-      return hasDependencies ? (hasSetupInfo ? 3 : 2) : 1;
-    } else if (step === 'final') {
-      return hasDependencies ? (hasSetupInfo ? 4 : 3) : 2;
-    }
-    return 1;
-  };
 
   return (
     <div className="space-y-8">
@@ -284,110 +281,118 @@ export const InstallationSection = ({
 
           <TabsContent value="manual" className="py-8 space-y-12">
             <div className="space-y-12">
-              {hasDependencies && (
-                <InstallationStep number={1} title="Install Dependencies">
+              {/* Only render the Install Dependencies step if there are install dependencies */}
+              {hasInstallDependencies && (
+                <InstallationStep number={currentStep++} title="Install Dependencies">
                   <div className="space-y-8">
-                    {componentData.dependencies.map((dependency, index) => (
-                      <div
-                        key={dependency.name}
-                        className={cn(
-                          "space-y-4",
-                          index > 0 && "pt-6 border-t"
-                        )}
-                      >
-                        <h4 className="font-medium text-sm">
-                          {dependency.name}
-                        </h4>
+                    {componentData.dependencies
+                      .filter(dependency => dependency.install)
+                      .map((dependency, index) => (
+                        <div
+                          key={dependency.name || `dependency-${index}`}
+                          className={cn(
+                            "space-y-4",
+                            index > 0 && "pt-6 border-t"
+                          )}
+                        >
+                          {dependency.name && (
+                            <h4 className="font-medium text-sm">
+                              {dependency.name}
+                            </h4>
+                          )}
 
-                        <Tabs defaultValue="npm" className="w-full mt-3">
-                          <TabsList className="w-full max-w-md grid grid-cols-4 h-9 bg-muted/40 p-1 rounded-lg dark:bg-black/20">
-                            {["npm", "pnpm", "yarn", "bun"].map((pkg) => (
-                              <TabsTrigger
-                                key={pkg}
-                                value={pkg}
-                                className="text-xs h-7 px-2 rounded-md data-[state=active]:bg-background data-[state=active]:shadow-sm"
-                              >
-                                <Image
-                                  src={`/logo/${pkg}.svg`}
-                                  width={16}
-                                  height={16}
-                                  alt={pkg}
-                                  quality={100}
-                                  loading="lazy"
-                                  className="size-4 mr-1.5"
-                                />
-                                {pkg}
-                              </TabsTrigger>
-                            ))}
-                          </TabsList>
+                          {dependency.install && (
+                            <Tabs defaultValue="npm" className="w-full mt-3">
+                              <TabsList className="w-full max-w-md grid grid-cols-4 h-9 bg-muted/40 p-1 rounded-lg dark:bg-black/20">
+                                {["npm", "pnpm", "yarn", "bun"].map((pkg) => (
+                                  <TabsTrigger
+                                    key={pkg}
+                                    value={pkg}
+                                    className="text-xs h-7 px-2 rounded-md data-[state=active]:bg-background data-[state=active]:shadow-sm"
+                                  >
+                                    <Image
+                                      src={`/logo/${pkg}.svg`}
+                                      width={16}
+                                      height={16}
+                                      alt={pkg}
+                                      quality={100}
+                                      loading="lazy"
+                                      className="size-4 mr-1.5"
+                                    />
+                                    {pkg}
+                                  </TabsTrigger>
+                                ))}
+                              </TabsList>
 
-                          {dependency.install &&
-                            Object.entries(dependency.install).map(
-                              ([packageManager, command]) => (
-                                <TabsContent
-                                  key={packageManager}
-                                  value={packageManager}
-                                  className="mt-3"
-                                >
-                                  <div className="relative">
-                                    <div className="rounded-lg border overflow-hidden shadow-sm">
-                                      <SyntaxHighlighter
-                                        language="bash"
-                                        style={codeStyle}
-                                        customStyle={{
-                                          margin: 0,
-                                          padding: "16px",
-                                          fontSize: "13px",
-                                        }}
-                                      >
-                                        {command}
-                                      </SyntaxHighlighter>
-                                    </div>
-                                    <Button
-                                      variant="outline"
-                                      size="icon"
-                                      className={cn(
-                                        "absolute right-3 top-3 opacity-80 hover:opacity-100 h-7 w-7 bg-background/80 backdrop-blur-sm border shadow-sm transition-all duration-200",
-                                        copiedIndex ===
-                                          `${dependency.name}-${packageManager}` &&
-                                          "bg-green-500/10 border-green-500/30 text-green-600"
-                                      )}
-                                      onClick={() =>
-                                        handleCopyClick(
-                                          command,
-                                          `${dependency.name}-${packageManager}`
-                                        )
-                                      }
+                              {dependency.install &&
+                                Object.entries(dependency.install).map(
+                                  ([packageManager, command]) => (
+                                    <TabsContent
+                                      key={packageManager}
+                                      value={packageManager}
+                                      className="mt-3"
                                     >
-                                      {copiedIndex ===
-                                      `${dependency.name}-${packageManager}` ? (
-                                        <Check className="size-3.5" />
-                                      ) : (
-                                        <Copy className="size-3.5" />
-                                      )}
-                                      <span className="sr-only">
-                                        Copy command
-                                      </span>
-                                    </Button>
-                                  </div>
-                                </TabsContent>
-                              )
-                            )}
-                        </Tabs>
-                      </div>
-                    ))}
+                                      <div className="relative">
+                                        <div className="rounded-lg border overflow-hidden shadow-sm">
+                                          <SyntaxHighlighter
+                                            language="bash"
+                                            style={codeStyle}
+                                            customStyle={{
+                                              margin: 0,
+                                              padding: "16px",
+                                              fontSize: "13px",
+                                            }}
+                                          >
+                                            {command}
+                                          </SyntaxHighlighter>
+                                        </div>
+                                        <Button
+                                          variant="outline"
+                                          size="icon"
+                                          className={cn(
+                                            "absolute right-3 top-3 opacity-80 hover:opacity-100 h-7 w-7 bg-background/80 backdrop-blur-sm border shadow-sm transition-all duration-200",
+                                            copiedIndex ===
+                                              `${dependency.name || index}-${packageManager}` &&
+                                              "bg-green-500/10 border-green-500/30 text-green-600"
+                                          )}
+                                          onClick={() =>
+                                            handleCopyClick(
+                                              command,
+                                              `${dependency.name || index}-${packageManager}`
+                                            )
+                                          }
+                                        >
+                                          {copiedIndex ===
+                                          `${dependency.name || index}-${packageManager}` ? (
+                                            <Check className="size-3.5" />
+                                          ) : (
+                                            <Copy className="size-3.5" />
+                                          )}
+                                          <span className="sr-only">
+                                            Copy command
+                                          </span>
+                                        </Button>
+                                      </div>
+                                    </TabsContent>
+                                  )
+                                )}
+                            </Tabs>
+                          )}
+                        </div>
+                      ))}
                   </div>
                 </InstallationStep>
               )}
 
-              {hasSetupInfo && (
-                <InstallationStep number={2} title="Setup Configuration">
+              {/* Render setup instructions if they exist */}
+              {hasSetupInstructions && (
+                <InstallationStep number={currentStep++} title="Setup Configuration">
                   <div className="space-y-8">
                     {componentData.dependencies
-                      ?.filter((dependency) => dependency.setup)
+                      .filter((dependency) => dependency.setup)
                       .map((dependency, index) => (
                         <div
-                          key={`setup-${dependency.name}`}
+                          key={`setup-${dependency.name || index}`}
                           className={cn(
                             "space-y-4",
                             index > 0 && "pt-6 border-t"
@@ -402,6 +407,11 @@ export const InstallationSection = ({
                                   {dependency.setup.file}
                                 </code>
                               </div>
+                              {dependency.setup.description && (
+                                <p className="text-sm text-muted-foreground">
+                                  {dependency.setup.description}
+                                </p>
+                              )}
                               <ExpandableCode
                                 language="typescript"
                                 code={dependency.setup.code}
@@ -415,8 +425,10 @@ export const InstallationSection = ({
                   </div>
                 </InstallationStep>
               )}
+
+              {/* Component Code - always shown */}
               <InstallationStep
-                number={getStepNumber('component')}
+                number={currentStep++}
                 title="Copy Component Code"
               >
                 <ExpandableCode
@@ -454,9 +466,9 @@ export const InstallationSection = ({
                 </div>
               </InstallationStep>
 
-              {/* Final steps with dynamic step number */}
+              {/* Final steps */}
               <InstallationStep
-                number={getStepNumber('final')}
+                number={currentStep++}
                 title="Final Steps"
               >
                 <div className="bg-muted/20 border rounded-xl p-6 space-y-4">

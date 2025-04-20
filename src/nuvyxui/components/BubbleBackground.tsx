@@ -70,23 +70,6 @@ const BubbleBackground: React.FC<BubblesProps> = ({
 
   return (
     <>
-      <style jsx global>{`
-        @keyframes bounceV {
-          0%, 100% { transform: translateY(-50%); }
-          50% { transform: translateY(50%); }
-        }
-        
-        @keyframes bounceH {
-          0%, 100% { transform: translateX(-50%) translateY(-10%); }
-          50% { transform: translateX(50%) translateY(10%); }
-        }
-        
-        @keyframes moveInCircle {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-      `}</style>
-
       <div
         className="w-screen h-screen relative overflow-hidden"
         style={{

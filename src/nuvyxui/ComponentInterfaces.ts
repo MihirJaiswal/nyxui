@@ -1,7 +1,7 @@
 interface Dependency {
-  name: string;
-  description: string;
-  install: {
+  name?: string;
+  description?: string;
+  install?: {
     npm: string;
     pnpm: string;
     yarn: string;
