@@ -44,25 +44,6 @@ export const gradientButtonData: ComponentData = {
           description: "Custom gradient CSS for use with theme='custom'",
         },
         {
-          name: "rounded",
-          type: "string",
-          default: "md",
-          description: "Button corner radius (md, lg, full, none)",
-        },
-        {
-          name: "shadow",
-          type: "boolean",
-          default: "true",
-          description: "Whether to show drop shadow",
-        },
-        {
-          name: "hoverEffect",
-          type: "string",
-          default: "brightness",
-          description:
-            "Additional hover effect to apply (scale, brightness, contrast, none)",
-        },
-        {
           name: "className",
           type: "string",
           default: "",
@@ -73,13 +54,6 @@ export const gradientButtonData: ComponentData = {
           type: "string",
           default: "",
           description: "Button text",
-        },
-        {
-          name: "onClick",
-          type: "function",
-          default: "undefined",
-          description:
-            "Callback function to be called when the button is clicked",
         },
       ],
     },
