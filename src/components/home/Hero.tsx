@@ -31,12 +31,12 @@ export const Hero = () => {
           <div className="container max-w-5xl mx-auto flex flex-col items-center justify-center text-center px-4">
             <Badge
               variant="secondary"
-              className="mb-6 inline-flex items-center text-black dark:text-white gap-2 rounded-lg border border-purple-300 px-4 py-1.5 text-sm font-semibold shadow-sm dark:border-purple-800"
+              className="mb-6 inline-flex items-center text-black dark:text-white gap-2 rounded-lg border border-purple-300 px-4 py-1.5 text-sm font-semibold shadow-sm dark:border-gray-600"
             >
               <Sparkles className="h-4 w-4 text-yellow-500 dark:text-yellow-300" />
               v1.0.0 Now Available
             </Badge>
-            <h1 className="text-[2.95rem] md:text-5xl lg:text-[6rem] font-black font-sans tracking-wide leading-snug pb-4">
+            <h1 className="text-[2.95rem] md:text-5xl lg:text-[6rem] font-black tracking-wide leading-snug pb-4">
               <div className="flex flex-wrap items-center justify-center gap-2 md:gap-4">
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
@@ -52,7 +52,7 @@ export const Hero = () => {
                       width={0}
                       height={0}
                       priority
-                      className="absolute left-0 bottom-1 md:bottom-2 w-full"
+                      className="absolute left-0 bottom-1 md:bottom-3 w-full"
                     />
                   </span>
                 </motion.p>
@@ -93,7 +93,7 @@ export const Hero = () => {
                   </span>
                 </motion.span>
 
-                <div className="inline-flex items-center justify-center overflow-hidden h-[1.2em] min-w-[1.5em]">
+                <div className="inline-flex items-center justify-center overflow-hidden h-[1.2em] min-w-[1.6em]">
                   <AnimatePresence mode="wait">
                     <motion.span
                       key={textOptions[currentTextIndex]}
