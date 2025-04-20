@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ButtonHTMLAttributes } from "react";
 
 export type GradientButtonProps = {
   variant?: "pulse" | "glow" | "sweep" | "shine" | "outline";
@@ -7,7 +7,7 @@ export type GradientButtonProps = {
   customGradient?: string;
   className?: string;
   children: React.ReactNode;
-};
+} & ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const GradientButton = ({
   variant = "glow",
@@ -16,6 +16,7 @@ export const GradientButton = ({
   customGradient,
   className = "",
   children,
+  ...props
 }: GradientButtonProps) => {
   const sizeClasses = {
     xs: "h-6 px-3 text-xs",
@@ -60,7 +61,7 @@ export const GradientButton = ({
 
   if (variant === "outline") {
     return (
-      <button className={`${baseClasses} relative group`}>
+      <button className={`${baseClasses} relative group`} {...props}>
         <span className={`absolute inset-0 rounded-md ${gradientClass}`}></span>
         <span className="absolute inset-0.5 rounded-md bg-background"></span>
         <span className={`relative ${gradientClass} bg-clip-text text-transparent z-10`}>
@@ -71,7 +72,7 @@ export const GradientButton = ({
   }
 
   return (
-    <button className={`${baseClasses} ${gradientClass} text-white relative overflow-hidden group`}>
+    <button className={`${baseClasses} ${gradientClass} text-white relative overflow-hidden group`} {...props}>
       <span className="relative z-10">{children}</span>
       {variantEffects[variant]}
     </button>
