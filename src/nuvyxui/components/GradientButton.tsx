@@ -62,7 +62,7 @@ export const GradientButton = ({
     return (
       <button className={`${baseClasses} relative group`}>
         <span className={`absolute inset-0 rounded-md ${gradientClass}`}></span>
-        <span className="absolute inset-0.5 rounded-md bg-white"></span>
+        <span className="absolute inset-0.5 rounded-md bg-background"></span>
         <span className={`relative ${gradientClass} bg-clip-text text-transparent z-10`}>
           {children}
         </span>
