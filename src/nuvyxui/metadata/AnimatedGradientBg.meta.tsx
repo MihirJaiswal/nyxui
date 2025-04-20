@@ -133,47 +133,6 @@ export function cn(...inputs: ClassValue[]) {
   category: "Background",
   examples: [
     {
-      name: "Radial Gradient",
-      preview: (
-        <div className="relative h-[500px] w-[1000px] overflow-hidden bg-transparent">
-          <div className="absolute inset-0">
-            <AnimatedGradientBg
-              pattern="radial"
-              position="absolute"
-              size="full"
-              zIndex={0}
-              colors={["#4f46e5", "#ec4899", "#8b5cf6", "#06b6d4"]}
-            />
-          </div>
-          <div className="relative z-10 flex h-full items-center justify-center text-white">
-            <div className="p-4 text-center">Radial Gradient</div>
-          </div>
-        </div>
-      ),
-      filename: "RadialGradient.tsx",
-      code: `import { AnimatedGradientBg } from "@/nuvyxui/components/AnimatedGradientBg";
-    
-  export function RadialGradient() {
-    return (
-      <div className="relative h-[500px] w-[1000px] overflow-hidden bg-transparent">
-        <div className="absolute inset-0">
-          <AnimatedGradientBg
-            pattern="radial"
-            interactive
-            position="absolute"
-            size="full"
-            zIndex={0}
-            colors={["#4f46e5", "#ec4899", "#8b5cf6", "#06b6d4"]}
-          />
-        </div>
-        <div className="relative z-10 flex h-full items-center justify-center text-white">
-          <div className="p-4 text-center">Radial Gradient</div>
-        </div>
-      </div>
-    );
-  }`,
-    },
-    {
       name: "Conic Gradient",
       preview: (
         <div className="relative h-[500px] w-[1000px] overflow-hidden bg-transparent">

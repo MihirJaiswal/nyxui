@@ -53,7 +53,7 @@ const ComponentPage = async ({
             <ComponentSidebar />
           </div>
         </aside>
-        <main className="flex-1 overflow-hidden bg-white dark:bg-black pr-12">
+        <main className="flex-1 overflow-hidden bg-white dark:bg-black lpr-12">
           <div className="mx-auto w-full max-w-[1200px] px-4 py-6 sm:px-6 md:py-8 lg:px-8 xl:px-10">
             <div className="space-y-4 pb-6 md:pb-8 mt-3">
               <div className="flex flex-wrap items-start gap-3 sm:items-center">
@@ -96,7 +96,30 @@ const ComponentPage = async ({
 
             <div className="mt-10">
               <InstallationSection componentData={componentData} />
-            </div>
+            </div>{componentData.examples && componentData.examples.length > 0 && (
+              <div className="mt-10 space-y-6">
+                <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">
+                  Examples
+                </h2>
+                {componentData.examples.map((example, idx) => (
+                  <div
+                    key={`example-${idx}-${example.name}`}
+                    className="space-y-4"
+                  >
+                    <div className="rounded-xl border overflow-hidden bg-white dark:bg-black">
+                      <PreviewCodeToggle
+                        preview={
+                          <div className="flex flex-wrap justify-center items-center w-full gap-4 p-4 sm:p-6 md:p-10">
+                            {example.preview}
+                          </div>
+                        }
+                        code={example.code}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
 
             <section className="mt-10 space-y-6">
               <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
@@ -246,32 +269,6 @@ const ComponentPage = async ({
                 </Card>
               )}
             </section>
-
-            {/* Examples Section */}
-            {componentData.examples && componentData.examples.length > 0 && (
-              <div className="mt-10 space-y-6">
-                <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">
-                  Examples
-                </h2>
-                {componentData.examples.map((example, idx) => (
-                  <div
-                    key={`example-${idx}-${example.name}`}
-                    className="space-y-4"
-                  >
-                    <div className="rounded-xl border overflow-hidden bg-white dark:bg-black">
-                      <PreviewCodeToggle
-                        preview={
-                          <div className="flex flex-wrap justify-center items-center w-full gap-4 p-4 sm:p-6 md:p-10">
-                            {example.preview}
-                          </div>
-                        }
-                        code={example.code}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
           </div>
         </main>
       </div>

@@ -20,7 +20,6 @@ import type { ComponentData } from "@/nuvyxui/ComponentInterfaces";
 import Image from "next/image";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { nightOwl } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
 const lightTheme = {
@@ -85,14 +84,12 @@ const ExpandableCode = ({
   codeStyle,
   showLineNumbers = true,
   fileName,
-  badgeText,
 }: {
   language: string;
   code: string;
   codeStyle: Record<string, CSSProperties>;
   showLineNumbers?: boolean;
   fileName?: string;
-  badgeText?: string;
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
@@ -111,14 +108,6 @@ const ExpandableCode = ({
             <FileCode className="size-4 text-primary/70" />
             <span className="text-xs font-medium">{fileName}</span>
           </div>
-          {badgeText && (
-            <Badge
-              variant="outline"
-              className="text-xs font-normal bg-primary/5 text-primary border-primary/20"
-            >
-              {badgeText}
-            </Badge>
-          )}
         </div>
       )}
 
@@ -131,10 +120,12 @@ const ExpandableCode = ({
         <SyntaxHighlighter
           language={language}
           style={codeStyle}
+          className="rounded-t-none"
           customStyle={{
             margin: 0,
             padding: "16px",
             fontSize: "13px",
+            borderRadius: "0",
           }}
           showLineNumbers={showLineNumbers}
         >
@@ -416,7 +407,6 @@ export const InstallationSection = ({
                                 code={dependency.setup.code}
                                 codeStyle={codeStyle}
                                 fileName={dependency.setup.file}
-                                badgeText="Configuration"
                               />
                             </div>
                           )}
@@ -437,7 +427,6 @@ export const InstallationSection = ({
                   }
                   codeStyle={codeStyle}
                   fileName={`${componentData?.name || "Component"}.tsx`}
-                  badgeText="TypeScript"
                 />
 
                 <div className="flex justify-end mt-4">

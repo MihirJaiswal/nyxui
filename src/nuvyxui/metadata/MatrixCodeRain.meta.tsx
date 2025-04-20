@@ -95,50 +95,6 @@ export function cn(...inputs: ClassValue[]) {
   category: "Background",
   examples: [
     {
-      name: "Blue Tech Background",
-      preview: (
-        <div className="relative h-[500px] rounded-lg overflow-hidden flex items-center justify-center">
-          <MatrixCodeRain
-            color="#0088ff"
-            fontSize={10}
-            fps={15}
-            opacity={0.03}
-            fullScreen={false}
-            height="500px"
-            width="1000px"
-          />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-white text-xl font-bold bg-black/80 border border-white px-4 py-2 rounded-lg">
-              Tech Dashboard
-            </div>
-          </div>
-        </div>
-      ),
-      filename: "BlueTechBackground.tsx",
-      code: `import { MatrixCodeRain } from "@/nuvyxui/components/MatrixCodeRain";
-
-export function BlueTechBackground() {
-  return (
-    <div className="relative h-64 rounded-lg overflow-hidden flex items-center justify-center">
-      <MatrixCodeRain 
-        color="#0088ff"
-        fontSize={10}
-        fps={15}
-        opacity={0.03}
-        fullScreen={false}
-        height="500px"
-        width="1000px"
-      />
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="text-white text-xl font-bold bg-black/80 border border-white px-4 py-2 rounded-lg">
-          Tech Dashboard
-        </div>
-      </div>
-    </div>
-  );
-}`,
-    },
-    {
       name: "Custom Characters",
       preview: (
         <div className="h-[500px] flex items-center justify-center w-full relative overflow-hidden">
@@ -185,11 +141,11 @@ export function CustomCharactersMatrix() {
       preview: (
         <div className="h-[500px] flex items-center justify-center w-full relative overflow-hidden">
           <MatrixCodeRain
-            color="#d4af37"
+            color="#0088ff"
             charset="𓀀𓀁𓀂𓀃𓀄𓀅𓀆𓀇𓀈𓀉𓀊𓀋𓀌𓀍𓀎𓀏"
             fontSize={24}
             fps={12}
-            opacity={0.07}
+            opacity={0.03}
             height="500px"
             width="1000px"
           />
@@ -207,11 +163,11 @@ export function HieroglyphicMatrix() {
   return (
     <div className="h-[500px] flex items-center justify-center w-full relative overflow-hidden">
       <MatrixCodeRain 
-        color="#d4af37"
+        color="#0088ff"
         charset="𓀀𓀁𓀂𓀃𓀄𓀅𓀆𓀇𓀈𓀉𓀊𓀋𓀌𓀍𓀎𓀏"
-        fontSize={24}
+        fontSize={14}
         fps={12}
-        opacity={0.07}
+        opacity={0.03}
         height="500px"
         width="1000px"
       />

@@ -55,24 +55,6 @@ export const bubbleBackgroundData: ComponentData = {
   category: "Background",
   examples: [
     {
-      name: "Default Bubble Background",
-      preview: (
-        <div className="relative h-[400px] w-[1000px] overflow-hidden bg-transparent">
-          <BubbleBackground />
-        </div>
-      ),
-      filename: "DefaultBubbleBackground.tsx",
-      code: `import { BubbleBackground } from "@/nuvyxui/components/BubbleBackground";
-    
-  export function DefaultBubbleBackground() {
-    return (
-      <div className="relative h-[400px] w-[1000px] overflow-hidden bg-transparent">
-        <BubbleBackground />
-      </div>
-    );
-  }`,
-    },
-    {
       name: "Sunset Theme",
       preview: (
         <div className="relative h-[400px] w-[1000px] overflow-hidden bg-transparent">
