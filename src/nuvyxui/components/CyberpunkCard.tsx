@@ -72,55 +72,68 @@ export const CyberpunkCard = ({
   };
 
   const themeColors = {
-    "neon-blue": {
-      primary: "from-blue-500 to-cyan-400",
-      secondary: "from-blue-600 to-cyan-500",
-      accent: "bg-blue-400",
-      text: "text-blue-50",
-      glow: "shadow-blue-500/50",
-    },
-    "neon-pink": {
-      primary: "from-pink-500 to-purple-400",
-      secondary: "from-pink-600 to-purple-500",
-      accent: "bg-pink-400",
-      text: "text-pink-50",
-      glow: "shadow-pink-500/50",
-    },
-    "neon-green": {
-      primary: "from-green-500 to-emerald-400",
-      secondary: "from-green-600 to-emerald-500",
-      accent: "bg-green-400",
-      text: "text-green-50",
-      glow: "shadow-green-500/50",
-    },
-    "neon-orange": {
-      primary: "from-orange-500 to-amber-400",
-      secondary: "from-orange-600 to-amber-500",
-      accent: "bg-orange-400",
-      text: "text-orange-50",
-      glow: "shadow-orange-500/50",
-    },
-    "neon-purple": {
-      primary: "from-purple-500 to-indigo-400",
-      secondary: "from-purple-600 to-indigo-500",
-      accent: "bg-purple-400",
-      text: "text-purple-50",
-      glow: "shadow-purple-500/50",
-    },
-    custom: {
+  "neon-blue": {
+    primary: "from-blue-500 to-cyan-400 dark:from-blue-600 to-cyan-500",
+    secondary: "from-blue-600 to-cyan-500 dark:from-blue-700 to-cyan-600",
+    accent: "bg-blue-400 dark:bg-blue-500",
+    text: "text-blue-50 dark:text-blue-100",
+    glow: "shadow-blue-500/50 dark:shadow-blue-600/50"
+  },
+  "neon-pink": {
+    primary: "from-pink-500 to-purple-400 dark:from-pink-600 to-purple-500",
+    secondary: "from-pink-600 to-purple-500 dark:from-pink-700 to-purple-600",
+    accent: "bg-pink-400 dark:bg-pink-500",
+    text: "text-pink-50 dark:text-pink-100",
+    glow: "shadow-pink-500/50 dark:shadow-pink-600/50"
+  },
+  "neon-green": {
+    primary: "from-green-500 to-emerald-400 dark:from-green-600 to-emerald-500",
+    secondary: "from-green-600 to-emerald-500 dark:from-green-700 to-emerald-600",
+    accent: "bg-green-400 dark:bg-green-500",
+    text: "text-green-50 dark:text-green-100",
+    glow: "shadow-green-500/50 dark:shadow-green-600/50",
+  },
+  "neon-orange": {
+    primary: "from-orange-500 to-amber-400 dark:from-orange-600 to-amber-500",
+    secondary: "from-orange-600 to-amber-500 dark:from-orange-700 to-amber-600",
+    accent: "bg-orange-400 dark:bg-orange-500",
+    text: "text-orange-50 dark:text-orange-100",
+    glow: "shadow-orange-500/50 dark:shadow-orange-600/50",
+  },
+  "neon-purple": {
+    primary: "from-purple-600 to-blue-500 dark:from-purple-700 to-blue-600",
+    secondary: "from-purple-700 to-blue-500 dark:from-purple-700 to-blue-600",
+    accent: "bg-purple-400 dark:bg-purple-500",
+    text: "text-purple-50 dark:text-purple-100",
+    glow: "shadow-purple-500/50 dark:shadow-purple-600/50",
+  },
+  custom: {
+    primary: customColors
+      ? `from-[${customColors.primary}] to-[${customColors.secondary}]`
+      : "from-blue-500 to-cyan-400",
+    secondary: customColors
+      ? `from-[${customColors.secondary}] to-[${customColors.primary}]`
+      : "from-blue-600 to-cyan-500",
+    accent: customColors ? `bg-[${customColors.accent}]` : "bg-blue-400",
+    text: "text-gray-50",
+    glow: customColors
+      ? `shadow-[${customColors.primary}]/50`
+      : "shadow-blue-500/50",
+    dark: {
       primary: customColors
         ? `from-[${customColors.primary}] to-[${customColors.secondary}]`
-        : "from-blue-500 to-cyan-400",
+        : "from-blue-600 to-cyan-500",
       secondary: customColors
         ? `from-[${customColors.secondary}] to-[${customColors.primary}]`
-        : "from-blue-600 to-cyan-500",
-      accent: customColors ? `bg-[${customColors.accent}]` : "bg-blue-400",
-      text: "text-gray-50",
+        : "from-blue-700 to-cyan-600",
+      accent: customColors ? `bg-[${customColors.accent}]` : "bg-blue-500",
+      text: "text-gray-100",
       glow: customColors
         ? `shadow-[${customColors.primary}]/50`
-        : "shadow-blue-500/50",
-    },
-  };
+        : "shadow-blue-600/50"
+    }
+  }
+};
 
   const currentTheme = themeColors[theme];
 

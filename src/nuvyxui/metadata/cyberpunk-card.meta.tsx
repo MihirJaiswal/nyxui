@@ -2,10 +2,11 @@ import React from "react";
 import type { ComponentData } from "@/nuvyxui/ComponentInterfaces";
 import { CyberpunkCard } from "@/nuvyxui/components/CyberpunkCard";
 import { CyberpunkCardDemo } from "@/nuvyxui/demos/CyberpunkCardDemo";
-import { Cpu, Database, Shield, Terminal, Wifi, Zap } from "lucide-react";
+import { Shield, Terminal, Wifi, Zap } from "lucide-react";
 
 import CyberpunkCardSource from "!!raw-loader!@/nuvyxui/components/CyberpunkCard.tsx";
 import CyberpunkCardDemoSource from "!!raw-loader!@/nuvyxui/demos/CyberpunkCardDemo.tsx";
+import Image from "next/image";
 
 export const cyberpunkCardData: ComponentData = {
   name: "Cyberpunk Card",
@@ -111,178 +112,6 @@ export function cn(...inputs: ClassValue[]) {
   category: "Cards",
   examples: [
     {
-      name: "Neon Blue Neural Interface",
-      preview: (
-        <CyberpunkCard theme="neon-blue" borderStyle="solid" glowIntensity={4}>
-          <div className="space-y-3">
-            <div className="flex items-center gap-2">
-              <Cpu className="w-6 h-6" />
-              <h3 className="text-xl font-bold tracking-wider">
-                NEURAL INTERFACE
-              </h3>
-            </div>
-            <p className="text-sm opacity-80">
-              Advanced cybernetic enhancement system with direct neural pathway
-              integration
-            </p>
-            <div className="flex justify-between items-center mt-4 text-xs">
-              <span className="px-2 py-1 bg-blue-600/30 rounded">v4.2.1</span>
-              <span className="font-mono">CERTIFIED</span>
-            </div>
-          </div>
-        </CyberpunkCard>
-      ),
-      filename: "NeonBlueNeuralInterface.tsx",
-      code: `import { CyberpunkCard } from "@/nuvyxui/components/CyberpunkCard";
-  import { Cpu } from 'lucide-react';
-  
-  export function NeonBlueNeuralInterface() {
-    return (
-      <CyberpunkCard theme="neon-blue" borderStyle="solid" glowIntensity={4}>
-        <div className="space-y-3">
-          <div className="flex items-center gap-2">
-            <Cpu className="w-6 h-6" />
-            <h3 className="text-xl font-bold tracking-wider">NEURAL INTERFACE</h3>
-          </div>
-          <p className="text-sm opacity-80">Advanced cybernetic enhancement system with direct neural pathway integration</p>
-          <div className="flex justify-between items-center mt-4 text-xs">
-            <span className="px-2 py-1 bg-blue-600/30 rounded">v4.2.1</span>
-            <span className="font-mono">CERTIFIED</span>
-          </div>
-        </div>
-      </CyberpunkCard>
-    );
-  }`,
-    },
-    {
-      name: "Neon Pink Combat System",
-      preview: (
-        <CyberpunkCard theme="neon-pink" borderStyle="glitch" glowIntensity={4}>
-          <div className="space-y-3">
-            <div className="flex items-center gap-2">
-              <Shield className="w-6 h-6" />
-              <h3 className="text-xl font-bold tracking-wider">
-                COMBAT SYSTEM
-              </h3>
-            </div>
-            <p className="text-sm opacity-80">
-              Military-grade tactical enhancement with reactive armor and weapon
-              synchronization
-            </p>
-            <div className="grid grid-cols-3 gap-2 mt-3">
-              <div className="text-center p-1 bg-pink-600/20 rounded text-xs">
-                <div className="font-bold">ATK</div>
-                <div>96%</div>
-              </div>
-              <div className="text-center p-1 bg-pink-600/20 rounded text-xs">
-                <div className="font-bold">DEF</div>
-                <div>87%</div>
-              </div>
-              <div className="text-center p-1 bg-pink-600/20 rounded text-xs">
-                <div className="font-bold">SYN</div>
-                <div>92%</div>
-              </div>
-            </div>
-            <div className="text-right text-xs font-mono mt-2">
-              DANGER LEVEL: EXTREME
-            </div>
-          </div>
-        </CyberpunkCard>
-      ),
-      filename: "NeonPinkCombatSystem.tsx",
-      code: `import { CyberpunkCard } from "@/nuvyxui/components/CyberpunkCard";
-  import { Shield } from 'lucide-react';
-  
-  export function NeonPinkCombatSystem() {
-    return (
-      <CyberpunkCard theme="neon-pink" borderStyle="glitch" glowIntensity={4}>
-        <div className="space-y-3">
-          <div className="flex items-center gap-2">
-            <Shield className="w-6 h-6" />
-            <h3 className="text-xl font-bold tracking-wider">COMBAT SYSTEM</h3>
-          </div>
-          <p className="text-sm opacity-80">Military-grade tactical enhancement with reactive armor and weapon synchronization</p>
-          <div className="grid grid-cols-3 gap-2 mt-3">
-            <div className="text-center p-1 bg-pink-600/20 rounded text-xs">
-              <div className="font-bold">ATK</div>
-              <div>96%</div>
-            </div>
-            <div className="text-center p-1 bg-pink-600/20 rounded text-xs">
-              <div className="font-bold">DEF</div>
-              <div>87%</div>
-            </div>
-            <div className="text-center p-1 bg-pink-600/20 rounded text-xs">
-              <div className="font-bold">SYN</div>
-              <div>92%</div>
-            </div>
-          </div>
-          <div className="text-right text-xs font-mono mt-2">
-            DANGER LEVEL: EXTREME
-          </div>
-        </div>
-      </CyberpunkCard>
-    );
-  }`,
-    },
-    {
-      name: "Neon Green Stealth System",
-      preview: (
-        <CyberpunkCard theme="neon-green" borderStyle="corners" rounded="lg">
-          <div className="space-y-3">
-            <div className="flex items-center gap-2">
-              <Zap className="w-6 h-6" />
-              <h3 className="text-xl font-bold tracking-wider">
-                STEALTH SYSTEM
-              </h3>
-            </div>
-            <p className="text-sm opacity-80">
-              Optical camouflage technology with thermal dampening and sound
-              suppression
-            </p>
-            <div className="w-full bg-green-900/30 rounded-full h-2 mt-4">
-              <div className="bg-green-400 h-2 rounded-full w-4/5"></div>
-            </div>
-            <div className="flex justify-between text-xs">
-              <span>BATTERY</span>
-              <span>80%</span>
-            </div>
-            <div className="text-xs font-mono mt-2 flex items-center gap-1">
-              <span className="inline-block w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-              ACTIVE CAMOUFLAGE ENGAGED
-            </div>
-          </div>
-        </CyberpunkCard>
-      ),
-      filename: "NeonGreenStealthSystem.tsx",
-      code: `import { CyberpunkCard } from "@/nuvyxui/components/CyberpunkCard";
-  import { Zap } from 'lucide-react';
-  
-  export function NeonGreenStealthSystem() {
-    return (
-      <CyberpunkCard theme="neon-green" borderStyle="corners" rounded="lg">
-        <div className="space-y-3">
-          <div className="flex items-center gap-2">
-            <Zap className="w-6 h-6" />
-            <h3 className="text-xl font-bold tracking-wider">STEALTH SYSTEM</h3>
-          </div>
-          <p className="text-sm opacity-80">Optical camouflage technology with thermal dampening and sound suppression</p>
-          <div className="w-full bg-green-900/30 rounded-full h-2 mt-4">
-            <div className="bg-green-400 h-2 rounded-full w-4/5"></div>
-          </div>
-          <div className="flex justify-between text-xs">
-            <span>BATTERY</span>
-            <span>80%</span>
-          </div>
-          <div className="text-xs font-mono mt-2 flex items-center gap-1">
-            <span className="inline-block w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-            ACTIVE CAMOUFLAGE ENGAGED
-          </div>
-        </div>
-      </CyberpunkCard>
-    );
-  }`,
-    },
-    {
       name: "Neon Purple Hacking Suite",
       preview: (
         <CyberpunkCard
@@ -290,31 +119,95 @@ export function cn(...inputs: ClassValue[]) {
           borderStyle="dashed"
           glowIntensity={5}
         >
-          <div className="space-y-3">
-            <div className="flex items-center gap-2">
-              <Terminal className="w-6 h-6" />
-              <h3 className="text-xl font-bold tracking-wider">
-                HACKING SUITE
-              </h3>
+          <div className="space-y-4">
+            <div className="relative flex items-center justify-between bg-purple-900/70 px-3 py-2 rounded border-b border-purple-500/50">
+              <div className="flex items-center gap-3">
+                <div className="relative">
+                  <Terminal className="w-6 h-6 text-white" />
+                  <span className="absolute -top-1 -right-1 w-2 h-2 bg-purple-400 rounded-full animate-ping"></span>
+                </div>
+                <h3 className="text-xl font-bold tracking-wider text-white">
+                  HACKING SUITE
+                </h3>
+              </div>
+              <div className="px-2 py-1 bg-purple-800/40 rounded text-xs border border-purple-500/30 flex items-center gap-2">
+                <span className="inline-block w-2 h-2 bg-green-400 rounded-full"></span>
+                <span className="text-green-300 font-mono">ONLINE</span>
+              </div>
             </div>
-            <p className="text-sm opacity-80">
+            <p className="text-sm opacity-90 border-l-2 border-purple-200 pl-3 py-1 italic text-purple-100">
               Advanced intrusion tools with ICE-breaking capabilities and
               self-modifying algorithms
             </p>
-            <div className="grid grid-cols-2 gap-2 mt-3">
-              <div className="bg-purple-600/20 p-2 rounded text-xs">
-                <div className="font-mono text-purple-300">ACTIVE MODULES:</div>
-                <ul className="list-disc pl-4 mt-1 space-y-1">
-                  <li>Firewall Bypass</li>
-                  <li>Neural Tracer</li>
-                  <li>Quantum Decryptor</li>
-                </ul>
+
+            <div className="w-full h-2 bg-[#120917] rounded overflow-hidden">
+              <div className="h-full bg-purple-100 w-3/4"
+                style={{ boxShadow: "0 0 8pxrgb(207, 156, 255)" }}></div>
+            </div>
+            <div className="flex justify-between text-xs font-mono text-purple-100">
+              <span>SYSTEM INTEGRITY: 75%</span>
+              <span>UPTIME: 13:42:06</span>
+            </div>
+            <div className="grid grid-cols-2 gap-3 mt-4">
+
+              <div className="bg-[#0F090F] p-3 rounded border border-purple-600/30 relative overflow-hidden">
+                <div className="flex items-center justify-center">
+                  <Image
+                    src="/assets/images/cyberpunk-card/img2.jpg"
+                    alt="logo1"
+                    width={200}
+                    height={200}
+                    quality={100}
+                    loading='lazy'
+                  />
+                </div>
               </div>
-              <div className="bg-purple-600/20 p-2 rounded text-xs font-mono">
-                <div className="text-purple-300">CONNECTION:</div>
-                <div className="mt-1 animate-pulse">● SECURED</div>
-                <div className="mt-3 text-purple-300">TARGET:</div>
-                <div className="mt-1 truncate">Arasaka Database</div>
+
+              <div className="bg-purple-900/70 p-3 rounded border border-purple-600/30 font-mono relative overflow-hidden">
+                <div className="absolute inset-0 opacity-5"
+                  style={{ backgroundSize: "20px 20px", backgroundImage: "linear-gradient(to right,rgb(210, 163, 255) 1px, transparent 1px), linear-gradient(to bottom, #a855f7 1px, transparent 1px)" }}></div>
+
+                <div className="text-purple-100 mb-2 flex items-center gap-2">
+                  <span className="inline-block w-2 h-2 bg-purple-500 rounded-full"></span>
+                  CONNECTION:
+                </div>
+
+                <div className="mt-1 flex items-center gap-2 bg-purple-800/30 px-2 py-1 rounded border-l border-r border-purple-500/30">
+                  <span className="inline-block w-3 h-3 bg-green-400 rounded-full animate-pulse"></span>
+                  <span className="text-green-300">SECURED</span>
+                </div>
+
+                <div className="mt-3 text-purple-100 flex items-center gap-2">
+                  <span className="inline-block w-2 h-2 bg-purple-500 rounded-full"></span>
+                  TARGET:
+                </div>
+
+                <div className="mt-1 truncate bg-purple-800/30 px-2 py-1 rounded border-l border-r border-purple-500/30 animate-pulse">
+                  Arasaka Database
+                </div>
+
+                <div className="mt-3 text-purple-100 flex items-center gap-2">
+                  <span className="inline-block w-2 h-2 bg-purple-500 rounded-full"></span>
+                  PING:
+                </div>
+
+                <div className="mt-1 flex justify-between text-xs px-2 py-1 bg-purple-800/30 rounded border-l border-r border-purple-500/30">
+                  <span>127ms</span>
+                  <span>|||||||||||||</span>
+                </div>
+              </div>
+            </div>
+            <div className="flex justify-between items-center text-xs font-mono mt-2 pt-2 border-t border-purple-600/30">
+              <div className="flex items-center gap-2">
+                <span className="px-2 py-1 bg-purple-800/30 rounded-full border border-purple-500/30">
+                  ICE: 3/7
+                </span>
+                <span className="px-2 py-1 bg-purple-800/30 rounded-full border border-purple-500/30">
+                  CPU: 42%
+                </span>
+              </div>
+              <div className="animate-pulse text-green-300">
+                SYSTEM READY
               </div>
             </div>
           </div>
@@ -326,31 +219,104 @@ export function cn(...inputs: ClassValue[]) {
   
   export function NeonPurpleHackingSuite() {
     return (
-      <CyberpunkCard theme="neon-purple" borderStyle="dashed" glowIntensity={5}>
-        <div className="space-y-3">
-          <div className="flex items-center gap-2">
-            <Terminal className="w-6 h-6" />
-            <h3 className="text-xl font-bold tracking-wider">HACKING SUITE</h3>
-          </div>
-          <p className="text-sm opacity-80">Advanced intrusion tools with ICE-breaking capabilities and self-modifying algorithms</p>
-          <div className="grid grid-cols-2 gap-2 mt-3">
-            <div className="bg-purple-600/20 p-2 rounded text-xs">
-              <div className="font-mono text-purple-300">ACTIVE MODULES:</div>
-              <ul className="list-disc pl-4 mt-1 space-y-1">
-                <li>Firewall Bypass</li>
-                <li>Neural Tracer</li>
-                <li>Quantum Decryptor</li>
-              </ul>
+      <CyberpunkCard
+          theme="neon-purple"
+          borderStyle="dashed"
+          glowIntensity={5}
+        >
+          <div className="space-y-4">
+            <div className="relative flex items-center justify-between bg-purple-900/70 px-3 py-2 rounded border-b border-purple-500/50">
+              <div className="flex items-center gap-3">
+                <div className="relative">
+                  <Terminal className="w-6 h-6 text-white" />
+                  <span className="absolute -top-1 -right-1 w-2 h-2 bg-purple-400 rounded-full animate-ping"></span>
+                </div>
+                <h3 className="text-xl font-bold tracking-wider text-white">
+                  HACKING SUITE
+                </h3>
+              </div>
+              <div className="px-2 py-1 bg-purple-800/40 rounded text-xs border border-purple-500/30 flex items-center gap-2">
+                <span className="inline-block w-2 h-2 bg-green-400 rounded-full"></span>
+                <span className="text-green-300 font-mono">ONLINE</span>
+              </div>
             </div>
-            <div className="bg-purple-600/20 p-2 rounded text-xs font-mono">
-              <div className="text-purple-300">CONNECTION:</div>
-              <div className="mt-1 animate-pulse">● SECURED</div>
-              <div className="mt-3 text-purple-300">TARGET:</div>
-              <div className="mt-1 truncate">Arasaka Database</div>
+            <p className="text-sm opacity-90 border-l-2 border-purple-200 pl-3 py-1 italic text-purple-100">
+              Advanced intrusion tools with ICE-breaking capabilities and
+              self-modifying algorithms
+            </p>
+
+            <div className="w-full h-2 bg-[#120917] rounded overflow-hidden">
+              <div className="h-full bg-purple-100 w-3/4"
+                style={{ boxShadow: "0 0 8pxrgb(207, 156, 255)" }}></div>
+            </div>
+            <div className="flex justify-between text-xs font-mono text-purple-100">
+              <span>SYSTEM INTEGRITY: 75%</span>
+              <span>UPTIME: 13:42:06</span>
+            </div>
+            <div className="grid grid-cols-2 gap-3 mt-4">
+
+              <div className="bg-[#0F090F] p-3 rounded border border-purple-600/30 relative overflow-hidden">
+                <div className="flex items-center justify-center">
+                  <Image
+                    src="/assets/images/cyberpunk-card/img2.jpg"
+                    alt="logo1"
+                    width={200}
+                    height={200}
+                    quality={100}
+                    loading='lazy'
+                  />
+                </div>
+              </div>
+
+              <div className="bg-purple-900/70 p-3 rounded border border-purple-600/30 font-mono relative overflow-hidden">
+                <div className="absolute inset-0 opacity-5"
+                  style={{ backgroundSize: "20px 20px", backgroundImage: "linear-gradient(to right,rgb(210, 163, 255) 1px, transparent 1px), linear-gradient(to bottom, #a855f7 1px, transparent 1px)" }}></div>
+
+                <div className="text-purple-100 mb-2 flex items-center gap-2">
+                  <span className="inline-block w-2 h-2 bg-purple-500 rounded-full"></span>
+                  CONNECTION:
+                </div>
+
+                <div className="mt-1 flex items-center gap-2 bg-purple-800/30 px-2 py-1 rounded border-l border-r border-purple-500/30">
+                  <span className="inline-block w-3 h-3 bg-green-400 rounded-full animate-pulse"></span>
+                  <span className="text-green-300">SECURED</span>
+                </div>
+
+                <div className="mt-3 text-purple-100 flex items-center gap-2">
+                  <span className="inline-block w-2 h-2 bg-purple-500 rounded-full"></span>
+                  TARGET:
+                </div>
+
+                <div className="mt-1 truncate bg-purple-800/30 px-2 py-1 rounded border-l border-r border-purple-500/30 animate-pulse">
+                  Arasaka Database
+                </div>
+
+                <div className="mt-3 text-purple-100 flex items-center gap-2">
+                  <span className="inline-block w-2 h-2 bg-purple-500 rounded-full"></span>
+                  PING:
+                </div>
+
+                <div className="mt-1 flex justify-between text-xs px-2 py-1 bg-purple-800/30 rounded border-l border-r border-purple-500/30">
+                  <span>127ms</span>
+                  <span>|||||||||||||</span>
+                </div>
+              </div>
+            </div>
+            <div className="flex justify-between items-center text-xs font-mono mt-2 pt-2 border-t border-purple-600/30">
+              <div className="flex items-center gap-2">
+                <span className="px-2 py-1 bg-purple-800/30 rounded-full border border-purple-500/30">
+                  ICE: 3/7
+                </span>
+                <span className="px-2 py-1 bg-purple-800/30 rounded-full border border-purple-500/30">
+                  CPU: 42%
+                </span>
+              </div>
+              <div className="animate-pulse text-green-300">
+                SYSTEM READY
+              </div>
             </div>
           </div>
-        </div>
-      </CyberpunkCard>
+        </CyberpunkCard>
     );
   }`,
     },
@@ -359,35 +325,71 @@ export function cn(...inputs: ClassValue[]) {
       preview: (
         <CyberpunkCard
           theme="neon-orange"
-          rounded="lg"
+          rounded="md"
           glow={true}
-          glowIntensity={3}
+          glowIntensity={4}
+          borderStyle="glitch"
         >
-          <div className="space-y-3">
-            <div className="flex items-center gap-2">
-              <Wifi className="w-6 h-6" />
-              <h3 className="text-xl font-bold tracking-wider">NETWORK HUB</h3>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <Wifi className="w-6 h-6 text-purple-50" />
+                <h3 className="text-xl font-bold tracking-wider text-white">NETWORK HUB</h3>
+              </div>
+              <div className="px-2 py-1 bg-orange-900/30 rounded-sm text-xs border border-orange-500/50">
+                <span className="inline-block w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+                ONLINE
+              </div>
             </div>
-            <p className="text-sm opacity-80">
+            <p className="text-sm text-orange-100/80 border-l-2 border-white pl-3">
               Distributed mesh network controller with quantum encryption
             </p>
+            <div className="relative w-full h-36 mx-auto bg-black/40 rounded border border-purple-500/30 p-3 overflow-hidden">
+              <div className="absolute inset-0"
+                style={{ backgroundImage: "url('/assets/images/cyberpunk-card/img1.jpg')", backgroundSize: "contain", backgroundPosition: "center", backgroundClip: "border-box", backgroundRepeat: "repeat" }}>
+                <div className="bg-black absolute inset-0 opacity-50"></div>
+              </div>
+
+              <div className="flex items-center justify-center h-full relative">
+                <div className="w-12 h-12 rounded-full bg-orange-500/30 border-2 border-orange-500 flex items-center justify-center animate-pulse">
+                  <Shield className="w-6 h-6 text-orange-300" />
+                </div>
+
+                <div className="absolute h-px w-24 bg-gradient-to-r from-orange-500 to-transparent" style={{ transform: 'rotate(45deg) translateX(30px)' }}></div>
+                <div className="absolute h-px w-24 bg-gradient-to-r from-orange-500 to-transparent" style={{ transform: 'rotate(135deg) translateX(30px)' }}></div>
+                <div className="absolute h-px w-24 bg-gradient-to-r from-orange-500 to-transparent" style={{ transform: 'rotate(225deg) translateX(30px)' }}></div>
+                <div className="absolute h-px w-24 bg-gradient-to-r from-orange-500 to-transparent" style={{ transform: 'rotate(315deg) translateX(30px)' }}></div>
+              </div>
+            </div>
+
             <div className="flex flex-wrap gap-2 mt-3">
-              <div className="px-2 py-1 bg-orange-600/30 rounded-full text-xs flex items-center gap-1">
-                <span className="w-2 h-2 bg-orange-300 rounded-full"></span>
+              <div className="px-2 py-1 bg-orange-900/30 rounded-full text-xs flex items-center gap-1 border border-orange-500/50">
+                <span className="w-2 h-2 bg-orange-300 rounded-full animate-pulse"></span>
                 NODE_A9
               </div>
-              <div className="px-2 py-1 bg-orange-600/30 rounded-full text-xs flex items-center gap-1">
+              <div className="px-2 py-1 bg-orange-900/30 rounded-full text-xs flex items-center gap-1 border border-orange-500/50">
                 <span className="w-2 h-2 bg-orange-300 rounded-full"></span>
                 NODE_B12
               </div>
-              <div className="px-2 py-1 bg-orange-600/30 rounded-full text-xs flex items-center gap-1">
+              <div className="px-2 py-1 bg-orange-900/30 rounded-full text-xs flex items-center gap-1 border border-orange-500/50">
                 <span className="w-2 h-2 bg-orange-300 rounded-full"></span>
                 NODE_C4
               </div>
+              <div className="px-2 py-1 bg-orange-900/30 rounded-full text-xs flex items-center gap-1 border border-orange-500/50">
+                <span className="w-2 h-2 bg-orange-300 rounded-full"></span>
+                NODE_D7
+              </div>
             </div>
-            <div className="flex justify-between items-center mt-2 text-xs font-mono">
-              <span>BANDWIDTH: 12.8TB/s</span>
-              <span className="animate-pulse">⟳ SYNCED</span>
+
+            <div className="flex justify-between items-center mt-2 text-xs font-mono border-t border-orange-500/50 pt-3">
+              <div className="flex items-center gap-2">
+                <Zap className="w-4 h-4 text-orange-400" />
+                <span>BANDWIDTH: <span className="text-white">12.8TB/s</span></span>
+              </div>
+              <span className="animate-pulse flex items-center gap-1">
+                <span className="inline-block w-2 h-2 bg-green-400 rounded-full"></span>
+                SYNCED
+              </span>
             </div>
           </div>
         </CyberpunkCard>
@@ -398,122 +400,78 @@ export function cn(...inputs: ClassValue[]) {
   
   export function NeonOrangeNetworkHub() {
     return (
-      <CyberpunkCard theme="neon-orange" rounded="lg" glow={true} glowIntensity={3}>
-        <div className="space-y-3">
-          <div className="flex items-center gap-2">
-            <Wifi className="w-6 h-6" />
-            <h3 className="text-xl font-bold tracking-wider">NETWORK HUB</h3>
-          </div>
-          <p className="text-sm opacity-80">Distributed mesh network controller with quantum encryption</p>
-          <div className="flex flex-wrap gap-2 mt-3">
-            <div className="px-2 py-1 bg-orange-600/30 rounded-full text-xs flex items-center gap-1">
-              <span className="w-2 h-2 bg-orange-300 rounded-full"></span>
-              NODE_A9
-            </div>
-            <div className="px-2 py-1 bg-orange-600/30 rounded-full text-xs flex items-center gap-1">
-              <span className="w-2 h-2 bg-orange-300 rounded-full"></span>
-              NODE_B12
-            </div>
-            <div className="px-2 py-1 bg-orange-600/30 rounded-full text-xs flex items-center gap-1">
-              <span className="w-2 h-2 bg-orange-300 rounded-full"></span>
-              NODE_C4
-            </div>
-          </div>
-          <div className="flex justify-between items-center mt-2 text-xs font-mono">
-            <span>BANDWIDTH: 12.8TB/s</span>
-            <span className="animate-pulse">⟳ SYNCED</span>
-          </div>
-        </div>
-      </CyberpunkCard>
-    );
-  }`,
-    },
-    {
-      name: "Custom Storage Card",
-      preview: (
-        <CyberpunkCard
-          theme="custom"
-          customColors={{
-            primary: "#2D3748",
-            secondary: "#1A202C",
-            accent: "#38B2AC",
-          }}
-          borderStyle="corners"
-          colorShift={true}
-          lightTrail={true}
+      <CyberpunkCard
+          theme="neon-orange"
+          rounded="md"
           glow={true}
-          glowIntensity={3}
-          rounded="lg"
+          glowIntensity={4}
+          borderStyle="glitch"
         >
-          <div className="space-y-3">
-            <div className="flex items-center gap-2">
-              <Database className="w-6 h-6 text-black dark:text-white" />
-              <h3 className="text-xl font-bold tracking-wider text-black dark:text-white">
-                MEMORY VAULT
-              </h3>
-            </div>
-            <p className="text-sm opacity-80 text-black dark:text-white">
-              Secure quantum storage solution with 8PB capacity
-            </p>
-            <div className="w-full bg-gray-700/50 rounded-full h-2 mt-4">
-              <div className="bg-teal-400 h-2 rounded-full w-3/5"></div>
-            </div>
-            <div className="flex justify-between text-xs font-mono text-black dark:text-white">
-              <span>USED: 4.8PB</span>
-              <span>FREE: 3.2PB</span>
-            </div>
-            <div className="mt-3 p-2 bg-gray-700/30 rounded text-xs text-black dark:text-white">
-              <div className="font-bold mb-1">RECENT ARCHIVES:</div>
-              <div className="truncate">• Neural Backup [2025-03-28]</div>
-              <div className="truncate">
-                • Memory Fragment #37A2 [2025-03-31]
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <Wifi className="w-6 h-6 text-purple-50" />
+                <h3 className="text-xl font-bold tracking-wider text-white">NETWORK HUB</h3>
               </div>
+              <div className="px-2 py-1 bg-orange-900/30 rounded-sm text-xs border border-orange-500/50">
+                <span className="inline-block w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+                ONLINE
+              </div>
+            </div>
+            <p className="text-sm text-orange-100/80 border-l-2 border-white pl-3">
+              Distributed mesh network controller with quantum encryption
+            </p>
+            <div className="relative w-full h-36 mx-auto bg-black/40 rounded border border-purple-500/30 p-3 overflow-hidden">
+              <div className="absolute inset-0"
+                style={{ backgroundImage: "url('/assets/images/cyberpunk-card/img1.jpg')", backgroundSize: "contain", backgroundPosition: "center", backgroundClip: "border-box", backgroundRepeat: "repeat" }}>
+                  <div className="bg-black absolute inset-0 opacity-50"></div>
+                </div>
+
+              <div className="flex items-center justify-center h-full relative">
+                <div className="w-12 h-12 rounded-full bg-orange-500/30 border-2 border-orange-500 flex items-center justify-center animate-pulse">
+                  <Shield className="w-6 h-6 text-orange-300" />
+                </div>
+
+                <div className="absolute h-px w-24 bg-gradient-to-r from-orange-500 to-transparent" style={{ transform: 'rotate(45deg) translateX(30px)' }}></div>
+                <div className="absolute h-px w-24 bg-gradient-to-r from-orange-500 to-transparent" style={{ transform: 'rotate(135deg) translateX(30px)' }}></div>
+                <div className="absolute h-px w-24 bg-gradient-to-r from-orange-500 to-transparent" style={{ transform: 'rotate(225deg) translateX(30px)' }}></div>
+                <div className="absolute h-px w-24 bg-gradient-to-r from-orange-500 to-transparent" style={{ transform: 'rotate(315deg) translateX(30px)' }}></div>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-2 mt-3">
+              <div className="px-2 py-1 bg-orange-900/30 rounded-full text-xs flex items-center gap-1 border border-orange-500/50">
+                <span className="w-2 h-2 bg-orange-300 rounded-full animate-pulse"></span>
+                NODE_A9
+              </div>
+              <div className="px-2 py-1 bg-orange-900/30 rounded-full text-xs flex items-center gap-1 border border-orange-500/50">
+                <span className="w-2 h-2 bg-orange-300 rounded-full"></span>
+                NODE_B12
+              </div>
+              <div className="px-2 py-1 bg-orange-900/30 rounded-full text-xs flex items-center gap-1 border border-orange-500/50">
+                <span className="w-2 h-2 bg-orange-300 rounded-full"></span>
+                NODE_C4
+              </div>
+              <div className="px-2 py-1 bg-orange-900/30 rounded-full text-xs flex items-center gap-1 border border-orange-500/50">
+                <span className="w-2 h-2 bg-orange-300 rounded-full"></span>
+                NODE_D7
+              </div>
+            </div>
+
+            <div className="flex justify-between items-center mt-2 text-xs font-mono border-t border-orange-500/50 pt-3">
+              <div className="flex items-center gap-2">
+                <Zap className="w-4 h-4 text-orange-400" />
+                <span>BANDWIDTH: <span className="text-white">12.8TB/s</span></span>
+              </div>
+              <span className="animate-pulse flex items-center gap-1">
+                <span className="inline-block w-2 h-2 bg-green-400 rounded-full"></span>
+                SYNCED
+              </span>
             </div>
           </div>
         </CyberpunkCard>
-      ),
-      filename: "CustomStorageCard.tsx",
-      code: `import { CyberpunkCard } from "@/nuvyxui/components/CyberpunkCard";
-  import { Database } from 'lucide-react';
-  
-  export function CustomStorageCard() {
-    return (
-      <CyberpunkCard 
-        theme="custom" 
-        customColors={{
-          primary: "#2D3748",
-          secondary: "#1A202C",
-          accent: "#38B2AC"
-        }}
-        borderStyle="corners"
-        colorShift={true}
-        lightTrail={true}
-        glow={true}
-        glowIntensity={3}
-        rounded="lg"
-      >
-        <div className="space-y-3">
-          <div className="flex items-center gap-2">
-            <Database className="w-6 h-6 text-black dark:text-white" />
-            <h3 className="text-xl font-bold tracking-wider text-black dark:text-white">MEMORY VAULT</h3>
-          </div>
-          <p className="text-sm opacity-80 text-black dark:text-white">Secure quantum storage solution with 8PB capacity</p>
-          <div className="w-full bg-gray-700/50 rounded-full h-2 mt-4">
-            <div className="bg-teal-400 h-2 rounded-full w-3/5"></div>
-          </div>
-          <div className="flex justify-between text-xs font-mono text-black dark:text-white">
-            <span>USED: 4.8PB</span>
-            <span>FREE: 3.2PB</span>
-          </div>
-          <div className="mt-3 p-2 bg-gray-700/30 rounded text-xs text-black dark:text-white">
-            <div className="font-bold mb-1">RECENT ARCHIVES:</div>
-            <div className="truncate">• Neural Backup [2025-03-28]</div>
-            <div className="truncate">• Memory Fragment #37A2 [2025-03-31]</div>
-          </div>
-        </div>
-      </CyberpunkCard>
     );
   }`,
-    },
+    }
   ],
 };
