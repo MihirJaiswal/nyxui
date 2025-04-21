@@ -4,8 +4,8 @@ import { ActivitySquareIcon, ArrowRight, Droplet, Heart, Plus } from "lucide-rea
 
 export const MorphingButtonDemo = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full bg-black p-4">
-      <div className="flex justify-center items-center h-48 border border-gray-800 rounded-lg">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+      <div className="flex justify-center items-center h-48 border border-gray-300 dark:border-gray-800 rounded-lg">
         <MorphingButton 
           variant="expand"
           icon={<ArrowRight />}
@@ -16,7 +16,7 @@ export const MorphingButtonDemo = () => {
         </MorphingButton>
       </div>
       
-      <div className="flex justify-center items-center h-48 border border-gray-800 rounded-lg">
+      <div className="flex justify-center items-center h-48 border border-gray-300 dark:border-gray-800 rounded-lg">
         <MorphingButton
           variant="collapse"
           icon={<ArrowRight />}
@@ -27,7 +27,7 @@ export const MorphingButtonDemo = () => {
         </MorphingButton>
       </div>
       
-      <div className="flex justify-center items-center h-48 border border-gray-800 rounded-lg">
+      <div className="flex justify-center items-center h-48 border border-gray-300 dark:border-gray-800 rounded-lg">
         <MorphingButton
           variant="rotate"
           icon={<Plus />}
@@ -38,7 +38,7 @@ export const MorphingButtonDemo = () => {
         </MorphingButton>
       </div>
       
-      <div className="flex justify-center items-center h-48 border border-gray-800 rounded-lg">
+      <div className="flex justify-center items-center h-48 border border-gray-300 dark:border-gray-800 rounded-lg">
         <MorphingButton 
           variant="pulse"
           iconPosition="only"
@@ -48,7 +48,7 @@ export const MorphingButtonDemo = () => {
         </MorphingButton>
       </div>
       
-      <div className="flex justify-center items-center h-48 border border-gray-800 rounded-lg">
+      <div className="flex justify-center items-center h-48 border border-gray-300 dark:border-gray-800 rounded-lg">
         <MorphingButton 
           variant="liquid" 
           size="lg"
@@ -60,7 +60,7 @@ export const MorphingButtonDemo = () => {
         </MorphingButton>
       </div>
       
-      <div className="flex justify-center items-center h-48 border border-gray-800 rounded-lg">
+      <div className="flex justify-center items-center h-48 border border-gray-300 dark:border-gray-800 rounded-lg">
         <MorphingButton 
           variant="bounce"
           icon={<ActivitySquareIcon />}

@@ -11,8 +11,8 @@ import {
 
 export const LiquidMetalButtonDemo = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full bg-black p-4">
-      <div className="flex justify-center items-center h-48 border border-zinc-800 rounded-lg">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+      <div className="flex justify-center items-center h-48 border border-gray-300 dark:border-gray-800 rounded-lg">
         <LiquidMetalButton variant="default" theme="gold" className="rounded-lg" size="lg">
           <div className="flex items-center">
             <Crown className="mr-2 h-4 w-4" />
@@ -21,7 +21,7 @@ export const LiquidMetalButtonDemo = () => {
         </LiquidMetalButton>
       </div>
 
-      <div className="flex justify-center items-center h-48 border border-zinc-800 rounded-lg">
+      <div className="flex justify-center items-center h-48 border border-gray-300 dark:border-gray-800 rounded-lg">
         <LiquidMetalButton variant="default" theme="silver" className="rounded-lg">
           <div className="flex items-center">
             <Shield className="mr-2 h-4 w-4" />
@@ -30,7 +30,7 @@ export const LiquidMetalButtonDemo = () => {
         </LiquidMetalButton>
       </div>
 
-      <div className="flex justify-center items-center h-48 border border-zinc-800 rounded-lg">
+      <div className="flex justify-center items-center h-48 border border-gray-300 dark:border-gray-800 rounded-lg">
         <LiquidMetalButton variant="default" theme="copper" className="rounded-lg">
           <div className="flex items-center">
             <Trophy className="mr-2 h-4 w-4" />
@@ -38,7 +38,7 @@ export const LiquidMetalButtonDemo = () => {
           </div>
         </LiquidMetalButton>
       </div>
-      <div className="flex justify-center items-center h-48 border border-zinc-800 rounded-lg">
+      <div className="flex justify-center items-center h-48 border border-gray-300 dark:border-gray-800 rounded-lg">
         <LiquidMetalButton variant="default" theme="steel" className="rounded-lg">
           <div className="flex items-center">
             <Zap className="mr-2 h-4 w-4" />
@@ -47,7 +47,7 @@ export const LiquidMetalButtonDemo = () => {
         </LiquidMetalButton>
       </div>
 
-      <div className="flex justify-center items-center h-48 border border-zinc-800 rounded-lg">
+      <div className="flex justify-center items-center h-48 border border-gray-300 dark:border-gray-800 rounded-lg">
         <LiquidMetalButton variant="outline" theme="gold" className="rounded-lg">
           <div className="flex items-center">
             <Crown className="mr-2 h-4 w-4" />
@@ -56,7 +56,7 @@ export const LiquidMetalButtonDemo = () => {
         </LiquidMetalButton>
       </div>
 
-      <div className="flex justify-center items-center h-48 border border-zinc-800 rounded-lg">
+      <div className="flex justify-center items-center h-48 border border-gray-300 dark:border-gray-800 rounded-lg">
         <LiquidMetalButton variant="mercury" theme="mercury" intensity={5} className="rounded-lg">
           <div className="flex items-center">
             <Download className="mr-2 h-4 w-4" />
@@ -65,7 +65,7 @@ export const LiquidMetalButtonDemo = () => {
         </LiquidMetalButton>
       </div>
 
-      <div className="flex justify-center items-center h-48 border border-zinc-800 rounded-lg">
+      <div className="flex justify-center items-center h-48 border border-gray-300 dark:border-gray-800 rounded-lg">
         <LiquidMetalButton variant="ripple" theme="steel" intensity={4} className="rounded-lg">
           <div className="flex items-center">
             <ShoppingCart className="mr-2 h-4 w-4" />
@@ -74,7 +74,7 @@ export const LiquidMetalButtonDemo = () => {
         </LiquidMetalButton>
       </div>
 
-      <div className="flex justify-center items-center h-48 border border-zinc-800 rounded-lg">
+      <div className="flex justify-center items-center h-48 border border-gray-300 dark:border-gray-800 rounded-lg">
         <LiquidMetalButton variant="mercury" theme="gold" intensity={5} textured={true} className="rounded-lg">
           <div className="flex items-center">
             <Crown className="mr-2 h-4 w-4" />
@@ -83,7 +83,7 @@ export const LiquidMetalButtonDemo = () => {
         </LiquidMetalButton>
       </div>
 
-      <div className="flex justify-center items-center h-48 border border-zinc-800 rounded-lg">
+      <div className="flex justify-center items-center h-48 border border-gray-300 dark:border-gray-800 rounded-lg">
         <LiquidMetalButton variant="ripple" theme="steel" intensity={5} textured={true} className="rounded-lg">
           <div className="flex items-center">
             <Zap className="mr-2 h-4 w-4" />

@@ -4,11 +4,9 @@ import type React from "react";
 import { useState, useEffect, type CSSProperties } from "react";
 import {
   Copy,
-  Github,
   FileCode,
   FileWarning,
   Check,
-  ExternalLink,
   Maximize,
   Minimize,
   Terminal,
@@ -230,15 +228,6 @@ export const InstallationSection = ({
             Installation Guide
           </h2>
         </div>
-        <Button
-          variant="outline"
-          size="sm"
-          className="gap-1.5 text-xs self-start sm:self-auto"
-        >
-          <Github className="size-3.5" />
-          View on GitHub
-          <ExternalLink className="size-3 ml-0.5" />
-        </Button>
       </div>
 
       <div className="backdrop-blur-sm">
