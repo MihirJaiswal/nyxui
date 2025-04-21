@@ -6,11 +6,8 @@ interface CardProps {
   coverImage: string;
   titleImage: string;
   characterImage: string;
-
   width?: number;
   height?: number;
-  backgroundColor?: string;
-  borderColor?: string;
   hoverRotation?: number;
   titleTranslateY?: number;
   characterTranslateY?: number;
@@ -20,17 +17,13 @@ interface CardProps {
     title?: string;
     character?: string;
   };
-  gradientColors?: {
-    top?: string;
-    bottom?: string;
-  };
   animation?: {
     duration?: number;
     delay?: number;
   };
-  shadow?: string;
   priority?: boolean;
   threshold?: number;
+  className?: string;
 }
 
 const RevealCard: React.FC<CardProps> = ({
@@ -39,8 +32,6 @@ const RevealCard: React.FC<CardProps> = ({
   characterImage,
   width = 266,
   height = 400,
-  backgroundColor = "#192740",
-  borderColor = "#ddd",
   hoverRotation = 25,
   titleTranslateY = -50,
   characterTranslateY = -15,
@@ -54,9 +45,9 @@ const RevealCard: React.FC<CardProps> = ({
     duration: 500,
     delay: 0,
   },
-  shadow = "2px 35px 32px -8px rgba(0,0,0,0.75)",
   priority = false,
   threshold = 0.3,
+  className = "",
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -126,7 +117,7 @@ const RevealCard: React.FC<CardProps> = ({
     isMobile && shouldReveal ? "[transform:translate3d(0,-50px,100px)]" : "";
 
   const desktopHoverClass = !isMobile
-    ? "group-hover:[transform:perspective(900px)_translateY(-5%)_rotateX(25deg)_translateZ(0)] group-hover:shadow-[2px_35px_32px_-8px_rgba(0,0,0,0.75)]"
+    ? "group-hover:[transform:perspective(900px)_translateY(-5%)_rotateX(25deg)_translateZ(0)] group-hover:shadow-xl"
     : "";
 
   const characterHoverClass = !isMobile
@@ -140,15 +131,10 @@ const RevealCard: React.FC<CardProps> = ({
   return (
     <div
       ref={cardRef}
-      className="group relative flex justify-center items-end no-underline perspective-[2500px] cursor-pointer"
+      className={`group relative flex justify-center items-end no-underline perspective-[2500px] cursor-pointer border p-0 mx-3 ${className}`}
       style={{
         width: `${width}px`,
         height: `${height}px`,
-        backgroundColor,
-        borderColor,
-        padding: "0 36px",
-        margin: "0 10px",
-        border: `1px solid ${borderColor}`,
       }}
       onClick={handleCardClick}
     >
@@ -159,7 +145,6 @@ const RevealCard: React.FC<CardProps> = ({
             {
               ...animationStyle,
               "--hover-rotation": `${hoverRotation}deg`,
-              "--hover-shadow": shadow,
             } as React.CSSProperties
           }
         >
@@ -173,7 +158,7 @@ const RevealCard: React.FC<CardProps> = ({
           />
 
           <div
-            className="absolute bottom-0 left-0 w-full h-[40px] bg-gradient-to-b from-transparent to-[rgba(12,13,19,0.3)]"
+            className="absolute bottom-0 left-0 w-full h-10 bg-gradient-to-b from-transparent to-black/30"
             style={animationStyle}
           ></div>
         </div>

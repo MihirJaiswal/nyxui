@@ -48,18 +48,6 @@ export const revealCardData: ComponentData = {
           description: "Height of the card in pixels.",
         },
         {
-          name: "backgroundColor",
-          type: "string",
-          default: '"#192740"',
-          description: "Background color of the card.",
-        },
-        {
-          name: "borderColor",
-          type: "string",
-          default: '"#ddd"',
-          description: "Border color of the card.",
-        },
-        {
           name: "hoverRotation",
           type: "number",
           default: "25",
@@ -85,28 +73,22 @@ export const revealCardData: ComponentData = {
         },
         {
           name: "alt",
-          type: "{ cover?: string; title?: string; character?: string; }",
+          type: "object",
           default:
             '{ cover: "Cover Image", title: "Title", character: "Character" }',
           description: "Alternate text for the images.",
         },
         {
           name: "gradientColors",
-          type: "{ top?: string; bottom?: string; }",
+          type: "object",
           default: '{ top: "rgba(12,13,19,1)", bottom: "rgba(12,13,19,1)" }',
           description: "Gradient overlay colors for the cover image.",
         },
         {
           name: "animation",
-          type: "{ duration?: number; delay?: number; }",
+          type: "object",
           default: "{ duration: 500, delay: 0 }",
           description: "Animation duration and delay in milliseconds.",
-        },
-        {
-          name: "shadow",
-          type: "string",
-          default: '"2px 35px 32px -8px rgba(0,0,0,0.75)"',
-          description: "Shadow effect applied on hover.",
         },
         {
           name: "priority",
@@ -114,6 +96,18 @@ export const revealCardData: ComponentData = {
           default: "false",
           description:
             "If true, images are prioritized for loading (eager loading).",
+        },
+        {
+          name: "threshold",
+          type: "number",
+          default: "0.3",
+          description: "The threshold for triggering the animation (0-1).",
+        },
+        {
+          name: "className",
+          type: "string",
+          default: '""',
+          description: "Additional CSS classes for the card.",
         },
       ],
     },
@@ -132,8 +126,6 @@ export const revealCardData: ComponentData = {
               characterImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/klipart.png"
               width={300}
               height={400}
-              backgroundColor="#1a1a1a"
-              borderColor="#333333"
             />
           </div>
         </div>
@@ -152,8 +144,6 @@ export const revealCardData: ComponentData = {
             characterImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/klipart.png"
             width={300}
             height={400}
-            backgroundColor="#1a1a1a"
-            borderColor="#333333"
           />
         </div>
       </div>
@@ -170,8 +160,6 @@ export const revealCardData: ComponentData = {
               coverImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/hulkposter.jpg"
               titleImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/hlogo1.png"
               characterImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/hulp1.png"
-              backgroundColor="#064001"
-              borderColor="#D4AF37"
               characterTranslateY={-40}
               characterTranslateZ={150}
               titleTranslateY={-70}
@@ -179,7 +167,6 @@ export const revealCardData: ComponentData = {
                 duration: 600,
                 delay: 100,
               }}
-              shadow="0px 40px 40px -10px rgba(255,125,0,0.4)"
             />
           </div>
         </div>
@@ -196,8 +183,6 @@ export const revealCardData: ComponentData = {
             coverImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/hulkposter.jpg"
             titleImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/hlogo1.png"
             characterImage="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/hulp1.png"
-            backgroundColor="#064001"
-            borderColor="#D4AF37"
             characterTranslateY={-40}
             characterTranslateZ={150}
             titleTranslateY={-70}
@@ -205,7 +190,6 @@ export const revealCardData: ComponentData = {
               duration: 600,
               delay: 100
             }}
-            shadow="0px 40px 40px -10px rgba(255,125,0,0.4)"
           />
         </div>
       </div>
