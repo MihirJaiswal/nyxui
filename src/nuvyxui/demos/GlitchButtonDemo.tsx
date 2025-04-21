@@ -56,7 +56,7 @@ export const GlitchButtonDemo = () => {
         >
           <div className="flex items-center">
             <MoonIcon className="mr-1 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-            <span>nuvyx UI</span>
+            <span>Nuvyx UI</span>
           </div>
         </GlitchButton>
       </div>
