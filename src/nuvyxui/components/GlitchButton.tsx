@@ -1,12 +1,10 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { twMerge } from "tailwind-merge";
 
-interface GlitchButtonProps {
+interface GlitchButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   className?: string;
-  onClick?: () => void;
-  glitchIntensity?: "low" | "medium" | "high";
   glitchOnHover?: boolean;
   glitchAlways?: boolean;
   glitchColors?: {
@@ -19,8 +17,6 @@ interface GlitchButtonProps {
 export const GlitchButton: React.FC<GlitchButtonProps> = ({
   children,
   className = "",
-  onClick,
-  glitchIntensity = "medium",
   glitchOnHover = true,
   glitchAlways = false,
   glitchColors = {
@@ -28,168 +24,33 @@ export const GlitchButton: React.FC<GlitchButtonProps> = ({
     secondary: "#00ffff",
   },
   borderColor = "white",
+  ...props
 }) => {
   const [isHovering, setIsHovering] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
-  const buttonRef = useRef<HTMLDivElement>(null);
-  const [bgColorClass, setBgColorClass] = useState("bg-gray-900");
-  const [textColorClass, setTextColorClass] = useState("text-white");
-  const [isRounded, setIsRounded] = useState(false);
-
-  useEffect(() => {
-    const bgMatch = className.match(/bg-[a-z]+-[0-9]+/);
-    if (bgMatch) {
-      setBgColorClass(bgMatch[0]);
-    }
-    const textMatch = className.match(/text-[a-z]+-[0-9]+/);
-    if (textMatch) {
-      setTextColorClass(textMatch[0]);
-    }
-    setIsRounded(
-      className.includes("rounded") ||
-        className.includes("rounded-lg") ||
-        className.includes("rounded-md") ||
-        className.includes("rounded-sm") ||
-        className.includes("rounded-full")
-    );
-  }, [className]);
-
-  useEffect(() => {
-    const intensityMultiplier =
-      glitchIntensity === "low" ? 0.5 : glitchIntensity === "high" ? 2 : 1;
-
-    const styleId = "glitch-button-styles";
-    if (!document.getElementById(styleId)) {
-      const styleTag = document.createElement("style");
-      styleTag.id = styleId;
-      styleTag.innerHTML = `
-        @keyframes glitchFx1 {
-          0%, 100% { transform: translateX(0); }
-          10% { transform: translateX(0); }
-          20% { transform: translateX(${-4 * intensityMultiplier}px); }
-          30% { transform: translateX(0); }
-          40% { transform: translateX(${12 * intensityMultiplier}px); }
-          50% { transform: translateX(${8 * intensityMultiplier}px); }
-          60% { transform: translateX(${24 * intensityMultiplier}px); }
-          70% { transform: translateX(${2 * intensityMultiplier}px); }
-          80% { transform: translateX(${-4 * intensityMultiplier}px); }
-          90% { transform: translateX(0); }
-        }
-        @keyframes glitchFx2 {
-          0% { transform: translateX(${4 * intensityMultiplier}px); }
-          10% { transform: translateX(${-12 * intensityMultiplier}px); }
-          20% { transform: translateX(${-2 * intensityMultiplier}px); }
-          30% { transform: translateX(${1 * intensityMultiplier}px); }
-          40%, 50%, 60%, 70% { transform: translateX(0); }
-          80% { transform: translateX(${4 * intensityMultiplier}px); }
-          90% { transform: translateX(${-2 * intensityMultiplier}px); }
-          100% { transform: translateX(${-15 * intensityMultiplier}px); }
-        }
-        @keyframes glitchFx3 {
-          0% { transform: translateX(${4 * intensityMultiplier}px); }
-          10% { transform: translateX(0); }
-          20% { transform: translateX(${4 * intensityMultiplier}px); }
-          30% { transform: translateX(0); }
-          40% { transform: translateX(${-4 * intensityMultiplier}px); }
-          50% { transform: translateX(0); }
-          60% { transform: translateX(${-4 * intensityMultiplier}px); }
-          70% { transform: translateX(0); }
-          80% { transform: translateX(${12 * intensityMultiplier}px); }
-          90% { transform: translateX(0); }
-          100% { transform: translateX(${-12 * intensityMultiplier}px); }
-        }
-        
-        @keyframes glitchSkew {
-          0% { transform: skew(0deg); }
-          10% { transform: skew(${1 * intensityMultiplier}deg); }
-          20% { transform: skew(${-2 * intensityMultiplier}deg); }
-          30% { transform: skew(${1.5 * intensityMultiplier}deg); }
-          40% { transform: skew(${-1 * intensityMultiplier}deg); }
-          50% { transform: skew(${2 * intensityMultiplier}deg); }
-          60% { transform: skew(${-1.5 * intensityMultiplier}deg); }
-          70% { transform: skew(${1.5 * intensityMultiplier}deg); }
-          80% { transform: skew(${-2 * intensityMultiplier}deg); }
-          90% { transform: skew(${1 * intensityMultiplier}deg); }
-          100% { transform: skew(0deg); }
-        }
-        
-        @keyframes flickerAnimation {
-          0% { opacity: 1; }
-          19% { opacity: 1; }
-          20% { opacity: 0; }
-          21% { opacity: 1; }
-          49% { opacity: 1; }
-          50% { opacity: 0.7; }
-          51% { opacity: 1; }
-          79% { opacity: 1; }
-          80% { opacity: 0.8; }
-          81% { opacity: 1; }
-          100% { opacity: 1; }
-        }
-        
-        @keyframes clickGlitch {
-          0%, 100% { clip-path: inset(0 0 0 0); }
-          20% { clip-path: inset(${20 * intensityMultiplier}% 0 ${
-        40 * intensityMultiplier
-      }% 0); }
-          40% { clip-path: inset(${50 * intensityMultiplier}% 0 ${
-        20 * intensityMultiplier
-      }% 0); }
-          60% { clip-path: inset(${30 * intensityMultiplier}% 0 ${
-        60 * intensityMultiplier
-      }% 0); }
-          80% { clip-path: inset(${10 * intensityMultiplier}% 0 ${
-        70 * intensityMultiplier
-      }% 0); }
-        }
-        
-        .glitch-layer-1 {
-          animation: glitchFx1 ${800 / intensityMultiplier}ms infinite step-end;
-        }
-        .glitch-layer-2 {
-          animation: glitchFx2 ${900 / intensityMultiplier}ms infinite step-end;
-        }
-        .glitch-layer-3 {
-          animation: glitchFx3 ${
-            1000 / intensityMultiplier
-          }ms infinite step-end;
-        }
-        .glitch-skew {
-          animation: glitchSkew ${
-            1200 / intensityMultiplier
-          }ms infinite step-end;
-        }
-        .flicker-animation {
-          animation: flickerAnimation 2s infinite;
-        }
-        .click-glitch {
-          animation: clickGlitch 500ms step-end forwards;
-        }
-      `;
-      document.head.appendChild(styleTag);
-    }
-  }, [glitchIntensity]);
-
-  const handleMouseEnter = () => {
-    setIsHovering(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovering(false);
-  };
-
-  const handleClick = () => {
-    if (onClick) {
-      onClick();
-    }
-    setIsClicked(true);
-    setTimeout(() => setIsClicked(false), 500);
-  };
-
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const showGlitch = glitchAlways || (glitchOnHover && isHovering) || isClicked;
+  const bgColorClass = className.match(/bg-[a-z0-9-]+/)?.[0] || "bg-gray-900";
+  const textColorClass = className.match(/text-[a-z0-9-]+/)?.[0] || "text-white";
+  const isRounded = /rounded(-[a-z]+)?/.test(className);
 
   const borderStyle = {
     boxShadow: `inset ${borderColor} 5px 5px 0px, inset ${borderColor} -5px 5px 0px, inset ${borderColor} 5px -5px 0px, inset ${borderColor} -5px -5px 0px`,
+  };
+
+  const textShadowStyle = {
+    textShadow: `
+      -1.5px -1.5px 0 ${glitchColors.primary}, 
+      1.5px 1.5px 0 ${glitchColors.secondary}
+    `,
+  };
+
+  const handleMouseEnter = () => setIsHovering(true);
+  const handleMouseLeave = () => setIsHovering(false);
+  
+  const handleClick = () => {
+    setIsClicked(true);
+    setTimeout(() => setIsClicked(false), 500);
   };
 
   const containerClasses = twMerge(
@@ -205,33 +66,15 @@ export const GlitchButton: React.FC<GlitchButtonProps> = ({
     className
   );
 
-  const textShadowStyle = {
-    textShadow: `
-      -1.5px -1.5px 0 ${glitchColors.primary}, 
-      1.5px 1.5px 0 ${glitchColors.secondary}
-    `,
-  };
-
-  const glitchLayerShadowTop = {
-    boxShadow: `inset ${borderColor} 5px 5px 0px, inset ${borderColor} -5px 0px 0px`,
-  };
-
-  const glitchLayerShadowMiddle = {
-    boxShadow: `inset ${borderColor} 5px 0px 0px, inset ${borderColor} -5px 0px 0px`,
-  };
-
-  const glitchLayerShadowBottom = {
-    boxShadow: `inset ${borderColor} 5px -5px 0px, inset ${borderColor} -5px 0px 0px`,
-  };
-
   return (
-    <div
+    <button
       ref={buttonRef}
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       className={containerClasses}
       style={borderStyle}
+      {...props}
     >
       <span
         className={`
@@ -260,7 +103,9 @@ export const GlitchButton: React.FC<GlitchButtonProps> = ({
             overflow-hidden
             glitch-layer-1
           `}
-            style={glitchLayerShadowTop}
+            style={{
+              boxShadow: `inset ${borderColor} 5px 5px 0px, inset ${borderColor} -5px 0px 0px`
+            }}
           >
             <div
               className={`
@@ -276,7 +121,6 @@ export const GlitchButton: React.FC<GlitchButtonProps> = ({
               </div>
             </div>
           </div>
-
           <div
             className={`
             absolute left-0 w-full h-1/3 top-1/3 
@@ -284,7 +128,9 @@ export const GlitchButton: React.FC<GlitchButtonProps> = ({
             overflow-hidden
             glitch-layer-2
           `}
-            style={glitchLayerShadowMiddle}
+            style={{
+              boxShadow: `inset ${borderColor} 5px 0px 0px, inset ${borderColor} -5px 0px 0px`
+            }}
           >
             <div
               className={`
@@ -298,7 +144,6 @@ export const GlitchButton: React.FC<GlitchButtonProps> = ({
               <div>{children}</div>
             </div>
           </div>
-
           <div
             className={`
             absolute left-0 w-full h-1/3 top-2/3 
@@ -307,7 +152,9 @@ export const GlitchButton: React.FC<GlitchButtonProps> = ({
             overflow-hidden
             glitch-layer-3
           `}
-            style={glitchLayerShadowBottom}
+            style={{
+              boxShadow: `inset ${borderColor} 5px -5px 0px, inset ${borderColor} -5px 0px 0px`
+            }}
           >
             <div
               className={`
@@ -323,6 +170,6 @@ export const GlitchButton: React.FC<GlitchButtonProps> = ({
           </div>
         </div>
       )}
-    </div>
+    </button>
   );
 };

@@ -8,17 +8,7 @@ export interface LiquidMetalButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "default" | "outline" | "ghost" | "mercury" | "ripple" | "gradient";
   size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
-  theme?:
-    | "silver"
-    | "gold"
-    | "copper"
-    | "mercury"
-    | "steel"
-    | "obsidian"
-    | "emerald"
-    | "ruby"
-    | "sapphire"
-    | "custom";
+  theme?: "silver" | "gold" | "copper" | "mercury" | "steel" | "obsidian" | "emerald" | "ruby" | "sapphire" | "custom";
   customColors?: {
     base: string;
     highlight: string;
@@ -31,14 +21,11 @@ export interface LiquidMetalButtonProps
   magnetic?: boolean;
   clickEffect?: boolean;
   asChild?: boolean;
-  rounded?: "none" | "sm" | "md" | "lg" | "full";
-  shadow?: boolean | "sm" | "md" | "lg" | "xl";
   hoverAnimation?: boolean;
   textured?: boolean;
   icon?: React.ReactNode;
   iconAfter?: React.ReactNode;
   children: React.ReactNode;
-  onClick?: () => void;
 }
 
 interface Droplet {
@@ -59,15 +46,12 @@ export function LiquidMetalButton({
   intensity = 3,
   magnetic = true,
   clickEffect = true,
-  rounded = "md",
-  shadow = true,
   hoverAnimation = true,
   textured = false,
   icon,
   iconAfter,
   className,
   children,
-  onClick,
   ...props
 }: LiquidMetalButtonProps) {
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -216,23 +200,6 @@ export function LiquidMetalButton({
     lg: "px-5 py-2.5 text-lg",
     xl: "px-6 py-3 text-xl",
     "2xl": "px-8 py-4 text-2xl",
-  };
-
-  const roundedClasses = {
-    none: "rounded-none",
-    sm: "rounded-sm",
-    md: "rounded-md",
-    lg: "rounded-lg",
-    full: "rounded-full",
-  };
-
-  const shadowClasses = {
-    true: "shadow-lg",
-    sm: "shadow-sm",
-    md: "shadow-md",
-    lg: "shadow-lg",
-    xl: "shadow-xl",
-    false: "",
   };
 
   useEffect(() => {
@@ -571,28 +538,12 @@ export function LiquidMetalButton({
 
   const Comp = "button";
 
-  const handleClick = () => {
-    if (onClick) {
-      onClick();
-    }
-    setIsPressed(true);
-    setTimeout(() => setIsPressed(false), 500);
-  };
-
   return (
     <Comp
       ref={buttonRef}
-      onClick={handleClick}
       className={cn(
         "relative inline-flex items-center justify-center font-medium transition-all duration-200",
         sizeClasses[size],
-        roundedClasses[rounded],
-        typeof shadow === "string"
-          ? shadowClasses[shadow]
-          : shadow
-          ? shadowClasses.true
-          : "",
-        shadow && currentTheme.glow,
         getButtonClasses(),
         textured && currentTheme.texture,
         isPressed && "scale-95 transform",

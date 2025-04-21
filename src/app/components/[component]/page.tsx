@@ -62,22 +62,22 @@ const ComponentPage = async ({
                 </h1>
               </div>
               <div>
-              <p className="text-muted-foreground dark:text-[#A1A1AA] text-lg">
-              <span className="inline-block align-top no-underline [text-wrap:balance]">
-                {componentData.description}
-              </span>
-              </p>
-              <div className="flex flex-wrap gap-3 pt-2">
-              {
-                  (componentData.tags || []).map((tag, index) => (
-                    <Link key={index} href="/docs" className="whitespace-nowrap">
-                      <Button size="sm" variant="outline" className="text-xs">
-                        {tag}
-                      </Button>
-                    </Link>
-                  ))
-                }
-              </div>
+                <p className="text-muted-foreground dark:text-[#A1A1AA] text-lg">
+                  <span className="inline-block align-top no-underline [text-wrap:balance]">
+                    {componentData.description}
+                  </span>
+                </p>
+                <div className="flex flex-wrap gap-3 pt-2">
+                  {
+                    (componentData.tags || []).map((tag, index) => (
+                      <Link key={index} href="/docs" className="whitespace-nowrap">
+                        <Button size="sm" variant="outline" className="text-xs">
+                          {tag}
+                        </Button>
+                      </Link>
+                    ))
+                  }
+                </div>
               </div>
             </div>
 
@@ -175,28 +175,27 @@ const ComponentPage = async ({
                                   key={`${propGroup.name}-${prop.name}`}
                                 >
                                   <tr
-                                    className={`transition-colors ${
-                                      index % 2 === 0
+                                    className={`transition-colors ${index % 2 === 0
                                         ? "bg-white dark:bg-black"
                                         : "bg-zinc-50 dark:bg-zinc-900"
-                                    }`}
+                                      }`}
                                   >
-                                    <td className="px-3 py-3 sm:px-6 sm:py-4 font-mono text-xs sm:text-sm font-semibold border-r break-all">
+                                    <td className="px-2` py-3 sm:py-4 font-mono text-xs sm:text-sm font-semibold border-r break-all">
                                       <code className="bg-yellow-50 dark:bg-zinc-800 px-1 py-0.5 sm:px-2 sm:py-1">
                                         {prop.name}
                                       </code>
                                     </td>
-                                    <td className="px-3 py-3 sm:px-6 sm:py-4 font-mono text-xs sm:text-sm border-r break-all">
+                                    <td className="px-3 py-3 sm:py-4 font-mono text-xs sm:text-sm border-r break-all">
                                       <code className="bg-yellow-50 dark:bg-zinc-800 px-1 py-0.5 sm:px-2 sm:py-1">
                                         {prop.type}
                                       </code>
                                     </td>
-                                    <td className="px-3 py-3 sm:px-6 sm:py-4 text-xs sm:text-sm border-r break-all">
+                                    <td className="px-2 py-3 sm:py-4 text-xs sm:text-sm border-r break-all">
                                       <code className="bg-yellow-50 dark:bg-zinc-800 px-1 py-0.5 sm:px-2 sm:py-1">
                                         {prop.default || "-"}
                                       </code>
                                     </td>
-                                    <td className="px-3 py-3 sm:px-6 sm:py-4 text-xs sm:text-sm">
+                                    <td className="px-2 py-3 sm:py-4 text-xs sm:text-sm">
                                       {prop.description}
                                     </td>
                                   </tr>
@@ -207,7 +206,7 @@ const ComponentPage = async ({
                                       >
                                         <td colSpan={4} className="p-0">
                                           <div className="bg-zinc-50 dark:bg-zinc-900 border">
-                                            <div className="px-3 py-2 sm:px-4 sm:py-2 font-medium text-xs sm:text-sm bg-white dark:bg-black border-2 border-b">
+                                            <div className="px-3 py-2 sm:px-3 sm:py-2 font-medium text-xs sm:text-sm bg-white dark:bg-black border-2 border-b">
                                               Properties of {prop.name}
                                             </div>
                                             <div className="overflow-x-auto">
@@ -217,18 +216,17 @@ const ComponentPage = async ({
                                                     (subProp, subIndex) => (
                                                       <tr
                                                         key={`${propGroup.name}-${prop.name}-${subProp.name}`}
-                                                        className={`transition-colors ${
-                                                          subIndex % 2 === 0
+                                                        className={`transition-colors ${subIndex % 2 === 0
                                                             ? "bg-white/50 dark:bg-black/30"
                                                             : "bg-zinc-50/70 dark:bg-zinc-900/70"
-                                                        }`}
+                                                          }`}
                                                       >
                                                         <td className="pl-6 sm:pl-10 pr-3 sm:pr-6 py-2 sm:py-3 font-mono text-xs sm:text-sm font-medium border-r w-1/6 min-w-[100px] break-all">
                                                           <code className="bg-yellow-50 dark:bg-zinc-800 px-1 py-0.5 sm:px-2 sm:py-1">
                                                             {subProp.name}
                                                           </code>
                                                         </td>
-                                                        <td className="px-3 py-2 sm:px-6 sm:py-3 font-mono text-xs sm:text-sm border-r w-1/6 min-w-[100px] break-all">
+                                                        <td className="px-3 py-2 sm:px-3 sm:py-3 font-mono text-xs sm:text-sm border-r w-1/6 min-w-[100px] break-all">
                                                           <code className="bg-yellow-50 dark:bg-zinc-800 px-1 py-0.5 sm:px-2 sm:py-1">
                                                             {subProp.type}
                                                           </code>
@@ -239,7 +237,7 @@ const ComponentPage = async ({
                                                               "-"}
                                                           </code>
                                                         </td>
-                                                        <td className="px-3 py-2 sm:px-6 sm:py-3 text-xs sm:text-sm w-3/6 min-w-[200px]">
+                                                        <td className="px-3 py-2 sm:px-3 sm:py-3 text-xs sm:text-sm w-3/6 min-w-[200px]">
                                                           {subProp.description}
                                                         </td>
                                                       </tr>

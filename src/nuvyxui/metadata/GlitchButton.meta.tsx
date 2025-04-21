@@ -1,15 +1,5 @@
 import type { ComponentData } from "@/nuvyxui/ComponentInterfaces";
 import { GlitchButtonDemo } from "@/nuvyxui/demos/GlitchButtonDemo";
-import { GlitchButton } from "@/nuvyxui/components/GlitchButton";
-import {
-  ArrowRight,
-  Download,
-  Info,
-  Mail,
-  Power,
-  ShieldCheck,
-} from "lucide-react";
-
 import GlitchButtonSource from "!!raw-loader!@/nuvyxui/components/GlitchButton.tsx";
 import GlitchButtonDemoSource from "!!raw-loader!@/nuvyxui/demos/GlitchButtonDemo.tsx";
 
@@ -31,19 +21,117 @@ export const glitchButtonData: ComponentData = {
         bun: "bun add tailwind-merge",
       },
     },
+    {
+      setup: {
+        file: "globals.css",
+        code: `@keyframes glitchFx1 {
+  0%, 100% { transform: translateX(0); }
+  10% { transform: translateX(0); }
+  20% { transform: translateX(-4px); }
+  30% { transform: translateX(0); }
+  40% { transform: translateX(12px); }
+  50% { transform: translateX(8px); }
+  60% { transform: translateX(24px); }
+  70% { transform: translateX(2px); }
+  80% { transform: translateX(-4px); }
+  90% { transform: translateX(0); }
+}
+
+@keyframes glitchFx2 {
+  0% { transform: translateX(4px); }
+  10% { transform: translateX(-12px); }
+  20% { transform: translateX(-2px); }
+  30% { transform: translateX(1px); }
+  40%, 50%, 60%, 70% { transform: translateX(0); }
+  80% { transform: translateX(4px); }
+  90% { transform: translateX(-2px); }
+  100% { transform: translateX(-15px); }
+}
+
+@keyframes glitchFx3 {
+  0% { transform: translateX(4px); }
+  10% { transform: translateX(0); }
+  20% { transform: translateX(4px); }
+  30% { transform: translateX(0); }
+  40% { transform: translateX(-4px); }
+  50% { transform: translateX(0); }
+  60% { transform: translateX(-4px); }
+  70% { transform: translateX(0); }
+  80% { transform: translateX(12px); }
+  90% { transform: translateX(0); }
+  100% { transform: translateX(-12px); }
+}
+
+@keyframes glitchSkew {
+  0% { transform: skew(0deg); }
+  10% { transform: skew(1deg); }
+  20% { transform: skew(-2deg); }
+  30% { transform: skew(1.5deg); }
+  40% { transform: skew(-1deg); }
+  50% { transform: skew(2deg); }
+  60% { transform: skew(-1.5deg); }
+  70% { transform: skew(1.5deg); }
+  80% { transform: skew(-2deg); }
+  90% { transform: skew(1deg); }
+  100% { transform: skew(0deg); }
+}
+
+/* Common animations */
+@keyframes flickerAnimation {
+  0% { opacity: 1; }
+  19% { opacity: 1; }
+  20% { opacity: 0; }
+  21% { opacity: 1; }
+  49% { opacity: 1; }
+  50% { opacity: 0.7; }
+  51% { opacity: 1; }
+  79% { opacity: 1; }
+  80% { opacity: 0.8; }
+  81% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+@keyframes clickGlitch {
+  0%, 100% { clip-path: inset(0 0 0 0); }
+  20% { clip-path: inset(20% 0 40% 0); }
+  40% { clip-path: inset(50% 0 20% 0); }
+  60% { clip-path: inset(30% 0 60% 0); }
+  80% { clip-path: inset(10% 0 70% 0); }
+}
+
+/* Animation classes */
+.glitch-layer-1 {
+  animation: glitchFx1 800ms infinite step-end;
+}
+
+.glitch-layer-2 {
+  animation: glitchFx2 900ms infinite step-end;
+}
+
+.glitch-layer-3 {
+  animation: glitchFx3 1000ms infinite step-end;
+}
+
+.glitch-skew {
+  animation: glitchSkew 1200ms infinite step-end;
+}
+
+.flicker-animation {
+  animation: flickerAnimation 2s infinite;
+}
+
+.click-glitch {
+  animation: clickGlitch 500ms step-end forwards;
+}`, 
+        description: "Copy and paste this code into your globals.css file",
+      },
+    }
   ],
 
   props: [
     {
       name: "Glitch Button",
       items: [
-        {
-          name: "glitchIntensity",
-          type: "string",
-          default: '"medium"',
-          description:
-            'The intensity of the glitch effect. Possible values: "low", "medium", "high".',
-        },
         {
           name: "glitchOnHover",
           type: "boolean",
@@ -67,7 +155,7 @@ export const glitchButtonData: ComponentData = {
         {
           name: "glitchColors",
           type: "object",
-          default: "{ primary: '#ef00ef', secondary: '#00ffff' }",
+          default: "{ primary: '#ef00eff', secondary: '#00ffff' }",
           description:
             "Custom colors for the glitch effect. The object should include properties: primary and secondary.",
         },
@@ -77,12 +165,6 @@ export const glitchButtonData: ComponentData = {
           default: '""',
           description:
             "Additional CSS classes to apply. Background and text colors are detected from these classes.",
-        },
-        {
-          name: "onClick",
-          type: "function",
-          default: "undefined",
-          description: "Function to call when the button is clicked.",
         },
         {
           name: "children",
@@ -95,229 +177,5 @@ export const glitchButtonData: ComponentData = {
   ],
   tags: ["Button"],
   category: "Buttons",
-  examples: [
-    {
-      name: "Default Cyberpunk Style",
-      preview: (
-        <GlitchButton glitchIntensity="medium" glitchOnHover={true}>
-          SYSTEM ACCESS
-        </GlitchButton>
-      ),
-      filename: "DefaultGlitchButton.tsx",
-      code: `import { GlitchButton } from "@/nuvyxui/components/GlitchButton";
-  
-export function DefaultGlitchButton() {
-  return (
-    <GlitchButton 
-      glitchIntensity="medium" 
-      glitchOnHover={true}
-    >
-      SYSTEM ACCESS
-    </GlitchButton>
-  );
-}`,
-    },
-    {
-      name: "Continuous Glitch Effect",
-      preview: (
-        <GlitchButton glitchIntensity="low" glitchAlways={true}>
-          <div className="flex items-center">
-            <Power className="mr-2 h-5 w-5" />
-            <span>SYSTEM ACTIVE</span>
-          </div>
-        </GlitchButton>
-      ),
-      filename: "AlwaysGlitchButton.tsx",
-      code: `import { GlitchButton } from "@/nuvyxui/components/GlitchButton";
-import { Power } from 'lucide-react';
-  
-export function AlwaysGlitchButton() {
-  return (
-    <GlitchButton 
-      glitchIntensity="low" 
-      glitchAlways={true}
-    >
-      <div className="flex items-center"><Power className="mr-2 h-5 w-5" /><span>SYSTEM ACTIVE</span></div>
-    </GlitchButton>
-  );
-}`,
-    },
-    {
-      name: "High Intensity Download Button",
-      preview: (
-        <GlitchButton
-          glitchIntensity="high"
-          glitchOnHover={true}
-          className="bg-black text-green-400 rounded-md"
-        >
-          <div className="flex items-center">
-            <Download className="mr-2 h-5 w-5" />
-            <span>DOWNLOAD</span>
-          </div>
-        </GlitchButton>
-      ),
-      filename: "HighIntensityButton.tsx",
-      code: `import { GlitchButton } from "@/nuvyxui/components/GlitchButton";
-import { Download } from 'lucide-react';
-  
-export function HighIntensityButton() {
-  return (
-    <GlitchButton 
-      glitchIntensity="high" 
-      glitchOnHover={true}
-      className="bg-black text-green-400 rounded-md"
-    >
-      <div className="flex items-center"><Download className="mr-2 h-5 w-5" /><span>DOWNLOAD</span></div>
-    </GlitchButton>
-  );
-}`,
-    },
-    {
-      name: "Custom Colors Warning Button",
-      preview: (
-        <GlitchButton
-          glitchIntensity="medium"
-          glitchOnHover={true}
-          glitchColors={{
-            primary: "#ff3e00",
-            secondary: "#ffcc00",
-          }}
-          className="bg-red-900 text-yellow-300 rounded-lg"
-        >
-          <div className="flex items-center">
-            <ShieldCheck className="mr-2 h-5 w-5" />
-            <span>WARNING</span>
-          </div>
-        </GlitchButton>
-      ),
-      filename: "WarningGlitchButton.tsx",
-      code: `import { GlitchButton } from "@/nuvyxui/components/GlitchButton";
-import { ShieldCheck } from 'lucide-react';
-  
-export function WarningGlitchButton() {
-  return (
-    <GlitchButton 
-      glitchIntensity="medium" 
-      glitchOnHover={true}
-      glitchColors={{
-        primary: '#ff3e00',
-        secondary: '#ffcc00'
-      }}
-      className="bg-red-900 text-yellow-300 rounded-lg"
-    >
-      <div className="flex items-center"><ShieldCheck className="mr-2 h-5 w-5" /><span>WARNING</span></div>
-    </GlitchButton>
-  );
-}`,
-    },
-    {
-      name: "Neon Blue Subscribe Button",
-      preview: (
-        <GlitchButton
-          glitchIntensity="medium"
-          glitchOnHover={true}
-          glitchColors={{
-            primary: "#00aaff",
-            secondary: "#0044ff",
-          }}
-          className="bg-blue-950 text-blue-300"
-        >
-          <div className="flex items-center">
-            <Mail className="mr-2 h-5 w-5" />
-            <span>SUBSCRIBE</span>
-          </div>
-        </GlitchButton>
-      ),
-      filename: "NeonBlueButton.tsx",
-      code: `import { GlitchButton } from "@/nuvyxui/components/GlitchButton";
-import { Mail } from 'lucide-react';
-  
-export function NeonBlueButton() {
-  return (
-    <GlitchButton 
-      glitchIntensity="medium" 
-      glitchOnHover={true}
-      glitchColors={{
-        primary: '#00aaff',
-        secondary: '#0044ff'
-      }}
-      className="bg-blue-950 text-blue-300"
-    >
-      <div className="flex items-center"><Mail className="mr-2 h-5 w-5" /><span>SUBSCRIBE</span></div>
-    </GlitchButton>
-  );
-}`,
-    },
-    {
-      name: "Call To Action Button",
-      preview: (
-        <GlitchButton
-          glitchIntensity="high"
-          glitchOnHover={true}
-          className="bg-slate-900 text-white text-xl"
-        >
-          <div className="flex items-center gap-2">
-            <span>ENTER THE VOID</span>
-            <ArrowRight className="h-5 w-5" />
-          </div>
-        </GlitchButton>
-      ),
-      filename: "CTAGlitchButton.tsx",
-      code: `import { GlitchButton } from "@/nuvyxui/components/GlitchButton";
-import { ArrowRight } from 'lucide-react';
-  
-export function CTAGlitchButton() {
-  return (
-    <GlitchButton 
-      glitchIntensity="high"
-      glitchOnHover={true}
-      className="bg-slate-900 text-white text-xl"
-    >
-      <div className="flex items-center gap-2">
-        <span>ENTER THE VOID</span>
-        <ArrowRight className="h-5 w-5" />
-      </div>
-    </GlitchButton>
-  );
-}`,
-    },
-    {
-      name: "Info Button with Subtle Glitch",
-      preview: (
-        <GlitchButton
-          glitchIntensity="low"
-          glitchOnHover={true}
-          glitchColors={{
-            primary: "#5500ff",
-            secondary: "#00ddff",
-          }}
-          className="bg-indigo-800 text-indigo-100 rounded-lg"
-        >
-          <div className="flex items-center">
-            <Info className="mr-2 h-5 w-5" />
-            <span>MORE INFO</span>
-          </div>
-        </GlitchButton>
-      ),
-      filename: "InfoGlitchButton.tsx",
-      code: `import { GlitchButton } from "@/nuvyxui/components/GlitchButton";
-import { Info } from 'lucide-react';
-  
-export function InfoGlitchButton() {
-  return (
-    <GlitchButton 
-      glitchIntensity="low"
-      glitchOnHover={true}
-      glitchColors={{
-        primary: '#5500ff',
-        secondary: '#00ddff'
-      }}
-      className="bg-indigo-800 text-indigo-100 rounded-lg"
-    >
-      <div className="flex items-center"><Info className="mr-2 h-5 w-5" /><span>MORE INFO</span></div>
-    </GlitchButton>
-  );
-}`,
-    },
-  ],
+  examples: []
 };
