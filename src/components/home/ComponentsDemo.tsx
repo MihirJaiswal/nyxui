@@ -113,7 +113,7 @@ export const ComponentsDemo = () => {
             >
               <Particles
                 className="absolute inset-0 z-0"
-                quantity={20}
+                quantity={30}
                 ease={80}
                 color="#ffffff"
                 refresh
@@ -136,15 +136,6 @@ export const ComponentsDemo = () => {
                   <p className="text-sm text-zinc-600 dark:text-zinc-300">
                     Collection of ready-to-use components.
                   </p>
-                  <Link
-                    href="/components"
-                    className="block w-full p-4"
-                    aria-label="Check more components"
-                  >
-                    <div className="w-full min-h-[60px] rounded-xl flex items-center justify-center text-white dark:text-black touch-manipulation">
-                      <Rbutton>Check more</Rbutton>
-                    </div>
-                  </Link>
                 </div>
               </div>
             </DynamicRipple>
