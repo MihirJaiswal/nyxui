@@ -14,6 +14,7 @@ interface LampHeadingProps {
   glowIntensity?: number;
   glowSize?: number;
   animationSpeed?: number;
+  direction?: "above" | "below";
 }
 
 export const LampHeading = ({
@@ -24,6 +25,7 @@ export const LampHeading = ({
   glowIntensity = 0.7,
   glowSize = 20,
   animationSpeed = 3,
+  direction = "below",
 }: LampHeadingProps) => {
   const mainLineRef = useRef<HTMLDivElement>(null);
   const flowAnimation = {
@@ -42,6 +44,31 @@ export const LampHeading = ({
       mainLineRef.current.style.backgroundSize = "200% 200%";
     }
   }, []);
+  const getGlowStyles = (size: number, intensity: number, index: number) => {
+    const baseStyles = {
+      position: "absolute" as const,
+      width: "100%",
+      height: `${size}px`,
+      background: `linear-gradient(to right, ${gradientColors.from}, ${gradientColors.to}, ${gradientColors.from})`,
+      filter: `blur(${glowSize / (index + 1)}px)`,
+      opacity: intensity,
+      left: 0,
+      backgroundSize: "200% 200%",
+    };
+    if (direction === "below") {
+      return {
+        ...baseStyles,
+        top: `${lineHeight + 1}px`, 
+        transformOrigin: "center top",
+      };
+    } else {
+      return {
+        ...baseStyles,
+        bottom: `${lineHeight + 1}px`, 
+        transformOrigin: "center bottom",
+      };
+    }
+  };
 
   return (
     <div className={cn("flex flex-col items-start", className)}>
@@ -50,42 +77,20 @@ export const LampHeading = ({
         <motion.div
           variants={flowAnimation}
           animate="animate"
-          style={{
-            position: "absolute",
-            width: "100%",
-            height: `${Math.max(8, lineHeight * 3)}px`,
-            background: `linear-gradient(to right, ${gradientColors.from}, ${gradientColors.to}, ${gradientColors.from})`,
-            filter: `blur(${glowSize / 2}px)`,
-            opacity: glowIntensity * 0.7,
-            bottom: 0,
-            left: 0,
-            transformOrigin: "center bottom",
-            transform: "scaleY(1.2) translateY(0)",
-            backgroundSize: "200% 200%",
-          }}
+          style={getGlowStyles(Math.max(8, lineHeight * 3), glowIntensity * 0.7, 1)}
           className="rounded-full"
         />
+
         <motion.div
           variants={flowAnimation}
           animate="animate"
-          style={{
-            position: "absolute",
-            width: "100%",
-            height: `${Math.max(4, lineHeight * 2)}px`,
-            background: `linear-gradient(to right, ${gradientColors.from}, ${gradientColors.to}, ${gradientColors.from})`,
-            filter: `blur(${glowSize / 4}px)`,
-            opacity: glowIntensity,
-            bottom: 0,
-            left: 0,
-            transformOrigin: "center bottom",
-            transform: "scaleY(0.8) translateY(0)",
-            backgroundSize: "200% 200%",
-          }}
+          style={getGlowStyles(Math.max(4, lineHeight * 2), glowIntensity, 2)}
           className="rounded-full"
           transition={{
             duration: animationSpeed * 0.8,
           }}
         />
+
         <motion.div
           ref={mainLineRef}
           variants={flowAnimation}

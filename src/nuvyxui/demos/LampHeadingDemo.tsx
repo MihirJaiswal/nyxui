@@ -8,9 +8,10 @@ export const LampHeadingDemo = () => {
           text="Image Generation"
           className="text-2xl"
           gradientColors={{ from: "#ff3366", to: "#338ef7" }}
-          lineHeight={2}
-          glowIntensity={0.7}
-          glowSize={20}
+          lineHeight={2.5}
+          glowIntensity={0.8}
+          glowSize={44}
+          direction="above"
         />
       </div>
       <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
