@@ -36,9 +36,9 @@ export const animatedTextData: ComponentData = {
         },
         {
           name: "type",
-          type: '"cascade" | "flicker" | "blink" | "expand" | "rise" | "glide" | "elastic" | "float"',
+          type: "string",
           default: '"cascade"',
-          description: "Animation style to apply to the text.",
+          description: "Animation style to apply to the text. Options: 'cascade', 'flicker', 'blink', 'expand', 'rise', 'glide', 'elastic', 'float'",
         },
         {
           name: "className",
@@ -93,64 +93,27 @@ export const animatedTextData: ComponentData = {
     },
   ],
   category: "Typography",
+  tags: ["Typography", "Animation"],
   examples: [
-    {
-      name: "Cascade Title Animation",
-      preview: (
-        <div className="p-8 bg-gradient-to-br from-blue-900 via-indigo-800 to-purple-900 rounded-xl text-center shadow-lg border border-blue-700">
-          <AnimateText
-            text="Welcome to NuvyxUI"
-            type="cascade"
-            className="text-5xl font-extrabold text-white tracking-tight"
-          />
-          <AnimateText
-            text="Modern UI Library"
-            type="rise"
-            className="text-xl font-medium text-blue-100 mt-4 opacity-90"
-            delay={0.5}
-          />
-        </div>
-      ),
-      filename: "CascadeTitleAnimation.tsx",
-      code: `import { AnimateText } from "@/nuvyxui/components/AnimatedText";
-  
-export function CascadeTitleAnimation() {
-  return (
-    <div className="p-8 bg-gradient-to-br from-blue-900 via-indigo-800 to-purple-900 rounded-xl text-center shadow-lg border border-blue-700">
-      <AnimateText 
-        text="Welcome to NuvyxUI" 
-        type="cascade" 
-        className="text-5xl font-extrabold text-white tracking-tight" 
-      />
-      <AnimateText 
-        text="Modern UI Library" 
-        type="rise" 
-        className="text-xl font-medium text-blue-100 mt-4 opacity-90" 
-        delay={0.5}
-      />
-    </div>
-  );
-}`,
-    },
     {
       name: "Interactive Feature Highlight",
       preview: (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-4 bg-gray-50 dark:bg-gray-900 rounded-xl">
-          <div className="p-6 border border-emerald-200 dark:border-emerald-800 rounded-xl hover:shadow-xl transition-all duration-300 bg-white dark:bg-gray-800 transform hover:-translate-y-1">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-4">
+          <div className="p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
             <AnimateText
               text="Modern UI Components"
               type="flicker"
-              className="text-xl font-bold text-emerald-600 dark:text-emerald-400 mb-3"
+              className="text-xl font-bold mb-3"
             />
             <p className="text-gray-700 dark:text-gray-200">
               Build beautiful interfaces with ease
             </p>
           </div>
-          <div className="p-6 border border-purple-200 dark:border-purple-800 rounded-xl hover:shadow-xl transition-all duration-300 bg-white dark:bg-gray-800 transform hover:-translate-y-1">
+          <div className="p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
             <AnimateText
               text="Responsive Design"
               type="expand"
-              className="text-xl font-bold text-purple-600 dark:text-purple-400 mb-3"
+              className="text-xl font-bold mb-3"
             />
             <p className="text-gray-700 dark:text-gray-200">
               Ensure your UI looks great on all devices
@@ -191,14 +154,14 @@ export function FeatureHighlight() {
     {
       name: "Elastic Call-to-Action",
       preview: (
-        <div className="text-center p-8 bg-gradient-to-t from-gray-100 to-white dark:from-gray-900 dark:to-gray-800 rounded-xl shadow-md border border-gray-200 dark:border-gray-700">
+        <div className="text-center p-8">
           <p className="text-gray-600 dark:text-gray-300 mb-4 font-medium">
             Build fast and beautiful
           </p>
           <AnimateText
             text="Let's make web beautiful"
             type="elastic"
-            className="text-3xl font-extrabold text-indigo-600 dark:text-indigo-400 cursor-pointer hover:text-indigo-500 dark:hover:text-indigo-300 transition-colors"
+            className="text-3xl font-extrabold cursor-pointer hover:text-indigo-500 dark:hover:text-indigo-300 transition-colors"
           />
           <p className="text-gray-500 dark:text-gray-400 text-sm mt-4 max-w-md mx-auto">
             Start building beautiful interfaces faster than ever before
@@ -210,17 +173,19 @@ export function FeatureHighlight() {
   
 export function ElasticCTA() {
   return (
-    <div className="text-center p-8 bg-gradient-to-t from-gray-100 to-white dark:from-gray-900 dark:to-gray-800 rounded-xl shadow-md border border-gray-200 dark:border-gray-700">
-      <p className="text-gray-600 dark:text-gray-300 mb-4 font-medium">Build fast and beautiful</p>
-      <AnimateText 
-        text="Let's make web beautiful" 
-        type="elastic" 
-        className="text-3xl font-extrabold text-indigo-600 dark:text-indigo-400 cursor-pointer hover:text-indigo-500 dark:hover:text-indigo-300 transition-colors" 
-      />
-      <p className="text-gray-500 dark:text-gray-400 text-sm mt-4 max-w-md mx-auto">
-        Start building beautiful interfaces faster than ever before
-      </p>
-    </div>
+    <div className="text-center p-8">
+          <p className="text-gray-600 dark:text-gray-300 mb-4 font-medium">
+            Build fast and beautiful
+          </p>
+          <AnimateText
+            text="Let's make web beautiful"
+            type="elastic"
+            className="text-3xl font-extrabold cursor-pointer hover:text-indigo-500 dark:hover:text-indigo-300 transition-colors"
+          />
+          <p className="text-gray-500 dark:text-gray-400 text-sm mt-4 max-w-md mx-auto">
+            Start building beautiful interfaces faster than ever before
+          </p>
+        </div>
   );
 }`,
     },
