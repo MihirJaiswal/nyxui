@@ -4,14 +4,28 @@ import { GitHubRepoCard } from "../components/GithubRepoCard";
 import GitHubRepoCardDemo from "../demos/GithubRepoCardDemo";
 
 import GithubRepoCardSource from "!!raw-loader!@/nuvyxui/components/GithubRepoCard.tsx";
-import GithubRepoCardDemoSource from "!!raw-loader!@/nuvyxui/demos/GithubRepoCardDemo.tsx";
 
 export const githubRepoCardData: ComponentData = {
   name: "GitHub Repo Card",
   description:
     "Beautiful GitHub repository cards with customizable themes, activity graphs, and real-time data fetching.",
   preview: <GitHubRepoCardDemo />,
-  usage: GithubRepoCardDemoSource,
+  usage: `import { GitHubRepoCard } from "@/nuvyxui/components/GithubRepoCard";
+
+export default function GitHubRepoCardDemo() {
+  const token = process.env.GITHUB_TOKEN;
+  return (
+    <div className="w-full max-w-md mx-auto">
+      <GitHubRepoCard  
+        repoOwner="tailwindlabs"
+        repoName="tailwindcss"
+        themeId="modern-dark"
+        githubToken={token}
+      />
+    </div>
+  );
+}
+`,
   componentCode: GithubRepoCardSource,
   dependencies: [
     {
@@ -77,7 +91,7 @@ export function cn(...inputs: ClassValue[]) {
         {
           name: "themeId",
           type: "string",
-          default: "modern-dark",
+          default: "modern-light",
           description:
             "Visual theme for the card. Options: modern-dark, modern-light, retro, midnight. Some themes support automatic light/dark mode switching.",
         },
