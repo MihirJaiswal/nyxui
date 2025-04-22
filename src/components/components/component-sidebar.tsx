@@ -34,7 +34,7 @@ export const ComponentSidebar = () => {
     }));
 
   return (
-    <aside className="fixed top-16 z-30 md:sticky hidden h-[calc(100vh-4rem)] md:w-64 lg:w-72 shrink-0 md:block backdrop-blur-md">
+    <aside className="fixed top-16 z-30 lg:sticky hidden h-[calc(100vh-4rem)] w-72 shrink-0 lg:block backdrop-blur-md">
       <div className="h-full py-4">
         <div className="flex h-full flex-col ml-14">
           <ComponentSidebarClient

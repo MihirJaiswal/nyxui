@@ -106,5 +106,6 @@ export const bentoGridData: ComponentData = {
   ],
 
   category: "Layout",
+  tags: ["Layout"],
   examples: [],
 };

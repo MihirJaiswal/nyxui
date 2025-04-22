@@ -47,8 +47,8 @@ const ComponentPage = async ({
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      <div className="flex w-full flex-1 flex-col md:flex-row">
-        <aside className="sticky top-16 h-fit w-full shrink-0 md:w-auto md:min-w-[220px] lg:min-w-[280px] xl:min-w-[300px] hidden md:block">
+      <div className="flex w-full flex-1 flex-col lg:flex-row">
+        <aside className="sticky top-16 h-fit w-full shrink-0 lg:w-auto lg:min-w-[280px] xl:min-w-[300px] hidden lg:block">
           <div className="sticky top-16">
             <ComponentSidebar />
           </div>

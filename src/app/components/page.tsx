@@ -7,8 +7,8 @@ const ComponentsPage = () => {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      <div className="flex w-full flex-1 flex-col md:flex-row">
-        <aside className="hidden md:block w-full shrink-0 md:w-auto md:min-w-[220px] lg:min-w-[280px] xl:min-w-[300px]">
+      <div className="flex w-full flex-1 flex-col lg:flex-row">
+        <aside className="hidden lg:block w-full shrink-0 lg:w-auto lg:min-w-[220px] xl:min-w-[300px]">
           <div className="sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto">
             <ComponentSidebar />
           </div>
