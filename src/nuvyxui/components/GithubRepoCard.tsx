@@ -337,43 +337,165 @@ export function GitHubRepoCard({
   };
 
   const renderLoadingState = () => (
-    <div className={cn(
-      "w-full max-w-full overflow-hidden transition-all duration-300 p-4 sm:p-6 rounded-md",
-      currentTheme.cardBg,
-      currentTheme.cardBorder
-    )} aria-busy="true" aria-live="polite">
-      <div className="flex h-32 sm:h-40 items-center justify-center">
-        <div className="flex flex-col items-center gap-2">
-          <div className="h-6 w-6 animate-spin rounded-full border-2 border-current border-t-transparent" aria-hidden="true" />
-          <p className={cn("text-sm font-medium", currentTheme.textMuted)}>
-            Loading repository...
-          </p>
+    <div
+      className={cn(
+        "w-full max-w-full overflow-hidden transition-all duration-300 p-4 sm:p-6 rounded-md",
+        currentTheme.cardBg,
+        currentTheme.cardBorder,
+        currentTheme.cardHoverShadow
+      )}
+      aria-busy="true"
+      aria-live="polite"
+    >
+      <div className="pb-2">
+        <div className="mb-2">
+          <div className="flex items-center gap-2">
+            <div className="h-4 w-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
+            <div className="flex items-center">
+              <div className="h-4 w-20 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
+              <div className="mx-1 h-4 w-2 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
+              <div className="h-4 w-24 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
+            </div>
+            <div className="ml-auto h-4 w-28 bg-gray-200 dark:bg-gray-700 rounded animate-pulse hidden sm:block" />
+          </div>
+        </div>
+
+        <div className="flex items-center gap-2 mb-3">
+          <div className="h-6 w-6 bg-gray-200 dark:bg-gray-700 rounded-full animate-pulse" />
+          <div className="h-5 w-32 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
+          <div className="ml-auto h-6 w-16 bg-gray-200 dark:bg-gray-700 rounded-lg animate-pulse" />
+        </div>
+
+        <div className="space-y-2 mb-4">
+          <div className="h-4 w-full bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
+          <div className="h-4 w-3/4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
+        </div>
+      </div>
+      <div className="pb-2">
+        <div className="mb-4 sm:mb-6 rounded-md border border-gray-200 dark:border-gray-700 shadow-sm">
+          <div className="mb-1 sm:mb-2 flex items-center justify-between p-1.5 sm:p-2">
+            <div className="h-4 w-16 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
+            <div className="h-4 w-24 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
+          </div>
+          <div className="h-[40px] sm:h-[60px] w-full rounded-b-lg bg-gray-100 dark:bg-gray-800 p-1 sm:p-2 animate-pulse">
+            <div className="h-full w-full bg-gray-200 dark:bg-gray-700 rounded opacity-30 animate-pulse" />
+          </div>
+        </div>
+        <div className="grid grid-cols-2 xs:grid-cols-4 gap-1 sm:gap-2">
+          {[0, 1, 2, 3].map((index) => (
+            <div key={index} className="flex items-center gap-1">
+              <div className="h-4 w-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
+              <div className="h-4 w-10 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
+            </div>
+          ))}
+        </div>
+        <div className="mt-3 sm:mt-4">
+          <div className="mb-1.5 sm:mb-2 flex items-center gap-2">
+            <div className="flex items-center gap-1.5">
+              <div className="h-3 w-3 rounded-full bg-gray-200 dark:bg-gray-700 animate-pulse" />
+              <div className="h-4 w-16 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
+            </div>
+          </div>
+
+          <div className="flex flex-col xs:flex-row items-start xs:items-center justify-between gap-2">
+            <div className="flex flex-wrap gap-1.5">
+              {[0, 1, 2].map((index) => (
+                <div
+                  key={index}
+                  className="h-6 w-16 bg-gray-200 dark:bg-gray-700 rounded-md animate-pulse"
+                />
+              ))}
+            </div>
+            <div className="w-full xs:w-auto flex justify-end">
+              <div className="h-6 w-16 bg-gray-200 dark:bg-gray-700 rounded-md animate-pulse" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
   const renderErrorState = () => (
-    <div className={cn(
-      "w-full max-w-full overflow-hidden transition-all duration-300 p-4 sm:p-6 rounded-md",
-      currentTheme.cardBg,
-      currentTheme.cardBorder
-    )} aria-live="assertive">
-      <div className="flex h-32 sm:h-40 items-center justify-center">
-        <div className="flex flex-col items-center gap-2">
-          <AlertCircle className="h-6 w-6 md:h-8 md:w-8 text-red-500" aria-hidden="true" />
-          <p className={cn("text-center text-xs sm:text-sm font-medium", currentTheme.textMuted)}>
-            Failed to load repository data.
-            <br />
-            {error}
-          </p>
+    <div
+      className={cn(
+        "w-full max-w-full overflow-hidden transition-all duration-300 p-4 sm:p-6 rounded-md",
+        currentTheme.cardBg,
+        currentTheme.cardBorder,
+        currentTheme.cardHoverShadow
+      )}
+      aria-live="assertive"
+    >
+      <div className="flex flex-col items-center justify-center py-6 sm:py-8">
+        <div className={cn(
+          "flex items-center justify-center w-16 h-16 mb-4 rounded-full",
+          currentTheme.badgeBg
+        )}>
+          <AlertCircle className={cn("h-8 w-8", currentTheme.accentColor)} aria-hidden="true" />
+        </div>
+
+        <h3 className={cn("text-lg font-semibold mb-2 text-center", currentTheme.textNormal)}>
+          Repository Not Found
+        </h3>
+
+        <p className={cn("text-sm text-center max-w-xs mb-4", currentTheme.textMuted)}>
+          {error?.includes("404")
+            ? "This repository doesn't exist or you might not have access to it."
+            : error?.includes("rate limit")
+              ? "GitHub API rate limit exceeded. Please try again later or use a GitHub token."
+              : error}
+        </p>
+
+        <div className="flex flex-wrap gap-3 justify-center">
           {error?.includes("rate limit") && (
             <button
-              className={cn("mt-2 text-xs sm:text-sm font-medium", currentTheme.textNormal)}
-              onClick={() => setError(null)}
+              onClick={() => {
+                if (typeof window !== 'undefined') {
+                  try {
+                    const cacheKey = getCacheKey(repoOwner || '', repoName || '');
+                    localStorage.removeItem(cacheKey);
+                  } catch (e) {
+                    console.error('Error clearing cache:', e);
+                  }
+                }
+                fetchRepoData();
+              }}
+              className={cn(
+                "flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-md",
+                currentTheme.badgeBg,
+                currentTheme.badgeText,
+                "hover:opacity-90 transition-all duration-200"
+              )}
             >
-              Use manual mode instead
+              <svg
+                className="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                />
+              </svg>
+              Try Again
             </button>
           )}
+
+          <Link
+            href={`https://github.com/${repoOwner || ''}/${repoName || ''}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn(
+              "flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-md",
+              currentTheme.badgeBg,
+              currentTheme.badgeText,
+              "hover:opacity-90 transition-all duration-200"
+            )}
+          >
+            <Github className="h-4 w-4" aria-hidden="true" />
+            Visit GitHub
+          </Link>
         </div>
       </div>
     </div>
