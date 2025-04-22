@@ -14,16 +14,6 @@ export const githubProfileCardData: ComponentData = {
   componentCode: GithubProfileCardSource,
   dependencies: [
     {
-      name: "UI Components",
-      description: "Various UI components from the shadcn/ui library",
-      install: {
-        npm: "npx shadcn@latest init",
-        pnpm: "pnpm dlx shadcn@latest init",
-        yarn: "npx shadcn@latest init",
-        bun: "bunx --bun shadcn@latest init",
-      },
-    },
-    {
       name: "Utility Functions",
       description: "Utility functions for conditional class name merging.",
       install: {
