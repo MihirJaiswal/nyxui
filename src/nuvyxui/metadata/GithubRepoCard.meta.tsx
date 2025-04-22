@@ -195,6 +195,7 @@ export function cn(...inputs: ClassValue[]) {
       ],
     },
   ],
+  tags: ["GitHub", "Card"],
   category: "Cards",
   examples: [
     {
