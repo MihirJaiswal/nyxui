@@ -37,16 +37,6 @@ export function MajesticCardDemo() {
   return (
     <div className="p-4 sm:p-6 md:p-8">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-10 text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 bg-gradient-to-r from-violet-600 to-fuchsia-600 bg-clip-text text-transparent">
-            Majestic Cards
-          </h2>
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-base sm:text-lg">
-            Elevate your UI with stunning interactive cards that captivate users
-            and enhance engagement
-          </p>
-        </div>
-
         <Tabs
           value={activeTab}
           onValueChange={setActiveTab}
