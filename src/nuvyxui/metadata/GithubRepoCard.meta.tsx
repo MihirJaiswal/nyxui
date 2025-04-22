@@ -15,16 +15,6 @@ export const githubRepoCardData: ComponentData = {
   componentCode: GithubRepoCardSource,
   dependencies: [
     {
-      name: "UI Components",
-      description: "Various UI components from the shadcn/ui library",
-      install: {
-        npm: "npx shadcn@latest init",
-        pnpm: "pnpm dlx shadcn@latest init",
-        yarn: "npx shadcn@latest init",
-        bun: "bunx --bun shadcn@latest init",
-      },
-    },
-    {
       name: "Utility Functions",
       description: "Utility functions for conditional class name merging.",
       install: {
@@ -40,7 +30,7 @@ export const githubRepoCardData: ComponentData = {
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
-    return twMerge(clsx(inputs));
+  return twMerge(clsx(inputs));
 }`,
       },
     },
@@ -87,9 +77,9 @@ export function cn(...inputs: ClassValue[]) {
         {
           name: "themeId",
           type: "string",
-          default: "github-light",
+          default: "modern-dark",
           description:
-            "Visual theme for the card. Options: github-light, github-dark, ocean, forest, sunset, nuvyx. Some themes support automatic light/dark mode switching.",
+            "Visual theme for the card. Options: modern-dark, modern-light, retro, midnight. Some themes support automatic light/dark mode switching.",
         },
       ],
     },
@@ -194,140 +184,12 @@ export function cn(...inputs: ClassValue[]) {
   category: "Cards",
   examples: [
     {
-      name: "GitHub Light Theme Card",
+      name: "Retro Theme Card",
       preview: (
-        <GitHubRepoCard
+        <div className="max-w-md">
+          <GitHubRepoCard
           manualMode={true}
-          themeId="github-light"
-          repoData={{
-            name: "react",
-            fullName: "facebook/react",
-            description:
-              "A declarative, efficient, and flexible JavaScript library for building user interfaces.",
-            owner: {
-              login: "facebook",
-              avatarUrl: "https://avatars.githubusercontent.com/u/69631?v=4",
-            },
-            stars: 203000,
-            forks: 42000,
-            watchers: 6500,
-            issues: 1200,
-            language: "JavaScript",
-            languageColor: "#f1e05a",
-            updatedAt: "2025-03-15T12:34:56Z",
-            topics: ["javascript", "frontend", "ui", "library"],
-            activityData: [
-              0.3, 0.5, 0.8, 0.6, 0.9, 1.0, 0.7, 0.5, 0.6, 0.8, 0.7, 0.9,
-            ],
-            isPrivate: false,
-          }}
-        />
-      ),
-      filename: "GitHubRepoCard.tsx",
-      code: `import { GitHubRepoCard } from "@/nuvyxui/components/GitHubRepoCard";
-
-export function GitHubRepoCardExample() {
-  return (
-    <GitHubRepoCard 
-      repoOwner="facebook"
-      repoName="react"
-      themeId="github-light"
-    />
-  );
-}`,
-    },
-    {
-      name: "GitHub Dark Theme Card",
-      preview: (
-        <GitHubRepoCard
-          manualMode={true}
-          themeId="github-dark"
-          repoData={{
-            name: "next.js",
-            fullName: "vercel/next.js",
-            description:
-              "The React framework for production grade applications that scale.",
-            owner: {
-              login: "vercel",
-              avatarUrl: "https://avatars.githubusercontent.com/u/14985020?v=4",
-            },
-            stars: 98500,
-            forks: 23000,
-            watchers: 3200,
-            issues: 1500,
-            language: "TypeScript",
-            languageColor: "#3178c6",
-            updatedAt: "2025-04-01T15:30:00Z",
-            topics: ["react", "nextjs", "framework", "jamstack"],
-            activityData: [
-              0.4, 0.6, 0.8, 1.0, 0.9, 0.7, 0.8, 0.9, 0.9, 0.8, 0.7, 0.9,
-            ],
-            isPrivate: false,
-          }}
-        />
-      ),
-      filename: "GitHubRepoCard.tsx",
-      code: `import { GitHubRepoCard } from "@/nuvyxui/components/GitHubRepoCard";
-
-export function GitHubRepoCardDarkExample() {
-  return (
-    <GitHubRepoCard 
-      repoOwner="vercel"
-      repoName="next.js"
-      themeId="github-dark"
-    />
-  );
-}`,
-    },
-    {
-      name: "Ocean Theme Card",
-      preview: (
-        <GitHubRepoCard
-          manualMode={true}
-          themeId="ocean"
-          repoData={{
-            name: "tailwindcss",
-            fullName: "tailwindlabs/tailwindcss",
-            description:
-              "A utility-first CSS framework for rapid UI development.",
-            owner: {
-              login: "tailwindlabs",
-              avatarUrl: "https://avatars.githubusercontent.com/u/67109815?v=4",
-            },
-            stars: 68000,
-            forks: 3500,
-            watchers: 1800,
-            issues: 95,
-            language: "JavaScript",
-            languageColor: "#f1e05a",
-            updatedAt: "2025-04-02T08:15:43Z",
-            topics: ["css", "framework", "design", "frontend"],
-            activityData: [
-              0.5, 0.6, 0.4, 0.5, 0.7, 0.8, 0.9, 1.0, 0.8, 0.6, 0.7, 0.8,
-            ],
-            isPrivate: false,
-          }}
-        />
-      ),
-      filename: "GitHubRepoCard.tsx",
-      code: `import { GitHubRepoCard } from "@/nuvyxui/components/GitHubRepoCard";
-
-export function GitHubRepoCardOceanExample() {
-  return (
-    <GitHubRepoCard 
-      repoOwner="tailwindlabs"
-      repoName="tailwindcss"
-      themeId="ocean"
-    />
-  );
-}`,
-    },
-    {
-      name: "Forest Theme Card",
-      preview: (
-        <GitHubRepoCard
-          manualMode={true}
-          themeId="forest"
+          themeId="retro"
           repoData={{
             name: "vscode",
             fullName: "microsoft/vscode",
@@ -351,69 +213,52 @@ export function GitHubRepoCardOceanExample() {
             isPrivate: false,
           }}
         />
+        </div>
       ),
       filename: "GitHubRepoCard.tsx",
       code: `import { GitHubRepoCard } from "@/nuvyxui/components/GitHubRepoCard";
 
 export function GitHubRepoCardForestExample() {
   return (
-    <GitHubRepoCard 
-      repoOwner="microsoft"
-      repoName="vscode"
-      themeId="forest"
-    />
-  );
-}`,
-    },
-    {
-      name: "Sunset Theme Card",
-      preview: (
-        <GitHubRepoCard
+    <div className="max-w-md">
+          <GitHubRepoCard
           manualMode={true}
-          themeId="sunset"
+          themeId="retro"
           repoData={{
-            name: "deno",
-            fullName: "denoland/deno",
-            description: "A modern runtime for JavaScript and TypeScript.",
+            name: "vscode",
+            fullName: "microsoft/vscode",
+            description:
+              "Visual Studio Code is a code editor redefined and optimized for building and debugging modern web and cloud applications.",
             owner: {
-              login: "denoland",
-              avatarUrl: "https://avatars.githubusercontent.com/u/42048915?v=4",
+              login: "microsoft",
+              avatarUrl: "https://avatars.githubusercontent.com/u/6154722?v=4",
             },
-            stars: 89000,
-            forks: 4800,
-            watchers: 2300,
-            issues: 1200,
-            language: "Rust",
-            languageColor: "#dea584",
-            updatedAt: "2025-04-03T11:45:32Z",
-            topics: ["javascript", "typescript", "runtime", "security"],
+            stars: 145000,
+            forks: 25600,
+            watchers: 3100,
+            issues: 7800,
+            language: "TypeScript",
+            languageColor: "#3178c6",
+            updatedAt: "2025-04-05T19:22:11Z",
+            topics: ["editor", "ide", "typescript", "development"],
             activityData: [
-              0.3, 0.4, 0.6, 0.8, 0.7, 0.5, 0.6, 0.8, 0.9, 1.0, 0.9, 0.8,
+              0.7, 0.6, 0.8, 0.9, 1.0, 0.8, 0.9, 0.7, 0.8, 0.9, 0.8, 0.7,
             ],
             isPrivate: false,
           }}
         />
-      ),
-      filename: "GitHubRepoCard.tsx",
-      code: `import { GitHubRepoCard } from "@/nuvyxui/components/GitHubRepoCard";
-
-export function GitHubRepoCardSunsetExample() {
-  return (
-    <GitHubRepoCard 
-      repoOwner="denoland"
-      repoName="deno"
-      themeId="sunset"
-    />
+        </div>
   );
 }`,
     },
     {
-      name: "nuvyx Theme Card",
+      name: "Midnight Theme Card",
       preview: (
-        <GitHubRepoCard
-          manualMode={true}
-          themeId="nuvyx"
-          repoData={{
+        <div className="max-w-md">
+          <GitHubRepoCard
+            manualMode={true}
+            themeId="midnight"
+            repoData={{
             name: "shadcn-ui",
             fullName: "shadcn/ui",
             description:
@@ -436,19 +281,43 @@ export function GitHubRepoCardSunsetExample() {
             isPrivate: false,
           }}
         />
+        </div>
       ),
       filename: "GitHubRepoCard.tsx",
       code: `import { GitHubRepoCard } from "@/nuvyxui/components/GitHubRepoCard";
 
 export function GitHubRepoCardnuvyxExample() {
   return (
-    <GitHubRepoCard 
-      repoOwner="shadcn"
-      repoName="ui"
-      themeId="nuvyx"
-    />
+    <div className="max-w-md">
+          <GitHubRepoCard
+            manualMode={true}
+            themeId="midnight"
+            repoData={{
+            name: "shadcn-ui",
+            fullName: "shadcn/ui",
+            description:
+              "Beautifully designed components built with Radix UI and Tailwind CSS.",
+            owner: {
+              login: "shadcn",
+              avatarUrl: "https://avatars.githubusercontent.com/u/124599?v=4",
+            },
+            stars: 42000,
+            forks: 3600,
+            watchers: 1600,
+            issues: 310,
+            language: "TypeScript",
+            languageColor: "#3178c6",
+            updatedAt: "2025-04-07T14:18:57Z",
+            topics: ["ui", "components", "tailwindcss", "radix"],
+            activityData: [
+              0.4, 0.5, 0.6, 0.8, 0.7, 0.9, 1.0, 0.9, 0.8, 0.7, 0.9, 1.0,
+            ],
+            isPrivate: false,
+          }}
+        />
+        </div>
   );
 }`,
-    },
+    }
   ],
 };

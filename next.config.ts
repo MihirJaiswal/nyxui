@@ -16,7 +16,9 @@ const nextConfig: NextConfig = withBundlerAnalyzer({
       {
         hostname: 'findicons.com',
       },
-      
+      {
+        hostname: 'avatars.githubusercontent.com',
+      },
     ],
   },
 });
