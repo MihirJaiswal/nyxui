@@ -28,22 +28,16 @@ export const mspaintData: ComponentData = {
       name: "MS Paint",
       items: [
         {
-          name: "initialWidth",
+          name: "Width",
           type: "number",
           default: "800",
           description: "Width of the drawing canvas container in pixels",
         },
         {
-          name: "initialHeight",
+          name: "Height",
           type: "number",
           default: "500",
           description: "Height of the drawing canvas area in pixels",
-        },
-        {
-          name: "initialBackgroundColor",
-          type: "string",
-          default: "'#FFFFFF'",
-          description: "Initial background color of the canvas",
         },
         {
           name: "canvasWidth",
@@ -66,13 +60,6 @@ export const mspaintData: ComponentData = {
           description: "Array of hex color codes for the color palette",
         },
         {
-          name: "showWindowControls",
-          type: "boolean",
-          default: "true",
-          description:
-            "Whether to show the window-like controls (minimize, maximize, close)",
-        },
-        {
           name: "title",
           type: "string",
           default: "'untitled - Paint'",
@@ -83,19 +70,6 @@ export const mspaintData: ComponentData = {
           type: "string[]",
           default: "['File', 'Edit', 'View', 'Image', 'Options', 'Help']",
           description: "Array of menu item names to display in the menu bar",
-        },
-        {
-          name: "statusMessage",
-          type: "string",
-          default: "'For Help, click Help Topics on the Help Menu.'",
-          description:
-            "Status message displayed at the bottom of the component",
-        },
-        {
-          name: "draggable",
-          type: "boolean",
-          default: "true",
-          description: "Whether the canvas window can be dragged around",
         },
         {
           name: "className",
@@ -115,44 +89,22 @@ export const mspaintData: ComponentData = {
           default: "undefined",
           description: "Callback function when the save button is clicked",
         },
+        {
+          name: "brushSize",
+          type: "number",
+          default: "2",
+          description: "Size of the brush used for drawing",
+        },
+        {
+          name: "eraseSize",
+          type: "number",
+          default: "20",
+          description: "Size of the eraser used for erasing",
+        }
       ],
-    },
-    {
-      name: "CustomButton",
-      items: [
-        {
-          name: "children",
-          type: "React.ReactNode",
-          default: "required",
-          description: "Content inside the button",
-        },
-        {
-          name: "className",
-          type: "string",
-          default: "''",
-          description: "Additional CSS classes to apply to the button",
-        },
-        {
-          name: "onClick",
-          type: "() => void",
-          default: "undefined",
-          description: "Function to execute when the button is clicked",
-        },
-        {
-          name: "title",
-          type: "string",
-          default: "''",
-          description: "Tooltip text displayed on hover",
-        },
-        {
-          name: "variant",
-          type: '"default" | "ghost"',
-          default: '"default"',
-          description: "Button style variant",
-        },
-      ],
-    },
+    }
   ],
   category: "Interactive tools",
+  tags: ["Interactive"],
   examples: [],
 };
