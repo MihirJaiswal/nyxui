@@ -15,13 +15,9 @@ export const TwitterCard = () => {
     <MajesticCard
       variant="glow"
       intensity={4}
-      rounded="xl"
-      shadow
-      shadowSize="xl"
-      shadowType="glow"
       hoverEffect
       speed="normal"
-      className="w-full max-w-full h-full mx-auto bg-white dark:bg-gray-950 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 bg-gradient-to-r from-purple-50 via-blue-50 to-pink-50 dark:border-gray-600 dark:from-gray-950 dark:via-gray-950 dark:to-gray-950 border-none"
+      className="w-full rounded-xl max-w-full h-full mx-auto bg-white dark:bg-gray-950 shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 bg-gradient-to-r from-purple-50 via-blue-50 to-pink-50 dark:border-gray-600 dark:from-gray-950 dark:via-gray-950 dark:to-gray-950 border-none"
     >
       <div
         className="p-3 sm:p-5"
@@ -75,7 +71,7 @@ export const TwitterCard = () => {
           </p>
           <div className="mt-2 sm:mt-3 border border-zinc-300/50 dark:border-purple-900/50 bg-black rounded-lg p-2 sm:p-3 text-xs sm:text-sm font-mono overflow-hidden">
             <MajesticCard
-              variant={isHovering ? "magnetic" : "wave"}
+              variant={isHovering ? "magnetic" : "float"}
               intensity={4}
               className="hidden md:block bg-black dark:bg-black border-none shadow-none"
             >
