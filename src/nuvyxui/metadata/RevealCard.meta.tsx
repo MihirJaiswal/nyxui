@@ -113,6 +113,7 @@ export const revealCardData: ComponentData = {
     },
   ],
   category: "Cards",
+  tags: ["Card", "3D", "Interactive"],
   examples: [
     {
       name: "Batman Dark",

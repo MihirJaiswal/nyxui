@@ -110,6 +110,7 @@ export function cn(...inputs: ClassValue[]) {
   ],
 
   category: "Cards",
+  tags: ["Card", "Effects"],
   examples: [
     {
       name: "Neon Purple Hacking Suite",

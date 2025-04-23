@@ -47,6 +47,7 @@ return twMerge(clsx(inputs));
       },
     },
   ],
+  tags: ["Display", "Animation", "Interactive"],
   props: [
     {
       name: "Marquee",

@@ -15,7 +15,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import type { ComponentData } from "@/nuvyxui/ComponentInterfaces";
-import Image from "next/image";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { nightOwl } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { cn } from "@/lib/utils";
@@ -293,17 +292,8 @@ export const InstallationSection = ({
                                   <TabsTrigger
                                     key={pkg}
                                     value={pkg}
-                                    className="text-xs h-7 px-2 rounded-md data-[state=active]:bg-background data-[state=active]:shadow-sm"
+                                    className="text-sm px-2 rounded-md data-[state=active]:bg-background data-[state=active]:shadow-sm"
                                   >
-                                    <Image
-                                      src={`/logo/${pkg}.svg`}
-                                      width={16}
-                                      height={16}
-                                      alt={pkg}
-                                      quality={100}
-                                      loading="lazy"
-                                      className="size-4 mr-1.5"
-                                    />
                                     {pkg}
                                   </TabsTrigger>
                                 ))}
