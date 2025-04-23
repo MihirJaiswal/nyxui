@@ -25,7 +25,7 @@ export function MajesticCardDemo() {
           intensity={3}
           hoverEffect
           speed="normal"
-          className="w-full mx-auto overflow-hidden bg-white dark:bg-gray-900 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700"
+          className="w-full mx-auto overflow-hidden rounded-xl shadow-lg shadow-purple-500"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
@@ -102,7 +102,7 @@ export function MajesticCardDemo() {
           </div>
           </MajesticCard>
 
-          <div className="px-5 py-3 bg-gray-50 dark:bg-gray-950 border-t border-gray-200 dark:border-gray-700 flex justify-between items-center text-xs text-gray-500 dark:text-gray-400">
+          <div className="px-5 py-3 bg-gray-50 dark:bg-gray-950 border-t-2  border-gray-200 dark:border-gray-700 flex justify-between items-center text-xs text-gray-500 dark:text-gray-400">
             <span>In stock: 7 units</span>
             <span className="flex items-center">
               <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
