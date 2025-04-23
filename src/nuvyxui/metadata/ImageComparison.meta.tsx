@@ -205,16 +205,13 @@ export function cn(...inputs: ClassValue[]) {
   ],
 
   category: "Interactive tools",
+  tags: ["Display", "Interactive"],
   examples: [
     {
-      name: "Basic Horizontal Comparison",
+      name: "Vertical Comparison",
       preview: (
         <div className="space-y-4 w-full flex flex-col items-center justify-center">
           <h2 className="text-2xl font-semibold">Vertical Slider</h2>
-          <p className="text-gray-500">
-            Compare images with a vertical divider.
-          </p>
-
           <ImageSlider
             className="h-96 border rounded-xl overflow-hidden"
             orientation="vertical"
@@ -242,8 +239,6 @@ export function BasicHorizontalSlider() {
   return (
     <div className="space-y-4 w-full flex flex-col items-center justify-center">
       <h2 className="text-2xl font-semibold">Vertical Slider</h2>
-      <p className="text-gray-500">Compare images with a vertical divider.</p>
-      
       <ImageSlider 
         className="h-96 border rounded-xl overflow-hidden" 
         orientation="vertical"
@@ -266,14 +261,10 @@ export function BasicHorizontalSlider() {
 }`,
     },
     {
-      name: "Vertical Comparison",
+      name: "Hover Comparison",
       preview: (
         <div className="space-y-4 w-full flex flex-col items-center justify-center">
           <h2 className="text-2xl font-semibold">Hover Control</h2>
-          <p className="text-gray-500">
-            Simply hover over the image to reveal - no clicking required.
-          </p>
-
           <ImageSlider
             className="h-96 border rounded-xl overflow-hidden"
             hoverControl={true}
@@ -300,7 +291,6 @@ export function VerticalSlider() {
   return (
      <div className="space-y-4 w-full flex flex-col items-center justify-center">
       <h2 className="text-2xl font-semibold">Hover Control</h2>
-      <p className="text-gray-500">Simply hover over the image to reveal - no clicking required.</p>
       
       <ImageSlider 
         className="h-96 border rounded-xl overflow-hidden" 
@@ -319,66 +309,6 @@ export function VerticalSlider() {
           layer="second" 
         />
         <Divider width={4} handleSize={32} />
-      </ImageSlider>
-    </div>
-  );
-}`,
-    },
-    {
-      name: "Hover-Controlled Slider",
-      preview: (
-        <div className="space-y-4 w-full flex flex-col items-center justify-center">
-          <h2 className="text-2xl font-semibold">Custom Styling</h2>
-          <p className="text-gray-500">
-            Customize divider color, handle size, and animation speed.
-          </p>
-
-          <ImageSlider
-            className="h-96 w-full border-2 border-purple-600 rounded-xl overflow-hidden"
-            dividerColor="#10b981"
-            animationConfig={{ damping: 30, stiffness: 300 }}
-            defaultPosition={70}
-          >
-            <ImageLayer
-              src="/assets/images/image-comparison/ss.png"
-              alt="Day Image"
-              layer="first"
-            />
-            <ImageLayer
-              src="/assets/images/image-comparison/ss2.png"
-              alt="Night Image"
-              layer="second"
-            />
-            <Divider handleColor="#10b981" handleSize={36} width={3} />
-          </ImageSlider>
-        </div>
-      ),
-      filename: "HoverSlider.tsx",
-      code: `import { ImageSlider, ImageLayer, Divider } from "@/nuvyxui/components/ImageSlider";
-
-export function HoverSlider() {
-  return (
-    <div className="space-y-4 w-full flex flex-col items-center justify-center">
-      <h2 className="text-2xl font-semibold">Custom Styling</h2>
-      <p className="text-gray-500">Customize divider color, handle size, and animation speed.</p>
-      
-      <ImageSlider 
-        className="h-96 w-full border-2 border-purple-600 rounded-xl overflow-hidden" 
-        dividerColor="#10b981"
-        animationConfig={{ damping: 30, stiffness: 300 }}
-        defaultPosition={70}
-      >
-        <ImageLayer 
-          src="/img1.png" 
-          alt="Day Image" 
-          layer="first" 
-        />
-        <ImageLayer 
-          src="/img2.png" 
-          alt="Night Image" 
-          layer="second" 
-        />
-        <Divider handleColor="#10b981" handleSize={36} width={3} />
       </ImageSlider>
     </div>
   );
