@@ -192,13 +192,11 @@ export default function PlayerExample() {
               {themeOptions.map((option) => (
                 <button
                   key={option.value}
-                  className={`flex bg-white dark:bg-black items-center gap-2 px-4 py-2 border rounded-full transition-all ${
-                    cardTheme === option.value
-                      ? `${
-                          borderColors[option.value] || borderColors.default
-                        } ${option.color}`
+                  className={`flex bg-white dark:bg-black items-center gap-2 px-4 py-2 border rounded-full transition-all ${cardTheme === option.value
+                      ? `${borderColors[option.value] || borderColors.default
+                      } ${option.color}`
                       : "border-gray-300 dark:border-gray-700 opacity-70 hover:opacity-100"
-                  }`}
+                    }`}
                   onClick={() => handleThemeChange(option.value)}
                   disabled={isAnimating}
                 >
@@ -232,7 +230,7 @@ export default function PlayerExample() {
                     <MusicPlayer
                       theme={cardTheme}
                       artwork="/assets/images/music-player/song.jpg"
-                      className="shadow-lg rounded-lg"
+                      className="shadow-lg rounded-lg mr-1"
                       trackTitle="Blinding Lights"
                       artist="The Weeknd"
                       album="After Hours"
@@ -317,17 +315,15 @@ export default function PlayerExample() {
               {themeOptions.map((option) => (
                 <button
                   key={option.value}
-                  className={`flex bg-white dark:bg-black items-center gap-1 px-3 py-1.5 border rounded-full transition-all ${
-                    cardTheme === option.value
-                      ? `border-${
-                          option.value === "cosmic"
-                            ? "indigo"
-                            : option.value === "nebula"
-                            ? "purple"
-                            : "green"
-                        }-400 ${option.color}`
+                  className={`flex bg-white dark:bg-black items-center gap-1 px-3 py-1.5 border rounded-full transition-all ${cardTheme === option.value
+                      ? `border-${option.value === "cosmic"
+                        ? "indigo"
+                        : option.value === "nebula"
+                          ? "purple"
+                          : "green"
+                      }-400 ${option.color}`
                       : "border-gray-300 dark:border-gray-700 opacity-70 hover:opacity-100"
-                  }`}
+                    }`}
                   onClick={() => handleThemeChange(option.value)}
                   disabled={isAnimating}
                 >
@@ -453,16 +449,14 @@ export default function PlayerExample() {
               className={`
               relative px-5 py-2.5 flex items-center justify-center gap-2
               font-medium rounded-md transition-all duration-300 ease-in-out
-              ${
-                activeTab === "code"
+              ${activeTab === "code"
                   ? "bg-zinc-800 text-white shadow-sm"
                   : "bg-white dark:bg-zinc-700 text-zinc-700 dark:text-gray-200 hover:bg-zinc-100 dark:hover:bg-zinc-600"
-              }
-              border ${
-                activeTab === "code"
+                }
+              border ${activeTab === "code"
                   ? "border-purple-500"
                   : "border-zinc-300 dark:border-zinc-600"
-              }
+                }
               focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2
             `}
               aria-label={activeTab === "code" ? "Show Preview" : "Show Code"}
