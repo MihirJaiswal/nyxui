@@ -113,6 +113,7 @@ export const musicPlayerData: ComponentData = {
     },
   ],
   category: "Interactive tools",
+  tags: ["Interactive"],
   examples: [
     {
       name: "Default Theme Player",
