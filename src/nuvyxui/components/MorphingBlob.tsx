@@ -259,6 +259,7 @@ export function MorphingBlob({
         previous: prev.current,
         current: generateBlobPath(complexityFactor, isHovered, isClicked),
       }))
+
       setRotation((prev) => (prev + 15 + Math.random() * 30) % 360)
     }
 
@@ -306,6 +307,15 @@ export function MorphingBlob({
     generateBlobPath,
     paths
   ])
+
+  useEffect(() => {
+    setPaths((prev) => ({
+      previous: prev.current,
+      current: generateBlobPath(complexityFactor, isHovered, isClicked),
+    }));
+    setRotation((prev) => (prev + 15 + Math.random() * 30) % 360);
+    animationProgress.current = 0;
+  }, [isHovered, isClicked, generateBlobPath, complexityFactor]);
 
   const handleMouseEvents = useMemo(() => ({
     onMouseEnter: () => hoverEffect && setIsHovered(true),
