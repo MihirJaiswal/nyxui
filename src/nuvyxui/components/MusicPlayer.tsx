@@ -12,11 +12,8 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 
-// Types
 export interface MusicPlayerProps {
   theme?: "default" | "spotify" | "cosmic" | "nebula" | string;
-  shadow?: boolean;
-  rounded?: "sm" | "md" | "lg" | "xl" | "2xl" | "full";
   artwork?: string;
   trackTitle?: string;
   artist?: string;
@@ -37,8 +34,6 @@ export interface MusicPlayerProps {
 
 export const MusicPlayer = ({
   theme = "default",
-  shadow = true,
-  rounded = "xl",
   artwork = "/api/placeholder/400/400",
   trackTitle = "undefined",
   artist = "undefined",
@@ -117,15 +112,12 @@ export const MusicPlayer = ({
 
   const getThemeStyles = () => {
     const baseStyles = "transition-all duration-300";
-    const shadowStyles = shadow ? "shadow-xl" : "";
-    const roundedStyles = getRoundedClass(rounded);
-
     switch (theme) {
       case "spotify":
         return `
           bg-white text-green-600 border-2 border-green-400
           dark:bg-black dark:text-green-400 dark:border-green-400
-          ${shadowStyles} ${roundedStyles} ${baseStyles}
+          ${baseStyles}
         `
           .replace(/\s+/g, " ")
           .trim();
@@ -134,7 +126,7 @@ export const MusicPlayer = ({
         return `
           bg-indigo-50 text-indigo-900 border border-indigo-200
           dark:bg-gradient-to-br dark:from-indigo-950 dark:to-blue-950 dark:text-white dark:border-indigo-300
-          ${shadowStyles} ${roundedStyles} ${baseStyles}
+          ${baseStyles}
         `
           .replace(/\s+/g, " ")
           .trim();
@@ -144,7 +136,7 @@ export const MusicPlayer = ({
           bg-purple-100 text-purple-700 border border-purple-300
           dark:bg-gradient-to-br dark:from-purple-900 dark:to-indigo-900
           dark:text-purple-200 dark:border-purple-600
-          ${shadowStyles} ${roundedStyles} ${baseStyles}
+          ${baseStyles}
         `
           .replace(/\s+/g, " ")
           .trim();
@@ -153,29 +145,23 @@ export const MusicPlayer = ({
         return `
           bg-white text-zinc-900
           dark:bg-zinc-900 dark:text-white
-          ${shadowStyles} ${roundedStyles} ${baseStyles}
+          ${baseStyles}
         `
           .replace(/\s+/g, " ")
           .trim();
     }
   };
 
-  const getRoundedClass = (size: string) => {
-    switch (size) {
-      case "sm":
-        return "rounded-sm";
-      case "md":
-        return "rounded-md";
-      case "lg":
-        return "rounded-lg";
-      case "xl":
-        return "rounded-xl";
-      case "2xl":
-        return "rounded-2xl";
-      case "full":
-        return "rounded-full";
+  const getThemeColor = () => {
+    switch (theme) {
+      case "spotify":
+        return "bg-green-500";
+      case "cosmic":
+        return "bg-indigo-500";
+      case "nebula":
+        return "bg-purple-500";
       default:
-        return "rounded-md";
+        return "bg-white";
     }
   };
 
@@ -191,13 +177,10 @@ export const MusicPlayer = ({
           alt={`${trackTitle} by ${artist}`}
           width={400}
           height={256}
-          className={`w-full h-full object-cover ${getRoundedClass(
-            rounded
-          ).replace("rounded", "rounded-t")}`}
+          className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
       </div>
-
       <div className="p-6 flex flex-col">
         <div className="flex items-start justify-between mb-6">
           <div>
@@ -218,22 +201,13 @@ export const MusicPlayer = ({
             </button>
           )}
         </div>
-
         <div className="mb-2">
           <div
             className="relative h-1 bg-gray-700 rounded-full overflow-hidden cursor-pointer"
             onClick={handleProgressClick}
           >
             <div
-              className={`absolute top-0 left-0 h-full ${
-                theme === "spotify"
-                  ? "bg-green-500"
-                  : theme === "cosmic"
-                  ? "bg-indigo-500"
-                  : theme === "nebula"
-                  ? "bg-purple-500"
-                  : "bg-white"
-              } rounded-full`}
+              className={`absolute top-0 left-0 h-full ${getThemeColor()} rounded-full`}
               style={{ width: `${(currentTime / totalDuration) * 100}%` }}
             ></div>
           </div>
@@ -246,7 +220,6 @@ export const MusicPlayer = ({
             </span>
           </div>
         </div>
-
         <div className="flex flex-col gap-5">
           <div className="flex justify-between items-center">
             {controls.shuffle && (
@@ -266,15 +239,7 @@ export const MusicPlayer = ({
               </button>
               <button
                 aria-label="Play/Pause"
-                className={`${
-                  theme === "spotify"
-                    ? "bg-green-500"
-                    : theme === "cosmic"
-                    ? "bg-indigo-500"
-                    : theme === "nebula"
-                    ? "bg-purple-500"
-                    : "bg-white"
-                } text-black rounded-full p-3 hover:scale-105 transition-transform`}
+                className={`${getThemeColor()} text-black rounded-full p-3 hover:scale-105 transition-transform`}
                 onClick={togglePlay}
               >
                 {isPlaying ? (

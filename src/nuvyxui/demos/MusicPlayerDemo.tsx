@@ -20,8 +20,6 @@ export default function MusicPlayerCardsDemo() {
         <div key={index} className="flex flex-col w-full max-w-xs">
           <MusicPlayer
             theme={album.theme}
-            shadow={true}
-            rounded="xl"
             artwork={album.artwork}
             trackTitle={album.trackTitle}
             artist={album.artist}
@@ -33,6 +31,7 @@ export default function MusicPlayerCardsDemo() {
               repeat: true,
               heart: true,
             }}
+            className="rounded-xl"
           />
         </div>
       ))}

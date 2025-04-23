@@ -36,18 +36,6 @@ export const musicPlayerData: ComponentData = {
             "Visual theme of the music player (default, spotify, cosmic, nebula, or custom).",
         },
         {
-          name: "shadow",
-          type: "boolean",
-          default: "true",
-          description: "Whether to display shadow effect on the player.",
-        },
-        {
-          name: "rounded",
-          type: "string",
-          default: '"xl"',
-          description: "Corner radius of the player component.",
-        },
-        {
           name: "artwork",
           type: "string",
           default: '"/placeholder.svg"',
@@ -135,8 +123,8 @@ export const musicPlayerData: ComponentData = {
             trackTitle="changes"
             artist="XXXTENTACION"
             album="?"
-            rounded="md"
             artwork="/assets/images/music-player/cover.jpg"
+            className="rounded-xl"
           />
         </div>
       ),
@@ -151,8 +139,8 @@ export function DefaultThemePlayer() {
             trackTitle="changes" 
             artist="XXXTENTACION" 
             album="?"
-            rounded="md"
             artwork="/assets/images/music-player/cover.jpg"
+            className="rounded-xl"
           />
     </div>
   );
@@ -168,8 +156,7 @@ export function DefaultThemePlayer() {
             artist="Maroon 5"
             album="V"
             artwork="/assets/images/music-player/cover2.jpg"
-            rounded="2xl"
-            shadow={true}
+            className="rounded-2xl"
             controls={{
               shuffle: true,
               repeat: false,
@@ -190,8 +177,7 @@ export function CosmicThemePlayer() {
         artist="The Weeknd" 
         album="Starboy"
         artwork="/path/to/artwork.jpg"
-        rounded="2xl"
-        shadow={true}
+        className="rounded-2xl"
         controls={{
           shuffle: true,
           repeat: false,

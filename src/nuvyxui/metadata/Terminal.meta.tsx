@@ -1,6 +1,6 @@
 import type { ComponentData } from "@/nuvyxui/ComponentInterfaces";
 import TerminalDemo from "@/nuvyxui/demos/TerminalDemo";
-import { Coffee, Heart, Rocket } from "lucide-react";
+import { Coffee, Heart } from "lucide-react";
 import InteractiveTerminal from "../components/Terminal";
 
 import TerminalSource from "!!raw-loader!@/nuvyxui/components/Terminal.tsx";
@@ -168,14 +168,6 @@ export const interactiveTerminalData: ComponentData = {
               stepDelay={1000}
             />
           </div>
-          <div className="py-4 px-6 bg-gray-900 text-gray-300 mt-4 rounded-md">
-            <h3 className="font-semibold flex items-center">
-              <Heart size={16} className="text-pink-500 mr-2" /> Love Terminal
-            </h3>
-            <p className="text-sm text-gray-400">
-              Spread positivity with charming messages
-            </p>
-          </div>
         </div>
       ),
       filename: "LoveTerminal.tsx",
@@ -210,108 +202,6 @@ export const interactiveTerminalData: ComponentData = {
             \`}
             stepDelay={1000}
           />
-        </div>
-        <div className="py-4 px-6 bg-gray-900 text-gray-300 mt-4 rounded-md">
-          <h3 className="font-semibold flex items-center">
-            <Heart size={16} className="text-pink-500 mr-2" /> Love Terminal
-          </h3>
-          <p className="text-sm text-gray-400">
-            Spread positivity with charming messages
-          </p>
-        </div>
-      </div>
-    );
-  }`,
-    },
-    {
-      name: "Deploy Terminal",
-      preview: (
-        <div className="flex flex-col gap-12 w-full max-w-4xl mx-auto">
-          <div>
-            <div className="rounded-xl overflow-hidden shadow-2xl transform transition-all hover:shadow-blue-500/50">
-              <InteractiveTerminal
-                bgColor="bg-zinc-900"
-                textColor="text-blue-400"
-                command="deploy --production"
-                commandMessage="Run this command to deploy:"
-                icon={<Rocket className="mr-2 text-blue-400" />}
-                processingSteps={[
-                  "Initializing deployment pipeline...",
-                  "Running pre-deployment checks...",
-                  "Building application assets...",
-                  "Running test suite...",
-                  "Optimizing build size...",
-                  "Provisioning cloud resources...",
-                  "Deploying to production servers...",
-                ]}
-                finalMessage={`
-  ✅ DEPLOYMENT SUCCESSFUL!
-  
-  Application deployed to: https://your-app.example.com
-  Build version: 1.0.42
-  Deployment ID: d8f72b3e-9c1a-4f8b-b98c-7f2e9e1fcb5a
-  Deployment time: 2m 43s
-  
-  All systems operational. Monitoring dashboard available at /admin/metrics
-                `}
-                stepDelay={800}
-              />
-            </div>
-            <div className="py-4 px-6 bg-zinc-900 text-gray-300 mt-4 rounded-md">
-              <h3 className="font-semibold flex items-center">
-                <Rocket size={16} className="text-blue-400 mr-2" /> Deployment
-                Terminal
-              </h3>
-              <p className="text-sm text-gray-400">
-                Visualize your CI/CD deployment process
-              </p>
-            </div>
-          </div>
-        </div>
-      ),
-      filename: "DeployTerminal.tsx",
-      code: `import { InteractiveTerminal } from "@/components/Terminal";
-  import { Rocket } from "lucide-react";
-  
-  export function DeployTerminal() {
-    return (
-      <div className="flex flex-col gap-12 w-full max-w-4xl mx-auto">
-        <div className="rounded-xl overflow-hidden shadow-2xl transform transition-all hover:shadow-blue-500/50">
-          <InteractiveTerminal 
-            bgColor="bg-zinc-900"
-            textColor="text-blue-400"
-            command="deploy --production"
-            commandMessage="Run this command to deploy:"
-            icon={<Rocket className="mr-2 text-blue-400" />}
-            processingSteps={[
-              "Initializing deployment pipeline...",
-              "Running pre-deployment checks...",
-              "Building application assets...",
-              "Running test suite...",
-              "Optimizing build size...",
-              "Provisioning cloud resources...",
-              "Deploying to production servers...",
-            ]}
-            finalMessage={\`
-  ✅ DEPLOYMENT SUCCESSFUL!
-  
-  Application deployed to: https://your-app.example.com
-  Build version: 1.0.42
-  Deployment ID: d8f72b3e-9c1a-4f8b-b98c-7f2e9e1fcb5a
-  Deployment time: 2m 43s
-  
-  All systems operational. Monitoring dashboard available at /admin/metrics
-            \`}
-            stepDelay={800}
-          />
-        </div>
-        <div className="py-4 px-6 bg-zinc-900 text-gray-300 mt-4 rounded-md">
-          <h3 className="font-semibold flex items-center">
-            <Rocket size={16} className="text-blue-400 mr-2" /> Deployment Terminal
-          </h3>
-          <p className="text-sm text-gray-400">
-            Visualize your CI/CD deployment process
-          </p>
         </div>
       </div>
     );
@@ -350,15 +240,6 @@ export const interactiveTerminalData: ComponentData = {
               promptSymbol="☕"
             />
           </div>
-          <div className="py-4 px-6 bg-amber-950 text-gray-300 mt-4 rounded-md">
-            <h3 className="font-semibold flex items-center">
-              <Coffee size={16} className="text-amber-300 mr-2" /> Coffee Order
-              Terminal
-            </h3>
-            <p className="text-sm text-gray-400">
-              Showcase products with fun interactions
-            </p>
-          </div>
         </div>
       ),
       filename: "CoffeeOrderTerminal.tsx",
@@ -396,14 +277,6 @@ export const interactiveTerminalData: ComponentData = {
             stepDelay={1200}
             promptSymbol="☕"
           />
-        </div>
-        <div className="py-4 px-6 bg-amber-950 text-gray-300 mt-4 rounded-md">
-          <h3 className="font-semibold flex items-center">
-            <Coffee size={16} className="text-amber-300 mr-2" /> Coffee Order Terminal
-          </h3>
-          <p className="text-sm text-gray-400">
-            Showcase products with fun interactions
-          </p>
         </div>
       </div>
     );
