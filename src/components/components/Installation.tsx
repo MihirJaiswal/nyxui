@@ -182,16 +182,13 @@ export const InstallationSection = ({
   const [copiedIndex, setCopiedIndex] = useState<string | null>(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  // Check if there are dependencies with install instructions
   const hasInstallDependencies = componentData.dependencies && 
     componentData.dependencies.length > 0 && 
     componentData.dependencies.some(dep => dep.install);
   
-  // Check if there are any setup instructions (with or without dependencies)
   const hasSetupInstructions = componentData.dependencies && 
     componentData.dependencies.some(dep => dep.setup);
   
-  // Track current step number
   let currentStep = 1;
 
   useEffect(() => {
@@ -270,7 +267,6 @@ export const InstallationSection = ({
 
           <TabsContent value="manual" className="py-8 space-y-12">
             <div className="space-y-12">
-              {/* Only render the Install Dependencies step if there are install dependencies */}
               {hasInstallDependencies && (
                 <InstallationStep number={currentStep++} title="Install Dependencies">
                   <div className="space-y-8">
@@ -373,7 +369,6 @@ export const InstallationSection = ({
                 </InstallationStep>
               )}
 
-              {/* Render setup instructions if they exist */}
               {hasSetupInstructions && (
                 <InstallationStep number={currentStep++} title="Setup Configuration">
                   <div className="space-y-8">
@@ -415,7 +410,6 @@ export const InstallationSection = ({
                 </InstallationStep>
               )}
 
-              {/* Component Code - always shown */}
               <InstallationStep
                 number={currentStep++}
                 title="Copy Component Code"

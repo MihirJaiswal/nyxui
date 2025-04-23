@@ -232,8 +232,7 @@ export default function PlayerExample() {
                     <MusicPlayer
                       theme={cardTheme}
                       artwork="/assets/images/music-player/song.jpg"
-                      shadow
-                      rounded="xl"
+                      className="shadow-lg rounded-lg"
                       trackTitle="Blinding Lights"
                       artist="The Weeknd"
                       album="After Hours"
@@ -364,8 +363,7 @@ export default function PlayerExample() {
                     <MusicPlayer
                       theme={cardTheme}
                       artwork="/assets/images/music-player/song.jpg"
-                      shadow
-                      rounded="xl"
+                      className="shadow-lg rounded-lg"
                       trackTitle="Blinding Lights"
                       artist="The Weeknd"
                       album="After Hours"
