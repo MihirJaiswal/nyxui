@@ -132,6 +132,7 @@ export function cn(...inputs: ClassValue[]) {
   ],
 
   category: "Interactive tools",
+  tags: ["Interactive", "animation"],
   examples: [
     {
       name: "Horizontal Line Scan",
@@ -157,40 +158,6 @@ export function HorizontalLineScan() {
             image="/img.png" 
             scanDirection="horizontal" 
             scanColor="emerald"
-            repeating
-          />
-        </div>
-  );
-}`,
-    },
-    {
-      name: "Vertical Line Scan",
-      preview: (
-        <div className="w-full max-w-md mx-auto">
-          <h1 className="text-2xl font-bold mb-8 text-center">
-            Scan on scroll
-          </h1>
-          <ImageScanner
-            image="/assets/images/image-scanner/id.png"
-            scanDirection="vertical"
-            scanColor="red"
-            scanAtScroll
-            repeating
-          />
-        </div>
-      ),
-      filename: "VerticalLineScan.tsx",
-      code: `import { ImageScanner } from "@/nuvyxui/components/ImageScanner";
-    
-export function VerticalLineScan() {
-  return (
-    <div className="w-full max-w-md mx-auto">
-          <h1 className="text-2xl font-bold mb-8 text-center">Scan on scroll</h1>
-          <ImageScanner 
-            image="/img2.jpg" 
-            scanDirection="vertical"
-            scanColor="red"
-            scanAtScroll
             repeating
           />
         </div>

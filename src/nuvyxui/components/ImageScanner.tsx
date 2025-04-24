@@ -108,7 +108,7 @@ export const ImageScanner = ({
 
     observer.observe(ref.current);
     return () => observer.disconnect();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
   }, [scanAtScroll, hasScanned, isScanning]);
 
   useEffect(() => {
@@ -120,14 +120,14 @@ export const ImageScanner = ({
       if (scanTimer.current) clearTimeout(scanTimer.current);
       if (completeTimer.current) clearTimeout(completeTimer.current);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
   }, [autoScan, scanDelay, hasScanned]);
 
   useEffect(() => {
     if (triggerScan && !isScanning) {
       runScan();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
   }, [triggerScan]);
 
   useEffect(() => {
@@ -139,7 +139,7 @@ export const ImageScanner = ({
       if (scanTimer.current) clearTimeout(scanTimer.current);
       if (completeTimer.current) clearTimeout(completeTimer.current);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
   }, [repeating]);
 
   useEffect(() => {
@@ -271,7 +271,7 @@ export const ImageScanner = ({
                 )}
                 initial={{ opacity: 0 }}
                 animate={{
-                  opacity: [0, 0.5, 0],
+                  opacity: [0, 0.8, 0],
                   transition: {
                     repeat: 0,
                     duration: scanSpeed / 2,
@@ -291,7 +291,7 @@ export const ImageScanner = ({
                 selectedColor.glow
               )}
               initial={{ opacity: 0 }}
-              animate={{ opacity: 0.7 }}
+              animate={{ opacity: 0.8 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
             />
