@@ -1,7 +1,6 @@
 import type { ComponentData } from "@/nuvyxui/ComponentInterfaces";
 import { AnimatedCodeBlock } from "@/nuvyxui/components/AnimatedCodeBlock";
 import { AnimatedCodeBlockDemo } from "@/nuvyxui/demos/AnimatedCodeBlockDemo";
-
 import AnimatedCodeBlockSource from "!!raw-loader!@/nuvyxui/components/AnimatedCodeBlock.tsx";
 import AnimatedCodeBlockDemoSource from "!!raw-loader!@/nuvyxui/demos/AnimatedCodeBlockDemo.tsx";
 
@@ -18,31 +17,13 @@ export const animatedCodeBlockData: ComponentData = {
       description:
         "Production-ready motion library for React for creating animations and interactive UI elements.",
       install: {
-        npm: "npm install framer-motion",
-        pnpm: "pnpm add framer-motion",
-        yarn: "yarn add framer-motion",
-        bun: "bun add framer-motion",
+        npm: "npm install framer-motion lucide-react clsx tailwind-merge",
+        pnpm: "pnpm add framer-motion lucide-react clsx tailwind-merge",
+        yarn: "yarn add framer-motion lucide-react clsx tailwind-merge",
+        bun: "bun add framer-motion lucide-react clsx tailwind-merge",
       },
     },
     {
-      name: "Lucide React",
-      description: "Beautiful & consistent icon toolkit made by the community.",
-      install: {
-        npm: "npm install lucide-react",
-        pnpm: "pnpm add lucide-react",
-        yarn: "yarn add lucide-react",
-        bun: "bun add lucide-react",
-      },
-    },
-    {
-      name: "Utility Functions",
-      description: "Utility functions for conditional class name merging.",
-      install: {
-        npm: "npm install clsx tailwind-merge",
-        pnpm: "pnpm add clsx tailwind-merge",
-        yarn: "yarn add clsx tailwind-merge",
-        bun: "bun add clsx tailwind-merge",
-      },
       setup: {
         description: "Create a utils.ts file with the cn utility function",
         file: "/lib/utils.ts",
@@ -66,17 +47,11 @@ export function cn(...inputs: ClassValue[]) {
           description: "The code to display and animate",
         },
         {
-          name: "language",
-          type: "string",
-          default: '"javascript"',
-          description: "The programming language for syntax highlighting",
-        },
-        {
           name: "theme",
           type: "string",
           default: "dark",
           description:
-            "The visual theme of the code block (dark, light, terminal, cyberpunk, minimal, nuvyx)",
+            "The visual theme of the code block (dark, terminal, cyberpunk, minimal)",
         },
         {
           name: "typingSpeed",
@@ -141,14 +116,15 @@ export function cn(...inputs: ClassValue[]) {
       ],
     },
   ],
-
+  tags: ["Animation", "Interactive"],
   category: "Interactive tools",
   examples: [
     {
       name: "Terminal Theme Docker Setup",
       preview: (
-        <AnimatedCodeBlock
-          code={`FROM node:18-alpine AS builder
+        <div className="w-full max-w-3xl mx-auto rounded-md overflow-hidden">
+          <AnimatedCodeBlock
+            code={`FROM node:18-alpine AS builder
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci
@@ -164,20 +140,21 @@ COPY --from=builder /app/dist ./dist
 EXPOSE 3000
 CMD ["node", "dist/server.js"]
 `}
-          language="dockerfile"
-          theme="terminal"
+          theme="dark"
           typingSpeed={30}
           autoPlay={true}
           blurEffect={true}
           title="Docker Multi-Stage Build"
           highlightLines={[6, 14]}
         />
+        </div>
       ),
       filename: "DockerExample.tsx",
       code: `import { AnimatedCodeBlock } from "@/components/AnimatedCodeBlock";
   
   export function DockerExample() {
     return (
+      <div className="w-full max-w-3xl mx-auto rounded-md overflow-hidden">
       <AnimatedCodeBlock
         code={\`FROM node:18-alpine AS builder
 WORKDIR /app
@@ -194,22 +171,22 @@ COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/dist ./dist
 EXPOSE 3000
 CMD ["node", "dist/server.js"]\`}
-        language="dockerfile"
         theme="terminal"
         typingSpeed={30}
         autoPlay={true}
         blurEffect={true}
         title="Docker Multi-Stage Build"
       />
+      </div>
     );
   }`,
     },
     {
       name: "CSS Animation",
       preview: (
+        <div className="w-full max-w-3xl mx-auto rounded-md overflow-hidden">
         <AnimatedCodeBlock
-          code={`/* Animated button */
-  .button {
+          code={`.button {
     position: relative;
     display: inline-flex;
     align-items: center;
@@ -225,22 +202,22 @@ CMD ["node", "dist/server.js"]\`}
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
   }`}
-          language="css"
           theme="cyberpunk"
           typingSpeed={40}
           autoPlay={true}
-          highlightLines={[2, 17]}
-          title="Advanced Button Animation"
+          highlightLines={[1, 16]}
+          title="style.css"
         />
+        </div>
       ),
       filename: "CSSAnimationExample.tsx",
       code: `import { AnimatedCodeBlock } from "@/components/AnimatedCodeBlock";
   
   export function CSSAnimationExample() {
     return (
+      <div className="w-full max-w-3xl mx-auto rounded-md overflow-hidden">
       <AnimatedCodeBlock
-        code={\`/* Animated button */
-  .button {
+        code={\`.button {
     position: relative;
     display: inline-flex;
     align-items: center;
@@ -256,13 +233,13 @@ CMD ["node", "dist/server.js"]\`}
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
   }\`}
-        language="css"
         theme="cyberpunk"
         typingSpeed={40}
         autoPlay={true}
-        highlightLines={[2,17]}
-        title="Advanced Button Animation"
+        highlightLines={[1,16]}
+        title="style.css"
       />
+      </div>
     );
   }`,
     },
