@@ -25,7 +25,7 @@ export const Hero = () => {
     <div className="flex flex-col justify-center items-center relative overflow-hidden">
       <main className="flex-1 w-full mx-auto z-10">
         <section
-          className="space-y-8 pb-12 pt-12 md:pt-20"
+          className="space-y-8 pb-12 pt-16 md:pt-20"
           aria-label="Hero Section"
         >
           <div className="md:container max-w-5xl md:mx-auto flex flex-col md:items-center md:justify-center md:text-center px-6 md:px-4">
