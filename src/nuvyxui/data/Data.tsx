@@ -66,11 +66,6 @@ export const componentsData = {
         "Command-line interface with typing animations and responses",
       image: "/assets/images/showcase/interactive-terminal.png",
     },
-    "character-selector": {
-      title: "Character Selector",
-      description: "Interactive UI for selecting and customizing characters",
-      image: "/assets/images/showcase/character-selector.png",
-    },
     "gradient-button": {
       title: "Gradient Button",
       description:

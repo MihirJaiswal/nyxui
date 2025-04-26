@@ -13,7 +13,6 @@ import { matrixCodeRainData } from "./metadata/MatrixCodeRain.meta";
 import { mspaintData } from "./metadata/MSpaint.meta";
 import { interactiveTerminalData } from "./metadata/Terminal.meta";
 import { animatedTextData } from "./metadata/AnimatedText.meta";
-import { characterSelectorData } from "./metadata/CharacterSelector.meta";
 import { bubbleBackgroundData } from "./metadata/BubblesBackground.meta";
 import { glitchButtonData } from "./metadata/GlitchButton.meta";
 import { githubRepoCardData } from "./metadata/GithubRepoCard.meta";
@@ -38,9 +37,8 @@ export const componentsData = {
   "scroll-animation-trigger": scrollAnimationTriggerData,
   "reveal-card": revealCardData,
   "matrix-code-rain": matrixCodeRainData,
-  "ms-paint": mspaintData,
   "interactive-terminal": interactiveTerminalData,
-  "character-selector": characterSelectorData,
+  "ms-paint": mspaintData,
   "animated-text": animatedTextData,
   "bubbles-background": bubbleBackgroundData,
   "glitch-button": glitchButtonData,
