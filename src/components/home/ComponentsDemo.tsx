@@ -1,7 +1,7 @@
 import React from "react";
 import { BentoGrid } from "@/nuvyxui/components/BentoGrid";
 import { AnimatedGradientBg } from "@/nuvyxui/components/AnimatedGradientBg";
-import { ChevronRight, Code, Shield, Sparkles } from "lucide-react";
+import { ChevronRight, Code, Rocket, Sparkles } from "lucide-react";
 import { DynamicRipple } from "@/nuvyxui/components/DynamicRipple";
 import Link from "next/link";
 import InteractiveTerminal from "@/nuvyxui/components/Terminal";
@@ -10,9 +10,9 @@ import InteractiveKeyboard from "@/nuvyxui/components/Keyboard";
 import { ImageScanner } from "@/nuvyxui/components/ImageScanner";
 import LampHeading from "@/nuvyxui/components/LampHeading";
 import { Particles } from "../ui/particles";
-import { CyberpunkCard } from "@/nuvyxui/components/CyberpunkCard";
 import { TwitterCard } from "./TweetCard";
 import { Matrix } from "./Matrix";
+import { MorphingBlob } from "@/nuvyxui/components/MorphingBlob";
 
 export const ComponentsDemo = () => {
   return (
@@ -193,7 +193,7 @@ export const ComponentsDemo = () => {
           height="h-full"
           className="rounded-2xl lg:col-span-2 overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] border border-zinc-200 dark:border-zinc-800"
           component={
-            <Matrix/>
+            <Matrix />
           }
         />
 
@@ -203,43 +203,40 @@ export const ComponentsDemo = () => {
           height="h-72"
           className="rounded-2xl overflow-hidden shadow-xl bg-white dark:bg-black transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] border border-zinc-200 dark:border-zinc-800"
           component={
-            <div className="p-6 h-76 dark:bg-black">
-              <CyberpunkCard
-                theme="neon-purple"
-                borderStyle="glitch"
-                glowIntensity={4}
-                className="h-56 bg-gradient-to-br from-black to-purple-900 dark:from-black dark:to-purple-900"
-              >
-                <div className="space-y-3">
-                  <div className="flex items-center gap-2">
-                    <Shield className="w-6 h-6" />
-                    <h3 className="text-xl font-bold tracking-wider">
-                      UI ENGINE
-                    </h3>
+            <div className="h-72 flex items-center justify-center">
+              <Particles
+                className="absolute inset-0 z-0"
+                quantity={70}
+                ease={80}
+                color="#ffffff"
+                refresh
+              />
+              <div className="flex w-full items-center justify-center min-h-screen bg-gradient-to-br dark:from-gray-800 dark:via-gray-900 dark:to-black">
+                <MorphingBlob
+                  theme="custom"
+                  customColors={{
+                    from: "#a92be3",
+                    via: "#943ed6",
+                    to: "#b300ff"
+                  }}
+                  complexity={5}
+                  speed={3}
+                  hoverEffect={true}
+                  clickEffect={true}
+                  pulse={false}
+                  glow={false}
+                  glowIntensity={5}
+                  smooth={true}
+                  effect3D={true}
+                >
+                  <div className="text-center flex flex-col items-center justify-center">
+                    <Rocket className="h-10 w-10" />
+                    <p className="text-white text-lg mt-3 font-bold">
+                      Interact with me!
+                    </p>
                   </div>
-                  <p className="text-sm opacity-80 mb-1">
-                    A fast, flexible, and accessible component system built for
-                    modern web apps.
-                  </p>
-                  <div className="grid grid-cols-3 gap-2 mt-3">
-                    <div className="text-center p-1 bg-pink-600/20 rounded text-xs flex flex-col gap-1">
-                      <div className="font-bold">Per</div>
-                      <div>96%</div>
-                    </div>
-                    <div className="text-center p-1 bg-pink-600/20 rounded text-xs flex flex-col gap-1">
-                      <div className="font-bold">Flex</div>
-                      <div>87%</div>
-                    </div>
-                    <div className="text-center p-1 bg-pink-600/20 rounded text-xs flex flex-col gap-1">
-                      <div className="font-bold">Custom</div>
-                      <div>92%</div>
-                    </div>
-                  </div>
-                  <div className="text-right text-xs font-mono mt-2">
-                    STABILITY: PRODUCTION-READY
-                  </div>
-                </div>
-              </CyberpunkCard>
+                </MorphingBlob>
+              </div>
             </div>
           }
         />
