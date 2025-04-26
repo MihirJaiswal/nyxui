@@ -25,19 +25,18 @@ export const Hero = () => {
     <div className="flex flex-col justify-center items-center relative overflow-hidden">
       <main className="flex-1 w-full mx-auto z-10">
         <section
-          className="space-y-8 pb-12 pt-16 md:pt-20"
+          className="space-y-8 pb-12 pt-12 md:pt-20"
           aria-label="Hero Section"
         >
-          <div className="container max-w-5xl mx-auto flex flex-col items-center justify-center text-center px-4">
+          <div className="md:container max-w-5xl md:mx-auto flex flex-col md:items-center md:justify-center md:text-center px-6 md:px-4">
             <Badge
-              variant="secondary"
-              className="mb-6 inline-flex items-center text-black dark:text-white gap-2 rounded-lg border border-purple-300 px-4 py-1.5 text-sm font-semibold shadow-sm dark:border-gray-600"
+              className="mb-6 inline-flex items-center text-black dark:text-white gap-2 rounded-lg border border-purple-300 px-4 py-1.5 text-sm font-semibold shadow-sm dark:border-gray-600 bg-background"
             >
               <Sparkles className="h-4 w-4 text-yellow-500 dark:text-yellow-300" />
-              v1.0.0 Now Available
+              v1.0.0 <span className="hidden md:inline">Now Available</span>
             </Badge>
-            <h1 className="text-[2.95rem] md:text-5xl lg:text-[6rem] font-black tracking-wide leading-snug pb-4">
-              <div className="flex flex-wrap items-center justify-center gap-2 md:gap-4">
+            <h1 className="text-[2.83rem] md:text-5xl lg:text-[6rem] font-black tracking-wide leading-snug pb-4">
+              <div className="flex flex-wrap items-center md:justify-center gap-2 md:gap-4">
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -116,7 +115,7 @@ export const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="mx-auto max-w-3xl text-center"
+              className="mx-auto max-w-3xl md:text-center"
             >
               <p className="text-gray-900 dark:text-gray-100 sm:text-xl tracking-wide font-medium leading-relaxed">
                 Ready to use modern components built with

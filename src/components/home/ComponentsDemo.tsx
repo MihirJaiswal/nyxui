@@ -113,7 +113,7 @@ export const ComponentsDemo = () => {
             >
               <Particles
                 className="absolute inset-0 z-0"
-                quantity={20}
+                quantity={70}
                 ease={80}
                 color="#ffffff"
                 refresh
@@ -133,12 +133,9 @@ export const ComponentsDemo = () => {
                     gradientColors={{ from: "#6e15ad", to: "#d413ad" }}
                     direction="above"
                     lineHeight={3}
-                    glowIntensity={0.8}
+                    glowIntensity={0.7}
                     className="text-2xl font-bold"
                   />
-                  <p className="text-sm text-zinc-600 dark:text-zinc-300">
-                    Collection of ready-to-use components.
-                  </p>
                 </div>
               </div>
             </DynamicRipple>
