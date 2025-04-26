@@ -5,7 +5,7 @@ import {
   Divider,
 } from "@/nuvyxui/components/ImageComparison";
 import { ImageComparisonDemo } from "@/nuvyxui/demos/ImageComparisonDemo";
-import { ArrowUpDown } from "lucide-react";
+import { Star } from "lucide-react";
 
 import ImageComparisonSource from "!!raw-loader!@/nuvyxui/components/ImageComparison.tsx";
 import ImageComparisonDemoSource from "!!raw-loader!@/nuvyxui/demos/ImageComparisonDemo.tsx";
@@ -213,9 +213,9 @@ export function cn(...inputs: ClassValue[]) {
         <div className="space-y-4 w-full flex flex-col items-center justify-center">
           <h2 className="text-2xl font-semibold">Vertical Slider</h2>
           <ImageSlider
-            className="h-96 border rounded-xl overflow-hidden"
+            className="h-96 overflow-hidden"
             orientation="vertical"
-            defaultPosition={40}
+            defaultPosition={50}
           >
             <ImageLayer
               src="/assets/images/image-comparison/img1.png"
@@ -227,7 +227,7 @@ export function cn(...inputs: ClassValue[]) {
               alt="After Image"
               layer="second"
             />
-            <Divider handleIcon={<ArrowUpDown size={16} />} />
+            <Divider handleIcon={<Star size={16} className="text-amber-600 font-light" fill="#FFFF00" />} />
           </ImageSlider>
         </div>
       ),
@@ -240,7 +240,7 @@ export function BasicHorizontalSlider() {
     <div className="space-y-4 w-full flex flex-col items-center justify-center">
       <h2 className="text-2xl font-semibold">Vertical Slider</h2>
       <ImageSlider 
-        className="h-96 border rounded-xl overflow-hidden" 
+        className="h-96 overflow-hidden" 
         orientation="vertical"
         defaultPosition={40}
       >
@@ -271,12 +271,12 @@ export function BasicHorizontalSlider() {
             defaultPosition={20}
           >
             <ImageLayer
-              src="/assets/images/image-comparison/digi1.png"
+              src="/assets/images/image-comparison/ss.png"
               alt="Original Image"
               layer="first"
             />
             <ImageLayer
-              src="/assets/images/image-comparison/digi2.png"
+              src="/assets/images/image-comparison/ss2.png"
               alt="Processed Image"
               layer="second"
             />
