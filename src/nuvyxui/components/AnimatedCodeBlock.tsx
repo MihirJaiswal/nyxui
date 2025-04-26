@@ -7,11 +7,9 @@ import { Play, Pause, Copy, Check, RotateCcw, Maximize2, Minimize2, Download } f
 const getScrollbarStyles = (theme: string) => {
   const scrollbarColors = {
     dark: "rgba(255, 255, 255, 0.2)",
-    light: "rgba(0, 0, 0, 0.2)",
     minimal: "rgba(202, 138, 4, 0.3)",
     terminal: "rgba(0, 255, 128, 0.2)",
     cyberpunk: "rgba(236, 72, 153, 0.3)",
-    gradient: "rgba(6, 182, 212, 0.3)",
   }
   const color = scrollbarColors[theme as keyof typeof scrollbarColors] || scrollbarColors.dark
   const hoverColor = color.replace(/[\d.]+\)$/, (match) => String(Math.min(Number.parseFloat(match) + 0.2, 1)) + ")")
@@ -33,7 +31,6 @@ const getScrollbarStyles = (theme: string) => {
     .code-scrollbar::-webkit-scrollbar-thumb:hover {
       background: ${hoverColor};
     }
-    /* Firefox */
     .code-scrollbar {
       scrollbar-width: thin;
       scrollbar-color: ${color} transparent;
@@ -43,7 +40,7 @@ const getScrollbarStyles = (theme: string) => {
 
 export interface AnimatedCodeBlockProps {
   code: string
-  theme?: "dark" | "terminal" | "cyberpunk" | "minimal" | "gradient"
+  theme?: "dark" | "terminal" | "cyberpunk" | "minimal" 
   typingSpeed?: number
   showLineNumbers?: boolean
   highlightLines?: number[]
@@ -90,8 +87,11 @@ export function AnimatedCodeBlock({
   const [isPaused, setIsPaused] = useState(false)
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [showTooltip, setShowTooltip] = useState("")
+  const [extraLines, setExtraLines] = useState(0)
   const codeRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
+  const codeContainerRef = useRef<HTMLDivElement>(null)
+  const lineNumbersRef = useRef<HTMLDivElement>(null)
   const timerRef = useRef<NodeJS.Timeout | null>(null)
 
   const getThemeStyles = (): ThemeStyles => {
@@ -148,19 +148,6 @@ export function AnimatedCodeBlock({
           shadow: "shadow-lg shadow-fuchsia-500/20",
           scrollbarThumb: "rgba(236, 72, 153, 0.3)",
         }
-      case "gradient":
-        return {
-          background: "bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900",
-          text: "text-slate-100",
-          lineNumbers: "text-slate-500",
-          highlight: "bg-white/10",
-          border: "border-slate-700",
-          header: "bg-gradient-to-r from-slate-800 to-slate-700 backdrop-blur-sm",
-          accent: "bg-gradient-to-r from-sky-500 to-cyan-500",
-          accentText: "text-cyan-300",
-          shadow: "shadow-xl shadow-black/30",
-          scrollbarThumb: "rgba(6, 182, 212, 0.3)",
-        }
       default:
         return {
           background: "bg-zinc-900",
@@ -177,6 +164,35 @@ export function AnimatedCodeBlock({
     }
   }
   const themeStyles = getThemeStyles()
+
+  // Calculate extra lines needed to fill the screen
+  useEffect(() => {
+    if (isFullscreen) {
+      const updateExtraLines = () => {
+        if (codeContainerRef.current && lineNumbersRef.current) {
+          const containerHeight = codeContainerRef.current.clientHeight
+          const lineHeight = 24 // Each line is 24px (h-6)
+          const codeLines = code.split("\n").length
+          const visibleLines = Math.floor(containerHeight / lineHeight)
+          const extraLinesNeeded = Math.max(0, visibleLines - codeLines)
+          setExtraLines(extraLinesNeeded)
+        }
+      }
+
+      // Initial calculation
+      updateExtraLines()
+
+      // Recalculate on window resize
+      window.addEventListener("resize", updateExtraLines)
+
+      return () => {
+        window.removeEventListener("resize", updateExtraLines)
+      }
+    } else {
+      setExtraLines(0)
+    }
+  }, [isFullscreen, code])
+
   useEffect(() => {
     if (isPlaying && currentPosition < code.length) {
       timerRef.current = setTimeout(() => {
@@ -193,7 +209,6 @@ export function AnimatedCodeBlock({
         setIsPaused(false)
       }
     }
-
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current)
     }
@@ -250,6 +265,7 @@ export function AnimatedCodeBlock({
     const element = document.createElement("a")
     const file = new Blob([code], { type: "text/plain" })
     element.href = URL.createObjectURL(file)
+    element.download = `code.${theme}`
     document.body.appendChild(element)
     element.click()
     document.body.removeChild(element)
@@ -300,13 +316,13 @@ export function AnimatedCodeBlock({
     <div
       ref={containerRef}
       className={cn(
-        "animated-code-block rounded-lg overflow-hidden",
+        "animated-code-block rounded-lg overflow-hidden flex flex-col",
         themeStyles.background,
         themeStyles.text,
         themeStyles.border,
         themeStyles.shadow,
         "border transition-all duration-300",
-        isFullscreen ? "fixed inset-0 z-50 rounded-none" : "",
+        isFullscreen ? "fixed inset-0 z-50 rounded-none h-screen" : "",
         className,
       )}
     >
@@ -405,21 +421,17 @@ export function AnimatedCodeBlock({
         )}
       </div>
 
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden flex-grow flex flex-col">
         {blurEffect && (
           <div
             className={cn(
               "absolute inset-0 pointer-events-none opacity-[0.05] mix-blend-overlay",
-              theme === "terminal"
-                ? "bg-emerald-400"
-                : theme === "cyberpunk"
-                  ? "bg-fuchsia-400"
-                  : "bg-blue-400",
+              theme === "terminal" ? "bg-emerald-400" : theme === "cyberpunk" ? "bg-fuchsia-400" : "bg-blue-400",
             )}
           />
         )}
 
-        <div className="h-0.5 w-full bg-black/20 dark:bg-white/10">
+        <div className="h-0.5 w-full bg-black/20 dark:bg-white/10 flex-shrink-0">
           <motion.div
             className={cn("h-full", themeStyles.accent)}
             initial={{ width: 0 }}
@@ -428,58 +440,63 @@ export function AnimatedCodeBlock({
           />
         </div>
 
-        <div className="relative">
+        <div className="relative flex-grow overflow-hidden" ref={codeContainerRef}>
           <div
             className="absolute top-0 right-0 bottom-0 w-12 pointer-events-none z-10 opacity-50"
             style={{
               background:
-                theme === "gradient"
-                  ? "linear-gradient(to left, rgba(15, 23, 42, 0.8) 10%, transparent 100%)"
-                    : theme === "minimal"
-                      ? "linear-gradient(to left, rgba(255, 251, 235, 0.8) 10%, transparent 100%)"
-                      : theme === "terminal"
-                        ? "linear-gradient(to left, rgba(2, 6, 23, 0.8) 10%, transparent 100%)"
-                        : theme === "cyberpunk"
-                          ? "linear-gradient(to left, rgba(76, 29, 149, 0.8) 10%, transparent 100%)"
-                          : "linear-gradient(to left, rgba(24, 24, 27, 0.8) 10%, transparent 100%)",
+                theme === "minimal"
+                  ? "linear-gradient(to left, rgba(255, 251, 235, 0.8) 10%, transparent 100%)"
+                  : theme === "terminal"
+                    ? "linear-gradient(to left, rgba(2, 6, 23, 0.8) 10%, transparent 100%)"
+                    : theme === "cyberpunk"
+                        ? "linear-gradient(to left, rgba(76, 29, 149, 0.8) 10%, transparent 100%)"
+                        : "linear-gradient(to left, rgba(24, 24, 27, 0.8) 10%, transparent 100%)",
             }}
           />
           <div
             className="absolute top-0 left-0 bottom-0 w-12 pointer-events-none z-10 opacity-50"
             style={{
               background:
-                theme === "gradient"
-                  ? "linear-gradient(to right, rgba(15, 23, 42, 0.8) 10%, transparent 100%)"
-                    : theme === "minimal"
-                      ? "linear-gradient(to right, rgba(255, 251, 235, 0.8) 10%, transparent 100%)"
-                      : theme === "terminal"
-                        ? "linear-gradient(to right, rgba(2, 6, 23, 0.8) 10%, transparent 100%)"
-                        : theme === "cyberpunk"
-                          ? "linear-gradient(to right, rgba(76, 29, 149, 0.8) 10%, transparent 100%)"
-                          : "linear-gradient(to right, rgba(24, 24, 27, 0.8) 10%, transparent 100%)",
+                theme === "minimal"
+                  ? "linear-gradient(to right, rgba(255, 251, 235, 0.8) 10%, transparent 100%)"
+                  : theme === "terminal"
+                    ? "linear-gradient(to right, rgba(2, 6, 23, 0.8) 10%, transparent 100%)"
+                    : theme === "cyberpunk"
+                        ? "linear-gradient(to right, rgba(76, 29, 149, 0.8) 10%, transparent 100%)"
+                        : "linear-gradient(to right, rgba(24, 24, 27, 0.8) 10%, transparent 100%)",
             }}
           />
 
-          <div className="overflow-x-auto code-scrollbar">
+          <div className="overflow-auto code-scrollbar h-full">
             <style dangerouslySetInnerHTML={{ __html: getScrollbarStyles(theme) }} />
-            <div className="flex min-w-full">
+            <div className="flex min-w-full h-full">
               {showLineNumbers && (
                 <div
+                  ref={lineNumbersRef}
                   className={cn(
-                    "text-xs py-4 px-3 text-right select-none border-r border-opacity-20",
+                    "text-xs py-4 px-3 text-right select-none border-r border-opacity-20 sticky left-0 h-full flex flex-col",
                     themeStyles.lineNumbers,
                     themeStyles.border,
+                    themeStyles.background,
                   )}
                 >
-                  {codeLines.map((_, i) => (
-                    <div key={i} className="h-6 flex items-center justify-end">
-                      {i + 1}
-                    </div>
-                  ))}
+                  <div className="flex flex-col">
+                    {codeLines.map((_, i) => (
+                      <div key={i} className="h-6 flex items-center justify-end">
+                        {i + 1}
+                      </div>
+                    ))}
+                    {Array.from({ length: extraLines }).map((_, i) => (
+                      <div key={`extra-${i}`} className="h-6 flex items-center justify-end">
+                        {codeLines.length + i + 1}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               )}
 
-              <div className="relative py-4 flex-grow" ref={codeRef}>
+              <div className="relative py-4 flex-grow h-full" ref={codeRef}>
                 {highlightLines.map((lineNum) => (
                   <div
                     key={`highlight-${lineNum}`}
@@ -488,7 +505,7 @@ export function AnimatedCodeBlock({
                   />
                 ))}
 
-                <div className="relative z-10 px-4 font-mono text-sm">
+                <div className="relative z-10 px-4 font-mono text-sm h-full">
                   {codeLines.map((line, i) => (
                     <div key={i} className="h-6 whitespace-pre">
                       {displayedLines[i] || ""}
@@ -502,6 +519,11 @@ export function AnimatedCodeBlock({
                           }}
                         />
                       )}
+                    </div>
+                  ))}
+                  {Array.from({ length: extraLines }).map((_, i) => (
+                    <div key={`extra-${i}`} className="h-6 whitespace-pre">
+                      &nbsp;
                     </div>
                   ))}
                 </div>
