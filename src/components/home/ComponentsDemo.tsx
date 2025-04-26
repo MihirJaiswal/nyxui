@@ -45,16 +45,21 @@ export const ComponentsDemo = () => {
                 </div>
                 <div className="bg-black h-76 overflow-hidden overscroll-none">
                   <InteractiveTerminal
-                    bgColor="bg-black"
-                    textColor="text-green-400"
-                    autoMode={true}
+                    autoExecute={true}
                     command="sudo hack -m"
-                    className="!overflow-hidden !overscroll-none !scrollbar-hide font-mono text-sm pb-2"
-                    commandMessage="Auto-executing:"
+                    className="rounded-none font-mono text-sm pb-2"
                     repeat={true}
-                    outputHeight="h-72"
+                    variant="custom"
+                    customTheme={
+                      {
+                        container: "bg-black text-green-500",
+                        header: "bg-green-950/40 text-green-500 border-green-500/20",
+                        output: "bg-black text-green-500",
+                        button: "bg-gray-950 text-green-500",
+                      }
+                    }
                     icon={<Code className="mr-1 mt-1 text-green-500 w-4 h-4" />}
-                    processingSteps={[
+                    steps={[
                       "Booting exploit frames...",
                       "Scanning for Issues...",
                       "Bypassing security...",

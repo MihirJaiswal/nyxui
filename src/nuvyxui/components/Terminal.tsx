@@ -1,197 +1,219 @@
-"use client";
-import React, { useState, useEffect, useRef, useCallback } from "react";
-import { Command, Send, Copy, RotateCcw } from "lucide-react";
+"use client"
+import type React from "react"
+import { useState, useEffect, useRef, useCallback } from "react"
+import { Send, Copy, RotateCcw, TerminalIcon } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 export type TerminalProps = {
-  bgColor?: string;
-  textColor?: string;
-  command?: string;
-  commandBg?: string;
-  commandMessage?: string;
-  processingSteps?: string[];
-  finalMessage?: string;
-  stepDelay?: number;
-  typingDelay?: number;
-  icon?: React.ReactNode;
-  promptSymbol?: string;
-  inputPlaceholder?: string;
-  outputHeight?: string;
-  rounded?: string;
-  className?: string;
-  autoMode?: boolean;
-  repeat?: boolean;
-  repeatDelay?: number;
-};
+  command?: string
+  steps?: string[]
+  finalMessage?: string
+  stepDelay?: number
+  typingDelay?: number
+  icon?: React.ReactNode
+  promptSymbol?: string
+  inputPlaceholder?: string
+  autoExecute?: boolean
+  repeat?: boolean
+  repeatDelay?: number
+  className?: string
+  variant?: "default" | "dark" | "matrix" | "retro" | "custom"
+  customTheme?: {
+    container?: string
+    header?: string
+    output?: string
+    button?: string
+  }
+}
 
 const InteractiveTerminal: React.FC<TerminalProps> = ({
-  bgColor = "bg-gray-900",
-  textColor = "text-green-400",
   command = "help",
-  commandBg = "bg-gray-950",
-  rounded = "sm",
-  commandMessage = "Enter this command:",
-  processingSteps = ["Processing command..."],
+  steps = ["Processing command..."],
   finalMessage = "Command executed successfully!",
   stepDelay = 1000,
   typingDelay = 100,
-  icon = <Command className="mr-2" />,
+  icon = <TerminalIcon className="h-4 w-4 mr-2" />,
   promptSymbol = "$",
   inputPlaceholder = "Type your command here...",
-  outputHeight = "h-80",
-  autoMode = false,
+  autoExecute = false,
   repeat = false,
   repeatDelay = 3000,
+  className,
+  variant = "default",
+  customTheme,
 }) => {
-  const [input, setInput] = useState("");
-  const [output, setOutput] = useState<string[]>([]);
-  const [step, setStep] = useState(0);
-  const [copied, setCopied] = useState(false);
-  const [typing, setTyping] = useState(false);
-  const [charIndex, setCharIndex] = useState(0);
-  const outputRef = useRef<HTMLDivElement>(null);
-  const [commandExecuted, setCommandExecuted] = useState(false);
-  const [completed, setCompleted] = useState(false);
+  const [input, setInput] = useState("")
+  const [output, setOutput] = useState<string[]>([])
+  const [step, setStep] = useState(0)
+  const [copied, setCopied] = useState(false)
+  const [typing, setTyping] = useState(false)
+  const [charIndex, setCharIndex] = useState(0)
+  const [commandExecuted, setCommandExecuted] = useState(false)
+  const [completed, setCompleted] = useState(false)
+  const outputRef = useRef<HTMLDivElement>(null)
+
+  const themes = {
+    default: {
+      container: "bg-gray-900 text-green-400",
+      header: "bg-gray-950 border-green-400/20",
+      output: "bg-black",
+      button: "hover:bg-gray-800",
+    },
+    dark: {
+      container: "bg-black text-blue-400",
+      header: "bg-gray-950 border-blue-400/20",
+      output: "bg-gray-950",
+      button: "hover:bg-gray-800",
+    },
+    matrix: {
+      container: "bg-black text-green-500",
+      header: "bg-green-950/30 border-green-500/30",
+      output: "bg-black",
+      button: "hover:bg-green-900/30",
+    },
+    retro: {
+      container: "bg-amber-950 text-amber-400",
+      header: "bg-amber-900/50 border-amber-400/20",
+      output: "bg-black",
+      button: "hover:bg-amber-800/30",
+    },
+  }
+
+  const theme = variant === "custom" && customTheme ? customTheme : themes[variant as keyof typeof themes] || themes.default
 
   const resetTerminal = useCallback(() => {
-    setOutput([]);
-    setStep(0);
-    setCharIndex(0);
-    setTyping(false);
-    setCommandExecuted(false);
-    setCompleted(false);
-  }, []);
+    setOutput([])
+    setStep(0)
+    setCharIndex(0)
+    setTyping(false)
+    setCommandExecuted(false)
+    setCompleted(false)
+  }, [])
 
   const executeCommand = useCallback(() => {
-    setOutput((prev) => [...prev, `${promptSymbol} ${input}`]);
-    setStep(1);
-    setInput("");
-  }, [promptSymbol, input]);
+    setOutput((prev) => [...prev, `${promptSymbol} ${input}`])
+    setStep(1)
+    setInput("")
+  }, [promptSymbol, input])
 
   useEffect(() => {
     if (outputRef.current) {
-      outputRef.current.scrollTop = outputRef.current.scrollHeight;
+      outputRef.current.scrollTop = outputRef.current.scrollHeight
     }
-  }, [output]);
+  }, [output])
 
   useEffect(() => {
-    if (autoMode && !typing && !commandExecuted) {
+    if (autoExecute && !typing && !commandExecuted) {
       const timer = setTimeout(() => {
-        setTyping(true);
-        setCharIndex(0);
-      }, 500);
-      return () => clearTimeout(timer);
+        setTyping(true)
+        setCharIndex(0)
+      }, 500)
+      return () => clearTimeout(timer)
     }
-  }, [autoMode, typing, commandExecuted]);
+  }, [autoExecute, typing, commandExecuted])
 
   useEffect(() => {
-    if (autoMode && repeat && completed) {
+    if (autoExecute && repeat && completed) {
       const repeatTimer = setTimeout(() => {
-        resetTerminal();
-      }, repeatDelay);
-      return () => clearTimeout(repeatTimer);
+        resetTerminal()
+      }, repeatDelay)
+      return () => clearTimeout(repeatTimer)
     }
-  }, [autoMode, repeat, completed, resetTerminal, repeatDelay]);
+  }, [autoExecute, repeat, completed, resetTerminal, repeatDelay])
 
   useEffect(() => {
     if (typing && charIndex < command.length) {
       const timer = setTimeout(() => {
-        setInput(command.substring(0, charIndex + 1));
-        setCharIndex(charIndex + 1);
-      }, typingDelay);
-      return () => clearTimeout(timer);
+        setInput(command.substring(0, charIndex + 1))
+        setCharIndex(charIndex + 1)
+      }, typingDelay)
+      return () => clearTimeout(timer)
     } else if (typing && charIndex === command.length) {
       const timer = setTimeout(() => {
-        executeCommand();
-        setTyping(false);
-        setCommandExecuted(true);
-      }, 500);
-      return () => clearTimeout(timer);
+        executeCommand()
+        setTyping(false)
+        setCommandExecuted(true)
+      }, 500)
+      return () => clearTimeout(timer)
     }
-  }, [typing, charIndex, command, typingDelay, executeCommand]);
+  }, [typing, charIndex, command, typingDelay, executeCommand])
 
   useEffect(() => {
-    if (step > 0 && step <= processingSteps.length) {
-      setOutput((prev) => [...prev, processingSteps[step - 1]]);
-      const timer = setTimeout(() => setStep(step + 1), stepDelay);
-      return () => clearTimeout(timer);
-    } else if (step > processingSteps.length) {
-      setOutput((prev) => [...prev, finalMessage]);
-      setCompleted(true);
+    if (step > 0 && step <= steps.length) {
+      setOutput((prev) => [...prev, steps[step - 1]])
+      const timer = setTimeout(() => setStep(step + 1), stepDelay)
+      return () => clearTimeout(timer)
+    } else if (step > steps.length) {
+      setOutput((prev) => [...prev, finalMessage])
+      setCompleted(true)
     }
-  }, [step, processingSteps, finalMessage, stepDelay]);
+  }, [step, steps, finalMessage, stepDelay])
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    executeCommand();
-    setCommandExecuted(true);
-  };
+    e.preventDefault()
+    if (input.trim()) {
+      executeCommand()
+      setCommandExecuted(true)
+    }
+  }
 
   const copyCommand = () => {
-    navigator.clipboard.writeText(command);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  const replayCommand = () => {
-    resetTerminal();
-  };
+    navigator.clipboard.writeText(command)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
 
   return (
-    <div
-      className={`max-w-4xl mx-auto p-3 md:p-6 ${bgColor} ${textColor} rounded-${rounded} shadow-lg font-mono scrollbar-thin`}
-    >
-      <div
-        className={`mb-4 p-2 ${commandBg} border-${textColor} rounded flex items-center justify-between`}
-      >
-        <div className="flex items-center gap-1">
-          <div className="-mt-1">{icon}</div>
-          <span>
-            {commandMessage} <strong>{command}</strong>
+    <div className={cn("max-w-4xl mx-auto p-3 md:p-6 rounded-lg shadow-lg font-mono", theme.container, className)}>
+      <div className={cn("mb-4 p-3 rounded-md border flex items-center justify-between", theme.header)}>
+        <div className="flex items-center gap-2">
+          {icon}
+          <span className="flex items-center gap-1.5">
+            <span className="text-sm opacity-80">Run:</span>
+            <code className="font-bold px-2 py-0.5 bg-black/30 rounded">{command}</code>
           </span>
         </div>
         <div className="flex gap-2">
-          {autoMode ? (
+          {autoExecute ? (
             completed &&
             !repeat && (
               <button
-                onClick={replayCommand}
-                className={`px-2 py-1 ${textColor} rounded text-sm flex items-center cursor-pointer`}
+                onClick={resetTerminal}
+                className={cn("px-2 py-1 rounded text-sm flex items-center gap-1 transition-colors", theme.button)}
                 title="Replay"
                 type="button"
               >
-                <RotateCcw className="w-4 h-4 mr-1" />
-                Replay
+                <RotateCcw className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Replay</span>
               </button>
             )
           ) : step === 0 ? (
             <button
               onClick={copyCommand}
-              className={`px-2 py-1 ${textColor} rounded text-sm flex items-center cursor-pointer`}
+              className={cn("px-2 py-1 rounded text-sm flex items-center gap-1 transition-colors", theme.button)}
               title="Copy command"
               type="button"
             >
-              <Copy className="w-4 h-4 mr-1" />
-              {copied ? "Copied!" : "Copy"}
+              <Copy className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">{copied ? "Copied!" : "Copy"}</span>
             </button>
           ) : (
             <button
               onClick={resetTerminal}
-              className={`px-2 py-1 ${textColor} rounded text-sm flex items-center cursor-pointer`}
+              className={cn("px-2 py-1 rounded text-sm flex items-center gap-1 transition-colors", theme.button)}
               title="Reset terminal"
               type="button"
             >
-              <RotateCcw className="w-4 h-4 mr-1" />
-              Reset
+              <RotateCcw className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Reset</span>
             </button>
           )}
         </div>
       </div>
-      <div
-        ref={outputRef}
-        className={`${outputHeight} mb-4 p-2 bg-black rounded hide-scrollbar overflow-y-auto`}
-      >
+
+      <div ref={outputRef} className={cn("h-80 mb-4 p-3 rounded-md overflow-y-auto scrollbar-none", theme.output)}>
         {output.map((line, index) => (
-          <pre key={index} className="whitespace-pre-wrap">
+          <pre key={index} className="whitespace-pre-wrap mb-1 terminal-line">
             {line}
           </pre>
         ))}
@@ -200,69 +222,59 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({
             {promptSymbol} {input}
           </pre>
         )}
-        {autoMode && repeat && completed && (
-          <pre className="text-gray-500 italic mt-2">
-            Repeating command in {Math.ceil(repeatDelay / 1000)} seconds...
-          </pre>
+        {autoExecute && repeat && completed && (
+          <pre className="text-gray-500 italic mt-2">Repeating in {Math.ceil(repeatDelay / 1000)}s...</pre>
         )}
       </div>
-      {!autoMode && step === 0 && !commandExecuted && (
+
+      {!autoExecute && step === 0 && !commandExecuted && (
         <form onSubmit={handleSubmit} className="flex items-center">
-          <span className="mr-2">{promptSymbol}</span>
+          <span className="mr-2 font-bold">{promptSymbol}</span>
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             className="flex-grow bg-transparent focus:outline-none cursor-typing"
             placeholder={inputPlaceholder}
+            autoFocus
           />
           <button
-            type="button"
-            onClick={executeCommand}
-            className="ml-2 p-1 rounded-full hover:bg-gray-700 transition-colors cursor-pointer"
+            type="submit"
+            className={cn("ml-2 p-1.5 rounded-full transition-colors", theme.button)}
             title="Send command"
           >
             <Send className="w-4 h-4" />
           </button>
         </form>
       )}
+
       <style jsx>{`
         @keyframes blink {
-          0% {
-            opacity: 0;
-          }
-          50% {
-            opacity: 1;
-          }
-          100% {
-            opacity: 0;
-          }
+          0%, 100% { opacity: 0; }
+          50% { opacity: 1; }
         }
         .cursor-typing::after {
           content: "|";
+          margin-left: 2px;
           animation: blink 1s infinite;
         }
-        pre {
-          animation: fadeIn 0.5s ease-in-out;
+        .terminal-line {
+          animation: fadeIn 0.3s ease-in-out;
         }
         @keyframes fadeIn {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
+          from { opacity: 0; transform: translateY(2px); }
+          to { opacity: 1; transform: translateY(0); }
         }
-        .hide-scrollbar::-webkit-scrollbar {
-          display: none !important;
+        .scrollbar-none::-webkit-scrollbar {
+          display: none;
         }
-        .hide-scrollbar {
-          -ms-overflow-style: none !important;
-          scrollbar-width: none !important;
+        .scrollbar-none {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
         }
       `}</style>
     </div>
-  );
-};
+  )
+}
 
-export default InteractiveTerminal;
+export default InteractiveTerminal
