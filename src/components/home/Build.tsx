@@ -205,7 +205,7 @@ export const Build = () => {
                   </div>
                 </div>
               </div>
-              <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-white dark:from-[#09090B] via-white/90 dark:via-[#09090B]/90 to-transparent z-10"></div>
+              <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-white dark:from-black via-white/90 dark:via-black/90 to-transparent z-10"></div>
               <div className="absolute inset-0 z-0 opacity-50">
                 {[...Array(20)].map((_, i) => (
                   <div
