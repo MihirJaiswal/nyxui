@@ -215,9 +215,9 @@ export const ComponentsDemo = () => {
                 <MorphingBlob
                   theme="custom"
                   customColors={{
-                    from: "#a92be3",
-                    via: "#943ed6",
-                    to: "#b300ff"
+                    from: "#48176e",
+                    via: "#5c176e",
+                    to: "#69176e"
                   }}
                   complexity={5}
                   speed={3}
@@ -225,6 +225,7 @@ export const ComponentsDemo = () => {
                   clickEffect={true}
                   pulse={false}
                   glow={false}
+                  opacity={90}
                   glowIntensity={5}
                   smooth={true}
                   effect3D={true}
