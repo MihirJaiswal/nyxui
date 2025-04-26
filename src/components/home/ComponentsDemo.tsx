@@ -2,7 +2,6 @@ import React from "react";
 import { BentoGrid } from "@/nuvyxui/components/BentoGrid";
 import { AnimatedGradientBg } from "@/nuvyxui/components/AnimatedGradientBg";
 import { ChevronRight, Code, Shield, Sparkles } from "lucide-react";
-import { MatrixCodeRain } from "@/nuvyxui/components/MatrixCodeRain";
 import { DynamicRipple } from "@/nuvyxui/components/DynamicRipple";
 import Link from "next/link";
 import InteractiveTerminal from "@/nuvyxui/components/Terminal";
@@ -13,6 +12,7 @@ import LampHeading from "@/nuvyxui/components/LampHeading";
 import { Particles } from "../ui/particles";
 import { CyberpunkCard } from "@/nuvyxui/components/CyberpunkCard";
 import { TwitterCard } from "./TweetCard";
+import { Matrix } from "./Matrix";
 
 export const ComponentsDemo = () => {
   return (
@@ -131,20 +131,14 @@ export const ComponentsDemo = () => {
                   <LampHeading
                     text="Nuvyx UI"
                     gradientColors={{ from: "#6e15ad", to: "#d413ad" }}
+                    direction="above"
+                    lineHeight={3}
+                    glowIntensity={0.8}
                     className="text-2xl font-bold"
                   />
                   <p className="text-sm text-zinc-600 dark:text-zinc-300">
                     Collection of ready-to-use components.
                   </p>
-                  <Link
-                    href="/components"
-                    className="block w-full p-4"
-                    aria-label="Check more components"
-                  >
-                    <div className="w-full min-h-[60px] rounded-xl flex items-center justify-center text-white dark:text-black touch-manipulation">
-                      <Rbutton>Check more</Rbutton>
-                    </div>
-                  </Link>
                 </div>
               </div>
             </DynamicRipple>
@@ -202,22 +196,7 @@ export const ComponentsDemo = () => {
           height="h-full"
           className="rounded-2xl lg:col-span-2 overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] border border-zinc-200 dark:border-zinc-800"
           component={
-            <div className="w-full h-full relative min-h-[300px]">
-              <MatrixCodeRain
-                color="#00ff00"
-                charset="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ$#%@!nuvyxui"
-                fontSize={14}
-                fps={30}
-                opacity={0.05}
-                fullScreen={false}
-                height="100%"
-              />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-green-400 font-mono text-2xl font-bold tracking-wider z-10 drop-shadow-lg bg-black p-4 border-2 border-green-400">
-                  MATRIX
-                </span>
-              </div>
-            </div>
+            <Matrix/>
           }
         />
 
