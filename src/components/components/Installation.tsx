@@ -16,20 +16,22 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import type { ComponentData } from "@/nuvyxui/ComponentInterfaces";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { nightOwl } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { cn } from "@/lib/utils";
 
+const theme = dracula
+
 const lightTheme = {
-  ...nightOwl,
+  ...theme,
   'pre[class*="language-"]': {
-    ...nightOwl['pre[class*="language-"]'],
+    ...theme['pre[class*="language-"]'],
     background: "#1C2433",
     fontSize: "14px",
     lineHeight: "1.6",
     borderRadius: "0.5rem",
   },
   'code[class*="language-"]': {
-    ...nightOwl['code[class*="language-"]'],
+    ...theme['code[class*="language-"]'],
     background: "#1C2433",
     fontSize: "14px",
     lineHeight: "1.6",
@@ -37,16 +39,16 @@ const lightTheme = {
 };
 
 const darkTheme = {
-  ...nightOwl,
+  ...theme,
   'pre[class*="language-"]': {
-    ...nightOwl['pre[class*="language-"]'],
+    ...theme['pre[class*="language-"]'],
     background: "#18181B",
     fontSize: "14px",
     lineHeight: "1.6",
     borderRadius: "0.5rem",
   },
   'code[class*="language-"]': {
-    ...nightOwl['code[class*="language-"]'],
+    ...theme['code[class*="language-"]'],
     background: "#18181B",
     fontSize: "14px",
     lineHeight: "1.6",
