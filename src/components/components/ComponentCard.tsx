@@ -24,7 +24,7 @@ export function ComponentCard({
             height={650}
             quality={100}
             decoding="async"
-            className="transition duration-300 blur-0 rounded-md group-hover:scale-105"
+            className="transition duration-300 blur-0 rounded-md group-hover:scale-102"
             loading="lazy"
           />
         </div>
