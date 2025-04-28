@@ -57,7 +57,7 @@ export default function Header() {
       <div className="absolute left-0 top-full h-px w-full pointer-events-none">
         <div className="w-full h-full bg-gradient-to-r from-transparent via-zinc-300 to-transparent dark:via-zinc-600"></div>
       </div>
-      <div className="flex h-16 items-center justify-between px-4 md:px-6 lg:px-16">
+      <div className="flex h-16 items-center justify-between px-4 max-w-7xl mx-auto">
         <div className="flex items-center">
           <Link
             href="/"
