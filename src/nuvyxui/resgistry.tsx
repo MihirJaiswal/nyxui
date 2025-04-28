@@ -23,6 +23,7 @@ import { marqueeData } from "./metadata/Marquee.meta";
 import { imageScannerData } from "./metadata/ImageScanner.meta";
 import { lampHeadingData } from "./metadata/LampHeading.meta";
 import { musicPlayerData } from "./metadata/MusicaPlayer.meta";
+import { interactiveKeyboardData } from "./metadata/Keyboard.meta";
 
 export const componentsData = {
   "gradient-button": gradientButtonData,
@@ -50,4 +51,5 @@ export const componentsData = {
   "image-scanner": imageScannerData,
   "lamp-heading": lampHeadingData,
   "music-player": musicPlayerData,
+  "interactive-keyboard": interactiveKeyboardData
 };

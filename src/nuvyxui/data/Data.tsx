@@ -138,6 +138,12 @@ export const componentsData = {
         "A customizable music player component with various animation options and responsive design.",
       image: "/assets/images/showcase/music-player.png",
     },
+    "Keyboard": {
+      title: "Interactive Keyboard",
+      description:
+        "A customizable interactive keyboard component with various themes, layouts, and animation options.",
+      image: "/assets/images/showcase/keyboard.png",
+    },
   },
   templates: {},
 };

@@ -5,6 +5,7 @@ const withBundlerAnalyzer = require('@next/bundle-analyzer')({
 })
 
 const nextConfig: NextConfig = withBundlerAnalyzer({
+  
   images: {
     remotePatterns: [
       {
