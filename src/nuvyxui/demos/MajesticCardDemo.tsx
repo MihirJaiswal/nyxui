@@ -16,16 +16,16 @@ export function MajesticCardDemo() {
 
   return (
     <div className="w-full flex flex-col items-center justify-center mx-auto">
-      <div className="w-full max-w-md flex items-center justify-center mb-8">
+     <div className="w-full max-w-md flex items-center justify-center mb-8">
         <h1 className="text-2xl font-bold mb-4">Hover on the card</h1>
-      </div>
+      </div> 
       <div className="w-full max-w-md">
         <MajesticCard
           variant={isHovering ? "magnetic" : "float"}
           intensity={3}
           hoverEffect
           speed="normal"
-          className="w-full mx-auto overflow-hidden rounded-xl shadow-lg shadow-purple-500"
+          className="w-full mx-auto overflow-hidden rounded-xl shadow-md shadow-purple-500"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >

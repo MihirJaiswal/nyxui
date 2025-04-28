@@ -15,8 +15,7 @@ export const MorphingBlobDemo = () => {
           size="lg"
           complexity={4}
           speed={2}
-          glow={true}
-          glowIntensity={4}
+          glow={false}
           effect3D={true}
           hoverEffect={true}
           clickEffect={true}

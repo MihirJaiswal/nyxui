@@ -111,13 +111,13 @@ export const componentsData = {
     "image-comparison": {
       title: "Image Comparison",
       description:
-        "An interactive image comparison slider that allows users to drag or hover to reveal two different images.",
+        "Interactive image comparison slider that allows to reveal two different images.",
       image: "/assets/images/showcase/image-comparison.png",
     },
     marquee: {
       title: "Marquee",
       description:
-        "A customizable, interactive scrolling marquee component with various animation options, drag capabilities, and responsive design.",
+        "A customizable, interactive scrolling marquee component.",
       image: "/assets/images/showcase/marquee.png",
     },
     "image-scanner": {
@@ -129,19 +129,19 @@ export const componentsData = {
     "lamp-heading": {
       title: "Lamp Heading",
       description:
-        "An elegant section heading with a customizable gradient underline and a subtle lamp-like glow effect with a nice little animation.",
+        "Heading with a gradient underline and a subtle lamp-like glow effect.",
       image: "/assets/images/showcase/lamp-heading.png",
     },
     "music-player": {
       title: "Music Player",
       description:
-        "A customizable music player component with various animation options and responsive design.",
+        "A customizable music player component with various animation options.",
       image: "/assets/images/showcase/music-player.png",
     },
     "keyboard": {
       title: "Keyboard",
       description:
-        "A customizable interactive keyboard component with various themes, layouts, and animation options.",
+        "Interactive keyboard component with various themes and layouts options.",
       image: "/assets/images/showcase/keyboard.png",
     },
   },
