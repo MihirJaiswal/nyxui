@@ -8,7 +8,7 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/global/Command";
-import { Search, Link as LinkIcon, Box, FileText } from "lucide-react";
+import { Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -42,11 +42,6 @@ export function CommandPalette() {
     setOpen(false);
   };
 
-  const iconMap = {
-    links: LinkIcon,
-    components: Box,
-    templates: FileText,
-  };
 
   // Updated mapping logic:
   const sections = Object.entries(componentsData).map(
@@ -93,7 +88,6 @@ export function CommandPalette() {
           {nothingFound && <CommandEmpty>No items found.</CommandEmpty>}
 
           {filteredSections.map((section) => {
-            const Icon = iconMap[section.key as keyof typeof iconMap] || Search;
             const heading =
               section.key.charAt(0).toUpperCase() + section.key.slice(1);
 
@@ -124,7 +118,6 @@ export function CommandPalette() {
                                 handleSelect(item.value);
                               }}
                             />
-                            <Icon className="mr-2 h-4 w-4 text-gray-500" />
                             <span className="text-gray-800 dark:text-white">
                               {item.name}
                             </span>
