@@ -4,7 +4,7 @@ import InteractiveKeyboard from '../components/Keyboard'
 function KeyboardDemo() {
   return (
     <div>
-      <InteractiveKeyboard theme='neon' />
+      <InteractiveKeyboard theme='cyberpunk' />
     </div>
   )
 }

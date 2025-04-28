@@ -24,6 +24,7 @@ export const interactiveKeyboardData: ComponentData = {
         },
     }
   ],
+  new: true,
   props: [
     {
       name: "Interactive Keyboard",
