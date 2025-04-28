@@ -12,7 +12,7 @@ import { Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { componentsData } from "@/nuvyxui/data/Data";
+import { componentsData } from "@/nuvyxui/Data";
 
 export function CommandPalette() {
   const [open, setOpen] = useState(false);

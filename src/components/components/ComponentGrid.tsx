@@ -1,5 +1,5 @@
 import { ComponentCard } from "./ComponentCard";
-import { componentsData } from "../../nuvyxui/data/Data";
+import { componentsData } from "../../nuvyxui/Data";
 
 export default function ComponentGrid() {
   return (

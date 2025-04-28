@@ -14,7 +14,7 @@ import { Menu, Github, Search } from "lucide-react";
 import { ModeToggle } from "./ThemeToggle";
 import { cn } from "@/lib/utils";
 import { CommandPalette } from "./CommandPallete";
-import { componentsData } from "@/nuvyxui/data/Data";
+import { componentsData } from "@/nuvyxui/Data";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);

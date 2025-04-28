@@ -12,12 +12,6 @@ const nextConfig: NextConfig = withBundlerAnalyzer({
         hostname: 'raw.githubusercontent.com',
       },
       {
-        hostname: 'uploads-ssl.webflow.com',
-      },
-      {
-        hostname: 'findicons.com',
-      },
-      {
         hostname: 'avatars.githubusercontent.com',
       },
     ],

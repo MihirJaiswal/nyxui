@@ -3,10 +3,21 @@ import { useEffect, useRef, useState } from "react";
 import { Card } from "@/components/ui/card";
 import Image from "next/image";
 import { Marquee } from "@/nuvyxui/components/Marquee"; 
+import { componentsData } from "@/nuvyxui/Data"; 
+
+interface ComponentData {
+  title: string;
+  description: string;
+  image: string;
+}
+interface Components {
+  [key: string]: ComponentData;
+}
 
 interface CardInfo {
   id: string;
   imageSrc: string;
+  title: string;
   uniqueKey?: string;
 }
 
@@ -41,36 +52,11 @@ export const Build = () => {
     };
   }, []);
 
-  const cardData: CardInfo[] = [
-    {
-      id: "cyberpunk-card",
-      imageSrc: "/assets/images/showcase/cyberpunk-card.png",
-    },
-    {
-      id: "liquid-metal-button",
-      imageSrc: "/assets/images/showcase/liquid-metal-button.png",
-    },
-    {
-      id: "matrix-code-rain",
-      imageSrc: "/assets/images/showcase/matrix-code-rain.png",
-    },
-    {
-      id: "character-selector",
-      imageSrc: "/assets/images/showcase/character-selector.png",
-    },
-    {
-      id: "animated-code-block",
-      imageSrc: "/assets/images/showcase/animated-code-block.png",
-    },
-    {
-      id: "scroll-animation-trigger",
-      imageSrc: "/assets/images/showcase/scroll-animation-trigger.png",
-    },
-    {
-      id: "majestic-card",
-      imageSrc: "/assets/images/showcase/majestic-card.png",
-    },
-  ];
+  const cardData: CardInfo[] = Object.entries(componentsData.components as Components).map(([id, component]) => ({
+    id,
+    imageSrc: component.image,
+    title: component.title
+  }));
 
   const renderCard = (cardInfo: CardInfo) => {
     return (
@@ -85,12 +71,12 @@ export const Build = () => {
         <div className="relative bg-black flex items-center justify-center rounded-lg overflow-hidden transition duration-200">
           <Image
             src={cardInfo.imageSrc}
-            alt="img"
+            alt={cardInfo.title || "Component showcase"}
             width={1024}
             height={650}
             quality={100}
             decoding="async"
-            className="transition duration-300 blur-0 rounded-md"
+            className="transition duration-300 blur-0"
             loading="lazy"
             draggable={false}
           />
@@ -111,6 +97,7 @@ export const Build = () => {
         <div className="flex flex-col">
           <div className="flex flex-col justify-center pt-4 mb-6">
             <h1 className="text-3xl sm:text-5xl lg:text-5xl font-extrabold tracking-tight leading-tight text-center">Showcase</h1>
+            <p className="mx-auto text-balance text-center text-lg font-medium tracking-tight text-foreground/80">Explore our collection of unique and innovative components</p>
           </div>
           <div className="relative lg:col-span-6 h-full">
             <div className="relative h-full w-full overflow-hidden rounded-lg flex items-center">
@@ -130,12 +117,11 @@ export const Build = () => {
                   ></div>
                 ))}
               </div>
-              
               <div className="w-full py-8 relative z-20" style={{ cursor: 'grab' }}>
                 <Marquee 
                   direction="horizontal" 
                   speed={30} 
-                  speedOnHover={0}
+                  speedOnHover={1}
                   gap={24}
                   fadeEdges={true}
                   fadeWidth={100}
@@ -172,8 +158,6 @@ export const Build = () => {
             opacity: 0;
           }
         }
-        
-        /* Force cursor styles for the marquee and its children */
         .w-full.py-8.relative.z-20 {
           cursor: grab !important;
         }
