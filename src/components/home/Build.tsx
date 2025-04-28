@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { Card } from "@/components/ui/card";
-import Text from "./Text";
 import Image from "next/image";
+import { Marquee } from "@/nuvyxui/components/Marquee"; 
 
 interface CardInfo {
   id: string;
@@ -11,7 +11,6 @@ interface CardInfo {
 }
 
 export const Build = () => {
-  const scrollRef = useRef<HTMLDivElement>(null);
   const textHighlightRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -20,48 +19,14 @@ export const Build = () => {
   }, []);
 
   useEffect(() => {
-    const scrollContainer = scrollRef.current;
-    if (!scrollContainer || !isLoaded) return;
-
-    let animationId: number;
-    let startTime: number;
-
-    const scroll = (timestamp: number) => {
-      if (!startTime) startTime = timestamp;
-      const elapsed = timestamp - startTime;
-
-      const scrollSpeed = 0.03;
-      const scrollPosition = elapsed * scrollSpeed;
-
-      if (scrollContainer.scrollTop >= scrollContainer.scrollHeight / 2) {
-        scrollContainer.scrollTop = scrollContainer.scrollHeight / 3;
-        startTime = timestamp - scrollContainer.scrollHeight / 3 / scrollSpeed;
-      } else {
-        scrollContainer.scrollTop =
-          scrollPosition % scrollContainer.scrollHeight;
-      }
-
-      animationId = requestAnimationFrame(scroll);
-    };
-
-    animationId = requestAnimationFrame(scroll);
-
-    return () => {
-      cancelAnimationFrame(animationId);
-    };
-  }, [isLoaded]);
-
-  useEffect(() => {
     const textElement = textHighlightRef.current;
     if (!textElement) return;
-
     let pulseAnimationId: number;
     let pulseStartTime: number;
 
     const pulseAnimation = (timestamp: number) => {
       if (!pulseStartTime) pulseStartTime = timestamp;
       const elapsed = timestamp - pulseStartTime;
-
       const intensity = Math.sin(elapsed * 0.002) * 0.2 + 0.8;
       textElement.style.textShadow = `0 0 ${Math.round(
         intensity * 10
@@ -69,7 +34,6 @@ export const Build = () => {
 
       pulseAnimationId = requestAnimationFrame(pulseAnimation);
     };
-
     pulseAnimationId = requestAnimationFrame(pulseAnimation);
 
     return () => {
@@ -110,11 +74,15 @@ export const Build = () => {
 
   const renderCard = (cardInfo: CardInfo) => {
     return (
-      <Card
-        key={cardInfo.uniqueKey || cardInfo.id}
-        className="border-gray-800 dark:border-gray-800 bg-black backdrop-blur-sm transform transition-all hover:scale-105 shadow-sm dark:shadow-none"
+     <div
+      key={cardInfo.uniqueKey || cardInfo.id}
+      onClick={(e) => e.stopPropagation()}
+      className="select-none"
+     >
+       <Card
+        className="border-gray-800 dark:border-gray-800 bg-black backdrop-blur-sm transform transition-all shadow-sm dark:shadow-none w-80 pointer-events-auto"
       >
-        <div className="relative dark:border bg-black flex items-center justify-center rounded-lg dark:border-white/[0.1] overflow-hidden transition duration-200 hover:scale-105">
+        <div className="relative bg-black flex items-center justify-center rounded-lg overflow-hidden transition duration-200">
           <Image
             src={cardInfo.imageSrc}
             alt="img"
@@ -122,91 +90,31 @@ export const Build = () => {
             height={650}
             quality={100}
             decoding="async"
-            className="transition duration-300 blur-0 rounded-md group-hover:scale-105"
+            className="transition duration-300 blur-0 rounded-md"
             loading="lazy"
+            draggable={false}
           />
         </div>
       </Card>
+     </div>
     );
   };
 
-  const generateCards = (repeat = 3): CardInfo[][] => {
-    const columns: CardInfo[][] = [[], [], []];
-    for (let i = 0; i < repeat; i++) {
-      for (let j = 0; j < cardData.length; j++) {
-        const card = cardData[j];
-        const columnIndex = j % 3;
-        columns[columnIndex].push({
-          ...card,
-          uniqueKey: `${card.id}-${i}-${columnIndex}`,
-        });
-      }
-    }
-
-    return columns;
-  };
-
-  const columnsData = generateCards(9);
+  const marqueeCards = [...cardData, ...cardData].map((card, index) => ({
+    ...card,
+    uniqueKey: `${card.id}-${index}`,
+  }));
 
   return (
-    <div className="relative w-full overflow-hidden text-gray-900 dark:text-white">
+    <div className="relative w-full overflow-hidden text-gray-900 dark:text-white mb-12">
       <div className="mx-auto max-w-7xl px-4 pb-10 md:py-4 sm:px-6 lg:px-8">
         <div className="flex flex-col">
-          <div className="flex flex-col justify-center pt-4">
-            <Text />
+          <div className="flex flex-col justify-center pt-4 mb-6">
+            <h1 className="text-3xl sm:text-5xl lg:text-5xl font-extrabold tracking-tight leading-tight text-center">Showcase</h1>
           </div>
-          <div className="relative lg:col-span-6 h-[700px] -z-1">
-            <div className="absolute left-0 top-20 hidden lg:block"></div>
-            <div className="relative h-full w-full overflow-hidden rounded-lg">
-              <div
-                ref={scrollRef}
-                className="relative h-full overflow-hidden"
-                style={{
-                  maskImage:
-                    "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
-                  WebkitMaskImage:
-                    "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
-                }}
-              >
-                <div className="pt-24 pb-24">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:px-4">
-                    <div className="space-y-6">
-                      {columnsData[0].map((card) => (
-                        <div
-                          key={card.uniqueKey}
-                          className={isLoaded ? "" : "opacity-0"}
-                        >
-                          {renderCard(card)}
-                        </div>
-                      ))}
-                    </div>
-
-                    <div className="space-y-6 mt-16 md:mt-24">
-                      {columnsData[1].map((card) => (
-                        <div
-                          key={card.uniqueKey}
-                          className={isLoaded ? "" : "opacity-0"}
-                        >
-                          {renderCard(card)}
-                        </div>
-                      ))}
-                    </div>
-
-                    <div className="space-y-6 mt-32 md:mt-36">
-                      {columnsData[2].map((card) => (
-                        <div
-                          key={card.uniqueKey}
-                          className={isLoaded ? "" : "opacity-0"}
-                        >
-                          {renderCard(card)}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-white dark:from-black via-white/90 dark:via-black/90 to-transparent z-10"></div>
-              <div className="absolute inset-0 z-0 opacity-50">
+          <div className="relative lg:col-span-6 h-full">
+            <div className="relative h-full w-full overflow-hidden rounded-lg flex items-center">
+              <div className="absolute inset-0 z-0 opacity-50 pointer-events-none">
                 {[...Array(20)].map((_, i) => (
                   <div
                     key={i}
@@ -221,6 +129,29 @@ export const Build = () => {
                     }}
                   ></div>
                 ))}
+              </div>
+              
+              <div className="w-full py-8 relative z-20" style={{ cursor: 'grab' }}>
+                <Marquee 
+                  direction="horizontal" 
+                  speed={30} 
+                  speedOnHover={0}
+                  gap={24}
+                  fadeEdges={true}
+                  fadeWidth={100}
+                  className="w-full"
+                  draggable={false}
+                  pauseOnTap={false}
+                >
+                  {marqueeCards.map((card) => (
+                    <div
+                      key={card.uniqueKey}
+                      className={isLoaded ? "" : "opacity-0"}
+                    >
+                      {renderCard(card)}
+                    </div>
+                  ))}
+                </Marquee>
               </div>
             </div>
           </div>
@@ -240,6 +171,14 @@ export const Build = () => {
             transform: translateY(-100px) translateX(20px);
             opacity: 0;
           }
+        }
+        
+        /* Force cursor styles for the marquee and its children */
+        .w-full.py-8.relative.z-20 {
+          cursor: grab !important;
+        }
+        .w-full.py-8.relative.z-20:active {
+          cursor: grabbing !important;
         }
       `}</style>
     </div>
