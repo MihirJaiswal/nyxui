@@ -14,9 +14,11 @@ export default function IntroductionPage() {
       <div className="space-y-10">
         <div className="space-y-2" id="introduction">
           <h1 className="text-4xl font-bold tracking-tight">Introduction</h1>
-          <p className="text-xl text-muted-foreground">
-            Craft animated landing pages using ready-to-use components that you
-            can simply copy and integrate into your applications.
+          <p className="text-gray-700 dark:text-gray-300 text-lg">
+            <span className="inline-block align-top no-underline">
+              Craft animated landing pages using ready-to-use components that you
+              can simply copy and integrate into your applications.
+            </span>
           </p>
         </div>
         <div className="relative overflow-hidden rounded-xl border shadow-md">
@@ -62,7 +64,7 @@ export default function IntroductionPage() {
                   </div>
                 </AccordionTrigger>
                 <AccordionContent>
-                  <p className="text-zinc-500 dark:text-zinc-400">
+                  <p className="text-gray-700 dark:text-gray-300">
                     Nuvyx UI offers components that are ready to be integrated
                     into your web projects. Every component is self-contained
                     and developed using contemporary React techniques, ensuring
@@ -78,7 +80,7 @@ export default function IntroductionPage() {
                   </div>
                 </AccordionTrigger>
                 <AccordionContent>
-                  <p className="text-zinc-500 dark:text-zinc-400">
+                  <p className="text-gray-700 dark:text-gray-300">
                     Absolutely. I will soon make it available on NPM, which will
                     simplify installation and future updates.
                   </p>
@@ -92,7 +94,7 @@ export default function IntroductionPage() {
                   </div>
                 </AccordionTrigger>
                 <AccordionContent>
-                  <p className="text-zinc-500 dark:text-zinc-400">
+                  <p className="text-gray-700 dark:text-gray-300">
                     Nuvyx UI is tailored for web developers and designers of any
                     proficiency who want to create interactive and creative UI
                     elements.
@@ -107,7 +109,7 @@ export default function IntroductionPage() {
                   </div>
                 </AccordionTrigger>
                 <AccordionContent>
-                  <p className="text-zinc-500 dark:text-zinc-400">
+                  <p className="text-gray-700 dark:text-gray-300">
                     Certainly! Each component is designed with customization at
                     its core, allowing you to effortlessly adjust colors,
                     dimensions, and behaviors to align with your brand and
@@ -127,15 +129,15 @@ export default function IntroductionPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
               <div className="space-y-4">
-                <p className="leading-7">
+                <p className="leading-7 text-gray-700 dark:text-gray-300">
                   I believe the web should be a masterpiece of creativity and
                   beauty—a space where inspiring design sparks innovation.
                 </p>
-                <p className="leading-7">
+                <p className="leading-7 text-gray-700 dark:text-gray-300">
                   Every element we create has the potential to captivate,
                   turning routine interactions into delightful experiences.
                 </p>
-                <p className="leading-7">
+                <p className="leading-7 text-gray-700 dark:text-gray-300">
                   When design is both beautiful and creative, it elevates the
                   digital landscape, inviting users into a world of endless
                   possibility.
@@ -143,14 +145,14 @@ export default function IntroductionPage() {
               </div>
 
               <div className="space-y-4">
-                <p className="leading-7">
+                <p className="leading-7 text-gray-700 dark:text-gray-300">
                   Nuvyx UI exemplifies this belief by offering reusable React
                   components that are both highly functional and visually
                   appealing. Our dedication to quality design ensures that our
                   components are sturdy, refined, and dependable.
                 </p>
 
-                <p className="leading-7">
+                <p className="leading-7 text-gray-700 dark:text-gray-300">
                   Ultimately, at Nuvyx UI, our commitment to crafting a vibrant
                   and creative digital experience is evident in every design
                   decision. We infuse every detail with excellence and care,
