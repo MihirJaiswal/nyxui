@@ -51,5 +51,5 @@ export const componentsData = {
   "image-scanner": imageScannerData,
   "lamp-heading": lampHeadingData,
   "music-player": musicPlayerData,
-  "interactive-keyboard": interactiveKeyboardData
+  "keyboard": interactiveKeyboardData
 };

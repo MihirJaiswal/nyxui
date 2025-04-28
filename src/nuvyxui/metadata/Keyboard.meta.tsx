@@ -6,7 +6,7 @@ import InteractiveKeyboardSource from "!!raw-loader!@/nuvyxui/components/Keyboar
 import InteractiveKeyboardDemoSource from "!!raw-loader!@/nuvyxui/demos/KeyboardDemo.tsx";
 
 export const interactiveKeyboardData: ComponentData = {
-  name: "Interactive Keyboard",
+  name: "Keyboard",
   description:
     "A customizable interactive keyboard component with various themes, layouts, and animation options.",
   preview: <InteractiveKeyboardDemo />,
