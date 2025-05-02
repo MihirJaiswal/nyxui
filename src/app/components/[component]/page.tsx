@@ -157,9 +157,8 @@ const ComponentPage = async ({
           <PropsTable propGroups={componentData.props} />
         </section>
         
-        {/* Table of Contents for SEO */}
-        <aside className="hidden lg:block mt-10 p-6 border rounded-lg bg-gray-50 dark:bg-gray-900/50">
-          <h2 className="text-lg font-medium mb-4">Table of Contents</h2>
+        <aside className="hidden lg:block mt-10 p-6 border border-dashed border-gray-200 dark:border-zinc-700 rounded-lg bg-gray-50 dark:bg-zinc-900/50">
+          <h2 className="text-lg font-medium mb-4">On this Page</h2>
           <nav>
             <ul className="space-y-2">
               <li><a href="#preview" className="text-blue-600 dark:text-blue-400 hover:underline">Preview</a></li>
@@ -172,13 +171,11 @@ const ComponentPage = async ({
           </nav>
         </aside>
         
-        {/* Related Components Section */}
         <section className="mt-10 space-y-6">
           <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">
             Related Components
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {/* Show up to 3 related components based on tags */}
             {Object.entries(componentsData)
               .filter(([key]) => key !== component && 
                 componentData.tags?.some(tag => 
