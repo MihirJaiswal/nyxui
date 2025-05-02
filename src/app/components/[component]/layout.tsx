@@ -11,9 +11,9 @@ type LayoutProps = {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ component: string }>;
+  params: { component: string };
 }): Promise<Metadata> {
-  const { component } = await params;
+  const { component } = params;
 
   if (!component) {
     return {
@@ -21,15 +21,27 @@ export async function generateMetadata({
       description:
         "Modern UI components for building beautiful Next.js applications",
       openGraph: {
+        type: "website",
         title: "Nuvyx UI Components",
         description:
           "Modern UI components for building beautiful Next.js applications",
         url: "https://nuvyxui.vercel.app/components",
+        siteName: "Nuvyx UI",
+        images: [
+          {
+            url: "https://nuvyxui.vercel.app/og-image.png",
+            width: 1200,
+            height: 630,
+            alt: "Nuvyx UI Components",
+          },
+        ],
       },
       twitter: {
+        card: "summary_large_image",
         title: "Nuvyx UI Components",
         description:
           "Modern UI components for building beautiful Next.js applications",
+        images: ["https://nuvyxui.vercel.app/og-image.png"],
       },
       alternates: {
         canonical: "https://nuvyxui.vercel.app/components",
@@ -58,20 +70,33 @@ export async function generateMetadata({
     `Learn how to use the ${formattedName} component from Nuvyx UI. API references, examples, and customization options for building beautiful Next.js applications.`;
 
   return {
-    title: `${componentName} | Nuvyx UI`,
+    title: `${componentName} | Nuvyx UI Components`,
     description: componentDescription,
     openGraph: {
-      title: `${componentName} - Nuvyx UI`,
+      type: "website",
+      title: `${componentName} | Nuvyx UI Components`,
       description: componentDescription,
       url: `https://nuvyxui.vercel.app/components/${component}`,
+      siteName: "Nuvyx UI",
+      images: [
+        {
+          url: "https://nuvyxui.vercel.app/og-image.png",
+          width: 1200,
+          height: 630,
+          alt: `${componentName} component from Nuvyx UI`,
+        },
+      ],
     },
     twitter: {
-      title: `${componentName} - Nuvyx UI`,
+      card: "summary_large_image",
+      title: `${componentName} | Nuvyx UI Components`,
       description: componentDescription,
+      images: ["https://nuvyxui.vercel.app/og-image.png"],
     },
     alternates: {
       canonical: `https://nuvyxui.vercel.app/components/${component}`,
     },
+    keywords: [`${componentName}`, "Nuvyx UI", "UI component", "Next.js", "React component", "UI library"],
   };
 }
 
@@ -85,7 +110,7 @@ export default async function ComponentLayout({ children }: LayoutProps) {
             <ComponentSidebar />
           </div>
         </aside>
-        <main className="flex-1 overflow-hidden bg-white dark:bg-black lpr-12">
+        <main className="flex-1 overflow-hidden bg-white dark:bg-black px-4 lg:px-12">
           {children}
         </main>
       </div>
