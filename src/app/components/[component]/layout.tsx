@@ -1,5 +1,7 @@
 import { Metadata } from "next";
 import { componentsData } from "@/nuvyxui/resgistry";
+import Header from "@/components/global/Header";
+import { ComponentSidebar } from "@/components/components/component-sidebar";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -74,5 +76,19 @@ export async function generateMetadata({
 }
 
 export default async function ComponentLayout({ children }: LayoutProps) {
-  return <>{children}</>;
+  return (
+    <div className="flex min-h-screen flex-col">
+      <Header />
+      <div className="flex w-full flex-1 flex-col lg:flex-row">
+        <aside className="sticky top-16 h-fit w-full shrink-0 lg:w-auto lg:min-w-[280px] xl:min-w-[300px] hidden lg:block">
+          <div className="sticky top-16">
+            <ComponentSidebar />
+          </div>
+        </aside>
+        <main className="flex-1 overflow-hidden bg-white dark:bg-black lpr-12">
+          {children}
+        </main>
+      </div>
+    </div>
+  );
 }
