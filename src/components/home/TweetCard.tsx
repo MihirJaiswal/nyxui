@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { MajesticCard } from "@/nuvyxui/components/MajesticCard";
+import img from "../../../public/assets/images/landing-page/mihir.webp";
 
 export const TwitterCard = () => {
   const [isHovering, setIsHovering] = useState(false);
@@ -29,7 +30,8 @@ export const TwitterCard = () => {
             <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden">
               <div className="w-full h-full flex items-center justify-center">
                 <Image
-                  src="https://raw.githubusercontent.com/MihirJaiswal/digibazaar-frontend/refs/heads/main/public/mihir.jpg"
+                  src={img}
+                  placeholder="blur"
                   alt="Mihir Jaiswal"
                   width={500}
                   height={500}
