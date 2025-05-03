@@ -7,12 +7,8 @@ import React from "react";
 import Link from "next/link";
 import { PropsTable } from "@/components/components/PropsTable";
 
-const ComponentPage = async ({
-  params,
-}: {
-  params: { component: string };
-}) => {
-  const { component } = params;
+const ComponentPage = async ({ params }: { params: Promise<{ component: string }> }) => {
+  const { component } = await params;
 
   if (!componentsData) {
     console.error("componentsData is not properly loaded");

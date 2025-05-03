@@ -8,12 +8,12 @@ type LayoutProps = {
   params: Promise<{ component: string }>;
 };
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { component: string };
+export async function generateMetadata({ 
+  params 
+}: { 
+  params: Promise<{ component: string }> 
 }): Promise<Metadata> {
-  const { component } = params;
+  const { component } = await params;
 
   if (!component) {
     return {
@@ -100,7 +100,12 @@ export async function generateMetadata({
   };
 }
 
-export default async function ComponentLayout({ children }: LayoutProps) {
+export default async function ComponentLayout({ 
+  children,
+  params 
+}: LayoutProps) {
+  await params;
+  
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
