@@ -6,7 +6,7 @@ export const componentsData = {
     "cyberpunk-card": {
       title: "Cyberpunk Card",
       description: "Futuristic card design with neon glows and tech aesthetics",
-      image: "/assets/images/showcase/cyberpunk-card.png",
+      image: "/assets/images/showcase/cyberpunkcard.png",
     },
     "dynamic-ripple": {
       title: "Dynamic Ripple",
