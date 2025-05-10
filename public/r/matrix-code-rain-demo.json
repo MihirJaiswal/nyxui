@@ -8,7 +8,7 @@
     ".."
   ],
   "registryDependencies": [
-    "https://nuvyxui.vercel.app/r/matrix-code-rain"
+    "https://nuvyxui.vercel.app/r/matrix-code-rain.json"
   ],
   "files": [
     {

@@ -6,7 +6,7 @@
   "description": "Example showing a gradient button.",
   "dependencies": [],
   "registryDependencies": [
-    "https://nuvyxui.vercel.app/r/gradient-button"
+    "https://nuvyxui.vercel.app/r/gradient-button.json"
   ],
   "files": [
     {

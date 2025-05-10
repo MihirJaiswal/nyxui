@@ -8,7 +8,7 @@
     ".."
   ],
   "registryDependencies": [
-    "https://nuvyxui.vercel.app/r/github-profile-card"
+    "https://nuvyxui.vercel.app/r/github-profile-card.json"
   ],
   "files": [
     {

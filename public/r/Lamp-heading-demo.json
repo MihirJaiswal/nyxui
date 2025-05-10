@@ -10,7 +10,7 @@
     "tailwind-merge"
   ],
   "registryDependencies": [
-    "https://nuvyxui.vercel.app/r/lamp-heading"
+    "https://nuvyxui.vercel.app/r/lamp-heading.json"
   ],
   "files": [
     {

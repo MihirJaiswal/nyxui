@@ -8,7 +8,7 @@
     ".."
   ],
   "registryDependencies": [
-    "https://nuvyxui.vercel.app/r/music-player"
+    "https://nuvyxui.vercel.app/r/music-player.json"
   ],
   "files": [
     {

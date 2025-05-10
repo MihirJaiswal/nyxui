@@ -12,7 +12,7 @@
     "@radix-ui/react-scroll-area"
   ],
   "registryDependencies": [
-    "https://nuvyxui.vercel.app/r/scroll-animation-trigger"
+    "https://nuvyxui.vercel.app/r/scroll-animation-trigger.json"
   ],
   "files": [
     {

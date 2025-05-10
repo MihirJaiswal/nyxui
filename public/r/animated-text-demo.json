@@ -8,7 +8,7 @@
     "framer-motion"
   ],
   "registryDependencies": [
-    "https://nuvyxui.vercel.app/r/animated-text"
+    "https://nuvyxui.vercel.app/r/animated-text.json"
   ],
   "files": [
     {

@@ -461,7 +461,7 @@ export const Index: Record<string, any> = {
     name: "animated-code-block-demo",
     description: "Example showing a code block with typing animation effects.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/animated-code-block"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/animated-code-block.json"],
     files: [{
       path: "src/nuvyxui/demos/animated-code-block-demo.tsx",
       type: "registry:example",
@@ -478,7 +478,7 @@ export const Index: Record<string, any> = {
     name: "animated-gradient-bg-demo",
     description: "Example showing an animated gradient background.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/animated-gradient-bg"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/animated-gradient-bg.json"],
     files: [{
       path: "src/nuvyxui/demos/animated-gradient-bg-demo.tsx",
       type: "registry:example",
@@ -495,7 +495,7 @@ export const Index: Record<string, any> = {
     name: "animated-text-demo",
     description: "Example showing various text animations.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/animated-text"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/animated-text.json"],
     files: [{
       path: "src/nuvyxui/demos/animated-text-demo.tsx",
       type: "registry:example",
@@ -512,7 +512,7 @@ export const Index: Record<string, any> = {
     name: "bento-grid-demo",
     description: "Example showing a responsive grid layout.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/bento-grid"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/bento-grid.json"],
     files: [{
       path: "src/nuvyxui/demos/bento-grid-demo.tsx",
       type: "registry:example",
@@ -529,7 +529,7 @@ export const Index: Record<string, any> = {
     name: "bubble-background-demo",
     description: "Example showing an interactive fluid background.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/bubble-background"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/bubble-background.json"],
     files: [{
       path: "src/nuvyxui/demos/bubble-background-demo.tsx",
       type: "registry:example",
@@ -546,7 +546,7 @@ export const Index: Record<string, any> = {
     name: "cyberpunk-card-demo",
     description: "Example showing a cyberpunk card.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/cyberpunk-card"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/cyberpunk-card.json"],
     files: [{
       path: "src/nuvyxui/demos/cyberpunk-card-demo.tsx",
       type: "registry:example",
@@ -563,7 +563,7 @@ export const Index: Record<string, any> = {
     name: "cyberpunk-card-demo1",
     description: "Example showing a cyberpunk card.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/cyberpunk-card"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/cyberpunk-card.json"],
     files: [{
       path: "src/nuvyxui/demos/cyberpunk-card-demo1.tsx",
       type: "registry:example",
@@ -580,7 +580,7 @@ export const Index: Record<string, any> = {
     name: "dynamic-ripple-demo",
     description: "Example showing a dynamic ripple effect.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/dynamic-ripple"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/dynamic-ripple.json"],
     files: [{
       path: "src/nuvyxui/demos/dynamic-ripple-demo.tsx",
       type: "registry:example",
@@ -597,7 +597,7 @@ export const Index: Record<string, any> = {
     name: "github-profile-card-demo",
     description: "Example showing a GitHub profile card.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/github-profile-card"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/github-profile-card.json"],
     files: [{
       path: "src/nuvyxui/demos/github-profile-card-demo.tsx",
       type: "registry:example",
@@ -614,7 +614,7 @@ export const Index: Record<string, any> = {
     name: "github-repo-card-demo",
     description: "Example showing a GitHub repo card.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/github-repo-card"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/github-repo-card.json"],
     files: [{
       path: "src/nuvyxui/demos/github-repo-card-demo.tsx",
       type: "registry:example",
@@ -631,7 +631,7 @@ export const Index: Record<string, any> = {
     name: "github-repo-card-demo1",
     description: "Example showing a GitHub repo card.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/github-repo-card"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/github-repo-card.json"],
     files: [{
       path: "src/nuvyxui/demos/github-repo-card-demo1.tsx",
       type: "registry:example",
@@ -648,7 +648,7 @@ export const Index: Record<string, any> = {
     name: "github-repo-card-demo2",
     description: "Example showing a GitHub repo card.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/github-repo-card"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/github-repo-card.json"],
     files: [{
       path: "src/nuvyxui/demos/github-repo-card-demo2.tsx",
       type: "registry:example",
@@ -665,7 +665,7 @@ export const Index: Record<string, any> = {
     name: "glitch-button-demo",
     description: "Example showing a glitch button.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/glitch-button"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/glitch-button.json"],
     files: [{
       path: "src/nuvyxui/demos/glitch-button-demo.tsx",
       type: "registry:example",
@@ -682,7 +682,7 @@ export const Index: Record<string, any> = {
     name: "gradient-button-demo",
     description: "Example showing a gradient button.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/gradient-button"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/gradient-button.json"],
     files: [{
       path: "src/nuvyxui/demos/gradient-button-demo.tsx",
       type: "registry:example",
@@ -699,7 +699,7 @@ export const Index: Record<string, any> = {
     name: "keyboard-demo",
     description: "Example showing a interactive keyboard.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/keyboard"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/keyboard.json"],
     files: [{
       path: "src/nuvyxui/demos/keyboard-demo.tsx",
       type: "registry:example",
@@ -716,7 +716,7 @@ export const Index: Record<string, any> = {
     name: "keyboard-demo1",
     description: "Example showing a interactive keyboard.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/keyboard"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/keyboard.json"],
     files: [{
       path: "src/nuvyxui/demos/keyboard-demo1.tsx",
       type: "registry:example",
@@ -733,7 +733,7 @@ export const Index: Record<string, any> = {
     name: "ms-paint-demo",
     description: "Example showing a MS Paint clone.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/ms-paint"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/ms-paint.json"],
     files: [{
       path: "src/nuvyxui/demos/ms-paint-demo.tsx",
       type: "registry:example",
@@ -750,7 +750,7 @@ export const Index: Record<string, any> = {
     name: "lamp-heading-demo",
     description: "Example showing a lamp heading.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/lamp-heading"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/lamp-heading.json"],
     files: [{
       path: "src/nuvyxui/demos/lamp-heading-demo.tsx",
       type: "registry:example",
@@ -767,7 +767,7 @@ export const Index: Record<string, any> = {
     name: "liquid-metal-button-demo",
     description: "Example showing a liquid metal button.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/liquid-metal-button"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/liquid-metal-button.json"],
     files: [{
       path: "src/nuvyxui/demos/liquid-metal-button-demo.tsx",
       type: "registry:example",
@@ -784,7 +784,7 @@ export const Index: Record<string, any> = {
     name: "morphing-button-demo",
     description: "Example showing a morphing button.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/morphing-button"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/morphing-button.json"],
     files: [{
       path: "src/nuvyxui/demos/morphing-button-demo.tsx",
       type: "registry:example",
@@ -801,7 +801,7 @@ export const Index: Record<string, any> = {
     name: "image-comparison-demo",
     description: "Example showing a image comparison.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/image-comparison"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/image-comparison.json"],
     files: [{
       path: "src/nuvyxui/demos/image-comparison-demo.tsx",
       type: "registry:example",
@@ -818,7 +818,7 @@ export const Index: Record<string, any> = {
     name: "image-scanner-demo",
     description: "Example showing a image scanner.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/image-scanner"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/image-scanner.json"],
     files: [{
       path: "src/nuvyxui/demos/image-scanner-demo.tsx",
       type: "registry:example",
@@ -835,7 +835,7 @@ export const Index: Record<string, any> = {
     name: "majestic-card-demo",
     description: "Example showing a majestic card.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/majestic-card"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/majestic-card.json"],
     files: [{
       path: "src/nuvyxui/demos/majestic-card-demo.tsx",
       type: "registry:example",
@@ -852,7 +852,7 @@ export const Index: Record<string, any> = {
     name: "marquee-demo",
     description: "Example showing a marquee.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/marquee"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/marquee.json"],
     files: [{
       path: "src/nuvyxui/demos/marquee-demo.tsx",
       type: "registry:example",
@@ -869,7 +869,7 @@ export const Index: Record<string, any> = {
     name: "marquee-demo1",
     description: "Example showing a marquee.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/marquee"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/marquee.json"],
     files: [{
       path: "src/nuvyxui/demos/marquee-demo1.tsx",
       type: "registry:example",
@@ -886,7 +886,7 @@ export const Index: Record<string, any> = {
     name: "marquee-demo2",
     description: "Example showing a marquee.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/marquee"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/marquee.json"],
     files: [{
       path: "src/nuvyxui/demos/marquee-demo2.tsx",
       type: "registry:example",
@@ -903,7 +903,7 @@ export const Index: Record<string, any> = {
     name: "matrix-code-rain-demo",
     description: "Example showing a matrix code rain.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/matrix-code-rain"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/matrix-code-rain.json"],
     files: [{
       path: "src/nuvyxui/demos/matrix-code-rain-demo.tsx",
       type: "registry:example",
@@ -920,7 +920,7 @@ export const Index: Record<string, any> = {
     name: "morphing-blob-demo",
     description: "Example showing a morphing blob.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/morphing-blob"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/morphing-blob.json"],
     files: [{
       path: "src/nuvyxui/demos/morphing-blob-demo.tsx",
       type: "registry:example",
@@ -937,7 +937,7 @@ export const Index: Record<string, any> = {
     name: "music-player-demo",
     description: "Example showing a music player.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/music-player"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/music-player.json"],
     files: [{
       path: "src/nuvyxui/demos/music-player-demo.tsx",
       type: "registry:example",
@@ -954,7 +954,7 @@ export const Index: Record<string, any> = {
     name: "music-player-demo1",
     description: "Example showing a music player.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/music-player"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/music-player.json"],
     files: [{
       path: "src/nuvyxui/demos/music-player-demo1.tsx",
       type: "registry:example",
@@ -971,7 +971,7 @@ export const Index: Record<string, any> = {
     name: "music-player-demo2",
     description: "Example showing a music player.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/music-player"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/music-player.json"],
     files: [{
       path: "src/nuvyxui/demos/music-player-demo2.tsx",
       type: "registry:example",
@@ -988,7 +988,7 @@ export const Index: Record<string, any> = {
     name: "reveal-card-demo",
     description: "Example showing a reveal card.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/reveal-card"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/reveal-card.json"],
     files: [{
       path: "src/nuvyxui/demos/reveal-card-demo.tsx",
       type: "registry:example",
@@ -1005,7 +1005,7 @@ export const Index: Record<string, any> = {
     name: "scroll-animation-trigger-demo",
     description: "Example showing a scroll animation trigger.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/scroll-animation-trigger"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/scroll-animation-trigger.json"],
     files: [{
       path: "src/nuvyxui/demos/scroll-animation-trigger-demo.tsx",
       type: "registry:example",
@@ -1022,7 +1022,7 @@ export const Index: Record<string, any> = {
     name: "scroll-animation-trigger-demo1",
     description: "Example showing a scroll animation trigger.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/scroll-animation-trigger"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/scroll-animation-trigger.json"],
     files: [{
       path: "src/nuvyxui/demos/scroll-animation-trigger-demo1.tsx",
       type: "registry:example",
@@ -1039,7 +1039,7 @@ export const Index: Record<string, any> = {
     name: "scroll-animation-trigger-demo2",
     description: "Example showing a scroll animation trigger.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/scroll-animation-trigger"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/scroll-animation-trigger.json"],
     files: [{
       path: "src/nuvyxui/demos/scroll-animation-trigger-demo2.tsx",
       type: "registry:example",
@@ -1056,7 +1056,7 @@ export const Index: Record<string, any> = {
     name: "terminal-demo",
     description: "Example showing a terminal.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/terminal"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/terminal.json"],
     files: [{
       path: "src/nuvyxui/demos/terminal-demo.tsx",
       type: "registry:example",
@@ -1073,7 +1073,7 @@ export const Index: Record<string, any> = {
     name: "terminal-demo1",
     description: "Example showing a terminal.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/terminal"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/terminal.json"],
     files: [{
       path: "src/nuvyxui/demos/terminal-demo1.tsx",
       type: "registry:example",

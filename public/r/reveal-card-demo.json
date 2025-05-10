@@ -6,7 +6,7 @@
   "description": "Example showing a reveal card.",
   "dependencies": [],
   "registryDependencies": [
-    "https://nuvyxui.vercel.app/r/reveal-card"
+    "https://nuvyxui.vercel.app/r/reveal-card.json"
   ],
   "files": [
     {

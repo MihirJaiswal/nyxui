@@ -12,7 +12,7 @@
     "tailwind-merge"
   ],
   "registryDependencies": [
-    "https://nuvyxui.vercel.app/r/image-scanner"
+    "https://nuvyxui.vercel.app/r/image-scanner.json"
   ],
   "files": [
     {

@@ -10,7 +10,7 @@
     "tailwind-merge"
   ],
   "registryDependencies": [
-    "https://nuvyxui.vercel.app/r/github-repo-card"
+    "https://nuvyxui.vercel.app/r/github-repo-card.json"
   ],
   "files": [
     {

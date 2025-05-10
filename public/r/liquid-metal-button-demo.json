@@ -10,7 +10,7 @@
     "lucide-react"
   ],
   "registryDependencies": [
-    "https://nuvyxui.vercel.app/r/liquid-metal-button"
+    "https://nuvyxui.vercel.app/r/liquid-metal-button.json"
   ],
   "files": [
     {

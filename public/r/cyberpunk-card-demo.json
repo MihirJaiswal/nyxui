@@ -12,7 +12,7 @@
     "lucide-react"
   ],
   "registryDependencies": [
-    "https://nuvyxui.vercel.app/r/cyberpunk-card"
+    "https://nuvyxui.vercel.app/r/cyberpunk-card.json"
   ],
   "files": [
     {

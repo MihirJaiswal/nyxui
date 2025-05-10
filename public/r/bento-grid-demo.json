@@ -10,7 +10,7 @@
     "lucide-react"
   ],
   "registryDependencies": [
-    "https://nuvyxui.vercel.app/r/bento-grid"
+    "https://nuvyxui.vercel.app/r/bento-grid.json"
   ],
   "files": [
     {

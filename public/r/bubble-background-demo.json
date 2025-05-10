@@ -6,7 +6,7 @@
   "description": "Example showing an interactive fluid background.",
   "dependencies": [],
   "registryDependencies": [
-    "https://nuvyxui.vercel.app/r/bubble-background"
+    "https://nuvyxui.vercel.app/r/bubble-background.json"
   ],
   "files": [
     {

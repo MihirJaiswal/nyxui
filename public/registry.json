@@ -647,7 +647,7 @@
       "title": "Animated Code Block Demo",
       "description": "Example showing a code block with typing animation effects.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/animated-code-block"
+        "https://nuvyxui.vercel.app/r/animated-code-block.json"
       ],
       "files": [
         {
@@ -663,7 +663,7 @@
       "title": "Animated Gradient Background Demo",
       "description": "Example showing an animated gradient background.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/animated-gradient-bg"
+        "https://nuvyxui.vercel.app/r/animated-gradient-bg.json"
       ],
       "files": [
         {
@@ -679,7 +679,7 @@
       "title": "Animated Text Demo",
       "description": "Example showing various text animations.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/animated-text"
+        "https://nuvyxui.vercel.app/r/animated-text.json"
       ],
       "files": [
         {
@@ -695,7 +695,7 @@
       "title": "Bento Grid Demo",
       "description": "Example showing a responsive grid layout.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/bento-grid"
+        "https://nuvyxui.vercel.app/r/bento-grid.json"
       ],
       "files": [
         {
@@ -711,7 +711,7 @@
       "title": "Bubble Background Demo",
       "description": "Example showing an interactive fluid background.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/bubble-background"
+        "https://nuvyxui.vercel.app/r/bubble-background.json"
       ],
       "files": [
         {
@@ -727,7 +727,7 @@
       "title": "Cyberpunk Card Demo",
       "description": "Example showing a cyberpunk card.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/cyberpunk-card"
+        "https://nuvyxui.vercel.app/r/cyberpunk-card.json"
       ],
       "files": [
         {
@@ -743,7 +743,7 @@
       "title": "Cyberpunk Card Demo 1",
       "description": "Example showing a cyberpunk card.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/cyberpunk-card"
+        "https://nuvyxui.vercel.app/r/cyberpunk-card.json"
       ],
       "files": [
         {
@@ -759,7 +759,7 @@
       "title": "Dynamic Ripple Demo",
       "description": "Example showing a dynamic ripple effect.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/dynamic-ripple"
+        "https://nuvyxui.vercel.app/r/dynamic-ripple.json"
       ],
       "files": [
         {
@@ -775,7 +775,7 @@
       "title": "Github Profile Card Demo",
       "description": "Example showing a GitHub profile card.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/github-profile-card"
+        "https://nuvyxui.vercel.app/r/github-profile-card.json"
       ],
       "files": [
         {
@@ -791,7 +791,7 @@
       "title": "Github Repo Card Demo",
       "description": "Example showing a GitHub repo card.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/github-repo-card"
+        "https://nuvyxui.vercel.app/r/github-repo-card.json"
       ],
       "files": [
         {
@@ -807,7 +807,7 @@
       "title": "Github Repo Card Demo 1",
       "description": "Example showing a GitHub repo card.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/github-repo-card"
+        "https://nuvyxui.vercel.app/r/github-repo-card.json"
       ],
       "files": [
         {
@@ -823,7 +823,7 @@
       "title": "Github Repo Card Demo 2",
       "description": "Example showing a GitHub repo card.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/github-repo-card"
+        "https://nuvyxui.vercel.app/r/github-repo-card.json"
       ],
       "files": [
         {
@@ -839,7 +839,7 @@
       "title": "Glitch Button Demo",
       "description": "Example showing a glitch button.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/glitch-button"
+        "https://nuvyxui.vercel.app/r/glitch-button.json"
       ],
       "files": [
         {
@@ -855,7 +855,7 @@
       "title": "Gradient Button Demo",
       "description": "Example showing a gradient button.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/gradient-button"
+        "https://nuvyxui.vercel.app/r/gradient-button.json"
       ],
       "files": [
         {
@@ -871,7 +871,7 @@
       "title": "Keyboard Demo",
       "description": "Example showing a interactive keyboard.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/keyboard"
+        "https://nuvyxui.vercel.app/r/keyboard.json"
       ],
       "files": [
         {
@@ -887,7 +887,7 @@
       "title": "Keyboard Demo 1",
       "description": "Example showing a interactive keyboard.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/keyboard"
+        "https://nuvyxui.vercel.app/r/keyboard.json"
       ],
       "files": [
         {
@@ -903,7 +903,7 @@
       "title": "MS Paint Demo",
       "description": "Example showing a MS Paint clone.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/ms-paint"
+        "https://nuvyxui.vercel.app/r/ms-paint.json"
       ],
       "files": [
         {
@@ -919,7 +919,7 @@
       "title": "Lamp Heading Demo",
       "description": "Example showing a lamp heading.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/lamp-heading"
+        "https://nuvyxui.vercel.app/r/lamp-heading.json"
       ],
       "files": [
         {
@@ -935,7 +935,7 @@
       "title": "Liquid Metal Button Demo",
       "description": "Example showing a liquid metal button.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/liquid-metal-button"
+        "https://nuvyxui.vercel.app/r/liquid-metal-button.json"
       ],
       "files": [
         {
@@ -951,7 +951,7 @@
       "title": "Morphing Button Demo",
       "description": "Example showing a morphing button.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/morphing-button"
+        "https://nuvyxui.vercel.app/r/morphing-button.json"
       ],
       "files": [
         {
@@ -967,7 +967,7 @@
       "title": "Image Comparison Demo",
       "description": "Example showing a image comparison.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/image-comparison"
+        "https://nuvyxui.vercel.app/r/image-comparison.json"
       ],
       "files": [
         {
@@ -983,7 +983,7 @@
       "title": "Image Scanner Demo",
       "description": "Example showing a image scanner.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/image-scanner"
+        "https://nuvyxui.vercel.app/r/image-scanner.json"
       ],
       "files": [
         {
@@ -999,7 +999,7 @@
       "title": "Majestic Card Demo",
       "description": "Example showing a majestic card.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/majestic-card"
+        "https://nuvyxui.vercel.app/r/majestic-card.json"
       ],
       "files": [
         {
@@ -1015,7 +1015,7 @@
       "title": "Marquee Demo",
       "description": "Example showing a marquee.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/marquee"
+        "https://nuvyxui.vercel.app/r/marquee.json"
       ],
       "files": [
         {
@@ -1031,7 +1031,7 @@
       "title": "Marquee Demo 1",
       "description": "Example showing a marquee.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/marquee"
+        "https://nuvyxui.vercel.app/r/marquee.json"
       ],
       "files": [
         {
@@ -1047,7 +1047,7 @@
       "title": "Marquee Demo 2",
       "description": "Example showing a marquee.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/marquee"
+        "https://nuvyxui.vercel.app/r/marquee.json"
       ],
       "files": [
         {
@@ -1063,7 +1063,7 @@
       "title": "Matrix Code Rain Demo",
       "description": "Example showing a matrix code rain.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/matrix-code-rain"
+        "https://nuvyxui.vercel.app/r/matrix-code-rain.json"
       ],
       "files": [
         {
@@ -1079,7 +1079,7 @@
       "title": "Morphing Blob Demo",
       "description": "Example showing a morphing blob.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/morphing-blob"
+        "https://nuvyxui.vercel.app/r/morphing-blob.json"
       ],
       "files": [
         {
@@ -1095,7 +1095,7 @@
       "title": "Music Player Demo",
       "description": "Example showing a music player.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/music-player"
+        "https://nuvyxui.vercel.app/r/music-player.json"
       ],
       "files": [
         {
@@ -1111,7 +1111,7 @@
       "title": "Music Player Demo 1",
       "description": "Example showing a music player.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/music-player"
+        "https://nuvyxui.vercel.app/r/music-player.json"
       ],
       "files": [
         {
@@ -1127,7 +1127,7 @@
       "title": "Music Player Demo 2",
       "description": "Example showing a music player.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/music-player"
+        "https://nuvyxui.vercel.app/r/music-player.json"
       ],
       "files": [
         {
@@ -1143,7 +1143,7 @@
       "title": "Reveal Card Demo",
       "description": "Example showing a reveal card.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/reveal-card"
+        "https://nuvyxui.vercel.app/r/reveal-card.json"
       ],
       "files": [
         {
@@ -1159,7 +1159,7 @@
       "title": "Scroll Animation Trigger Demo",
       "description": "Example showing a scroll animation trigger.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/scroll-animation-trigger"
+        "https://nuvyxui.vercel.app/r/scroll-animation-trigger.json"
       ],
       "files": [
         {
@@ -1175,7 +1175,7 @@
       "title": "Scroll Animation Trigger Demo 1",
       "description": "Example showing a scroll animation trigger.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/scroll-animation-trigger"
+        "https://nuvyxui.vercel.app/r/scroll-animation-trigger.json"
       ],
       "files": [
         {
@@ -1191,7 +1191,7 @@
       "title": "Scroll Animation Trigger Demo 2",
       "description": "Example showing a scroll animation trigger.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/scroll-animation-trigger"
+        "https://nuvyxui.vercel.app/r/scroll-animation-trigger.json"
       ],
       "files": [
         {
@@ -1207,7 +1207,7 @@
       "title": "Terminal Demo",
       "description": "Example showing a terminal.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/terminal"
+        "https://nuvyxui.vercel.app/r/terminal.json"
       ],
       "files": [
         {
@@ -1223,7 +1223,7 @@
       "title": "Terminal Demo 1",
       "description": "Example showing a terminal.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/terminal"
+        "https://nuvyxui.vercel.app/r/terminal.json"
       ],
       "files": [
         {

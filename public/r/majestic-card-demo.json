@@ -10,7 +10,7 @@
     "framer-motion"
   ],
   "registryDependencies": [
-    "https://nuvyxui.vercel.app/r/majestic-card"
+    "https://nuvyxui.vercel.app/r/majestic-card.json"
   ],
   "files": [
     {

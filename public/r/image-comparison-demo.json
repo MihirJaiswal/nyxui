@@ -8,7 +8,7 @@
     ".."
   ],
   "registryDependencies": [
-    "https://nuvyxui.vercel.app/r/image-comparison"
+    "https://nuvyxui.vercel.app/r/image-comparison.json"
   ],
   "files": [
     {

@@ -8,7 +8,7 @@
     "lucide-react"
   ],
   "registryDependencies": [
-    "https://nuvyxui.vercel.app/r/ms-paint"
+    "https://nuvyxui.vercel.app/r/ms-paint.json"
   ],
   "files": [
     {

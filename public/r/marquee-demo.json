@@ -10,7 +10,7 @@
     "framer-motion"
   ],
   "registryDependencies": [
-    "https://nuvyxui.vercel.app/r/marquee"
+    "https://nuvyxui.vercel.app/r/marquee.json"
   ],
   "files": [
     {

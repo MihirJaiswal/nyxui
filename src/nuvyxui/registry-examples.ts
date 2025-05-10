@@ -6,7 +6,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Animated Code Block Demo",
     description: "Example showing a code block with typing animation effects.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/animated-code-block"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/animated-code-block.json"],
     files: [
       {
         path: "src/nuvyxui/demos/animated-code-block-demo.tsx",
@@ -20,7 +20,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Animated Gradient Background Demo",
     description: "Example showing an animated gradient background.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/animated-gradient-bg"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/animated-gradient-bg.json"],
     files: [
       {
         path: "src/nuvyxui/demos/animated-gradient-bg-demo.tsx",
@@ -34,7 +34,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Animated Text Demo",
     description: "Example showing various text animations.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/animated-text"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/animated-text.json"],
     files: [
       {
         path: "src/nuvyxui/demos/animated-text-demo.tsx",
@@ -48,7 +48,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Bento Grid Demo",
     description: "Example showing a responsive grid layout.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/bento-grid"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/bento-grid.json"],
     files: [
       {
         path: "src/nuvyxui/demos/bento-grid-demo.tsx",
@@ -62,7 +62,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Bubble Background Demo",
     description: "Example showing an interactive fluid background.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/bubble-background"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/bubble-background.json"],
     files: [
       {
         path: "src/nuvyxui/demos/bubble-background-demo.tsx",
@@ -76,7 +76,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Cyberpunk Card Demo",
     description: "Example showing a cyberpunk card.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/cyberpunk-card"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/cyberpunk-card.json"],
     files: [
       {
         path: "src/nuvyxui/demos/cyberpunk-card-demo.tsx",
@@ -90,7 +90,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Cyberpunk Card Demo 1",
     description: "Example showing a cyberpunk card.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/cyberpunk-card"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/cyberpunk-card.json"],
     files: [
       {
         path: "src/nuvyxui/demos/cyberpunk-card-demo1.tsx",
@@ -104,7 +104,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Dynamic Ripple Demo",
     description: "Example showing a dynamic ripple effect.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/dynamic-ripple"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/dynamic-ripple.json"],
     files: [
       {
         path: "src/nuvyxui/demos/dynamic-ripple-demo.tsx",
@@ -118,7 +118,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Github Profile Card Demo",
     description: "Example showing a GitHub profile card.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/github-profile-card"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/github-profile-card.json"],
     files: [
       {
         path: "src/nuvyxui/demos/github-profile-card-demo.tsx",
@@ -132,7 +132,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Github Repo Card Demo",
     description: "Example showing a GitHub repo card.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/github-repo-card"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/github-repo-card.json"],
     files: [
       {
         path: "src/nuvyxui/demos/github-repo-card-demo.tsx",
@@ -146,7 +146,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Github Repo Card Demo 1",
     description: "Example showing a GitHub repo card.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/github-repo-card"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/github-repo-card.json"],
     files: [
       {
         path: "src/nuvyxui/demos/github-repo-card-demo1.tsx",
@@ -160,7 +160,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Github Repo Card Demo 2",
     description: "Example showing a GitHub repo card.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/github-repo-card"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/github-repo-card.json"],
     files: [
       {
         path: "src/nuvyxui/demos/github-repo-card-demo2.tsx",
@@ -174,7 +174,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Glitch Button Demo",
     description: "Example showing a glitch button.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/glitch-button"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/glitch-button.json"],
     files: [
       {
         path: "src/nuvyxui/demos/glitch-button-demo.tsx",
@@ -188,7 +188,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Gradient Button Demo",
     description: "Example showing a gradient button.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/gradient-button"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/gradient-button.json"],
     files: [
       {
         path: "src/nuvyxui/demos/gradient-button-demo.tsx",
@@ -202,7 +202,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Keyboard Demo",
     description: "Example showing a interactive keyboard.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/keyboard"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/keyboard.json"],
     files: [
       {
         path: "src/nuvyxui/demos/keyboard-demo.tsx",
@@ -216,7 +216,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Keyboard Demo 1",
     description: "Example showing a interactive keyboard.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/keyboard"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/keyboard.json"],
     files: [
       {
         path: "src/nuvyxui/demos/keyboard-demo1.tsx",
@@ -230,7 +230,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "MS Paint Demo",
     description: "Example showing a MS Paint clone.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/ms-paint"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/ms-paint.json"],
     files: [
       {
         path: "src/nuvyxui/demos/ms-paint-demo.tsx",
@@ -244,7 +244,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Lamp Heading Demo",
     description: "Example showing a lamp heading.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/lamp-heading"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/lamp-heading.json"],
     files: [
       {
         path: "src/nuvyxui/demos/lamp-heading-demo.tsx",
@@ -258,7 +258,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Liquid Metal Button Demo",
     description: "Example showing a liquid metal button.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/liquid-metal-button"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/liquid-metal-button.json"],
     files: [
       {
         path: "src/nuvyxui/demos/liquid-metal-button-demo.tsx",
@@ -272,7 +272,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Morphing Button Demo",
     description: "Example showing a morphing button.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/morphing-button"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/morphing-button.json"],
     files: [
       {
         path: "src/nuvyxui/demos/morphing-button-demo.tsx",
@@ -286,7 +286,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Image Comparison Demo",
     description: "Example showing a image comparison.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/image-comparison"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/image-comparison.json"],
     files: [
       {
         path: "src/nuvyxui/demos/image-comparison-demo.tsx",
@@ -300,7 +300,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Image Scanner Demo",
     description: "Example showing a image scanner.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/image-scanner"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/image-scanner.json"],
     files: [
       {
         path: "src/nuvyxui/demos/image-scanner-demo.tsx",
@@ -314,7 +314,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Majestic Card Demo",
     description: "Example showing a majestic card.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/majestic-card"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/majestic-card.json"],
     files: [
       {
         path: "src/nuvyxui/demos/majestic-card-demo.tsx",
@@ -328,7 +328,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Marquee Demo",
     description: "Example showing a marquee.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/marquee"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/marquee.json"],
     files: [
       {
         path: "src/nuvyxui/demos/marquee-demo.tsx",
@@ -342,7 +342,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Marquee Demo 1",
     description: "Example showing a marquee.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/marquee"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/marquee.json"],
     files: [
       {
         path: "src/nuvyxui/demos/marquee-demo1.tsx",
@@ -356,7 +356,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Marquee Demo 2",
     description: "Example showing a marquee.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/marquee"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/marquee.json"],
     files: [
       {
         path: "src/nuvyxui/demos/marquee-demo2.tsx",
@@ -370,7 +370,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Matrix Code Rain Demo",
     description: "Example showing a matrix code rain.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/matrix-code-rain"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/matrix-code-rain.json"],
     files: [
       {
         path: "src/nuvyxui/demos/matrix-code-rain-demo.tsx",
@@ -384,7 +384,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Morphing Blob Demo",
     description: "Example showing a morphing blob.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/morphing-blob"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/morphing-blob.json"],
     files: [
       {
         path: "src/nuvyxui/demos/morphing-blob-demo.tsx",
@@ -398,7 +398,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Music Player Demo",
     description: "Example showing a music player.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/music-player"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/music-player.json"],
     files: [
       {
         path: "src/nuvyxui/demos/music-player-demo.tsx",
@@ -412,7 +412,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Music Player Demo 1",
     description: "Example showing a music player.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/music-player"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/music-player.json"],
     files: [
       {
         path: "src/nuvyxui/demos/music-player-demo1.tsx",
@@ -426,7 +426,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Music Player Demo 2",
     description: "Example showing a music player.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/music-player"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/music-player.json"],
     files: [
       {
         path: "src/nuvyxui/demos/music-player-demo2.tsx",
@@ -440,7 +440,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Reveal Card Demo",
     description: "Example showing a reveal card.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/reveal-card"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/reveal-card.json"],
     files: [
       {
         path: "src/nuvyxui/demos/reveal-card-demo.tsx",
@@ -455,7 +455,7 @@ export const examples: Registry["items"] = [
     title: "Scroll Animation Trigger Demo",
     description: "Example showing a scroll animation trigger.",
     registryDependencies: [
-      "https://nuvyxui.vercel.app/r/scroll-animation-trigger",
+      "https://nuvyxui.vercel.app/r/scroll-animation-trigger.json",
     ],
     files: [
       {
@@ -471,7 +471,7 @@ export const examples: Registry["items"] = [
     title: "Scroll Animation Trigger Demo 1",
     description: "Example showing a scroll animation trigger.",
     registryDependencies: [
-      "https://nuvyxui.vercel.app/r/scroll-animation-trigger",
+      "https://nuvyxui.vercel.app/r/scroll-animation-trigger.json",
     ],
     files: [
       {
@@ -487,7 +487,7 @@ export const examples: Registry["items"] = [
     title: "Scroll Animation Trigger Demo 2",
     description: "Example showing a scroll animation trigger.",
     registryDependencies: [
-      "https://nuvyxui.vercel.app/r/scroll-animation-trigger",
+      "https://nuvyxui.vercel.app/r/scroll-animation-trigger.json",
     ],
     files: [
       {
@@ -502,7 +502,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Terminal Demo",
     description: "Example showing a terminal.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/terminal"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/terminal.json"],
     files: [
       {
         path: "src/nuvyxui/demos/terminal-demo.tsx",
@@ -516,7 +516,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Terminal Demo 1",
     description: "Example showing a terminal.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/terminal"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/terminal.json"],
     files: [
       {
         path: "src/nuvyxui/demos/terminal-demo1.tsx",
