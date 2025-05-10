@@ -1,4 +1,4 @@
-import { Marquee } from "@/nuvyxui/components/marquee";
+import { Marquee } from "@/nuvyxui/components/marque";
 
 export const MarqueeDemo = () => {
   return (
