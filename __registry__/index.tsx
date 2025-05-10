@@ -301,7 +301,7 @@ export const Index: Record<string, any> = {
       },
     ],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/components/keyboardi.jsx");
+      const mod = await import("../src/nuvyxui/components/keyboard.jsx");
       const exportName =
         Object.keys(mod).find(
           (key) =>
@@ -634,7 +634,7 @@ export const Index: Record<string, any> = {
       },
     ],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/components/terminali.jsx");
+      const mod = await import("../src/nuvyxui/components/terminal.jsx");
       const exportName =
         Object.keys(mod).find(
           (key) =>

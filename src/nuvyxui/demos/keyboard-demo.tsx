@@ -1,5 +1,5 @@
 import React from "react";
-import InteractiveKeyboard from "../components/keyboardi";
+import InteractiveKeyboard from "../components/keyboard";
 
 function KeyboardDemo() {
   return (
