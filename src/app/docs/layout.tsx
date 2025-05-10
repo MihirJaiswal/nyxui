@@ -5,25 +5,25 @@ import Header from "@/components/global/Header";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://nuvyxui.vercel.app/"),
-  title: "Docs | Nuvyx UI",
+  title: "Components | Nuvyx UI",
   description:
-    "Comprehensive documentation for Nuvyx UI - a premium collection of responsive, accessible React components built with Tailwind CSS, Framer Motion, and TypeScript for modern Next.js applications.",
+    "Explore Nuvyx UI's comprehensive component library featuring responsive, accessible, and customizable UI elements built with Tailwind CSS, Framer Motion, and TypeScript for modern Next.js applications.",
   keywords: [
     "React components",
-    "UI library",
-    "Next.js",
-    "Tailwind CSS",
-    "TypeScript",
+    "UI components",
+    "Next.js components",
+    "Tailwind UI",
+    "TypeScript components",
+    "Animation components",
     "Framer Motion",
-    "responsive design",
-    "accessible components",
+    "UI library",
     "nuvyx UI",
-    "web development",
-    "frontend framework",
+    "Design system",
+    "Frontend components",
   ],
-  authors: [{ name: "Mihir Jaiswal", url: "https://x.com/nuvyx_ui" }],
-  creator: "Mihir Jaiswal",
-  publisher: "Mihir Jaiswal",
+  authors: [{ name: "Mihir", url: "https://x.com/nuvyx_ui" }],
+  creator: "Mihir",
+  publisher: "Mihir",
   robots: {
     index: true,
     follow: true,
@@ -35,22 +35,22 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://nuvyxui.vercel.app/docs",
+    canonical: "https://nuvyxui.vercel.app/components",
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://nuvyxui.vercel.app/docs",
-    siteName: "Nuvyx UI Documentation",
-    title: "Nuvyx UI - Beautiful React Components for Next.js",
+    url: "https://nuvyxui.vercel.app/components",
+    siteName: "nuvyx UI Components",
+    title: "Nuvyx UI - Stunning React Components for Next.js Applications",
     description:
-      "Premium UI components for Next.js applications built with Tailwind CSS, Framer Motion, and TypeScript. Create stunning user interfaces with ease.",
+      "Browse our collection of premium UI components built with Tailwind CSS, Framer Motion, and TypeScript. Create beautiful user interfaces with minimal effort.",
     images: [
       {
         url: "/docs/docs-cover.png",
         width: 1200,
         height: 630,
-        alt: "Nuvyx UI Component Library Preview",
+        alt: "nuvyx UI Components Preview",
       },
     ],
   },
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function DocsLayout({
+export default function ComponentsLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -90,7 +90,9 @@ export default function DocsLayout({
           </div>
         </aside>
         <main className="flex-1">
-          {children}
+          <div className="w-full h-full px-4 sm:px-6 md:px-8 py-4 md:py-4">
+            {children}
+          </div>
         </main>
       </div>
     </div>

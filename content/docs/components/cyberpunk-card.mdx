@@ -1,0 +1,103 @@
+---
+title: Cyberpunk Card
+date: 2025-05-09
+description: A futuristic glowing card that shifts colors dynamically. Supports hover-triggered light trails around the border.
+author: MihirJaiswal
+published: true
+tags: ["Cards", "Futuristic"]
+---
+
+<ComponentPreview name="cyberpunk-card-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nuvyxui.vercel.app/r/cyberpunk-card"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies.</Step>
+
+```bash
+npm install clsx tailwind-merge
+```
+
+<Step>Create a utils.ts file with the cn utility function</Step>
+
+```tsx
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="cyberpunk-card" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Examples
+
+<ComponentPreview name="cyberpunk-card-demo1" />
+
+## Usage
+
+```tsx
+import { CyberpunkCard } from "@/components/ui/cyberpunk-card";
+```
+
+```tsx
+<CyberpunkCard
+  theme="neon-blue"
+  borderStyle="solid"
+  colorShift={true}
+  lightTrail={true}
+  rounded="md"
+  glow={true}
+  glowIntensity={3}
+>
+  <div className="p-6">
+    <h3 className="text-xl font-bold text-white">Cyberpunk Title</h3>
+    <p className="text-blue-100 mt-2">Your content goes here</p>
+  </div>
+</CyberpunkCard>
+```
+
+## Props
+
+### Cyberpunk Card
+
+| Prop            | Type              | Default       | Description                                                                                                                    |
+| --------------- | ----------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `theme`         | `string`          | `"neon-blue"` | The color theme of the card. Possible values: "neon-blue", "neon-pink", "neon-green", "neon-orange", "neon-purple", "custom"   |
+| `customColors`  | `object`          | `undefined`   | Custom colors for the card when theme is set to "custom". The object should include properties: primary, secondary, and accent |
+| `borderStyle`   | `string`          | `"solid"`     | The border style of the card. Possible values: "solid", "dashed", "glitch", "corners"                                          |
+| `colorShift`    | `boolean`         | `true`        | Whether to enable the color shift effect                                                                                       |
+| `lightTrail`    | `boolean`         | `true`        | Whether to enable the light trail effect                                                                                       |
+| `rounded`       | `string`          | `"md"`        | The border radius of the card. Possible values: "none", "sm", "md", "lg"                                                       |
+| `glow`          | `boolean`         | `true`        | Whether to show a glow effect                                                                                                  |
+| `glowIntensity` | `number`          | `3`           | The intensity of the glow effect (1-5)                                                                                         |
+| `className`     | `string`          | `""`          | Additional CSS classes to apply                                                                                                |
+| `children`      | `React.ReactNode` | `undefined`   | Content of the card                                                                                                            |

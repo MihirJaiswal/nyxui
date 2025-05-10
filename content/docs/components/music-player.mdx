@@ -1,0 +1,126 @@
+---
+title: Music Player
+date: 2025-05-09
+description: A customizable music player component with multiple themes, playback controls, progress tracking, and responsive design.
+author: NuvyxUI
+published: true
+tags: ["Interactive", "Media", "Player"]
+---
+
+<ComponentPreview name="music-player-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nuvyxui.vercel.app/r/music-player"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies</Step>
+
+```bash
+npm install lucide-react
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="music-player" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Examples
+
+<ComponentPreview name="music-player-demo1" />
+<ComponentPreview name="music-player-demo2" />
+
+## Usage
+
+```tsx
+import { MusicPlayer } from "@/components/ui/music-player";
+```
+
+```tsx
+export default function BasicUsage() {
+  return (
+    <MusicPlayer
+      theme="default"
+      trackTitle="Blinding Lights"
+      artist="The Weeknd"
+      album="After Hours"
+      artwork="/path/to/artwork.jpg"
+    />
+  );
+}
+```
+
+```tsx
+export function CustomizedPlayer() {
+  const handlePlayPause = (isPlaying) => {
+    console.log(`Playback ${isPlaying ? "started" : "paused"}`);
+  };
+
+  const handleTimeChange = (currentTime) => {
+    console.log(`Current playback position: ${currentTime}s`);
+  };
+
+  return (
+    <MusicPlayer
+      theme="spotify"
+      trackTitle="Sugar"
+      artist="Maroon 5"
+      album="V"
+      artwork="/path/to/artwork.jpg"
+      initialTime={30}
+      totalDuration={240}
+      controls={{
+        shuffle: true,
+        repeat: true,
+        heart: false,
+      }}
+      onPlayPause={handlePlayPause}
+      onTimeChange={handleTimeChange}
+      onTrackEnd={() => console.log("Track finished playing")}
+      className="rounded-xl shadow-lg"
+    />
+  );
+}
+```
+
+## Props
+
+### Music Player
+
+| Prop            | Type                                                        | Default                                        | Description                                                                     |
+| --------------- | ----------------------------------------------------------- | ---------------------------------------------- | ------------------------------------------------------------------------------- |
+| `theme`         | `string`                                                    | `"default"`                                    | Visual theme of the music player (default, spotify, cosmic, nebula, or custom). |
+| `artwork`       | `string`                                                    | `"/placeholder.svg"`                           | Path to the album artwork image.                                                |
+| `trackTitle`    | `string`                                                    | `undefined`                                    | Title of the track being played.                                                |
+| `artist`        | `string`                                                    | `undefined`                                    | Name of the artist or band.                                                     |
+| `album`         | `string`                                                    | `"After Hours"`                                | Name of the album.                                                              |
+| `initialTime`   | `number`                                                    | `0`                                            | Initial playback position in seconds.                                           |
+| `totalDuration` | `number`                                                    | `217`                                          | Total duration of the track in seconds.                                         |
+| `className`     | `string`                                                    | `""`                                           | Additional CSS classes to apply to the component.                               |
+| `autoPlay`      | `boolean`                                                   | `false`                                        | Whether to start playback automatically.                                        |
+| `onPlayPause`   | `function`                                                  | `undefined`                                    | Callback function triggered when play/pause is toggled.                         |
+| `onTimeChange`  | `function`                                                  | `undefined`                                    | Callback function triggered when playback time changes.                         |
+| `onTrackEnd`    | `function`                                                  | `undefined`                                    | Callback function triggered when track playback ends.                           |
+| `controls`      | `{ shuffle?: boolean; repeat?: boolean; heart?: boolean; }` | `{ shuffle: true, repeat: true, heart: true }` | Controls visibility of additional player controls.                              |

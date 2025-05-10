@@ -1,0 +1,165 @@
+---
+title: Morphing Blob
+date: 2025-05-09
+description: Interactive blob elements that change shape dynamically. Works as background visuals, buttons, or section transitions.
+author: NuvyxUI
+published: true
+tags: ["Background", "Effects", "Animation"]
+---
+
+<ComponentPreview name="morphing-blob-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nuvyxui.vercel.app/r/morphing-blob"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies</Step>
+
+```bash
+npm install clsx tailwind-merge
+```
+
+<Step>Create a utils.ts file with the cn utility function</Step>
+
+```tsx
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="morphing-blob" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { MorphingBlob } from "@/components/ui/morphing-blob";
+```
+
+```tsx
+// Basic usage with primary theme
+export default function BasicExample() {
+  return (
+    <MorphingBlob theme="primary" size="md" className="w-64 h-64">
+      <div className="text-center p-4">
+        <h3 className="text-lg font-bold">Basic Blob</h3>
+        <p>Simple morphing blob with default settings</p>
+      </div>
+    </MorphingBlob>
+  );
+}
+
+// Custom colors with 3D effect
+export function CustomColorExample() {
+  return (
+    <MorphingBlob
+      theme="custom"
+      customColors={{
+        from: "#8A2387",
+        via: "#E94057",
+        to: "#F27121",
+      }}
+      size="lg"
+      complexity={4}
+      effect3D={true}
+      className="w-80 h-80"
+    >
+      <div className="text-center p-6">
+        <h3 className="text-xl font-bold mb-2">Custom Gradient</h3>
+        <p>Blob with custom gradient colors and 3D effect</p>
+      </div>
+    </MorphingBlob>
+  );
+}
+
+// Pulsing blob with glow
+export function PulsingExample() {
+  return (
+    <MorphingBlob
+      theme="accent"
+      size="md"
+      pulse={true}
+      glow={true}
+      glowIntensity={4}
+      className="w-72 h-72"
+    >
+      <div className="text-center p-5">
+        <h3 className="text-xl font-bold">Pulsing Effect</h3>
+        <p>Blob with pulsing animation and enhanced glow</p>
+      </div>
+    </MorphingBlob>
+  );
+}
+
+// Feature card with icon
+export function FeatureCardExample() {
+  return (
+    <MorphingBlob
+      theme="success"
+      size="lg"
+      complexity={3}
+      speed={2}
+      glow={true}
+      className="w-64 h-64"
+    >
+      <div className="text-center p-6">
+        <div className="mx-auto mb-3 w-10 h-10">{/* Icon would go here */}</div>
+        <h4 className="text-xl font-bold mb-2">Security</h4>
+        <p className="text-sm opacity-90 max-w-[180px]">
+          Enterprise-grade protection for your applications
+        </p>
+      </div>
+    </MorphingBlob>
+  );
+}
+```
+
+## Props
+
+### Morphing Blob
+
+| Prop            | Type              | Default     | Description                                                                                                        |
+| --------------- | ----------------- | ----------- | ------------------------------------------------------------------------------------------------------------------ |
+| `theme`         | `string`          | `"primary"` | The color theme of the blob: "primary", "secondary", "accent", "success", "warning", "danger", "custom".           |
+| `customColors`  | `object`          | `undefined` | Custom colors for the blob when theme is set to "custom". Should include properties: from, to, and optionally via. |
+| `size`          | `string`          | `"md"`      | The size of the blob: "sm", "md", "lg", "xl", "full".                                                              |
+| `complexity`    | `number`          | `3`         | The complexity of the blob shape (1-5).                                                                            |
+| `speed`         | `number`          | `3`         | The speed of the morphing animation (1-5).                                                                         |
+| `hoverEffect`   | `boolean`         | `true`      | Whether to enable the hover effect.                                                                                |
+| `clickEffect`   | `boolean`         | `true`      | Whether to enable the click effect.                                                                                |
+| `pulse`         | `boolean`         | `false`     | Whether to enable the pulse animation.                                                                             |
+| `glow`          | `boolean`         | `true`      | Whether to show a glow effect.                                                                                     |
+| `glowIntensity` | `number`          | `3`         | The intensity of the glow effect (1-5).                                                                            |
+| `opacity`       | `number`          | `100`       | The opacity of the blob (percentage).                                                                              |
+| `smooth`        | `boolean`         | `true`      | Whether to enable smooth transitions in the morphing animation.                                                    |
+| `effect3D`      | `boolean`         | `false`     | Whether to enable a 3D effect on the blob.                                                                         |
+| `className`     | `string`          | `""`        | Additional CSS classes to apply.                                                                                   |
+| `children`      | `React.ReactNode` | `undefined` | Content to be rendered inside the blob component.                                                                  |

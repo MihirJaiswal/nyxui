@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { MajesticCard } from "@/nuvyxui/components/MajesticCard";
+import { MajesticCard } from "@/nuvyxui/components/majestic-card";
 import img from "../../../public/assets/images/landing-page/mihir.webp";
 
 export const TwitterCard = () => {

@@ -1,0 +1,98 @@
+---
+title: MS Paint
+date: 2025-05-09
+description: A customizable drawing canvas component with paint-like interface.
+author: MihirJaiswal
+published: true
+tags: ["Interactive", "Tools", "Mock"]
+---
+
+<ComponentPreview name="ms-paint-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nuvyxui.vercel.app/r/ms-paint"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies.</Step>
+
+```bash
+npm install lucide-react
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="ms-paint" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { MSpaint } from "@/components/ui/ms-paint";
+```
+
+```tsx
+// Basic usage with default settings
+<MSpaint />
+
+// Custom size and title
+<MSpaint
+  width={1000}
+  height={600}
+  title="My Drawing App"
+/>
+
+// Custom colors and brush settings
+<MSpaint
+  colorPalette={["#ff0000", "#00ff00", "#0000ff", "#ffff00", "#ff00ff", "#00ffff"]}
+  brushSize={5}
+  eraseSize={30}
+/>
+
+// With save callback
+<MSpaint
+  onSave={(canvas) => {
+    const image = canvas.toDataURL('image/png');
+    console.log('Canvas saved:', image);
+  }}
+/>
+```
+
+## Props
+
+| Prop           | Type                                  | Default                                                | Description                                                |
+| -------------- | ------------------------------------- | ------------------------------------------------------ | ---------------------------------------------------------- |
+| `width`        | `number`                              | `800`                                                  | Width of the drawing canvas container in pixels            |
+| `height`       | `number`                              | `500`                                                  | Height of the drawing canvas area in pixels                |
+| `canvasWidth`  | `number`                              | `2000`                                                 | Width of the actual canvas element (determines draw area)  |
+| `canvasHeight` | `number`                              | `2000`                                                 | Height of the actual canvas element (determines draw area) |
+| `colorPalette` | `string[]`                            | `DEFAULT_COLORS`                                       | Array of hex color codes for the color palette             |
+| `title`        | `string`                              | `'untitled - Paint'`                                   | Title text displayed in the window header                  |
+| `menuItems`    | `string[]`                            | `['File', 'Edit', 'View', 'Image', 'Options', 'Help']` | Array of menu item names to display in the menu bar        |
+| `className`    | `string`                              | `''`                                                   | Additional CSS classes to apply to the container           |
+| `style`        | `React.CSSProperties`                 | `{}`                                                   | Additional inline styles to apply to the container         |
+| `onSave`       | `(canvas: HTMLCanvasElement) => void` | `undefined`                                            | Callback function when the save button is clicked          |
+| `brushSize`    | `number`                              | `2`                                                    | Size of the brush used for drawing                         |
+| `eraseSize`    | `number`                              | `20`                                                   | Size of the eraser used for erasing                        |

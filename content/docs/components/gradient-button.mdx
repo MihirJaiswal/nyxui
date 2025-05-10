@@ -1,0 +1,86 @@
+---
+title: Gradient Button
+date: 2025-05-09
+description: Modern buttons with stunning gradient effects, animations and customizable themes.
+author: MihirJaiswal
+published: true
+tags: ["Buttons", "Effects", "Gradient"]
+---
+
+<ComponentPreview name="gradient-button-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nuvyxui.vercel.app/r/gradient-button"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="gradient-button" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { GradientButton } from "@/components/ui/gradient-button";
+```
+
+```tsx
+// Basic usage with default theme
+<GradientButton>Click Me</GradientButton>
+
+// Different variants and themes
+<GradientButton variant="pulse" theme="ocean">
+  Ocean Pulse
+</GradientButton>
+
+<GradientButton variant="sweep" theme="forest" size="lg">
+  Forest Sweep
+</GradientButton>
+
+<GradientButton variant="shine" theme="neon">
+  Neon Shine
+</GradientButton>
+
+// Custom gradient
+<GradientButton
+  variant="outline"
+  theme="custom"
+  customGradient="linear-gradient(45deg, #ff6b6b, #6b47ff)"
+>
+  Custom Gradient
+</GradientButton>
+```
+
+## Props
+
+| Prop             | Type     | Default     | Description                                                             |
+| ---------------- | -------- | ----------- | ----------------------------------------------------------------------- |
+| `variant`        | `string` | `"glow"`    | Button animation and style variant (glow, pulse, sweep, shine, outline) |
+| `size`           | `string` | `"md"`      | Button size (xs, sm, md, lg, xl)                                        |
+| `theme`          | `string` | `"sunset"`  | Pre-defined gradient theme (sunset, ocean, forest, neon, berry, custom) |
+| `customGradient` | `string` | `undefined` | Custom gradient CSS for use with theme='custom'                         |
+| `className`      | `string` | `""`        | Additional CSS classes to apply                                         |
+| `children`       | `string` | `""`        | Button text                                                             |

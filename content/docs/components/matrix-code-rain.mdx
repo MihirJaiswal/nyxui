@@ -1,0 +1,95 @@
+---
+title: Matrix Code Rain
+date: 2025-05-09
+description: A customizable Matrix-style digital rain effect that can be used as a background or in a container.
+author: NuvyxUI
+published: true
+tags: ["Background", "Effects", "Animation"]
+---
+
+<ComponentPreview name="matrix-code-rain-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nuvyxui.vercel.app/r/matrix-code-rain"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies</Step>
+
+```bash
+npm install clsx tailwind-merge
+```
+
+<Step>Create a utils.ts file with the cn utility function</Step>
+
+```tsx
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="matrix-code-rain" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { MatrixCodeRain } from "@/components/ui/matrix-code-rain";
+```
+
+```tsx
+export default function MyComponent() {
+  return (
+    <div className="relative h-[400px] w-full overflow-hidden">
+      <MatrixCodeRain />
+
+      {/* Optional overlay content */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="bg-black/50 p-6 rounded-lg text-white">
+          <h1 className="text-3xl font-bold">Your Content Here</h1>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+## Props
+
+| Prop         | Type      | Default                | Description                                              |
+| ------------ | --------- | ---------------------- | -------------------------------------------------------- |
+| `color`      | `string`  | `"#00ff00"`            | The color of the matrix characters                       |
+| `charset`    | `string`  | `"0123#!$^&456789ABC"` | The set of characters to display in the animation        |
+| `fontSize`   | `number`  | `16`                   | The size of the characters in pixels                     |
+| `fps`        | `number`  | `20`                   | Frames per second - controls animation speed             |
+| `opacity`    | `number`  | `0.05`                 | The opacity of the fade effect (0-1)                     |
+| `fullScreen` | `boolean` | `false`                | Whether to display the effect as a fullscreen background |
+| `width`      | `string`  | `"100%"`               | The width of the container when not in fullscreen mode   |
+| `height`     | `string`  | `"400px"`              | The height of the container when not in fullscreen mode  |

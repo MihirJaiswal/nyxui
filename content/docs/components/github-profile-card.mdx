@@ -1,0 +1,124 @@
+---
+title: GitHub Profile Card
+date: 2025-05-09
+description: Beautiful GitHub profile cards with customizable themes, activity graphs, and real-time data fetching.
+author: MihirJaiswal
+published: true
+tags: ["Cards", "GitHub", "Profile"]
+---
+
+<ComponentPreview name="github-profile-card-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nuvyxui.vercel.app/r/github-profile-card"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies.</Step>
+
+```bash
+npm install clsx tailwind-merge
+```
+
+<Step>Create a utils.ts file with the cn utility function</Step>
+
+```tsx
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="github-profile-card" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { GitHubProfileCard } from "@/components/ui/github-profile-card";
+```
+
+```tsx
+// Using GitHub API (requires username)
+<GitHubProfileCard
+  username="yourusername"
+  themeId="github-light"
+/>
+
+// Using manual mode (with provided data)
+<GitHubProfileCard
+  manualMode={true}
+  themeId="gradient-blue"
+  profileData={{
+    login: "johndoe",
+    name: "John Doe",
+    avatarUrl: "https://avatars.githubusercontent.com/u/12345678?v=4",
+    bio: "Frontend developer passionate about React",
+    location: "San Francisco, CA",
+    followers: 1250,
+    following: 320,
+    publicRepos: 45,
+    createdAt: "2015-03-12T12:00:00Z",
+    languages: [
+      { name: "JavaScript", color: "#f1e05a", percentage: 45 },
+      { name: "TypeScript", color: "#3178c6", percentage: 35 },
+      { name: "CSS", color: "#563d7c", percentage: 20 },
+    ],
+    contributionData: [0.3, 0.5, 0.8, 0.6, 0.9, 1.0, 0.7, 0.5, 0.6, 0.8, 0.7, 0.9],
+  }}
+/>
+```
+
+## Props
+
+### GitHub Profile Card
+
+| Prop          | Type                | Default          | Description                                                                                            |
+| ------------- | ------------------- | ---------------- | ------------------------------------------------------------------------------------------------------ |
+| `username`    | `string`            | `undefined`      | GitHub username to fetch profile data for. Required when not using manualMode.                         |
+| `githubToken` | `string`            | `undefined`      | Optional GitHub API token for increased rate limits (unauthenticated: 60/hr, authenticated: 5,000/hr). |
+| `manualMode`  | `boolean`           | `false`          | When true, uses provided profileData instead of fetching from GitHub API.                              |
+| `profileData` | `ManualProfileData` | `undefined`      | Profile data object for manual mode. Required when manualMode is true.                                 |
+| `themeId`     | `string`            | `"github-light"` | Visual theme for the card. Options: modern-light, gradient-blue, gradient-purple, minimal-black.       |
+
+### ManualProfileData Type
+
+| Property           | Type                                                         | Default     | Description                                                                      |
+| ------------------ | ------------------------------------------------------------ | ----------- | -------------------------------------------------------------------------------- |
+| `login`            | `string`                                                     | `""`        | GitHub username (login).                                                         |
+| `name`             | `string`                                                     | `""`        | Display name of the GitHub user.                                                 |
+| `avatarUrl`        | `string`                                                     | `""`        | URL to the user's GitHub avatar image.                                           |
+| `bio`              | `string`                                                     | `undefined` | User's GitHub bio (optional).                                                    |
+| `location`         | `string`                                                     | `undefined` | User's location from their GitHub profile (optional).                            |
+| `followers`        | `number`                                                     | `0`         | Number of GitHub followers.                                                      |
+| `following`        | `number`                                                     | `0`         | Number of users the profile is following on GitHub.                              |
+| `publicRepos`      | `number`                                                     | `0`         | Number of public repositories.                                                   |
+| `createdAt`        | `string`                                                     | `""`        | ISO date string of when the user joined GitHub.                                  |
+| `languages`        | `Array<{ name: string, color: string, percentage: number }>` | `undefined` | Array of most used programming languages with name, color, and usage percentage. |
+| `contributionData` | `Array<number>`                                              | `undefined` | Array of 12 normalized values (0-1) representing GitHub contribution activity.   |

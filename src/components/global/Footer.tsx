@@ -2,18 +2,18 @@ import Link from "next/link";
 import React from "react";
 
 const navLinks = [
-  { href: "/components", label: "Components" },
-  { href: "/docs", label: "Documentation" },
+  { href: "/docs", label: "Components" },
+  { href: "/documentation", label: "Documentation" },
 ];
 
 const Footer = () => {
   return (
     <footer className="text-gray-600 dark:text-gray-400 py-6 px-4 md:px-8 font-sans border-t border-gray-200 dark:border-zinc-900">
-      <div className="max-w-7xl mx-auto">
+      <div className="px-10">
         <div className="flex flex-col md:flex-row items-center justify-between relative">
           <div className="flex items-center mb-4 md:mb-0">
             <Link href="/" className="flex items-center space-x-2 group">
-              <div className="h-8 w-8 border-2 border-white dark:border-black flex items-center justify-center bg-black dark:bg-white rounded-full">
+              <div className="h-7 w-7 border-2 border-white dark:border-black flex items-center justify-center bg-black dark:bg-white rounded-full">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   version="1.0"
@@ -52,12 +52,12 @@ const Footer = () => {
           </div>
 
           <div className="mt-4 md:mt-0 text-gray-900 dark:text-gray-100 relative">
-            <span>🚀Brought to you by </span>
+            <span>Brought to you by </span>
             <Link
               href="https://github.com/MihirJaiswal"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-purple-800 dark:text-purple-300 underline"
+              className="text-purple-800 dark:text-purple-300 underline tracking-wide italic"
             >
               Mihir
             </Link>

@@ -1,0 +1,126 @@
+---
+title: Image Scanner
+date: 2025-05-09
+description: A dynamic component that applies interactive scanning effects to images, supporting various scan patterns, directions, and customizable animations.
+author: NuvyxUI
+published: true
+tags: ["Interactive", "Image", "Media"]
+---
+
+<ComponentPreview name="image-scanner-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nuvyxui.vercel.app/r/image-scanner"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies</Step>
+
+```bash
+npm install framer-motion clsx tailwind-merge
+```
+
+<Step>Create a utils.ts file with the cn utility function</Step>
+
+```tsx
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="image-scanner" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { ImageScanner } from "@/components/ui/image-scanner";
+```
+
+```tsx
+export default function MyComponent() {
+  return (
+    <div className="w-full max-w-md mx-auto">
+      <h1 className="text-2xl font-bold mb-8 text-center">Horizontal Scan</h1>
+      <ImageScanner
+        image="/path-to-image.png"
+        scanDirection="horizontal"
+        scanColor="emerald"
+        scanType="both"
+        autoScan={true}
+        repeating={true}
+      />
+    </div>
+  );
+}
+
+// With scan completion callback
+export function ScanWithCallback() {
+  const handleScanComplete = () => {
+    console.log("Scan completed!");
+    // Perform actions after scan completes
+  };
+
+  return (
+    <div className="w-full max-w-md mx-auto">
+      <h1 className="text-2xl font-bold mb-8 text-center">
+        Scan with callback
+      </h1>
+      <ImageScanner
+        image="/path-to-image.png"
+        scanDirection="vertical"
+        scanColor="blue"
+        scanType="line"
+        onScanComplete={handleScanComplete}
+      />
+    </div>
+  );
+}
+```
+
+## Props
+
+### Image Scanner
+
+| Prop             | Type                                                  | Default            | Description                                            |
+| ---------------- | ----------------------------------------------------- | ------------------ | ------------------------------------------------------ |
+| `image`          | `string`                                              | `undefined`        | URL or path to the image to be scanned.                |
+| `alt`            | `string`                                              | `"Scanning image"` | Alternative text for the image.                        |
+| `scanDirection`  | `"horizontal" \| "vertical"`                          | `"horizontal"`     | Direction of the scanning effect.                      |
+| `scanSpeed`      | `number`                                              | `2`                | Speed of the scanning animation in seconds.            |
+| `scanColor`      | `"emerald" \| "blue" \| "purple" \| "amber" \| "red"` | `"emerald"`        | Color of the scanning effect.                          |
+| `scanType`       | `"line" \| "corners" \| "both"`                       | `"both"`           | Type of scanning visual effect to display.             |
+| `className`      | `string`                                              | `undefined`        | Additional CSS classes to apply to the container.      |
+| `onScanComplete` | `() => void`                                          | `undefined`        | Callback function triggered when scanning is complete. |
+| `autoScan`       | `boolean`                                             | `false`            | Automatically start scanning when component mounts.    |
+| `scanDelay`      | `number`                                              | `0`                | Delay in seconds before starting the auto scan.        |
+| `scanAtScroll`   | `boolean`                                             | `false`            | Trigger scan when component is scrolled into view.     |
+| `repeating`      | `boolean`                                             | `false`            | Enable repeated scanning in a loop.                    |
+| `triggerScan`    | `boolean`                                             | `false`            | Externally trigger the scanning effect.                |

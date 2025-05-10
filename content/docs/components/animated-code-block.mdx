@@ -1,0 +1,94 @@
+---
+title: Animated Code Block
+date: 2023-12-12
+description: A code display component with real-time typing effects. Supports syntax highlighting and customizable themes.
+author: MihirJaiswal
+published: true
+tags: ["Animation", "Interactive"]
+---
+
+<ComponentPreview name="animated-code-block-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nuvyxui.vercel.app/r/animated-code-block"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies.</Step>
+
+```bash
+npm install framer-motion lucide-react clsx tailwind-merge
+```
+
+<Step>Create a utils.ts file with the cn utility function</Step>
+
+```tsx
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="animated-code-block" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { AnimatedCodeBlock } from "@/components/ui/animated-code-block";
+```
+
+```tsx
+<AnimatedCodeBlock
+  code={`console.log("Hello world!");`}
+  theme="dark"
+  typingSpeed={50}
+  showLineNumbers={true}
+  autoPlay={true}
+/>
+```
+
+## Props
+
+### Animated Code Block
+
+| Prop              | Type         | Default     | Description                                           |
+| ----------------- | ------------ | ----------- | ----------------------------------------------------- |
+| `code`            | `string`     | `""`        | The code to display and animate                       |
+| `theme`           | `string`     | `"dark"`    | The visual theme (dark, terminal, cyberpunk, minimal) |
+| `typingSpeed`     | `number`     | `50`        | The speed of the typing animation in milliseconds     |
+| `showLineNumbers` | `boolean`    | `true`      | Whether to show line numbers                          |
+| `highlightLines`  | `number[]`   | `[]`        | Array of line numbers to highlight                    |
+| `title`           | `string`     | `""`        | Title to display in the header                        |
+| `autoPlay`        | `boolean`    | `false`     | Whether to start the animation automatically          |
+| `loop`            | `boolean`    | `false`     | Whether to loop the animation                         |
+| `blurEffect`      | `boolean`    | `false`     | Whether to add a terminal blur effect                 |
+| `showControls`    | `boolean`    | `true`      | Whether to show play/pause and copy controls          |
+| `onCopy`          | `() => void` | `undefined` | Callback function when code is copied                 |
+| `className`       | `string`     | `""`        | Additional CSS classes to apply                       |

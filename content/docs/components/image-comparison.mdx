@@ -1,0 +1,145 @@
+---
+title: Image Comparison
+date: 2025-05-09
+description: An interactive image comparison slider that allows users to drag or hover to reveal two different images.
+author: MihirJaiswal
+published: true
+tags: ["Interactive", "Image", "Media"]
+---
+
+<ComponentPreview name="image-comparison-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nuvyxui.vercel.app/r/image-comparison"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies</Step>
+
+```bash
+npm install framer-motion clsx tailwind-merge
+```
+
+<Step>Create a utils.ts file with the cn utility function</Step>
+
+```tsx
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="image-comparison" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import {
+  ImageSlider,
+  ImageLayer,
+  Divider,
+} from "@/components/ui/image-comparison";
+```
+
+```tsx
+<ImageSlider className="h-96 w-full overflow-hidden rounded-xl">
+  <ImageLayer
+    src="/path/to/before-image.jpg"
+    alt="Before Image"
+    layer="first"
+  />
+  <ImageLayer src="/path/to/after-image.jpg" alt="After Image" layer="second" />
+  <Divider />
+</ImageSlider>;
+
+{
+  /* Vertical orientation with custom handle icon */
+}
+<ImageSlider
+  className="h-96 w-full overflow-hidden"
+  orientation="vertical"
+  defaultPosition={40}
+>
+  <ImageLayer src="/path/to/original.jpg" alt="Original" layer="first" />
+  <ImageLayer src="/path/to/edited.jpg" alt="Edited" layer="second" />
+  <Divider handleIcon={<ArrowUpDown size={16} />} />
+</ImageSlider>;
+
+{
+  /* Hover-controlled comparison */
+}
+<ImageSlider
+  className="h-96 w-full overflow-hidden rounded-xl"
+  hoverControl={true}
+  defaultPosition={20}
+>
+  <ImageLayer src="/path/to/before.jpg" alt="Before" layer="first" />
+  <ImageLayer src="/path/to/after.jpg" alt="After" layer="second" />
+  <Divider width={4} handleSize={32} />
+</ImageSlider>;
+```
+
+## Props
+
+### ImageSlider
+
+| Prop              | Type                        | Default                                      | Description                                                          |
+| ----------------- | --------------------------- | -------------------------------------------- | -------------------------------------------------------------------- |
+| `children`        | `React.ReactNode`           | `undefined`                                  | Content of the slider, typically ImageLayer components and a Divider |
+| `className`       | `string`                    | `""`                                         | Additional CSS classes to apply to the container                     |
+| `hoverControl`    | `boolean`                   | `false`                                      | Whether to control the slider by hovering instead of dragging        |
+| `orientation`     | `string`                    | `"horizontal"`                               | The orientation of the slider: "horizontal" or "vertical"            |
+| `defaultPosition` | `number`                    | `50`                                         | The initial position of the divider as a percentage (0-100)          |
+| `animationConfig` | `Partial<AnimationOptions>` | `{ damping: 15, stiffness: 400, mass: 0.4 }` | Framer Motion spring animation options for the slider movement       |
+| `dividerColor`    | `string`                    | `"#ffffff"`                                  | Color of the divider line                                            |
+
+### ImageLayer
+
+| Prop        | Type      | Default     | Description                                                          |
+| ----------- | --------- | ----------- | -------------------------------------------------------------------- |
+| `className` | `string`  | `""`        | Additional CSS classes to apply to the image                         |
+| `alt`       | `string`  | `undefined` | Alt text for the image (required for accessibility)                  |
+| `src`       | `string`  | `undefined` | Source URL of the image                                              |
+| `layer`     | `string`  | `undefined` | Which side of the divider this image appears on: "first" or "second" |
+| `loading`   | `string`  | `"eager"`   | Image loading behavior: "lazy" or "eager"                            |
+| `priority`  | `boolean` | `false`     | Whether the image should be considered high priority for loading     |
+
+### Divider
+
+| Prop          | Type              | Default     | Description                                                      |
+| ------------- | ----------------- | ----------- | ---------------------------------------------------------------- |
+| `className`   | `string`          | `""`        | Additional CSS classes to apply to the divider                   |
+| `children`    | `React.ReactNode` | `undefined` | Custom content to display in the handle                          |
+| `width`       | `number`          | `2`         | Width of the divider line in pixels                              |
+| `showHandle`  | `boolean`         | `true`      | Whether to show the handle on the divider                        |
+| `handleSize`  | `number`          | `24`        | Size of the handle in pixels                                     |
+| `handleColor` | `string`          | `undefined` | Color of the handle (defaults to divider color if not specified) |
+| `handleIcon`  | `React.ReactNode` | `undefined` | Custom icon to display in the handle                             |
+| `hitAreaSize` | `number`          | `20`        | Size of the invisible hit area around the divider                |

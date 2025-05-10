@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "image-comparison-demo",
+  "type": "registry:example",
+  "title": "Image Comparison Demo",
+  "description": "Example showing a image comparison.",
+  "dependencies": [
+    ".."
+  ],
+  "registryDependencies": [
+    "https://nuvyxui.vercel.app/r/image-comparison"
+  ],
+  "files": [
+    {
+      "path": "src/nuvyxui/demos/image-comparison-demo.tsx",
+      "content": "import {\n  ImageSlider,\n  ImageLayer,\n  Divider,\n} from \"../components/image-comparison\";\n\nexport const ImageComparisonDemo = () => {\n  return (\n    <div className=\"space-y-4 w-full flex flex-col items-center justify-center\">\n      <ImageSlider className=\"h-96 overflow-hidden\">\n        <ImageLayer\n          src=\"/assets/images/image-comparison/2.jpg\"\n          alt=\"Original Image\"\n          layer=\"first\"\n        />\n        <ImageLayer\n          src=\"/assets/images/image-comparison/1.jpg\"\n          alt=\"Processed Image\"\n          layer=\"second\"\n        />\n        <Divider width={4} handleSize={32} />\n      </ImageSlider>\n    </div>\n  );\n};\n",
+      "type": "registry:example",
+      "target": "components/image-comparison-demo.tsx"
+    },
+    {
+      "path": "src\\nuvyxui\\demos\\image-comparison-demo.tsx",
+      "content": "import {\n  ImageSlider,\n  ImageLayer,\n  Divider,\n} from \"../components/image-comparison\";\n\nexport const ImageComparisonDemo = () => {\n  return (\n    <div className=\"space-y-4 w-full flex flex-col items-center justify-center\">\n      <ImageSlider className=\"h-96 overflow-hidden\">\n        <ImageLayer\n          src=\"/assets/images/image-comparison/2.jpg\"\n          alt=\"Original Image\"\n          layer=\"first\"\n        />\n        <ImageLayer\n          src=\"/assets/images/image-comparison/1.jpg\"\n          alt=\"Processed Image\"\n          layer=\"second\"\n        />\n        <Divider width={4} handleSize={32} />\n      </ImageSlider>\n    </div>\n  );\n};\n",
+      "type": "registry:component",
+      "target": ""
+    }
+  ]
+}

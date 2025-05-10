@@ -15,11 +15,11 @@ const Command = React.forwardRef<HTMLDivElement, CommandProps>(
       ref={ref}
       className={cn(
         "flex h-full w-full flex-col overflow-hidden rounded-md bg-white dark:bg-black text-black dark:text-white",
-        className
+        className,
       )}
       {...props}
     />
-  )
+  ),
 );
 Command.displayName = CommandPrimitive.displayName;
 
@@ -53,18 +53,21 @@ interface CommandInputProps
 
 const CommandInput = React.forwardRef<HTMLInputElement, CommandInputProps>(
   ({ className, ...props }, ref) => (
-    <div className="flex items-center border-b border-zinc-300 dark:border-zinc-700 px-3" cmdk-input-wrapper="">
+    <div
+      className="flex items-center border-b border-zinc-300 dark:border-zinc-700 px-3"
+      cmdk-input-wrapper=""
+    >
       <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
       <CommandPrimitive.Input
         ref={ref}
         className={cn(
           "flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
-          className
+          className,
         )}
         {...props}
       />
     </div>
-  )
+  ),
 );
 CommandInput.displayName = CommandPrimitive.Input.displayName;
 
@@ -79,11 +82,11 @@ const CommandList = React.forwardRef<HTMLDivElement, CommandListProps>(
       ref={ref}
       className={cn(
         "max-h-[300px] overflow-y-auto overflow-x-hidden",
-        className
+        className,
       )}
       {...props}
     />
-  )
+  ),
 );
 CommandList.displayName = CommandPrimitive.List.displayName;
 
@@ -98,7 +101,7 @@ const CommandEmpty = React.forwardRef<HTMLDivElement, CommandEmptyProps>(
       className="py-6 text-center text-sm"
       {...props}
     />
-  )
+  ),
 );
 CommandEmpty.displayName = CommandPrimitive.Empty.displayName;
 
@@ -113,11 +116,11 @@ const CommandGroup = React.forwardRef<HTMLDivElement, CommandGroupProps>(
       ref={ref}
       className={cn(
         "overflow-hidden p-1 text-black dark:text-white [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground",
-        className
+        className,
       )}
       {...props}
     />
-  )
+  ),
 );
 CommandGroup.displayName = CommandPrimitive.Group.displayName;
 
@@ -147,11 +150,11 @@ const CommandItem = React.forwardRef<HTMLDivElement, CommandItemProps>(
       ref={ref}
       className={cn(
         "relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none ",
-        className
+        className,
       )}
       {...props}
     />
-  )
+  ),
 );
 CommandItem.displayName = CommandPrimitive.Item.displayName;
 interface CommandShortcutProps extends React.HTMLAttributes<HTMLSpanElement> {
@@ -166,7 +169,7 @@ const CommandShortcut: React.FC<CommandShortcutProps> = ({
     <span
       className={cn(
         "ml-auto text-xs tracking-widest text-black dark:text-white",
-        className
+        className,
       )}
       {...props}
     />

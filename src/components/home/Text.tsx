@@ -65,7 +65,7 @@ const Text = () => {
                   onMouseEnter={(e) => {
                     e.currentTarget.style.animation = "shake 2s ease-in-out";
                     const wordRotate = e.currentTarget.querySelector(
-                      ".word-rotate-container"
+                      ".word-rotate-container",
                     );
                     if (wordRotate) {
                       wordRotate.classList.add("text-shrink");
@@ -74,7 +74,7 @@ const Text = () => {
                   onMouseLeave={(e) => {
                     e.currentTarget.style.animation = "none";
                     const wordRotate = e.currentTarget.querySelector(
-                      ".word-rotate-container"
+                      ".word-rotate-container",
                     );
                     if (wordRotate) {
                       wordRotate.classList.remove("text-shrink");

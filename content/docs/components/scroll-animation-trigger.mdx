@@ -1,0 +1,154 @@
+---
+title: Scroll Animation Trigger
+date: 2025-05-09
+description: UI elements that change color, size, or shape based on scroll progress. Text that reveals dynamically when entering the viewport.
+author: NuvyxUI
+published: true
+tags: ["Interactive", "Animation", "Scroll", "Effects"]
+---
+
+<ComponentPreview name="scroll-animation-trigger-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nuvyxui.vercel.app/r/scroll-animation-trigger"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies</Step>
+
+```bash
+npm install framer-motion clsx tailwind-merge
+```
+
+<Step>Create a utils.ts file with the cn utility function</Step>
+
+```tsx
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="scroll-animation-trigger" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Examples
+
+### Color change
+
+<ComponentPreview name="scroll-animation-trigger-demo1" />
+
+### rotation
+
+<ComponentPreview name="scroll-animation-trigger-demo2" />
+
+## Usage
+
+```tsx
+import { ScrollAnimationTrigger } from "@/components/ui/scroll-animation-trigger";
+```
+
+```tsx
+// Basic fade-in effect
+export function FadeInExample() {
+  return (
+    <div className="w-full max-w-md mx-auto">
+      <ScrollAnimationTrigger effect="fade" threshold={0.1} once={true}>
+        <div className="p-6 bg-white dark:bg-zinc-800 rounded-lg shadow-md">
+          <h3 className="text-xl font-bold">Fade In Animation</h3>
+          <p className="mt-2">This content fades in when scrolled into view.</p>
+        </div>
+      </ScrollAnimationTrigger>
+    </div>
+  );
+}
+
+// Slide animation with direction
+export function SlideInExample() {
+  return (
+    <div className="w-full max-w-md mx-auto">
+      <ScrollAnimationTrigger
+        effect="slide"
+        direction="up"
+        delay={0.2}
+        duration={0.6}
+      >
+        <div className="p-6 bg-white dark:bg-zinc-800 rounded-lg shadow-md">
+          <h3 className="text-xl font-bold">Slide Up Animation</h3>
+          <p className="mt-2">
+            This content slides up when scrolled into view.
+          </p>
+        </div>
+      </ScrollAnimationTrigger>
+    </div>
+  );
+}
+
+// Color transition effect
+export function ColorChangeExample() {
+  return (
+    <div className="w-full max-w-md mx-auto">
+      <ScrollAnimationTrigger
+        effect="color"
+        fromColor="#2b13c2"
+        toColor="#f002cc"
+        threshold={0.2}
+      >
+        <div className="p-6 bg-white dark:bg-zinc-800 rounded-lg shadow-md">
+          <h3 className="text-xl font-bold">Color Transition</h3>
+          <p className="mt-2">This text changes color as you scroll.</p>
+        </div>
+      </ScrollAnimationTrigger>
+    </div>
+  );
+}
+```
+
+## Props
+
+### ScrollAnimationTrigger
+
+| Prop           | Type                | Default                  | Description                                                        |
+| -------------- | ------------------- | ------------------------ | ------------------------------------------------------------------ |
+| `children`     | `ReactNode`         | `undefined`              | The content to be animated                                         |
+| `effect`       | `string`            | `"fade"`                 | The animation effect - (fade, scale, slide, color, rotate, custom) |
+| `threshold`    | `number`            | `0.1`                    | The threshold for triggering the animation (0-1)                   |
+| `delay`        | `number`            | `0`                      | Delay before the animation starts (in seconds)                     |
+| `duration`     | `number`            | `0.5`                    | Duration of the animation (in seconds)                             |
+| `direction`    | `string`            | `"up"`                   | Direction for slide animation - (up, down, left, right)            |
+| `once`         | `boolean`           | `false`                  | Whether to trigger the animation only once                         |
+| `customProps`  | `object`            | `{}`                     | Custom animation properties for the 'custom' effect                |
+| `as`           | `React.ElementType` | `"div"`                  | The element type to render - (div, span, etc)                      |
+| `className`    | `string`            | `""`                     | Additional CSS classes to apply                                    |
+| `fromColor`    | `string`            | `"var(--color-muted)"`   | Starting color for color transition                                |
+| `toColor`      | `string`            | `"var(--color-primary)"` | Ending color for color transition                                  |
+| `fromRotation` | `number`            | `-10`                    | Initial rotation angle for rotate effect                           |
+| `toRotation`   | `number`            | `0`                      | Final rotation angle for rotate effect                             |
+| `fromScale`    | `number`            | `0.8`                    | Initial scale value for scale effect                               |
+| `toScale`      | `number`            | `1`                      | Final scale value for scale effect                                 |

@@ -2,8 +2,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Card } from "@/components/ui/card";
 import Image from "next/image";
-import { Marquee } from "@/nuvyxui/components/Marquee"; 
-import { componentsData } from "@/nuvyxui/Data"; 
+import { Marquee } from "@/nuvyxui/components/marquee";
+import { componentsData } from "@/nuvyxui/Data";
 
 interface ComponentData {
   title: string;
@@ -40,7 +40,7 @@ export const Build = () => {
       const elapsed = timestamp - pulseStartTime;
       const intensity = Math.sin(elapsed * 0.002) * 0.2 + 0.8;
       textElement.style.textShadow = `0 0 ${Math.round(
-        intensity * 10
+        intensity * 10,
       )}px rgba(59, 130, 246, ${intensity * 0.6})`;
 
       pulseAnimationId = requestAnimationFrame(pulseAnimation);
@@ -52,37 +52,37 @@ export const Build = () => {
     };
   }, []);
 
-  const cardData: CardInfo[] = Object.entries(componentsData.components as Components).map(([id, component]) => ({
+  const cardData: CardInfo[] = Object.entries(
+    componentsData.components as Components,
+  ).map(([id, component]) => ({
     id,
     imageSrc: component.image,
-    title: component.title
+    title: component.title,
   }));
 
   const renderCard = (cardInfo: CardInfo) => {
     return (
-     <div
-      key={cardInfo.uniqueKey || cardInfo.id}
-      onClick={(e) => e.stopPropagation()}
-      className="select-none"
-     >
-       <Card
-        className="border-gray-800 dark:border-gray-800 bg-black backdrop-blur-sm transform transition-all shadow-sm dark:shadow-none w-80 pointer-events-auto"
+      <div
+        key={cardInfo.uniqueKey || cardInfo.id}
+        onClick={(e) => e.stopPropagation()}
+        className="select-none"
       >
-        <div className="relative bg-black flex items-center justify-center rounded-lg overflow-hidden transition duration-200">
-          <Image
-            src={cardInfo.imageSrc}
-            alt={cardInfo.title || "Component showcase"}
-            width={1024}
-            height={650}
-            quality={100}
-            decoding="async"
-            className="transition duration-300 blur-0"
-            loading="lazy"
-            draggable={false}
-          />
-        </div>
-      </Card>
-     </div>
+        <Card className="border-gray-800 dark:border-gray-800 bg-black backdrop-blur-sm transform transition-all shadow-sm dark:shadow-none w-80 pointer-events-auto">
+          <div className="relative bg-black flex items-center justify-center rounded-lg overflow-hidden transition duration-200">
+            <Image
+              src={cardInfo.imageSrc}
+              alt={cardInfo.title || "Component showcase"}
+              width={1024}
+              height={650}
+              quality={100}
+              decoding="async"
+              className="transition duration-300 blur-0"
+              loading="lazy"
+              draggable={false}
+            />
+          </div>
+        </Card>
+      </div>
     );
   };
 
@@ -96,8 +96,12 @@ export const Build = () => {
       <div className="mx-auto max-w-7xl px-4 pb-10 md:py-4 sm:px-6 lg:px-8">
         <div className="flex flex-col">
           <div className="flex flex-col justify-center pt-4 mb-6">
-            <h1 className="text-3xl sm:text-5xl lg:text-5xl font-extrabold tracking-tight leading-tight text-center">Showcase</h1>
-            <p className="mx-auto text-balance text-center text-lg font-medium tracking-tight text-foreground/80">Explore our collection of unique and innovative components</p>
+            <h1 className="text-3xl sm:text-5xl lg:text-5xl font-extrabold tracking-tight leading-tight text-center">
+              Showcase
+            </h1>
+            <p className="mx-auto text-balance text-center text-lg font-medium tracking-tight text-foreground/80">
+              Explore our collection of unique and innovative components
+            </p>
           </div>
           <div className="relative lg:col-span-6 h-full">
             <div className="relative h-full w-full overflow-hidden rounded-lg flex items-center">
@@ -117,10 +121,13 @@ export const Build = () => {
                   ></div>
                 ))}
               </div>
-              <div className="w-full py-8 relative z-20" style={{ cursor: 'grab' }}>
-                <Marquee 
-                  direction="horizontal" 
-                  speed={30} 
+              <div
+                className="w-full py-8 relative z-20"
+                style={{ cursor: "grab" }}
+              >
+                <Marquee
+                  direction="horizontal"
+                  speed={30}
                   speedOnHover={1}
                   gap={24}
                   fadeEdges={true}

@@ -29,9 +29,7 @@ export const Hero = () => {
           aria-label="Hero Section"
         >
           <div className="md:container max-w-5xl md:mx-auto flex flex-col md:items-center md:justify-center md:text-center px-6 md:px-4">
-            <Badge
-              className="mb-6 inline-flex items-center text-black dark:text-white gap-2 rounded-lg border border-purple-300 px-4 py-1.5 text-sm font-semibold shadow-sm dark:border-gray-600 bg-background"
-            >
+            <Badge className="mb-6 inline-flex items-center text-black dark:text-white gap-2 rounded-lg border border-purple-300 px-4 py-1.5 text-sm font-semibold shadow-sm dark:border-gray-600 bg-background">
               <Sparkles className="h-4 w-4 text-yellow-500 dark:text-yellow-300" />
               v1.0.0 <span className="hidden md:inline">Now Available</span>
             </Badge>
@@ -148,7 +146,7 @@ export const Hero = () => {
               transition={{ duration: 0.5, delay: 0.6 }}
               className="relative mt-8 flex w-full flex-col justify-center space-y-2 sm:flex-row sm:space-y-0 sm:space-x-4"
             >
-              <Link href="/components" rel="noopener noreferrer">
+              <Link href="/docs" rel="noopener noreferrer">
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -163,7 +161,7 @@ export const Hero = () => {
                 </motion.div>
               </Link>
 
-              <Link href="/docs" rel="noopener noreferrer">
+              <Link href="/documentation" rel="noopener noreferrer">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}

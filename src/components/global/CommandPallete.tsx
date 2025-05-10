@@ -12,7 +12,13 @@ import { Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { componentsData } from "@/nuvyxui/Data";
+import { componentsData, Component } from "@/nuvyxui/Data";
+
+// We don't need to define ComponentItem as it's already in the imported file
+// The Component interface is already defined in the imported Data file
+
+// We can use the actual ComponentsData interface from the imported file
+// No need to recreate it here as it's already defined in the imported file
 
 export function CommandPalette() {
   const [open, setOpen] = useState(false);
@@ -37,28 +43,38 @@ export function CommandPalette() {
 
   const handleItemClick = (value: string) => {
     const [section, id] = value.split(":");
-    const path = section === "links" ? `/${id}` : `/${section}/${id}`;
+    // Update the path to redirect to /docs/components/{id} for components
+    const path =
+      section === "components"
+        ? `/docs/components/${id}`
+        : section === "links"
+          ? `/${id}`
+          : `/${section}/${id}`;
     router.push(path);
     setOpen(false);
   };
 
-
-  // Updated mapping logic:
+  // Updated mapping logic with proper typing
   const sections = Object.entries(componentsData).map(
     ([sectionKey, itemsObj]) => ({
       key: sectionKey,
       items: Object.entries(itemsObj).map(([id, item]) => ({
         value: `${sectionKey}:${id}`,
-        // If the section is "components", item is an object so use its title
-        name: sectionKey === "components" ? item.title : item,
+        // Check if this is a component with a title property
+        name:
+          sectionKey === "components"
+            ? (item as Component).title
+            : typeof item === "string"
+              ? item
+              : id,
       })),
-    })
+    }),
   );
 
   const filteredSections = sections.map(({ key, items }) => ({
     key,
     items: items.filter((item) =>
-      item.name.toLowerCase().includes(search.toLowerCase())
+      item.name.toLowerCase().includes(search.toLowerCase()),
     ),
   }));
   const nothingFound = filteredSections.every((s) => s.items.length === 0);

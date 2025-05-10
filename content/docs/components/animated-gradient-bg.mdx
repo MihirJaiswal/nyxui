@@ -1,0 +1,101 @@
+---
+title: Animated Gradient Background
+date: 2025-05-08
+description: A dynamic animated gradient background component that supports various gradient patterns.
+author: MihirJaiswal
+published: true
+tags: ["Background", "Animation"]
+---
+
+<ComponentPreview name="animated-gradient-bg-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nuvyxui.vercel.app/r/animated-gradient-bg"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies.</Step>
+
+```bash
+npm install framer-motion clsx tailwind-merge
+```
+
+<Step>Create a utils.ts file with the cn utility function</Step>
+
+```tsx
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="animated-gradient-bg" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { AnimatedGradientBg } from "@/components/ui/animated-gradient-bg";
+```
+
+```tsx
+<div className="relative h-[500px] w-full overflow-hidden bg-transparent">
+  <div className="absolute inset-0">
+    <AnimatedGradientBg
+      pattern="radial"
+      position="absolute"
+      size="full"
+      zIndex={0}
+      colors={["#3b82f6", "#2563eb", "#1d4ed8", "#1e40af"]}
+    />
+  </div>
+  <div className="relative z-10 flex h-full items-center justify-center text-white">
+    <div className="p-4 text-center">Animated gradient</div>
+  </div>
+</div>
+```
+
+## Props
+
+| Prop        | Type                | Default         | Description                                                       |
+| ----------- | ------------------- | --------------- | ----------------------------------------------------------------- |
+| `children`  | `React.ReactNode`   | `undefined`     | Content to render on top of the gradient background.              |
+| `className` | `string`            | `""`            | Additional CSS classes to apply to the container.                 |
+| `colors`    | `string[]`          | `initialColors` | Array of colors to use in the gradient.                           |
+| `speed`     | `number`            | `1`             | Speed factor for the gradient animation.                          |
+| `blur`      | `number`            | `60`            | Blur effect applied to the background.                            |
+| `pattern`   | `string`            | `"radial"`      | The gradient pattern (radial, linear, conic, mesh, noise, waves). |
+| `intensity` | `number`            | `1`             | Intensity of the gradient pattern.                                |
+| `opacity`   | `number`            | `0.8`           | Opacity of the background.                                        |
+| `size`      | `string`            | `"full"`        | Size of the background container (sm, md, lg, full, number).      |
+| `position`  | `string`            | `"absolute"`    | CSS position property (fixed, absolute, relative).                |
+| `zIndex`    | `number`            | `-1`            | z-index of the background container.                              |
+| `animate`   | `boolean`           | `true`          | Enable or disable background animation.                           |
+| `as`        | `React.ElementType` | `"div"`         | HTML element or component to render as (div, section, etc.).      |
+| `onClick`   | `() => void`        | `undefined`     | Click event handler for the background.                           |

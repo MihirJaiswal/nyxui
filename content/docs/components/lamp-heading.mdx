@@ -1,0 +1,114 @@
+---
+title: Lamp Heading
+date: 2025-05-09
+description: An elegant section heading with a customizable gradient underline and a subtle lamp-like glow effect and nice little animation.
+author: MihirJaiswal
+published: true
+tags: ["Typography", "Effects", "Futuristic"]
+---
+
+<ComponentPreview name="lamp-heading-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nuvyxui.vercel.app/r/lamp-heading"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies.</Step>
+
+```bash
+npm install clsx tailwind-merge
+```
+
+<Step>Create a utils.ts file with the cn utility function.</Step>
+
+```tsx
+// lib/utils.ts
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="lamp-heading" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { LampHeading } from "@/components/ui/lamp-heading";
+```
+
+```tsx
+// Basic usage with default settings
+<LampHeading text="Featured Products" />
+
+// Custom styling with className
+<LampHeading
+  text="About Us"
+  className="text-3xl font-bold tracking-tight"
+/>
+
+// Custom gradient colors
+<LampHeading
+  text="Our Services"
+  gradientColors={{ from: "#8a2be2", to: "#ff8c00" }}
+/>
+
+// Modified glow effect
+<LampHeading
+  text="Portfolio"
+  glowIntensity={0.9}
+  glowSize={30}
+  direction="above"
+/>
+
+// Fully customized example
+<LampHeading
+  text="Contact Us"
+  className="text-4xl font-extrabold text-slate-800"
+  gradientColors={{ from: "#06b6d4", to: "#3b82f6" }}
+  lineHeight={3}
+  glowIntensity={0.8}
+  glowSize={25}
+  direction="below"
+/>
+```
+
+## Props
+
+| Prop             | Type     | Default                              | Description                                                                                          |
+| ---------------- | -------- | ------------------------------------ | ---------------------------------------------------------------------------------------------------- |
+| `text`           | `string` | `""`                                 | The text content of the heading                                                                      |
+| `className`      | `string` | `""`                                 | Additional CSS classes to apply for styling the heading, including text color, font size, and weight |
+| `gradientColors` | `object` | `{ from: "#ff3366", to: "#338ef7" }` | The gradient colors used for the underline. Object should include 'from' and 'to' color hex values   |
+| `lineHeight`     | `number` | `2`                                  | The height of the underline in pixels                                                                |
+| `glowIntensity`  | `number` | `0.7`                                | The intensity of the glow effect (0-1)                                                               |
+| `glowSize`       | `number` | `20`                                 | The size of the glow effect in pixels                                                                |
+| `direction`      | `string` | `"below"`                            | The direction of the glow effect (above or below)                                                    |

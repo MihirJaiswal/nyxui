@@ -1,0 +1,110 @@
+---
+title: Keyboard
+date: 2025-05-09
+description: A customizable interactive keyboard component with various themes, layouts, and animation options.
+author: MihirJaiswal
+published: true
+tags: ["Interactive", "Tools", "Mock"]
+---
+
+<ComponentPreview name="keyboard-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nuvyxui.vercel.app/r/keyboard"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies.</Step>
+
+```bash
+npm install lucide-react
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="keyboard" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Examples
+
+<ComponentPreview name="keyboard-demo1" />
+
+## Usage
+
+```tsx
+import { Keyboard } from "@/components/ui/keyboard";
+```
+
+```tsx
+// Basic usage with default cyberpunk theme
+<Keyboard />
+
+// Custom theme with different layout
+<Keyboard
+  theme="mechanical"
+  layout="compact"
+  showFunctionKeys={false}
+/>
+
+// Active keys highlighting
+<Keyboard
+  activeKeys={["KeyW", "KeyA", "KeyS", "KeyD"]}
+  activeKeyGlowColor="#ff5555"
+  activeKeyGlowIntensity={0.9}
+/>
+
+// Custom styling and event handlers
+<Keyboard
+  theme="neon"
+  keyColor="#1a1a2e"
+  keyTextColor="#e6e6e6"
+  accentColor="#ff2a6d"
+  onKeyPress={(code, key) => console.log(`Pressed: ${code}, ${key}`)}
+  onKeyRelease={(code, key) => console.log(`Released: ${code}, ${key}`)}
+/>
+```
+
+## Props
+
+| Prop                        | Type       | Default       | Description                                                                   |
+| --------------------------- | ---------- | ------------- | ----------------------------------------------------------------------------- |
+| `layout`                    | `string`   | `"standard"`  | Keyboard layout (standard or compact)                                         |
+| `showFunctionKeys`          | `boolean`  | `true`        | Show function keys (F1-F12) row                                               |
+| `showNavigationCluster`     | `boolean`  | `true`        | Show navigation key cluster                                                   |
+| `activeKeys`                | `string[]` | `[]`          | Array of key codes to highlight as active                                     |
+| `activeKeyGlowColor`        | `string`   | `"#6366f1"`   | Glow color for active keys                                                    |
+| `activeKeyGlowIntensity`    | `number`   | `0.8`         | Intensity of glow effect for active keys (0-1)                                |
+| `theme`                     | `string`   | `"cyberpunk"` | Keyboard theme (cyberpunk, minimal, retro, mechanical, neon, pastel)          |
+| `keyColor`                  | `string`   | `"#2a2a2a"`   | Base color for keyboard keys                                                  |
+| `keyTextColor`              | `string`   | `"#ffffff"`   | Text color for keyboard keys                                                  |
+| `accentColor`               | `string`   | `"#6366f1"`   | Accent color for special keys and highlights                                  |
+| `keyPressedColor`           | `string`   | `"#333333"`   | Color for pressed keys                                                        |
+| `keyPressAnimationDuration` | `number`   | `150`         | Duration of key press animation in milliseconds                               |
+| `onKeyPress`                | `function` | `() => {}`    | Callback function when a key is pressed (code: string, key?: string) => void  |
+| `onKeyRelease`              | `function` | `() => {}`    | Callback function when a key is released (code: string, key?: string) => void |
+| `className`                 | `string`   | `""`          | Additional CSS classes to apply                                               |
+| `allowPhysicalKeyboard`     | `boolean`  | `true`        | Allow physical keyboard integration                                           |
+| `perspective`               | `number`   | `1000`        | CSS perspective value for 3D effect                                           |
+| `rotateX`                   | `number`   | `10`          | X-axis rotation angle in degrees                                              |

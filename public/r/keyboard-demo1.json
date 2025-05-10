@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "keyboard-demo1",
+  "type": "registry:example",
+  "title": "Keyboard Demo 1",
+  "description": "Example showing a interactive keyboard.",
+  "dependencies": [
+    ".."
+  ],
+  "registryDependencies": [
+    "https://nuvyxui.vercel.app/r/keyboard"
+  ],
+  "files": [
+    {
+      "path": "src/nuvyxui/demos/keyboard-demo1.tsx",
+      "content": "import React from \"react\";\nimport InteractiveKeyboard from \"../components/keyboard\";\n\nexport default function KeyboardDemo1() {\n  return (\n    <div>\n      <InteractiveKeyboard theme=\"neon\" />\n    </div>\n  );\n}\n",
+      "type": "registry:example",
+      "target": "components/keyboard-demo1.tsx"
+    },
+    {
+      "path": "src\\nuvyxui\\demos\\keyboard-demo1.tsx",
+      "content": "import React from \"react\";\nimport InteractiveKeyboard from \"../components/keyboard\";\n\nexport default function KeyboardDemo1() {\n  return (\n    <div>\n      <InteractiveKeyboard theme=\"neon\" />\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": ""
+    }
+  ]
+}

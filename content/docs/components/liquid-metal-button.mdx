@@ -1,0 +1,114 @@
+---
+title: Liquid Metal Button
+date: 2025-05-09
+description: Buttons that behave like mercury when clicked. A fluid effect that reacts to the mouse pointer.
+author: MihirJaiswal
+published: true
+tags: ["Buttons", "Effects", "Interactive"]
+---
+
+<ComponentPreview name="liquid-metal-button-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nuvyxui.vercel.app/r/liquid-metal-button"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies</Step>
+
+```bash
+npm install clsx tailwind-merge
+```
+
+<Step>Create a utils.ts file with the cn utility function</Step>
+
+```tsx
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="liquid-metal-button" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { LiquidMetalButton } from "@/components/ui/liquid-metal-button";
+```
+
+```tsx
+<LiquidMetalButton theme="silver" size="md">
+  Click Me
+</LiquidMetalButton>
+
+<LiquidMetalButton
+  theme="gold"
+  variant="outline"
+  intensity={4}
+  textured={true}
+>
+  Metallic Effect
+</LiquidMetalButton>
+
+<LiquidMetalButton
+  theme="custom"
+  customColors={{
+    base: "rgb(30, 50, 100)",
+    highlight: "rgb(100, 150, 255)",
+    shadow: "rgb(10, 20, 40)",
+    text: "rgb(240, 240, 255)"
+  }}
+  variant="mercury"
+>
+  Custom Theme
+</LiquidMetalButton>
+```
+
+## Props
+
+### Liquid Metal Button
+
+| Prop             | Type              | Default     | Description                                                                                                      |
+| ---------------- | ----------------- | ----------- | ---------------------------------------------------------------------------------------------------------------- |
+| `variant`        | `string`          | `"default"` | Button variant: "default", "outline", "ghost", "mercury", "ripple", "gradient"                                   |
+| `size`           | `string`          | `"md"`      | Button size: "xs", "sm", "md", "lg", "xl", "2xl"                                                                 |
+| `theme`          | `string`          | `"silver"`  | Color theme: "silver", "gold", "copper", "mercury", "steel", "obsidian", "emerald", "ruby", "sapphire", "custom" |
+| `customColors`   | `object`          | `undefined` | Custom colors for "custom" theme (base, highlight, shadow, text, border, glow)                                   |
+| `intensity`      | `number`          | `3`         | Intensity of liquid effect (1-5)                                                                                 |
+| `magnetic`       | `boolean`         | `true`      | Enable magnetic pull effect                                                                                      |
+| `clickEffect`    | `boolean`         | `true`      | Enable click animation                                                                                           |
+| `asChild`        | `boolean`         | `false`     | Render as child element                                                                                          |
+| `hoverAnimation` | `boolean`         | `true`      | Enable hover animation                                                                                           |
+| `textured`       | `boolean`         | `false`     | Apply textured effect                                                                                            |
+| `icon`           | `React.ReactNode` | `undefined` | Icon displayed before children                                                                                   |
+| `iconAfter`      | `React.ReactNode` | `undefined` | Icon displayed after children                                                                                    |
+| `className`      | `string`          | `""`        | Additional CSS classes                                                                                           |
+| `children`       | `React.ReactNode` | `undefined` | Content of the button                                                                                            |

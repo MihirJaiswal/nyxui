@@ -1,30 +1,30 @@
-"use client"
-import type React from "react"
-import { useState, useEffect, useRef, useCallback } from "react"
-import { Send, Copy, RotateCcw, TerminalIcon } from "lucide-react"
-import { cn } from "@/lib/utils"
+"use client";
+import type React from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { Send, Copy, RotateCcw, TerminalIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export type TerminalProps = {
-  command?: string
-  steps?: string[]
-  finalMessage?: string
-  stepDelay?: number
-  typingDelay?: number
-  icon?: React.ReactNode
-  promptSymbol?: string
-  inputPlaceholder?: string
-  autoExecute?: boolean
-  repeat?: boolean
-  repeatDelay?: number
-  className?: string
-  variant?: "default" | "dark" | "matrix" | "retro" | "custom"
+  command?: string;
+  steps?: string[];
+  finalMessage?: string;
+  stepDelay?: number;
+  typingDelay?: number;
+  icon?: React.ReactNode;
+  promptSymbol?: string;
+  inputPlaceholder?: string;
+  autoExecute?: boolean;
+  repeat?: boolean;
+  repeatDelay?: number;
+  className?: string;
+  variant?: "default" | "dark" | "matrix" | "retro" | "custom";
   customTheme?: {
-    container?: string
-    header?: string
-    output?: string
-    button?: string
-  }
-}
+    container?: string;
+    header?: string;
+    output?: string;
+    button?: string;
+  };
+};
 
 const InteractiveTerminal: React.FC<TerminalProps> = ({
   command = "help",
@@ -42,15 +42,15 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({
   variant = "default",
   customTheme,
 }) => {
-  const [input, setInput] = useState("")
-  const [output, setOutput] = useState<string[]>([])
-  const [step, setStep] = useState(0)
-  const [copied, setCopied] = useState(false)
-  const [typing, setTyping] = useState(false)
-  const [charIndex, setCharIndex] = useState(0)
-  const [commandExecuted, setCommandExecuted] = useState(false)
-  const [completed, setCompleted] = useState(false)
-  const outputRef = useRef<HTMLDivElement>(null)
+  const [input, setInput] = useState("");
+  const [output, setOutput] = useState<string[]>([]);
+  const [step, setStep] = useState(0);
+  const [copied, setCopied] = useState(false);
+  const [typing, setTyping] = useState(false);
+  const [charIndex, setCharIndex] = useState(0);
+  const [commandExecuted, setCommandExecuted] = useState(false);
+  const [completed, setCompleted] = useState(false);
+  const outputRef = useRef<HTMLDivElement>(null);
 
   const themes = {
     default: {
@@ -77,100 +77,116 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({
       output: "bg-black",
       button: "hover:bg-amber-800/30",
     },
-  }
+  };
 
-  const theme = variant === "custom" && customTheme ? customTheme : themes[variant as keyof typeof themes] || themes.default
+  const theme =
+    variant === "custom" && customTheme
+      ? customTheme
+      : themes[variant as keyof typeof themes] || themes.default;
 
   const resetTerminal = useCallback(() => {
-    setOutput([])
-    setStep(0)
-    setCharIndex(0)
-    setTyping(false)
-    setCommandExecuted(false)
-    setCompleted(false)
-  }, [])
+    setOutput([]);
+    setStep(0);
+    setCharIndex(0);
+    setTyping(false);
+    setCommandExecuted(false);
+    setCompleted(false);
+  }, []);
 
   const executeCommand = useCallback(() => {
-    setOutput((prev) => [...prev, `${promptSymbol} ${input}`])
-    setStep(1)
-    setInput("")
-  }, [promptSymbol, input])
+    setOutput((prev) => [...prev, `${promptSymbol} ${input}`]);
+    setStep(1);
+    setInput("");
+  }, [promptSymbol, input]);
 
   useEffect(() => {
     if (outputRef.current) {
-      outputRef.current.scrollTop = outputRef.current.scrollHeight
+      outputRef.current.scrollTop = outputRef.current.scrollHeight;
     }
-  }, [output])
+  }, [output]);
 
   useEffect(() => {
     if (autoExecute && !typing && !commandExecuted) {
       const timer = setTimeout(() => {
-        setTyping(true)
-        setCharIndex(0)
-      }, 500)
-      return () => clearTimeout(timer)
+        setTyping(true);
+        setCharIndex(0);
+      }, 500);
+      return () => clearTimeout(timer);
     }
-  }, [autoExecute, typing, commandExecuted])
+  }, [autoExecute, typing, commandExecuted]);
 
   useEffect(() => {
     if (autoExecute && repeat && completed) {
       const repeatTimer = setTimeout(() => {
-        resetTerminal()
-      }, repeatDelay)
-      return () => clearTimeout(repeatTimer)
+        resetTerminal();
+      }, repeatDelay);
+      return () => clearTimeout(repeatTimer);
     }
-  }, [autoExecute, repeat, completed, resetTerminal, repeatDelay])
+  }, [autoExecute, repeat, completed, resetTerminal, repeatDelay]);
 
   useEffect(() => {
     if (typing && charIndex < command.length) {
       const timer = setTimeout(() => {
-        setInput(command.substring(0, charIndex + 1))
-        setCharIndex(charIndex + 1)
-      }, typingDelay)
-      return () => clearTimeout(timer)
+        setInput(command.substring(0, charIndex + 1));
+        setCharIndex(charIndex + 1);
+      }, typingDelay);
+      return () => clearTimeout(timer);
     } else if (typing && charIndex === command.length) {
       const timer = setTimeout(() => {
-        executeCommand()
-        setTyping(false)
-        setCommandExecuted(true)
-      }, 500)
-      return () => clearTimeout(timer)
+        executeCommand();
+        setTyping(false);
+        setCommandExecuted(true);
+      }, 500);
+      return () => clearTimeout(timer);
     }
-  }, [typing, charIndex, command, typingDelay, executeCommand])
+  }, [typing, charIndex, command, typingDelay, executeCommand]);
 
   useEffect(() => {
     if (step > 0 && step <= steps.length) {
-      setOutput((prev) => [...prev, steps[step - 1]])
-      const timer = setTimeout(() => setStep(step + 1), stepDelay)
-      return () => clearTimeout(timer)
+      setOutput((prev) => [...prev, steps[step - 1]]);
+      const timer = setTimeout(() => setStep(step + 1), stepDelay);
+      return () => clearTimeout(timer);
     } else if (step > steps.length) {
-      setOutput((prev) => [...prev, finalMessage])
-      setCompleted(true)
+      setOutput((prev) => [...prev, finalMessage]);
+      setCompleted(true);
     }
-  }, [step, steps, finalMessage, stepDelay])
+  }, [step, steps, finalMessage, stepDelay]);
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     if (input.trim()) {
-      executeCommand()
-      setCommandExecuted(true)
+      executeCommand();
+      setCommandExecuted(true);
     }
-  }
+  };
 
   const copyCommand = () => {
-    navigator.clipboard.writeText(command)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }
+    navigator.clipboard.writeText(command);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
-    <div className={cn("max-w-4xl mx-auto p-3 md:p-6 rounded-lg shadow-lg font-mono", theme.container, className)}>
-      <div className={cn("mb-4 p-3 rounded-md border flex items-center justify-between", theme.header)}>
+    <div
+      className={cn(
+        "max-w-4xl mx-auto p-3 md:p-6 rounded-lg shadow-lg font-mono",
+        theme.container,
+        className,
+      )}
+    >
+      <div
+        className={cn(
+          "mb-4 p-3 rounded-md border flex items-center justify-between",
+          theme.header,
+        )}
+      >
         <div className="flex items-center gap-2">
           {icon}
           <span className="flex items-center gap-1.5">
             <span className="text-sm opacity-80">Run:</span>
-            <code className="font-bold px-2 py-0.5 bg-black/30 rounded">{command}</code>
+            <code className="font-bold px-2 py-0.5 bg-black/30 rounded">
+              {command}
+            </code>
           </span>
         </div>
         <div className="flex gap-2">
@@ -179,7 +195,10 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({
             !repeat && (
               <button
                 onClick={resetTerminal}
-                className={cn("px-2 py-1 rounded text-sm flex items-center gap-1 transition-colors", theme.button)}
+                className={cn(
+                  "px-2 py-1 rounded text-sm flex items-center gap-1 transition-colors",
+                  theme.button,
+                )}
                 title="Replay"
                 type="button"
               >
@@ -190,17 +209,25 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({
           ) : step === 0 ? (
             <button
               onClick={copyCommand}
-              className={cn("px-2 py-1 rounded text-sm flex items-center gap-1 transition-colors", theme.button)}
+              className={cn(
+                "px-2 py-1 rounded text-sm flex items-center gap-1 transition-colors",
+                theme.button,
+              )}
               title="Copy command"
               type="button"
             >
               <Copy className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">{copied ? "Copied!" : "Copy"}</span>
+              <span className="hidden sm:inline">
+                {copied ? "Copied!" : "Copy"}
+              </span>
             </button>
           ) : (
             <button
               onClick={resetTerminal}
-              className={cn("px-2 py-1 rounded text-sm flex items-center gap-1 transition-colors", theme.button)}
+              className={cn(
+                "px-2 py-1 rounded text-sm flex items-center gap-1 transition-colors",
+                theme.button,
+              )}
               title="Reset terminal"
               type="button"
             >
@@ -211,7 +238,13 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({
         </div>
       </div>
 
-      <div ref={outputRef} className={cn("h-80 mb-4 p-3 rounded-md overflow-y-auto scrollbar-none", theme.output)}>
+      <div
+        ref={outputRef}
+        className={cn(
+          "h-80 mb-4 p-3 rounded-md overflow-y-auto scrollbar-none",
+          theme.output,
+        )}
+      >
         {output.map((line, index) => (
           <pre key={index} className="whitespace-pre-wrap mb-1 terminal-line">
             {line}
@@ -223,7 +256,9 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({
           </pre>
         )}
         {autoExecute && repeat && completed && (
-          <pre className="text-gray-500 italic mt-2">Repeating in {Math.ceil(repeatDelay / 1000)}s...</pre>
+          <pre className="text-gray-500 italic mt-2">
+            Repeating in {Math.ceil(repeatDelay / 1000)}s...
+          </pre>
         )}
       </div>
 
@@ -240,7 +275,10 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({
           />
           <button
             type="submit"
-            className={cn("ml-2 p-1.5 rounded-full transition-colors", theme.button)}
+            className={cn(
+              "ml-2 p-1.5 rounded-full transition-colors",
+              theme.button,
+            )}
             title="Send command"
           >
             <Send className="w-4 h-4" />
@@ -250,8 +288,13 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({
 
       <style jsx>{`
         @keyframes blink {
-          0%, 100% { opacity: 0; }
-          50% { opacity: 1; }
+          0%,
+          100% {
+            opacity: 0;
+          }
+          50% {
+            opacity: 1;
+          }
         }
         .cursor-typing::after {
           content: "|";
@@ -262,8 +305,14 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({
           animation: fadeIn 0.3s ease-in-out;
         }
         @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(2px); }
-          to { opacity: 1; transform: translateY(0); }
+          from {
+            opacity: 0;
+            transform: translateY(2px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
         .scrollbar-none::-webkit-scrollbar {
           display: none;
@@ -274,7 +323,7 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default InteractiveTerminal
+export default InteractiveTerminal;

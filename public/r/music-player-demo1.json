@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "music-player-demo1",
+  "type": "registry:example",
+  "title": "Music Player Demo 1",
+  "description": "Example showing a music player.",
+  "dependencies": [
+    ".."
+  ],
+  "registryDependencies": [
+    "https://nuvyxui.vercel.app/r/music-player"
+  ],
+  "files": [
+    {
+      "path": "src/nuvyxui/demos/music-player-demo1.tsx",
+      "content": "import { MusicPlayer } from \"../components/music-player\";\n\nexport default function MusicPlayerDemo1() {\n  return (\n    <div className=\"w-full max-w-xs mx-auto border border-gray-300 dark:border-gray-700 rounded-md\">\n      <MusicPlayer\n        theme=\"default\"\n        trackTitle=\"changes\"\n        artist=\"XXXTENTACION\"\n        album=\"?\"\n        artwork=\"/assets/images/music-player/cover.jpg\"\n        className=\"rounded-xl\"\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example",
+      "target": "components/music-player-demo1.tsx"
+    },
+    {
+      "path": "src\\nuvyxui\\demos\\music-player-demo1.tsx",
+      "content": "import { MusicPlayer } from \"../components/music-player\";\n\nexport default function MusicPlayerDemo1() {\n  return (\n    <div className=\"w-full max-w-xs mx-auto border border-gray-300 dark:border-gray-700 rounded-md\">\n      <MusicPlayer\n        theme=\"default\"\n        trackTitle=\"changes\"\n        artist=\"XXXTENTACION\"\n        album=\"?\"\n        artwork=\"/assets/images/music-player/cover.jpg\"\n        className=\"rounded-xl\"\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": ""
+    }
+  ]
+}

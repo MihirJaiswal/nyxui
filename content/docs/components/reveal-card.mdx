@@ -1,0 +1,122 @@
+---
+title: Reveal Card
+date: 2025-05-09
+description: A dynamic card component with layered images and hover animations.
+author: NuvyxUI
+published: true
+tags: ["Cards", "Effects", "3d", "Interactive"]
+---
+
+<ComponentPreview name="reveal-card-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nuvyxui.vercel.app/r/reveal-card"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="reveal-card" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { RevealCard } from "@/components/ui/reveal-card";
+```
+
+```tsx
+export default function BasicUsage() {
+  return (
+    <RevealCard
+      coverImage="/path/to/cover.jpg"
+      titleImage="/path/to/title.png"
+      characterImage="/path/to/character.png"
+      width={266}
+      height={400}
+    />
+  );
+}
+```
+
+```tsx
+export function CustomizedCard() {
+  return (
+    <div className="flex flex-col items-center py-12">
+      <div className="relative group">
+        <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-400 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
+        <RevealCard
+          coverImage="/path/to/cover.jpg"
+          titleImage="/path/to/title.png"
+          characterImage="/path/to/character.png"
+          width={300}
+          height={450}
+          hoverRotation={30}
+          titleTranslateY={-60}
+          characterTranslateY={-40}
+          characterTranslateZ={120}
+          gradientColors={{
+            top: "rgba(25,25,25,0.8)",
+            bottom: "rgba(10,10,10,0.9)",
+          }}
+          animation={{
+            duration: 600,
+            delay: 100,
+          }}
+          alt={{
+            cover: "Movie Poster",
+            title: "Movie Logo",
+            character: "Main Character",
+          }}
+          threshold={0.4}
+          priority={true}
+        />
+      </div>
+    </div>
+  );
+}
+```
+
+## Props
+
+### Reveal Card
+
+| Prop                  | Type      | Default                                                            | Description                                                  |
+| --------------------- | --------- | ------------------------------------------------------------------ | ------------------------------------------------------------ |
+| `coverImage`          | `string`  | `""`                                                               | URL for the cover image.                                     |
+| `titleImage`          | `string`  | `""`                                                               | URL for the title image.                                     |
+| `characterImage`      | `string`  | `""`                                                               | URL for the character image.                                 |
+| `width`               | `number`  | `266`                                                              | Width of the card in pixels.                                 |
+| `height`              | `number`  | `400`                                                              | Height of the card in pixels.                                |
+| `hoverRotation`       | `number`  | `25`                                                               | Rotation angle on hover.                                     |
+| `titleTranslateY`     | `number`  | `-50`                                                              | Y-axis translation for title image on hover.                 |
+| `characterTranslateY` | `number`  | `-30`                                                              | Y-axis translation for character image on hover.             |
+| `characterTranslateZ` | `number`  | `100`                                                              | Z-axis translation for character image on hover.             |
+| `alt`                 | `object`  | `{ cover: "Cover Image", title: "Title", character: "Character" }` | Alternate text for the images.                               |
+| `gradientColors`      | `object`  | `{ top: "rgba(12,13,19,1)", bottom: "rgba(12,13,19,1)" }`          | Gradient overlay colors for the cover image.                 |
+| `animation`           | `object`  | `{ duration: 500, delay: 0 }`                                      | Animation duration and delay in milliseconds.                |
+| `priority`            | `boolean` | `false`                                                            | If true, images are prioritized for loading (eager loading). |
+| `threshold`           | `number`  | `0.3`                                                              | The threshold for triggering the animation (0-1).            |
+| `className`           | `string`  | `""`                                                               | Additional CSS classes for the card.                         |

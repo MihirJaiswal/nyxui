@@ -14,7 +14,7 @@ export function ComponentCard({
   imageSrc: string;
 }) {
   return (
-    <Link href={`/components/${slug}`} className="block">
+    <Link href={`/docs/components/${slug}`} className="block">
       <div className="rounded-lg overflow-hidden max-w-4xl transition-all duration-300 cursor-pointer h-full">
         <div className="relative dark:border bg-black flex items-center justify-center rounded-lg dark:border-white/[0.1] overflow-hidden transition duration-200 hover:scale-105">
           <Image

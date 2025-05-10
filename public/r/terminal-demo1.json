@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "terminal-demo1",
+  "type": "registry:example",
+  "title": "Terminal Demo 1",
+  "description": "Example showing a terminal.",
+  "dependencies": [
+    "..",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "https://nuvyxui.vercel.app/r/terminal"
+  ],
+  "files": [
+    {
+      "path": "src/nuvyxui/demos/terminal-demo1.tsx",
+      "content": "import React from \"react\";\nimport InteractiveTerminal from \"../components/terminal\";\nimport { Coffee } from \"lucide-react\";\n\nexport default function TerminalDemo2() {\n  return (\n    <div className=\"flex flex-col gap-12 w-full max-w-4xl mx-auto\">\n      <div className=\"overflow-hidden shadow-lg transform transition-all hover:shadow-amber-500/50\">\n        <InteractiveTerminal\n          command=\"brew --coffee latte\"\n          icon={<Coffee className=\"mr-2\" />}\n          variant=\"retro\"\n          steps={[\n            \"Taking your order...\",\n            \"Grinding fresh beans...\",\n            \"Heating water to 93°C...\",\n            \"Extracting espresso shot...\",\n            \"Steaming milk to perfection...\",\n            \"Adding artistic foam design...\",\n          ]}\n          finalMessage={`\n  ☕ ORDER COMPLETE! ☕\n  \n  Your perfect latte is ready:\n  - Double shot espresso (Ethiopian beans)\n  - Silky steamed oat milk\n  - Artisanal foam leaf pattern\n  \n  Enjoy your coffee and have a wonderful day!\n              `}\n          stepDelay={1200}\n          promptSymbol=\"☕\"\n          className=\"rounded-md\"\n        />\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example",
+      "target": "components/terminal-demo1.tsx"
+    },
+    {
+      "path": "src\\nuvyxui\\demos\\terminal-demo1.tsx",
+      "content": "import React from \"react\";\nimport InteractiveTerminal from \"../components/terminal\";\nimport { Coffee } from \"lucide-react\";\n\nexport default function TerminalDemo2() {\n  return (\n    <div className=\"flex flex-col gap-12 w-full max-w-4xl mx-auto\">\n      <div className=\"overflow-hidden shadow-lg transform transition-all hover:shadow-amber-500/50\">\n        <InteractiveTerminal\n          command=\"brew --coffee latte\"\n          icon={<Coffee className=\"mr-2\" />}\n          variant=\"retro\"\n          steps={[\n            \"Taking your order...\",\n            \"Grinding fresh beans...\",\n            \"Heating water to 93°C...\",\n            \"Extracting espresso shot...\",\n            \"Steaming milk to perfection...\",\n            \"Adding artistic foam design...\",\n          ]}\n          finalMessage={`\n  ☕ ORDER COMPLETE! ☕\n  \n  Your perfect latte is ready:\n  - Double shot espresso (Ethiopian beans)\n  - Silky steamed oat milk\n  - Artisanal foam leaf pattern\n  \n  Enjoy your coffee and have a wonderful day!\n              `}\n          stepDelay={1200}\n          promptSymbol=\"☕\"\n          className=\"rounded-md\"\n        />\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": ""
+    }
+  ]
+}

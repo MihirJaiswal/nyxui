@@ -1,0 +1,139 @@
+---
+title: Interactive Terminal
+date: 2025-05-09
+description: A customizable terminal component with animated output and command processing.
+author: MihirJaiswal
+published: true
+tags: ["Interactive", "Mock", "Tools"]
+---
+
+<ComponentPreview name="terminal-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nuvyxui.vercel.app/r/terminal"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies.</Step>
+
+```bash
+npm install lucide-react
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="terminal" />
+
+<Step>Create a utils.ts file with the cn utility function</Step>
+
+```tsx
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+```
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Examples
+
+### Manually type command
+
+<ComponentPreview name="terminal-demo1" />
+
+## Usage
+
+```tsx
+import { InteractiveTerminal } from "@/components/ui/terminal";
+import { Terminal } from "lucide-react";
+```
+
+```tsx
+// Basic usage with default theme
+<InteractiveTerminal
+  command="npm install"
+  steps={["Installing packages...", "Resolving dependencies..."]}
+  finalMessage="Installation complete!"
+/>
+
+// Custom styling with different variant
+<InteractiveTerminal
+  command="deploy --production"
+  icon={<Terminal className="mr-2" />}
+  steps={[
+    "Building project...",
+    "Running tests...",
+    "Optimizing assets...",
+    "Deploying to production..."
+  ]}
+  finalMessage="Deployment successful!"
+  variant="dark"
+  stepDelay={800}
+/>
+
+// Auto-executing command with repeat functionality
+<InteractiveTerminal
+  command="ping server.example.com"
+  steps={["Sending packet...", "Waiting for response..."]}
+  finalMessage="Response received: 42ms"
+  autoExecute
+  repeat
+  repeatDelay={2000}
+/>
+
+// Custom theme and styling
+<InteractiveTerminal
+  command="hack --mainframe"
+  steps={[
+    "Bypassing firewall...",
+    "Cracking encryption...",
+    "Accessing mainframe..."
+  ]}
+  finalMessage="Access granted!"
+  variant="matrix"
+  promptSymbol=">"
+  className="border border-green-500"
+/>
+```
+
+## Props
+
+| Prop               | Type                                                                        | Default                            | Description                                                          |
+| ------------------ | --------------------------------------------------------------------------- | ---------------------------------- | -------------------------------------------------------------------- |
+| `command`          | `string`                                                                    | `"help"`                           | Command that users need to enter to trigger the terminal sequence    |
+| `steps`            | `string[]`                                                                  | `["Processing command"]`           | Array of processing steps to display sequentially                    |
+| `finalMessage`     | `string`                                                                    | `"Command executed successfully!"` | Final message to display after all processing steps                  |
+| `stepDelay`        | `number`                                                                    | `1000`                             | Delay between processing steps in milliseconds                       |
+| `typingDelay`      | `number`                                                                    | `100`                              | Delay between individual keystrokes when animating typing            |
+| `icon`             | `React.ReactNode`                                                           | `<TerminalIcon />`                 | Icon to display in the command info bar                              |
+| `promptSymbol`     | `string`                                                                    | `"$"`                              | Terminal prompt symbol displayed before user input                   |
+| `inputPlaceholder` | `string`                                                                    | `"Type your command here"`         | Placeholder text for the input field                                 |
+| `autoExecute`      | `boolean`                                                                   | `false`                            | Enables automatic command execution without waiting for user input   |
+| `repeat`           | `boolean`                                                                   | `false`                            | Whether to repeat the entire command sequence automatically          |
+| `repeatDelay`      | `number`                                                                    | `3000`                             | Delay between repetitions when `repeat` is enabled                   |
+| `className`        | `string`                                                                    | `undefined`                        | Additional CSS class names to apply to the terminal container        |
+| `variant`          | `string`                                                                    | `"default"`                        | Visual style variant (default, dark, matrix, retro, custom)          |
+| `customTheme`      | `{ container?: string; header?: string; output?: string; button?: string }` | `{}`                               | Custom CSS theme overrides for container, header, output, and button |

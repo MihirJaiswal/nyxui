@@ -1,0 +1,104 @@
+---
+title: Marquee
+date: 2025-05-09
+description: A customizable, interactive scrolling marquee component with various animation options, drag capabilities, and responsive design.
+author: NuvyxUI
+published: true
+tags: ["Interactive", "Interactive", "Animation"]
+---
+
+<ComponentPreview name="marquee-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nuvyxui.vercel.app/r/marquee"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies</Step>
+
+```bash
+npm install framer-motion clsx tailwind-merge
+```
+
+<Step>Create a utils.ts file with the cn utility function</Step>
+
+```tsx
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="marquee" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Examples
+
+## Horizontal Marquee
+
+<ComponentPreview name="marquee-demo1" />
+
+## Reversed Marquee
+
+<ComponentPreview name="marquee-demo2" />
+
+## Usage
+
+```tsx
+import { Marquee } from "@/components/ui/marquee";
+```
+
+```tsx
+export default function MyComponent() {
+  return (
+    <Marquee>
+      {/* Your marquee content goes here */}
+      <div className="px-4">Content Item 1</div>
+      <div className="px-4">Content Item 2</div>
+      <div className="px-4">Content Item 3</div>
+    </Marquee>
+  );
+}
+```
+
+## Props
+
+| Prop           | Type                         | Default        | Description                                     |
+| -------------- | ---------------------------- | -------------- | ----------------------------------------------- |
+| `children`     | `React.ReactNode`            | `undefined`    | Content to be displayed in the marquee          |
+| `gap`          | `number`                     | `16`           | Space between repeated content in pixels        |
+| `speed`        | `number`                     | `100`          | Animation speed (higher is faster)              |
+| `speedOnHover` | `number`                     | `undefined`    | Animation speed when hovered (higher is faster) |
+| `direction`    | `"horizontal" \| "vertical"` | `"horizontal"` | Scrolling direction                             |
+| `reverse`      | `boolean`                    | `false`        | Reverse the animation direction                 |
+| `className`    | `string`                     | `undefined`    | Additional CSS classes to apply                 |
+| `fadeEdges`    | `boolean`                    | `false`        | Fade the edges of the marquee content           |
+| `fadeWidth`    | `number`                     | `64`           | Width of the edge fade in pixels                |
+| `pauseOnTap`   | `boolean`                    | `true`         | Pause animation when clicked                    |
+| `draggable`    | `boolean`                    | `true`         | Allow dragging interaction with the marquee     |

@@ -207,7 +207,7 @@ export function Marquee({
         "overflow-hidden relative",
         className,
         (pauseOnTap || draggable) && "cursor-pointer",
-        isDragging && "cursor-grabbing"
+        isDragging && "cursor-grabbing",
       )}
       style={fadeGradientStyles}
       onClick={handleTap}

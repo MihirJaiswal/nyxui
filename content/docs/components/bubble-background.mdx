@@ -1,0 +1,103 @@
+---
+title: Bubbles Background
+date: 2025-05-09
+description: An interactive fluid bubble background component with animated colorful blobs that respond to user interaction.
+author: MihirJaiswal
+published: true
+tags: ["Background", "Interactive", "Animation"]
+---
+
+<ComponentPreview name="bubble-background-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nuvyxui.vercel.app/r/bubble-background"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Add required CSS animations to your globals.css file</Step>
+
+```css
+@keyframes bounceV {
+  0%,
+  100% {
+    transform: translateY(-50%);
+  }
+  50% {
+    transform: translateY(50%);
+  }
+}
+
+@keyframes bounceH {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(-10%);
+  }
+  50% {
+    transform: translateX(50%) translateY(10%);
+  }
+}
+
+@keyframes moveInCircle {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="bubble-background" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { BubbleBackground } from "@/components/ui/bubble-background";
+```
+
+```tsx
+<div className="relative h-[400px] w-full overflow-hidden bg-transparent">
+  <BubbleBackground
+    bgColorA="rgb(108, 0, 162)"
+    bgColorB="rgb(0, 17, 82)"
+    blendMode="hard-light"
+  />
+</div>
+```
+
+## Props
+
+### Bubble Background
+
+| Prop           | Type     | Default               | Description                                                       |
+| -------------- | -------- | --------------------- | ----------------------------------------------------------------- |
+| `bgColorA`     | `string` | `"rgb(108, 0, 162)"`  | First color for the background gradient                           |
+| `bgColorB`     | `string` | `"rgb(0, 17, 82)"`    | Second color for the background gradient                          |
+| `bubbleColors` | `object` | `defaultBubbleColors` | RGB color values for different bubbles and the interactive bubble |
+| `blendMode`    | `string` | `"hard-light"`        | CSS blend mode for the bubble elements                            |
+| `bubbleSize`   | `string` | `"80%"`               | Size of the bubble elements relative to the container             |

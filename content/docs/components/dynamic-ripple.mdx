@@ -1,0 +1,86 @@
+---
+title: Dynamic Ripple
+date: 2025-05-09
+description: A fluid, water ripple effect that reacts to cursor movement or touch.
+author: MihirJaiswal
+published: true
+tags: ["Effects", "Interactive"]
+---
+
+<ComponentPreview name="dynamic-ripple-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nuvyxui.vercel.app/r/dynamic-ripple"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies.</Step>
+
+```bash
+npm install clsx tailwind-merge
+```
+
+<Step>Create a utils.ts file with the cn utility function</Step>
+
+```tsx
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="dynamic-ripple" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { DynamicRipple } from "@/components/ui/dynamic-ripple";
+```
+
+```tsx
+<DynamicRipple theme="blue" intensity={3} speed={3} rounded="lg">
+  <div className="p-8 relative z-10">Your content here</div>
+</DynamicRipple>
+```
+
+## Props
+
+| Prop              | Type              | Default     | Description                                                                                                   |
+| ----------------- | ----------------- | ----------- | ------------------------------------------------------------------------------------------------------------- |
+| `theme`           | `string`          | `"blue"`    | The color theme of the ripple effect. Options: "blue", "purple", "green", "amber", "rose", "custom".          |
+| `customColors`    | `object`          | `undefined` | Custom colors for the ripple when theme is set to "custom". Should include properties: primary and secondary. |
+| `intensity`       | `number`          | `3`         | The intensity of the ripple effect (1-5).                                                                     |
+| `speed`           | `number`          | `3`         | The speed of the ripple animation (1-5).                                                                      |
+| `reactToCursor`   | `boolean`         | `true`      | Whether to enable the ripple effect on cursor movement.                                                       |
+| `autoAnimate`     | `boolean`         | `true`      | Whether to enable the automatic ripple animation.                                                             |
+| `rounded`         | `string`          | `"lg"`      | The border radius of the component. Options: "none", "sm", "md", "lg", "xl", "full".                          |
+| `gradientOverlay` | `boolean`         | `true`      | Whether to apply a gradient overlay.                                                                          |
+| `className`       | `string`          | `""`        | Additional CSS classes to apply.                                                                              |
+| `children`        | `React.ReactNode` | `undefined` | Content to be rendered inside the ripple component.                                                           |

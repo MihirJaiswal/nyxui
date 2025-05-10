@@ -1,0 +1,80 @@
+---
+title: Animated Text
+date: 2025-05-09
+description: A versatile text animation component that offers multiple animation types.
+author: MihirJaiswal
+published: true
+tags: ["Typography", "Animation"]
+---
+
+<ComponentPreview name="animated-text-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nuvyxui.vercel.app/r/animated-text"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies.</Step>
+
+```bash
+npm install framer-motion
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="animated-text" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { AnimateText } from "@/components/ui/animated-text";
+```
+
+```tsx
+<AnimateText
+  text="Modern UI Components"
+  type="cascade"
+  className="text-2xl font-bold"
+  duration={0.5}
+  delay={0}
+  once={true}
+/>
+```
+
+## Props
+
+| Prop              | Type      | Default     | Description                                                                                                                  |
+| ----------------- | --------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `text`            | `string`  | `""`        | The text content to be animated.                                                                                             |
+| `type`            | `string`  | `"cascade"` | Animation style to apply to the text. Options: 'cascade', 'flicker', 'blink', 'expand', 'rise', 'glide', 'elastic', 'float'. |
+| `className`       | `string`  | `""`        | Additional CSS classes to apply to the component.                                                                            |
+| `delay`           | `number`  | `0`         | Delay before animation starts in milliseconds.                                                                               |
+| `duration`        | `number`  | `0.5`       | Duration of the animation in seconds.                                                                                        |
+| `staggerChildren` | `number`  | `0.05`      | Time between each character's animation for cascade effects.                                                                 |
+| `once`            | `boolean` | `true`      | If true, animation plays only once when in view.                                                                             |
+| `fontSize`        | `string`  | `"2xl"`     | Font size using Tailwind CSS size classes.                                                                                   |
+| `fontWeight`      | `string`  | `"bold"`    | Font weight using Tailwind CSS weight classes.                                                                               |
+| `color`           | `string`  | `""`        | Text color (uses theme colors if not specified).                                                                             |

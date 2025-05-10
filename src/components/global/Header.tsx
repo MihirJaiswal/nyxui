@@ -33,15 +33,15 @@ export default function Header() {
   }, []);
 
   const navLinks = [
-    { href: "/components", label: "Components" },
-    { href: "/docs", label: "Documentation" },
+    { href: "/docs", label: "Components" },
+    { href: "/documentation", label: "Documentation" },
   ];
 
   const { components } = componentsData;
 
   const openSearch = () => {
     document.dispatchEvent(
-      new KeyboardEvent("keydown", { key: "k", ctrlKey: true })
+      new KeyboardEvent("keydown", { key: "k", ctrlKey: true }),
     );
   };
 
@@ -51,7 +51,7 @@ export default function Header() {
         "sticky top-0 z-50 w-full transition-all duration-300",
         scrolled
           ? "bg-background/90 backdrop-blur-xl shadow-sm"
-          : "bg-background/50 backdrop-blur-sm"
+          : "bg-background/50 backdrop-blur-sm",
       )}
     >
       <div className="absolute left-0 top-full h-px w-full pointer-events-none">
@@ -101,7 +101,7 @@ export default function Header() {
                   "after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-0.5 after:bg-primary after:rounded-full after:transition-all after:duration-300 hover:after:w-4/5",
                   activeLink === link.href
                     ? "text-foreground after:w-4/5 bg-muted/30"
-                    : "text-muted-foreground"
+                    : "text-muted-foreground",
                 )}
               >
                 {link.label}
@@ -270,7 +270,7 @@ export default function Header() {
                           "flex items-center text-sm font-medium p-2.5 rounded-md transition-colors",
                           activeLink === link.href
                             ? "text-foreground bg-muted/60 border-l-2 border-primary pl-[8px]"
-                            : "text-muted-foreground hover:text-foreground hover:bg-muted/30"
+                            : "text-muted-foreground hover:text-foreground hover:bg-muted/30",
                         )}
                       >
                         {link.label}
@@ -295,7 +295,7 @@ export default function Header() {
                             "flex items-center text-sm p-2 rounded-md transition-colors pl-2.5",
                             activeLink === `/components/${slug}`
                               ? "text-foreground bg-muted/30 border-l-2 border-primary pl-1.5"
-                              : "text-muted-foreground hover:text-foreground hover:bg-muted/20"
+                              : "text-muted-foreground hover:text-foreground hover:bg-muted/20",
                           )}
                         >
                           {comp.title}

@@ -1,0 +1,1251 @@
+{
+  "name": "shadcn/ui",
+  "homepage": "https://ui.shadcn.com",
+  "items": [
+    {
+      "name": "index",
+      "type": "registry:style",
+      "dependencies": [
+        "tw-animate-css",
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [],
+      "cssVars": {}
+    },
+    {
+      "name": "animated-code-block",
+      "type": "registry:ui",
+      "title": "Animated Code Block",
+      "description": "A code display component with real-time typing effects. Supports syntax highlighting and customizable themes.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/components/animated-code-block.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/animated-code-block.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-gradient-bg",
+      "type": "registry:ui",
+      "title": "Animated Gradient Background",
+      "description": "A dynamic animated gradient background component that supports various gradient patterns and animations.",
+      "dependencies": [
+        "motion"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/components/animated-gradient-bg.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/animated-gradient-bg.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-text",
+      "type": "registry:ui",
+      "title": "Animated Text",
+      "description": "A versatile text animation component that offers multiple animation types. Perfect for adding dynamic text effects to your UI.",
+      "dependencies": [
+        "motion"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/components/animated-text.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/animated-text.tsx"
+        }
+      ]
+    },
+    {
+      "name": "bento-grid",
+      "type": "registry:ui",
+      "title": "Bento Grid",
+      "description": "A versatile container component inspired by bento box designs, perfect for creating modern, visually appealing grid layouts.",
+      "dependencies": [
+        "motion"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/components/bento-grid.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/bento-grid.tsx"
+        }
+      ]
+    },
+    {
+      "name": "bubble-background",
+      "type": "registry:ui",
+      "title": "Bubble Background",
+      "description": "An interactive fluid bubble background component with animated colorful blobs that respond to user interaction.",
+      "files": [
+        {
+          "path": "src/nuvyxui/components/bubble-background.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/bubble-background.tsx"
+        }
+      ],
+      "cssVars": {
+        "theme": {
+          "animate-bounce-vertical": "bounceV 20s infinite ease-in-out",
+          "animate-bounce-horizontal": "bounceH 30s infinite ease-in-out",
+          "animate-move-in-circle": "moveInCircle 30s linear infinite"
+        }
+      },
+      "css": {
+        "@keyframes bounceV": {
+          "0%, 100%": {
+            "transform": "translateY(-50%)"
+          },
+          "50%": {
+            "transform": "translateY(50%)"
+          }
+        },
+        "@keyframes bounceH": {
+          "0%, 100%": {
+            "transform": "translateX(-50%) translateY(-10%)"
+          },
+          "50%": {
+            "transform": "translateX(50%) translateY(10%)"
+          }
+        },
+        "@keyframes moveInCircle": {
+          "0%": {
+            "transform": "rotate(0deg)"
+          },
+          "100%": {
+            "transform": "rotate(360deg)"
+          }
+        }
+      }
+    },
+    {
+      "name": "cyberpunk-card",
+      "type": "registry:ui",
+      "title": "Cyberpunk Card",
+      "description": "A card component with a cyberpunk aesthetic. Features neon colors and a futuristic design.",
+      "files": [
+        {
+          "path": "src/nuvyxui/components/cyberpunk-card.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/cyberpunk-card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dynamic-ripple",
+      "type": "registry:ui",
+      "title": "Dynamic Ripple",
+      "description": "A ripple effect component that follows the cursor and can be customized with various options.",
+      "files": [
+        {
+          "path": "src/nuvyxui/components/dynamic-ripple.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/dynamic-ripple.tsx"
+        }
+      ]
+    },
+    {
+      "name": "github-profile-card",
+      "type": "registry:ui",
+      "title": "Github Profile Card",
+      "description": "A card component that displays a GitHub user's profile information. It includes their avatar, name, bio, and links to their GitHub profile.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/components/github-profile-card.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/github-profile-card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "github-repo-card",
+      "type": "registry:ui",
+      "title": "Github Repo Card",
+      "description": "A card component that displays information about a GitHub repository. It includes the repository name, description, stars, forks, and a link to the repository.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/components/github-repo-card.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/github-repo-card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "glitch-button",
+      "type": "registry:ui",
+      "title": "Glitch Button",
+      "description": "Cyberpunk-inspired button with dynamic glitch effects that can be triggered on hover or click.",
+      "files": [
+        {
+          "path": "src/nuvyxui/components/glitch-button.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/glitch-button.tsx"
+        }
+      ],
+      "cssVars": {
+        "theme": {
+          "animate-glitch-layer-1": "glitchFx1 800ms infinite step-end",
+          "animate-glitch-layer-2": "glitchFx2 900ms infinite step-end",
+          "animate-glitch-layer-3": "glitchFx3 1000ms infinite step-end",
+          "animate-glitch-skew": "glitchSkew 1200ms infinite step-end",
+          "animate-flicker": "flickerAnimation 2s infinite",
+          "animate-click-glitch": "clickGlitch 500ms step-end forwards"
+        }
+      },
+      "css": {
+        "@keyframes glitchFx1": {
+          "0%, 100%": {
+            "transform": "translateX(0)"
+          },
+          "10%": {
+            "transform": "translateX(0)"
+          },
+          "20%": {
+            "transform": "translateX(-4px)"
+          },
+          "30%": {
+            "transform": "translateX(0)"
+          },
+          "40%": {
+            "transform": "translateX(12px)"
+          },
+          "50%": {
+            "transform": "translateX(8px)"
+          },
+          "60%": {
+            "transform": "translateX(24px)"
+          },
+          "70%": {
+            "transform": "translateX(2px)"
+          },
+          "80%": {
+            "transform": "translateX(-4px)"
+          },
+          "90%": {
+            "transform": "translateX(0)"
+          }
+        },
+        "@keyframes glitchFx2": {
+          "0%": {
+            "transform": "translateX(4px)"
+          },
+          "10%": {
+            "transform": "translateX(-12px)"
+          },
+          "20%": {
+            "transform": "translateX(-2px)"
+          },
+          "30%": {
+            "transform": "translateX(1px)"
+          },
+          "40%, 50%, 60%, 70%": {
+            "transform": "translateX(0)"
+          },
+          "80%": {
+            "transform": "translateX(4px)"
+          },
+          "90%": {
+            "transform": "translateX(-2px)"
+          },
+          "100%": {
+            "transform": "translateX(-15px)"
+          }
+        },
+        "@keyframes glitchFx3": {
+          "0%": {
+            "transform": "translateX(4px)"
+          },
+          "10%": {
+            "transform": "translateX(0)"
+          },
+          "20%": {
+            "transform": "translateX(4px)"
+          },
+          "30%": {
+            "transform": "translateX(0)"
+          },
+          "40%": {
+            "transform": "translateX(-4px)"
+          },
+          "50%": {
+            "transform": "translateX(0)"
+          },
+          "60%": {
+            "transform": "translateX(-4px)"
+          },
+          "70%": {
+            "transform": "translateX(0)"
+          },
+          "80%": {
+            "transform": "translateX(12px)"
+          },
+          "90%": {
+            "transform": "translateX(0)"
+          },
+          "100%": {
+            "transform": "translateX(-12px)"
+          }
+        },
+        "@keyframes glitchSkew": {
+          "0%": {
+            "transform": "skew(0deg)"
+          },
+          "10%": {
+            "transform": "skew(1deg)"
+          },
+          "20%": {
+            "transform": "skew(-2deg)"
+          },
+          "30%": {
+            "transform": "skew(1.5deg)"
+          },
+          "40%": {
+            "transform": "skew(-1deg)"
+          },
+          "50%": {
+            "transform": "skew(2deg)"
+          },
+          "60%": {
+            "transform": "skew(-1.5deg)"
+          },
+          "70%": {
+            "transform": "skew(1.5deg)"
+          },
+          "80%": {
+            "transform": "skew(-2deg)"
+          },
+          "90%": {
+            "transform": "skew(1deg)"
+          },
+          "100%": {
+            "transform": "skew(0deg)"
+          }
+        },
+        "@keyframes flickerAnimation": {
+          "0%": {
+            "opacity": "1"
+          },
+          "19%": {
+            "opacity": "1"
+          },
+          "20%": {
+            "opacity": "0"
+          },
+          "21%": {
+            "opacity": "1"
+          },
+          "49%": {
+            "opacity": "1"
+          },
+          "50%": {
+            "opacity": "0.7"
+          },
+          "51%": {
+            "opacity": "1"
+          },
+          "79%": {
+            "opacity": "1"
+          },
+          "80%": {
+            "opacity": "0.8"
+          },
+          "81%": {
+            "opacity": "1"
+          },
+          "100%": {
+            "opacity": "1"
+          }
+        },
+        "@keyframes clickGlitch": {
+          "0%, 100%": {
+            "clipPath": "inset(0 0 0 0)"
+          },
+          "20%": {
+            "clipPath": "inset(20% 0 40% 0)"
+          },
+          "40%": {
+            "clipPath": "inset(50% 0 20% 0)"
+          },
+          "60%": {
+            "clipPath": "inset(30% 0 60% 0)"
+          },
+          "80%": {
+            "clipPath": "inset(10% 0 70% 0)"
+          }
+        }
+      }
+    },
+    {
+      "name": "gradient-button",
+      "type": "registry:ui",
+      "title": "Gradient Button",
+      "description": "A button component with a gradient background.",
+      "files": [
+        {
+          "path": "src/nuvyxui/components/gradient-button.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/gradient-button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "keyboard",
+      "type": "registry:ui",
+      "title": "Keyboard",
+      "description": "A keyboard component that simulates a physical keyboard.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/components/keyboard.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/keyboard.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ms-paint",
+      "type": "registry:ui",
+      "title": "MS Paint",
+      "description": "A customizable drawing canvas component with paint-like interface.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/components/ms-paint.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/ms-paint.tsx"
+        }
+      ]
+    },
+    {
+      "name": "lamp-heading",
+      "type": "registry:ui",
+      "title": "Lamp Heading",
+      "description": "A heading component with a lamp effect.",
+      "files": [
+        {
+          "path": "src/nuvyxui/components/lamp-heading.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/lamp-heading.tsx"
+        }
+      ]
+    },
+    {
+      "name": "liquid-metal-button",
+      "type": "registry:ui",
+      "title": "Liquid Metal Button",
+      "description": "A button component with a liquid metal effect.",
+      "files": [
+        {
+          "path": "src/nuvyxui/components/liquid-metal-button.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/liquid-metal-button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "morphing-button",
+      "type": "registry:ui",
+      "title": "Morphing Button",
+      "description": "A button component with a morphing effect.",
+      "files": [
+        {
+          "path": "src/nuvyxui/components/morphing-button.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/morphing-button.tsx"
+        }
+      ],
+      "cssVars": {
+        "theme": {
+          "animate-smooth-bounce": "smoothBounce 1s ease-in-out infinite"
+        }
+      },
+      "css": {
+        "@keyframes smoothBounce": {
+          "0%, 100%": {
+            "transform": "translateY(0)"
+          },
+          "50%": {
+            "transform": "translateY(-10px)"
+          }
+        }
+      }
+    },
+    {
+      "name": "image-comparison",
+      "type": "registry:ui",
+      "title": "Image Comparison",
+      "description": "A image comparison component that allows users to compare images.",
+      "files": [
+        {
+          "path": "src/nuvyxui/components/image-comparison.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/image-comparison.tsx"
+        }
+      ]
+    },
+    {
+      "name": "image-scanner",
+      "type": "registry:ui",
+      "title": "Image Scanner",
+      "description": "A image scanner component that allows users to scan images.",
+      "dependencies": [
+        "motion"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/components/image-scanner.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/majestic-card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "majestic-card",
+      "type": "registry:ui",
+      "title": "Majestic Card",
+      "description": "A majestic card that that provide several effects.",
+      "dependencies": [
+        "motion"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/components/majestic-card.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/majestic-card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "marquee",
+      "type": "registry:ui",
+      "title": "Marquee",
+      "description": "A customizable, interactive scrolling marquee component.",
+      "dependencies": [
+        "motion"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/components/marquee.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/marquee.tsx"
+        }
+      ]
+    },
+    {
+      "name": "matrix-code-rain",
+      "type": "registry:ui",
+      "title": "Matrix Code Rain",
+      "description": "A matrix code rain that that provide several effects.",
+      "files": [
+        {
+          "path": "src/nuvyxui/components/matrix-code-rain.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/matrix-code-rain.tsx"
+        }
+      ]
+    },
+    {
+      "name": "morphing-blob",
+      "type": "registry:ui",
+      "title": "Morphing Blob",
+      "description": "A morphing blob that that provide several effects.",
+      "files": [
+        {
+          "path": "src/nuvyxui/components/morphing-blob.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/morphing-blob.tsx"
+        }
+      ]
+    },
+    {
+      "name": "music-player",
+      "type": "registry:ui",
+      "title": "Music Player",
+      "description": "A music player that that provide several effects.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/components/music-player.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/music-player.tsx"
+        }
+      ]
+    },
+    {
+      "name": "reveal-card",
+      "type": "registry:ui",
+      "title": "Reveal Card",
+      "description": "A reveal card that that provide several effects.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/components/reveal-card.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/reveal-card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "scroll-animation-trigger",
+      "type": "registry:ui",
+      "title": "Scroll Animation Trigger",
+      "description": "A scroll animation trigger that that provide several effects.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/components/scroll-animation-trigger.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/scroll-animation-trigger.tsx"
+        }
+      ]
+    },
+    {
+      "name": "terminal",
+      "type": "registry:ui",
+      "title": "Terminal",
+      "description": "A terminal that that provide several effects.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/components/terminal.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/terminal.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-code-block-demo",
+      "type": "registry:example",
+      "title": "Animated Code Block Demo",
+      "description": "Example showing a code block with typing animation effects.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/animated-code-block"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/demos/animated-code-block-demo.tsx",
+          "type": "registry:example",
+          "target": "components/animated-code-block-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-gradient-bg-demo",
+      "type": "registry:example",
+      "title": "Animated Gradient Background Demo",
+      "description": "Example showing an animated gradient background.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/animated-gradient-bg"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/demos/animated-gradient-bg-demo.tsx",
+          "type": "registry:example",
+          "target": "components/animated-gradient-bg-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-text-demo",
+      "type": "registry:example",
+      "title": "Animated Text Demo",
+      "description": "Example showing various text animations.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/animated-text"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/demos/animated-text-demo.tsx",
+          "type": "registry:example",
+          "target": "components/animated-text-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "bento-grid-demo",
+      "type": "registry:example",
+      "title": "Bento Grid Demo",
+      "description": "Example showing a responsive grid layout.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/bento-grid"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/demos/bento-grid-demo.tsx",
+          "type": "registry:example",
+          "target": "components/bento-grid-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "bubble-background-demo",
+      "type": "registry:example",
+      "title": "Bubble Background Demo",
+      "description": "Example showing an interactive fluid background.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/bubble-background"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/demos/bubble-background-demo.tsx",
+          "type": "registry:example",
+          "target": "components/bubble-background-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "cyberpunk-card-demo",
+      "type": "registry:example",
+      "title": "Cyberpunk Card Demo",
+      "description": "Example showing a cyberpunk card.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/cyberpunk-card"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/demos/cyberpunk-card-demo.tsx",
+          "type": "registry:example",
+          "target": "components/cyberpunk-card-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "cyberpunk-card-demo1",
+      "type": "registry:example",
+      "title": "Cyberpunk Card Demo 1",
+      "description": "Example showing a cyberpunk card.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/cyberpunk-card"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/demos/cyberpunk-card-demo1.tsx",
+          "type": "registry:example",
+          "target": "components/cyberpunk-card-demo1.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dynamic-ripple-demo",
+      "type": "registry:example",
+      "title": "Dynamic Ripple Demo",
+      "description": "Example showing a dynamic ripple effect.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/dynamic-ripple"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/demos/dynamic-ripple-demo.tsx",
+          "type": "registry:example",
+          "target": "components/dynamic-ripple-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "github-profile-card-demo",
+      "type": "registry:example",
+      "title": "Github Profile Card Demo",
+      "description": "Example showing a GitHub profile card.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/github-profile-card"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/demos/github-profile-card-demo.tsx",
+          "type": "registry:example",
+          "target": "components/github-profile-card-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "github-repo-card-demo",
+      "type": "registry:example",
+      "title": "Github Repo Card Demo",
+      "description": "Example showing a GitHub repo card.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/github-repo-card"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/demos/github-repo-card-demo.tsx",
+          "type": "registry:example",
+          "target": "components/github-repo-card-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "github-repo-card-demo1",
+      "type": "registry:example",
+      "title": "Github Repo Card Demo 1",
+      "description": "Example showing a GitHub repo card.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/github-repo-card"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/demos/github-repo-card-demo1.tsx",
+          "type": "registry:example",
+          "target": "components/github-repo-card-demo1.tsx"
+        }
+      ]
+    },
+    {
+      "name": "github-repo-card-demo2",
+      "type": "registry:example",
+      "title": "Github Repo Card Demo 2",
+      "description": "Example showing a GitHub repo card.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/github-repo-card"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/demos/github-repo-card-demo2.tsx",
+          "type": "registry:example",
+          "target": "components/github-repo-card-demo2.tsx"
+        }
+      ]
+    },
+    {
+      "name": "glitch-button-demo",
+      "type": "registry:example",
+      "title": "Glitch Button Demo",
+      "description": "Example showing a glitch button.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/glitch-button"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/demos/glitch-button-demo.tsx",
+          "type": "registry:example",
+          "target": "components/glitch-button-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "gradient-button-demo",
+      "type": "registry:example",
+      "title": "Gradient Button Demo",
+      "description": "Example showing a gradient button.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/gradient-button"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/demos/gradient-button-demo.tsx",
+          "type": "registry:example",
+          "target": "components/gradient-button-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "keyboard-demo",
+      "type": "registry:example",
+      "title": "Keyboard Demo",
+      "description": "Example showing a interactive keyboard.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/keyboard"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/demos/keyboard-demo.tsx",
+          "type": "registry:example",
+          "target": "components/keyboard-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "keyboard-demo1",
+      "type": "registry:example",
+      "title": "Keyboard Demo 1",
+      "description": "Example showing a interactive keyboard.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/keyboard"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/demos/keyboard-demo1.tsx",
+          "type": "registry:example",
+          "target": "components/keyboard-demo1.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ms-paint-demo",
+      "type": "registry:example",
+      "title": "MS Paint Demo",
+      "description": "Example showing a MS Paint clone.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/ms-paint"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/demos/ms-paint-demo.tsx",
+          "type": "registry:example",
+          "target": "components/ms-paint-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "lamp-heading-demo",
+      "type": "registry:example",
+      "title": "Lamp Heading Demo",
+      "description": "Example showing a lamp heading.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/lamp-heading"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/demos/lamp-heading-demo.tsx",
+          "type": "registry:example",
+          "target": "components/lamp-heading-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "liquid-metal-button-demo",
+      "type": "registry:example",
+      "title": "Liquid Metal Button Demo",
+      "description": "Example showing a liquid metal button.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/liquid-metal-button"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/demos/liquid-metal-button-demo.tsx",
+          "type": "registry:example",
+          "target": "components/liquid-metal-button-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "morphing-button-demo",
+      "type": "registry:example",
+      "title": "Morphing Button Demo",
+      "description": "Example showing a morphing button.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/morphing-button"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/demos/morphing-button-demo.tsx",
+          "type": "registry:example",
+          "target": "components/morphing-button-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "image-comparison-demo",
+      "type": "registry:example",
+      "title": "Image Comparison Demo",
+      "description": "Example showing a image comparison.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/image-comparison"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/demos/image-comparison-demo.tsx",
+          "type": "registry:example",
+          "target": "components/image-comparison-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "image-scanner-demo",
+      "type": "registry:example",
+      "title": "Image Scanner Demo",
+      "description": "Example showing a image scanner.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/image-scanner"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/demos/image-scanner-demo.tsx",
+          "type": "registry:example",
+          "target": "components/image-scanner-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "majestic-card-demo",
+      "type": "registry:example",
+      "title": "Majestic Card Demo",
+      "description": "Example showing a majestic card.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/majestic-card"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/demos/majestic-card-demo.tsx",
+          "type": "registry:example",
+          "target": "components/majestic-card-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "marquee-demo",
+      "type": "registry:example",
+      "title": "Marquee Demo",
+      "description": "Example showing a marquee.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/marquee"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/demos/marquee-demo.tsx",
+          "type": "registry:example",
+          "target": "components/marquee-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "marquee-demo1",
+      "type": "registry:example",
+      "title": "Marquee Demo 1",
+      "description": "Example showing a marquee.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/marquee"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/demos/marquee-demo1.tsx",
+          "type": "registry:example",
+          "target": "components/marquee-demo1.tsx"
+        }
+      ]
+    },
+    {
+      "name": "marquee-demo2",
+      "type": "registry:example",
+      "title": "Marquee Demo 2",
+      "description": "Example showing a marquee.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/marquee"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/demos/marquee-demo2.tsx",
+          "type": "registry:example",
+          "target": "components/marquee-demo2.tsx"
+        }
+      ]
+    },
+    {
+      "name": "matrix-code-rain-demo",
+      "type": "registry:example",
+      "title": "Matrix Code Rain Demo",
+      "description": "Example showing a matrix code rain.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/matrix-code-rain"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/demos/matrix-code-rain-demo.tsx",
+          "type": "registry:example",
+          "target": "components/matrix-code-rain-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "morphing-blob-demo",
+      "type": "registry:example",
+      "title": "Morphing Blob Demo",
+      "description": "Example showing a morphing blob.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/morphing-blob"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/demos/morphing-blob-demo.tsx",
+          "type": "registry:example",
+          "target": "components/morphing-blob-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "music-player-demo",
+      "type": "registry:example",
+      "title": "Music Player Demo",
+      "description": "Example showing a music player.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/music-player"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/demos/music-player-demo.tsx",
+          "type": "registry:example",
+          "target": "components/music-player-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "music-player-demo1",
+      "type": "registry:example",
+      "title": "Music Player Demo 1",
+      "description": "Example showing a music player.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/music-player"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/demos/music-player-demo1.tsx",
+          "type": "registry:example",
+          "target": "components/music-player-demo1.tsx"
+        }
+      ]
+    },
+    {
+      "name": "music-player-demo2",
+      "type": "registry:example",
+      "title": "Music Player Demo 2",
+      "description": "Example showing a music player.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/music-player"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/demos/music-player-demo2.tsx",
+          "type": "registry:example",
+          "target": "components/music-player-demo2.tsx"
+        }
+      ]
+    },
+    {
+      "name": "reveal-card-demo",
+      "type": "registry:example",
+      "title": "Reveal Card Demo",
+      "description": "Example showing a reveal card.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/reveal-card"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/demos/reveal-card-demo.tsx",
+          "type": "registry:example",
+          "target": "components/reveal-card-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "scroll-animation-trigger-demo",
+      "type": "registry:example",
+      "title": "Scroll Animation Trigger Demo",
+      "description": "Example showing a scroll animation trigger.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/scroll-animation-trigger"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/demos/scroll-animation-trigger-demo.tsx",
+          "type": "registry:example",
+          "target": "components/scroll-animation-trigger-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "scroll-animation-trigger-demo1",
+      "type": "registry:example",
+      "title": "Scroll Animation Trigger Demo 1",
+      "description": "Example showing a scroll animation trigger.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/scroll-animation-trigger"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/demos/scroll-animation-trigger-demo1.tsx",
+          "type": "registry:example",
+          "target": "components/scroll-animation-trigger-demo1.tsx"
+        }
+      ]
+    },
+    {
+      "name": "scroll-animation-trigger-demo2",
+      "type": "registry:example",
+      "title": "Scroll Animation Trigger Demo 2",
+      "description": "Example showing a scroll animation trigger.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/scroll-animation-trigger"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/demos/scroll-animation-trigger-demo2.tsx",
+          "type": "registry:example",
+          "target": "components/scroll-animation-trigger-demo2.tsx"
+        }
+      ]
+    },
+    {
+      "name": "terminal-demo",
+      "type": "registry:example",
+      "title": "Terminal Demo",
+      "description": "Example showing a terminal.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/terminal"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/demos/terminal-demo.tsx",
+          "type": "registry:example",
+          "target": "components/terminal-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "terminal-demo1",
+      "type": "registry:example",
+      "title": "Terminal Demo 1",
+      "description": "Example showing a terminal.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/terminal"
+      ],
+      "files": [
+        {
+          "path": "src/nuvyxui/demos/terminal-demo1.tsx",
+          "type": "registry:example",
+          "target": "components/terminal-demo1.tsx"
+        }
+      ]
+    },
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "files": [
+        {
+          "path": "src/lib/utils.ts",
+          "type": "registry:lib"
+        }
+      ]
+    }
+  ]
+}

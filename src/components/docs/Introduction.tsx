@@ -16,8 +16,8 @@ export default function IntroductionPage() {
           <h1 className="text-4xl font-bold tracking-tight">Introduction</h1>
           <p className="text-gray-700 dark:text-gray-300 text-lg">
             <span className="inline-block align-top no-underline">
-              Craft animated landing pages using ready-to-use components that you
-              can simply copy and integrate into your applications.
+              Craft animated landing pages using ready-to-use components that
+              you can simply copy and integrate into your applications.
             </span>
           </p>
         </div>

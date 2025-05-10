@@ -1,0 +1,158 @@
+---
+title: GitHub Repo Card
+date: 2025-05-09
+description: Beautiful GitHub repository cards with customizable themes, activity graphs, and real-time data fetching.
+author: MihirJaiswal
+published: true
+tags: ["Cards", "GitHub"]
+---
+
+<ComponentPreview name="github-repo-card-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nuvyxui.vercel.app/r/github-repo-card"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies</Step>
+
+```bash
+npm install clsx tailwind-merge
+```
+
+<Step>Create a utils.ts file with the cn utility function</Step>
+
+```tsx
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="github-repo-card" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Examples
+
+### Retro Theme
+
+<ComponentPreview name="github-repo-card-demo1" />
+
+### Midnight Theme
+
+<ComponentPreview name="github-repo-card-demo2" />
+
+## Usage
+
+```tsx
+import { GitHubRepoCard } from "@/components/ui/github-repo-card";
+```
+
+```tsx
+// Using API mode with GitHub token (recommended)
+export default function MyComponent() {
+  const token = process.env.GITHUB_TOKEN;
+  return (
+    <div className="w-full max-w-md mx-auto">
+      <GitHubRepoCard
+        repoOwner="shadcn-ui"
+        repoName="ui"
+        themeId="modern-dark"
+        githubToken={token}
+      />
+    </div>
+  );
+}
+
+// Using manual mode with provided data
+export function ManualExample() {
+  return (
+    <div className="w-full max-w-md mx-auto">
+      <GitHubRepoCard
+        manualMode={true}
+        themeId="retro"
+        repoData={{
+          name: "tailwindcss",
+          fullName: "tailwindlabs/tailwindcss",
+          description:
+            "A utility-first CSS framework for rapid UI development.",
+          owner: {
+            login: "tailwindlabs",
+            avatarUrl: "https://avatars.githubusercontent.com/u/67109815?v=4",
+          },
+          stars: 68000,
+          forks: 3500,
+          watchers: 1800,
+          issues: 95,
+          language: "JavaScript",
+          languageColor: "#f1e05a",
+          updatedAt: "2025-04-02T08:15:43Z",
+          topics: ["css", "framework", "design", "frontend"],
+          activityData: [
+            0.5, 0.6, 0.4, 0.5, 0.7, 0.8, 0.9, 1.0, 0.8, 0.6, 0.7, 0.8,
+          ],
+          isPrivate: false,
+        }}
+      />
+    </div>
+  );
+}
+```
+
+## Props
+
+### GitHub Repo Card
+
+| Prop          | Type             | Default          | Description                                                                                                                                        |
+| ------------- | ---------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `repoOwner`   | `string`         | `undefined`      | GitHub username or organization name that owns the repository. Required when not using manualMode.                                                 |
+| `repoName`    | `string`         | `undefined`      | Name of the GitHub repository. Required when not using manualMode.                                                                                 |
+| `githubToken` | `string`         | `undefined`      | Optional GitHub API token for increased rate limits (unauthenticated: 60/hr, authenticated: 5,000/hr). Store securely using environment variables. |
+| `manualMode`  | `boolean`        | `false`          | When true, uses provided repoData instead of fetching from GitHub API. Useful for avoiding rate limits or displaying custom repository data.       |
+| `repoData`    | `ManualRepoData` | `undefined`      | Repository data object for manual mode. Required when manualMode is true. Includes fields for repository name, stars, forks, language, etc.        |
+| `themeId`     | `string`         | `"modern-light"` | Visual theme for the card. Options: modern-dark, modern-light, retro, midnight. Some themes support automatic light/dark mode switching.           |
+
+### ManualRepoData Type
+
+| Property        | Type       | Default                        | Description                                                                                        |
+| --------------- | ---------- | ------------------------------ | -------------------------------------------------------------------------------------------------- |
+| `name`          | `string`   | `""`                           | Repository name (e.g., 'next.js').                                                                 |
+| `fullName`      | `string`   | `""`                           | Full repository name with owner (e.g., 'vercel/next.js').                                          |
+| `description`   | `string`   | `""`                           | Repository description (optional).                                                                 |
+| `owner`         | `object`   | `{ login: '', avatarUrl: '' }` | Repository owner with login (username) and avatarUrl properties.                                   |
+| `stars`         | `number`   | `0`                            | Number of repository stars.                                                                        |
+| `forks`         | `number`   | `0`                            | Number of repository forks.                                                                        |
+| `watchers`      | `number`   | `0`                            | Number of repository watchers.                                                                     |
+| `issues`        | `number`   | `0`                            | Number of open issues in the repository.                                                           |
+| `language`      | `string`   | `undefined`                    | Primary programming language used in the repository (optional).                                    |
+| `languageColor` | `string`   | `undefined`                    | Hex color code for the language indicator (optional, defaults to standard GitHub language colors). |
+| `updatedAt`     | `string`   | `""`                           | ISO date string of when the repository was last updated.                                           |
+| `topics`        | `string[]` | `[]`                           | Array of repository topics/tags to display on the card.                                            |
+| `activityData`  | `number[]` | `undefined`                    | Array of 12 normalized values (0-1) representing repository commit activity for the graph display. |
+| `isPrivate`     | `boolean`  | `false`                        | Whether the repository is private (displays badge on card).                                        |

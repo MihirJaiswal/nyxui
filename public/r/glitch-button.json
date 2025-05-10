@@ -1,0 +1,216 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "glitch-button",
+  "type": "registry:ui",
+  "title": "Glitch Button",
+  "description": "Cyberpunk-inspired button with dynamic glitch effects that can be triggered on hover or click.",
+  "dependencies": [
+    "tailwind-merge"
+  ],
+  "files": [
+    {
+      "path": "src/nuvyxui/components/glitch-button.tsx",
+      "content": "\"use client\";\nimport React, { useState, useRef } from \"react\";\nimport { twMerge } from \"tailwind-merge\";\n\ninterface GlitchButtonProps\n  extends React.ButtonHTMLAttributes<HTMLButtonElement> {\n  children: React.ReactNode;\n  className?: string;\n  glitchOnHover?: boolean;\n  glitchAlways?: boolean;\n  glitchColors?: {\n    primary?: string;\n    secondary?: string;\n  };\n  borderColor?: string;\n}\n\nexport const GlitchButton: React.FC<GlitchButtonProps> = ({\n  children,\n  className = \"\",\n  glitchOnHover = true,\n  glitchAlways = false,\n  glitchColors = {\n    primary: \"#ef00ef\",\n    secondary: \"#00ffff\",\n  },\n  borderColor = \"white\",\n  ...props\n}) => {\n  const [isHovering, setIsHovering] = useState(false);\n  const [isClicked, setIsClicked] = useState(false);\n  const buttonRef = useRef<HTMLButtonElement>(null);\n  const showGlitch = glitchAlways || (glitchOnHover && isHovering) || isClicked;\n  const bgColorClass = className.match(/bg-[a-z0-9-]+/)?.[0] || \"bg-gray-900\";\n  const textColorClass =\n    className.match(/text-[a-z0-9-]+/)?.[0] || \"text-white\";\n  const isRounded = /rounded(-[a-z]+)?/.test(className);\n\n  const borderStyle = {\n    boxShadow: `inset ${borderColor} 5px 5px 0px, inset ${borderColor} -5px 5px 0px, inset ${borderColor} 5px -5px 0px, inset ${borderColor} -5px -5px 0px`,\n  };\n\n  const textShadowStyle = {\n    textShadow: `\n      -1.5px -1.5px 0 ${glitchColors.primary}, \n      1.5px 1.5px 0 ${glitchColors.secondary}\n    `,\n  };\n\n  const handleMouseEnter = () => setIsHovering(true);\n  const handleMouseLeave = () => setIsHovering(false);\n\n  const handleClick = () => {\n    setIsClicked(true);\n    setTimeout(() => setIsClicked(false), 500);\n  };\n\n  const containerClasses = twMerge(\n    \"relative cursor-pointer font-mono overflow-hidden\",\n    \"text-4xl\",\n    \"bg-gray-900\",\n    \"text-white\",\n    \"p-4 m-1.5\",\n    \"group\",\n    \"hover:shadow-none\",\n    \"hover:bg-gradient-to-r hover:from-fuchsia-600 hover:via-white hover:to-cyan-400\",\n    isClicked ? \"click-glitch\" : \"\",\n    className,\n  );\n\n  return (\n    <button\n      ref={buttonRef}\n      onClick={handleClick}\n      onMouseEnter={handleMouseEnter}\n      onMouseLeave={handleMouseLeave}\n      className={containerClasses}\n      style={borderStyle}\n      {...props}\n    >\n      <span\n        className={`\n        block\n        ${showGlitch ? \"opacity-0\" : \"opacity-100\"} \n        transition-opacity\n        ${glitchAlways ? \"flicker-animation\" : \"\"}\n      `}\n      >\n        {children}\n      </span>\n\n      {showGlitch && (\n        <div\n          className={`\n          absolute inset-0 \n          overflow-hidden \n          ${isClicked ? \"glitch-skew\" : \"\"}\n        `}\n        >\n          <div\n            className={`\n            absolute left-0 w-full h-1/3 top-0 \n            ${bgColorClass}\n            ${isRounded ? \"rounded-t-lg\" : \"\"}\n            overflow-hidden\n            glitch-layer-1\n          `}\n            style={{\n              boxShadow: `inset ${borderColor} 5px 5px 0px, inset ${borderColor} -5px 0px 0px`,\n            }}\n          >\n            <div\n              className={`\n                absolute w-full ${textColorClass}\n                top-0 left-0 right-0\n                flex items-center justify-center\n                h-full\n              `}\n              style={textShadowStyle}\n            >\n              <div className=\"transform translate-y-0 mt-[45px]\">\n                {children}\n              </div>\n            </div>\n          </div>\n          <div\n            className={`\n            absolute left-0 w-full h-1/3 top-1/3 \n            ${bgColorClass}\n            overflow-hidden\n            glitch-layer-2\n          `}\n            style={{\n              boxShadow: `inset ${borderColor} 5px 0px 0px, inset ${borderColor} -5px 0px 0px`,\n            }}\n          >\n            <div\n              className={`\n                absolute w-full ${textColorClass}\n                top-0 left-0 right-0\n                flex items-center justify-center\n                h-[300%] -translate-y-1/3\n              `}\n              style={textShadowStyle}\n            >\n              <div>{children}</div>\n            </div>\n          </div>\n          <div\n            className={`\n            absolute left-0 w-full h-1/3 top-2/3 \n            ${bgColorClass}\n            ${isRounded ? \"rounded-b-lg\" : \"\"}\n            overflow-hidden\n            glitch-layer-3\n          `}\n            style={{\n              boxShadow: `inset ${borderColor} 5px -5px 0px, inset ${borderColor} -5px 0px 0px`,\n            }}\n          >\n            <div\n              className={`\n                absolute w-full ${textColorClass}\n                top-0 left-0 right-0\n                flex items-center justify-center\n                h-[300%] -translate-y-2/3\n              `}\n              style={textShadowStyle}\n            >\n              <div>{children}</div>\n            </div>\n          </div>\n        </div>\n      )}\n    </button>\n  );\n};\n",
+      "type": "registry:ui",
+      "target": "components/ui/glitch-button.tsx"
+    },
+    {
+      "path": "src\\nuvyxui\\components\\glitch-button.tsx",
+      "content": "\"use client\";\nimport React, { useState, useRef } from \"react\";\nimport { twMerge } from \"tailwind-merge\";\n\ninterface GlitchButtonProps\n  extends React.ButtonHTMLAttributes<HTMLButtonElement> {\n  children: React.ReactNode;\n  className?: string;\n  glitchOnHover?: boolean;\n  glitchAlways?: boolean;\n  glitchColors?: {\n    primary?: string;\n    secondary?: string;\n  };\n  borderColor?: string;\n}\n\nexport const GlitchButton: React.FC<GlitchButtonProps> = ({\n  children,\n  className = \"\",\n  glitchOnHover = true,\n  glitchAlways = false,\n  glitchColors = {\n    primary: \"#ef00ef\",\n    secondary: \"#00ffff\",\n  },\n  borderColor = \"white\",\n  ...props\n}) => {\n  const [isHovering, setIsHovering] = useState(false);\n  const [isClicked, setIsClicked] = useState(false);\n  const buttonRef = useRef<HTMLButtonElement>(null);\n  const showGlitch = glitchAlways || (glitchOnHover && isHovering) || isClicked;\n  const bgColorClass = className.match(/bg-[a-z0-9-]+/)?.[0] || \"bg-gray-900\";\n  const textColorClass =\n    className.match(/text-[a-z0-9-]+/)?.[0] || \"text-white\";\n  const isRounded = /rounded(-[a-z]+)?/.test(className);\n\n  const borderStyle = {\n    boxShadow: `inset ${borderColor} 5px 5px 0px, inset ${borderColor} -5px 5px 0px, inset ${borderColor} 5px -5px 0px, inset ${borderColor} -5px -5px 0px`,\n  };\n\n  const textShadowStyle = {\n    textShadow: `\n      -1.5px -1.5px 0 ${glitchColors.primary}, \n      1.5px 1.5px 0 ${glitchColors.secondary}\n    `,\n  };\n\n  const handleMouseEnter = () => setIsHovering(true);\n  const handleMouseLeave = () => setIsHovering(false);\n\n  const handleClick = () => {\n    setIsClicked(true);\n    setTimeout(() => setIsClicked(false), 500);\n  };\n\n  const containerClasses = twMerge(\n    \"relative cursor-pointer font-mono overflow-hidden\",\n    \"text-4xl\",\n    \"bg-gray-900\",\n    \"text-white\",\n    \"p-4 m-1.5\",\n    \"group\",\n    \"hover:shadow-none\",\n    \"hover:bg-gradient-to-r hover:from-fuchsia-600 hover:via-white hover:to-cyan-400\",\n    isClicked ? \"click-glitch\" : \"\",\n    className,\n  );\n\n  return (\n    <button\n      ref={buttonRef}\n      onClick={handleClick}\n      onMouseEnter={handleMouseEnter}\n      onMouseLeave={handleMouseLeave}\n      className={containerClasses}\n      style={borderStyle}\n      {...props}\n    >\n      <span\n        className={`\n        block\n        ${showGlitch ? \"opacity-0\" : \"opacity-100\"} \n        transition-opacity\n        ${glitchAlways ? \"flicker-animation\" : \"\"}\n      `}\n      >\n        {children}\n      </span>\n\n      {showGlitch && (\n        <div\n          className={`\n          absolute inset-0 \n          overflow-hidden \n          ${isClicked ? \"glitch-skew\" : \"\"}\n        `}\n        >\n          <div\n            className={`\n            absolute left-0 w-full h-1/3 top-0 \n            ${bgColorClass}\n            ${isRounded ? \"rounded-t-lg\" : \"\"}\n            overflow-hidden\n            glitch-layer-1\n          `}\n            style={{\n              boxShadow: `inset ${borderColor} 5px 5px 0px, inset ${borderColor} -5px 0px 0px`,\n            }}\n          >\n            <div\n              className={`\n                absolute w-full ${textColorClass}\n                top-0 left-0 right-0\n                flex items-center justify-center\n                h-full\n              `}\n              style={textShadowStyle}\n            >\n              <div className=\"transform translate-y-0 mt-[45px]\">\n                {children}\n              </div>\n            </div>\n          </div>\n          <div\n            className={`\n            absolute left-0 w-full h-1/3 top-1/3 \n            ${bgColorClass}\n            overflow-hidden\n            glitch-layer-2\n          `}\n            style={{\n              boxShadow: `inset ${borderColor} 5px 0px 0px, inset ${borderColor} -5px 0px 0px`,\n            }}\n          >\n            <div\n              className={`\n                absolute w-full ${textColorClass}\n                top-0 left-0 right-0\n                flex items-center justify-center\n                h-[300%] -translate-y-1/3\n              `}\n              style={textShadowStyle}\n            >\n              <div>{children}</div>\n            </div>\n          </div>\n          <div\n            className={`\n            absolute left-0 w-full h-1/3 top-2/3 \n            ${bgColorClass}\n            ${isRounded ? \"rounded-b-lg\" : \"\"}\n            overflow-hidden\n            glitch-layer-3\n          `}\n            style={{\n              boxShadow: `inset ${borderColor} 5px -5px 0px, inset ${borderColor} -5px 0px 0px`,\n            }}\n          >\n            <div\n              className={`\n                absolute w-full ${textColorClass}\n                top-0 left-0 right-0\n                flex items-center justify-center\n                h-[300%] -translate-y-2/3\n              `}\n              style={textShadowStyle}\n            >\n              <div>{children}</div>\n            </div>\n          </div>\n        </div>\n      )}\n    </button>\n  );\n};\n",
+      "type": "registry:component",
+      "target": ""
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "animate-glitch-layer-1": "glitchFx1 800ms infinite step-end",
+      "animate-glitch-layer-2": "glitchFx2 900ms infinite step-end",
+      "animate-glitch-layer-3": "glitchFx3 1000ms infinite step-end",
+      "animate-glitch-skew": "glitchSkew 1200ms infinite step-end",
+      "animate-flicker": "flickerAnimation 2s infinite",
+      "animate-click-glitch": "clickGlitch 500ms step-end forwards"
+    }
+  },
+  "css": {
+    "@keyframes glitchFx1": {
+      "0%, 100%": {
+        "transform": "translateX(0)"
+      },
+      "10%": {
+        "transform": "translateX(0)"
+      },
+      "20%": {
+        "transform": "translateX(-4px)"
+      },
+      "30%": {
+        "transform": "translateX(0)"
+      },
+      "40%": {
+        "transform": "translateX(12px)"
+      },
+      "50%": {
+        "transform": "translateX(8px)"
+      },
+      "60%": {
+        "transform": "translateX(24px)"
+      },
+      "70%": {
+        "transform": "translateX(2px)"
+      },
+      "80%": {
+        "transform": "translateX(-4px)"
+      },
+      "90%": {
+        "transform": "translateX(0)"
+      }
+    },
+    "@keyframes glitchFx2": {
+      "0%": {
+        "transform": "translateX(4px)"
+      },
+      "10%": {
+        "transform": "translateX(-12px)"
+      },
+      "20%": {
+        "transform": "translateX(-2px)"
+      },
+      "30%": {
+        "transform": "translateX(1px)"
+      },
+      "40%, 50%, 60%, 70%": {
+        "transform": "translateX(0)"
+      },
+      "80%": {
+        "transform": "translateX(4px)"
+      },
+      "90%": {
+        "transform": "translateX(-2px)"
+      },
+      "100%": {
+        "transform": "translateX(-15px)"
+      }
+    },
+    "@keyframes glitchFx3": {
+      "0%": {
+        "transform": "translateX(4px)"
+      },
+      "10%": {
+        "transform": "translateX(0)"
+      },
+      "20%": {
+        "transform": "translateX(4px)"
+      },
+      "30%": {
+        "transform": "translateX(0)"
+      },
+      "40%": {
+        "transform": "translateX(-4px)"
+      },
+      "50%": {
+        "transform": "translateX(0)"
+      },
+      "60%": {
+        "transform": "translateX(-4px)"
+      },
+      "70%": {
+        "transform": "translateX(0)"
+      },
+      "80%": {
+        "transform": "translateX(12px)"
+      },
+      "90%": {
+        "transform": "translateX(0)"
+      },
+      "100%": {
+        "transform": "translateX(-12px)"
+      }
+    },
+    "@keyframes glitchSkew": {
+      "0%": {
+        "transform": "skew(0deg)"
+      },
+      "10%": {
+        "transform": "skew(1deg)"
+      },
+      "20%": {
+        "transform": "skew(-2deg)"
+      },
+      "30%": {
+        "transform": "skew(1.5deg)"
+      },
+      "40%": {
+        "transform": "skew(-1deg)"
+      },
+      "50%": {
+        "transform": "skew(2deg)"
+      },
+      "60%": {
+        "transform": "skew(-1.5deg)"
+      },
+      "70%": {
+        "transform": "skew(1.5deg)"
+      },
+      "80%": {
+        "transform": "skew(-2deg)"
+      },
+      "90%": {
+        "transform": "skew(1deg)"
+      },
+      "100%": {
+        "transform": "skew(0deg)"
+      }
+    },
+    "@keyframes flickerAnimation": {
+      "0%": {
+        "opacity": "1"
+      },
+      "19%": {
+        "opacity": "1"
+      },
+      "20%": {
+        "opacity": "0"
+      },
+      "21%": {
+        "opacity": "1"
+      },
+      "49%": {
+        "opacity": "1"
+      },
+      "50%": {
+        "opacity": "0.7"
+      },
+      "51%": {
+        "opacity": "1"
+      },
+      "79%": {
+        "opacity": "1"
+      },
+      "80%": {
+        "opacity": "0.8"
+      },
+      "81%": {
+        "opacity": "1"
+      },
+      "100%": {
+        "opacity": "1"
+      }
+    },
+    "@keyframes clickGlitch": {
+      "0%, 100%": {
+        "clipPath": "inset(0 0 0 0)"
+      },
+      "20%": {
+        "clipPath": "inset(20% 0 40% 0)"
+      },
+      "40%": {
+        "clipPath": "inset(50% 0 20% 0)"
+      },
+      "60%": {
+        "clipPath": "inset(30% 0 60% 0)"
+      },
+      "80%": {
+        "clipPath": "inset(10% 0 70% 0)"
+      }
+    }
+  }
+}

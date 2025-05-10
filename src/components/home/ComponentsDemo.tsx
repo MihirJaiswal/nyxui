@@ -1,18 +1,18 @@
 import React from "react";
-import { BentoGrid } from "@/nuvyxui/components/BentoGrid";
-import { AnimatedGradientBg } from "@/nuvyxui/components/AnimatedGradientBg";
+import { BentoGrid } from "@/nuvyxui/components/bento-grid";
+import { AnimatedGradientBg } from "@/nuvyxui/components/animated-gradient-bg";
 import { ChevronRight, Code, Rocket, Sparkles } from "lucide-react";
-import { DynamicRipple } from "@/nuvyxui/components/DynamicRipple";
+import { DynamicRipple } from "@/nuvyxui/components/dynamic-ripple";
 import Link from "next/link";
-import InteractiveTerminal from "@/nuvyxui/components/Terminal";
+import InteractiveTerminal from "@/nuvyxui/components/terminal";
 import { Rbutton } from "../ui/Rbutton";
-import InteractiveKeyboard from "@/nuvyxui/components/Keyboard";
-import { ImageScanner } from "@/nuvyxui/components/ImageScanner";
-import LampHeading from "@/nuvyxui/components/LampHeading";
+import InteractiveKeyboard from "@/nuvyxui/components/keyboard";
+import { ImageScanner } from "@/nuvyxui/components/image-scanner";
+import LampHeading from "@/nuvyxui/components/lamp-heading";
 import { Particles } from "../ui/particles";
 import { TwitterCard } from "./TweetCard";
 import { Matrix } from "./Matrix";
-import { MorphingBlob } from "@/nuvyxui/components/MorphingBlob";
+import { MorphingBlob } from "@/nuvyxui/components/morphing-blob";
 
 export const ComponentsDemo = () => {
   return (
@@ -50,14 +50,13 @@ export const ComponentsDemo = () => {
                     className="rounded-none font-mono text-sm pb-2"
                     repeat={true}
                     variant="custom"
-                    customTheme={
-                      {
-                        container: "bg-black text-green-500",
-                        header: "bg-green-950/40 text-green-500 border-green-500/20",
-                        output: "bg-black text-green-500",
-                        button: "bg-gray-950 text-green-500",
-                      }
-                    }
+                    customTheme={{
+                      container: "bg-black text-green-500",
+                      header:
+                        "bg-green-950/40 text-green-500 border-green-500/20",
+                      output: "bg-black text-green-500",
+                      button: "bg-gray-950 text-green-500",
+                    }}
                     icon={<Code className="mr-1 mt-1 text-green-500 w-4 h-4" />}
                     steps={[
                       "Booting exploit frames...",
@@ -197,9 +196,7 @@ export const ComponentsDemo = () => {
           enableTitle={false}
           height="h-full"
           className="rounded-2xl lg:col-span-2 overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] border border-zinc-200 dark:border-zinc-800"
-          component={
-            <Matrix />
-          }
+          component={<Matrix />}
         />
 
         <BentoGrid
@@ -222,7 +219,7 @@ export const ComponentsDemo = () => {
                   customColors={{
                     from: "#48176e",
                     via: "#5c176e",
-                    to: "#69176e"
+                    to: "#69176e",
                   }}
                   complexity={5}
                   speed={3}
@@ -249,7 +246,7 @@ export const ComponentsDemo = () => {
       </div>
 
       <div className="relative mt-8 flex w-full flex-col justify-center space-y-2 sm:flex-row sm:space-y-0 sm:space-x-4 my-16 px-8">
-        <Link href="/components" rel="noopener noreferrer">
+        <Link href="/docs" rel="noopener noreferrer">
           <Rbutton className="bg-slate-900 dark:bg-white dark:text-black no-underline flex space-x-2 group cursor-pointer relative hover:shadow-2xl transition duration-200 shadow-zinc-900 p-px font-semibold text-white px-4 py-2 h-14 w-full items-center justify-center rounded-2xl text-center text-sm sm:w-52">
             All Components
             <ChevronRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-0.5" />
