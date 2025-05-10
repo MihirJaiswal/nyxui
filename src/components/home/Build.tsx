@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Card } from "@/components/ui/card";
 import Image from "next/image";
-import { Marquee } from "@/nuvyxui/components/marque";
+import { Marquee } from "@/nuvyxui/components/marquee";
 import { componentsData } from "@/nuvyxui/Data";
 
 interface ComponentData {

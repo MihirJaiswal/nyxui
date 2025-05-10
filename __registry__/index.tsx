@@ -491,7 +491,7 @@ export const Index: Record<string, any> = {
       },
     ],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/components/marque.jsx");
+      const mod = await import("../src/nuvyxui/components/marquee.jsx");
       const exportName =
         Object.keys(mod).find(
           (key) =>
