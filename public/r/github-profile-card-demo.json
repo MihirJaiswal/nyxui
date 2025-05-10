@@ -4,9 +4,6 @@
   "type": "registry:example",
   "title": "Github Profile Card Demo",
   "description": "Example showing a GitHub profile card.",
-  "dependencies": [
-    ".."
-  ],
   "registryDependencies": [
     "https://nuvyxui.vercel.app/r/github-profile-card.json"
   ],
