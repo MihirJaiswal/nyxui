@@ -5,7 +5,7 @@
   "title": "Github Profile Card Demo",
   "description": "Example showing a GitHub profile card.",
   "registryDependencies": [
-    "https://nuvyxui.vercel.app/r/github-profile-card.json"
+    "https://nuvyxui.vercel.app/r/github-profile-card"
   ],
   "files": [
     {
