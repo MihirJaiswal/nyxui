@@ -6,7 +6,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Animated Code Block Demo",
     description: "Example showing a code block with typing animation effects.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/animated-code-block.json"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/animated-code-block"],
     files: [
       {
         path: "src/nuvyxui/demos/animated-code-block-demo.tsx",

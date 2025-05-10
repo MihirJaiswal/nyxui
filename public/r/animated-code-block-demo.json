@@ -11,7 +11,7 @@
     "lucide-react"
   ],
   "registryDependencies": [
-    "https://nuvyxui.vercel.app/r/animated-code-block"
+    "https://nuvyxui.vercel.app/r/animated-code-block.json"
   ],
   "files": [
     {
