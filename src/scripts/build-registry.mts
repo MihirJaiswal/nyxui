@@ -5,9 +5,9 @@ import { rimraf } from "rimraf";
 import { registryItemSchema, type Registry } from "shadcn/registry";
 import { z } from "zod";
 
-import { examples } from "../nuvyxui/registry-examples";
-import { lib } from "../nuvyxui/registry-lib";
-import { ui } from "../nuvyxui/registry-ui";
+import { examples } from "../../src/nuvyxui/registry-examples";
+import { lib } from "../../src/nuvyxui/registry-lib";
+import { ui } from "../../src/nuvyxui/registry-ui";
 
 const DEPRECATED_ITEMS = ["toast"];
 
@@ -37,23 +37,6 @@ const registry = {
   ),
 } satisfies Registry;
 
-function getRelativeImportPath(filePath) {
-  if (!filePath) return "";
-  
-  // For utils specifically (special case handling)
-  if (filePath.includes("src/lib/utils")) {
-    return "../src/lib/utils";
-  }
-  
-  // For nuvyxui components
-  if (filePath.includes("src/nuvyxui/")) {
-    return "../" + filePath;
-  }
-  
-  // Default case
-  return "../" + filePath;
-}
-
 async function buildRegistryIndex() {
   let index = `/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -69,9 +52,9 @@ export const Index: Record<string, any> = {`;
       continue;
     }
 
-    // Get the component path using our helper function
-    const filePath = item.files?.[0]?.path || "";
-    const componentPath = getRelativeImportPath(filePath);
+    const componentPath = item.files?.[0]?.path
+      ? `@/${item.files[0].path}`
+      : "";
 
     index += `
   "${item.name}": {
@@ -145,7 +128,7 @@ async function buildRegistryJsonFile() {
 
 async function buildRegistry() {
   return new Promise((resolve, reject) => {
-    const process = exec(`pnpm shadcn registry:build`);
+    const process = exec(`shadcn registry:build`);
 
     process.on("exit", (code) => {
       if (code === 0) {

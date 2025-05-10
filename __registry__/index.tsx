@@ -26,7 +26,7 @@ export const Index: Record<string, any> = {
       target: "components/ui/animated-code-block.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/components/animated-code-block.tsx")
+      const mod = await import("@/src/nuvyxui/components/animated-code-block.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -43,7 +43,7 @@ export const Index: Record<string, any> = {
       target: "components/ui/animated-gradient-bg.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/components/animated-gradient-bg.tsx")
+      const mod = await import("@/src/nuvyxui/components/animated-gradient-bg.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -60,7 +60,7 @@ export const Index: Record<string, any> = {
       target: "components/ui/animated-text.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/components/animated-text.tsx")
+      const mod = await import("@/src/nuvyxui/components/animated-text.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -77,7 +77,7 @@ export const Index: Record<string, any> = {
       target: "components/ui/bento-grid.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/components/bento-grid.tsx")
+      const mod = await import("@/src/nuvyxui/components/bento-grid.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -94,7 +94,7 @@ export const Index: Record<string, any> = {
       target: "components/ui/bubble-background.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/components/bubble-background.tsx")
+      const mod = await import("@/src/nuvyxui/components/bubble-background.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -111,7 +111,7 @@ export const Index: Record<string, any> = {
       target: "components/ui/cyberpunk-card.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/components/cyberpunk-card.tsx")
+      const mod = await import("@/src/nuvyxui/components/cyberpunk-card.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -128,7 +128,7 @@ export const Index: Record<string, any> = {
       target: "components/ui/dynamic-ripple.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/components/dynamic-ripple.tsx")
+      const mod = await import("@/src/nuvyxui/components/dynamic-ripple.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -145,7 +145,7 @@ export const Index: Record<string, any> = {
       target: "components/ui/github-profile-card.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/components/github-profile-card.tsx")
+      const mod = await import("@/src/nuvyxui/components/github-profile-card.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -162,7 +162,7 @@ export const Index: Record<string, any> = {
       target: "components/ui/github-repo-card.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/components/github-repo-card.tsx")
+      const mod = await import("@/src/nuvyxui/components/github-repo-card.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -179,7 +179,7 @@ export const Index: Record<string, any> = {
       target: "components/ui/glitch-button.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/components/glitch-button.tsx")
+      const mod = await import("@/src/nuvyxui/components/glitch-button.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -196,7 +196,7 @@ export const Index: Record<string, any> = {
       target: "components/ui/gradient-button.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/components/gradient-button.tsx")
+      const mod = await import("@/src/nuvyxui/components/gradient-button.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -213,7 +213,7 @@ export const Index: Record<string, any> = {
       target: "components/ui/keyboard.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/components/keyboard.tsx")
+      const mod = await import("@/src/nuvyxui/components/keyboard.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -230,7 +230,7 @@ export const Index: Record<string, any> = {
       target: "components/ui/ms-paint.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/components/ms-paint.tsx")
+      const mod = await import("@/src/nuvyxui/components/ms-paint.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -247,7 +247,7 @@ export const Index: Record<string, any> = {
       target: "components/ui/lamp-heading.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/components/lamp-heading.tsx")
+      const mod = await import("@/src/nuvyxui/components/lamp-heading.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -264,7 +264,7 @@ export const Index: Record<string, any> = {
       target: "components/ui/liquid-metal-button.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/components/liquid-metal-button.tsx")
+      const mod = await import("@/src/nuvyxui/components/liquid-metal-button.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -281,7 +281,7 @@ export const Index: Record<string, any> = {
       target: "components/ui/morphing-button.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/components/morphing-button.tsx")
+      const mod = await import("@/src/nuvyxui/components/morphing-button.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -298,7 +298,7 @@ export const Index: Record<string, any> = {
       target: "components/ui/image-comparison.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/components/image-comparison.tsx")
+      const mod = await import("@/src/nuvyxui/components/image-comparison.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -315,7 +315,7 @@ export const Index: Record<string, any> = {
       target: "components/ui/majestic-card.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/components/image-scanner.tsx")
+      const mod = await import("@/src/nuvyxui/components/image-scanner.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -332,7 +332,7 @@ export const Index: Record<string, any> = {
       target: "components/ui/majestic-card.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/components/majestic-card.tsx")
+      const mod = await import("@/src/nuvyxui/components/majestic-card.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -349,7 +349,7 @@ export const Index: Record<string, any> = {
       target: "components/ui/marquee.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/components/marquee.tsx")
+      const mod = await import("@/src/nuvyxui/components/marquee.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -366,7 +366,7 @@ export const Index: Record<string, any> = {
       target: "components/ui/matrix-code-rain.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/components/matrix-code-rain.tsx")
+      const mod = await import("@/src/nuvyxui/components/matrix-code-rain.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -383,7 +383,7 @@ export const Index: Record<string, any> = {
       target: "components/ui/morphing-blob.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/components/morphing-blob.tsx")
+      const mod = await import("@/src/nuvyxui/components/morphing-blob.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -400,7 +400,7 @@ export const Index: Record<string, any> = {
       target: "components/ui/music-player.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/components/music-player.tsx")
+      const mod = await import("@/src/nuvyxui/components/music-player.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -417,7 +417,7 @@ export const Index: Record<string, any> = {
       target: "components/ui/reveal-card.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/components/reveal-card.tsx")
+      const mod = await import("@/src/nuvyxui/components/reveal-card.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -434,7 +434,7 @@ export const Index: Record<string, any> = {
       target: "components/ui/scroll-animation-trigger.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/components/scroll-animation-trigger.tsx")
+      const mod = await import("@/src/nuvyxui/components/scroll-animation-trigger.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -451,7 +451,7 @@ export const Index: Record<string, any> = {
       target: "components/ui/terminal.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/components/terminal.tsx")
+      const mod = await import("@/src/nuvyxui/components/terminal.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -468,7 +468,7 @@ export const Index: Record<string, any> = {
       target: "components/animated-code-block-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/demos/animated-code-block-demo.tsx")
+      const mod = await import("@/src/nuvyxui/demos/animated-code-block-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -485,7 +485,7 @@ export const Index: Record<string, any> = {
       target: "components/animated-gradient-bg-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/demos/animated-gradient-bg-demo.tsx")
+      const mod = await import("@/src/nuvyxui/demos/animated-gradient-bg-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -502,7 +502,7 @@ export const Index: Record<string, any> = {
       target: "components/animated-text-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/demos/animated-text-demo.tsx")
+      const mod = await import("@/src/nuvyxui/demos/animated-text-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -519,7 +519,7 @@ export const Index: Record<string, any> = {
       target: "components/bento-grid-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/demos/bento-grid-demo.tsx")
+      const mod = await import("@/src/nuvyxui/demos/bento-grid-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -536,7 +536,7 @@ export const Index: Record<string, any> = {
       target: "components/bubble-background-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/demos/bubble-background-demo.tsx")
+      const mod = await import("@/src/nuvyxui/demos/bubble-background-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -553,7 +553,7 @@ export const Index: Record<string, any> = {
       target: "components/cyberpunk-card-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/demos/cyberpunk-card-demo.tsx")
+      const mod = await import("@/src/nuvyxui/demos/cyberpunk-card-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -570,7 +570,7 @@ export const Index: Record<string, any> = {
       target: "components/cyberpunk-card-demo1.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/demos/cyberpunk-card-demo1.tsx")
+      const mod = await import("@/src/nuvyxui/demos/cyberpunk-card-demo1.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -587,7 +587,7 @@ export const Index: Record<string, any> = {
       target: "components/dynamic-ripple-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/demos/dynamic-ripple-demo.tsx")
+      const mod = await import("@/src/nuvyxui/demos/dynamic-ripple-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -604,7 +604,7 @@ export const Index: Record<string, any> = {
       target: "components/github-profile-card-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/demos/github-profile-card-demo.tsx")
+      const mod = await import("@/src/nuvyxui/demos/github-profile-card-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -621,7 +621,7 @@ export const Index: Record<string, any> = {
       target: "components/github-repo-card-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/demos/github-repo-card-demo.tsx")
+      const mod = await import("@/src/nuvyxui/demos/github-repo-card-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -638,7 +638,7 @@ export const Index: Record<string, any> = {
       target: "components/github-repo-card-demo1.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/demos/github-repo-card-demo1.tsx")
+      const mod = await import("@/src/nuvyxui/demos/github-repo-card-demo1.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -655,7 +655,7 @@ export const Index: Record<string, any> = {
       target: "components/github-repo-card-demo2.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/demos/github-repo-card-demo2.tsx")
+      const mod = await import("@/src/nuvyxui/demos/github-repo-card-demo2.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -672,7 +672,7 @@ export const Index: Record<string, any> = {
       target: "components/glitch-button-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/demos/glitch-button-demo.tsx")
+      const mod = await import("@/src/nuvyxui/demos/glitch-button-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -689,7 +689,7 @@ export const Index: Record<string, any> = {
       target: "components/gradient-button-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/demos/gradient-button-demo.tsx")
+      const mod = await import("@/src/nuvyxui/demos/gradient-button-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -706,7 +706,7 @@ export const Index: Record<string, any> = {
       target: "components/keyboard-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/demos/keyboard-demo.tsx")
+      const mod = await import("@/src/nuvyxui/demos/keyboard-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -723,7 +723,7 @@ export const Index: Record<string, any> = {
       target: "components/keyboard-demo1.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/demos/keyboard-demo1.tsx")
+      const mod = await import("@/src/nuvyxui/demos/keyboard-demo1.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -740,7 +740,7 @@ export const Index: Record<string, any> = {
       target: "components/ms-paint-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/demos/ms-paint-demo.tsx")
+      const mod = await import("@/src/nuvyxui/demos/ms-paint-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -757,7 +757,7 @@ export const Index: Record<string, any> = {
       target: "components/lamp-heading-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/demos/lamp-heading-demo.tsx")
+      const mod = await import("@/src/nuvyxui/demos/lamp-heading-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -774,7 +774,7 @@ export const Index: Record<string, any> = {
       target: "components/liquid-metal-button-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/demos/liquid-metal-button-demo.tsx")
+      const mod = await import("@/src/nuvyxui/demos/liquid-metal-button-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -791,7 +791,7 @@ export const Index: Record<string, any> = {
       target: "components/morphing-button-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/demos/morphing-button-demo.tsx")
+      const mod = await import("@/src/nuvyxui/demos/morphing-button-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -808,7 +808,7 @@ export const Index: Record<string, any> = {
       target: "components/image-comparison-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/demos/image-comparison-demo.tsx")
+      const mod = await import("@/src/nuvyxui/demos/image-comparison-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -825,7 +825,7 @@ export const Index: Record<string, any> = {
       target: "components/image-scanner-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/demos/image-scanner-demo.tsx")
+      const mod = await import("@/src/nuvyxui/demos/image-scanner-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -842,7 +842,7 @@ export const Index: Record<string, any> = {
       target: "components/majestic-card-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/demos/majestic-card-demo.tsx")
+      const mod = await import("@/src/nuvyxui/demos/majestic-card-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -859,7 +859,7 @@ export const Index: Record<string, any> = {
       target: "components/marquee-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/demos/marquee-demo.tsx")
+      const mod = await import("@/src/nuvyxui/demos/marquee-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -876,7 +876,7 @@ export const Index: Record<string, any> = {
       target: "components/marquee-demo1.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/demos/marquee-demo1.tsx")
+      const mod = await import("@/src/nuvyxui/demos/marquee-demo1.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -893,7 +893,7 @@ export const Index: Record<string, any> = {
       target: "components/marquee-demo2.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/demos/marquee-demo2.tsx")
+      const mod = await import("@/src/nuvyxui/demos/marquee-demo2.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -910,7 +910,7 @@ export const Index: Record<string, any> = {
       target: "components/matrix-code-rain-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/demos/matrix-code-rain-demo.tsx")
+      const mod = await import("@/src/nuvyxui/demos/matrix-code-rain-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -927,7 +927,7 @@ export const Index: Record<string, any> = {
       target: "components/morphing-blob-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/demos/morphing-blob-demo.tsx")
+      const mod = await import("@/src/nuvyxui/demos/morphing-blob-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -944,7 +944,7 @@ export const Index: Record<string, any> = {
       target: "components/music-player-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/demos/music-player-demo.tsx")
+      const mod = await import("@/src/nuvyxui/demos/music-player-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -961,7 +961,7 @@ export const Index: Record<string, any> = {
       target: "components/music-player-demo1.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/demos/music-player-demo1.tsx")
+      const mod = await import("@/src/nuvyxui/demos/music-player-demo1.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -978,7 +978,7 @@ export const Index: Record<string, any> = {
       target: "components/music-player-demo2.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/demos/music-player-demo2.tsx")
+      const mod = await import("@/src/nuvyxui/demos/music-player-demo2.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -995,7 +995,7 @@ export const Index: Record<string, any> = {
       target: "components/reveal-card-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/demos/reveal-card-demo.tsx")
+      const mod = await import("@/src/nuvyxui/demos/reveal-card-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -1012,7 +1012,7 @@ export const Index: Record<string, any> = {
       target: "components/scroll-animation-trigger-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/demos/scroll-animation-trigger-demo.tsx")
+      const mod = await import("@/src/nuvyxui/demos/scroll-animation-trigger-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -1029,7 +1029,7 @@ export const Index: Record<string, any> = {
       target: "components/scroll-animation-trigger-demo1.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/demos/scroll-animation-trigger-demo1.tsx")
+      const mod = await import("@/src/nuvyxui/demos/scroll-animation-trigger-demo1.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -1046,7 +1046,7 @@ export const Index: Record<string, any> = {
       target: "components/scroll-animation-trigger-demo2.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/demos/scroll-animation-trigger-demo2.tsx")
+      const mod = await import("@/src/nuvyxui/demos/scroll-animation-trigger-demo2.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -1063,7 +1063,7 @@ export const Index: Record<string, any> = {
       target: "components/terminal-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/demos/terminal-demo.tsx")
+      const mod = await import("@/src/nuvyxui/demos/terminal-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -1080,7 +1080,7 @@ export const Index: Record<string, any> = {
       target: "components/terminal-demo1.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/nuvyxui/demos/terminal-demo1.tsx")
+      const mod = await import("@/src/nuvyxui/demos/terminal-demo1.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -1097,7 +1097,7 @@ export const Index: Record<string, any> = {
       target: ""
     }],
     component: React.lazy(async () => {
-      const mod = await import("../src/lib/utils")
+      const mod = await import("@/src/lib/utils.ts")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
