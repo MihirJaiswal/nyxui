@@ -4,7 +4,7 @@ import { RefreshCw } from "lucide-react";
 
 export default function ScrollAnimationTriggerDemo2() {
   return (
-    <div className="max-w-md mx-auto">
+    <div className="max-w-md mx-auto bg-white dark:bg-black relative">
       <ScrollAnimationTrigger
         effect="rotate"
         className="p-3 sm:p-4 md:p-6"

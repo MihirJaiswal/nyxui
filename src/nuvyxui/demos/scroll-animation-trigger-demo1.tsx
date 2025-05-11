@@ -4,7 +4,7 @@ import { Palette } from "lucide-react";
 
 export default function ScrollAnimationTriggerDemo1() {
   return (
-    <div className="max-w-md mx-auto">
+    <div className="max-w-md mx-auto relative bg-white dark:bg-black">
       <ScrollAnimationTrigger
         effect="color"
         className="p-3 sm:p-4 md:p-6"

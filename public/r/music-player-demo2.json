@@ -13,13 +13,13 @@
   "files": [
     {
       "path": "src/nuvyxui/demos/music-player-demo2.tsx",
-      "content": "import { MusicPlayer } from \"../components/music-player\";\n\nexport default function MusicPlayerDemo2() {\n  return (\n    <div className=\"w-full max-w-xs mx-auto border border-gray-300 dark:border-gray-700 rounded-2xl\">\n      <MusicPlayer\n        theme=\"cosmic\"\n        trackTitle=\"Sugar\"\n        artist=\"Maroon 5\"\n        album=\"V\"\n        artwork=\"/assets/images/music-player/cover2.jpg\"\n        className=\"rounded-2xl\"\n        controls={{\n          shuffle: true,\n          repeat: false,\n          heart: true,\n        }}\n      />\n    </div>\n  );\n}\n",
+      "content": "import { MusicPlayer } from \"../components/music-player\";\n\nexport default function MusicPlayerDemo2() {\n  return (\n    <div className=\"w-full max-w-xs mx-auto border border-gray-300 dark:border-gray-700 rounded-2xl relative\">\n      <MusicPlayer\n        theme=\"cosmic\"\n        trackTitle=\"Sugar\"\n        artist=\"Maroon 5\"\n        album=\"V\"\n        artwork=\"/assets/images/music-player/cover2.jpg\"\n        className=\"rounded-2xl\"\n        controls={{\n          shuffle: true,\n          repeat: false,\n          heart: true,\n        }}\n      />\n    </div>\n  );\n}\n",
       "type": "registry:example",
       "target": "components/music-player-demo2.tsx"
     },
     {
       "path": "src\\nuvyxui\\demos\\music-player-demo2.tsx",
-      "content": "import { MusicPlayer } from \"../components/music-player\";\n\nexport default function MusicPlayerDemo2() {\n  return (\n    <div className=\"w-full max-w-xs mx-auto border border-gray-300 dark:border-gray-700 rounded-2xl\">\n      <MusicPlayer\n        theme=\"cosmic\"\n        trackTitle=\"Sugar\"\n        artist=\"Maroon 5\"\n        album=\"V\"\n        artwork=\"/assets/images/music-player/cover2.jpg\"\n        className=\"rounded-2xl\"\n        controls={{\n          shuffle: true,\n          repeat: false,\n          heart: true,\n        }}\n      />\n    </div>\n  );\n}\n",
+      "content": "import { MusicPlayer } from \"../components/music-player\";\n\nexport default function MusicPlayerDemo2() {\n  return (\n    <div className=\"w-full max-w-xs mx-auto border border-gray-300 dark:border-gray-700 rounded-2xl relative\">\n      <MusicPlayer\n        theme=\"cosmic\"\n        trackTitle=\"Sugar\"\n        artist=\"Maroon 5\"\n        album=\"V\"\n        artwork=\"/assets/images/music-player/cover2.jpg\"\n        className=\"rounded-2xl\"\n        controls={{\n          shuffle: true,\n          repeat: false,\n          heart: true,\n        }}\n      />\n    </div>\n  );\n}\n",
       "type": "registry:component",
       "target": ""
     }
