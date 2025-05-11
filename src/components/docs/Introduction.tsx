@@ -10,7 +10,7 @@ import { ChevronUp } from "lucide-react";
 
 export default function IntroductionPage() {
   return (
-    <div className="container max-w-5xl py-4 mx-auto">
+    <div className="container max-w-5xl py-6 mx-auto">
       <div className="space-y-10">
         <div className="space-y-2" id="introduction">
           <h1 className="text-4xl font-bold tracking-tight">Introduction</h1>
