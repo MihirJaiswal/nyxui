@@ -1,15 +1,49 @@
 import { exec } from "child_process";
 import { promises as fs } from "fs";
 import path from "path";
-import { rimraf } from "rimraf";
 import { registryItemSchema, type Registry } from "shadcn/registry";
 import { z } from "zod";
 
-import { examples } from "../nuvyxui/registry-examples";
-import { lib } from "../nuvyxui/registry-lib";
-import { ui } from "../nuvyxui/registry-ui";
+import { examples } from "../../registry/registry-examples";
+import { lib } from "../../registry/registry-lib";
+import { ui } from "../../registry/registry-ui";
 
 const DEPRECATED_ITEMS = ["toast"];
+
+// Utility to execute commands with output streaming
+function executeCommand(command: string): Promise<{ stdout: string; stderr: string; code: number }> {
+  return new Promise((resolve) => {
+    console.log(`Running command: ${command}`);
+    const proc = exec(command);
+    
+    let stdout = '';
+    let stderr = '';
+    
+    proc.stdout?.on('data', (data) => {
+      stdout += data.toString();
+      process.stdout.write(data);
+    });
+    
+    proc.stderr?.on('data', (data) => {
+      stderr += data.toString();
+      process.stderr.write(data);
+    });
+    
+    proc.on('exit', (code) => {
+      resolve({ stdout, stderr, code: code || 0 });
+    });
+  });
+}
+
+// File exists utility
+async function fileExists(filePath: string): Promise<boolean> {
+  try {
+    await fs.access(filePath);
+    return true;
+  } catch {
+    return false;
+  }
+}
 
 const registry = {
   name: "shadcn/ui",
@@ -78,7 +112,7 @@ export const Index: Record<string, any> = {`;
     name: "${item.name}",
     description: "${item.description ?? ""}",
     type: "${item.type}",
-    registryDependencies: ${JSON.stringify(item.registryDependencies)},
+    registryDependencies: ${JSON.stringify(item.registryDependencies || [])},
     files: [${item.files?.map((file) => {
       const filePath = `${typeof file === "string" ? file : file.path}`;
       const resolvedFilePath = path.resolve(filePath);
@@ -86,29 +120,41 @@ export const Index: Record<string, any> = {`;
         ? `"${resolvedFilePath}"`
         : `{
       path: "${filePath}",
-      type: "${file.type}",
-      target: "${file.target ?? ""}"
+      type: "${file.type || ''}",
+      target: "${file.target || ''}"
     }`;
     })}],
     component: ${
       componentPath
         ? `React.lazy(async () => {
-      const mod = await import("${componentPath}")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
+      try {
+        const mod = await import("${componentPath}")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "${item.name}"
+        return { default: mod.default || mod[exportName] }
+      } catch (error) {
+        console.error("Error loading component ${item.name}:", error)
+        return { default: () => React.createElement("div", {}, "Failed to load component") }
+      }
     })`
         : "null"
     },
-    meta: ${JSON.stringify(item.meta)},
+    meta: ${JSON.stringify(item.meta || {})},
   },`;
   }
 
   index += `
   }`;
 
+  // Create __registry__ directory if it doesn't exist
+  const registryDir = path.join(process.cwd(), "__registry__");
+  await fs.mkdir(registryDir, { recursive: true });
+
   // Write style index.
-  rimraf.sync(path.join(process.cwd(), "__registry__/index.tsx"));
-  await fs.writeFile(path.join(process.cwd(), "__registry__/index.tsx"), index);
+  const indexPath = path.join(process.cwd(), "__registry__/index.tsx");
+  if (await fileExists(indexPath)) {
+    await fs.unlink(indexPath);
+  }
+  await fs.writeFile(indexPath, index);
 }
 
 async function buildRegistryJsonFile() {
@@ -131,49 +177,62 @@ async function buildRegistryJsonFile() {
   };
 
   // 2. Write the content of the registry to `registry.json` and public folder
-  rimraf.sync(path.join(process.cwd(), `registry.json`));
-  rimraf.sync(path.join(process.cwd(), `public/registry.json`));
+  const registryJsonPath = path.join(process.cwd(), `registry.json`);
+  if (await fileExists(registryJsonPath)) {
+    await fs.unlink(registryJsonPath);
+  }
+  
+  const publicRegistryPath = path.join(process.cwd(), `public/registry.json`);
+  if (await fileExists(publicRegistryPath)) {
+    await fs.unlink(publicRegistryPath);
+  }
 
   const registryJson = JSON.stringify(fixedRegistry, null, 2);
 
-  await fs.writeFile(path.join(process.cwd(), `registry.json`), registryJson);
-  await fs.writeFile(
-    path.join(process.cwd(), `public/registry.json`),
-    registryJson,
-  );
+  await fs.writeFile(registryJsonPath, registryJson);
+  
+  // Ensure public directory exists
+  const publicDir = path.join(process.cwd(), `public`);
+  await fs.mkdir(publicDir, { recursive: true });
+  
+  await fs.writeFile(publicRegistryPath, registryJson);
 }
 
 async function buildRegistry() {
-  return new Promise((resolve, reject) => {
-    const process = exec(`pnpm shadcn registry:build`);
-
-    process.on("exit", (code) => {
-      if (code === 0) {
-        resolve(undefined);
-      } else {
-        reject(new Error(`Process exited with code ${code}`));
-      }
-    });
-  });
-}
-
-try {
-  console.log("🗂️ Building registry/__index__.tsx...");
-  await buildRegistryIndex();
-  console.log("✅ Registry index built successfully");
-
-  console.log("💅 Building registry.json...");
-  await buildRegistryJsonFile();
-  console.log("✅ Registry JSON file built successfully");
-
-  console.log("🏗️ Building registry...");
-  await buildRegistry();
-  console.log("✅ Registry build completed");
-} catch (error) {
-  console.error("❌ Build failed with error:");
-  console.error(error);
-  if (error instanceof Error) {
-    console.error("Error stack:", error.stack);
+  console.log("Executing registry build with verbose output...");
+  try {
+    const result = await executeCommand(`npx shadcn registry:build --verbose`);
+    if (result.code !== 0) {
+      throw new Error(`Process exited with code ${result.code}`);
+    }
+    return result;
+  } catch (error) {
+    console.error("Error executing registry build:", error);
+    throw error;
   }
-  process.exit(1);
 }
+
+async function main() {
+  try {
+    console.log("🗂️ Building registry/__index__.tsx...");
+    await buildRegistryIndex();
+    console.log("✅ Registry index built successfully");
+
+    console.log("💅 Building registry.json...");
+    await buildRegistryJsonFile();
+    console.log("✅ Registry JSON file built successfully");
+
+    console.log("🏗️ Building registry...");
+    await buildRegistry();
+    console.log("✅ Registry build completed");
+  } catch (error) {
+    console.error("❌ Build failed with error:");
+    console.error(error);
+    if (error instanceof Error) {
+      console.error("Error stack:", error.stack);
+    }
+    process.exit(1);
+  }
+}
+
+main();

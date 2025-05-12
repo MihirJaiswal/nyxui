@@ -17,7 +17,8 @@
     "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\"",
     "build:docs": "content-collections build",
     "analyze": "cross-env ANALYZE=true next build",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "shadcn:registry": "shadcn registry:build"
   },
   "dependencies": {
     "@content-collections/cli": "0.1.4",
