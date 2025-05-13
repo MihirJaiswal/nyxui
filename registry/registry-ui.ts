@@ -10,7 +10,7 @@ export const ui: Registry["items"] = [
     dependencies: ["motion", "lucide-react"],
     files: [
       {
-        path: "src/nuvyxui/components/animated-code-block.tsx",
+        path: "registry/ui/animated-code-block.tsx",
         type: "registry:ui",
         target: "components/ui/animated-code-block.tsx",
       },
@@ -25,7 +25,7 @@ export const ui: Registry["items"] = [
     dependencies: ["motion"],
     files: [
       {
-        path: "src/nuvyxui/components/animated-gradient-bg.tsx",
+        path: "registry/ui/animated-gradient-bg.tsx",
         type: "registry:ui",
         target: "components/ui/animated-gradient-bg.tsx",
       },
@@ -40,7 +40,7 @@ export const ui: Registry["items"] = [
     dependencies: ["motion"],
     files: [
       {
-        path: "src/nuvyxui/components/animated-text.tsx",
+        path: "registry/ui/animated-text.tsx",
         type: "registry:ui",
         target: "components/ui/animated-text.tsx",
       },
@@ -55,7 +55,7 @@ export const ui: Registry["items"] = [
     dependencies: ["motion"],
     files: [
       {
-        path: "src/nuvyxui/components/bento-grid.tsx",
+        path: "registry/ui/bento-grid.tsx",
         type: "registry:ui",
         target: "components/ui/bento-grid.tsx",
       },
@@ -69,7 +69,7 @@ export const ui: Registry["items"] = [
       "An interactive fluid bubble background component with animated colorful blobs that respond to user interaction.",
     files: [
       {
-        path: "src/nuvyxui/components/bubble-background.tsx",
+        path: "registry/ui/bubble-background.tsx",
         type: "registry:ui",
         target: "components/ui/bubble-background.tsx",
       },
@@ -116,7 +116,7 @@ export const ui: Registry["items"] = [
       "A card component with a cyberpunk aesthetic. Features neon colors and a futuristic design.",
     files: [
       {
-        path: "src/nuvyxui/components/cyberpunk-card.tsx",
+        path: "registry/ui/cyberpunk-card.tsx",
         type: "registry:ui",
         target: "components/ui/cyberpunk-card.tsx",
       },
@@ -130,7 +130,7 @@ export const ui: Registry["items"] = [
       "A ripple effect component that follows the cursor and can be customized with various options.",
     files: [
       {
-        path: "src/nuvyxui/components/dynamic-ripple.tsx",
+        path: "registry/ui/dynamic-ripple.tsx",
         type: "registry:ui",
         target: "components/ui/dynamic-ripple.tsx",
       },
@@ -145,7 +145,7 @@ export const ui: Registry["items"] = [
     dependencies: ["lucide-react"],
     files: [
       {
-        path: "src/nuvyxui/components/github-profile-card.tsx",
+        path: "registry/ui/github-profile-card.tsx",
         type: "registry:ui",
         target: "components/ui/github-profile-card.tsx",
       },
@@ -160,7 +160,7 @@ export const ui: Registry["items"] = [
     dependencies: ["lucide-react"],
     files: [
       {
-        path: "src/nuvyxui/components/github-repo-card.tsx",
+        path: "registry/ui/github-repo-card.tsx",
         type: "registry:ui",
         target: "components/ui/github-repo-card.tsx",
       },
@@ -174,7 +174,7 @@ export const ui: Registry["items"] = [
       "Cyberpunk-inspired button with dynamic glitch effects that can be triggered on hover or click.",
     files: [
       {
-        path: "src/nuvyxui/components/glitch-button.tsx",
+        path: "registry/ui/glitch-button.tsx",
         type: "registry:ui",
         target: "components/ui/glitch-button.tsx",
       },
@@ -267,7 +267,7 @@ export const ui: Registry["items"] = [
     description: "A button component with a gradient background.",
     files: [
       {
-        path: "src/nuvyxui/components/gradient-button.tsx",
+        path: "registry/ui/gradient-button.tsx",
         type: "registry:ui",
         target: "components/ui/gradient-button.tsx",
       },
@@ -281,7 +281,7 @@ export const ui: Registry["items"] = [
     dependencies: ["lucide-react"],
     files: [
       {
-        path: "src/nuvyxui/components/keyboard.tsx",
+        path: "registry/ui/keyboard.tsx",
         type: "registry:ui",
         target: "components/ui/keyboard.tsx",
       },
@@ -296,7 +296,7 @@ export const ui: Registry["items"] = [
     dependencies: ["lucide-react"],
     files: [
       {
-        path: "src/nuvyxui/components/ms-paint.tsx",
+        path: "registry/ui/ms-paint.tsx",
         type: "registry:ui",
         target: "components/ui/ms-paint.tsx",
       },
@@ -309,7 +309,7 @@ export const ui: Registry["items"] = [
     description: "A heading component with a lamp effect.",
     files: [
       {
-        path: "src/nuvyxui/components/lamp-heading.tsx",
+        path: "registry/ui/lamp-heading.tsx",
         type: "registry:ui",
         target: "components/ui/lamp-heading.tsx",
       },
@@ -322,7 +322,7 @@ export const ui: Registry["items"] = [
     description: "A button component with a liquid metal effect.",
     files: [
       {
-        path: "src/nuvyxui/components/liquid-metal-button.tsx",
+        path: "registry/ui/liquid-metal-button.tsx",
         type: "registry:ui",
         target: "components/ui/liquid-metal-button.tsx",
       },
@@ -335,7 +335,7 @@ export const ui: Registry["items"] = [
     description: "A button component with a morphing effect.",
     files: [
       {
-        path: "src/nuvyxui/components/morphing-button.tsx",
+        path: "registry/ui/morphing-button.tsx",
         type: "registry:ui",
         target: "components/ui/morphing-button.tsx",
       },
@@ -364,7 +364,7 @@ export const ui: Registry["items"] = [
       "A image comparison component that allows users to compare images.",
     files: [
       {
-        path: "src/nuvyxui/components/image-comparison.tsx",
+        path: "registry/ui/image-comparison.tsx",
         type: "registry:ui",
         target: "components/ui/image-comparison.tsx",
       },
@@ -378,7 +378,7 @@ export const ui: Registry["items"] = [
     dependencies: ["motion"],
     files: [
       {
-        path: "src/nuvyxui/components/image-scanner.tsx",
+        path: "registry/ui/image-scanner.tsx",
         type: "registry:ui",
         target: "components/ui/majestic-card.tsx",
       },
@@ -392,7 +392,7 @@ export const ui: Registry["items"] = [
     dependencies: ["motion"],
     files: [
       {
-        path: "src/nuvyxui/components/majestic-card.tsx",
+        path: "registry/ui/majestic-card.tsx",
         type: "registry:ui",
         target: "components/ui/majestic-card.tsx",
       },
@@ -406,7 +406,7 @@ export const ui: Registry["items"] = [
     dependencies: ["motion"],
     files: [
       {
-        path: "src/nuvyxui/components/marquee.tsx",
+        path: "registry/ui/marquee.tsx",
         type: "registry:ui",
         target: "components/ui/marquee.tsx",
       },
@@ -419,7 +419,7 @@ export const ui: Registry["items"] = [
     description: "A matrix code rain that that provide several effects.",
     files: [
       {
-        path: "src/nuvyxui/components/matrix-code-rain.tsx",
+        path: "registry/ui/matrix-code-rain.tsx",
         type: "registry:ui",
         target: "components/ui/matrix-code-rain.tsx",
       },
@@ -432,7 +432,7 @@ export const ui: Registry["items"] = [
     description: "A morphing blob that that provide several effects.",
     files: [
       {
-        path: "src/nuvyxui/components/morphing-blob.tsx",
+        path: "registry/ui/morphing-blob.tsx",
         type: "registry:ui",
         target: "components/ui/morphing-blob.tsx",
       },
@@ -446,7 +446,7 @@ export const ui: Registry["items"] = [
     dependencies: ["lucide-react"],
     files: [
       {
-        path: "src/nuvyxui/components/music-player.tsx",
+        path: "registry/ui/music-player.tsx",
         type: "registry:ui",
         target: "components/ui/music-player.tsx",
       },
@@ -460,7 +460,7 @@ export const ui: Registry["items"] = [
     dependencies: ["lucide-react"],
     files: [
       {
-        path: "src/nuvyxui/components/reveal-card.tsx",
+        path: "registry/ui/reveal-card.tsx",
         type: "registry:ui",
         target: "components/ui/reveal-card.tsx",
       },
@@ -475,7 +475,7 @@ export const ui: Registry["items"] = [
     dependencies: ["lucide-react", "motion"],
     files: [
       {
-        path: "src/nuvyxui/components/scroll-animation-trigger.tsx",
+        path: "registry/ui/scroll-animation-trigger.tsx",
         type: "registry:ui",
         target: "components/ui/scroll-animation-trigger.tsx",
       },
@@ -489,7 +489,7 @@ export const ui: Registry["items"] = [
     dependencies: ["lucide-react"],
     files: [
       {
-        path: "src/nuvyxui/components/terminal.tsx",
+        path: "registry/ui/terminal.tsx",
         type: "registry:ui",
         target: "components/ui/terminal.tsx",
       },

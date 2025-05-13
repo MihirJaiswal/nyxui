@@ -7,8 +7,8 @@ import { codeImport } from "remark-code-import";
 import remarkGfm from "remark-gfm";
 import { createHighlighter } from "shiki";
 import { visit } from "unist-util-visit";
-import { rehypeComponent } from "@/lib/rehype-component";
-import { rehypeNpmCommand } from "@/lib/rehype-npm-command";
+import { rehypeComponent } from "./lib/rehype-component";
+import { rehypeNpmCommand } from "./lib/rehype-npm-command";
 
 const prettyCodeOptions: Options = {
   theme: "github-dark",

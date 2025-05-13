@@ -6,630 +6,453 @@
 import * as React from "react"
 
 export const Index: Record<string, any> = {
-  "index": {
-    name: "index",
-    description: "",
-    type: "registry:style",
-    registryDependencies: ["utils"],
-    files: [],
-    component: null,
-    meta: {},
-  },
   "animated-code-block": {
     name: "animated-code-block",
     description: "A code display component with real-time typing effects. Supports syntax highlighting and customizable themes.",
     type: "registry:ui",
-    registryDependencies: [],
+    registryDependencies: undefined,
     files: [{
-      path: "src/nuvyxui/components/animated-code-block.tsx",
+      path: "registry/ui/animated-code-block.tsx",
       type: "registry:ui",
-      target: "components/ui/animated-code-block.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/components/animated-code-block.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "animated-code-block"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component animated-code-block:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/ui/animated-code-block.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "animated-gradient-bg": {
     name: "animated-gradient-bg",
     description: "A dynamic animated gradient background component that supports various gradient patterns and animations.",
     type: "registry:ui",
-    registryDependencies: [],
+    registryDependencies: undefined,
     files: [{
-      path: "src/nuvyxui/components/animated-gradient-bg.tsx",
+      path: "registry/ui/animated-gradient-bg.tsx",
       type: "registry:ui",
-      target: "components/ui/animated-gradient-bg.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/components/animated-gradient-bg.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "animated-gradient-bg"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component animated-gradient-bg:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/ui/animated-gradient-bg.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "animated-text": {
     name: "animated-text",
     description: "A versatile text animation component that offers multiple animation types. Perfect for adding dynamic text effects to your UI.",
     type: "registry:ui",
-    registryDependencies: [],
+    registryDependencies: undefined,
     files: [{
-      path: "src/nuvyxui/components/animated-text.tsx",
+      path: "registry/ui/animated-text.tsx",
       type: "registry:ui",
-      target: "components/ui/animated-text.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/components/animated-text.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "animated-text"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component animated-text:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/ui/animated-text.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "bento-grid": {
     name: "bento-grid",
     description: "A versatile container component inspired by bento box designs, perfect for creating modern, visually appealing grid layouts.",
     type: "registry:ui",
-    registryDependencies: [],
+    registryDependencies: undefined,
     files: [{
-      path: "src/nuvyxui/components/bento-grid.tsx",
+      path: "registry/ui/bento-grid.tsx",
       type: "registry:ui",
-      target: "components/ui/bento-grid.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/components/bento-grid.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "bento-grid"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component bento-grid:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/ui/bento-grid.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "bubble-background": {
     name: "bubble-background",
     description: "An interactive fluid bubble background component with animated colorful blobs that respond to user interaction.",
     type: "registry:ui",
-    registryDependencies: [],
+    registryDependencies: undefined,
     files: [{
-      path: "src/nuvyxui/components/bubble-background.tsx",
+      path: "registry/ui/bubble-background.tsx",
       type: "registry:ui",
-      target: "components/ui/bubble-background.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/components/bubble-background.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "bubble-background"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component bubble-background:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/ui/bubble-background.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "cyberpunk-card": {
     name: "cyberpunk-card",
     description: "A card component with a cyberpunk aesthetic. Features neon colors and a futuristic design.",
     type: "registry:ui",
-    registryDependencies: [],
+    registryDependencies: undefined,
     files: [{
-      path: "src/nuvyxui/components/cyberpunk-card.tsx",
+      path: "registry/ui/cyberpunk-card.tsx",
       type: "registry:ui",
-      target: "components/ui/cyberpunk-card.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/components/cyberpunk-card.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "cyberpunk-card"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component cyberpunk-card:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/ui/cyberpunk-card.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "dynamic-ripple": {
     name: "dynamic-ripple",
     description: "A ripple effect component that follows the cursor and can be customized with various options.",
     type: "registry:ui",
-    registryDependencies: [],
+    registryDependencies: undefined,
     files: [{
-      path: "src/nuvyxui/components/dynamic-ripple.tsx",
+      path: "registry/ui/dynamic-ripple.tsx",
       type: "registry:ui",
-      target: "components/ui/dynamic-ripple.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/components/dynamic-ripple.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "dynamic-ripple"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component dynamic-ripple:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/ui/dynamic-ripple.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "github-profile-card": {
     name: "github-profile-card",
     description: "A card component that displays a GitHub user's profile information. It includes their avatar, name, bio, and links to their GitHub profile.",
     type: "registry:ui",
-    registryDependencies: [],
+    registryDependencies: undefined,
     files: [{
-      path: "src/nuvyxui/components/github-profile-card.tsx",
+      path: "registry/ui/github-profile-card.tsx",
       type: "registry:ui",
-      target: "components/ui/github-profile-card.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/components/github-profile-card.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "github-profile-card"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component github-profile-card:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/ui/github-profile-card.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "github-repo-card": {
     name: "github-repo-card",
     description: "A card component that displays information about a GitHub repository. It includes the repository name, description, stars, forks, and a link to the repository.",
     type: "registry:ui",
-    registryDependencies: [],
+    registryDependencies: undefined,
     files: [{
-      path: "src/nuvyxui/components/github-repo-card.tsx",
+      path: "registry/ui/github-repo-card.tsx",
       type: "registry:ui",
-      target: "components/ui/github-repo-card.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/components/github-repo-card.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "github-repo-card"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component github-repo-card:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/ui/github-repo-card.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "glitch-button": {
     name: "glitch-button",
     description: "Cyberpunk-inspired button with dynamic glitch effects that can be triggered on hover or click.",
     type: "registry:ui",
-    registryDependencies: [],
+    registryDependencies: undefined,
     files: [{
-      path: "src/nuvyxui/components/glitch-button.tsx",
+      path: "registry/ui/glitch-button.tsx",
       type: "registry:ui",
-      target: "components/ui/glitch-button.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/components/glitch-button.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "glitch-button"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component glitch-button:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/ui/glitch-button.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "gradient-button": {
     name: "gradient-button",
     description: "A button component with a gradient background.",
     type: "registry:ui",
-    registryDependencies: [],
+    registryDependencies: undefined,
     files: [{
-      path: "src/nuvyxui/components/gradient-button.tsx",
+      path: "registry/ui/gradient-button.tsx",
       type: "registry:ui",
-      target: "components/ui/gradient-button.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/components/gradient-button.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "gradient-button"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component gradient-button:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/ui/gradient-button.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "keyboard": {
     name: "keyboard",
     description: "A keyboard component that simulates a physical keyboard.",
     type: "registry:ui",
-    registryDependencies: [],
+    registryDependencies: undefined,
     files: [{
-      path: "src/nuvyxui/components/keyboard.tsx",
+      path: "registry/ui/keyboard.tsx",
       type: "registry:ui",
-      target: "components/ui/keyboard.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/components/keyboard.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "keyboard"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component keyboard:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/ui/keyboard.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "ms-paint": {
     name: "ms-paint",
     description: "A customizable drawing canvas component with paint-like interface.",
     type: "registry:ui",
-    registryDependencies: [],
+    registryDependencies: undefined,
     files: [{
-      path: "src/nuvyxui/components/ms-paint.tsx",
+      path: "registry/ui/ms-paint.tsx",
       type: "registry:ui",
-      target: "components/ui/ms-paint.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/components/ms-paint.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "ms-paint"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component ms-paint:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/ui/ms-paint.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "lamp-heading": {
     name: "lamp-heading",
     description: "A heading component with a lamp effect.",
     type: "registry:ui",
-    registryDependencies: [],
+    registryDependencies: undefined,
     files: [{
-      path: "src/nuvyxui/components/lamp-heading.tsx",
+      path: "registry/ui/lamp-heading.tsx",
       type: "registry:ui",
-      target: "components/ui/lamp-heading.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/components/lamp-heading.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "lamp-heading"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component lamp-heading:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/ui/lamp-heading.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "liquid-metal-button": {
     name: "liquid-metal-button",
     description: "A button component with a liquid metal effect.",
     type: "registry:ui",
-    registryDependencies: [],
+    registryDependencies: undefined,
     files: [{
-      path: "src/nuvyxui/components/liquid-metal-button.tsx",
+      path: "registry/ui/liquid-metal-button.tsx",
       type: "registry:ui",
-      target: "components/ui/liquid-metal-button.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/components/liquid-metal-button.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "liquid-metal-button"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component liquid-metal-button:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/ui/liquid-metal-button.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "morphing-button": {
     name: "morphing-button",
     description: "A button component with a morphing effect.",
     type: "registry:ui",
-    registryDependencies: [],
+    registryDependencies: undefined,
     files: [{
-      path: "src/nuvyxui/components/morphing-button.tsx",
+      path: "registry/ui/morphing-button.tsx",
       type: "registry:ui",
-      target: "components/ui/morphing-button.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/components/morphing-button.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "morphing-button"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component morphing-button:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/ui/morphing-button.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "image-comparison": {
     name: "image-comparison",
     description: "A image comparison component that allows users to compare images.",
     type: "registry:ui",
-    registryDependencies: [],
+    registryDependencies: undefined,
     files: [{
-      path: "src/nuvyxui/components/image-comparison.tsx",
+      path: "registry/ui/image-comparison.tsx",
       type: "registry:ui",
-      target: "components/ui/image-comparison.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/components/image-comparison.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "image-comparison"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component image-comparison:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/ui/image-comparison.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "image-scanner": {
     name: "image-scanner",
     description: "A image scanner component that allows users to scan images.",
     type: "registry:ui",
-    registryDependencies: [],
+    registryDependencies: undefined,
     files: [{
-      path: "src/nuvyxui/components/image-scanner.tsx",
+      path: "registry/ui/image-scanner.tsx",
       type: "registry:ui",
-      target: "components/ui/majestic-card.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/components/image-scanner.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "image-scanner"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component image-scanner:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/ui/image-scanner.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "majestic-card": {
     name: "majestic-card",
     description: "A majestic card that that provide several effects.",
     type: "registry:ui",
-    registryDependencies: [],
+    registryDependencies: undefined,
     files: [{
-      path: "src/nuvyxui/components/majestic-card.tsx",
+      path: "registry/ui/majestic-card.tsx",
       type: "registry:ui",
-      target: "components/ui/majestic-card.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/components/majestic-card.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "majestic-card"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component majestic-card:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/ui/majestic-card.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "marquee": {
     name: "marquee",
     description: "A customizable, interactive scrolling marquee component.",
     type: "registry:ui",
-    registryDependencies: [],
+    registryDependencies: undefined,
     files: [{
-      path: "src/nuvyxui/components/marquee.tsx",
+      path: "registry/ui/marquee.tsx",
       type: "registry:ui",
-      target: "components/ui/marquee.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/components/marquee.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "marquee"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component marquee:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/ui/marquee.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "matrix-code-rain": {
     name: "matrix-code-rain",
     description: "A matrix code rain that that provide several effects.",
     type: "registry:ui",
-    registryDependencies: [],
+    registryDependencies: undefined,
     files: [{
-      path: "src/nuvyxui/components/matrix-code-rain.tsx",
+      path: "registry/ui/matrix-code-rain.tsx",
       type: "registry:ui",
-      target: "components/ui/matrix-code-rain.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/components/matrix-code-rain.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "matrix-code-rain"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component matrix-code-rain:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/ui/matrix-code-rain.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "morphing-blob": {
     name: "morphing-blob",
     description: "A morphing blob that that provide several effects.",
     type: "registry:ui",
-    registryDependencies: [],
+    registryDependencies: undefined,
     files: [{
-      path: "src/nuvyxui/components/morphing-blob.tsx",
+      path: "registry/ui/morphing-blob.tsx",
       type: "registry:ui",
-      target: "components/ui/morphing-blob.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/components/morphing-blob.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "morphing-blob"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component morphing-blob:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/ui/morphing-blob.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "music-player": {
     name: "music-player",
     description: "A music player that that provide several effects.",
     type: "registry:ui",
-    registryDependencies: [],
+    registryDependencies: undefined,
     files: [{
-      path: "src/nuvyxui/components/music-player.tsx",
+      path: "registry/ui/music-player.tsx",
       type: "registry:ui",
-      target: "components/ui/music-player.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/components/music-player.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "music-player"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component music-player:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/ui/music-player.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "reveal-card": {
     name: "reveal-card",
     description: "A reveal card that that provide several effects.",
     type: "registry:ui",
-    registryDependencies: [],
+    registryDependencies: undefined,
     files: [{
-      path: "src/nuvyxui/components/reveal-card.tsx",
+      path: "registry/ui/reveal-card.tsx",
       type: "registry:ui",
-      target: "components/ui/reveal-card.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/components/reveal-card.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "reveal-card"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component reveal-card:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/ui/reveal-card.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "scroll-animation-trigger": {
     name: "scroll-animation-trigger",
     description: "A scroll animation trigger that that provide several effects.",
     type: "registry:ui",
-    registryDependencies: [],
+    registryDependencies: undefined,
     files: [{
-      path: "src/nuvyxui/components/scroll-animation-trigger.tsx",
+      path: "registry/ui/scroll-animation-trigger.tsx",
       type: "registry:ui",
-      target: "components/ui/scroll-animation-trigger.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/components/scroll-animation-trigger.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "scroll-animation-trigger"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component scroll-animation-trigger:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/ui/scroll-animation-trigger.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "terminal": {
     name: "terminal",
     description: "A terminal that that provide several effects.",
     type: "registry:ui",
-    registryDependencies: [],
+    registryDependencies: undefined,
     files: [{
-      path: "src/nuvyxui/components/terminal.tsx",
+      path: "registry/ui/terminal.tsx",
       type: "registry:ui",
-      target: "components/ui/terminal.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/components/terminal.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "terminal"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component terminal:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/ui/terminal.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "animated-code-block-demo": {
     name: "animated-code-block-demo",
     description: "Example showing a code block with typing animation effects.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/animated-code-block.json"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/animated-code-block"],
     files: [{
-      path: "src/nuvyxui/demos/animated-code-block-demo.tsx",
+      path: "registry/example/animated-code-block-demo.tsx",
       type: "registry:example",
-      target: "components/animated-code-block-demo.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/demos/animated-code-block-demo.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "animated-code-block-demo"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component animated-code-block-demo:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/example/animated-code-block-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "animated-gradient-bg-demo": {
     name: "animated-gradient-bg-demo",
     description: "Example showing an animated gradient background.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/animated-gradient-bg.json"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/animated-gradient-bg"],
     files: [{
-      path: "src/nuvyxui/demos/animated-gradient-bg-demo.tsx",
+      path: "registry/example/animated-gradient-bg-demo.tsx",
       type: "registry:example",
-      target: "components/animated-gradient-bg-demo.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/demos/animated-gradient-bg-demo.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "animated-gradient-bg-demo"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component animated-gradient-bg-demo:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/example/animated-gradient-bg-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "animated-text-demo": {
     name: "animated-text-demo",
@@ -637,21 +460,15 @@ export const Index: Record<string, any> = {
     type: "registry:example",
     registryDependencies: ["https://nuvyxui.vercel.app/r/animated-text.json"],
     files: [{
-      path: "src/nuvyxui/demos/animated-text-demo.tsx",
+      path: "registry/example/animated-text-demo.tsx",
       type: "registry:example",
-      target: "components/animated-text-demo.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/demos/animated-text-demo.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "animated-text-demo"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component animated-text-demo:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/example/animated-text-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "bento-grid-demo": {
     name: "bento-grid-demo",
@@ -659,21 +476,15 @@ export const Index: Record<string, any> = {
     type: "registry:example",
     registryDependencies: ["https://nuvyxui.vercel.app/r/bento-grid.json"],
     files: [{
-      path: "src/nuvyxui/demos/bento-grid-demo.tsx",
+      path: "registry/example/bento-grid-demo.tsx",
       type: "registry:example",
-      target: "components/bento-grid-demo.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/demos/bento-grid-demo.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "bento-grid-demo"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component bento-grid-demo:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/example/bento-grid-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "bubble-background-demo": {
     name: "bubble-background-demo",
@@ -681,21 +492,15 @@ export const Index: Record<string, any> = {
     type: "registry:example",
     registryDependencies: ["https://nuvyxui.vercel.app/r/bubble-background.json"],
     files: [{
-      path: "src/nuvyxui/demos/bubble-background-demo.tsx",
+      path: "registry/example/bubble-background-demo.tsx",
       type: "registry:example",
-      target: "components/bubble-background-demo.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/demos/bubble-background-demo.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "bubble-background-demo"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component bubble-background-demo:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/example/bubble-background-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "cyberpunk-card-demo": {
     name: "cyberpunk-card-demo",
@@ -703,21 +508,15 @@ export const Index: Record<string, any> = {
     type: "registry:example",
     registryDependencies: ["https://nuvyxui.vercel.app/r/cyberpunk-card.json"],
     files: [{
-      path: "src/nuvyxui/demos/cyberpunk-card-demo.tsx",
+      path: "registry/example/cyberpunk-card-demo.tsx",
       type: "registry:example",
-      target: "components/cyberpunk-card-demo.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/demos/cyberpunk-card-demo.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "cyberpunk-card-demo"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component cyberpunk-card-demo:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/example/cyberpunk-card-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "cyberpunk-card-demo1": {
     name: "cyberpunk-card-demo1",
@@ -725,21 +524,15 @@ export const Index: Record<string, any> = {
     type: "registry:example",
     registryDependencies: ["https://nuvyxui.vercel.app/r/cyberpunk-card.json"],
     files: [{
-      path: "src/nuvyxui/demos/cyberpunk-card-demo1.tsx",
+      path: "registry/example/cyberpunk-card-demo1.tsx",
       type: "registry:example",
-      target: "components/cyberpunk-card-demo1.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/demos/cyberpunk-card-demo1.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "cyberpunk-card-demo1"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component cyberpunk-card-demo1:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/example/cyberpunk-card-demo1.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "dynamic-ripple-demo": {
     name: "dynamic-ripple-demo",
@@ -747,21 +540,15 @@ export const Index: Record<string, any> = {
     type: "registry:example",
     registryDependencies: ["https://nuvyxui.vercel.app/r/dynamic-ripple.json"],
     files: [{
-      path: "src/nuvyxui/demos/dynamic-ripple-demo.tsx",
+      path: "registry/example/dynamic-ripple-demo.tsx",
       type: "registry:example",
-      target: "components/dynamic-ripple-demo.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/demos/dynamic-ripple-demo.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "dynamic-ripple-demo"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component dynamic-ripple-demo:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/example/dynamic-ripple-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "github-profile-card-demo": {
     name: "github-profile-card-demo",
@@ -769,21 +556,15 @@ export const Index: Record<string, any> = {
     type: "registry:example",
     registryDependencies: ["https://nuvyxui.vercel.app/r/github-profile-card.json"],
     files: [{
-      path: "src/nuvyxui/demos/github-profile-card-demo.tsx",
+      path: "registry/example/github-profile-card-demo.tsx",
       type: "registry:example",
-      target: "components/github-profile-card-demo.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/demos/github-profile-card-demo.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "github-profile-card-demo"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component github-profile-card-demo:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/example/github-profile-card-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "github-repo-card-demo": {
     name: "github-repo-card-demo",
@@ -791,21 +572,15 @@ export const Index: Record<string, any> = {
     type: "registry:example",
     registryDependencies: ["https://nuvyxui.vercel.app/r/github-repo-card.json"],
     files: [{
-      path: "src/nuvyxui/demos/github-repo-card-demo.tsx",
+      path: "registry/example/github-repo-card-demo.tsx",
       type: "registry:example",
-      target: "components/github-repo-card-demo.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/demos/github-repo-card-demo.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "github-repo-card-demo"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component github-repo-card-demo:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/example/github-repo-card-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "github-repo-card-demo1": {
     name: "github-repo-card-demo1",
@@ -813,21 +588,15 @@ export const Index: Record<string, any> = {
     type: "registry:example",
     registryDependencies: ["https://nuvyxui.vercel.app/r/github-repo-card.json"],
     files: [{
-      path: "src/nuvyxui/demos/github-repo-card-demo1.tsx",
+      path: "registry/example/github-repo-card-demo1.tsx",
       type: "registry:example",
-      target: "components/github-repo-card-demo1.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/demos/github-repo-card-demo1.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "github-repo-card-demo1"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component github-repo-card-demo1:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/example/github-repo-card-demo1.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "github-repo-card-demo2": {
     name: "github-repo-card-demo2",
@@ -835,21 +604,15 @@ export const Index: Record<string, any> = {
     type: "registry:example",
     registryDependencies: ["https://nuvyxui.vercel.app/r/github-repo-card.json"],
     files: [{
-      path: "src/nuvyxui/demos/github-repo-card-demo2.tsx",
+      path: "registry/example/github-repo-card-demo2.tsx",
       type: "registry:example",
-      target: "components/github-repo-card-demo2.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/demos/github-repo-card-demo2.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "github-repo-card-demo2"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component github-repo-card-demo2:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/example/github-repo-card-demo2.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "glitch-button-demo": {
     name: "glitch-button-demo",
@@ -857,21 +620,15 @@ export const Index: Record<string, any> = {
     type: "registry:example",
     registryDependencies: ["https://nuvyxui.vercel.app/r/glitch-button.json"],
     files: [{
-      path: "src/nuvyxui/demos/glitch-button-demo.tsx",
+      path: "registry/example/glitch-button-demo.tsx",
       type: "registry:example",
-      target: "components/glitch-button-demo.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/demos/glitch-button-demo.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "glitch-button-demo"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component glitch-button-demo:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/example/glitch-button-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "gradient-button-demo": {
     name: "gradient-button-demo",
@@ -879,21 +636,15 @@ export const Index: Record<string, any> = {
     type: "registry:example",
     registryDependencies: ["https://nuvyxui.vercel.app/r/gradient-button.json"],
     files: [{
-      path: "src/nuvyxui/demos/gradient-button-demo.tsx",
+      path: "registry/example/gradient-button-demo.tsx",
       type: "registry:example",
-      target: "components/gradient-button-demo.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/demos/gradient-button-demo.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "gradient-button-demo"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component gradient-button-demo:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/example/gradient-button-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "keyboard-demo": {
     name: "keyboard-demo",
@@ -901,21 +652,15 @@ export const Index: Record<string, any> = {
     type: "registry:example",
     registryDependencies: ["https://nuvyxui.vercel.app/r/keyboard.json"],
     files: [{
-      path: "src/nuvyxui/demos/keyboard-demo.tsx",
+      path: "registry/example/keyboard-demo.tsx",
       type: "registry:example",
-      target: "components/keyboard-demo.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/demos/keyboard-demo.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "keyboard-demo"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component keyboard-demo:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/example/keyboard-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "keyboard-demo1": {
     name: "keyboard-demo1",
@@ -923,21 +668,15 @@ export const Index: Record<string, any> = {
     type: "registry:example",
     registryDependencies: ["https://nuvyxui.vercel.app/r/keyboard.json"],
     files: [{
-      path: "src/nuvyxui/demos/keyboard-demo1.tsx",
+      path: "registry/example/keyboard-demo1.tsx",
       type: "registry:example",
-      target: "components/keyboard-demo1.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/demos/keyboard-demo1.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "keyboard-demo1"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component keyboard-demo1:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/example/keyboard-demo1.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "ms-paint-demo": {
     name: "ms-paint-demo",
@@ -945,21 +684,15 @@ export const Index: Record<string, any> = {
     type: "registry:example",
     registryDependencies: ["https://nuvyxui.vercel.app/r/ms-paint.json"],
     files: [{
-      path: "src/nuvyxui/demos/ms-paint-demo.tsx",
+      path: "registry/example/ms-paint-demo.tsx",
       type: "registry:example",
-      target: "components/ms-paint-demo.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/demos/ms-paint-demo.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "ms-paint-demo"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component ms-paint-demo:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/example/ms-paint-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "lamp-heading-demo": {
     name: "lamp-heading-demo",
@@ -967,21 +700,15 @@ export const Index: Record<string, any> = {
     type: "registry:example",
     registryDependencies: ["https://nuvyxui.vercel.app/r/lamp-heading.json"],
     files: [{
-      path: "src/nuvyxui/demos/lamp-heading-demo.tsx",
+      path: "registry/example/lamp-heading-demo.tsx",
       type: "registry:example",
-      target: "components/lamp-heading-demo.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/demos/lamp-heading-demo.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "lamp-heading-demo"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component lamp-heading-demo:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/example/lamp-heading-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "liquid-metal-button-demo": {
     name: "liquid-metal-button-demo",
@@ -989,21 +716,15 @@ export const Index: Record<string, any> = {
     type: "registry:example",
     registryDependencies: ["https://nuvyxui.vercel.app/r/liquid-metal-button.json"],
     files: [{
-      path: "src/nuvyxui/demos/liquid-metal-button-demo.tsx",
+      path: "registry/example/liquid-metal-button-demo.tsx",
       type: "registry:example",
-      target: "components/liquid-metal-button-demo.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/demos/liquid-metal-button-demo.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "liquid-metal-button-demo"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component liquid-metal-button-demo:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/example/liquid-metal-button-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "morphing-button-demo": {
     name: "morphing-button-demo",
@@ -1011,21 +732,15 @@ export const Index: Record<string, any> = {
     type: "registry:example",
     registryDependencies: ["https://nuvyxui.vercel.app/r/morphing-button.json"],
     files: [{
-      path: "src/nuvyxui/demos/morphing-button-demo.tsx",
+      path: "registry/example/morphing-button-demo.tsx",
       type: "registry:example",
-      target: "components/morphing-button-demo.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/demos/morphing-button-demo.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "morphing-button-demo"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component morphing-button-demo:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/example/morphing-button-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "image-comparison-demo": {
     name: "image-comparison-demo",
@@ -1033,21 +748,15 @@ export const Index: Record<string, any> = {
     type: "registry:example",
     registryDependencies: ["https://nuvyxui.vercel.app/r/image-comparison.json"],
     files: [{
-      path: "src/nuvyxui/demos/image-comparison-demo.tsx",
+      path: "registry/example/image-comparison-demo.tsx",
       type: "registry:example",
-      target: "components/image-comparison-demo.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/demos/image-comparison-demo.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "image-comparison-demo"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component image-comparison-demo:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/example/image-comparison-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "image-scanner-demo": {
     name: "image-scanner-demo",
@@ -1055,21 +764,15 @@ export const Index: Record<string, any> = {
     type: "registry:example",
     registryDependencies: ["https://nuvyxui.vercel.app/r/image-scanner.json"],
     files: [{
-      path: "src/nuvyxui/demos/image-scanner-demo.tsx",
+      path: "registry/example/image-scanner-demo.tsx",
       type: "registry:example",
-      target: "components/image-scanner-demo.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/demos/image-scanner-demo.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "image-scanner-demo"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component image-scanner-demo:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/example/image-scanner-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "majestic-card-demo": {
     name: "majestic-card-demo",
@@ -1077,21 +780,15 @@ export const Index: Record<string, any> = {
     type: "registry:example",
     registryDependencies: ["https://nuvyxui.vercel.app/r/majestic-card.json"],
     files: [{
-      path: "src/nuvyxui/demos/majestic-card-demo.tsx",
+      path: "registry/example/majestic-card-demo.tsx",
       type: "registry:example",
-      target: "components/majestic-card-demo.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/demos/majestic-card-demo.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "majestic-card-demo"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component majestic-card-demo:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/example/majestic-card-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "marquee-demo": {
     name: "marquee-demo",
@@ -1099,21 +796,15 @@ export const Index: Record<string, any> = {
     type: "registry:example",
     registryDependencies: ["https://nuvyxui.vercel.app/r/marquee.json"],
     files: [{
-      path: "src/nuvyxui/demos/marquee-demo.tsx",
+      path: "registry/example/marquee-demo.tsx",
       type: "registry:example",
-      target: "components/marquee-demo.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/demos/marquee-demo.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "marquee-demo"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component marquee-demo:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/example/marquee-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "marquee-demo1": {
     name: "marquee-demo1",
@@ -1121,21 +812,15 @@ export const Index: Record<string, any> = {
     type: "registry:example",
     registryDependencies: ["https://nuvyxui.vercel.app/r/marquee.json"],
     files: [{
-      path: "src/nuvyxui/demos/marquee-demo1.tsx",
+      path: "registry/example/marquee-demo1.tsx",
       type: "registry:example",
-      target: "components/marquee-demo1.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/demos/marquee-demo1.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "marquee-demo1"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component marquee-demo1:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/example/marquee-demo1.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "marquee-demo2": {
     name: "marquee-demo2",
@@ -1143,21 +828,15 @@ export const Index: Record<string, any> = {
     type: "registry:example",
     registryDependencies: ["https://nuvyxui.vercel.app/r/marquee.json"],
     files: [{
-      path: "src/nuvyxui/demos/marquee-demo2.tsx",
+      path: "registry/example/marquee-demo2.tsx",
       type: "registry:example",
-      target: "components/marquee-demo2.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/demos/marquee-demo2.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "marquee-demo2"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component marquee-demo2:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/example/marquee-demo2.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "matrix-code-rain-demo": {
     name: "matrix-code-rain-demo",
@@ -1165,21 +844,15 @@ export const Index: Record<string, any> = {
     type: "registry:example",
     registryDependencies: ["https://nuvyxui.vercel.app/r/matrix-code-rain.json"],
     files: [{
-      path: "src/nuvyxui/demos/matrix-code-rain-demo.tsx",
+      path: "registry/example/matrix-code-rain-demo.tsx",
       type: "registry:example",
-      target: "components/matrix-code-rain-demo.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/demos/matrix-code-rain-demo.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "matrix-code-rain-demo"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component matrix-code-rain-demo:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/example/matrix-code-rain-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "morphing-blob-demo": {
     name: "morphing-blob-demo",
@@ -1187,21 +860,15 @@ export const Index: Record<string, any> = {
     type: "registry:example",
     registryDependencies: ["https://nuvyxui.vercel.app/r/morphing-blob.json"],
     files: [{
-      path: "src/nuvyxui/demos/morphing-blob-demo.tsx",
+      path: "registry/example/morphing-blob-demo.tsx",
       type: "registry:example",
-      target: "components/morphing-blob-demo.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/demos/morphing-blob-demo.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "morphing-blob-demo"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component morphing-blob-demo:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/example/morphing-blob-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "music-player-demo": {
     name: "music-player-demo",
@@ -1209,21 +876,15 @@ export const Index: Record<string, any> = {
     type: "registry:example",
     registryDependencies: ["https://nuvyxui.vercel.app/r/music-player.json"],
     files: [{
-      path: "src/nuvyxui/demos/music-player-demo.tsx",
+      path: "registry/example/music-player-demo.tsx",
       type: "registry:example",
-      target: "components/music-player-demo.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/demos/music-player-demo.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "music-player-demo"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component music-player-demo:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/example/music-player-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "music-player-demo1": {
     name: "music-player-demo1",
@@ -1231,21 +892,15 @@ export const Index: Record<string, any> = {
     type: "registry:example",
     registryDependencies: ["https://nuvyxui.vercel.app/r/music-player.json"],
     files: [{
-      path: "src/nuvyxui/demos/music-player-demo1.tsx",
+      path: "registry/example/music-player-demo1.tsx",
       type: "registry:example",
-      target: "components/music-player-demo1.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/demos/music-player-demo1.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "music-player-demo1"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component music-player-demo1:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/example/music-player-demo1.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "music-player-demo2": {
     name: "music-player-demo2",
@@ -1253,21 +908,15 @@ export const Index: Record<string, any> = {
     type: "registry:example",
     registryDependencies: ["https://nuvyxui.vercel.app/r/music-player.json"],
     files: [{
-      path: "src/nuvyxui/demos/music-player-demo2.tsx",
+      path: "registry/example/music-player-demo2.tsx",
       type: "registry:example",
-      target: "components/music-player-demo2.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/demos/music-player-demo2.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "music-player-demo2"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component music-player-demo2:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/example/music-player-demo2.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "reveal-card-demo": {
     name: "reveal-card-demo",
@@ -1275,21 +924,15 @@ export const Index: Record<string, any> = {
     type: "registry:example",
     registryDependencies: ["https://nuvyxui.vercel.app/r/reveal-card.json"],
     files: [{
-      path: "src/nuvyxui/demos/reveal-card-demo.tsx",
+      path: "registry/example/reveal-card-demo.tsx",
       type: "registry:example",
-      target: "components/reveal-card-demo.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/demos/reveal-card-demo.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "reveal-card-demo"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component reveal-card-demo:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/example/reveal-card-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "scroll-animation-trigger-demo": {
     name: "scroll-animation-trigger-demo",
@@ -1297,21 +940,15 @@ export const Index: Record<string, any> = {
     type: "registry:example",
     registryDependencies: ["https://nuvyxui.vercel.app/r/scroll-animation-trigger.json"],
     files: [{
-      path: "src/nuvyxui/demos/scroll-animation-trigger-demo.tsx",
+      path: "registry/example/scroll-animation-trigger-demo.tsx",
       type: "registry:example",
-      target: "components/scroll-animation-trigger-demo.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/demos/scroll-animation-trigger-demo.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "scroll-animation-trigger-demo"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component scroll-animation-trigger-demo:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/example/scroll-animation-trigger-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "scroll-animation-trigger-demo1": {
     name: "scroll-animation-trigger-demo1",
@@ -1319,21 +956,15 @@ export const Index: Record<string, any> = {
     type: "registry:example",
     registryDependencies: ["https://nuvyxui.vercel.app/r/scroll-animation-trigger.json"],
     files: [{
-      path: "src/nuvyxui/demos/scroll-animation-trigger-demo1.tsx",
+      path: "registry/example/scroll-animation-trigger-demo1.tsx",
       type: "registry:example",
-      target: "components/scroll-animation-trigger-demo1.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/demos/scroll-animation-trigger-demo1.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "scroll-animation-trigger-demo1"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component scroll-animation-trigger-demo1:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/example/scroll-animation-trigger-demo1.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "scroll-animation-trigger-demo2": {
     name: "scroll-animation-trigger-demo2",
@@ -1341,21 +972,15 @@ export const Index: Record<string, any> = {
     type: "registry:example",
     registryDependencies: ["https://nuvyxui.vercel.app/r/scroll-animation-trigger.json"],
     files: [{
-      path: "src/nuvyxui/demos/scroll-animation-trigger-demo2.tsx",
+      path: "registry/example/scroll-animation-trigger-demo2.tsx",
       type: "registry:example",
-      target: "components/scroll-animation-trigger-demo2.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/demos/scroll-animation-trigger-demo2.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "scroll-animation-trigger-demo2"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component scroll-animation-trigger-demo2:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/example/scroll-animation-trigger-demo2.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "terminal-demo": {
     name: "terminal-demo",
@@ -1363,21 +988,15 @@ export const Index: Record<string, any> = {
     type: "registry:example",
     registryDependencies: ["https://nuvyxui.vercel.app/r/terminal.json"],
     files: [{
-      path: "src/nuvyxui/demos/terminal-demo.tsx",
+      path: "registry/example/terminal-demo.tsx",
       type: "registry:example",
-      target: "components/terminal-demo.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/demos/terminal-demo.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "terminal-demo"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component terminal-demo:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/example/terminal-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "terminal-demo1": {
     name: "terminal-demo1",
@@ -1385,42 +1004,30 @@ export const Index: Record<string, any> = {
     type: "registry:example",
     registryDependencies: ["https://nuvyxui.vercel.app/r/terminal.json"],
     files: [{
-      path: "src/nuvyxui/demos/terminal-demo1.tsx",
+      path: "registry/example/terminal-demo1.tsx",
       type: "registry:example",
-      target: "components/terminal-demo1.tsx"
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../src/nuvyxui/demos/terminal-demo1.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "terminal-demo1"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component terminal-demo1:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/example/terminal-demo1.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   "utils": {
     name: "utils",
     description: "",
     type: "registry:lib",
-    registryDependencies: [],
+    registryDependencies: undefined,
     files: [{
       path: "registry/lib/utils.ts",
       type: "registry:lib",
-      target: ""
     }],
     component: React.lazy(async () => {
-      try {
-        const mod = await import("../registry/lib/utils.ts")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || "utils"
-        return { default: mod.default || mod[exportName] }
-      } catch (error) {
-        console.error("Error loading component utils:", error)
-        return { default: () => React.createElement("div", {}, "Failed to load component") }
-      }
+      const mod = await import("@/registry/lib/utils.ts")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
     }),
-    meta: {},
+    meta: undefined,
   },
   }

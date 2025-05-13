@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "build:registry": "npx tsx ./src/scripts/build-registry.mts",
+    "build:registry": "npx tsx ./scripts/build-registry.mts",
     "registry:build": "tsx --tsconfig ./tsconfig.scripts.json ./scripts/build-registry.mts && prettier --log-level silent --write \"registry/**/*.{ts,tsx,json,mdx}\" --cache",
     "shadcn registry:build": "shadcn registry:build",
     "typecheck": "pnpm build:docs && tsc --noEmit",

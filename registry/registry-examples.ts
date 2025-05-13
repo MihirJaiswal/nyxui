@@ -6,10 +6,10 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Animated Code Block Demo",
     description: "Example showing a code block with typing animation effects.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/animated-code-block.json"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/animated-code-block"],
     files: [
       {
-        path: "src/nuvyxui/demos/animated-code-block-demo.tsx",
+        path: "registry/example/animated-code-block-demo.tsx",
         type: "registry:example",
         target: "components/animated-code-block-demo.tsx",
       },
@@ -20,10 +20,10 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Animated Gradient Background Demo",
     description: "Example showing an animated gradient background.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/animated-gradient-bg.json"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/animated-gradient-bg"],
     files: [
       {
-        path: "src/nuvyxui/demos/animated-gradient-bg-demo.tsx",
+        path: "registry/example/animated-gradient-bg-demo.tsx",
         type: "registry:example",
         target: "components/animated-gradient-bg-demo.tsx",
       },
@@ -37,7 +37,7 @@ export const examples: Registry["items"] = [
     registryDependencies: ["https://nuvyxui.vercel.app/r/animated-text.json"],
     files: [
       {
-        path: "src/nuvyxui/demos/animated-text-demo.tsx",
+        path: "registry/example/animated-text-demo.tsx",
         type: "registry:example",
         target: "components/animated-text-demo.tsx",
       },
@@ -51,7 +51,7 @@ export const examples: Registry["items"] = [
     registryDependencies: ["https://nuvyxui.vercel.app/r/bento-grid.json"],
     files: [
       {
-        path: "src/nuvyxui/demos/bento-grid-demo.tsx",
+        path: "registry/example/bento-grid-demo.tsx",
         type: "registry:example",
         target: "components/bento-grid-demo.tsx",
       },
@@ -65,7 +65,7 @@ export const examples: Registry["items"] = [
     registryDependencies: ["https://nuvyxui.vercel.app/r/bubble-background.json"],
     files: [
       {
-        path: "src/nuvyxui/demos/bubble-background-demo.tsx",
+        path: "registry/example/bubble-background-demo.tsx",
         type: "registry:example",
         target: "components/bubble-background-demo.tsx",
       },
@@ -79,7 +79,7 @@ export const examples: Registry["items"] = [
     registryDependencies: ["https://nuvyxui.vercel.app/r/cyberpunk-card.json"],
     files: [
       {
-        path: "src/nuvyxui/demos/cyberpunk-card-demo.tsx",
+        path: "registry/example/cyberpunk-card-demo.tsx",
         type: "registry:example",
         target: "components/cyberpunk-card-demo.tsx",
       },
@@ -93,7 +93,7 @@ export const examples: Registry["items"] = [
     registryDependencies: ["https://nuvyxui.vercel.app/r/cyberpunk-card.json"],
     files: [
       {
-        path: "src/nuvyxui/demos/cyberpunk-card-demo1.tsx",
+        path: "registry/example/cyberpunk-card-demo1.tsx",
         type: "registry:example",
         target: "components/cyberpunk-card-demo1.tsx",
       },
@@ -107,7 +107,7 @@ export const examples: Registry["items"] = [
     registryDependencies: ["https://nuvyxui.vercel.app/r/dynamic-ripple.json"],
     files: [
       {
-        path: "src/nuvyxui/demos/dynamic-ripple-demo.tsx",
+        path: "registry/example/dynamic-ripple-demo.tsx",
         type: "registry:example",
         target: "components/dynamic-ripple-demo.tsx",
       },
@@ -121,7 +121,7 @@ export const examples: Registry["items"] = [
     registryDependencies: ["https://nuvyxui.vercel.app/r/github-profile-card.json"],
     files: [
       {
-        path: "src/nuvyxui/demos/github-profile-card-demo.tsx",
+        path: "registry/example/github-profile-card-demo.tsx",
         type: "registry:example",
         target: "components/github-profile-card-demo.tsx",
       },
@@ -135,7 +135,7 @@ export const examples: Registry["items"] = [
     registryDependencies: ["https://nuvyxui.vercel.app/r/github-repo-card.json"],
     files: [
       {
-        path: "src/nuvyxui/demos/github-repo-card-demo.tsx",
+        path: "registry/example/github-repo-card-demo.tsx",
         type: "registry:example",
         target: "components/github-repo-card-demo.tsx",
       },
@@ -149,7 +149,7 @@ export const examples: Registry["items"] = [
     registryDependencies: ["https://nuvyxui.vercel.app/r/github-repo-card.json"],
     files: [
       {
-        path: "src/nuvyxui/demos/github-repo-card-demo1.tsx",
+        path: "registry/example/github-repo-card-demo1.tsx",
         type: "registry:example",
         target: "components/github-repo-card-demo1.tsx",
       },
@@ -163,7 +163,7 @@ export const examples: Registry["items"] = [
     registryDependencies: ["https://nuvyxui.vercel.app/r/github-repo-card.json"],
     files: [
       {
-        path: "src/nuvyxui/demos/github-repo-card-demo2.tsx",
+        path: "registry/example/github-repo-card-demo2.tsx",
         type: "registry:example",
         target: "components/github-repo-card-demo2.tsx",
       },
@@ -177,7 +177,7 @@ export const examples: Registry["items"] = [
     registryDependencies: ["https://nuvyxui.vercel.app/r/glitch-button.json"],
     files: [
       {
-        path: "src/nuvyxui/demos/glitch-button-demo.tsx",
+        path: "registry/example/glitch-button-demo.tsx",
         type: "registry:example",
         target: "components/glitch-button-demo.tsx",
       },
@@ -191,7 +191,7 @@ export const examples: Registry["items"] = [
     registryDependencies: ["https://nuvyxui.vercel.app/r/gradient-button.json"],
     files: [
       {
-        path: "src/nuvyxui/demos/gradient-button-demo.tsx",
+        path: "registry/example/gradient-button-demo.tsx",
         type: "registry:example",
         target: "components/gradient-button-demo.tsx",
       },
@@ -205,7 +205,7 @@ export const examples: Registry["items"] = [
     registryDependencies: ["https://nuvyxui.vercel.app/r/keyboard.json"],
     files: [
       {
-        path: "src/nuvyxui/demos/keyboard-demo.tsx",
+        path: "registry/example/keyboard-demo.tsx",
         type: "registry:example",
         target: "components/keyboard-demo.tsx",
       },
@@ -219,7 +219,7 @@ export const examples: Registry["items"] = [
     registryDependencies: ["https://nuvyxui.vercel.app/r/keyboard.json"],
     files: [
       {
-        path: "src/nuvyxui/demos/keyboard-demo1.tsx",
+        path: "registry/example/keyboard-demo1.tsx",
         type: "registry:example",
         target: "components/keyboard-demo1.tsx",
       },
@@ -233,7 +233,7 @@ export const examples: Registry["items"] = [
     registryDependencies: ["https://nuvyxui.vercel.app/r/ms-paint.json"],
     files: [
       {
-        path: "src/nuvyxui/demos/ms-paint-demo.tsx",
+        path: "registry/example/ms-paint-demo.tsx",
         type: "registry:example",
         target: "components/ms-paint-demo.tsx",
       },
@@ -247,7 +247,7 @@ export const examples: Registry["items"] = [
     registryDependencies: ["https://nuvyxui.vercel.app/r/lamp-heading.json"],
     files: [
       {
-        path: "src/nuvyxui/demos/lamp-heading-demo.tsx",
+        path: "registry/example/lamp-heading-demo.tsx",
         type: "registry:example",
         target: "components/lamp-heading-demo.tsx",
       },
@@ -261,7 +261,7 @@ export const examples: Registry["items"] = [
     registryDependencies: ["https://nuvyxui.vercel.app/r/liquid-metal-button.json"],
     files: [
       {
-        path: "src/nuvyxui/demos/liquid-metal-button-demo.tsx",
+        path: "registry/example/liquid-metal-button-demo.tsx",
         type: "registry:example",
         target: "components/liquid-metal-button-demo.tsx",
       },
@@ -275,7 +275,7 @@ export const examples: Registry["items"] = [
     registryDependencies: ["https://nuvyxui.vercel.app/r/morphing-button.json"],
     files: [
       {
-        path: "src/nuvyxui/demos/morphing-button-demo.tsx",
+        path: "registry/example/morphing-button-demo.tsx",
         type: "registry:example",
         target: "components/morphing-button-demo.tsx",
       },
@@ -289,7 +289,7 @@ export const examples: Registry["items"] = [
     registryDependencies: ["https://nuvyxui.vercel.app/r/image-comparison.json"],
     files: [
       {
-        path: "src/nuvyxui/demos/image-comparison-demo.tsx",
+        path: "registry/example/image-comparison-demo.tsx",
         type: "registry:example",
         target: "components/image-comparison-demo.tsx",
       },
@@ -303,7 +303,7 @@ export const examples: Registry["items"] = [
     registryDependencies: ["https://nuvyxui.vercel.app/r/image-scanner.json"],
     files: [
       {
-        path: "src/nuvyxui/demos/image-scanner-demo.tsx",
+        path: "registry/example/image-scanner-demo.tsx",
         type: "registry:example",
         target: "components/image-scanner-demo.tsx",
       },
@@ -317,7 +317,7 @@ export const examples: Registry["items"] = [
     registryDependencies: ["https://nuvyxui.vercel.app/r/majestic-card.json"],
     files: [
       {
-        path: "src/nuvyxui/demos/majestic-card-demo.tsx",
+        path: "registry/example/majestic-card-demo.tsx",
         type: "registry:example",
         target: "components/majestic-card-demo.tsx",
       },
@@ -331,7 +331,7 @@ export const examples: Registry["items"] = [
     registryDependencies: ["https://nuvyxui.vercel.app/r/marquee.json"],
     files: [
       {
-        path: "src/nuvyxui/demos/marquee-demo.tsx",
+        path: "registry/example/marquee-demo.tsx",
         type: "registry:example",
         target: "components/marquee-demo.tsx",
       },
@@ -345,7 +345,7 @@ export const examples: Registry["items"] = [
     registryDependencies: ["https://nuvyxui.vercel.app/r/marquee.json"],
     files: [
       {
-        path: "src/nuvyxui/demos/marquee-demo1.tsx",
+        path: "registry/example/marquee-demo1.tsx",
         type: "registry:example",
         target: "components/marquee-demo1.tsx",
       },
@@ -359,7 +359,7 @@ export const examples: Registry["items"] = [
     registryDependencies: ["https://nuvyxui.vercel.app/r/marquee.json"],
     files: [
       {
-        path: "src/nuvyxui/demos/marquee-demo2.tsx",
+        path: "registry/example/marquee-demo2.tsx",
         type: "registry:example",
         target: "components/marquee-demo2.tsx",
       },
@@ -373,7 +373,7 @@ export const examples: Registry["items"] = [
     registryDependencies: ["https://nuvyxui.vercel.app/r/matrix-code-rain.json"],
     files: [
       {
-        path: "src/nuvyxui/demos/matrix-code-rain-demo.tsx",
+        path: "registry/example/matrix-code-rain-demo.tsx",
         type: "registry:example",
         target: "components/matrix-code-rain-demo.tsx",
       },
@@ -387,7 +387,7 @@ export const examples: Registry["items"] = [
     registryDependencies: ["https://nuvyxui.vercel.app/r/morphing-blob.json"],
     files: [
       {
-        path: "src/nuvyxui/demos/morphing-blob-demo.tsx",
+        path: "registry/example/morphing-blob-demo.tsx",
         type: "registry:example",
         target: "components/morphing-blob-demo.tsx",
       },
@@ -401,7 +401,7 @@ export const examples: Registry["items"] = [
     registryDependencies: ["https://nuvyxui.vercel.app/r/music-player.json"],
     files: [
       {
-        path: "src/nuvyxui/demos/music-player-demo.tsx",
+        path: "registry/example/music-player-demo.tsx",
         type: "registry:example",
         target: "components/music-player-demo.tsx",
       },
@@ -415,7 +415,7 @@ export const examples: Registry["items"] = [
     registryDependencies: ["https://nuvyxui.vercel.app/r/music-player.json"],
     files: [
       {
-        path: "src/nuvyxui/demos/music-player-demo1.tsx",
+        path: "registry/example/music-player-demo1.tsx",
         type: "registry:example",
         target: "components/music-player-demo1.tsx",
       },
@@ -429,7 +429,7 @@ export const examples: Registry["items"] = [
     registryDependencies: ["https://nuvyxui.vercel.app/r/music-player.json"],
     files: [
       {
-        path: "src/nuvyxui/demos/music-player-demo2.tsx",
+        path: "registry/example/music-player-demo2.tsx",
         type: "registry:example",
         target: "components/music-player-demo2.tsx",
       },
@@ -443,7 +443,7 @@ export const examples: Registry["items"] = [
     registryDependencies: ["https://nuvyxui.vercel.app/r/reveal-card.json"],
     files: [
       {
-        path: "src/nuvyxui/demos/reveal-card-demo.tsx",
+        path: "registry/example/reveal-card-demo.tsx",
         type: "registry:example",
         target: "components/reveal-card-demo.tsx",
       },
@@ -459,7 +459,7 @@ export const examples: Registry["items"] = [
     ],
     files: [
       {
-        path: "src/nuvyxui/demos/scroll-animation-trigger-demo.tsx",
+        path: "registry/example/scroll-animation-trigger-demo.tsx",
         type: "registry:example",
         target: "components/scroll-animation-trigger-demo.tsx",
       },
@@ -475,7 +475,7 @@ export const examples: Registry["items"] = [
     ],
     files: [
       {
-        path: "src/nuvyxui/demos/scroll-animation-trigger-demo1.tsx",
+        path: "registry/example/scroll-animation-trigger-demo1.tsx",
         type: "registry:example",
         target: "components/scroll-animation-trigger-demo1.tsx",
       },
@@ -491,7 +491,7 @@ export const examples: Registry["items"] = [
     ],
     files: [
       {
-        path: "src/nuvyxui/demos/scroll-animation-trigger-demo2.tsx",
+        path: "registry/example/scroll-animation-trigger-demo2.tsx",
         type: "registry:example",
         target: "components/scroll-animation-trigger-demo2.tsx",
       },
@@ -505,7 +505,7 @@ export const examples: Registry["items"] = [
     registryDependencies: ["https://nuvyxui.vercel.app/r/terminal.json"],
     files: [
       {
-        path: "src/nuvyxui/demos/terminal-demo.tsx",
+        path: "registry/example/terminal-demo.tsx",
         type: "registry:example",
         target: "components/terminal-demo.tsx",
       },
@@ -519,7 +519,7 @@ export const examples: Registry["items"] = [
     registryDependencies: ["https://nuvyxui.vercel.app/r/terminal.json"],
     files: [
       {
-        path: "src/nuvyxui/demos/terminal-demo1.tsx",
+        path: "registry/example/terminal-demo1.tsx",
         type: "registry:example",
         target: "components/terminal-demo1.tsx",
       },
