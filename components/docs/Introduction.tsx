@@ -72,20 +72,6 @@ export default function IntroductionPage() {
                   </p>
                 </AccordionContent>
               </AccordionItem>
-              <AccordionItem value="animation-properties" className="py-2">
-                <AccordionTrigger className="w-full text-left text-zinc-950 dark:text-zinc-50">
-                  <div className="flex items-center justify-between">
-                    <div>Do you plan to release it on NPM?</div>
-                    <ChevronUp className="h-4 w-4 text-zinc-950 transition-transform duration-200 group-data-expanded:-rotate-180 dark:text-zinc-50" />
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent>
-                  <p className="text-gray-700 dark:text-gray-300">
-                    Absolutely. I will soon make it available on NPM, which will
-                    simplify installation and future updates.
-                  </p>
-                </AccordionContent>
-              </AccordionItem>
               <AccordionItem value="advanced-usage" className="py-2">
                 <AccordionTrigger className="w-full text-left text-zinc-950 dark:text-zinc-50">
                   <div className="flex items-center justify-between">
