@@ -289,7 +289,7 @@ export default function Header() {
                       {Object.entries(components).map(([slug, comp]) => (
                         <Link
                           key={slug}
-                          href={`/components/${slug}`}
+                          href={`/docs/components/${slug}`}
                           aria-label={comp.title}
                           className={cn(
                             "flex items-center text-sm p-2 rounded-md transition-colors pl-2.5",
