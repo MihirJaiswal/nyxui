@@ -17,8 +17,10 @@ export const ComponentSidebar = () => {
     componentsData.templates || {},
   ).map(([key, template]) => {
     return {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       name: (template as any).title,
       href: `/docs/templates/${key}`,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       isNew: Boolean((template as any).isNew),
     };
   });
