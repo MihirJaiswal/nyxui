@@ -43,13 +43,15 @@ export function CommandPalette() {
 
   const handleItemClick = (value: string) => {
     const [section, id] = value.split(":");
-    // Update the path to redirect to /docs/components/{id} for components
+    // Fixed path routing to handle templates correctly
     const path =
       section === "components"
         ? `/docs/components/${id}`
-        : section === "links"
-          ? `/${id}`
-          : `/${section}/${id}`;
+        : section === "templates"
+          ? `/docs/templates/${id}`
+          : section === "links"
+            ? `/${id}`
+            : `/${section}/${id}`;
     router.push(path);
     setOpen(false);
   };

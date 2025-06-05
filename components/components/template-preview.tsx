@@ -18,7 +18,7 @@ export default function TemplatePreview({
         buttonVariants({
           variant: "outline",
         }),
-        "not-prose group relative w-full gap-2",
+        "not-prose group relative w-full gap-2  border border-zinc-300 dark:border-zinc-600 rounded-sm",
       )}
       href={href}
       target="_blank"

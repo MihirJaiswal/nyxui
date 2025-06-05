@@ -33,7 +33,7 @@ export default function RepoDownload({ url, free = false }: RepoDownloadProps) {
       <Button
         onClick={handleDownload}
         disabled={loading}
-        className="not-prose group relative w-full gap-2"
+        className="not-prose group relative rounded-sm w-full gap-2"
       >
         {loading ? "Downloading" : "Free Download"}
         {!loading && <Download className="size-4" />}

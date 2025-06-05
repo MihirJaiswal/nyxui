@@ -59,7 +59,7 @@ export default function DocsSidebar() {
                 Coming Soon
               </h2>
               <p className="text-sm text-white/90">
-                ✨ Portfolio Template
+                ✨ Nuvyui Blocks
                 <ChevronRight className="size-4 ml-1 transition-all duration-300 ease-out group-hover:translate-x-1 inline-block" />
               </p>
               <div className="w-full overflow-hidden rounded-lg shadow-lg ring-1 ring-white/20">

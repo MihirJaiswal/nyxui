@@ -188,5 +188,13 @@ export const componentsData: ComponentsData = {
       image: "/assets/images/showcase/interactive-terminal.png",
     },
   },
-  templates: {},
+  templates: {
+    "portfolio": { 
+      title: "Minimalist Portfolio",
+      isNew: true,
+      tags: ["Portfolio", "Template", "Minimalist", "One Page" ],
+      description: "A simple, elegant one-page portfolio template.",
+      image: "/assets/images/templates/minimalist-portfolio.png",
+      },
+  },
 };

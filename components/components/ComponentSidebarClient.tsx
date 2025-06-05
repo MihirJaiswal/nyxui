@@ -21,11 +21,13 @@ interface GettingStartedSection {
 interface ComponentSidebarClientProps {
   gettingStartedSection: GettingStartedSection;
   componentItems: CategoryItem[]; 
+  templateItems?: CategoryItem[]; // Add this new prop
 }
 
 export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
   gettingStartedSection,
   componentItems,
+  templateItems = [], // Default to empty array
 }) => {
   const currentPath = usePathname();
   const [isScrolling, setIsScrolling] = useState(false);
@@ -55,6 +57,50 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
       clearTimeout(scrollTimer);
     };
   }, []);
+
+  const renderSectionItems = (items: CategoryItem[]) => {
+    return items.map((item) => {
+      const isActive = currentPath === item.href;
+      return (
+        <Link
+          key={item.href}
+          href={item.href}
+          className={cn(
+            "group flex items-center w-full text-xs md:text-sm py-1.5 md:py-2 rounded-md transition-all duration-200",
+            isActive
+              ? "bg-primary/10 text-primary font-medium"
+              : "text-foreground/70 hover:text-foreground hover:bg-muted/50",
+          )}
+        >
+          {isActive && (
+            <Minus
+              className="mr-1 text-purple-500"
+              size={20}
+              fill="#3455eb"
+              style={{ transform: "rotate(90deg)" }}
+            />
+          )}
+          <span
+            className={cn(
+              "truncate",
+              isActive
+                ? "ml-0"
+                : "ml-2 group-hover:ml-2 transition-all duration-200 text-gray-800 dark:text-[#A1A1AA]",
+            )}
+          >
+            {item.name}
+          </span>
+
+          {/* NEW badge */}
+          {item.isNew && (
+            <span className="ml-1 md:ml-2 px-1 py-0.5 text-xs font-medium border border-purple-500 text-purple-500 dark:text-white rounded-md">
+              New
+            </span>
+          )}
+        </Link>
+      );
+    });
+  };
 
   return (
     <div
@@ -120,54 +166,29 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
           </div>
         </div>
 
+        {/* Templates Section - Show above components */}
+        {templateItems.length > 0 && (
+          <div className="space-y-2 md:space-y-3 mb-4 md:mb-6">
+            <h1 className="font-bold tracking-wider px-1 md:px-2 text-sm md:text-base">
+              Templates
+            </h1>
+            <div className="space-y-0.5">
+              {renderSectionItems(templateItems)}
+            </div>
+            <div className="w-full">
+              <Separator />
+            </div>
+          </div>
+        )}
+
         {/* Components Section */}
-        <div>
+        <div className="space-y-2 md:space-y-3">
           <h1 className="font-bold tracking-wider px-1 md:px-2 text-sm md:text-base">
             Components
           </h1>
-        </div>
-        <div className="space-y-0.5">
-          {componentItems.map((item) => {
-            const isActive = currentPath === item.href;
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  "group flex items-center w-full text-xs md:text-sm py-1.5 md:py-2 rounded-md transition-all duration-200",
-                  isActive
-                    ? "bg-primary/10 text-primary font-medium"
-                    : "text-foreground/70 hover:text-foreground hover:bg-muted/50",
-                )}
-              >
-                {isActive && (
-                  <Minus
-                    className="mr-1 text-purple-500"
-                    size={20}
-                    fill="#3455eb"
-                    style={{ transform: "rotate(90deg)" }}
-                  />
-                )}
-                <span
-                  className={cn(
-                    "truncate",
-                    isActive
-                      ? "ml-0"
-                      : "ml-2 group-hover:ml-2 transition-all duration-200 text-gray-800 dark:text-[#A1A1AA]",
-                  )}
-                >
-                  {item.name}
-                </span>
-
-                {/* NEW badge */}
-                {item.isNew && (
-                  <span className="ml-1 md:ml-2 px-1 py-0.5 text-xs font-medium border border-purple-500 text-purple-500 dark:text-white rounded-md">
-                    New
-                  </span>
-                )}
-              </Link>
-            );
-          })}
+          <div className="space-y-0.5">
+            {renderSectionItems(componentItems)}
+          </div>
         </div>
       </div>
     </div>

@@ -12,6 +12,17 @@ export const ComponentSidebar = () => {
     };
   });
 
+  // Add processing for templates
+  const processedTemplates = Object.entries(
+    componentsData.templates || {},
+  ).map(([key, template]) => {
+    return {
+      name: (template as any).title,
+      href: `/docs/templates/${key}`,
+      isNew: Boolean((template as any).isNew),
+    };
+  });
+
   const gettingStartedItems = componentsData.links
     ? Object.entries(componentsData.links).map(([key, title]) => ({
         name: String(title),
@@ -30,6 +41,7 @@ export const ComponentSidebar = () => {
               items: gettingStartedItems,
             }}
             componentItems={processedComponents}
+            templateItems={processedTemplates} // Add this new prop
           />
         </div>
       </div>

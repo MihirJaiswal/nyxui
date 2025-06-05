@@ -1,0 +1,63 @@
+---
+title: Portfolio Template
+date: 2025-06-05
+description: A minimalist portfolio template that is easy to use and customize.
+author: mihirJaiswal
+published: true
+tags: [Portfolio, Template, Minimalist, One Page]
+---
+
+<div className="flex flex-col gap-4">
+  <video
+    autoPlay
+    loop
+    muted
+    src="/portfolio-demo.mp4"
+    className="w-full aspect-4/3 md:aspect-video object-cover rounded-xl border mb-3"
+  />
+  <div className="flex flex-col justify-start items-start gap-3 sm:flex-row">
+    <RepoDownload
+      url="https://codeload.github.com/mihirJaiswal/portfolio-template-nuvyxui/legacy.zip/refs/heads/main"
+      free
+    />
+    <TemplatePreview href="https://portfolio-template-nuvyxui.vercel.app/">
+      Live Preview{" "}
+    </TemplatePreview>
+  </div>
+</div>
+
+## What is this?
+
+A complete template to market yourself and your portfolio to the world as a developer
+
+## How can I customize this?
+
+- Edit the index.ts and constant.tsx file in the constant folder
+- Edit the text and images in the template to your own
+- Deploy the template to vercel
+- Share the link to your portfolio
+
+## How many sections are there?
+
+This template includes the following sections:
+
+- Hero Section
+- Projects Section
+- About Section
+- Work Section
+- Education Section
+- Contact Section
+- Footer Section
+
+## Tech Stack
+
+<TechStack
+  technologies={[
+    "nextjs",
+    "react",
+    "typescript",
+    "tailwindcss",
+    "motion",
+    "shadcn",
+  ]}
+/>
