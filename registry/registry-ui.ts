@@ -495,4 +495,18 @@ export const ui: Registry["items"] = [
       },
     ],
   },
+  {
+    name: "water-ripple-effect",
+    type: "registry:ui",
+    title: "Water Ripple Effect",
+    description: "A water ripple effect that that provide several effects.",
+    dependencies: ["Three"],
+    files: [
+      {
+        path: "registry/ui/water-ripple-effect.tsx",
+        type: "registry:ui",
+        target: "components/ui/water-ripple-effect.tsx",
+      },
+    ],
+  }
 ];

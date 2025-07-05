@@ -1,0 +1,86 @@
+---
+title: Water Ripple Effect
+date: 2025-07-05
+description: A stunning WebGL-based water ripple effect component with customizable wave patterns and interactive mouse controls.
+author: MihirJaiswal
+published: true
+tags: ["WebGL", "Three.js", "Interactive", "Visual Effects"]
+---
+
+<ComponentPreview name="water-ripple-effect-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nuvyxui.vercel.app/r/water-ripple-effect.json"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies.</Step>
+
+```bash
+npm install three @types/three
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="water-ripple-effect" />
+
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import WaterRippleEffect from "@/components/ui/water-ripple-effect";
+```
+
+```tsx
+// Basic usage with default settings
+<WaterRippleEffect
+  imageSrc="/path/to/your/image.jpg"
+  width={400}
+  height={400}
+/>
+```
+
+## Props
+
+| Prop                     | Type                                      | Default  | Description                                                              |
+| ------------------------ | ----------------------------------------- | -------- | ------------------------------------------------------------------------ |
+| `imageSrc`               | `string`                                  | Required | Source URL or path to the image that will have the water ripple effect  |
+| `width`                  | `number`                                  | `920`    | Width of the canvas in pixels                                            |
+| `height`                 | `number`                                  | `955`    | Height of the canvas in pixels                                           |
+| `waveIntensity`          | `number`                                  | `0.006`  | Intensity of the global wave distortion (0-1)                           |
+| `rippleIntensity`        | `number`                                  | `0.012`  | Intensity of the mouse-triggered ripple effects (0-1)                   |
+| `animationSpeed`         | `number`                                  | `1.0`    | Speed multiplier for all animations (0.1-5.0)                           |
+| `hoverRippleMultiplier`  | `number`                                  | `4.0`    | Multiplier for ripple intensity when hovering (1-10)                    |
+| `transitionSpeed`        | `number`                                  | `0.08`   | Speed of transitions between hover states (0.01-0.5)                    |
+| `waveFrequency`          | `number`                                  | `10.0`   | Frequency of the global wave patterns (1-50)                            |
+| `rippleFrequency`        | `number`                                  | `20.0`   | Frequency of the mouse-triggered ripples (5-100)                        |
+| `distortionAmount`       | `number`                                  | `0.008`  | Amount of directional distortion applied to the image (0-0.1)           |
+| `scale`                  | `number`                                  | `1.0`    | Scale factor for the entire component (0.1-2.0)                         |
+| `className`              | `string`                                  | `""`     | Additional CSS classes to apply to the canvas container                  |
+| `containerClassName`     | `string`                                  | `""`     | Additional CSS classes to apply to the outer container                   |
+| `onHover`                | `() => void`                              | Optional | Callback function triggered when mouse enters the component              |
+| `onLeave`                | `() => void`                              | Optional | Callback function triggered when mouse leaves the component              |
+

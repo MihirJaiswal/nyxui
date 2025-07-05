@@ -642,6 +642,22 @@
       ]
     },
     {
+      "name": "water-ripple-effect",
+      "type": "registry:ui",
+      "title": "Water Ripple Effect",
+      "description": "A water ripple effect that that provide several effects.",
+      "dependencies": [
+        "Three"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/water-ripple-effect.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/water-ripple-effect.tsx"
+        }
+      ]
+    },
+    {
       "name": "animated-code-block-demo",
       "type": "registry:example",
       "title": "Animated Code Block Demo",
@@ -1230,6 +1246,22 @@
           "path": "registry/example/terminal-demo1.tsx",
           "type": "registry:example",
           "target": "components/terminal-demo1.tsx"
+        }
+      ]
+    },
+    {
+      "name": "water-ripple-effect-demo",
+      "type": "registry:example",
+      "title": "Water Ripple Effect Demo",
+      "description": "Example showing a water ripple effect.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/water-ripple-effect.json"
+      ],
+      "files": [
+        {
+          "path": "registry/example/water-ripple-effect-demo.tsx",
+          "type": "registry:example",
+          "target": "components/water-ripple-effect-demo.tsx"
         }
       ]
     },

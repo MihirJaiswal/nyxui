@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "water-ripple-effect-demo",
+  "type": "registry:example",
+  "title": "Water Ripple Effect Demo",
+  "description": "Example showing a water ripple effect.",
+  "dependencies": [
+    ".."
+  ],
+  "registryDependencies": [
+    "https://nuvyxui.vercel.app/r/water-ripple-effect.json"
+  ],
+  "files": [
+    {
+      "path": "registry/example/water-ripple-effect-demo.tsx",
+      "content": "import React from 'react'\r\nimport WaterRippleEffect from '../ui/water-ripple-effect'\r\n\r\nexport default function WaterRippleEffectDemo() {\r\n  return (\r\n    <div>\r\n      <WaterRippleEffect\r\n       imageSrc='/assets/images/water-ripple-effect/art.jpg'\r\n       height={600}\r\n       width={600}\r\n        />\r\n    </div>\r\n  )\r\n}\r\n",
+      "type": "registry:example",
+      "target": "components/water-ripple-effect-demo.tsx"
+    },
+    {
+      "path": "registry\\example\\water-ripple-effect-demo.tsx",
+      "content": "import React from 'react'\r\nimport WaterRippleEffect from '../ui/water-ripple-effect'\r\n\r\nexport default function WaterRippleEffectDemo() {\r\n  return (\r\n    <div>\r\n      <WaterRippleEffect\r\n       imageSrc='/assets/images/water-ripple-effect/art.jpg'\r\n       height={600}\r\n       width={600}\r\n        />\r\n    </div>\r\n  )\r\n}\r\n",
+      "type": "registry:component",
+      "target": ""
+    }
+  ]
+}

@@ -16,6 +16,12 @@
       "content": "import { AnimatedGradientBg } from \"../ui/animated-gradient-bg\";\n\nexport const AnimatedGradientBgDemo = () => {\n  return (\n    <div className=\"h-[300px] overflow-hidden\">\n      <div className=\"absolute inset-0 overflow-hidden rounded-lg\">\n        <AnimatedGradientBg\n          pattern=\"radial\"\n          position=\"absolute\"\n          size=\"full\"\n          zIndex={0}\n          colors={[\"#4f46e5\", \"#ec4899\", \"#8b5cf6\", \"#06b6d4\"]}\n        />\n      </div>\n    </div>\n  );\n};\n",
       "type": "registry:example",
       "target": "components/animated-gradient-bg-demo.tsx"
+    },
+    {
+      "path": "registry\\example\\animated-gradient-bg-demo.tsx",
+      "content": "import { AnimatedGradientBg } from \"../ui/animated-gradient-bg\";\n\nexport const AnimatedGradientBgDemo = () => {\n  return (\n    <div className=\"h-[300px] overflow-hidden\">\n      <div className=\"absolute inset-0 overflow-hidden rounded-lg\">\n        <AnimatedGradientBg\n          pattern=\"radial\"\n          position=\"absolute\"\n          size=\"full\"\n          zIndex={0}\n          colors={[\"#4f46e5\", \"#ec4899\", \"#8b5cf6\", \"#06b6d4\"]}\n        />\n      </div>\n    </div>\n  );\n};\n",
+      "type": "registry:component",
+      "target": ""
     }
   ]
 }

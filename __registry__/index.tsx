@@ -422,6 +422,22 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
+  "water-ripple-effect": {
+    name: "water-ripple-effect",
+    description: "A water ripple effect that that provide several effects.",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/ui/water-ripple-effect.tsx",
+      type: "registry:ui",
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/ui/water-ripple-effect.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
   "animated-code-block-demo": {
     name: "animated-code-block-demo",
     description: "Example showing a code block with typing animation effects.",
@@ -1009,6 +1025,22 @@ export const Index: Record<string, any> = {
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/example/terminal-demo1.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "water-ripple-effect-demo": {
+    name: "water-ripple-effect-demo",
+    description: "Example showing a water ripple effect.",
+    type: "registry:example",
+    registryDependencies: ["https://nuvyxui.vercel.app/r/water-ripple-effect.json"],
+    files: [{
+      path: "registry/example/water-ripple-effect-demo.tsx",
+      type: "registry:example",
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/example/water-ripple-effect-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),

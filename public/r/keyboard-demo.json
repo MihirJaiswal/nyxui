@@ -16,6 +16,12 @@
       "content": "import React from \"react\";\nimport InteractiveKeyboard from \"../ui/keyboard\";\n\nfunction KeyboardDemo() {\n  return (\n    <div>\n      <InteractiveKeyboard theme=\"cyberpunk\" />\n    </div>\n  );\n}\n\nexport default KeyboardDemo;\n",
       "type": "registry:example",
       "target": "components/keyboard-demo.tsx"
+    },
+    {
+      "path": "registry\\example\\keyboard-demo.tsx",
+      "content": "import React from \"react\";\nimport InteractiveKeyboard from \"../ui/keyboard\";\n\nfunction KeyboardDemo() {\n  return (\n    <div>\n      <InteractiveKeyboard theme=\"cyberpunk\" />\n    </div>\n  );\n}\n\nexport default KeyboardDemo;\n",
+      "type": "registry:component",
+      "target": ""
     }
   ]
 }

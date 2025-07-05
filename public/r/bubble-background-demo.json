@@ -16,6 +16,12 @@
       "content": "import BubbleBackground from \"../ui/bubble-background\";\n\nexport const BubblesBackgroundDemo = () => {\n  return (\n    <div className=\"h-[350px] overflow-hidden rounded-lg\">\n      <div className=\"absolute inset-0 overflow-hidden rounded-lg\">\n        <BubbleBackground\n          bgColorA=\"rgb(30, 0, 60)\"\n          bgColorB=\"rgb(0, 30, 90)\"\n          bubbleColors={{\n            colorA: \"50, 150, 255\",\n            colorB: \"200, 80, 255\",\n            colorC: \"120, 240, 255\",\n            colorD: \"220, 60, 80\",\n            colorE: \"200, 200, 80\",\n            interactive: \"160, 120, 255\",\n          }}\n          bubbleSize=\"70%\"\n          blendMode=\"screen\"\n        />\n      </div>\n    </div>\n  );\n};\n",
       "type": "registry:example",
       "target": "components/bubble-background-demo.tsx"
+    },
+    {
+      "path": "registry\\example\\bubble-background-demo.tsx",
+      "content": "import BubbleBackground from \"../ui/bubble-background\";\n\nexport const BubblesBackgroundDemo = () => {\n  return (\n    <div className=\"h-[350px] overflow-hidden rounded-lg\">\n      <div className=\"absolute inset-0 overflow-hidden rounded-lg\">\n        <BubbleBackground\n          bgColorA=\"rgb(30, 0, 60)\"\n          bgColorB=\"rgb(0, 30, 90)\"\n          bubbleColors={{\n            colorA: \"50, 150, 255\",\n            colorB: \"200, 80, 255\",\n            colorC: \"120, 240, 255\",\n            colorD: \"220, 60, 80\",\n            colorE: \"200, 200, 80\",\n            interactive: \"160, 120, 255\",\n          }}\n          bubbleSize=\"70%\"\n          blendMode=\"screen\"\n        />\n      </div>\n    </div>\n  );\n};\n",
+      "type": "registry:component",
+      "target": ""
     }
   ]
 }

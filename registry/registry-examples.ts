@@ -525,4 +525,18 @@ export const examples: Registry["items"] = [
       },
     ],
   },
+  {
+    name: "water-ripple-effect-demo",
+    type: "registry:example",
+    title: "Water Ripple Effect Demo",
+    description: "Example showing a water ripple effect.",
+    registryDependencies: ["https://nuvyxui.vercel.app/r/water-ripple-effect.json"],
+    files: [
+      {
+        path: "registry/example/water-ripple-effect-demo.tsx",
+        type: "registry:example",
+        target: "components/water-ripple-effect-demo.tsx",
+      },
+    ]
+  }
 ];

@@ -187,6 +187,13 @@ export const componentsData: ComponentsData = {
         "Command line interface with typing animations and responses",
       image: "/assets/images/showcase/interactive-terminal.png",
     },
+    "water-ripple-effect": {
+      title: "Water Ripple Effect",
+      tags: ["Background", "Effects", "Animation"],
+      description: "A mesmerizing water ripple effect for backgrounds.",
+      image: "/assets/images/showcase/water-ripple-effect.png",
+      isNew: true,
+    }
   },
   templates: {
     "portfolio": { 
