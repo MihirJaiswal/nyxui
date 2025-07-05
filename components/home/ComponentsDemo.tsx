@@ -16,7 +16,7 @@ import { MorphingBlob } from "../../registry/ui/morphing-blob";
 
 export const ComponentsDemo = () => {
   return (
-    <div className="container max-w-7xl mx-auto px-6">
+    <div className="container max-w-7xl mx-auto px-6 mt-8">
       <h2 className="text-3xl sm:text-5xl text-center lg:text-5xl font-extrabold tracking-tight leading-tight">
         Component Demos
       </h2>

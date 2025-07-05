@@ -45,8 +45,17 @@ export default function Header() {
     );
   };
 
+  const gradientStyle: React.CSSProperties = {
+    "--color-1": "0, 100%, 67%" /* Red */,
+    "--color-2": "271, 76%, 53%" /* Purple */,
+    "--color-3": "195, 100%, 50%" /* Blue */,
+    "--color-4": "142, 71%, 45%" /* Green */,
+    "--color-5": "39, 100%, 58%" /* Yellow/Orange */,
+  } as React.CSSProperties;
+
   return (
     <header
+      style={gradientStyle}
       className={cn(
         "sticky top-0 z-50 w-full transition-all duration-300",
         scrolled
@@ -54,10 +63,22 @@ export default function Header() {
           : "bg-background/50 backdrop-blur-sm",
       )}
     >
+      {/* Gradient overlay with fade effect */}
+      <div className="absolute h-28 inset-0 pointer-events-none opacity-10">
+        <div className={cn(
+          "absolute inset-0",
+          "bg-[length:300%_100%] motion-safe:animate-[gradient_3s_ease_infinite]",
+          "bg-[linear-gradient(90deg,hsl(var(--color-1)),hsl(var(--color-5)),hsl(var(--color-3)),hsl(var(--color-4)),hsl(var(--color-2)),hsl(var(--color-1)))]"
+        )}></div>
+        {/* Fade mask overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-transparent to-background"></div>
+      </div>
+      
       <div className="absolute left-0 top-full h-px w-full pointer-events-none">
         <div className="w-full h-full bg-gradient-to-r from-transparent via-zinc-300 to-transparent dark:via-zinc-600"></div>
       </div>
-      <div className="flex h-16 items-center justify-between px-4 md:px-6 lg:px-16">
+      <div className="flex h-16 items-center justify-between px-4 md:px-6 lg:px-16 relative z-10">
         <div className="flex items-center">
           <Link
             href="/"

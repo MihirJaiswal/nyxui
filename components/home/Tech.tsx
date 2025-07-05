@@ -106,50 +106,11 @@ const TechStack = () => {
       color: "text-black dark:text-purple-500",
       hoverColor: "text-purple-400",
       bgColor: "bg-purple-500/10",
-    },
-    {
-      label: "Shadcn",
-      svg: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          aria-label="shadcn"
-          viewBox="0 0 256 256"
-          className="size-10"
-          fill="none"
-          stroke="currentColor"
-        >
-          <line
-            x1="208"
-            y1="128"
-            x2="128"
-            y2="208"
-            fill="none"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="16"
-          />
-          <line
-            x1="192"
-            y1="40"
-            x2="40"
-            y2="192"
-            fill="none"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="16"
-          />
-        </svg>
-      ),
-      color: "text-black dark:text-slate-500",
-      hoverColor: "text-slate-400",
-      bgColor: "bg-slate-500/10",
-    },
+    }
   ];
 
   return (
-    <div className="flex flex-col items-center justify-center gap-6 md:mt-8 md:mb-10 w-full max-w-4xl mx-auto md:px-4">
+    <div className="flex flex-col items-center justify-center gap-2 md:mt-4 md:mb-10 w-full max-w-4xl mx-auto md:px-4">
       <div className="w-full">
         <div
           className="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none bg-gradient-to-br from-slate-50/20 to-transparent rounded-xl"
@@ -160,22 +121,22 @@ const TechStack = () => {
 
         <div
           ref={containerRef}
-          className="relative flex flex-col items-center justify-center p-6 rounded-lg"
+          className="relative flex flex-col items-center justify-center rounded-lg md:p-2"
         >
           <div
-            className="w-full py-8 px-4"
+            className="md:px-5"
             style={{
               perspective: "1200px",
             }}
           >
-            <div className="grid grid-cols-5 gap-10">
+            <div className="grid grid-cols-4 gap-2">
               {techItems.map((item, index) => {
                 const isHovered = hoveredIndex === index;
 
                 return (
                   <motion.div
                     key={index}
-                    className={`relative group flex flex-col items-center justify-center transition-all duration-300 ease-out ${item.color} hover:${item.hoverColor}`}
+                    className={`relative group flex flex-col items-center justify-center px-4 transition-all duration-300 ease-out ${item.color} hover:${item.hoverColor}`}
                     initial={{ y: 0 }}
                     whileHover={{
                       y: -8,
@@ -193,7 +154,7 @@ const TechStack = () => {
                     }}
                   >
                     <motion.div
-                      className={`relative p-4 rounded-xl transition-colors duration-300`}
+                      className={`relative p-2 rounded-xl transition-colors duration-300`}
                       animate={{
                         rotateY: isHovered ? [0, 5, 0, -5, 0] : 0,
                         rotateX: isHovered ? [0, 5, 0, -5, 0] : 0,

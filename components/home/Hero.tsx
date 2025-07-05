@@ -8,6 +8,7 @@ import TechStack from "./Tech";
 import Image from "next/image";
 import Link from "next/link";
 import { Rbutton } from "../ui/Rbutton";
+import SocialProof from "./Social-proff";
 
 export const Hero = () => {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
@@ -23,13 +24,13 @@ export const Hero = () => {
 
   return (
     <div className="flex flex-col justify-center items-center relative overflow-hidden">
-      <main className="flex-1 w-full mx-auto z-10">
+      <main className="flex-1 w-full mx-auto z-10 mb-12">
         <section
           className="space-y-8 pb-12 pt-16 md:pt-20"
           aria-label="Hero Section"
         >
           <div className="md:container max-w-5xl md:mx-auto flex flex-col md:items-center md:justify-center md:text-center px-6 md:px-4">
-            <Badge className="mb-6 inline-flex items-center text-black dark:text-white gap-2 rounded-lg border border-purple-300 px-4 py-1.5 text-sm font-semibold shadow-sm dark:border-gray-600 bg-background">
+            <Badge className="mb-6 inline-flex items-center text-black dark:text-white gap-2 rounded-full border border-purple-300 px-4 py-1.5 text-xs font-semibold shadow-sm dark:border-gray-600 bg-background">
               <Sparkles className="h-4 w-4 text-yellow-500 dark:text-yellow-300" />
               v1.0.0 <span className="hidden md:inline">Now Available</span>
             </Badge>
@@ -115,7 +116,7 @@ export const Hero = () => {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="mx-auto max-w-3xl md:text-center"
             >
-              <p className="text-gray-900 dark:text-gray-100 sm:text-xl tracking-wide font-medium leading-relaxed">
+              <p className="text-zinc-900 dark:text-zinc-100 sm:text-xl tracking-wide font-medium leading-relaxed">
                 Ready to use modern components built with
                 <span className="font-bold text-black dark:text-white">
                   {" "}
@@ -151,7 +152,7 @@ export const Hero = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Rbutton className="relative bg-slate-900 dark:bg-white dark:text-black no-underline flex space-x-2 group cursor-pointer hover:shadow-2xl transition duration-200 shadow-zinc-900 p-px font-semibold text-white px-4 py-2 h-14 w-full items-center justify-center rounded-2xl text-center text-sm sm:w-52">
+                  <Rbutton className="relative bg-slate-900 dark:bg-white dark:text-black no-underline flex space-x-2 group cursor-pointer hover:shadow-2xl transition duration-200 shadow-zinc-900 p-px font-semibold text-white px-4 py-2 h-12 w-full items-center justify-center rounded-2xl text-center text-sm sm:w-52">
                     <span>Browse Components</span>{" "}
                     <ChevronRight
                       className="h-4 w-4 ml-1 transition-transform group-hover:translate-x-0.5 align-middle relative"
@@ -165,15 +166,29 @@ export const Hero = () => {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex h-14 w-full items-center justify-center rounded-2xl border border-transparent bg-white text-sm text-black shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] transition duration-200 hover:shadow-lg sm:w-52 dark:border-neutral-600 dark:bg-black dark:text-white"
+                  className="flex h-12 w-full items-center justify-center rounded-2xl border border-transparent bg-white text-sm text-black shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] transition duration-200 hover:shadow-lg sm:w-52 dark:border-neutral-600 dark:bg-black dark:text-white"
                 >
                   Documentation
                 </motion.button>
               </Link>
             </motion.div>
           </div>
-          <TechStack />
         </section>
+        
+        {/* Fixed layout for SocialProof and TechStack */}
+        <div className="w-full px-6 md:px-4 mt-6">
+          <p className="text-neutral-700 dark:text-neutral-300 text-[14.5px] tracking-wide mb-4 text-center md:text-left">
+            Trusted by many developers
+          </p>
+          <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 lg:-mt-8">
+            <div className="flex justify-center md:justify-start mb-6">
+              <SocialProof />
+            </div>
+            <div className="flex justify-center md:justify-end">
+              <TechStack />
+            </div>
+          </div>
+        </div>
       </main>
     </div>
   );

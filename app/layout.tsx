@@ -61,7 +61,7 @@ export default function RootLayout({
       className={`${GeistSans.variable} ${GeistMono.variable}`}
       suppressHydrationWarning
     >
-      <body className="bg-white dark:bg-black">
+      <body className="bg-white dark:bg-[#0A0A0A]">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
