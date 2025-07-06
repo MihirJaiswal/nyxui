@@ -25,7 +25,7 @@ export const CustomPointer = () => (
       name="Mihir"
       className={"relative flex h-fit w-full items-end justify-center"}
     >
-      <div className={"relative h-[400px] w-full overflow-hidden mt-15"}>
+      <div className={"relative h-[400px] w-full overflow-hidden mt-[52px]"}>
         <div className="relative flex h-full w-full justify-end pt-4">
           <div className="relative z-[1] h-full w-3/4 rounded-tl-xl bg-white px-6 pt-6 shadow-xl md:w-7/12">
             <div className="flex w-full items-center justify-start gap-4 ">
