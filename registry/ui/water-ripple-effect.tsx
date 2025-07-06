@@ -52,8 +52,6 @@ export default function WaterRippleEffect({
   useEffect(() => {
     const mountElement = mountRef.current
     if (!mountElement) return
-
-    // Scene setup with improved renderer settings
     const scene = new THREE.Scene()
     const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000)
     const renderer = new THREE.WebGLRenderer({ 
@@ -64,11 +62,9 @@ export default function WaterRippleEffect({
     })
 
     renderer.setSize(width, height)
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)) // Improve quality on high-DPI displays
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)) 
     renderer.setClearColor(0x000000, 0)
     mountElement.appendChild(renderer.domElement)
-
-    // Load texture with improved filtering
     const textureLoader = new THREE.TextureLoader()
     const texture = textureLoader.load(imageSrc, (loadedTexture) => {
       loadedTexture.magFilter = THREE.LinearFilter
@@ -79,7 +75,6 @@ export default function WaterRippleEffect({
       loadedTexture.needsUpdate = true
     })
 
-    // Improved shader with quality optimizations
     const vertexShader = `
       varying vec2 vUv;
       varying vec2 vPosition;
@@ -172,8 +167,6 @@ export default function WaterRippleEffect({
         gl_FragColor = color;
       }
     `
-
-    // Create material with improved settings
     const material = new THREE.ShaderMaterial({
       uniforms: {
         texture1: { value: texture },
@@ -192,15 +185,12 @@ export default function WaterRippleEffect({
       transparent: true,
     })
 
-    // Create geometry with higher resolution for smoother effects
     const aspectRatio = width / height
-    const geometry = new THREE.PlaneGeometry(4 * aspectRatio, 4, 64, 64) // Increased subdivisions
+    const geometry = new THREE.PlaneGeometry(4 * aspectRatio, 4, 64, 64) 
     const mesh = new THREE.Mesh(geometry, material)
     scene.add(mesh)
 
     camera.position.z = 3
-
-    // Store references
     sceneRef.current = scene
     rendererRef.current = renderer
     materialRef.current = material
@@ -227,7 +217,6 @@ export default function WaterRippleEffect({
     renderer.domElement.addEventListener("mouseenter", handleMouseEnter)
     renderer.domElement.addEventListener("mouseleave", handleMouseLeave)
 
-    // Animation loop with better timing
     const animate = () => {
       timeRef.current += 0.016
 

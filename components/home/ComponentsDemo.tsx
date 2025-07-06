@@ -191,7 +191,7 @@ export const ComponentsDemo = () => {
                 refresh
               />
               <div className="flex w-full items-center justify-center min-h-screen bg-gradient-to-b dark:from-gray-900 dark:via-gray-950 dark:to-gray-900">
-                <WaterRippleEffect imageSrc="/assets/images/landing-page/img.png" waveFrequency={12} hoverRippleMultiplier={3.5} waveIntensity={0.08} height={428} width={445} className="mt-20"/>
+                <WaterRippleEffect imageSrc="/assets/images/landing-page/img.png" rippleIntensity={0.020}  hoverRippleMultiplier={10} height={428} width={445} className="mt-20"/>
               </div>
             </div>
           }
