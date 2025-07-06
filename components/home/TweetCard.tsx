@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,7 +17,7 @@ export const TwitterCard = () => {
       intensity={4}
       hoverEffect
       speed="normal"
-      className="w-full rounded-xl max-w-full h-full mx-auto bg-white dark:bg-gray-950 shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 bg-gradient-to-r from-purple-50 via-blue-50 to-pink-50 dark:border-gray-600 dark:from-gray-950 dark:via-gray-950 dark:to-gray-950 border-none"
+      className="w-full rounded-xl max-w-full h-full mx-auto bg-gray-950 shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 border-gray-600 from-gray-950 via-gray-950 to-gray-950 border-none"
     >
       <div
         className="p-3 sm:p-5"
@@ -45,10 +44,10 @@ export const TwitterCard = () => {
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between">
               <div className="truncate">
-                <h3 className="font-bold text-sm sm:text-base text-gray-900 dark:text-white">
+                <h3 className="font-bold text-sm sm:text-base text-white">
                   Mihir Jaiswal
                 </h3>
-                <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 truncate">
+                <p className="text-xs sm:text-sm text-gray-400 truncate">
                   @mihirjaiswal
                 </p>
               </div>
@@ -66,12 +65,12 @@ export const TwitterCard = () => {
           </div>
         </div>
         <div className="mt-3 sm:mt-4">
-          <p className="text-xs sm:text-sm text-gray-800 dark:text-gray-200">
+          <p className="text-xs sm:text-sm text-gray-200">
             Once you go Tailwind, there is no going back 😆{" "}
             <span className="font-bold ">#webdev</span>{" "}
             <span className="font-bold">#tailwindcss</span>
           </p>
-          <div className="mt-2 sm:mt-3 border border-zinc-300/50 dark:border-purple-900/50 bg-black rounded-lg p-2 sm:p-3 text-xs sm:text-sm font-mono overflow-hidden">
+          <div className="mt-2 sm:mt-3 border border-purple-900/50 bg-black rounded-lg p-2 sm:p-3 text-xs sm:text-sm font-mono overflow-hidden">
             <MajesticCard
               variant={isHovering ? "magnetic" : "float"}
               intensity={4}
@@ -83,7 +82,7 @@ export const TwitterCard = () => {
                   <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-yellow-500" />
                   <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-green-500" />
                 </div>
-                <span className="text-xs dark:text-white">Card.tsx</span>
+                <span className="text-xs text-white">Card.tsx</span>
               </div>
               <div className="text-gray-700 text-xs p-1 sm:p-2 dark:text-gray-300 overflow-x-auto">
                 <pre className="text-xs text-gray-200">
@@ -101,7 +100,7 @@ export const TwitterCard = () => {
               </div>
             </MajesticCard>
             <div className="md:hidden p-2 rounded-md border-none">
-              <div className="flex items-center p-1 sm:p-2 text-gray-500 dark:text-gray-400 text-xs mb-1">
+              <div className="flex items-center p-1 sm:p-2 text-gray-400 text-xs mb-1">
                 <div className="flex space-x-1 mr-2">
                   <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-red-500" />
                   <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-yellow-500" />
@@ -109,7 +108,7 @@ export const TwitterCard = () => {
                 </div>
                 <span className="text-xs text-white">Card.tsx</span>
               </div>
-              <div className="text-gray-700 text-xs p-1 sm:p-2 dark:text-gray-300 overflow-x-auto">
+              <div className="text-xs p-1 sm:p-2 text-gray-300 overflow-x-auto">
                 <pre className="text-xs">
                   <code>
                     {`<div className="max-w-sm p-6">
@@ -126,7 +125,7 @@ export const TwitterCard = () => {
             </div>
           </div>
         </div>
-        <div className="mt-3 sm:mt-4 flex items-center justify-between text-gray-500 dark:text-gray-400">
+        <div className="mt-3 sm:mt-4 flex items-center justify-between text-gray-400">
           <div className="flex items-center space-x-4 sm:space-x-8">
             <button className="flex items-center space-x-1 group">
               <svg
@@ -201,12 +200,12 @@ export const TwitterCard = () => {
           </button>
         </div>
       </div>
-      <div className="px-3 sm:px-5 py-2 sm:py-3 border-t border-purple-200 dark:border-gray-800 flex justify-between items-center">
-        <span className="text-xxs sm:text-xs text-gray-500 dark:text-gray-400">
+      <div className="px-3 sm:px-5 py-2 sm:py-3 border-t border-gray-800 flex justify-between items-center">
+        <span className="text-xxs sm:text-xs text-gray-400">
           1:24 PM · Apr 7, 2025
         </span>
         <Link href="https://www.linkedin.com/in/mihir-jaiswal-322898287/">
-          <button className="font-medium py-1 px-2 sm:px-4 rounded-full transition-all duration-300 transform hover:scale-105 flex items-center gap-1 sm:gap-2 text-xxs sm:text-sm">
+          <button className="font-medium py-1 px-2 sm:px-4 rounded-full transition-all duration-300 transform hover:scale-105 flex items-center gap-1 sm:gap-2 text-xxs sm:text-sm text-white">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="10"
@@ -214,7 +213,7 @@ export const TwitterCard = () => {
               className="sm:w-3 sm:h-3"
               viewBox="0 0 24 24"
               fill="none"
-              stroke="currentColor"
+              stroke="#fffff"
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"

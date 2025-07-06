@@ -53,25 +53,40 @@ export default function WaterRippleEffect({
     const mountElement = mountRef.current
     if (!mountElement) return
 
-    // Scene setup
+    // Scene setup with improved renderer settings
     const scene = new THREE.Scene()
     const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000)
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
+    const renderer = new THREE.WebGLRenderer({ 
+      antialias: true, 
+      alpha: true,
+      powerPreference: "high-performance",
+      precision: "highp"
+    })
 
     renderer.setSize(width, height)
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)) // Improve quality on high-DPI displays
     renderer.setClearColor(0x000000, 0)
     mountElement.appendChild(renderer.domElement)
 
-    // Load texture
+    // Load texture with improved filtering
     const textureLoader = new THREE.TextureLoader()
-    const texture = textureLoader.load(imageSrc)
+    const texture = textureLoader.load(imageSrc, (loadedTexture) => {
+      loadedTexture.magFilter = THREE.LinearFilter
+      loadedTexture.minFilter = THREE.LinearMipmapLinearFilter
+      loadedTexture.wrapS = THREE.ClampToEdgeWrapping
+      loadedTexture.wrapT = THREE.ClampToEdgeWrapping
+      loadedTexture.generateMipmaps = true
+      loadedTexture.needsUpdate = true
+    })
 
-    // Dynamic shader with configurable parameters
+    // Improved shader with quality optimizations
     const vertexShader = `
       varying vec2 vUv;
+      varying vec2 vPosition;
 
       void main() {
         vUv = uv;
+        vPosition = position.xy;
         gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
       }
     `
@@ -88,50 +103,68 @@ export default function WaterRippleEffect({
       uniform float rippleFrequency;
       uniform float distortionAmount;
       varying vec2 vUv;
+      varying vec2 vPosition;
+
+      // Improved smoothstep for better interpolation
+      float smoothwave(float x) {
+        return sin(x) * 0.5 + 0.5;
+      }
 
       void main() {
         vec2 uv = vUv;
         
-        // Global wavy distortion with configurable parameters
-        float wave1 = sin(uv.x * waveFrequency + time * animationSpeed * 2.0) * waveIntensity;
-        float wave2 = sin(uv.y * (waveFrequency * 0.8) + time * animationSpeed * 1.5) * (waveIntensity * 0.83);
-        float wave3 = sin((uv.x + uv.y) * (waveFrequency * 1.2) + time * animationSpeed * 2.5) * (waveIntensity * 0.25);
+        // Reduced intensity for global waves to preserve image quality
+        float waveScale = waveIntensity * 0.5; // Reduce default intensity
         
-        // Mouse-based ripples with configurable intensity
+        // More subtle global wavy distortion
+        float wave1 = sin(uv.x * waveFrequency + time * animationSpeed * 2.0) * waveScale;
+        float wave2 = sin(uv.y * (waveFrequency * 0.8) + time * animationSpeed * 1.5) * (waveScale * 0.8);
+        float wave3 = sin((uv.x + uv.y) * (waveFrequency * 1.2) + time * animationSpeed * 2.5) * (waveScale * 0.3);
+        
+        // Mouse-based ripples with falloff
         float dist = distance(uv, mouse);
+        float rippleScale = rippleIntensity * 0.7; // Reduce ripple intensity
+        
+        // Improved falloff function for smoother transitions
+        float falloff = exp(-dist * 4.0);
+        
         float mouseWave1 = sin(dist * rippleFrequency - time * animationSpeed * 4.0) * 
-                          exp(-dist * 3.0) * hoverIntensity * rippleIntensity;
+                          falloff * hoverIntensity * rippleScale;
         float mouseWave2 = sin(dist * (rippleFrequency * 0.75) - time * animationSpeed * 3.0) * 
-                          exp(-dist * 2.0) * hoverIntensity * (rippleIntensity * 0.67);
+                          falloff * hoverIntensity * (rippleScale * 0.6);
         
-        // Additional expanding ripples
+        // More controlled expanding ripples
         float ripple1 = sin(length(uv - mouse) * (rippleFrequency * 1.25) - time * animationSpeed * 5.0) * 
-                       exp(-length(uv - mouse) * 4.0) * hoverIntensity * (rippleIntensity * 1.25);
+                       exp(-length(uv - mouse) * 5.0) * hoverIntensity * (rippleScale * 0.8);
         float ripple2 = sin(length(uv - mouse) * (rippleFrequency * 0.9) - time * animationSpeed * 3.5) * 
-                       exp(-length(uv - mouse) * 3.0) * hoverIntensity * (rippleIntensity * 0.83);
+                       exp(-length(uv - mouse) * 4.0) * hoverIntensity * (rippleScale * 0.6);
         
-        // Combine all waves
-        float totalWave = wave1 + wave2 + wave3 + mouseWave1 + mouseWave2 + ripple1 + ripple2;
+        // Combine waves with reduced intensity
+        float totalWave = (wave1 + wave2 + wave3 + mouseWave1 + mouseWave2 + ripple1 + ripple2) * 0.5;
         
-        // Create smooth directional distortion
+        // More subtle distortion
+        float distortScale = distortionAmount * 0.6;
         vec2 distortion = vec2(
-          sin(uv.x * (waveFrequency * 0.8) + time * animationSpeed * 1.8) * distortionAmount * 0.5 + 
-          sin(uv.y * (waveFrequency * 0.6) + time * animationSpeed * 2.2) * distortionAmount * 0.375,
-          sin(uv.y * (waveFrequency * 0.7) + time * animationSpeed * 1.6) * distortionAmount * 0.5 + 
-          sin(uv.x * (waveFrequency * 0.9) + time * animationSpeed * 2.0) * distortionAmount * 0.375
+          sin(uv.x * (waveFrequency * 0.8) + time * animationSpeed * 1.8) * distortScale * 0.4 + 
+          sin(uv.y * (waveFrequency * 0.6) + time * animationSpeed * 2.2) * distortScale * 0.3,
+          sin(uv.y * (waveFrequency * 0.7) + time * animationSpeed * 1.6) * distortScale * 0.4 + 
+          sin(uv.x * (waveFrequency * 0.9) + time * animationSpeed * 2.0) * distortScale * 0.3
         );
         
-        // Add mouse-based radial distortion
+        // Reduced mouse-based radial distortion
         vec2 mouseDir = uv - mouse;
         float mouseDist = length(mouseDir);
         vec2 mouseDistortion = normalize(mouseDir) * sin(mouseDist * rippleFrequency - time * animationSpeed * 4.0) * 
-                              exp(-mouseDist * 3.0) * hoverIntensity * distortionAmount;
+                              exp(-mouseDist * 4.0) * hoverIntensity * distortScale * 0.5;
         
-        // Combine distortions
-        vec2 finalDistortion = distortion + mouseDistortion + vec2(totalWave * 0.3, totalWave * 0.4);
+        // Combine distortions with reduced intensity
+        vec2 finalDistortion = (distortion + mouseDistortion) * 0.7 + vec2(totalWave * 0.2, totalWave * 0.2);
         
         // Apply distortion to UV coordinates
         vec2 distortedUv = uv + finalDistortion;
+        
+        // Clamp UV coordinates to prevent sampling outside texture bounds
+        distortedUv = clamp(distortedUv, 0.0, 1.0);
         
         // Sample texture with distorted coordinates
         vec4 color = texture2D(texture1, distortedUv);
@@ -140,7 +173,7 @@ export default function WaterRippleEffect({
       }
     `
 
-    // Create material with configurable uniforms
+    // Create material with improved settings
     const material = new THREE.ShaderMaterial({
       uniforms: {
         texture1: { value: texture },
@@ -159,9 +192,9 @@ export default function WaterRippleEffect({
       transparent: true,
     })
 
-    // Create geometry 
+    // Create geometry with higher resolution for smoother effects
     const aspectRatio = width / height
-    const geometry = new THREE.PlaneGeometry(4 * aspectRatio, 4, 1, 1)
+    const geometry = new THREE.PlaneGeometry(4 * aspectRatio, 4, 64, 64) // Increased subdivisions
     const mesh = new THREE.Mesh(geometry, material)
     scene.add(mesh)
 
@@ -194,7 +227,7 @@ export default function WaterRippleEffect({
     renderer.domElement.addEventListener("mouseenter", handleMouseEnter)
     renderer.domElement.addEventListener("mouseleave", handleMouseLeave)
 
-    // Animation loop
+    // Animation loop with better timing
     const animate = () => {
       timeRef.current += 0.016
 
@@ -203,7 +236,7 @@ export default function WaterRippleEffect({
         materialRef.current.uniforms.mouse.value.set(mouseRef.current.x, mouseRef.current.y)
         const targetIntensity = isHoveredRef.current ? hoverRippleMultiplier : 0.3
         const currentIntensity = materialRef.current.uniforms.hoverIntensity.value
-        materialRef.current.uniforms.hoverIntensity.value += (targetIntensity - currentIntensity) * 0.05
+        materialRef.current.uniforms.hoverIntensity.value += (targetIntensity - currentIntensity) * transitionSpeed
       }
 
       if (rendererRef.current && sceneRef.current) {

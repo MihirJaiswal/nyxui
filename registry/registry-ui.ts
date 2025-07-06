@@ -500,7 +500,7 @@ export const ui: Registry["items"] = [
     type: "registry:ui",
     title: "Water Ripple Effect",
     description: "A water ripple effect that that provide several effects.",
-    dependencies: ["Three"],
+    dependencies: ["three"],
     files: [
       {
         path: "registry/ui/water-ripple-effect.tsx",

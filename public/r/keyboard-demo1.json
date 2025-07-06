@@ -16,12 +16,6 @@
       "content": "import React from \"react\";\nimport InteractiveKeyboard from \"../ui/keyboard\";\n\nexport default function KeyboardDemo1() {\n  return (\n    <div>\n      <InteractiveKeyboard theme=\"neon\" />\n    </div>\n  );\n}\n",
       "type": "registry:example",
       "target": "components/keyboard-demo1.tsx"
-    },
-    {
-      "path": "registry\\example\\keyboard-demo1.tsx",
-      "content": "import React from \"react\";\nimport InteractiveKeyboard from \"../ui/keyboard\";\n\nexport default function KeyboardDemo1() {\n  return (\n    <div>\n      <InteractiveKeyboard theme=\"neon\" />\n    </div>\n  );\n}\n",
-      "type": "registry:component",
-      "target": ""
     }
   ]
 }

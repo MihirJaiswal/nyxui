@@ -13,12 +13,6 @@
       "path": "registry/lib/utils.ts",
       "content": "import { clsx, type ClassValue } from \"clsx\";\r\nimport { twMerge } from \"tailwind-merge\";\r\n\r\nexport function cn(...inputs: ClassValue[]) {\r\n  return twMerge(clsx(inputs));\r\n}\r\n",
       "type": "registry:lib"
-    },
-    {
-      "path": "registry\\lib\\utils.ts",
-      "content": "import { clsx, type ClassValue } from \"clsx\";\r\nimport { twMerge } from \"tailwind-merge\";\r\n\r\nexport function cn(...inputs: ClassValue[]) {\r\n  return twMerge(clsx(inputs));\r\n}\r\n",
-      "type": "registry:lib",
-      "target": ""
     }
   ]
 }

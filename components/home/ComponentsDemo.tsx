@@ -1,7 +1,7 @@
 import React from "react";
 import { BentoGrid } from "../../registry/ui/bento-grid";
 import { AnimatedGradientBg } from "../../registry/ui/animated-gradient-bg";
-import { ChevronRight, Code, Rocket, Sparkles } from "lucide-react";
+import { ChevronRight, Code } from "lucide-react";
 import { DynamicRipple } from "../../registry/ui/dynamic-ripple";
 import Link from "next/link";
 import InteractiveTerminal from "../../registry/ui/terminal";
@@ -12,7 +12,7 @@ import LampHeading from "../../registry/ui/lamp-heading";
 import { Particles } from "../ui/particles";
 import { TwitterCard } from "./TweetCard";
 import { Matrix } from "./Matrix";
-import { MorphingBlob } from "../../registry/ui/morphing-blob";
+import WaterRippleEffect from "@/registry/ui/water-ripple-effect";
 
 export const ComponentsDemo = () => {
   return (
@@ -104,6 +104,7 @@ export const ComponentsDemo = () => {
           className="rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-xl border border-zinc-200 dark:border-zinc-800"
           height="h-full"
           enableDescription={false}
+        
           enableTitle={false}
           component={
             <DynamicRipple
@@ -113,7 +114,7 @@ export const ComponentsDemo = () => {
               reactToCursor
               autoAnimate
               rounded="xl"
-              className="w-full h-full min-h-[300px] p-6 flex items-center justify-center bg-white dark:bg-black"
+              className="w-full h-full min-h-[300px] p-6 flex items-center justify-center bg-black"
             >
               <Particles
                 className="absolute inset-0 z-0"
@@ -149,6 +150,7 @@ export const ComponentsDemo = () => {
         <BentoGrid
           className="rounded-2xl overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] border"
           height="h-full"
+          dark
           enableDescription={false}
           enableTitle={false}
           component={<TwitterCard />}
@@ -164,8 +166,8 @@ export const ComponentsDemo = () => {
           component={
             <div className="relative w-full h-full overflow-hidden">
               <AnimatedGradientBg
-                colors={["#a806ba", "#ec4899", "#8b5cf6", "#06b6d4"]}
-                pattern="mesh"
+                pattern="waves"
+                colors={["#a806ba","#007EEC", "#000000", "#000000"]}
                 blur={25}
                 speed={2}
                 opacity={0.9}
@@ -178,10 +180,10 @@ export const ComponentsDemo = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
               <div className="relative z-10 h-full flex flex-col justify-center items-center text-white p-8">
-                <Sparkles className="mb-4 h-10 w-10 drop-shadow-lg animate-pulse text-white/90" />
+               {/*  <Sparkles className="mb-4 h-10 w-10 drop-shadow-lg animate-pulse text-white/90" />
                 <span className="text-lg md:text-3xl text-center font-bold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-white to-purple-200">
                   ANIMATED GRADIENT
-                </span>
+                </span> */}
               </div>
               <div className="absolute -bottom-6 -right-6 w-24 h-24 rounded-full bg-purple-500/20 blur-xl" />
               <div className="absolute -top-6 -left-6 w-16 h-16 rounded-full bg-blue-500/20 blur-xl" />
@@ -213,32 +215,8 @@ export const ComponentsDemo = () => {
                 color="#ffffff"
                 refresh
               />
-              <div className="flex w-full items-center justify-center min-h-screen bg-gradient-to-br dark:from-gray-800 dark:via-gray-900 dark:to-black">
-                <MorphingBlob
-                  theme="custom"
-                  customColors={{
-                    from: "#48176e",
-                    via: "#5c176e",
-                    to: "#69176e",
-                  }}
-                  complexity={5}
-                  speed={3}
-                  hoverEffect={true}
-                  clickEffect={true}
-                  pulse={false}
-                  glow={false}
-                  opacity={90}
-                  glowIntensity={5}
-                  smooth={true}
-                  effect3D={true}
-                >
-                  <div className="text-center flex flex-col items-center justify-center">
-                    <Rocket className="h-10 w-10" />
-                    <p className="text-white text-lg mt-3 font-bold">
-                      Interact with me!
-                    </p>
-                  </div>
-                </MorphingBlob>
+              <div className="flex w-full items-center justify-center min-h-screen bg-gradient-to-b dark:from-gray-900 dark:via-blue-950 dark:to-blue-200">
+                <WaterRippleEffect imageSrc="/assets/images/landing-page/img.jpg" waveFrequency={12} hoverRippleMultiplier={3.5} waveIntensity={0.08} height={428} width={445} className="mt-10"/>
               </div>
             </div>
           }

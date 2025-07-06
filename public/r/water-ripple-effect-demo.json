@@ -13,15 +13,9 @@
   "files": [
     {
       "path": "registry/example/water-ripple-effect-demo.tsx",
-      "content": "import React from 'react'\r\nimport WaterRippleEffect from '../ui/water-ripple-effect'\r\n\r\nexport default function WaterRippleEffectDemo() {\r\n  return (\r\n    <div>\r\n      <WaterRippleEffect\r\n       imageSrc='/assets/images/water-ripple-effect/art.jpg'\r\n       height={600}\r\n       width={600}\r\n        />\r\n    </div>\r\n  )\r\n}\r\n",
+      "content": "import React from 'react'\r\nimport WaterRippleEffect from '../ui/water-ripple-effect'\r\n\r\nexport default function WaterRippleEffectDemo() {\r\n  return (\r\n    <div>\r\n      <WaterRippleEffect\r\n       imageSrc='/assets/images/water-ripple-effect/art.jpg'\r\n       height={620}\r\n       width={600}\r\n        />\r\n    </div>\r\n  )\r\n}\r\n",
       "type": "registry:example",
       "target": "components/water-ripple-effect-demo.tsx"
-    },
-    {
-      "path": "registry\\example\\water-ripple-effect-demo.tsx",
-      "content": "import React from 'react'\r\nimport WaterRippleEffect from '../ui/water-ripple-effect'\r\n\r\nexport default function WaterRippleEffectDemo() {\r\n  return (\r\n    <div>\r\n      <WaterRippleEffect\r\n       imageSrc='/assets/images/water-ripple-effect/art.jpg'\r\n       height={600}\r\n       width={600}\r\n        />\r\n    </div>\r\n  )\r\n}\r\n",
-      "type": "registry:component",
-      "target": ""
     }
   ]
 }

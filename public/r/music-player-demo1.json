@@ -16,12 +16,6 @@
       "content": "import { MusicPlayer } from \"../ui/music-player\";\n\nexport default function MusicPlayerDemo1() {\n  return (\n    <div className=\"w-full max-w-xs mx-auto border border-gray-300 dark:border-gray-700 rounded-md relative\">\n      <MusicPlayer\n        theme=\"default\"\n        trackTitle=\"changes\"\n        artist=\"XXXTENTACION\"\n        album=\"?\"\n        artwork=\"/assets/images/music-player/cover.jpg\"\n        className=\"rounded-xl\"\n      />\n    </div>\n  );\n}\n",
       "type": "registry:example",
       "target": "components/music-player-demo1.tsx"
-    },
-    {
-      "path": "registry\\example\\music-player-demo1.tsx",
-      "content": "import { MusicPlayer } from \"../ui/music-player\";\n\nexport default function MusicPlayerDemo1() {\n  return (\n    <div className=\"w-full max-w-xs mx-auto border border-gray-300 dark:border-gray-700 rounded-md relative\">\n      <MusicPlayer\n        theme=\"default\"\n        trackTitle=\"changes\"\n        artist=\"XXXTENTACION\"\n        album=\"?\"\n        artwork=\"/assets/images/music-player/cover.jpg\"\n        className=\"rounded-xl\"\n      />\n    </div>\n  );\n}\n",
-      "type": "registry:component",
-      "target": ""
     }
   ]
 }

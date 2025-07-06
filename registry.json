@@ -647,7 +647,7 @@
       "title": "Water Ripple Effect",
       "description": "A water ripple effect that that provide several effects.",
       "dependencies": [
-        "Three"
+        "three"
       ],
       "files": [
         {

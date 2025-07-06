@@ -10,7 +10,7 @@ export interface AnimatedGradientBgProps {
   colors?: string[];
   speed?: number;
   blur?: number;
-  pattern?: "radial" | "linear" | "conic" | "mesh" | "noise" | "waves";
+  pattern?: "radial" | "linear" | "conic" | "waves";
   intensity?: number;
   opacity?: number;
   size?: "sm" | "md" | "lg" | "full" | number;
@@ -54,14 +54,6 @@ function getGradientPattern(
       return `linear-gradient(45deg, ${list})`;
     case "conic":
       return `conic-gradient(from 0deg at center, ${list})`;
-    case "mesh":
-      return `
-        radial-gradient(circle at 20% 20%, ${colors[0]} 0, transparent ${100 * intensity}px),
-        radial-gradient(circle at 80% 10%, ${colors[1]} 0, transparent ${150 * intensity}px),
-        radial-gradient(circle at 50% 50%, ${colors[2]} 0, transparent ${120 * intensity}px)
-      `;
-    case "noise":
-      return `linear-gradient(45deg, ${list})`;
     case "waves":
       return `
         repeating-linear-gradient(45deg, ${colors[0]} 0, transparent 40%),
@@ -134,65 +126,44 @@ export const AnimatedGradientBg: React.FC<AnimatedGradientBgProps> = ({
     case "section":
       return (
         <motion.section {...commonProps}>
-          {renderNoisePattern(pattern, intensity)}
           {children}
         </motion.section>
       );
     case "article":
       return (
         <motion.article {...commonProps}>
-          {renderNoisePattern(pattern, intensity)}
           {children}
         </motion.article>
       );
     case "main":
       return (
         <motion.main {...commonProps}>
-          {renderNoisePattern(pattern, intensity)}
           {children}
         </motion.main>
       );
     case "aside":
       return (
         <motion.aside {...commonProps}>
-          {renderNoisePattern(pattern, intensity)}
           {children}
         </motion.aside>
       );
     case "header":
       return (
         <motion.header {...commonProps}>
-          {renderNoisePattern(pattern, intensity)}
           {children}
         </motion.header>
       );
     case "footer":
       return (
         <motion.footer {...commonProps}>
-          {renderNoisePattern(pattern, intensity)}
           {children}
         </motion.footer>
       );
     default:
       return (
         <motion.div {...commonProps}>
-          {renderNoisePattern(pattern, intensity)}
           {children}
         </motion.div>
       );
   }
 };
-function renderNoisePattern(pattern: PatternType, patternIntensity: number) {
-  if (pattern === "noise") {
-    return (
-      <div
-        className="absolute inset-0 opacity-20 mix-blend-overlay"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-          backgroundSize: `${100 * patternIntensity}px ${100 * patternIntensity}px`,
-        }}
-      />
-    );
-  }
-  return null;
-}

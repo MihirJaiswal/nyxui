@@ -4,7 +4,7 @@ import { RefreshCw } from "lucide-react";
 
 export default function ScrollAnimationTriggerDemo2() {
   return (
-    <div className="max-w-md mx-auto bg-white dark:bg-black relative">
+    <div className="max-w-md mx-auto relative">
       <ScrollAnimationTrigger
         effect="rotate"
         className="p-3 sm:p-4 md:p-6"
@@ -12,13 +12,13 @@ export default function ScrollAnimationTriggerDemo2() {
         fromRotation={-15}
         toRotation={0}
       >
-        <div className="bg-gradient-to-br from-amber-50 to-amber-100 dark:from-zinc-900 dark:to-zinc-800 p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl shadow-xl w-full border-t border-l border-amber-200/50 dark:border-amber-500/20 relative overflow-hidden group">
-          <div className="absolute top-0 right-0 w-1/4 h-1/4 rounded-full bg-amber-300/20 dark:bg-amber-300/10 -mr-5 -mt-5 blur-xl sm:blur-2xl"></div>
-          <div className="absolute bottom-0 left-0 w-1/5 h-1/5 rounded-full bg-amber-300/20 dark:bg-amber-300/10 -ml-3 -mb-3 blur-md sm:blur-xl"></div>
+        <div className="bg-background p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl shadow-xl w-full border-t border-l border-amber-200 dark:border-amber-500 relative overflow-hidden group">
+          <div className="absolute top-0 right-0 w-1/4 h-1/4 rounded-full bg-amber-300 dark:bg-amber-300 -mr-5 -mt-5 blur-xl sm:blur-2xl"></div>
+          <div className="absolute bottom-0 left-0 w-1/5 h-1/5 rounded-full bg-amber-300 dark:bg-amber-300 -ml-3 -mb-3 blur-md sm:blur-xl"></div>
 
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center mb-4 sm:mb-6">
-            <div className="p-3 sm:p-4 bg-white dark:bg-zinc-800 rounded-xl shadow-md border border-amber-100 dark:border-amber-900/50 relative z-10 group-hover:shadow-amber-200 dark:group-hover:shadow-amber-900/30 transition-shadow duration-300">
-              <div className="absolute inset-0 bg-gradient-to-br from-amber-500/20 to-amber-600/20 dark:from-amber-500/10 dark:to-amber-600/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="p-3 sm:p-4 bg-white dark:bg-zinc-800 rounded-xl shadow-md border border-amber-100 dark:border-amber-900 relative z-10 group-hover:shadow-amber-200 dark:group-hover:shadow-amber-900/30 transition-shadow duration-300">
+              <div className="absolute inset-0 bg-gradient-to-br from-amber-500 to-amber-600 dark:from-amber-500 dark:to-amber-600 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative z-10">
                 <RefreshCw className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-amber-500 dark:text-amber-400" />
               </div>

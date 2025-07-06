@@ -17,12 +17,6 @@
       "content": "import { MorphingBlob } from \"../ui/morphing-blob\";\nimport { MoonIcon } from \"@radix-ui/react-icons\";\n\nexport const MorphingBlobDemo = () => {\n  return (\n    <div className=\"w-full flex flex-col items-center justify-center p-6\">\n      <div className=\"relative\">\n        <MorphingBlob\n          theme=\"custom\"\n          customColors={{\n            from: \"#00406b\",\n            via: \"#57006b\",\n            to: \"#6b0057\",\n          }}\n          size=\"lg\"\n          complexity={4}\n          speed={2}\n          glow={false}\n          effect3D={true}\n          hoverEffect={true}\n          clickEffect={true}\n          pulse={false}\n        >\n          <div className=\"text-center p-6\">\n            <MoonIcon className=\"h-10 w-10 mx-auto mb-3\" />\n            <h4 className=\"text-xl font-bold mb-2\">Nuvyx UI</h4>\n            <p className=\"text-sm opacity-90 max-w-[180px]\">\n              Beautiful animated backgrounds for modern UIs\n            </p>\n          </div>\n        </MorphingBlob>\n      </div>\n    </div>\n  );\n};\n",
       "type": "registry:example",
       "target": "components/morphing-blob-demo.tsx"
-    },
-    {
-      "path": "registry\\example\\morphing-blob-demo.tsx",
-      "content": "import { MorphingBlob } from \"../ui/morphing-blob\";\nimport { MoonIcon } from \"@radix-ui/react-icons\";\n\nexport const MorphingBlobDemo = () => {\n  return (\n    <div className=\"w-full flex flex-col items-center justify-center p-6\">\n      <div className=\"relative\">\n        <MorphingBlob\n          theme=\"custom\"\n          customColors={{\n            from: \"#00406b\",\n            via: \"#57006b\",\n            to: \"#6b0057\",\n          }}\n          size=\"lg\"\n          complexity={4}\n          speed={2}\n          glow={false}\n          effect3D={true}\n          hoverEffect={true}\n          clickEffect={true}\n          pulse={false}\n        >\n          <div className=\"text-center p-6\">\n            <MoonIcon className=\"h-10 w-10 mx-auto mb-3\" />\n            <h4 className=\"text-xl font-bold mb-2\">Nuvyx UI</h4>\n            <p className=\"text-sm opacity-90 max-w-[180px]\">\n              Beautiful animated backgrounds for modern UIs\n            </p>\n          </div>\n        </MorphingBlob>\n      </div>\n    </div>\n  );\n};\n",
-      "type": "registry:component",
-      "target": ""
     }
   ]
 }

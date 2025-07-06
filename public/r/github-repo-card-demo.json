@@ -16,12 +16,6 @@
       "content": "import { GitHubRepoCard } from \"../ui/github-repo-card\";\nexport default function GitHubRepoCardDemo() {\n  return (\n    <div className=\"max-w-md relative\">\n      <GitHubRepoCard\n        manualMode={true}\n        themeId=\"midnight\"\n        repoData={{\n          name: \"shadcn-ui\",\n          fullName: \"shadcn/ui\",\n          description:\n            \"Beautifully designed components built with Radix UI and Tailwind CSS.\",\n          owner: {\n            login: \"shadcn\",\n            avatarUrl: \"https://avatars.githubusercontent.com/u/124599?v=4\",\n          },\n          stars: 42000,\n          forks: 3600,\n          watchers: 1600,\n          issues: 310,\n          language: \"TypeScript\",\n          languageColor: \"#3178c6\",\n          updatedAt: \"2025-04-07T14:18:57Z\",\n          topics: [\"ui\", \"components\", \"tailwindcss\", \"radix\"],\n          activityData: [\n            0.4, 0.5, 0.6, 0.8, 0.7, 0.9, 1.0, 0.9, 0.8, 0.7, 0.9, 1.0,\n          ],\n          isPrivate: false,\n        }}\n      />\n    </div>\n  );\n}\n",
       "type": "registry:example",
       "target": "components/github-repo-card-demo.tsx"
-    },
-    {
-      "path": "registry\\example\\github-repo-card-demo.tsx",
-      "content": "import { GitHubRepoCard } from \"../ui/github-repo-card\";\nexport default function GitHubRepoCardDemo() {\n  return (\n    <div className=\"max-w-md relative\">\n      <GitHubRepoCard\n        manualMode={true}\n        themeId=\"midnight\"\n        repoData={{\n          name: \"shadcn-ui\",\n          fullName: \"shadcn/ui\",\n          description:\n            \"Beautifully designed components built with Radix UI and Tailwind CSS.\",\n          owner: {\n            login: \"shadcn\",\n            avatarUrl: \"https://avatars.githubusercontent.com/u/124599?v=4\",\n          },\n          stars: 42000,\n          forks: 3600,\n          watchers: 1600,\n          issues: 310,\n          language: \"TypeScript\",\n          languageColor: \"#3178c6\",\n          updatedAt: \"2025-04-07T14:18:57Z\",\n          topics: [\"ui\", \"components\", \"tailwindcss\", \"radix\"],\n          activityData: [\n            0.4, 0.5, 0.6, 0.8, 0.7, 0.9, 1.0, 0.9, 0.8, 0.7, 0.9, 1.0,\n          ],\n          isPrivate: false,\n        }}\n      />\n    </div>\n  );\n}\n",
-      "type": "registry:component",
-      "target": ""
     }
   ]
 }

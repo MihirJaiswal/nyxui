@@ -16,12 +16,6 @@
       "content": "\"use client\";\nimport DrawingCanvas from \"../ui/ms-paint\";\n\nexport default function MSpaintDemo() {\n  const handleSave = (canvas: HTMLCanvasElement) => {\n    canvas.toBlob((blob) => {\n      if (blob) {\n        const fileName = `MyDrawing_${Date.now()}.png`;\n        const url = URL.createObjectURL(blob);\n        const link = document.createElement(\"a\");\n        link.href = url;\n        link.download = fileName;\n        document.body.appendChild(link);\n        link.click();\n        document.body.removeChild(link);\n        URL.revokeObjectURL(url);\n      }\n    }, \"image/png\");\n  };\n  return (\n    <div className=\"h-screen w-screen overflow-hidden relative\">\n      <DrawingCanvas\n        title=\"My Drawing App\"\n        onSave={handleSave}\n        menuItems={[\"File\", \"Edit\", \"Tools\", \"Help\"]}\n      />\n    </div>\n  );\n}\n",
       "type": "registry:example",
       "target": "components/ms-paint-demo.tsx"
-    },
-    {
-      "path": "registry\\example\\ms-paint-demo.tsx",
-      "content": "\"use client\";\nimport DrawingCanvas from \"../ui/ms-paint\";\n\nexport default function MSpaintDemo() {\n  const handleSave = (canvas: HTMLCanvasElement) => {\n    canvas.toBlob((blob) => {\n      if (blob) {\n        const fileName = `MyDrawing_${Date.now()}.png`;\n        const url = URL.createObjectURL(blob);\n        const link = document.createElement(\"a\");\n        link.href = url;\n        link.download = fileName;\n        document.body.appendChild(link);\n        link.click();\n        document.body.removeChild(link);\n        URL.revokeObjectURL(url);\n      }\n    }, \"image/png\");\n  };\n  return (\n    <div className=\"h-screen w-screen overflow-hidden relative\">\n      <DrawingCanvas\n        title=\"My Drawing App\"\n        onSave={handleSave}\n        menuItems={[\"File\", \"Edit\", \"Tools\", \"Help\"]}\n      />\n    </div>\n  );\n}\n",
-      "type": "registry:component",
-      "target": ""
     }
   ]
 }

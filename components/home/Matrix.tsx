@@ -23,7 +23,7 @@ export const Matrix = () => {
     setColor(randomColor);
   };
   return (
-    <div className="w-full h-full relative min-h-[300px]">
+    <div className="w-full h-full relative min-h-[340px]">
       <MatrixCodeRain
         color={color}
         charset="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ$#%@!nuvyxui"
