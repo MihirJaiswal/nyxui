@@ -1,6 +1,5 @@
 import React from "react";
 import { BentoGrid } from "../../registry/ui/bento-grid";
-import { AnimatedGradientBg } from "../../registry/ui/animated-gradient-bg";
 import { ChevronRight, Code } from "lucide-react";
 import { DynamicRipple } from "../../registry/ui/dynamic-ripple";
 import Link from "next/link";
@@ -13,6 +12,7 @@ import { Particles } from "../ui/particles";
 import { TwitterCard } from "./TweetCard";
 import { Matrix } from "./Matrix";
 import WaterRippleEffect from "@/registry/ui/water-ripple-effect";
+import { CustomPointer } from "./CustomPointer";
 
 export const ComponentsDemo = () => {
   return (
@@ -161,33 +161,8 @@ export const ComponentsDemo = () => {
           enableTitle={false}
           height="h-full"
           className="lg:col-span-2 rounded-2xl overflow-hidden shadow-xl transition-all duration-500 hover:shadow-2xl hover:scale-[1.02] border border-zinc-200/50 dark:border-zinc-800/50 tracking-wider"
-          title="Animated Gradient Background"
-          description="Customizable gradient backgrounds with mesh pattern. Interactive and visually striking."
           component={
-            <div className="relative w-full h-full overflow-hidden">
-              <AnimatedGradientBg
-                pattern="waves"
-                colors={["#a806ba","#007EEC", "#000000", "#000000"]}
-                blur={25}
-                speed={2}
-                opacity={0.9}
-                position="absolute"
-                size="full"
-                zIndex={0}
-                animate
-                intensity={2}
-                className="bg-gradient-to-b from-white/10 to-50% dark:from-gray-950/20 dark:from-[-25%]"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-              <div className="relative z-10 h-full flex flex-col justify-center items-center text-white p-8">
-               {/*  <Sparkles className="mb-4 h-10 w-10 drop-shadow-lg animate-pulse text-white/90" />
-                <span className="text-lg md:text-3xl text-center font-bold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-white to-purple-200">
-                  ANIMATED GRADIENT
-                </span> */}
-              </div>
-              <div className="absolute -bottom-6 -right-6 w-24 h-24 rounded-full bg-purple-500/20 blur-xl" />
-              <div className="absolute -top-6 -left-6 w-16 h-16 rounded-full bg-blue-500/20 blur-xl" />
-            </div>
+               <CustomPointer/>
           }
         />
 
@@ -215,8 +190,8 @@ export const ComponentsDemo = () => {
                 color="#ffffff"
                 refresh
               />
-              <div className="flex w-full items-center justify-center min-h-screen bg-gradient-to-b dark:from-gray-900 dark:via-blue-950 dark:to-blue-200">
-                <WaterRippleEffect imageSrc="/assets/images/landing-page/img.jpg" waveFrequency={12} hoverRippleMultiplier={3.5} waveIntensity={0.08} height={428} width={445} className="mt-10"/>
+              <div className="flex w-full items-center justify-center min-h-screen bg-gradient-to-b dark:from-gray-900 dark:via-gray-950 dark:to-gray-900">
+                <WaterRippleEffect imageSrc="/assets/images/landing-page/img.png" waveFrequency={12} hoverRippleMultiplier={3.5} waveIntensity={0.08} height={428} width={445} className="mt-20"/>
               </div>
             </div>
           }

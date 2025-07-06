@@ -64,7 +64,7 @@ export default function Header() {
       )}
     >
       {/* Gradient overlay with fade effect */}
-      <div className="absolute h-28 inset-0 pointer-events-none opacity-10">
+      <div className={`absolute h-28 inset-0 pointer-events-none ${scrolled ? "opacity-0" : "opacity-11"} transition-opacity duration-300`}>
         <div className={cn(
           "absolute inset-0",
           "bg-[length:300%_100%] motion-safe:animate-[gradient_3s_ease_infinite]",
