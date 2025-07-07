@@ -4,7 +4,7 @@ import { componentsData } from "../../registry/Data";
 export default function ComponentGrid() {
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="relative z-40 grid grid-cols-1 items-start gap-20 pb-12 md:grid-cols-1 lg:grid-cols-2 lg:gap-10 xl:grid-cols-2">
+      <div className="relative z-40 grid grid-cols-1 items-start gap-12 pb-8 md:grid-cols-1 lg:grid-cols-2 lg:gap-10 xl:grid-cols-2">
         {Object.entries(componentsData.components).map(([slug, component]) => (
           <ComponentCard
             key={slug}
