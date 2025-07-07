@@ -149,7 +149,7 @@ export default async function DocPage({ params }: DocPageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
       />
       <div className="mx-auto w-full max-w-[1200px] px-2 md:py-8 lg:px-8 xl:px-10">
-        <div className="space-y-4 pb-6 md:pb-8">
+        <div className="space-y-4">
           <div className="mb-4 flex items-center space-x-1 text-sm text-muted-foreground">
             <div className="truncate">Docs</div>
             <ChevronRightIcon className="size-4" />
