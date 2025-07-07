@@ -111,7 +111,7 @@ export const LiquidMetalButtonDemo = () => {
           theme="gold"
           intensity={5}
           textured={true}
-          className="rounded-lg relative"
+          className="rounded-lg relative bg-background"
         >
           <div className="flex items-center">
             <Crown className="mr-2 h-4 w-4" />
@@ -126,7 +126,7 @@ export const LiquidMetalButtonDemo = () => {
           theme="steel"
           intensity={5}
           textured={true}
-          className="rounded-lg relative"
+          className="rounded-lg relative bg-background"
         >
           <div className="flex items-center">
             <Zap className="mr-2 h-4 w-4" />

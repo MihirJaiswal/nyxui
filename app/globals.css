@@ -351,7 +351,7 @@
 }
 
 .dark .hide-scrollbar::-webkit-scrollbar-track {
-  background-color: #000000;
+  background-color: #0A0A0A;
   border-radius: 8px;
 }
 
