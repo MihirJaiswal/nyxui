@@ -43,7 +43,7 @@ const documents = defineCollection({
   schema: (z) => ({
     title: z.string(),
     description: z.string(),
-    tags: z.array(z.string()),
+    tags: z.array(z.string()).optional(),
     published: z.boolean().default(true),
     date: z.string().optional(),
     links: z

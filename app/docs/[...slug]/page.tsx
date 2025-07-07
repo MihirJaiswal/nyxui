@@ -15,7 +15,7 @@ interface DocPageProps {
 
 async function handleCategoryRedirects(slugPath: string) {
   if (slugPath === "components") {
-    const firstComponentDoc = allDocs.find(
+    const firstComponentDoc = allDocs?.find(
       (doc) => doc.slugAsParams.startsWith("components/") && doc.published,
     );
 
@@ -31,7 +31,7 @@ async function getDocFromParams(params: Promise<{ slug: string[] }>) {
 
   await handleCategoryRedirects(slugPath);
 
-  const doc = allDocs.find((doc) => doc.slugAsParams === slugPath);
+  const doc = allDocs?.find((doc) => doc.slugAsParams === slugPath);
 
   if (!doc) {
     return null;
@@ -77,9 +77,37 @@ export async function generateMetadata({
 export async function generateStaticParams(): Promise<
   Awaited<DocPageProps["params"]>[]
 > {
-  return allDocs.map((doc) => ({
-    slug: doc.slugAsParams.split("/"),
-  }));
+  try {
+    // Debug logging
+    console.log("allDocs:", allDocs);
+    console.log("typeof allDocs:", typeof allDocs);
+    console.log("Array.isArray(allDocs):", Array.isArray(allDocs));
+    
+    // Check if allDocs is defined and is an array
+    if (!allDocs) {
+      console.warn("allDocs is undefined during static generation");
+      return [];
+    }
+    
+    if (!Array.isArray(allDocs)) {
+      console.warn("allDocs is not an array during static generation, got:", typeof allDocs);
+      return [];
+    }
+
+    if (allDocs.length === 0) {
+      console.warn("allDocs is empty during static generation");
+      return [];
+    }
+
+    return allDocs
+      .filter((doc) => doc.published)
+      .map((doc) => ({
+        slug: doc.slugAsParams.split("/"),
+      }));
+  } catch (error) {
+    console.error("Error in generateStaticParams:", error);
+    return [];
+  }
 }
 
 export default async function DocPage({ params }: DocPageProps) {
