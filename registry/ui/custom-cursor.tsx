@@ -19,7 +19,7 @@ const DefaultPointerSVG = ({ className }: { className?: string }) => (
   </svg>
 )
 
-export const Pointer = ({
+export const Cursor = ({
   children,
   className,
   name,

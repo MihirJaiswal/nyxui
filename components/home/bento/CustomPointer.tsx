@@ -1,5 +1,5 @@
 "use client";
-import { Pointer } from "@/registry/ui/Pointer";
+import { Cursor } from "@/registry/ui/custom-cursor";
 import { AnimatedGradientBg } from "@/registry/ui/animated-gradient-bg";
 
 export const CustomPointer = () => (
@@ -21,7 +21,7 @@ export const CustomPointer = () => (
       intensity={2}
       className="bg-gradient-to-b from-white/10 to-50% dark:from-gray-950/20 dark:from-[-25%]"
     />
-    <Pointer
+    <Cursor
       name="Mihir"
       className={"relative flex h-fit w-full items-end justify-center"}
     >
@@ -117,6 +117,6 @@ export const CustomPointer = () => (
         </div>
       </div>
       <div className="absolute bottom-0 right-0  h-full w-3/4 rounded-full bg-gradient-to-br from-red-500 via-fuchsia-500 to-red-500 opacity-[0.3] blur-3xl" />
-    </Pointer>
+    </Cursor>
   </div>
 );
