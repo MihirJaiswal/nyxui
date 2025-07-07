@@ -37,9 +37,6 @@ export const Hero = () => {
             <h1 className="text-[2.83rem] md:text-5xl lg:text-[6rem] font-black tracking-wide leading-snug pb-4">
               <div className="flex flex-wrap items-center md:justify-center gap-2 md:gap-4">
                 <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
                   className="flex justify-center"
                 >
                   <span className="relative">
@@ -56,9 +53,6 @@ export const Hero = () => {
                 </motion.p>
 
                 <motion.span
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
                   className="relative"
                 >
                   <span
@@ -111,9 +105,6 @@ export const Hero = () => {
             </h1>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
               className="mx-auto max-w-3xl md:text-center"
             >
               <p className="text-zinc-900 dark:text-zinc-100 sm:text-xl tracking-wide font-medium leading-relaxed">
@@ -142,9 +133,6 @@ export const Hero = () => {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
               className="relative mt-8 flex w-full flex-col justify-center space-y-2 sm:flex-row sm:space-y-0 sm:space-x-4"
             >
               <Link href="/docs" rel="noopener noreferrer">

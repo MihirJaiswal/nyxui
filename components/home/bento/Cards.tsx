@@ -42,8 +42,6 @@ const GlassmorphismCards = () => {
             >
               {/* Icon */}
               <div className="text-white text-4xl">{card.icon}</div>
-
-              {/* Bottom label using ::before pseudo-element equivalent */}
               <div className="absolute bottom-0 left-0 right-0 h-10 bg-white/5 rounded-b-lg flex items-center justify-center">
                 <span className="text-white text-sm font-medium">
                   {card.text}
