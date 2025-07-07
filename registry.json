@@ -617,6 +617,22 @@
       ]
     },
     {
+      "name": "custom-cursor",
+      "type": "registry:ui",
+      "title": "Custom Cursor",
+      "description": "A custom cursor that that provide several effects.",
+      "dependencies": [
+        "motion"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/custom-cursor.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/custom-cursor.tsx"
+        }
+      ]
+    },
+    {
       "name": "animated-code-block-demo",
       "type": "registry:example",
       "title": "Animated Code Block Demo",
@@ -1189,6 +1205,22 @@
           "path": "registry/example/water-ripple-effect-demo.tsx",
           "type": "registry:example",
           "target": "components/water-ripple-effect-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "custom-cursor-demo",
+      "type": "registry:example",
+      "title": "Custom Cursor Demo",
+      "description": "Example showing a custom cursor.",
+      "registryDependencies": [
+        "https://nuvyxui.vercel.app/r/custom-cursor.json"
+      ],
+      "files": [
+        {
+          "path": "registry/example/custom-cursor-demo.tsx",
+          "type": "registry:example",
+          "target": "components/custom-cursor-demo.tsx"
         }
       ]
     },

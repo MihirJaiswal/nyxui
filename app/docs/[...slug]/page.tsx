@@ -78,24 +78,16 @@ export async function generateStaticParams(): Promise<
   Awaited<DocPageProps["params"]>[]
 > {
   try {
-    // Debug logging
-    console.log("allDocs:", allDocs);
-    console.log("typeof allDocs:", typeof allDocs);
-    console.log("Array.isArray(allDocs):", Array.isArray(allDocs));
-    
     // Check if allDocs is defined and is an array
     if (!allDocs) {
-      console.warn("allDocs is undefined during static generation");
       return [];
     }
     
     if (!Array.isArray(allDocs)) {
-      console.warn("allDocs is not an array during static generation, got:", typeof allDocs);
       return [];
     }
 
     if (allDocs.length === 0) {
-      console.warn("allDocs is empty during static generation");
       return [];
     }
 

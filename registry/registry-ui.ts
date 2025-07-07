@@ -467,5 +467,19 @@ export const ui: Registry["items"] = [
         target: "components/ui/water-ripple-effect.tsx",
       },
     ],
+  },
+  {
+    name: "custom-cursor",
+    type: "registry:ui",
+    title: "Custom Cursor",
+    description: "A custom cursor that that provide several effects.",
+    dependencies: ["motion"],
+    files: [
+      {
+        path: "registry/ui/custom-cursor.tsx",
+        type: "registry:ui",
+        target: "components/ui/custom-cursor.tsx",
+        },
+    ]
   }
 ];

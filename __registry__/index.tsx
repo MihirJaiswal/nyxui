@@ -406,6 +406,22 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
+  "custom-cursor": {
+    name: "custom-cursor",
+    description: "A custom cursor that that provide several effects.",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/ui/custom-cursor.tsx",
+      type: "registry:ui",
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/ui/custom-cursor.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
   "animated-code-block-demo": {
     name: "animated-code-block-demo",
     description: "Example showing a code block with typing animation effects.",
@@ -977,6 +993,22 @@ export const Index: Record<string, any> = {
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/example/water-ripple-effect-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "custom-cursor-demo": {
+    name: "custom-cursor-demo",
+    description: "Example showing a custom cursor.",
+    type: "registry:example",
+    registryDependencies: ["https://nuvyxui.vercel.app/r/custom-cursor.json"],
+    files: [{
+      path: "registry/example/custom-cursor-demo.tsx",
+      type: "registry:example",
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/example/custom-cursor-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),

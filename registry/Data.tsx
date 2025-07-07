@@ -23,11 +23,33 @@ export const componentsData: ComponentsData = {
     documentation: "Introduction",
   },
   components: {
+    
+    "water-ripple-effect": {
+      title: "Water Ripple Effect",
+      tags: ["Interactive", "Visual Effects", "Image"],
+      description: "A mesmerizing water ripple effect for Images.",
+      image: "/assets/images/showcase/water-ripple-effect.png",
+      isNew: true,
+    },
+    "custom-cursor": {
+      title: "Custom Cursor",
+      tags: ["Cursor", "Animation", "Interactive"],
+      description: "A customizable cursor that follows the mouse.",
+      image: "/assets/images/showcase/custom-cursor.png",
+      isNew: true,
+    },
     "animated-code-block": {
       title: "Animated Code Block",
       tags: ["Animation", "Interactive"],
       description: "Code snippets with typing and highlishting effects.",
       image: "/assets/images/showcase/animated-code-block.png",
+    },
+    "cyberpunk-card": {
+      title: "Cyberpunk Card",
+      tags: ["Cards", "Futuristic"],
+      description:
+        "A futuristic card design with neon glow and tech aeshetics.",
+      image: "/assets/images/showcase/cyberpunkcard.png",
     },
     "animated-gradient-bg": {
       title: "Animated Gradient Background",
@@ -52,13 +74,6 @@ export const componentsData: ComponentsData = {
       tags: ["Background", "Interactive", "Animation"],
       description: "Floating bubbles interactive animation for bg.",
       image: "/assets/images/showcase/bubbles-background.png",
-    },
-    "cyberpunk-card": {
-      title: "Cyberpunk Card",
-      tags: ["Cards", "Futuristic"],
-      description:
-        "A futuristic card design with neon glow and tech aeshetics.",
-      image: "/assets/images/showcase/cyberpunkcard.png",
     },
     "dynamic-ripple": {
       title: "Dynamic Ripple",
@@ -87,7 +102,7 @@ export const componentsData: ComponentsData = {
       description: "A button with a digital glitch effect on hover and click.",
       image: "/assets/images/showcase/glitch-button.png",
     },
-    keyboard: {
+    "keyboard": {
       title: "Keyboard",
       tags: ["Interactive", "Tools", "Mock"],
       description: "Interactive keyboard component with customizable keys.",
@@ -130,7 +145,7 @@ export const componentsData: ComponentsData = {
       description: "A card component with subtle animation and transitions.",
       image: "/assets/images/showcase/majestic-card.png",
     },
-    marquee: {
+    "marquee": {
       title: "Marquee",
       tags: ["Interactive", "Interactive", "Animation"],
       description: "A customizable, interactive scrolling marquee component.",
@@ -168,20 +183,13 @@ export const componentsData: ComponentsData = {
       description: "Elements that animate when scrolled into view.",
       image: "/assets/images/showcase/scroll-animation-trigger.png",
     },
-    terminal: {
+    "terminal": {
       title: "Terminal",
       tags: ["Interactive", "Mock", "Tools"],
       description:
         "Command line interface with typing animations and responses",
       image: "/assets/images/showcase/interactive-terminal.png",
     },
-    "water-ripple-effect": {
-      title: "Water Ripple Effect",
-      tags: ["Background", "Effects", "Animation"],
-      description: "A mesmerizing water ripple effect for backgrounds.",
-      image: "/assets/images/showcase/water-ripple-effect.png",
-      isNew: true,
-    }
   },
   templates: {
     "portfolio": { 

@@ -510,5 +510,19 @@ export const examples: Registry["items"] = [
         target: "components/water-ripple-effect-demo.tsx",
       },
     ]
+  },
+  {
+    name: "custom-cursor-demo",
+    type: "registry:example",
+    title: "Custom Cursor Demo",
+    description: "Example showing a custom cursor.",
+    registryDependencies: ["https://nuvyxui.vercel.app/r/custom-cursor.json"],
+    files: [
+      {
+        path: "registry/example/custom-cursor-demo.tsx",
+        type: "registry:example",
+        target: "components/custom-cursor-demo.tsx",
+      },
+    ]
   }
 ];

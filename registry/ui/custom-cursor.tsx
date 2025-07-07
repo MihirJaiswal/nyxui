@@ -25,14 +25,14 @@ export const Cursor = ({
   name,
   customSVG,
   svgClassName,
-  pointerColor = 'sky'
+  cursorColor = 'sky'
 }: {
   children: React.ReactNode
   className?: string
   name: string
   customSVG?: React.ReactNode
   svgClassName?: string
-  pointerColor?: 'sky' | 'red' | 'green' | 'blue' | 'purple' | 'pink' | 'yellow' | 'indigo' | string
+  cursorColor?: 'sky' | 'red' | 'green' | 'blue' | 'purple' | 'pink' | 'yellow' | 'indigo' | string
 }) => {
   const posX = useMotionValue(0)
   const posY = useMotionValue(0)
@@ -73,13 +73,13 @@ export const Cursor = ({
       {children}
       <AnimatePresence>
         {mouseInside && (
-          <FollowPointer 
+          <FollowCursor 
             x={posX} 
             y={posY} 
             name={name} 
             customSVG={customSVG}
             svgClassName={svgClassName}
-            pointerColor={pointerColor}
+            cursorColor={cursorColor}
           />
         )}
       </AnimatePresence>
@@ -87,20 +87,20 @@ export const Cursor = ({
   )
 }
 
-export const FollowPointer = ({ 
+export const FollowCursor = ({ 
   x, 
   y, 
   name, 
   customSVG, 
   svgClassName,
-  pointerColor = 'sky'
+  cursorColor = 'sky'
 }: { 
   x: any
   y: any
   name: string
   customSVG?: React.ReactNode
   svgClassName?: string
-  pointerColor?: string
+  cursorColor?: string
 }) => {
   const getColorClasses = (color: string) => {
     const predefinedColors = {
@@ -117,7 +117,7 @@ export const FollowPointer = ({
     return predefinedColors[color as keyof typeof predefinedColors] || predefinedColors.sky
   }
 
-  const colorClasses = getColorClasses(pointerColor)
+  const colorClasses = getColorClasses(cursorColor)
   const [strokeClass, textClass, bgClass] = colorClasses.split(' ')
 
   return (

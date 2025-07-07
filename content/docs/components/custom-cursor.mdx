@@ -1,0 +1,123 @@
+---
+title: Custom Cursor
+date: 2025-07-07
+description: A dynamic custom cursor component with animated follow pointer that replaces the default cursor with customizable SVG icons and name labels.
+author: MihirJaiswal
+published: true
+tags: ["Cursor", "Animation", "Interactive"]
+---
+
+<ComponentPreview name="custom-cursor-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nuvyxui.vercel.app/r/custom-cursor.json"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies.</Step>
+
+```bash
+npm install framer-motion clsx tailwind-merge
+```
+
+<Step>Create a utils.ts file with the cn utility function</Step>
+
+```tsx
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="custom-cursor" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { Cursor } from "@/components/ui/custom-cursor";
+```
+
+### Basic Usage
+
+```tsx
+<Cursor name="John Doe" cursorColor="sky">
+  <div className="h-[400px] w-full bg-gradient-to-br from-blue-50 to-indigo-100 rounded-lg p-8">
+    <h2 className="text-2xl font-bold text-gray-800 mb-4">Hover over this area</h2>
+    <p className="text-gray-600">The custom cursor will appear when you hover over this content.</p>
+  </div>
+</Cursor>
+```
+
+### With Custom SVG
+
+```tsx
+const HeartIcon = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+  </svg>
+)
+
+<Cursor 
+  name="Designer" 
+  cursorColor="pink" 
+  customSVG={<HeartIcon />}
+  svgClassName="text-pink-500"
+>
+  <div className="h-[400px] w-full bg-pink-50 rounded-lg p-8">
+    <h2 className="text-2xl font-bold text-pink-800 mb-4">Custom Heart Cursor</h2>
+    <p className="text-pink-600">This area uses a custom heart icon as the cursor.</p>
+  </div>
+</Cursor>
+```
+
+## Props
+
+### Cursor Component
+
+| Prop           | Type              | Default     | Description                                                                       |
+| -------------- | ----------------- | ----------- | --------------------------------------------------------------------------------- |
+| `children`     | `React.ReactNode` | `undefined` | Content to render with the custom cursor effect.                                  |
+| `className`    | `string`          | `""`        | Additional CSS classes to apply to the container.                                 |
+| `name`         | `string`          | `""`        | Name displayed next to the cursor pointer.                                        |
+| `customSVG`    | `React.ReactNode` | `undefined` | Custom SVG icon to use instead of the default pointer.                            |
+| `svgClassName` | `string`          | `""`        | Additional CSS classes to apply to the SVG icon.                                  |
+| `cursorColor`  | `string`          | `"sky"`     | Color theme for the cursor (sky, red, green, blue, purple, pink, yellow, indigo). |
+
+### FollowCursor Component
+
+| Prop           | Type              | Default     | Description                                                        |
+| -------------- | ----------------- | ----------- | ------------------------------------------------------------------ |
+| `x`            | `MotionValue`     | `undefined` | X position motion value for the cursor.                            |
+| `y`            | `MotionValue`     | `undefined` | Y position motion value for the cursor.                            |
+| `name`         | `string`          | `""`        | Name displayed next to the cursor pointer.                         |
+| `customSVG`    | `React.ReactNode` | `undefined` | Custom SVG icon to use instead of the default pointer.             |
+| `svgClassName` | `string`          | `""`        | Additional CSS classes to apply to the SVG icon.                   |
+| `cursorColor`  | `string`          | `"sky"`     | Color theme for the cursor.                                        |
+
