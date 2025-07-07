@@ -1,18 +1,17 @@
 import React from "react";
-import { BentoGrid } from "../../registry/ui/bento-grid";
+import { BentoGrid } from "../../../registry/ui/bento-grid";
 import { ChevronRight, Code } from "lucide-react";
-import { DynamicRipple } from "../../registry/ui/dynamic-ripple";
+import { DynamicRipple } from "../../../registry/ui/dynamic-ripple";
 import Link from "next/link";
-import InteractiveTerminal from "../../registry/ui/terminal";
-import { Rbutton } from "../ui/Rbutton";
-import InteractiveKeyboard from "../../registry/ui/keyboard";
-import { ImageScanner } from "../../registry/ui/image-scanner";
-import LampHeading from "../../registry/ui/lamp-heading";
-import { Particles } from "../ui/particles";
+import InteractiveTerminal from "../../../registry/ui/terminal";
+import { Rbutton } from "../../ui/Rbutton";
+import InteractiveKeyboard from "../../../registry/ui/keyboard";
+import { Particles } from "../../ui/particles";
 import { TwitterCard } from "./TweetCard";
 import { Matrix } from "./Matrix";
 import WaterRippleEffect from "@/registry/ui/water-ripple-effect";
 import { CustomPointer } from "./CustomPointer";
+import GlassmorphismCards from "./Cards";
 
 export const ComponentsDemo = () => {
   return (
@@ -116,33 +115,8 @@ export const ComponentsDemo = () => {
               rounded="xl"
               className="w-full h-full min-h-[300px] p-6 flex items-center justify-center bg-black"
             >
-              <Particles
-                className="absolute inset-0 z-0"
-                quantity={70}
-                ease={80}
-                color="#ffffff"
-                refresh
-              />
-              <div className="relative flex flex-col items-center justify-center">
-                <ImageScanner
-                  image="/logo.png"
-                  scanType="line"
-                  scanColor="purple"
-                  repeating={true}
-                  scanSpeed={3}
-                  className="w-48 h-48 rounded-lg border-2 border-purple-200 dark:border-purple-900"
-                />
-                <div className="text-center mt-3 w-full flex flex-col items-center justify-center gap-3">
-                  <LampHeading
-                    text="Nuvyx UI"
-                    gradientColors={{ from: "#6e15ad", to: "#d413ad" }}
-                    direction="above"
-                    lineHeight={3}
-                    glowIntensity={0.7}
-                    className="text-2xl font-bold"
-                  />
-                </div>
-              </div>
+              
+                <GlassmorphismCards/>
             </DynamicRipple>
           }
         />

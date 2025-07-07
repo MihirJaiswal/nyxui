@@ -2,8 +2,7 @@ import Header from "../components/global/Header";
 import { Hero } from "../components/home/Hero";
 import Customize from "../components/home/Customize";
 import { Build } from "../components/home/Build";
-import { ComponentsDemo } from "../components/home/ComponentsDemo";
-
+import { ComponentsDemo } from "../components/home/bento/ComponentsDemo";
 export default function Home() {
   return (
     <>
