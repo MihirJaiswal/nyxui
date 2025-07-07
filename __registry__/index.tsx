@@ -166,22 +166,6 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
-  "gradient-button": {
-    name: "gradient-button",
-    description: "A button component with a gradient background.",
-    type: "registry:ui",
-    registryDependencies: undefined,
-    files: [{
-      path: "registry/ui/gradient-button.tsx",
-      type: "registry:ui",
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/ui/gradient-button.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
   "keyboard": {
     name: "keyboard",
     description: "A keyboard component that simulates a physical keyboard.",
@@ -241,22 +225,6 @@ export const Index: Record<string, any> = {
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/ui/liquid-metal-button.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "morphing-button": {
-    name: "morphing-button",
-    description: "A button component with a morphing effect.",
-    type: "registry:ui",
-    registryDependencies: undefined,
-    files: [{
-      path: "registry/ui/morphing-button.tsx",
-      type: "registry:ui",
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/ui/morphing-button.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -646,22 +614,6 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
-  "gradient-button-demo": {
-    name: "gradient-button-demo",
-    description: "Example showing a gradient button.",
-    type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/gradient-button.json"],
-    files: [{
-      path: "registry/example/gradient-button-demo.tsx",
-      type: "registry:example",
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/example/gradient-button-demo.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
   "keyboard-demo": {
     name: "keyboard-demo",
     description: "Example showing a interactive keyboard.",
@@ -737,22 +689,6 @@ export const Index: Record<string, any> = {
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/example/liquid-metal-button-demo.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "morphing-button-demo": {
-    name: "morphing-button-demo",
-    description: "Example showing a morphing button.",
-    type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/morphing-button.json"],
-    files: [{
-      path: "registry/example/morphing-button-demo.tsx",
-      type: "registry:example",
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/example/morphing-button-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),

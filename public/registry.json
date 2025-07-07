@@ -391,19 +391,6 @@
       }
     },
     {
-      "name": "gradient-button",
-      "type": "registry:ui",
-      "title": "Gradient Button",
-      "description": "A button component with a gradient background.",
-      "files": [
-        {
-          "path": "registry/ui/gradient-button.tsx",
-          "type": "registry:ui",
-          "target": "components/ui/gradient-button.tsx"
-        }
-      ]
-    },
-    {
       "name": "keyboard",
       "type": "registry:ui",
       "title": "Keyboard",
@@ -460,34 +447,6 @@
           "target": "components/ui/liquid-metal-button.tsx"
         }
       ]
-    },
-    {
-      "name": "morphing-button",
-      "type": "registry:ui",
-      "title": "Morphing Button",
-      "description": "A button component with a morphing effect.",
-      "files": [
-        {
-          "path": "registry/ui/morphing-button.tsx",
-          "type": "registry:ui",
-          "target": "components/ui/morphing-button.tsx"
-        }
-      ],
-      "cssVars": {
-        "theme": {
-          "animate-smooth-bounce": "smoothBounce 1s ease-in-out infinite"
-        }
-      },
-      "css": {
-        "@keyframes smoothBounce": {
-          "0%, 100%": {
-            "transform": "translateY(0)"
-          },
-          "50%": {
-            "transform": "translateY(-10px)"
-          }
-        }
-      }
     },
     {
       "name": "image-comparison",
@@ -866,22 +825,6 @@
       ]
     },
     {
-      "name": "gradient-button-demo",
-      "type": "registry:example",
-      "title": "Gradient Button Demo",
-      "description": "Example showing a gradient button.",
-      "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/gradient-button.json"
-      ],
-      "files": [
-        {
-          "path": "registry/example/gradient-button-demo.tsx",
-          "type": "registry:example",
-          "target": "components/gradient-button-demo.tsx"
-        }
-      ]
-    },
-    {
       "name": "keyboard-demo",
       "type": "registry:example",
       "title": "Keyboard Demo",
@@ -958,22 +901,6 @@
           "path": "registry/example/liquid-metal-button-demo.tsx",
           "type": "registry:example",
           "target": "components/liquid-metal-button-demo.tsx"
-        }
-      ]
-    },
-    {
-      "name": "morphing-button-demo",
-      "type": "registry:example",
-      "title": "Morphing Button Demo",
-      "description": "Example showing a morphing button.",
-      "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/morphing-button.json"
-      ],
-      "files": [
-        {
-          "path": "registry/example/morphing-button-demo.tsx",
-          "type": "registry:example",
-          "target": "components/morphing-button-demo.tsx"
         }
       ]
     },

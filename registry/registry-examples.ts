@@ -184,20 +184,6 @@ export const examples: Registry["items"] = [
     ],
   },
   {
-    name: "gradient-button-demo",
-    type: "registry:example",
-    title: "Gradient Button Demo",
-    description: "Example showing a gradient button.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/gradient-button.json"],
-    files: [
-      {
-        path: "registry/example/gradient-button-demo.tsx",
-        type: "registry:example",
-        target: "components/gradient-button-demo.tsx",
-      },
-    ],
-  },
-  {
     name: "keyboard-demo",
     type: "registry:example",
     title: "Keyboard Demo",
@@ -264,20 +250,6 @@ export const examples: Registry["items"] = [
         path: "registry/example/liquid-metal-button-demo.tsx",
         type: "registry:example",
         target: "components/liquid-metal-button-demo.tsx",
-      },
-    ],
-  },
-  {
-    name: "morphing-button-demo",
-    type: "registry:example",
-    title: "Morphing Button Demo",
-    description: "Example showing a morphing button.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/morphing-button.json"],
-    files: [
-      {
-        path: "registry/example/morphing-button-demo.tsx",
-        type: "registry:example",
-        target: "components/morphing-button-demo.tsx",
       },
     ],
   },

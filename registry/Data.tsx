@@ -87,12 +87,6 @@ export const componentsData: ComponentsData = {
       description: "A button with a digital glitch effect on hover and click.",
       image: "/assets/images/showcase/glitch-button.png",
     },
-    "gradient-button": {
-      title: "Gradient Button",
-      tags: ["Buttons", "Effects", "Gradient"],
-      description: "Modern buttons with stunning gradient effects.",
-      image: "/assets/images/showcase/gradient-button.png",
-    },
     keyboard: {
       title: "Keyboard",
       tags: ["Interactive", "Tools", "Mock"],
@@ -117,12 +111,6 @@ export const componentsData: ComponentsData = {
       tags: ["Buttons", "Effects", "Interactive"],
       description: "A button with fluid mettallic animation effects.",
       image: "/assets/images/showcase/liquid-metal-button.png",
-    },
-    "morphing-button": {
-      title: "Morphing Button",
-      tags: ["Buttons", "Effects", "Interactive"],
-      description: "A futuristic button with a morphing effect.",
-      image: "/assets/images/showcase/morphing-button.png",
     },
     "image-comparison": {
       title: "Image Comparison",

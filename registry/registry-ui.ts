@@ -261,19 +261,6 @@ export const ui: Registry["items"] = [
     },
   },
   {
-    name: "gradient-button",
-    type: "registry:ui",
-    title: "Gradient Button",
-    description: "A button component with a gradient background.",
-    files: [
-      {
-        path: "registry/ui/gradient-button.tsx",
-        type: "registry:ui",
-        target: "components/ui/gradient-button.tsx",
-      },
-    ],
-  },
-  {
     name: "keyboard",
     type: "registry:ui",
     title: "Keyboard",
@@ -327,34 +314,6 @@ export const ui: Registry["items"] = [
         target: "components/ui/liquid-metal-button.tsx",
       },
     ],
-  },
-  {
-    name: "morphing-button",
-    type: "registry:ui",
-    title: "Morphing Button",
-    description: "A button component with a morphing effect.",
-    files: [
-      {
-        path: "registry/ui/morphing-button.tsx",
-        type: "registry:ui",
-        target: "components/ui/morphing-button.tsx",
-      },
-    ],
-    cssVars: {
-      theme: {
-        "animate-smooth-bounce": "smoothBounce 1s ease-in-out infinite",
-      },
-    },
-    css: {
-      "@keyframes smoothBounce": {
-        "0%, 100%": {
-          transform: "translateY(0)",
-        },
-        "50%": {
-          transform: "translateY(-10px)",
-        },
-      },
-    },
   },
   {
     name: "image-comparison",
