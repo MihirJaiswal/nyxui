@@ -1,71 +1,140 @@
+"use client";
+import React, { useState } from "react";
+import reactElementToJSXString from "react-element-to-jsx-string";
+import { toast, Toaster } from "sonner";
 import { AnimateText } from "../ui/animated-text";
+import { Copy, Check } from "lucide-react";
+
+interface AnimationCard {
+  children: React.ReactNode;
+  onClick: () => void;
+  isCopied: boolean;
+  title: string;
+}
+
+type AnimatedTextType = {
+  name: string;
+  description: string;
+  component: React.ReactNode;
+  code?: string;
+};
+
+const AnimationCard = ({ children, onClick, isCopied, title }: AnimationCard) => {
+  return (
+    <div
+      className="border group relative rounded-lg p-3 sm:p-4 shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer"
+      onClick={onClick}
+    >
+      <p className="text-xs sm:text-sm font-semibold mb-2">{title}</p>
+      <div className="overflow-hidden">{children}</div>
+      <div className="absolute top-2 right-2">
+        {isCopied ? (
+          <Check className="h-3 w-3 text-green-500 transition-all duration-200" />
+        ) : (
+          <Copy className="h-3 w-3 text-zinc-300 dark:text-zinc-700 group-hover:text-zinc-500 group-hover:dark:text-zinc-500" />
+        )}
+      </div>
+    </div>
+  );
+};
 
 export const AnimationTextDemo = () => {
+  const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
+
+  const copy = (animation: AnimatedTextType, index: number) => {
+    if (animation.code) {
+      copyToClipboard(animation.code, index);
+      return;
+    }
+    let animationString = reactElementToJSXString(animation.component);
+
+    if (animationString) {
+      const textToCopy = animationString;
+      copyToClipboard(textToCopy, index);
+    }
+  };
+
+  const copyToClipboard = (text: string, index: number) => {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        console.log("Text copied to clipboard:", text);
+        toast.success("Copied to clipboard");
+
+        // Show checkmark for 2 seconds
+        setCopiedIndex(index);
+        setTimeout(() => {
+          setCopiedIndex(null);
+        }, 2000);
+      })
+      .catch((err) => {
+        console.error("Error copying text to clipboard:", err);
+        toast.error("Error copying to clipboard");
+      });
+  };
+
   return (
-    <>
-      <div className="w-full px-4 sm:px-6 md:px-8 max-w-7xl mx-auto">
-        <div className="flex flex-col">
-          <div className="flex flex-col py-2 sm:py-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-              <div className="border rounded-lg p-3 sm:p-4 shadow-sm hover:shadow-md transition-shadow duration-300">
-                <p className="text-xs sm:text-sm font-semibold mb-2">Cascade</p>
-                <div className="overflow-hidden">
-                  <AnimateText text="Cascade" type="cascade" />
-                </div>
-              </div>
-
-              <div className="border rounded-lg p-3 sm:p-4 shadow-sm hover:shadow-md transition-shadow duration-300">
-                <p className="text-xs sm:text-sm font-semibold mb-2">Flicker</p>
-                <div className="overflow-hidden">
-                  <AnimateText text="Flicker" type="flicker" />
-                </div>
-              </div>
-
-              <div className="border rounded-lg p-3 sm:p-4 shadow-sm hover:shadow-md transition-shadow duration-300">
-                <p className="text-xs sm:text-sm font-semibold mb-2">Blink</p>
-                <div className="overflow-hidden">
-                  <AnimateText text="Blink" type="blink" custom={1} />
-                </div>
-              </div>
-
-              <div className="border rounded-lg p-3 sm:p-4 shadow-sm hover:shadow-md transition-shadow duration-300">
-                <p className="text-xs sm:text-sm font-semibold mb-2">Expand</p>
-                <div className="overflow-hidden">
-                  <AnimateText text="Expand" type="expand" />
-                </div>
-              </div>
-
-              <div className="border rounded-lg p-3 sm:p-4 shadow-sm hover:shadow-md transition-shadow duration-300">
-                <p className="text-xs sm:text-sm font-semibold mb-2">Rise</p>
-                <div className="overflow-hidden">
-                  <AnimateText text="Rise" type="rise" />
-                </div>
-              </div>
-
-              <div className="border rounded-lg p-3 sm:p-4 shadow-sm hover:shadow-md transition-shadow duration-300">
-                <p className="text-xs sm:text-sm font-semibold mb-2">Glide</p>
-                <div className="overflow-hidden">
-                  <AnimateText text="Glide" type="glide" custom={1} />
-                </div>
-              </div>
-
-              <div className="border rounded-lg p-3 sm:p-4 shadow-sm hover:shadow-md transition-shadow duration-300">
-                <p className="text-xs sm:text-sm font-semibold mb-2">Elastic</p>
-                <div className="overflow-hidden">
-                  <AnimateText text="Elastic" type="elastic" custom={1} />
-                </div>
-              </div>
-
-              <div className="border rounded-lg p-3 sm:p-4 shadow-sm hover:shadow-md transition-shadow duration-300">
-                <p className="text-xs sm:text-sm font-semibold mb-2">Float</p>
-                <div className="overflow-hidden">
-                  <AnimateText text="Float" type="float" custom={1} />
-                </div>
-              </div>
-            </div>
+    <div className="w-full px-4 sm:px-6 md:px-8 max-w-7xl mx-auto pb-12">
+      <Toaster position="top-center" />
+      <div className="flex flex-col">
+        <div className="flex flex-col py-2 sm:py-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+            {animatedTextComponents.map((animation, idx) => (
+              <AnimationCard
+                key={idx}
+                onClick={() => copy(animation, idx)}
+                isCopied={copiedIndex === idx}
+                title={animation.name}
+              >
+                {animation.component}
+              </AnimationCard>
+            ))}
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
+
+export const animatedTextComponents = [
+  {
+    name: "Cascade",
+    description: "Text animation with cascade effect",
+    component: <AnimateText text="Cascade" type="cascade" />,
+  },
+  {
+    name: "Flicker",
+    description: "Text animation with flicker effect",
+    component: <AnimateText text="Flicker" type="flicker" />,
+  },
+  {
+    name: "Blink",
+    description: "Text animation with blink effect",
+    component: <AnimateText text="Blink" type="blink" custom={1} />,
+  },
+  {
+    name: "Expand",
+    description: "Text animation with expand effect",
+    component: <AnimateText text="Expand" type="expand" />,
+  },
+  {
+    name: "Rise",
+    description: "Text animation with rise effect",
+    component: <AnimateText text="Rise" type="rise" />,
+  },
+  {
+    name: "Glide",
+    description: "Text animation with glide effect",
+    component: <AnimateText text="Glide" type="glide" custom={1} />,
+  },
+  {
+    name: "Elastic",
+    description: "Text animation with elastic effect",
+    component: <AnimateText text="Elastic" type="elastic" custom={1} />,
+  },
+  {
+    name: "Float",
+    description: "Text animation with float effect",
+    component: <AnimateText text="Float" type="float" custom={1} />,
+  },
+];

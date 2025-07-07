@@ -72,9 +72,9 @@ export function LiquidMetalButtons() {
   };
 
   return (
-    <div className="pb-12 px-4 w-full">
+    <div className="pb-4 px-4 w-full">
       <Toaster position="top-center" />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full max-w-7xl mx-auto gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full max-w-7xl mx-auto gap-6">
         {liquidMetalButtons.map((button, idx) => (
           <ButtonsCard 
             key={idx} 
