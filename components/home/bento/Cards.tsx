@@ -64,7 +64,7 @@ const GlassmorphismCards = () => {
         
         <div className="text-center mt-12 w-full flex flex-col items-center justify-center gap-3">
           <LampHeading
-            text="Bulid Inovative"
+            text="Bulid Innovative"
             gradientColors={{ from: "#6e15ad", to: "#d413ad" }}
             direction="above"
             lineHeight={3}
