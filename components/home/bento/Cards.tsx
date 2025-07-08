@@ -1,14 +1,14 @@
 "use client";
 import LampHeading from "@/registry/ui/lamp-heading";
-import { Code, Github, Twitter } from "lucide-react";
+import { Blocks, Code, LayoutTemplateIcon} from "lucide-react";
 import React from "react";
 
 const GlassmorphismCards = () => {
   const cards = [
     {
-      text: "GitHub",
+      text: "Templates",
       rotation: -15,
-      icon: <Github size={24} />,
+      icon: <LayoutTemplateIcon size={24} />,
     },
     {
       text: "Code",
@@ -16,9 +16,9 @@ const GlassmorphismCards = () => {
       icon: <Code size={24} />,
     },
     {
-      text: "Twitter",
+      text: "Components",
       rotation: 25,
-      icon: <Twitter size={24} />,
+      icon: <Blocks size={24} />,
     },
   ];
 
@@ -69,7 +69,7 @@ const GlassmorphismCards = () => {
             direction="above"
             lineHeight={3}
             glowIntensity={0.7}
-            className="text-2xl font-bold"
+            className="text-2xl font-bold text-white"
           />
         </div>
       </div>

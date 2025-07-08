@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Badge } from "../ui/badge";
-import { ChevronRight, Sparkles } from "lucide-react";
+import { ArrowRight, Blocks, ChevronRight } from "lucide-react";
 import TechStack from "./Tech";
 import Image from "next/image";
 import Link from "next/link";
@@ -30,15 +30,19 @@ export const Hero = () => {
           aria-label="Hero Section"
         >
           <div className="md:container max-w-5xl md:mx-auto flex flex-col md:items-center md:justify-center md:text-center px-6 md:px-4">
-            <Badge className="mb-6 inline-flex items-center text-black dark:text-white gap-2 rounded-full border border-purple-300 px-4 py-1.5 text-xs font-semibold shadow-sm dark:border-gray-600 bg-background">
-              <Sparkles className="h-4 w-4 text-yellow-500 dark:text-yellow-300" />
-              v1.0.0 <span className="hidden md:inline">Now Available</span>
-            </Badge>
+            <Link href="/docs/components/water-ripple-effect" rel="noopener noreferrer">
+              <Badge className="mb-6 group cursor-pointer inline-flex items-center text-black dark:text-white gap-2 rounded-full border border-gray-300 px-4 py-1.5 text-xs font-semibold dark:border-gray-600 bg-background">
+                <div className="border-r border-zinc-500 pr-2">
+                  <Blocks className="h-4 w-4 group-hover:text-purple-400 group-hover:rotate-12 " />
+                </div>
+                New!{" "}
+                <span className="hidden md:inline">Water ripple effect</span>
+                <ArrowRight className="ml-2 h-4 w-4 group-hover:ml-4 transform transition-all duration-200" />
+              </Badge>
+            </Link>
             <h1 className="text-[2.83rem] md:text-5xl lg:text-[6rem] font-black tracking-wide leading-snug pb-4">
               <div className="flex flex-wrap items-center md:justify-center gap-2 md:gap-4">
-                <motion.p
-                  className="flex justify-center"
-                >
+                <motion.p className="flex justify-center">
                   <span className="relative">
                     Build
                     <Image
@@ -52,9 +56,7 @@ export const Hero = () => {
                   </span>
                 </motion.p>
 
-                <motion.span
-                  className="relative"
-                >
+                <motion.span className="relative">
                   <span
                     className="absolute inset-0 z-10"
                     style={{
@@ -104,9 +106,7 @@ export const Hero = () => {
               </div>
             </h1>
 
-            <motion.div
-              className="mx-auto max-w-3xl md:text-center"
-            >
+            <motion.div className="mx-auto max-w-3xl md:text-center">
               <p className="text-zinc-900 dark:text-zinc-100 sm:text-xl tracking-wide font-medium leading-relaxed">
                 Ready to use modern components built with
                 <span className="font-bold text-black dark:text-white">
@@ -132,9 +132,7 @@ export const Hero = () => {
               </p>
             </motion.div>
 
-            <motion.div
-              className="relative mt-10 md:mt-8 flex w-full flex-col justify-center space-y-2.5 sm:flex-row sm:space-y-0 sm:space-x-4"
-            >
+            <motion.div className="relative mt-10 md:mt-8 flex w-full flex-col justify-center space-y-2.5 sm:flex-row sm:space-y-0 sm:space-x-4">
               <Link href="/docs" rel="noopener noreferrer">
                 <motion.div
                   whileHover={{ scale: 1.05 }}
@@ -162,7 +160,7 @@ export const Hero = () => {
             </motion.div>
           </div>
         </section>
-        
+
         {/* Fixed layout for SocialProof and TechStack */}
         <div className="w-full px-6 md:px-4 mt-6">
           <p className="text-neutral-700 dark:text-neutral-300 text-[14.5px] tracking-wide mb-4 text-center md:text-left">

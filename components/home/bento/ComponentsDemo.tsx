@@ -122,7 +122,7 @@ export const ComponentsDemo = () => {
         />
 
         <BentoGrid
-          className="rounded-2xl overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] border"
+          className="rounded-2xl overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]"
           height="h-full"
           dark
           enableDescription={false}
@@ -134,7 +134,7 @@ export const ComponentsDemo = () => {
           enableDescription={false}
           enableTitle={false}
           height="h-full"
-          className="lg:col-span-2 rounded-2xl overflow-hidden shadow-xl transition-all duration-500 hover:shadow-2xl hover:scale-[1.02] border border-zinc-200/50 dark:border-zinc-800/50 tracking-wider"
+          className="lg:col-span-2 rounded-2xl overflow-hidden shadow-xl transition-all duration-500 hover:shadow-2xl hover:scale-[1.02] dark:border border-none dark:border-zinc-800/50 tracking-wider"
           component={
                <CustomPointer/>
           }
@@ -165,7 +165,7 @@ export const ComponentsDemo = () => {
                 refresh
               />
               <div className="flex w-full items-center justify-center min-h-screen bg-gradient-to-b dark:from-gray-900 dark:via-gray-950 dark:to-gray-900">
-                <WaterRippleEffect imageSrc="/assets/images/landing-page/img.png" rippleIntensity={0.020}  hoverRippleMultiplier={10} height={428} width={445} className="mt-20"/>
+                <WaterRippleEffect imageSrc="/assets/images/landing-page/img2.png" rippleIntensity={0.020}  hoverRippleMultiplier={10} height={428} width={445} className="mt-20"/>
               </div>
             </div>
           }
