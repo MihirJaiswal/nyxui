@@ -46,7 +46,41 @@ export function LiquidMetalButtons() {
       copyToClipboard(button.code, index);
       return;
     }
-    let buttonString = reactElementToJSXString(button.component);
+    let buttonString = reactElementToJSXString(button.component, {
+      displayName: (element) => {
+        if (
+          typeof element === "object" &&
+          element !== null &&
+          "type" in element &&
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (element as any).type?.name === "LiquidMetalButton"
+        ) {
+          return "LiquidMetalButton";
+        }
+        if (
+          typeof element === "object" &&
+          element !== null &&
+          "type" in element &&
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (element as any).type?.displayName
+        ) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          return (element as any).type.displayName;
+        }
+        if (
+          typeof element === "object" &&
+          element !== null &&
+          "type" in element &&
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (element as any).type?.name
+        ) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          return (element as any).type.name;
+        }
+        return "UnknownComponent";
+      },
+      functionValue: (fn) => fn.name || 'function',
+    });
 
     if (buttonString) {
       const textToCopy = buttonString;
@@ -106,6 +140,17 @@ export const liquidMetalButtons = [
         </div>
       </LiquidMetalButton>
     ),
+    code: `<LiquidMetalButton
+  variant="default"
+  theme="gold"
+  className="rounded-lg"
+  size="lg"
+>
+  <div className="flex items-center">
+    <Crown className="mr-2 h-4 w-4" />
+    <span>Gold</span>
+  </div>
+</LiquidMetalButton>`
   },
   {
     name: "Silver Shield",
@@ -122,6 +167,16 @@ export const liquidMetalButtons = [
         </div>
       </LiquidMetalButton>
     ),
+    code: `<LiquidMetalButton
+  variant="default"
+  theme="silver"
+  className="rounded-lg"
+>
+  <div className="flex items-center">
+    <Shield className="mr-2 h-4 w-4" />
+    <span>Silver</span>
+  </div>
+</LiquidMetalButton>`
   },
   {
     name: "Copper Trophy",
@@ -138,6 +193,16 @@ export const liquidMetalButtons = [
         </div>
       </LiquidMetalButton>
     ),
+    code: `<LiquidMetalButton
+  variant="default"
+  theme="copper"
+  className="rounded-lg"
+>
+  <div className="flex items-center">
+    <Trophy className="mr-2 h-4 w-4" />
+    <span>Copper</span>
+  </div>
+</LiquidMetalButton>`
   },
   {
     name: "Steel Zap",
@@ -154,6 +219,16 @@ export const liquidMetalButtons = [
         </div>
       </LiquidMetalButton>
     ),
+    code: `<LiquidMetalButton
+  variant="default"
+  theme="steel"
+  className="rounded-lg"
+>
+  <div className="flex items-center">
+    <Zap className="mr-2 h-4 w-4" />
+    <span>Steel</span>
+  </div>
+</LiquidMetalButton>`
   },
   {
     name: "Gold Outline",
@@ -170,6 +245,16 @@ export const liquidMetalButtons = [
         </div>
       </LiquidMetalButton>
     ),
+    code: `<LiquidMetalButton
+  variant="outline"
+  theme="gold"
+  className="rounded-lg"
+>
+  <div className="flex items-center">
+    <Crown className="mr-2 h-4 w-4" />
+    <span>Outline</span>
+  </div>
+</LiquidMetalButton>`
   },
   {
     name: "Mercury Flow",
@@ -187,6 +272,17 @@ export const liquidMetalButtons = [
         </div>
       </LiquidMetalButton>
     ),
+    code: `<LiquidMetalButton
+  variant="mercury"
+  theme="mercury"
+  intensity={5}
+  className="rounded-lg"
+>
+  <div className="flex items-center">
+    <Download className="mr-2 h-4 w-4" />
+    <span>Mercury Flow</span>
+  </div>
+</LiquidMetalButton>`
   },
   {
     name: "Ripple Wave",
@@ -204,6 +300,17 @@ export const liquidMetalButtons = [
         </div>
       </LiquidMetalButton>
     ),
+    code: `<LiquidMetalButton
+  variant="ripple"
+  theme="steel"
+  intensity={4}
+  className="rounded-lg group"
+>
+  <div className="flex items-center">
+    <ShoppingCart className="mr-2 h-4 w-4" />
+    <span>Ripple Wave</span>
+  </div>
+</LiquidMetalButton>`
   },
   {
     name: "Gold Premium",
@@ -222,6 +329,18 @@ export const liquidMetalButtons = [
         </div>
       </LiquidMetalButton>
     ),
+    code: `<LiquidMetalButton
+  variant="mercury"
+  theme="gold"
+  intensity={5}
+  textured={true}
+  className="rounded-lg relative bg-background"
+>
+  <div className="flex items-center">
+    <Crown className="mr-2 h-4 w-4" />
+    <span>Gold Premium</span>
+  </div>
+</LiquidMetalButton>`
   },
   {
     name: "Steel Elite",
@@ -240,5 +359,17 @@ export const liquidMetalButtons = [
         </div>
       </LiquidMetalButton>
     ),
+    code: `<LiquidMetalButton
+  variant="ripple"
+  theme="steel"
+  intensity={5}
+  textured={true}
+  className="rounded-lg relative group bg-background"
+>
+  <div className="flex items-center">
+    <Zap className="mr-2 h-4 w-4" />
+    <span>Steel Elite</span>
+  </div>
+</LiquidMetalButton>`
   }
 ];
