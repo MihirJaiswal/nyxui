@@ -524,5 +524,19 @@ export const examples: Registry["items"] = [
         target: "components/custom-cursor-demo.tsx",
       },
     ]
+  },
+  {
+    name: "apple-glass-effect-demo",
+    type: "registry:example",
+    title: "Apple Glass Effect Demo",
+    description: "Example showing an Apple Glass Effect.",
+    registryDependencies: ["https://nuvyxui.vercel.app/r/apple-glass-effect.json"],
+    files: [
+      {
+        path: "registry/example/apple-glass-effect-demo.tsx",
+        type: "registry:example",
+        target: "components/apple-glass-effect-demo.tsx",
+      },
+    ]
   }
 ];

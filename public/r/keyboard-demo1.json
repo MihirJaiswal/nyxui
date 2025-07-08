@@ -13,7 +13,7 @@
   "files": [
     {
       "path": "registry/example/keyboard-demo1.tsx",
-      "content": "import React from \"react\";\nimport InteractiveKeyboard from \"../ui/keyboard\";\n\nexport default function KeyboardDemo1() {\n  return (\n    <div>\n      <InteractiveKeyboard theme=\"neon\" />\n    </div>\n  );\n}\n",
+      "content": "import React from \"react\";\nimport InteractiveKeyboard from \"../ui/keyboard\";\n\nexport default function KeyboardDemo1() {\n  return (\n    <div className=\"scale-35 sm:scale-45 md:scale-100\">\n      <InteractiveKeyboard theme=\"neon\" />\n    </div>\n  );\n}\n",
       "type": "registry:example",
       "target": "components/keyboard-demo1.tsx"
     }

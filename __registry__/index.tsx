@@ -422,6 +422,22 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
+  "apple-glass-effect": {
+    name: "apple-glass-effect",
+    description: "A apple glass effect that that provide several effects.",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/ui/apple-glass-effect.tsx",
+      type: "registry:ui",
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/ui/apple-glass-effect.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
   "animated-code-block-demo": {
     name: "animated-code-block-demo",
     description: "Example showing a code block with typing animation effects.",
@@ -1009,6 +1025,22 @@ export const Index: Record<string, any> = {
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/example/custom-cursor-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "apple-glass-effect-demo": {
+    name: "apple-glass-effect-demo",
+    description: "Example showing an Apple Glass Effect.",
+    type: "registry:example",
+    registryDependencies: ["https://nuvyxui.vercel.app/r/apple-glass-effect.json"],
+    files: [{
+      path: "registry/example/apple-glass-effect-demo.tsx",
+      type: "registry:example",
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/example/apple-glass-effect-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),

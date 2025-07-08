@@ -190,6 +190,13 @@ export const componentsData: ComponentsData = {
         "Command line interface with typing animations and responses",
       image: "/assets/images/showcase/interactive-terminal.png",
     },
+    "apple-glass-effect": {
+      title: "Apple Glass Effect",
+      tags: ["Effects", "Glassmorphism", "Interactive"],
+      description: "A customizable Apple Glass effect component.",
+      image: "/assets/images/showcase/apple-glass-effect.png",
+      isNew: true,
+    }
   },
   templates: {
     "portfolio": { 

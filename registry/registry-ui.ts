@@ -481,5 +481,19 @@ export const ui: Registry["items"] = [
         target: "components/ui/custom-cursor.tsx",
         },
     ]
+  },
+  {
+    name: "apple-glass-effect",
+    type: "registry:ui",
+    title: "Apple Glass Effect",
+    description: "A apple glass effect that that provide several effects.",
+    dependencies: ["motion"],
+    files: [
+      {
+        path: "registry/ui/apple-glass-effect.tsx",
+        type: "registry:ui",
+        target: "components/ui/apple-glass-effect.tsx",
+      },
+    ],
   }
 ];
