@@ -133,7 +133,7 @@ export const Hero = () => {
             </motion.div>
 
             <motion.div
-              className="relative mt-[36px] flex w-full flex-col justify-center space-y-2.5 sm:flex-row sm:space-y-0 sm:space-x-4"
+              className="relative mt-10 md:mt-8 flex w-full flex-col justify-center space-y-2.5 sm:flex-row sm:space-y-0 sm:space-x-4"
             >
               <Link href="/docs" rel="noopener noreferrer">
                 <motion.div
