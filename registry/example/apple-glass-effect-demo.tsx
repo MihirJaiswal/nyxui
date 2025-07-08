@@ -30,7 +30,7 @@ export const GlassExamples = () => {
   const volume = 75;
 
   return (
-    <div className="min-h-screen p-8 relative overflow-hidden">
+    <div className="min-h-screen py-8 px-4 md:p-8 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
       <Image
@@ -74,7 +74,7 @@ export const GlassExamples = () => {
             highlightOpacity={0}
             innerGlowOpacity={0}
             specularIntensity={0.5}
-            className="lg:col-span-2 h-54"
+            className="lg:col-span-2 h-58 w-full px-6"
           >
             <div className="w-full">
               <div className="flex items-center gap-4 mb-4">
@@ -88,28 +88,28 @@ export const GlassExamples = () => {
                   />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-white">
+                  <h3 className="text-md sm:text-lg font-semibold text-white">
                     Now Playing
                   </h3>
-                  <p className="text-white/80">Until I Found You</p>
+                  <p className="text-white/80 text-sm sm:text-base">Until I Found You</p>
                   <p className="text-white/60 text-sm">Stephen Sanchez</p>
                 </div>
-                <Heart className="w-6 h-6 text-white/60 hover:text-red-400 cursor-pointer transition-colors" />
+                <Heart className="w-6 h-6 text-white/60 hover:text-red-400 cursor-pointer transition-colors hidden sm:block" />
               </div>
 
               <div className="flex items-center justify-center gap-6 mb-4">
-                <SkipBack className="w-6 h-6 text-white/80 hover:text-white cursor-pointer transition-colors" />
+                <SkipBack className="w-5 h-5 sm:w-6 sm:h-6 text-white/80 hover:text-white cursor-pointer transition-colors" />
                 <button
                   onClick={() => setIsPlaying(!isPlaying)}
                   className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
                 >
                   {isPlaying ? (
-                    <Pause className="w-6 h-6 text-white" />
+                    <Pause className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                   ) : (
-                    <Play className="w-6 h-6 text-white ml-1" />
+                    <Play className="w-5 h-5 sm:w-6 sm:h-6 text-white ml-1" />
                   )}
                 </button>
-                <SkipForward className="w-6 h-6 text-white/80 hover:text-white cursor-pointer transition-colors" />
+                <SkipForward className="w-5 h-5 sm:w-6 sm:h-6 text-white/80 hover:text-white cursor-pointer transition-colors" />
               </div>
 
               <div className="flex items-center gap-3">
@@ -135,7 +135,7 @@ export const GlassExamples = () => {
             highlightOpacity={0.3}
             innerGlowOpacity={0.2}
             specularIntensity={0.4}
-            className="h-64"
+            className="h-68"
           >
             <div className="w-full">
               <h3 className="text-lg font-semibold text-white mb-4">
@@ -174,7 +174,7 @@ export const GlassExamples = () => {
             highlightOpacity={0.5}
             innerGlowOpacity={0.4}
             specularIntensity={0.6}
-            className="h-40"
+            className="h-44"
           >
             <div className="w-full text-center">
               <div className="flex items-center justify-center mb-2">
@@ -195,7 +195,7 @@ export const GlassExamples = () => {
             highlightOpacity={0.2}
             innerGlowOpacity={0.1}
             specularIntensity={0.3}
-            className="h-40"
+            className="h-44"
           >
             <div className="w-full">
               <div className="flex items-center gap-3 mb-3">
@@ -224,7 +224,7 @@ export const GlassExamples = () => {
             highlightOpacity={0.6}
             innerGlowOpacity={0.5}
             specularIntensity={0.7}
-            className="h-40"
+            className="h-44"
           >
             <div className="w-full">
               <div className="flex items-center gap-3 mb-3">
@@ -256,7 +256,7 @@ export const GlassExamples = () => {
             highlightOpacity={0.8}
             innerGlowOpacity={0.6}
             specularIntensity={0.8}
-            className="h-40"
+            className="h-44"
           >
             <div className="w-full">
               <div className="flex items-center gap-3 mb-4">
@@ -276,7 +276,7 @@ export const GlassExamples = () => {
                 </div>
               </div>
               <div className="text-xs text-white/40 mt-2">
-                Blur 10px • Highlight 0.8
+                Blur 40px • Highlight 0.8
               </div>
             </div>
           </GlassContainer>
@@ -288,7 +288,7 @@ export const GlassExamples = () => {
           highlightOpacity={0.3}
           innerGlowOpacity={0.2}
           specularIntensity={0.4}
-          className="mx-auto max-w-[39rem] h-36 rounded-2xl"
+          className="mx-auto max-w-[39rem] h-32 rounded-2xl hidden md:block"
         >
           <div className="w-full flex items-center justify-center">
             <div className="flex items-center gap-4">
@@ -332,7 +332,7 @@ export const GlassExamples = () => {
         </GlassContainer>
 
         {/* Settings Info */}
-        <div className="mt-8 text-center">
+        <div className="mt-8 text-center hidden md:block">
           <p className="text-white/60 text-sm">
             Dock Settings: Blur 0px • Highlight 0.3 • Glow 0.2 • Specular 0.4 •
             Border Radius 2.5rem
@@ -345,7 +345,7 @@ export const GlassExamples = () => {
           highlightOpacity={0.4}
           innerGlowOpacity={0.3}
           specularIntensity={0.5}
-          className="fixed top-4 left-4 right-4 h-12 z-50 rounded-[1rem]"
+          className="fixed top-4 left-4 right-4 h-12 z-50 rounded-[1rem] hidden md:block"
         >
           <div className="w-full flex items-center justify-between px-4">
             <div className="flex items-center gap-4">

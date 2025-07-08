@@ -1,9 +1,12 @@
 "use client";
+import { GlassContainer } from "@/registry/ui/apple-glass-effect";
 import LampHeading from "@/registry/ui/lamp-heading";
 import { Blocks, Code, LayoutTemplateIcon} from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 
 const GlassmorphismCards = () => {
+  const [isHovered, setIsHovered] = useState(false);
+   
   const cards = [
     {
       text: "Templates",
@@ -23,48 +26,51 @@ const GlassmorphismCards = () => {
   ];
 
   return (
-    <div className="relative w-full h-full"> 
-      <div className="flex flex-col items-center justify-center group relative z-10">
+    <div className="relative w-full h-full">
+      <div 
+        className="flex flex-col items-center justify-center relative z-10"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         <div className="flex justify-center items-center">
           {cards.map((card, index) => (
-            <div
+            <GlassContainer
               key={index}
-              className="glass-card w-44 h-52 flex justify-center items-center transition-all duration-500 ease-in-out rounded-lg border border-white/30 backdrop-blur-md"
+              className="w-44 h-52 rounded-3xl flex items-center justify-center transition-all duration-500 ease-in-out"
+              hover={false}
+              border={true}
+              variant="thin"
+              opacity={0.3}
+              blur={15}
               style={{
-                // @ts-expect-error - Custom CSS property for rotation
-                "--r": card.rotation,
-                background:
-                  "linear-gradient(135deg, rgba(255,255,255,0.2), transparent)",
-                boxShadow: "0 25px 25px rgba(0, 0, 0, 0.25)",
-                margin: index === 0 ? "0 -45px" : "0 -45px",
-                transform: `rotate(${card.rotation}deg)`,
+                margin: isHovered ? "0 10px" : (index === 0 ? "0 -45px" : "0 -45px"),
+                transform: isHovered ? "rotate(0deg)" : `rotate(${card.rotation}deg)`,
+                transitionProperty: "transform, margin",
+                transitionDuration: "500ms",
+                transitionTimingFunction: "ease-in-out",
               }}
             >
-              {/* Icon */}
-              <div className="text-white text-4xl">{card.icon}</div>
-              <div className="absolute bottom-0 left-0 right-0 h-10 bg-white/5 rounded-b-lg flex items-center justify-center">
-                <span className="text-white text-sm font-medium">
-                  {card.text}
-                </span>
+              {/* Now you have full control over the layout */}
+              <div className="relative z-40 flex flex-col items-center justify-center gap-4 w-full h-full">
+                {/* Icon */}
+                <div className="text-white text-4xl flex items-center justify-center">
+                  {card.icon}
+                </div>
+                
+                {/* Text */}
+                <div className="flex items-center justify-center">
+                  <span className="text-white text-sm font-medium text-center">
+                    {card.text}
+                  </span>
+                </div>
               </div>
-            </div>
+            </GlassContainer>
           ))}
         </div>
-
-        <style jsx>{`
-          .group:hover .glass-card {
-            transform: rotate(0deg) !important;
-            margin: 0 10px !important;
-          }
-          .glass-card svg {
-            font-size: 2.5em;
-            fill: #fff;
-          }
-        `}</style>
         
         <div className="text-center mt-12 w-full flex flex-col items-center justify-center gap-3">
           <LampHeading
-            text="Bulid Innovative"
+            text="Build Innovative"
             gradientColors={{ from: "#6e15ad", to: "#d413ad" }}
             direction="above"
             lineHeight={3}
