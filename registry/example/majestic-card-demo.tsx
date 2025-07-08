@@ -25,12 +25,12 @@ export function MajesticCardDemo() {
           intensity={3}
           hoverEffect
           speed="normal"
-          className="w-full mx-auto overflow-hidden rounded-xl shadow-md shadow-purple-500"
+          className="w-full mx-auto overflow-hidden rounded-xl border border-gra-400 md:border-none md:shadow-md shadow-purple-500"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
           <div className="relative">
-            <div className="h-72 w-full bg-gradient-to-r from-blue-400 to-purple-500 flex items-center justify-center">
+            <div className="h-48 md:h-72 w-full bg-gradient-to-r from-blue-400 to-purple-500 flex items-center justify-center">
               <Image
                 src="/assets/images/majestic-card/img.jpg"
                 alt="Quantum Processor"
@@ -54,10 +54,10 @@ export function MajesticCardDemo() {
           >
             <div className="p-5">
               <div className="flex justify-between items-center mb-3">
-                <h3 className="font-bold text-xl text-gray-900 dark:text-white">
+                <h3 className="font-bold text-md md:text-xl text-gray-900 dark:text-white">
                   Quantum Processor
                 </h3>
-                <span className="text-lg font-bold">₹71,850</span>
+                <span className="text-md md:text-lg font-bold">₹71,850</span>
               </div>
 
               <div className="mb-4">
@@ -77,7 +77,7 @@ export function MajesticCardDemo() {
                     (42 reviews)
                   </span>
                 </div>
-                <p className="text-sm text-gray-600 dark:text-gray-300">
+                <p className="text-xs md:text-sm text-gray-600 dark:text-gray-300">
                   Next-gen 128-core quantum chip with advanced AI capabilities
                   and integrated neural processing for edge computing solutions.
                 </p>

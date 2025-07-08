@@ -372,7 +372,7 @@ export default function CustomCursorDemo() {
               </Button>
             </Cursor>
 
-            <Cursor name="Share" cursorColor="blue">
+            <Cursor name="Share" cursorColor="blue" className="hidden sm:block">
               <Button size="sm" className="bg-blue-600 hover:bg-blue-700">
                 <Share className="w-4 h-4 sm:mr-2" />
                 <span className="hidden sm:inline">Share</span>
@@ -454,17 +454,17 @@ export default function CustomCursorDemo() {
           </div>
 
           {/* Canvas Content */}
-          <div className="absolute inset-0 flex items-center justify-center p-4">
+          <div className="absolute inset-0 flex items-center justify-center p-4 overflow-hidden">
             <div
               className="bg-white rounded-lg shadow-2xl max-w-full max-h-full"
               style={{
                 width: "min(375px, 90vw)",
-                height: "min(812px, 80vh)",
+                height: "min(812px, 90vh)",
                 aspectRatio: "375/812",
               }}
             >
               {/* Phone Screen Content */}
-              <div className="p-4 sm:p-6 h-full flex flex-col">
+              <div className="p-4 sm:p-6 h-full flex flex-col overflow-hidden">
                 <div className="text-center mb-4 sm:mb-8">
                   <h1 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Welcome</h1>
                   <p className="text-sm sm:text-base text-gray-600">Get started with your new app</p>
