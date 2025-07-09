@@ -459,53 +459,10 @@ export function MorphingBlob({
 
       {/* Children content  */}
       {children && (
-        <div style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          zIndex: 2,
-          pointerEvents: 'auto'
-        }}>
+        <>
           {children}
-        </div>
+        </>
       )}
-    </div>
-  )
-}
-
-// Demo component
-export default function Demo() {
-  return (
-    <div style={{ 
-      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-      minHeight: '100vh',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: '20px'
-    }}>
-      <MorphingBlob 
-        size={400}
-        theme="aurora"
-        complexity={4}
-        speed={2}
-        particleCount={200}
-      >
-        <div style={{
-          background: 'rgba(255, 255, 255, 0.1)',
-          backdropFilter: 'blur(10px)',
-          borderRadius: '20px',
-          padding: '20px',
-          color: 'white',
-          textAlign: 'center'
-        }}>
-          <h2 style={{ margin: 0, fontSize: '24px' }}>Bright Blob</h2>
-          <p style={{ margin: '10px 0 0 0', opacity: 0.8 }}>
-            Transparent background, vibrant colors
-          </p>
-        </div>
-      </MorphingBlob>
     </div>
   )
 }

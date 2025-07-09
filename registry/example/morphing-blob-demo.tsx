@@ -9,7 +9,7 @@ export const MorphingBlobDemo = () => {
         <MorphingBlob
           theme="primary"
         >
-          <div className="text-center p-6">
+          <div className="text-center p-6 z-2">
             <MoonIcon className="h-10 w-10 mx-auto mb-3 text-white" />
             <h4 className="text-xl w-full font-bold mb-2 text-white">Nuvyx UI</h4>
           </div>
