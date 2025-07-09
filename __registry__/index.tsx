@@ -54,22 +54,6 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
-  "bento-grid": {
-    name: "bento-grid",
-    description: "A versatile container component inspired by bento box designs, perfect for creating modern, visually appealing grid layouts.",
-    type: "registry:ui",
-    registryDependencies: undefined,
-    files: [{
-      path: "registry/ui/bento-grid.tsx",
-      type: "registry:ui",
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/ui/bento-grid.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
   "bubble-background": {
     name: "bubble-background",
     description: "An interactive fluid bubble background component with animated colorful blobs that respond to user interaction.",
@@ -481,22 +465,6 @@ export const Index: Record<string, any> = {
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/example/animated-text-demo.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "bento-grid-demo": {
-    name: "bento-grid-demo",
-    description: "Example showing a responsive grid layout.",
-    type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/bento-grid.json"],
-    files: [{
-      path: "registry/example/bento-grid-demo.tsx",
-      type: "registry:example",
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/example/bento-grid-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),

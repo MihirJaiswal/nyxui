@@ -47,21 +47,6 @@ export const ui: Registry["items"] = [
     ],
   },
   {
-    name: "bento-grid",
-    type: "registry:ui",
-    title: "Bento Grid",
-    description:
-      "A versatile container component inspired by bento box designs, perfect for creating modern, visually appealing grid layouts.",
-    dependencies: ["motion"],
-    files: [
-      {
-        path: "registry/ui/bento-grid.tsx",
-        type: "registry:ui",
-        target: "components/ui/bento-grid.tsx",
-      },
-    ],
-  },
-  {
     name: "bubble-background",
     type: "registry:ui",
     title: "Bubble Background",
@@ -339,7 +324,7 @@ export const ui: Registry["items"] = [
       {
         path: "registry/ui/image-scanner.tsx",
         type: "registry:ui",
-        target: "components/ui/majestic-card.tsx",
+        target: "components/ui/image-scanner.tsx",
       },
     ],
   },

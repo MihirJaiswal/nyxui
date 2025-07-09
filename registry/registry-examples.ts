@@ -44,20 +44,6 @@ export const examples: Registry["items"] = [
     ],
   },
   {
-    name: "bento-grid-demo",
-    type: "registry:example",
-    title: "Bento Grid Demo",
-    description: "Example showing a responsive grid layout.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/bento-grid.json"],
-    files: [
-      {
-        path: "registry/example/bento-grid-demo.tsx",
-        type: "registry:example",
-        target: "components/bento-grid-demo.tsx",
-      },
-    ],
-  },
-  {
     name: "bubble-background-demo",
     type: "registry:example",
     title: "Bubble Background Demo",

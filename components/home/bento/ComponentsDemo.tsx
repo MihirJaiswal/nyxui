@@ -1,5 +1,5 @@
 import React from "react";
-import { BentoGrid } from "../../../registry/ui/bento-grid";
+import { BentoGrid } from "./bento-grid";
 import { ChevronRight, Code } from "lucide-react";
 import { DynamicRipple } from "../../../registry/ui/dynamic-ripple";
 import Link from "next/link";

@@ -63,12 +63,6 @@ export const componentsData: ComponentsData = {
       description: "Text with various animation effects and transitions.",
       image: "/assets/images/showcase/animated-text.png",
     },
-    "bento-grid": {
-      title: "Bento Grid",
-      tags: ["Layout", "Grid"],
-      description: "Modern grid layout inspired by Bento Box designs.",
-      image: "/assets/images/showcase/bento-grid.png",
-    },
     "bubble-background": {
       title: "Bubble Background",
       tags: ["Background", "Interactive", "Animation"],

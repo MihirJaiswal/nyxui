@@ -4,26 +4,30 @@ import { ComponentSidebarClient } from "./ComponentSidebarClient";
 export const ComponentSidebar = () => {
   const processedComponents = Object.entries(
     componentsData.components || {},
-  ).map(([key, component]) => {
-    return {
-      name: component.title,
-      href: `/docs/components/${key}`,
-      isNew: Boolean(component.isNew),
-    };
-  });
+  )
+    .map(([key, component]) => {
+      return {
+        name: component.title,
+        href: `/docs/components/${key}`,
+        isNew: Boolean(component.isNew),
+      };
+    })
+    .sort((a, b) => a.name.localeCompare(b.name));
 
   // Add processing for templates
   const processedTemplates = Object.entries(
     componentsData.templates || {},
-  ).map(([key, template]) => {
-    return {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      name: (template as any).title,
-      href: `/docs/templates/${key}`,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      isNew: Boolean((template as any).isNew),
-    };
-  });
+  )
+    .map(([key, template]) => {
+      return {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        name: (template as any).title,
+        href: `/docs/templates/${key}`,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        isNew: Boolean((template as any).isNew),
+      };
+    })
+    .sort((a, b) => a.name.localeCompare(b.name));
 
   const gettingStartedItems = componentsData.links
     ? Object.entries(componentsData.links).map(([key, title]) => ({
@@ -43,7 +47,7 @@ export const ComponentSidebar = () => {
               items: gettingStartedItems,
             }}
             componentItems={processedComponents}
-            templateItems={processedTemplates} // Add this new prop
+            templateItems={processedTemplates}
           />
         </div>
       </div>

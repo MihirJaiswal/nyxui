@@ -66,22 +66,6 @@
       ]
     },
     {
-      "name": "bento-grid",
-      "type": "registry:ui",
-      "title": "Bento Grid",
-      "description": "A versatile container component inspired by bento box designs, perfect for creating modern, visually appealing grid layouts.",
-      "dependencies": [
-        "motion"
-      ],
-      "files": [
-        {
-          "path": "registry/ui/bento-grid.tsx",
-          "type": "registry:ui",
-          "target": "components/ui/bento-grid.tsx"
-        }
-      ]
-    },
-    {
       "name": "bubble-background",
       "type": "registry:ui",
       "title": "Bubble Background",
@@ -693,22 +677,6 @@
           "path": "registry/example/animated-text-demo.tsx",
           "type": "registry:example",
           "target": "components/animated-text-demo.tsx"
-        }
-      ]
-    },
-    {
-      "name": "bento-grid-demo",
-      "type": "registry:example",
-      "title": "Bento Grid Demo",
-      "description": "Example showing a responsive grid layout.",
-      "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/bento-grid.json"
-      ],
-      "files": [
-        {
-          "path": "registry/example/bento-grid-demo.tsx",
-          "type": "registry:example",
-          "target": "components/bento-grid-demo.tsx"
         }
       ]
     },
