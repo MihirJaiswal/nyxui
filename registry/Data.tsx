@@ -155,7 +155,7 @@ export const componentsData: ComponentsData = {
       title: "Morphing Blob",
       tags: ["Background", "Effects", "Animation"],
       description:
-        "Organic shape that continuously morphs with smooth transitions.",
+        "A dynamic blob that powered by Three.js and shaders.",
       image: "/assets/images/showcase/morphing-blob.png",
     },
     "music-player": {

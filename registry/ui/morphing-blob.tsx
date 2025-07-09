@@ -1,469 +1,511 @@
-"use client";
-import React, {
-  useRef,
-  useEffect,
-  useState,
-  useMemo,
-  useCallback,
-  useId,
-} from "react";
-import { cn } from "../../lib/utils";
+"use client"
 
-export interface MorphingBlobProps
-  extends React.HTMLAttributes<HTMLDivElement> {
-  theme?:
-    | "primary"
-    | "secondary"
-    | "accent"
-    | "success"
-    | "warning"
-    | "danger"
-    | "custom";
-  customColors?: {
-    from: string;
-    via?: string;
-    to: string;
-  };
-  size?: "sm" | "md" | "lg" | "xl" | "full";
-  complexity?: 1 | 2 | 3 | 4 | 5;
-  speed?: 1 | 2 | 3 | 4 | 5;
-  hoverEffect?: boolean;
-  clickEffect?: boolean;
-  pulse?: boolean;
-  glow?: boolean;
-  glowIntensity?: 1 | 2 | 3 | 4 | 5;
-  opacity?: number;
-  smooth?: boolean;
-  effect3D?: boolean;
-  children?: React.ReactNode;
-}
-type ComplexityFactor = {
-  points: number;
-  variance: number;
-  tension: number;
-};
-const COMPLEXITY_FACTORS = {
-  1: { points: 6, variance: 0.15, tension: 0.25 },
-  2: { points: 8, variance: 0.25, tension: 0.35 },
-  3: { points: 10, variance: 0.3, tension: 0.4 },
-  4: { points: 12, variance: 0.35, tension: 0.45 },
-  5: { points: 16, variance: 0.4, tension: 0.5 },
-};
+import type React from "react"
+import { Canvas, useFrame, useThree } from "@react-three/fiber"
+import { EffectComposer, Bloom, ChromaticAberration } from "@react-three/postprocessing"
+import { Environment } from "@react-three/drei"
+import { useMemo, useRef, Suspense } from "react"
+import * as THREE from "three"
 
-const SPEED_FACTORS = {
-  1: 15000, // Slower
-  2: 12000,
-  3: 9000,
-  4: 6000,
-  5: 3000, // Faster
-};
+/* ----------------------------------------------------------------– */
+/* --------------------------  SHADERS  ---------------------------- */
+/* ----------------------------------------------------------------– */
 
-const SIZE_CLASSES = {
-  sm: "w-32 h-32 md:w-40 md:h-40",
-  md: "w-48 h-48 md:w-64 md:h-64",
-  lg: "w-64 h-64 md:w-80 md:h-80",
-  xl: "w-80 h-80 md:w-[32rem] md:h-[32rem]",
-  full: "w-full h-full",
-};
+const vertexShader = /* glsl */ `
+  uniform float uTime;
+  uniform float uComplexity;
+  uniform float uSpeed;
+  uniform vec2  uPointer;
+  uniform float uInfluence;
 
-const GLOW_INTENSITY_CLASSES = {
-  1: "shadow-sm",
-  2: "shadow-md",
-  3: "shadow-lg",
-  4: "shadow-xl",
-  5: "shadow-2xl",
-};
+  varying vec3 vNormal;
+  varying vec3 vPosition;
+  varying vec3 vWorldPosition;
 
-function hexToRgba(hex: string, alpha: number): string {
-  const r = parseInt(hex.slice(1, 3), 16);
-  const g = parseInt(hex.slice(3, 5), 16);
-  const b = parseInt(hex.slice(5, 7), 16);
-  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-}
+  /* Simplex noise helpers ........................................ */
+  vec3 mod289(vec3 x){return x-floor(x*(1./289.))*289.;}
+  vec4 mod289(vec4 x){return x-floor(x*(1./289.))*289.;}
+  vec4 permute(vec4 x){return mod289(((x*34.)+1.)*x);}
+  vec4 taylorInvSqrt(vec4 r){return 1.79284291400159-0.85373472095314*r;}
 
-function easeInOutCubic(x: number): number {
-  return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
-}
+  float snoise(vec3 v){
+    const vec2  C = vec2(1./6., 1./3.);
+    const vec4  D = vec4(0.,.5,1.,2.);
 
-function isValidNumber(num: number): boolean {
-  return typeof num === "number" && !isNaN(num) && isFinite(num);
-}
+    vec3 i = floor(v + dot(v, C.yyy));
+    vec3 x0 = v - i + dot(i, C.xxx);
 
-export function MorphingBlob({
-  theme = "primary",
-  customColors,
-  size = "md",
-  complexity = 3,
-  speed = 3,
-  hoverEffect = true,
-  clickEffect = true,
-  pulse = false,
-  glow = true,
-  glowIntensity = 3,
-  opacity = 100,
-  smooth = true,
-  effect3D = false,
-  className,
-  children,
-  ...props
-}: MorphingBlobProps) {
-  const blobRef = useRef<HTMLDivElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
-  const [isClicked, setIsClicked] = useState(false);
-  const [paths, setPaths] = useState({ current: "", previous: "" });
-  const [rotation, setRotation] = useState(0);
-  const animationRef = useRef<number | null>(null);
-  const previousTimeRef = useRef<number | null>(null);
-  const animationProgress = useRef(0);
-  const instanceId = useId();
-  const gradientId = `blob-gradient-${theme}-${instanceId.replace(/:/g, "")}`;
+    vec3 g = step(x0.yzx, x0.xyz);
+    vec3 l = 1. - g;
+    vec3 i1 = min(g.xyz, l.zxy);
+    vec3 i2 = max(g.xyz, l.zxy);
 
-  // Memoize theme colors to prevent recalculation
-  const themeColors = useMemo(
+    vec3 x1 = x0 - i1 + C.xxx;
+    vec3 x2 = x0 - i2 + C.yyy;
+    vec3 x3 = x0 - D.yyy;
+
+    i = mod289(i);
+    vec4 p = permute( permute( permute(
+              i.z + vec4(0., i1.z, i2.z, 1.))
+            + i.y + vec4(0., i1.y, i2.y, 1.))
+            + i.x + vec4(0., i1.x, i2.x, 1.));
+
+    float n_ = 1./7.;
+    vec3  ns = n_ * D.wyz - D.xzx;
+
+    vec4 j = p - 49. * floor(p * ns.z * ns.z);
+    vec4 x_ = floor(j * ns.z);
+    vec4 y_ = floor(j - 7. * x_);
+
+    vec4 x = x_ * ns.x + ns.yyyy;
+    vec4 y = y_ * ns.x + ns.yyyy;
+    vec4 h = 1. - abs(x) - abs(y);
+
+    vec4 b0 = vec4(x.xy, y.xy);
+    vec4 b1 = vec4(x.zw, y.zw);
+
+    vec4 s0 = floor(b0)*2.+1.;
+    vec4 s1 = floor(b1)*2.+1.;
+    vec4 sh = -step(h, vec4(0.));
+
+    vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy;
+    vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww;
+
+    vec3 p0 = vec3(a0.xy,h.x);
+    vec3 p1 = vec3(a0.zw,h.y);
+    vec3 p2 = vec3(a1.xy,h.z);
+    vec3 p3 = vec3(a1.zw,h.w);
+
+    vec4 norm = taylorInvSqrt(vec4(
+      dot(p0,p0), dot(p1,p1), dot(p2,p2), dot(p3,p3)));
+    p0 *= norm.x; p1 *= norm.y; p2 *= norm.z; p3*=norm.w;
+
+    vec4 m = max(0.6 - vec4(
+      dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.);
+    m = m*m;
+    return 42. * dot(m*m, vec4(
+      dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3)));
+  }
+
+  /* --------------------------------------------------------------- */
+
+  void main(){
+    vNormal = normal;
+    vPosition = position;
+    vec3 pos = position;
+
+    /* Enhanced noise layering for more dramatic morphing */
+    float n1 = snoise(pos*2.+uTime*uSpeed);
+    float n2 = snoise(pos*4.+uTime*uSpeed*1.5);
+    float n3 = snoise(pos*8.+uTime*uSpeed*0.8);
+    float n4 = snoise(pos*16.+uTime*uSpeed*0.3);
+    float disp = (n1*.4 + n2*.3 + n3*.2 + n4*.1)*uComplexity;
+
+    /* Enhanced pointer attraction */
+    vec3 world = (modelMatrix*vec4(pos,1.)).xyz;
+    float d = distance(world.xy, vec2(uPointer.x*8., uPointer.y*8.));
+    float influence = exp(-d*0.5)*uInfluence;
+
+    pos += normal * (disp + influence);
+    vWorldPosition = (modelMatrix * vec4(pos, 1.0)).xyz;
+
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(pos,1.);
+  }
+`
+
+const fragmentShader = /* glsl */ `
+  uniform float uTime;
+  uniform vec3  uA;
+  uniform vec3  uB;
+  uniform vec3  uC;
+
+  varying vec3 vNormal;
+  varying vec3 vPosition;
+  varying vec3 vWorldPosition;
+
+  void main(){
+    // Calculate distance from center for circular masking
+    float dist = length(vPosition);
+    
+    // Create a smooth falloff to make edges transparent
+    float alpha = 1.0 - smoothstep(1.8, 2.2, dist);
+    
+    // Discard fragments that are too far from center
+    if(alpha < 0.01) discard;
+    
+    // Enhanced gradient calculation
+    float grad = vNormal.y*0.5 + 0.5;
+    
+    // Vibrant but stable time-based color mixing
+    float mix1 = sin(uTime*0.6+vPosition.x*3.+vPosition.z*2.)*0.4+0.6;
+    float mix2 = cos(uTime*0.4+vPosition.y*2.5+vPosition.z*3.)*0.4+0.6;
+    float mix3 = sin(uTime*0.3+vPosition.x*1.5+vPosition.y*2.)*0.3+0.7;
+    
+    // Keep vibrant range but prevent going too dark
+    grad = smoothstep(0.1, 0.9, grad);
+    mix1 = smoothstep(0.2, 1.0, mix1);
+    mix2 = smoothstep(0.2, 1.0, mix2);
+    mix3 = smoothstep(0.4, 1.0, mix3);
+    
+    // Vibrant color blending
+    vec3 col = mix(uA, uB, grad);
+    col = mix(col, uC, mix1 * mix2 * 0.6);
+    
+    // Add vibrant color variation
+    vec3 accent = mix(uB, uC, mix3);
+    col = mix(col, accent, 0.35);
+    
+    // Enhanced rim lighting
+    float rim = 1.0 - abs(dot(vNormal, vec3(0.0, 0.0, 1.0)));
+    rim = pow(rim, 1.5);
+    
+    // Boost saturation and vibrancy significantly - ENHANCED for transparency
+    col = mix(col, col * col, 0.6); // Increased saturation boost
+    col = pow(col, vec3(0.7)); // More aggressive gamma adjustment
+    
+    // Add vibrant rim lighting
+    vec3 rimColor = mix(uB, uC, 0.5);
+    col += rimColor * rim * 0.6; // Increased rim intensity
+    
+    // Boost overall brightness for transparent background
+    col *= 1.3; // Brightness multiplier
+    
+    // Final clamp to prevent overexposure but keep vibrancy
+    col = min(col, vec3(1.4)); // Slightly higher clamp
+    
+    // Apply the alpha for smooth edges
+    gl_FragColor = vec4(col, alpha * 0.95);
+  }
+`
+
+/* ----------------------------------------------------------------– */
+/* ----------------------  BLOB   MESH  ----------------------------- */
+/* ----------------------------------------------------------------– */
+function Blob({
+  theme,
+  complexity,
+  speed,
+}: {
+  theme: "primary" | "aurora" | "cosmic" | "liquid" | "danger"
+  complexity: number
+  speed: number
+}) {
+  const { pointer, clock } = useThree()
+  const mesh = useRef<THREE.Mesh>(null!)
+
+  // Much more vibrant color themes
+  const themes = {
+    primary: { a: "#0A0F8A", b: "#1E40FF", c: "#00D4FF" },
+    aurora: { a: "#4A00FF", b: "#FF006B", c: "#00FFFF" },
+    cosmic: { a: "#B766EA", b: "#70209B", c: "#F093FB" },
+    liquid: { a: "#805AFC", b: "#04E9AD", c: "#FC8EED" },
+    danger: { a: "#FF0000", b: "#FF4000", c: "#FFAA00" },
+  } as const
+
+  const { a, b, c } = themes[theme] ?? themes.aurora
+
+  const uniforms = useMemo(
     () => ({
-      primary: {
-        from: "#4F46E5",
-        via: "#6366F1",
-        to: "#818CF8",
-        glow: "shadow-indigo-500/40",
-        filter: "drop-shadow(0 0 10px rgba(99, 102, 241, 0.4))",
-      },
-      secondary: {
-        from: "#9333EA",
-        via: "#A855F7",
-        to: "#C084FC",
-        glow: "shadow-purple-500/40",
-        filter: "drop-shadow(0 0 10px rgba(168, 85, 247, 0.4))",
-      },
-      accent: {
-        from: "#0D9488",
-        via: "#14B8A6",
-        to: "#2DD4BF",
-        glow: "shadow-teal-500/40",
-        filter: "drop-shadow(0 0 10px rgba(20, 184, 166, 0.4))",
-      },
-      success: {
-        from: "#16A34A",
-        via: "#22C55E",
-        to: "#4ADE80",
-        glow: "shadow-green-500/40",
-        filter: "drop-shadow(0 0 10px rgba(34, 197, 94, 0.4))",
-      },
-      warning: {
-        from: "#D97706",
-        via: "#F59E0B",
-        to: "#FBBF24",
-        glow: "shadow-amber-500/40",
-        filter: "drop-shadow(0 0 10px rgba(245, 158, 11, 0.4))",
-      },
-      danger: {
-        from: "#DC2626",
-        via: "#EF4444",
-        to: "#F87171",
-        glow: "shadow-red-500/40",
-        filter: "drop-shadow(0 0 10px rgba(239, 68, 68, 0.4))",
-      },
-      custom: {
-        from: customColors?.from || "#000000",
-        via: customColors?.via || "#000000",
-        to: customColors?.to || "#02001c",
-        glow: "shadow-blue-500/40",
-        filter: `drop-shadow(0 0 10px ${customColors?.from ? hexToRgba(customColors.from, 0.4) : "rgba(59, 130, 246, 0.4)"})`,
-      },
+      uTime: { value: 0 },
+      uComplexity: { value: complexity * 0.15 },
+      uSpeed: { value: speed * 0.25 },
+      uPointer: { value: new THREE.Vector2() },
+      uInfluence: { value: 0.6 },
+      uA: { value: new THREE.Color(a) },
+      uB: { value: new THREE.Color(b) },
+      uC: { value: new THREE.Color(c) },
     }),
-    [customColors],
-  );
+    [a, b, c, complexity, speed],
+  )
 
-  const currentTheme = themeColors[theme];
-  const complexityFactor = COMPLEXITY_FACTORS[complexity];
-  const speedValue = SPEED_FACTORS[speed];
-  const generateBlobPath = useCallback(
-    (factor: ComplexityFactor, hover = false, click = false) => {
-      const { points, variance, tension } = factor;
-      const centerX = 50;
-      const centerY = 50;
-      const baseRadius = hover ? 42 : click ? 38 : 40;
-      const angleStep = (Math.PI * 2) / points;
-      const blobPoints = [];
-      for (let i = 0; i < points; i++) {
-        const angle = i * angleStep;
-        const waveVariation =
-          Math.sin(i * 3) * 0.08 +
-          Math.sin(i * 5) * 0.05 +
-          Math.sin(i * 7) * 0.03;
-        const randomVariance =
-          1 - variance + Math.random() * variance * 2 + waveVariation;
-        const radius = Math.max(baseRadius * randomVariance, baseRadius * 0.6);
-
-        blobPoints.push({
-          x: centerX + Math.cos(angle) * radius,
-          y: centerY + Math.sin(angle) * radius,
-        });
-      }
-      let path = `M${blobPoints[0].x},${blobPoints[0].y}`;
-      for (let i = 0; i < points; i++) {
-        const current = blobPoints[i];
-        const next = blobPoints[(i + 1) % points];
-        const prev = blobPoints[(i - 1 + points) % points];
-        const nextNext = blobPoints[(i + 2) % points];
-
-        const cp1x = current.x + (next.x - prev.x) * tension;
-        const cp1y = current.y + (next.y - prev.y) * tension;
-        const cp2x = next.x - (nextNext.x - current.x) * tension;
-        const cp2y = next.y - (nextNext.y - current.y) * tension;
-
-        const validCp1x = isValidNumber(cp1x) ? cp1x : current.x;
-        const validCp1y = isValidNumber(cp1y) ? cp1y : current.y;
-        const validCp2x = isValidNumber(cp2x) ? cp2x : next.x;
-        const validCp2y = isValidNumber(cp2y) ? cp2y : next.y;
-
-        path += ` C${validCp1x},${validCp1y} ${validCp2x},${validCp2y} ${next.x},${next.y}`;
-      }
-
-      return path + " Z";
-    },
-    [],
-  );
-  const interpolatePaths = useCallback(
-    (path1: string, path2: string, progress: number) => {
-      if (!path1 || !path2) return path2 || path1 || "";
-      const extractPoints = (path: string) => {
-        const regex = /([MC]) ?([^MC]+)/g;
-        const points = [];
-        let match;
-
-        while ((match = regex.exec(path)) !== null) {
-          const [, command, coordStr] = match;
-          const coords = coordStr
-            .trim()
-            .split(/[ ,]/)
-            .filter(Boolean)
-            .map(parseFloat);
-          if (command === "M" && coords.length >= 2) {
-            points.push([coords[0], coords[1]]);
-          } else if (command === "C" && coords.length >= 6) {
-            points.push([coords[4], coords[5]]);
-          }
-        }
-
-        return points;
-      };
-
-      const points1 = extractPoints(path1);
-      const points2 = extractPoints(path2);
-
-      if (points1.length !== points2.length || points1.length === 0) {
-        return path2;
-      }
-      const easeProgress = easeInOutCubic(progress);
-      const interpolatedPoints = points1.map((point, i) => {
-        if (i < points2.length) {
-          const x = point[0] + (points2[i][0] - point[0]) * easeProgress;
-          const y = point[1] + (points2[i][1] - point[1]) * easeProgress;
-          return [
-            isValidNumber(x) ? x : point[0],
-            isValidNumber(y) ? y : point[1],
-          ];
-        }
-        return point;
-      });
-      let newPath = `M${interpolatedPoints[0][0]},${interpolatedPoints[0][1]}`;
-      const tension = 0.4;
-
-      for (let i = 0; i < interpolatedPoints.length; i++) {
-        const curr = interpolatedPoints[i];
-        const next = interpolatedPoints[(i + 1) % interpolatedPoints.length];
-        const prev =
-          interpolatedPoints[
-            (i - 1 + interpolatedPoints.length) % interpolatedPoints.length
-          ];
-        const nextNext =
-          interpolatedPoints[(i + 2) % interpolatedPoints.length];
-        const cpx1 = curr[0] + (next[0] - prev[0]) * tension;
-        const cpy1 = curr[1] + (next[1] - prev[1]) * tension;
-        const cpx2 = next[0] - (nextNext[0] - curr[0]) * tension;
-        const cpy2 = next[1] - (nextNext[1] - curr[1]) * tension;
-        const validCpx1 = isValidNumber(cpx1) ? cpx1 : curr[0];
-        const validCpy1 = isValidNumber(cpy1) ? cpy1 : curr[1];
-        const validCpx2 = isValidNumber(cpx2) ? cpx2 : next[0];
-        const validCpy2 = isValidNumber(cpy2) ? cpy2 : next[1];
-        newPath += ` C${validCpx1},${validCpy1} ${validCpx2},${validCpy2} ${next[0]},${next[1]}`;
-      }
-
-      return newPath + " Z";
-    },
-    [],
-  );
-
-  const animate = useCallback(
-    (time: number) => {
-      if (previousTimeRef.current === null) {
-        previousTimeRef.current = time;
-        animationRef.current = requestAnimationFrame(animate);
-        return;
-      }
-      const deltaTime = time - previousTimeRef.current;
-      const duration = speedValue;
-      animationProgress.current += deltaTime / duration;
-      if (animationProgress.current >= 1) {
-        animationProgress.current = 0;
-        setPaths((prev) => ({
-          previous: prev.current,
-          current: generateBlobPath(complexityFactor, isHovered, isClicked),
-        }));
-
-        setRotation((prev) => (prev + 15 + Math.random() * 30) % 360);
-      }
-
-      previousTimeRef.current = time;
-      animationRef.current = requestAnimationFrame(animate);
-    },
-    [speedValue, complexityFactor, isHovered, isClicked, generateBlobPath],
-  );
-
-  useEffect(() => {
-    if (!paths.current) {
-      const initialPath = generateBlobPath(
-        complexityFactor,
-        isHovered,
-        isClicked,
-      );
-      setPaths({ current: initialPath, previous: initialPath });
+  useFrame(() => {
+    if (uniforms.uTime) {
+      uniforms.uTime.value = clock.elapsedTime
     }
-
-    if (animationRef.current) {
-      cancelAnimationFrame(animationRef.current);
-      animationRef.current = null;
+    if (uniforms.uPointer && pointer) {
+      uniforms.uPointer.value.copy(pointer)
     }
-    if (smooth) {
-      animationRef.current = requestAnimationFrame(animate);
-      return () => {
-        if (animationRef.current !== null) {
-          cancelAnimationFrame(animationRef.current);
-          animationRef.current = null;
-        }
-      };
-    } else {
-      const interval = setInterval(() => {
-        setPaths((prev) => ({
-          previous: prev.current,
-          current: generateBlobPath(complexityFactor, isHovered, isClicked),
-        }));
-        setRotation((prev) => (prev + 15 + Math.random() * 30) % 360);
-      }, speedValue / 6);
-      return () => clearInterval(interval);
-    }
-  }, [
-    complexity,
-    speed,
-    isHovered,
-    isClicked,
-    smooth,
-    animate,
-    complexityFactor,
-    speedValue,
-    generateBlobPath,
-    paths,
-  ]);
-
-  useEffect(() => {
-    setPaths((prev) => ({
-      previous: prev.current,
-      current: generateBlobPath(complexityFactor, isHovered, isClicked),
-    }));
-    setRotation((prev) => (prev + 15 + Math.random() * 30) % 360);
-    animationProgress.current = 0;
-  }, [isHovered, isClicked, generateBlobPath, complexityFactor]);
-
-  const handleMouseEvents = useMemo(
-    () => ({
-      onMouseEnter: () => hoverEffect && setIsHovered(true),
-      onMouseLeave: () => {
-        if (hoverEffect) setIsHovered(false);
-        if (clickEffect) setIsClicked(false);
-      },
-      onMouseDown: () => clickEffect && setIsClicked(true),
-      onMouseUp: () => clickEffect && setIsClicked(false),
-      onTouchStart: () => clickEffect && setIsClicked(true),
-      onTouchEnd: () => clickEffect && setIsClicked(false),
-    }),
-    [hoverEffect, clickEffect],
-  );
-
-  const displayPath =
-    smooth && paths.previous
-      ? interpolatePaths(
-          paths.previous,
-          paths.current,
-          animationProgress.current,
-        )
-      : paths.current;
+  })
 
   return (
-    <div
-      ref={blobRef}
-      className={cn(
-        "relative flex items-center justify-center transition-all duration-500",
-        SIZE_CLASSES[size],
-        glow && GLOW_INTENSITY_CLASSES[glowIntensity],
-        glow && currentTheme.glow,
-        pulse && "animate-pulse",
-        className,
-      )}
-      style={{
-        opacity: opacity / 100,
-        willChange: "transform, opacity",
-      }}
-      {...handleMouseEvents}
-      {...props}
-    >
-      <svg
-        viewBox="0 0 100 100"
-        className="absolute inset-0 w-full h-full"
-        style={{
-          transform: `rotate(${rotation}deg)`,
-          transition: "transform 8s ease-in-out",
-          filter: glow ? currentTheme.filter : "none",
-          willChange: "transform, filter",
-        }}
-        aria-hidden="true"
-      >
-        {effect3D && (
-          <path
-            d={displayPath}
-            className="transition-all duration-300"
-            fill="rgba(0,0,0,0.15)"
-            transform="translate(3,3) scale(0.99)"
-          />
-        )}
-        <path
-          d={displayPath}
-          className="transition-all duration-300"
-          fill={`url(#${gradientId})`}
+    <mesh ref={mesh}>
+      <icosahedronGeometry args={[2, 6]} />
+      <shaderMaterial
+        vertexShader={vertexShader}
+        fragmentShader={fragmentShader}
+        uniforms={uniforms}
+        transparent
+        alphaTest={0.01}
+        side={THREE.DoubleSide}
+      />
+    </mesh>
+  )
+}
+
+/* ----------------------------------------------------------------– */
+/* ----------------------  PARTICLES  ------------------------------- */
+/* ----------------------------------------------------------------– */
+
+function Particles({ count = 150, color = "#00FFFF" }) {
+  const points = useRef<THREE.Points>(null!)
+
+  const [positions, scales] = useMemo(() => {
+    const pos = new Float32Array(count * 3)
+    const scl = new Float32Array(count)
+    for (let i = 0; i < count; i++) {
+      const r = 4 + Math.random() * 3
+      const theta = Math.random() * Math.PI * 2
+      const phi = Math.acos(Math.random() * 2 - 1)
+      pos[i * 3] = r * Math.sin(phi) * Math.cos(theta)
+      pos[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta)
+      pos[i * 3 + 2] = r * Math.cos(phi)
+      scl[i] = Math.random() * 0.8 + 0.2
+    }
+    return [pos, scl]
+  }, [count])
+
+  const uniforms = useMemo(
+    () => ({
+      uTime: { value: 0 },
+      uSize: { value: 35 },
+      uColor: { value: new THREE.Color(color) },
+    }),
+    [color],
+  )
+
+  useFrame(({ clock }) => {
+    if (uniforms.uTime) {
+      uniforms.uTime.value = clock.elapsedTime
+    }
+  })
+
+  return (
+    <points ref={points}>
+      <bufferGeometry>
+        <bufferAttribute 
+          attach="attributes-position" 
+          args={[positions, 3]}
         />
-        {effect3D && (
-          <path
-            d={displayPath}
-            className="transition-all duration-300"
-            fill="rgba(255,255,255,0.1)"
-            transform="translate(-1.5,-1.5) scale(0.98)"
-          />
-        )}
-        <defs>
-          <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor={currentTheme.from} />
-            {currentTheme.via && (
-              <stop offset="50%" stopColor={currentTheme.via} />
-            )}
-            <stop offset="100%" stopColor={currentTheme.to} />
-          </linearGradient>
-        </defs>
-      </svg>
+        <bufferAttribute 
+          attach="attributes-scale" 
+          args={[scales, 1]}
+        />
+      </bufferGeometry>
+      <shaderMaterial
+        vertexShader={
+          /* glsl */ `
+          uniform float uTime;
+          uniform float uSize;
+          attribute float scale;
+          void main(){
+            vec3 pos = position;
+            pos.x += sin(uTime * 0.4 + pos.y * 0.3) * 0.3;
+            pos.y += cos(uTime * 0.3 + pos.x * 0.3) * 0.3;
+            pos.z += sin(uTime * 0.2 + pos.x * 0.2) * 0.2;
+            vec4 mvPos = modelViewMatrix * vec4(pos, 1.0);
+            gl_Position = projectionMatrix * mvPos;
+            gl_PointSize = uSize * scale * (1.0 / -mvPos.z);
+          }
+        `
+        }
+        fragmentShader={
+          /* glsl */ `
+          uniform vec3 uColor;
+          void main(){
+            float d = distance(gl_PointCoord, vec2(0.5));
+            if(d > 0.5) discard;
+            float alpha = 1.0 - (d * 2.0);
+            alpha = pow(alpha, 2.0) * 0.9; // Slightly brighter particles
+            gl_FragColor = vec4(uColor, alpha);
+          }
+        `
+        }
+        uniforms={uniforms}
+        blending={THREE.AdditiveBlending}
+        depthWrite={false}
+        transparent
+      />
+    </points>
+  )
+}
+
+/* ----------------------------------------------------------------– */
+/* ----------------------  SCENE  ---------------------------------- */
+/* ----------------------------------------------------------------– */
+
+function Scene({
+  theme = "aurora",
+  complexity = 3,
+  speed = 3,
+  particleCount = 150,
+}: {
+  theme?: "primary" | "aurora" | "cosmic" | "liquid" | "danger"
+  complexity?: number
+  speed?: number
+  particleCount?: number
+}) {
+  const particleColors = {
+    primary: "#00D4FF",
+    aurora: "#00FFD4",
+    cosmic: "#FF006B",
+    liquid: "#00FFAA",
+    danger: "#FFAA00",
+  }
+
+  return (
+    <>
+      <Blob theme={theme} complexity={complexity!} speed={speed!} />
+      <Particles count={particleCount} color={particleColors[theme]} />
+
+      <ambientLight intensity={0.3} />
+      <pointLight position={[10, 10, 10]} intensity={1.5} color="#ffffff" /> 
+      <pointLight position={[-10, -10, -10]} intensity={1.0} color="#4444ff" />
+      <Environment preset="night" />
+
+      {/* Optimized post-processing for transparent background */}
+      <EffectComposer>
+        <Bloom 
+          intensity={1.5} 
+          luminanceThreshold={0.02}
+          luminanceSmoothing={0.8}
+        />
+        <ChromaticAberration offset={[0.002, 0.002]} />
+      </EffectComposer>
+    </>
+  )
+}
+
+/* ----------------------------------------------------------------– */
+/* ----------------------------------------------------------------– */
+/* ----------------------------------------------------------------– */
+/* --------------------  EXPORTED  COMPONENT  ----------------------- */
+/* ----------------------------------------------------------------– */
+
+export function MorphingBlob({
+  size = 400,
+  theme = "aurora",
+  complexity = 3,
+  speed = 3,
+  particleCount = 150,
+  enableEffects = true,
+  children,
+  className,
+  mouseTracking,
+  ...rest
+}: {
+  size?: number
+  theme?: "primary" | "aurora" | "cosmic" | "liquid" | "danger"
+  complexity?: number
+  speed?: number
+  particleCount?: number
+  enableEffects?: boolean
+  children?: React.ReactNode
+  className?: string
+  mouseTracking?: boolean
+} & React.HTMLAttributes<HTMLDivElement>) {
+  return (
+    <div 
+      className={className} 
+      style={{ 
+        width: size, 
+        height: size, 
+        position: 'relative',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }} 
+      {...rest}
+    >
+      {/* 3D Canvas - positioned absolutely to avoid layout issues */}
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: 1
+      }}>
+        <Suspense>
+          <Canvas 
+            camera={{ position: [0, 0, 8], fov: 45 }} 
+            gl={{ 
+              antialias: true, 
+              alpha: true,
+              powerPreference: "high-performance",
+              premultipliedAlpha: false,
+              preserveDrawingBuffer: false
+            }}
+            dpr={[1, 2]}
+            style={{ 
+              background: 'transparent',
+              width: '100%',
+              height: '100%'
+            }}
+            onCreated={({ gl }) => {
+              gl.toneMapping = THREE.ACESFilmicToneMapping
+              gl.toneMappingExposure = 1.5 
+              gl.setClearColor(0x000000, 0) 
+            }}
+          >
+            <Scene 
+              theme={theme} 
+              complexity={complexity} 
+              speed={speed} 
+              particleCount={particleCount}
+            />
+          </Canvas>
+        </Suspense>
+      </div>
+
+      {/* Children content  */}
       {children && (
-        <div className="relative z-10 flex items-center justify-center text-white transition-all duration-300">
+        <div style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          zIndex: 2,
+          pointerEvents: 'auto'
+        }}>
           {children}
         </div>
       )}
     </div>
-  );
+  )
+}
+
+// Demo component
+export default function Demo() {
+  return (
+    <div style={{ 
+      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      minHeight: '100vh',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '20px'
+    }}>
+      <MorphingBlob 
+        size={400}
+        theme="aurora"
+        complexity={4}
+        speed={2}
+        particleCount={200}
+      >
+        <div style={{
+          background: 'rgba(255, 255, 255, 0.1)',
+          backdropFilter: 'blur(10px)',
+          borderRadius: '20px',
+          padding: '20px',
+          color: 'white',
+          textAlign: 'center'
+        }}>
+          <h2 style={{ margin: 0, fontSize: '24px' }}>Bright Blob</h2>
+          <p style={{ margin: '10px 0 0 0', opacity: 0.8 }}>
+            Transparent background, vibrant colors
+          </p>
+        </div>
+      </MorphingBlob>
+    </div>
+  )
 }

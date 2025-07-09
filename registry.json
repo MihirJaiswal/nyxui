@@ -457,7 +457,7 @@
         {
           "path": "registry/ui/image-scanner.tsx",
           "type": "registry:ui",
-          "target": "components/ui/majestic-card.tsx"
+          "target": "components/ui/image-scanner.tsx"
         }
       ]
     },
@@ -511,6 +511,12 @@
       "type": "registry:ui",
       "title": "Morphing Blob",
       "description": "A morphing blob that that provide several effects.",
+      "dependencies": [
+        "three",
+        "@react-three/fiber",
+        "@react-three/drei",
+        "@react-three/postprocessing"
+      ],
       "files": [
         {
           "path": "registry/ui/morphing-blob.tsx",
