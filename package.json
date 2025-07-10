@@ -44,6 +44,8 @@
     "@react-three/drei": "^10.5.0",
     "@react-three/fiber": "^9.2.0",
     "@react-three/postprocessing": "^3.0.4",
+    "@tsparticles/react": "^3.0.0",
+    "@tsparticles/slim": "^3.8.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",

@@ -6,12 +6,12 @@ import Link from "next/link";
 import InteractiveTerminal from "../../../registry/ui/terminal";
 import { Rbutton } from "../../ui/Rbutton";
 import InteractiveKeyboard from "../../../registry/ui/keyboard";
-import { Particles } from "../../ui/particles";
 import { TwitterCard } from "./TweetCard";
 import { Matrix } from "./Matrix";
 import WaterRippleEffect from "@/registry/ui/water-ripple-effect";
 import { CustomPointer } from "./CustomPointer";
-import GlassmorphismCards from "./Cards";
+import Blob from "./Blob";
+import { Sparkles } from "@/components/ui/particles";
 
 export const ComponentsDemo = () => {
   return (
@@ -106,6 +106,7 @@ export const ComponentsDemo = () => {
         
           enableTitle={false}
           component={
+            <>
             <DynamicRipple
               theme="purple"
               intensity={2}
@@ -113,16 +114,31 @@ export const ComponentsDemo = () => {
               reactToCursor
               autoAnimate
               rounded="xl"
-              className="w-full h-full min-h-[300px] p-6 flex items-center justify-center bg-black"
+              className="w-full h-full min-h-[300px] px-6 flex items-center justify-center bg-black"
             >
               
-                <GlassmorphismCards/>
+                <Blob/>
+                
             </DynamicRipple>
+            <div className='absolute -bottom-68 h-full w-full max-w-full overflow-hidden [mask-image:radial-gradient(50%_50%,white,transparent)] before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_bottom_center,#DA33FF,transparent_90%)] before:opacity-40 after:absolute after:-left-1/2 after:top-1/2 after:aspect-[1/0.7] after:w-[200%] after:rounded-[10%] after:border-t after:border-[#4e1674] after:bg-[#20082b]'>
+            <div className="absolute inset-0 w-full h-full overflow-hidden">
+              <Sparkles
+                density={800}
+                speed={1.2}
+                size={1.2}
+                direction='top'
+                opacitySpeed={2}
+                color='#DA33FF'
+                className='w-full h-full'
+              />
+            </div>
+          </div>
+            </>
           }
         />
 
         <BentoGrid
-          className="rounded-2xl overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]"
+          className="rounded-2xl overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] border"
           height="h-full"
           dark
           enableDescription={false}
@@ -157,13 +173,6 @@ export const ComponentsDemo = () => {
           className="rounded-2xl overflow-hidden shadow-xl bg-white dark:bg-black transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] border border-zinc-200 dark:border-zinc-800"
           component={
             <div className="h-72 flex items-center justify-center">
-              <Particles
-                className="absolute inset-0 z-0"
-                quantity={70}
-                ease={80}
-                color="#ffffff"
-                refresh
-              />
               <div className="flex w-full items-center justify-center min-h-screen bg-gradient-to-b dark:from-gray-900 dark:via-gray-950 dark:to-gray-900">
                 <WaterRippleEffect imageSrc="/assets/images/landing-page/img2.png" rippleIntensity={0.020}  hoverRippleMultiplier={10} height={428} width={445} className="mt-20"/>
               </div>
