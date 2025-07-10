@@ -33,7 +33,7 @@ export const Hero = () => {
             <Link href="/docs/components/apple-glass-effect" rel="noopener noreferrer">
               <Badge className="mb-6 group cursor-pointer inline-flex items-center text-black dark:text-white gap-2 rounded-full border border-gray-300 px-4 py-1.5 text-xs font-semibold dark:border-gray-600 bg-background">
                 <div className="border-r border-zinc-500 pr-2">
-                  <Blocks className="h-4 w-4 group-hover:text-purple-400 group-hover:rotate-12 " />
+                  <Blocks className="h-4 w-4 group-hover:fill-purple-400 dark:group-hover:fill-purple-600 group-hover:rotate-12"/>
                 </div>
                 New!{" "}
                 <span className="hidden md:inline">Apple Glass Effect</span>
