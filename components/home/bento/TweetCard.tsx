@@ -70,7 +70,7 @@ export const TwitterCard = () => {
             <span className="font-bold ">#webdev</span>{" "}
             <span className="font-bold">#tailwindcss</span>
           </p>
-          <div className="mt-2 sm:mt-3 border border-gray-600/50 bg-gray-950 rounded-lg p-2 sm:p-3 text-xs sm:text-sm font-mono overflow-hidden">
+          <div className="mt-2 sm:mt-3 border border-gray-600/50 bg-zinc-900 rounded-lg p-2 sm:p-3 text-xs sm:text-sm font-mono overflow-hidden">
             <MajesticCard
               variant={isHovering ? "magnetic" : "float"}
               intensity={4}
