@@ -183,7 +183,7 @@ function Blob({
   const themes = {
     primary: { a: "#0A0F8A", b: "#1E40FF", c: "#00D4FF" },
     aurora: { a: "#4A00FF", b: "#FF006B", c: "#00FFFF" },
-    cosmic: { a: "#B766EA", b: "#70209B", c: "#F093FB" },
+    cosmic: { a: "#660A8A", b: "#C81EFF", c: "#B700FF" },
     liquid: { a: "#805AFC", b: "#04E9AD", c: "#FC8EED" },
     danger: { a: "#FF0000", b: "#FF4000", c: "#FFAA00" },
   } as const
