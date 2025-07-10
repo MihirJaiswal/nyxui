@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { HTMLMotionProps, AnimatePresence, motion } from "framer-motion";
 import { cn } from "../../lib/utils";
-import { Particles } from "../ui/particles";
 
 interface WordRotateProps {
   words: string[];
@@ -139,13 +138,6 @@ const Text = () => {
                       transition: transform 0.5s ease;
                     }
                   `}</style>
-                  <Particles
-                    className="absolute inset-0 z-0"
-                    quantity={100}
-                    ease={80}
-                    color="#ffffff"
-                    refresh
-                  />
                   <div className="word-rotate-container transition-transform duration-500">
                     <WordRotate words={adjectives} />
                   </div>
