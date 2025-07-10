@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { cn } from "../../lib/utils";
+import { cn } from "@/lib/utils";
 import {
   Play,
   Pause,
@@ -12,6 +12,20 @@ import {
   Minimize2,
   Download,
 } from "lucide-react";
+import Prism from "prismjs";
+import "prismjs/themes/prism-tomorrow.css"; // Dark theme
+import "prismjs/components/prism-javascript";
+import "prismjs/components/prism-typescript";
+import "prismjs/components/prism-jsx";
+import "prismjs/components/prism-tsx";
+import "prismjs/components/prism-css";
+import "prismjs/components/prism-scss";
+import "prismjs/components/prism-json";
+import "prismjs/components/prism-python";
+import "prismjs/components/prism-bash";
+import "prismjs/components/prism-sql";
+import "prismjs/components/prism-yaml";
+import "prismjs/components/prism-markdown";
 
 const getScrollbarStyles = (theme: string) => {
   const scrollbarColors = {
@@ -20,12 +34,13 @@ const getScrollbarStyles = (theme: string) => {
     terminal: "rgba(0, 255, 128, 0.2)",
     cyberpunk: "rgba(236, 72, 153, 0.3)",
   };
+
   const color =
     scrollbarColors[theme as keyof typeof scrollbarColors] ||
     scrollbarColors.dark;
   const hoverColor = color.replace(
     /[\d.]+\)$/,
-    (match) => String(Math.min(Number.parseFloat(match) + 0.2, 1)) + ")",
+    (match) => String(Math.min(Number.parseFloat(match) + 0.2, 1)) + ")"
   );
 
   return `
@@ -52,9 +67,212 @@ const getScrollbarStyles = (theme: string) => {
   `;
 };
 
+// Custom Prism theme styles for different themes
+const getPrismThemeStyles = (theme: string) => {
+  const baseStyles = `
+    .token.comment,
+    .token.prolog,
+    .token.doctype,
+    .token.cdata {
+      color: #6a737d;
+      font-style: italic;
+    }
+    .token.punctuation {
+      color: #f8f8f2;
+    }
+    .token.property,
+    .token.tag,
+    .token.constant,
+    .token.symbol,
+    .token.deleted {
+      color: #f92672;
+    }
+    .token.boolean,
+    .token.number {
+      color: #ae81ff;
+    }
+    .token.selector,
+    .token.attr-name,
+    .token.string,
+    .token.char,
+    .token.builtin,
+    .token.inserted {
+      color: #a6e22e;
+    }
+    .token.operator,
+    .token.entity,
+    .token.url,
+    .language-css .token.string,
+    .style .token.string,
+    .token.variable {
+      color: #f8f8f2;
+    }
+    .token.atrule,
+    .token.attr-value,
+    .token.function,
+    .token.class-name {
+      color: #e6db74;
+    }
+    .token.keyword {
+      color: #66d9ef;
+    }
+    .token.regex,
+    .token.important {
+      color: #fd971f;
+    }
+  `;
+
+  switch (theme) {
+    case "nightowl":
+  return `
+    ${baseStyles}
+    .token.comment,
+    .token.prolog,
+    .token.doctype,
+    .token.cdata {
+      color: #637777; 
+      font-style: italic;
+    }
+    .token.punctuation {
+      color: #c792ea;
+    }
+    .token.property,
+    .token.tag,
+    .token.constant,
+    .token.symbol,
+    .token.deleted {
+      color: #f78c6c;
+    }
+    .token.boolean,
+    .token.number {
+      color: #ff5874;
+    }
+    .token.selector,
+    .token.attr-name,
+    .token.string,
+    .token.char,
+    .token.builtin,
+    .token.inserted {
+      color: #addb67; 
+    }
+    .token.operator,
+    .token.entity,
+    .token.url,
+    .language-css .token.string,
+    .style .token.string {
+      color: #c792ea;
+    }
+    .token.keyword {
+      color: #7fdbca; 
+    }
+    .token.atrule,
+    .token.attr-value,
+    .token.function,
+    .token.class-name {
+      color: #82aaff;
+    }
+    .token.regex,
+    .token.important,
+    .token.variable {
+      color: #d6deeb; 
+    }
+    .token.bold {
+      font-weight: bold;
+    }
+    .token.italic {
+      font-style: italic;
+    }
+  `;
+
+    case "terminal":
+      return `
+        ${baseStyles}
+        .token.comment,
+        .token.prolog,
+        .token.doctype,
+        .token.cdata {
+          color: #10b981;
+          opacity: 0.7;
+        }
+        .token.property,
+        .token.tag,
+        .token.constant,
+        .token.symbol,
+        .token.deleted {
+          color: #34d399;
+        }
+        .token.boolean,
+        .token.number {
+          color: #6ee7b7;
+        }
+        .token.selector,
+        .token.attr-name,
+        .token.string,
+        .token.char,
+        .token.builtin,
+        .token.inserted {
+          color: #a7f3d0;
+        }
+        .token.keyword {
+          color: #10b981;
+          font-weight: bold;
+        }
+        .token.atrule,
+        .token.attr-value,
+        .token.function,
+        .token.class-name {
+          color: #34d399;
+        }
+      `;
+    case "cyberpunk":
+      return `
+        ${baseStyles}
+        .token.comment,
+        .token.prolog,
+        .token.doctype,
+        .token.cdata {
+          color: #a855f7;
+          opacity: 0.8;
+        }
+        .token.property,
+        .token.tag,
+        .token.constant,
+        .token.symbol,
+        .token.deleted {
+          color: #ec4899;
+        }
+        .token.boolean,
+        .token.number {
+          color: #f472b6;
+        }
+        .token.selector,
+        .token.attr-name,
+        .token.string,
+        .token.char,
+        .token.builtin,
+        .token.inserted {
+          color: #e879f9;
+        }
+        .token.keyword {
+          color: #c084fc;
+          font-weight: bold;
+        }
+        .token.atrule,
+        .token.attr-value,
+        .token.function,
+        .token.class-name {
+          color: #d946ef;
+        }
+      `;
+    default:
+      return baseStyles;
+  }
+};
+
 export interface AnimatedCodeBlockProps {
   code: string;
-  theme?: "dark" | "terminal" | "cyberpunk" | "minimal";
+  language?: string;
+  theme?: "dark" | "terminal" | "cyberpunk" | "nightowl";
   typingSpeed?: number;
   showLineNumbers?: boolean;
   highlightLines?: number[];
@@ -82,6 +300,7 @@ type ThemeStyles = {
 
 export function AnimatedCodeBlock({
   code,
+  language = "javascript",
   theme = "dark",
   typingSpeed = 50,
   showLineNumbers = true,
@@ -102,11 +321,26 @@ export function AnimatedCodeBlock({
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showTooltip, setShowTooltip] = useState("");
   const [extraLines, setExtraLines] = useState(0);
+  const [highlightedCode, setHighlightedCode] = useState("");
   const codeRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const codeContainerRef = useRef<HTMLDivElement>(null);
   const lineNumbersRef = useRef<HTMLDivElement>(null);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    try {
+      const highlighted = Prism.highlight(
+        code,
+        Prism.languages[language] || Prism.languages.javascript,
+        language
+      );
+      setHighlightedCode(highlighted);
+    } catch (error) {
+      console.warn("Failed to highlight code:", error);
+      setHighlightedCode(code);
+    }
+  }, [code, language]);
 
   const getThemeStyles = (): ThemeStyles => {
     switch (theme) {
@@ -123,47 +357,48 @@ export function AnimatedCodeBlock({
           shadow: "shadow-lg shadow-black/20",
           scrollbarThumb: "rgba(255, 255, 255, 0.2)",
         };
-      case "minimal":
+      case "nightowl":
         return {
-          background: "bg-amber-50",
-          text: "text-amber-950",
-          lineNumbers: "text-amber-500",
-          highlight: "bg-amber-100",
-          border: "border-amber-200",
-          header: "bg-amber-100",
-          accent: "bg-amber-500",
-          accentText: "text-amber-700",
-          shadow: "shadow-md shadow-amber-900/10",
-          scrollbarThumb: "rgba(217, 119, 6, 0.3)",
+          background: "bg-[#011627]",
+          text: "text-[#d6deeb]",
+          lineNumbers: "text-[#5f7e97]",
+          highlight: "bg-[#1d3b53]",
+          border: "border-[#1e2d3d]",
+          header: "bg-[#0b2942]",
+          accent: "bg-[#82aaff]",
+          accentText: "text-[#82aaff]",
+          shadow: "shadow-md shadow-[#82aaff]/20",
+          scrollbarThumb: "rgba(130, 170, 255, 0.3)",
         };
       case "terminal":
         return {
-          background: "bg-gray-950",
-          text: "text-emerald-400",
-          lineNumbers: "text-emerald-700",
-          highlight: "bg-emerald-900/30",
-          border: "border-emerald-900",
-          header: "bg-gray-900",
-          accent: "bg-emerald-600",
-          accentText: "text-emerald-400",
-          shadow: "shadow-lg shadow-black/30",
-          scrollbarThumb: "rgba(16, 185, 129, 0.3)",
+          background: "bg-[#0d1117]", 
+          text: "text-[#00ff88]", 
+          lineNumbers: "text-[#009966]",
+          highlight: "bg-[#003b2f]/60", 
+          border: "border-[#1f2a30]",
+          header: "bg-[#161b22]", 
+          accent: "bg-[#00c46f]",
+          accentText: "text-[#00ff88]",
+          shadow: "shadow-md shadow-[#00ff88]/20",
+          scrollbarThumb: "rgba(0, 255, 136, 0.3)", 
         };
+
       case "cyberpunk":
         return {
           background:
-            "bg-violet-950 bg-gradient-to-br from-violet-950 to-fuchsia-950",
-          text: "text-fuchsia-300",
-          lineNumbers: "text-violet-600",
-          highlight: "bg-fuchsia-900/30",
-          border: "border-fuchsia-800",
-          header:
-            "bg-violet-900 bg-gradient-to-r from-violet-900 to-fuchsia-900",
-          accent: "bg-fuchsia-600",
-          accentText: "text-fuchsia-300",
-          shadow: "shadow-lg shadow-fuchsia-500/20",
-          scrollbarThumb: "rgba(236, 72, 153, 0.3)",
+            "bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e]",
+          text: "text-[#e0e0f0]",
+          lineNumbers: "text-[#8f7ada]",
+          highlight: "bg-[#3e2d67]/60",
+          border: "border-[#5a4b8d]",
+          header: "bg-gradient-to-r from-[#2e1a47] to-[#443266]",
+          accent: "bg-[#ff00a0]",
+          accentText: "text-[#ff00a0]",
+          shadow: "shadow-lg shadow-[#ff00a0]/20",
+          scrollbarThumb: "rgba(255, 0, 160, 0.3)",
         };
+
       default:
         return {
           background: "bg-zinc-900",
@@ -179,28 +414,22 @@ export function AnimatedCodeBlock({
         };
     }
   };
-  const themeStyles = getThemeStyles();
 
-  // Calculate extra lines needed to fill the screen
+  const themeStyles = getThemeStyles();
   useEffect(() => {
     if (isFullscreen) {
       const updateExtraLines = () => {
         if (codeContainerRef.current && lineNumbersRef.current) {
           const containerHeight = codeContainerRef.current.clientHeight;
-          const lineHeight = 24; // Each line is 24px (h-6)
+          const lineHeight = 24;
           const codeLines = code.split("\n").length;
           const visibleLines = Math.floor(containerHeight / lineHeight);
           const extraLinesNeeded = Math.max(0, visibleLines - codeLines);
           setExtraLines(extraLinesNeeded);
         }
       };
-
-      // Initial calculation
       updateExtraLines();
-
-      // Recalculate on window resize
       window.addEventListener("resize", updateExtraLines);
-
       return () => {
         window.removeEventListener("resize", updateExtraLines);
       };
@@ -281,20 +510,20 @@ export function AnimatedCodeBlock({
     const element = document.createElement("a");
     const file = new Blob([code], { type: "text/plain" });
     element.href = URL.createObjectURL(file);
-    element.download = `code.${theme}`;
+    element.download = `code.${language}`;
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
   };
+
   const codeLines = code.split("\n");
+
   const renderLines = () => {
     let remainingChars = currentPosition;
     const result = [];
-
     for (let i = 0; i < codeLines.length; i++) {
       const line = codeLines[i];
       const lineLength = line.length + 1;
-
       if (remainingChars <= 0) {
         result.push("");
       } else if (remainingChars >= lineLength) {
@@ -305,30 +534,28 @@ export function AnimatedCodeBlock({
         remainingChars = 0;
       }
     }
-
     return result;
   };
 
   const displayedLines = completed ? code.split("\n") : renderLines();
+
   const getCursorLineIndex = () => {
     if (!isPlaying && !isPaused) return -1;
-
     let charsProcessed = 0;
     for (let i = 0; i < codeLines.length; i++) {
       const lineLength = codeLines[i].length + 1;
       charsProcessed += lineLength;
-
       if (currentPosition < charsProcessed) {
         return i;
       }
     }
-
     return codeLines.length - 1;
   };
+
   const cursorLineIndex = getCursorLineIndex();
   const progressPercentage = Math.min(
     100,
-    (currentPosition / code.length) * 100,
+    (currentPosition / code.length) * 100
   );
 
   return (
@@ -342,14 +569,19 @@ export function AnimatedCodeBlock({
         themeStyles.shadow,
         "border transition-all duration-300",
         isFullscreen ? "fixed inset-0 z-50 rounded-none h-screen" : "",
-        className,
+        className
       )}
     >
-      <style dangerouslySetInnerHTML={{ __html: getScrollbarStyles(theme) }} />
+      <style
+        dangerouslySetInnerHTML={{
+          __html: getScrollbarStyles(theme) + getPrismThemeStyles(theme),
+        }}
+      />
+
       <div
         className={cn(
           "flex items-center justify-between p-3 border-b border-opacity-20",
-          themeStyles.header,
+          themeStyles.header
         )}
       >
         <div className="flex items-center gap-4 min-w-0 flex-1">
@@ -368,7 +600,7 @@ export function AnimatedCodeBlock({
                 onMouseEnter={() => setShowTooltip("restart")}
                 onMouseLeave={() => setShowTooltip("")}
                 className={cn(
-                  "p-1.5 rounded-full hover:bg-white/10 transition-colors relative",
+                  "p-1.5 rounded-full hover:bg-white/10 transition-colors relative"
                 )}
                 aria-label="Repeat animation"
               >
@@ -386,7 +618,7 @@ export function AnimatedCodeBlock({
                 onMouseLeave={() => setShowTooltip("")}
                 className={cn(
                   "p-1.5 rounded-full hover:bg-white/10 transition-colors relative",
-                  isPlaying ? themeStyles.accent : "",
+                  isPlaying ? themeStyles.accent : ""
                 )}
                 aria-label={isPlaying ? "Pause" : "Play"}
               >
@@ -404,7 +636,7 @@ export function AnimatedCodeBlock({
               onMouseLeave={() => setShowTooltip("")}
               className={cn(
                 "p-1.5 rounded-full hover:bg-white/10 transition-colors relative",
-                copied ? themeStyles.accent : "",
+                copied ? themeStyles.accent : ""
               )}
               aria-label="Copy code"
             >
@@ -456,11 +688,10 @@ export function AnimatedCodeBlock({
                 ? "bg-emerald-400"
                 : theme === "cyberpunk"
                   ? "bg-fuchsia-400"
-                  : "bg-blue-400",
+                  : "bg-blue-400"
             )}
           />
         )}
-
         <div className="h-0.5 w-full bg-black/20 dark:bg-white/10 flex-shrink-0">
           <motion.div
             className={cn("h-full", themeStyles.accent)}
@@ -469,7 +700,6 @@ export function AnimatedCodeBlock({
             transition={{ duration: 0.1 }}
           />
         </div>
-
         <div
           className="relative flex-grow overflow-hidden"
           ref={codeContainerRef}
@@ -478,8 +708,8 @@ export function AnimatedCodeBlock({
             className="absolute top-0 right-0 bottom-0 w-12 pointer-events-none z-10 opacity-50"
             style={{
               background:
-                theme === "minimal"
-                  ? "linear-gradient(to left, rgba(255, 251, 235, 0.8) 10%, transparent 100%)"
+                theme === "nightowl"
+                  ? "linear-gradient(to left, rgba(11, 41, 66, 0.5) 10%, transparent 100%)"
                   : theme === "terminal"
                     ? "linear-gradient(to left, rgba(2, 6, 23, 0.8) 10%, transparent 100%)"
                     : theme === "cyberpunk"
@@ -491,8 +721,8 @@ export function AnimatedCodeBlock({
             className="absolute top-0 left-0 bottom-0 w-12 pointer-events-none z-10 opacity-50"
             style={{
               background:
-                theme === "minimal"
-                  ? "linear-gradient(to right, rgba(255, 251, 235, 0.8) 10%, transparent 100%)"
+                theme === "nightowl"
+                  ? "linear-gradient(to right, rgba(11, 41, 66, 0.8) 10%, transparent 100%)"
                   : theme === "terminal"
                     ? "linear-gradient(to right, rgba(2, 6, 23, 0.8) 10%, transparent 100%)"
                     : theme === "cyberpunk"
@@ -500,20 +730,16 @@ export function AnimatedCodeBlock({
                       : "linear-gradient(to right, rgba(24, 24, 27, 0.8) 10%, transparent 100%)",
             }}
           />
-
           <div className="overflow-auto code-scrollbar h-full">
-            <style
-              dangerouslySetInnerHTML={{ __html: getScrollbarStyles(theme) }}
-            />
             <div className="flex min-w-full h-full">
               {showLineNumbers && (
                 <div
                   ref={lineNumbersRef}
                   className={cn(
-                    "text-xs py-4 px-3 text-right select-none border-r border-opacity-20 sticky left-0 h-full flex flex-col",
+                    "text-xs py-4 px-3 text-right select-none border-r border-opacity-20 sticky -left-1 h-full flex flex-col z-10",
                     themeStyles.lineNumbers,
                     themeStyles.border,
-                    themeStyles.background,
+                    themeStyles.background
                   )}
                 >
                   <div className="flex flex-col">
@@ -536,38 +762,56 @@ export function AnimatedCodeBlock({
                   </div>
                 </div>
               )}
-
-              <div className="relative py-4 flex-grow h-full" ref={codeRef}>
+              <div className="relative py-4 flex-grow h-full z-1" ref={codeRef}>
                 {highlightLines.map((lineNum) => (
                   <div
                     key={`highlight-${lineNum}`}
                     className={cn(
                       "absolute left-0 right-0 h-6",
-                      themeStyles.highlight,
+                      themeStyles.highlight
                     )}
                     style={{ top: `${(lineNum - 1) * 24 + 16}px` }}
                   />
                 ))}
-
                 <div className="relative z-10 px-4 font-mono text-sm h-full">
-                  {codeLines.map((line, i) => (
-                    <div key={i} className="h-6 whitespace-pre">
-                      {displayedLines[i] || ""}
-                      {i === cursorLineIndex && (
-                        <motion.span
-                          className={cn(
-                            "inline-block w-2 h-5 -mb-0.5",
-                            themeStyles.accentText,
+                  {completed ? (
+                    <div
+                      className="whitespace-pre"
+                      dangerouslySetInnerHTML={{ __html: highlightedCode }}
+                    />
+                  ) : (
+                    <>
+                      {codeLines.map((line, i) => (
+                        <div key={i} className="h-6 whitespace-pre">
+                          {displayedLines[i] && (
+                            <span
+                              dangerouslySetInnerHTML={{
+                                __html: Prism.highlight(
+                                  displayedLines[i],
+                                  Prism.languages[language] ||
+                                    Prism.languages.javascript,
+                                  language
+                                ),
+                              }}
+                            />
                           )}
-                          animate={{ opacity: [1, 0] }}
-                          transition={{
-                            repeat: Number.POSITIVE_INFINITY,
-                            duration: 0.8,
-                          }}
-                        />
-                      )}
-                    </div>
-                  ))}
+                          {i === cursorLineIndex && (
+                            <motion.span
+                              className={cn(
+                                "inline-block w-2 h-5 -mb-0.5",
+                                themeStyles.accentText
+                              )}
+                              animate={{ opacity: [1, 0] }}
+                              transition={{
+                                repeat: Number.POSITIVE_INFINITY,
+                                duration: 0.8,
+                              }}
+                            />
+                          )}
+                        </div>
+                      ))}
+                    </>
+                  )}
                   {Array.from({ length: extraLines }).map((_, i) => (
                     <div key={`extra-${i}`} className="h-6 whitespace-pre">
                       &nbsp;
@@ -579,18 +823,19 @@ export function AnimatedCodeBlock({
           </div>
         </div>
       </div>
+
       <div
         className={cn(
           "px-4 py-2 text-xs border-t border-opacity-20 flex justify-between items-center",
           themeStyles.header,
-          themeStyles.border,
+          themeStyles.border
         )}
       >
         <div className="flex items-center gap-2">
           <div
             className={cn(
               "w-2 h-2 rounded-full",
-              isPlaying ? "bg-green-500" : "bg-gray-500",
+              isPlaying ? "bg-green-500" : "bg-gray-500"
             )}
           ></div>
           <span>
@@ -599,6 +844,7 @@ export function AnimatedCodeBlock({
         </div>
         <div>{Math.round(progressPercentage)}% complete</div>
       </div>
+
       <AnimatePresence>
         {isFullscreen && (
           <motion.div

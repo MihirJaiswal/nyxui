@@ -21,11 +21,12 @@ function useDataFetching(url) {
     <div className="w-full max-w-4xl mx-auto rounded-md overflow-hidden relative">
       <AnimatedCodeBlock
         code={examples[0].code}
-        theme="dark"
+        theme="nightowl"
         title="FetchData.tsx"
         typingSpeed={50}
         showLineNumbers={true}
         autoPlay={true}
+        language="typescript"
         highlightLines={[1, 4, 10]}
         loop={true}
       />

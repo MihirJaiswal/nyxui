@@ -122,6 +122,9 @@ importers:
       posthog-js:
         specifier: ^1.239.1
         version: 1.239.1
+      prismjs:
+        specifier: ^1.30.0
+        version: 1.30.0
       react:
         specifier: ^19.0.0
         version: 19.1.0
@@ -201,6 +204,9 @@ importers:
       '@types/node':
         specifier: ^20
         version: 20.17.30
+      '@types/prismjs':
+        specifier: ^1.26.5
+        version: 1.26.5
       '@types/react':
         specifier: ^19.0.12
         version: 19.1.1
@@ -1903,6 +1909,9 @@ packages:
 
   '@types/offscreencanvas@2019.7.3':
     resolution: {integrity: sha512-ieXiYmgSRXUDeOntE1InxjWyvEelZGP63M+cGuquuRLuIKKT1osnkXjxev9B7d1nXSug5vpunx+gNlbVxMlC9A==}
+
+  '@types/prismjs@1.26.5':
+    resolution: {integrity: sha512-AUZTa7hQ2KY5L7AmtSiqxlhWxb4ina0yd8hNbl4TWuqnv/pFP0nDMb3YrfSBf4hJVGLh2YEIBfKaBW/9UEl6IQ==}
 
   '@types/react-dom@19.1.2':
     resolution: {integrity: sha512-XGJkWF41Qq305SKWEILa1O8vzhb3aOo3ogBlSmiqNko/WmRb6QIaweuZCXjKygVDXpzXb5wyxKTSOsmkuqj+Qw==}
@@ -7731,6 +7740,8 @@ snapshots:
       undici-types: 6.19.8
 
   '@types/offscreencanvas@2019.7.3': {}
+
+  '@types/prismjs@1.26.5': {}
 
   '@types/react-dom@19.1.2(@types/react@19.1.1)':
     dependencies:

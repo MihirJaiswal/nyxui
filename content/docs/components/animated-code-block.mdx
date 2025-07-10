@@ -32,7 +32,7 @@ npx shadcn@latest add "https://nuvyxui.vercel.app/r/animated-code-block.json"
 <Step>Install dependencies.</Step>
 
 ```bash
-npm install framer-motion lucide-react clsx tailwind-merge
+npm install framer-motion lucide-react clsx tailwind-merge prismjs 
 ```
 
 <Step>Create a utils.ts file with the cn utility function</Step>
@@ -81,7 +81,7 @@ import { AnimatedCodeBlock } from "@/components/ui/animated-code-block";
 | Prop              | Type         | Default     | Description                                           |
 | ----------------- | ------------ | ----------- | ----------------------------------------------------- |
 | `code`            | `string`     | `""`        | The code to display and animate                       |
-| `theme`           | `string`     | `"dark"`    | The visual theme (dark, terminal, cyberpunk, minimal) |
+| `theme`           | `string`     | `"dark"`    | The visual theme (dark, terminal, cyberpunk, nightowl) |
 | `typingSpeed`     | `number`     | `50`        | The speed of the typing animation in milliseconds     |
 | `showLineNumbers` | `boolean`    | `true`      | Whether to show line numbers                          |
 | `highlightLines`  | `number[]`   | `[]`        | Array of line numbers to highlight                    |
@@ -92,3 +92,4 @@ import { AnimatedCodeBlock } from "@/components/ui/animated-code-block";
 | `showControls`    | `boolean`    | `true`      | Whether to show play/pause and copy controls          |
 | `onCopy`          | `() => void` | `undefined` | Callback function when code is copied                 |
 | `className`       | `string`     | `""`        | Additional CSS classes to apply                       |
+| `language`        | `string`     | `"javascript"` | Language for syntax highlighting (e.g., javascript, python, etc.) |

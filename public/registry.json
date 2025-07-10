@@ -23,7 +23,8 @@
       "description": "A code display component with real-time typing effects. Supports syntax highlighting and customizable themes.",
       "dependencies": [
         "motion",
-        "lucide-react"
+        "lucide-react",
+        "prismjs"
       ],
       "files": [
         {

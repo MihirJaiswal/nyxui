@@ -7,7 +7,7 @@ export const ui: Registry["items"] = [
     title: "Animated Code Block",
     description:
       "A code display component with real-time typing effects. Supports syntax highlighting and customizable themes.",
-    dependencies: ["motion", "lucide-react"],
+    dependencies: ["motion", "lucide-react", "prismjs"],
     files: [
       {
         path: "registry/ui/animated-code-block.tsx",
