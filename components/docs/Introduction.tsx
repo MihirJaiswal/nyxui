@@ -10,11 +10,11 @@ import { ChevronUp } from "lucide-react";
 
 export default function IntroductionPage() {
   return (
-    <div className="container max-w-5xl py-6 mx-auto">
+    <div className="sm:container max-w-5xl py-6 mx-auto">
       <div className="space-y-10">
         <div className="space-y-2" id="introduction">
           <h1 className="text-4xl font-bold tracking-tight">Introduction</h1>
-          <p className="text-gray-700 dark:text-gray-300 text-lg">
+          <p className="text-gray-700 dark:text-gray-300 md:text-lg">
             <span className="inline-block align-top no-underline">
               Craft animated landing pages using ready-to-use components that
               you can simply copy and integrate into your applications.
@@ -38,7 +38,7 @@ export default function IntroductionPage() {
             <h2 className="text-3xl font-bold tracking-tight mb-4">
               What is Nuvyx UI?
             </h2>
-            <p className="text-lg leading-7 text-gray-700 dark:text-gray-300">
+            <p className="md:text-lg leading-7 text-gray-700 dark:text-gray-300">
               Nuvyx UI is a top-notch set of reusable components, templates, and
               blocks designed for seamless integration into your web projects.
               It focuses on offering components, blocks, and templates ideal for
