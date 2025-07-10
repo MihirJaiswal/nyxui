@@ -22,7 +22,7 @@ function useDataFetching(url) {
       <AnimatedCodeBlock
         code={examples[0].code}
         theme="dark"
-        title="FetchData.tsx"
+        title="FetchData.jsx"
         typingSpeed={50}
         showLineNumbers={true}
         autoPlay={true}
