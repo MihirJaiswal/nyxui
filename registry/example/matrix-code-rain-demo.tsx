@@ -23,8 +23,8 @@ export default function MatrixCodeRainDemo() {
   };
 
   return (
-    <div className="w-full h-[450px] relative overflow-hidden">
-      <div className="absolute top-0 left-0 right-0 bottom-0">
+    <div className="absolute bottom-0 left-0 w-full overflow-hidden">
+      <div>
         <MatrixCodeRain color={color} />
       </div>
 
