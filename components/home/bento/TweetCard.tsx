@@ -17,7 +17,7 @@ export const TwitterCard = () => {
       intensity={4}
       hoverEffect
       speed="normal"
-      className="w-full rounded-xl max-w-full h-full mx-auto bg-gray-950 shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 border-gray-600 from-gray-950 via-gray-950 to-gray-950 border-none"
+      className="w-full rounded-xl max-w-full h-full mx-auto bg-black shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 border-gray-600 from-gray-950 via-gray-950 to-gray-950 border-none"
     >
       <div
         className="p-3 sm:p-5"
@@ -70,11 +70,11 @@ export const TwitterCard = () => {
             <span className="font-bold ">#webdev</span>{" "}
             <span className="font-bold">#tailwindcss</span>
           </p>
-          <div className="mt-2 sm:mt-3 border border-purple-900/50 bg-black rounded-lg p-2 sm:p-3 text-xs sm:text-sm font-mono overflow-hidden">
+          <div className="mt-2 sm:mt-3 border border-gray-600/50 bg-gray-950 rounded-lg p-2 sm:p-3 text-xs sm:text-sm font-mono overflow-hidden">
             <MajesticCard
               variant={isHovering ? "magnetic" : "float"}
               intensity={4}
-              className="hidden md:block bg-black dark:bg-black border-none shadow-none"
+              className="hidden md:block  border-none shadow-none"
             >
               <div className="flex items-center p-1 sm:p-2 text-gray-500 dark:text-gray-400 text-xs mb-1">
                 <div className="flex space-x-1 mr-2">

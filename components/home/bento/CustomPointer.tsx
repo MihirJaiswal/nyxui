@@ -27,7 +27,7 @@ export const CustomPointer = () => (
     >
       <div className={"relative h-[400px] w-full overflow-hidden mt-[52px]"}>
         <div className="relative flex h-full w-full justify-end pt-4">
-          <div className="relative z-[1] h-full w-3/4 rounded-tl-xl bg-white px-6 pt-6 shadow-xl md:w-7/12">
+          <div className="relative z-[1] h-full w-3/4 rounded-tl-xl bg-white dark:bg-[#FBF1E4] px-6 pt-6 shadow-xl md:w-7/12">
             <div className="flex w-full items-center justify-start gap-4 ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -105,12 +105,12 @@ export const CustomPointer = () => (
               </svg>
             </div>
             <div className="mt-10 text-7xl font-thin text-black">
-              <div className="relative max-w-sm border-[1.5px] border-cyan-300 px-0.5">
+              <div className="relative max-w-sm border-[1.5px] border-blue-400 px-0.5">
                 Build great UI.
-                <div className="absolute bottom-0 right-0 h-1 w-1 translate-x-1/2 translate-y-1/2 rounded-full bg-cyan-300" />
-                <div className="absolute bottom-0 left-0 h-1 w-1 -translate-x-1/2 translate-y-1/2 rounded-full bg-cyan-300" />
-                <div className="absolute right-0 top-0 h-1 w-1 -translate-y-1/2 translate-x-1/2 rounded-full bg-cyan-300" />
-                <div className="absolute left-0 top-0 h-1 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-300" />
+                <div className="absolute bottom-0 right-0 h-1 w-1 translate-x-1/2 translate-y-1/2 rounded-full bg-blue-400" />
+                <div className="absolute bottom-0 left-0 h-1 w-1 -translate-x-1/2 translate-y-1/2 rounded-full bg-blue-400" />
+                <div className="absolute right-0 top-0 h-1 w-1 -translate-y-1/2 translate-x-1/2 rounded-full bg-blue-400" />
+                <div className="absolute left-0 top-0 h-1 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-400" />
               </div>
             </div>
           </div>
