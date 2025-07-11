@@ -89,15 +89,26 @@ import { CyberpunkCard } from "@/components/ui/cyberpunk-card";
 
 ### Cyberpunk Card
 
-| Prop            | Type              | Default       | Description                                                                                                                    |
-| --------------- | ----------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| `theme`         | `string`          | `"neon-blue"` | The color theme of the card. Possible values: "neon-blue", "neon-pink", "neon-green", "neon-orange", "neon-purple", "custom"   |
-| `customColors`  | `object`          | `undefined`   | Custom colors for the card when theme is set to "custom". The object should include properties: primary, secondary, and accent |
-| `borderStyle`   | `string`          | `"solid"`     | The border style of the card. Possible values: "solid", "dashed", "glitch", "corners"                                          |
-| `colorShift`    | `boolean`         | `true`        | Whether to enable the color shift effect                                                                                       |
-| `lightTrail`    | `boolean`         | `true`        | Whether to enable the light trail effect                                                                                       |
-| `rounded`       | `string`          | `"md"`        | The border radius of the card. Possible values: "none", "sm", "md", "lg"                                                       |
-| `glow`          | `boolean`         | `true`        | Whether to show a glow effect                                                                                                  |
-| `glowIntensity` | `number`          | `3`           | The intensity of the glow effect (1-5)                                                                                         |
-| `className`     | `string`          | `""`          | Additional CSS classes to apply                                                                                                |
-| `children`      | `React.ReactNode` | `undefined`   | Content of the card                                                                                                            |
+| Prop                | Type              | Default       | Description                                                                                                                                                             |
+| ------------------- | ----------------- | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `theme`             | `string`          | `"neon-blue"` | The color theme of the card. Possible values: "neon-blue", "neon-pink", "neon-green", "neon-orange", "neon-purple", "matrix-green", "cyber-red", "hologram", "custom"   |
+| `customColors`      | `object`          | `undefined`   | Custom colors for the card when theme is set to "custom". The object should include properties: primary, secondary, and accent                                          |
+| `borderStyle`       | `string`          | `"solid"`     | The border style of the card. Possible values: "solid", "dashed", "glitch", "corners", "animated", "circuit"                                                            |
+| `colorShift`        | `boolean`         | `true`        | Whether to enable the color shift effect                                                                                                                                |
+| `lightTrail`        | `boolean`         | `true`        | Whether to enable the light trail effect                                                                                                                                |
+| `rounded`           | `string`          | `"md"`        | The border radius of the card. Possible values: "none", "sm", "md", "lg"                                                                                                |
+| `glow`              | `boolean`         | `true`        | Whether to show a glow effect                                                                                                  |
+| `glowIntensity`     | `number`          | `3`           | The intensity of the glow effect (1-5)                                                                                         |
+| `backgroundEffect`  | `string`          | `"none"`      | Background visual effect. Possible values: "none", "circuit", "matrix", "scanlines", "particles", "waves"                     |
+| `pulseAnimation`    | `boolean`         | `false`       | Whether to enable pulsing animation effect                                                                                     |
+| `glitchEffect`      | `boolean`         | `false`       | Whether to enable glitch visual effect                                                                                         |
+| `hologramFlicker`   | `boolean`         | `false`       | Whether to enable hologram flickering effect                                                                                   |
+| `dataStream`        | `boolean`         | `false`       | Whether to show animated data stream effect                                                                                    |
+| `loading`           | `boolean`         | `false`       | Whether to show loading state with animations                                                                                  |
+| `animationSpeed`    | `string`          | `"normal"`    | Speed of animations. Possible values: "slow", "normal", "fast"                                                                |
+| `className`         | `string`          | `""`          | Additional CSS classes to apply                                                                                                |
+| `children`          | `React.ReactNode` | `undefined`   | Content of the card                                                                                                              |
+
+
+
+
