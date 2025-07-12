@@ -147,7 +147,7 @@ export const ImageScannerDemo = () => {
   }, [])
 
   return (
-    <div className="bg-white shadow-2xl dark:bg-black border md:scale-90 relative border-gray-200 dark:border-gray-800 rounded-xl p-3 sm:p-4 lg:p-6 text-gray-900 dark:text-white">
+    <div className="bg-white shadow-xl shadow-gray-600/50 dark:bg-black border md:scale-90 relative border-gray-200 dark:border-gray-800 rounded-xl p-3 sm:p-4 lg:p-6 text-gray-900 dark:text-white">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 sm:mb-8 gap-4">
