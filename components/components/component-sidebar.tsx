@@ -41,6 +41,27 @@ export const ComponentSidebar = () => {
     <aside className="fixed top-16 z-30 lg:sticky hidden h-[calc(100vh-4rem)] w-72 shrink-0 lg:block backdrop-blur-md pt-[22px]">
       <div className="h-full py-4">
         <div className="flex h-full flex-col ml-14">
+          {/* Follow for updates section */}
+          <div className="space-y-2 md:space-y-3 mb-2">
+            <div className="font-bold tracking-wider text-black dark:text-white px-1 md:px-2 text-sm md:text-base">
+              Follow for updates
+            </div>
+            <div className="space-y-0.5">
+              <a 
+                className="group flex items-center w-full text-xs md:text-sm py-1.5 md:py-2 rounded-md transition-all duration-200 hover:text-foreground text-black dark:text-[#A1A1AA] hover:bg-muted/50 ml-2 group-hover:ml-2 transition-all duration-200"
+                target="_blank" 
+                rel="noopener noreferrer" 
+                href="https://x.com/nuvyx_ui"
+              >
+                Twitter @nuvyx_ui
+              </a>
+            </div>
+            <div className="w-full">
+              <div className="shrink-0 bg-border h-[1px] w-full" />
+            </div>
+          </div>
+
+          {/* Use your original ComponentSidebarClient */}
           <ComponentSidebarClient
             gettingStartedSection={{
               title: "Getting Started",

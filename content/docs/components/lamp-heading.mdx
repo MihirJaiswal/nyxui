@@ -1,10 +1,10 @@
 ---
 title: Lamp Heading
 date: 2025-05-09
-description: An elegant section heading with a customizable gradient underline and a subtle lamp-like glow effect and nice little animation.
+description: An elegant section heading with a customizable gradient underline and a stunning lamp-like glow effect with particles, light rays, and smooth animations.
 author: MihirJaiswal
 published: true
-tags: ["Typography", "Effects", "Futuristic"]
+tags: ["Typography", "Effects", "Futuristic", "Particles", "Animation"]
 ---
 
 <ComponentPreview name="lamp-heading-demo" />
@@ -32,7 +32,7 @@ npx shadcn@latest add "https://nuvyxui.vercel.app/r/lamp-heading.json"
 <Step>Install dependencies.</Step>
 
 ```bash
-npm install clsx tailwind-merge
+npm install clsx tailwind-merge framer-motion
 ```
 
 <Step>Create a utils.ts file with the cn utility function.</Step>
@@ -73,42 +73,46 @@ import { LampHeading } from "@/components/ui/lamp-heading";
 <LampHeading
   text="About Us"
   className="text-3xl font-bold tracking-tight"
+  textSize="3xl"
 />
 
-// Custom gradient colors
+// Custom gradient colors with via color
 <LampHeading
   text="Our Services"
-  gradientColors={{ from: "#8a2be2", to: "#ff8c00" }}
+  gradientColors={{ 
+    from: "#8a2be2", 
+    via: "#ff69b4", 
+    to: "#ff8c00" 
+  }}
 />
 
-// Modified glow effect
+// Modified glow effect with particles
 <LampHeading
   text="Portfolio"
-  glowIntensity={0.9}
-  glowSize={30}
+  glowIntensity={1.2}
+  glowSize={35}
   direction="above"
-/>
-
-// Fully customized example
-<LampHeading
-  text="Contact Us"
-  className="text-4xl font-extrabold text-slate-800"
-  gradientColors={{ from: "#06b6d4", to: "#3b82f6" }}
-  lineHeight={3}
-  glowIntensity={0.8}
-  glowSize={25}
-  direction="below"
+  showParticles={true}
+  showLightRays={true}
 />
 ```
 
 ## Props
 
-| Prop             | Type     | Default                              | Description                                                                                          |
-| ---------------- | -------- | ------------------------------------ | ---------------------------------------------------------------------------------------------------- |
-| `text`           | `string` | `""`                                 | The text content of the heading                                                                      |
-| `className`      | `string` | `""`                                 | Additional CSS classes to apply for styling the heading, including text color, font size, and weight |
-| `gradientColors` | `object` | `{ from: "#ff3366", to: "#338ef7" }` | The gradient colors used for the underline. Object should include 'from' and 'to' color hex values   |
-| `lineHeight`     | `number` | `2`                                  | The height of the underline in pixels                                                                |
-| `glowIntensity`  | `number` | `0.7`                                | The intensity of the glow effect (0-1)                                                               |
-| `glowSize`       | `number` | `20`                                 | The size of the glow effect in pixels                                                                |
-| `direction`      | `string` | `"below"`                            | The direction of the glow effect (above or below)                                                    |
+| Prop             | Type                                                              | Default                                                    | Description                                                                                          |
+| ---------------- | ----------------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `text`           | `string`                                                          | `""`                                                       | The text content of the heading                                                                      |
+| `className`      | `string`                                                          | `""`                                                       | Additional CSS classes to apply for styling the heading                                              |
+| `gradientColors` | `object`                                                          | `{ from: "#FF33C7", via: "#CD35FF", to: "#4533F7" }`       | The gradient colors used for the underline and effects. Object with 'from', optional 'via', and 'to' |
+| `lineHeight`     | `number`                                                          | `4`                                                        | The height of the underline in pixels                                                                |
+| `lampHeight`     | `number`                                                          | `80`                                                       | The height of the lamp cone effect in pixels                                                         |
+| `glowIntensity`  | `number`                                                          | `1.0`                                                      | The intensity of the glow effect (0-2)                                                               |
+| `glowSize`       | `number`                                                          | `30`                                                       | The size of the glow effect in pixels                                                                |
+| `animationSpeed` | `number`                                                          | `4`                                                        | The speed of animations in seconds                                                                   |
+| `direction`      | `"above" \| "below"`                                              | `"below"`                                                  | The direction of the lamp effect (above or below the text)                                           |
+| `showParticles`  | `boolean`                                                         | `true`                                                     | Whether to show floating particles effect                                                            |
+| `showLightRays`  | `boolean`                                                         | `false`                                                    | Whether to show light rays emerging from the underline                                               |
+| `interactive`    | `boolean`                                                         | `true`                                                     | Whether the lamp responds to hover interactions                                                      |
+| `textSize`       | `string`                                                          | `"4xl"`                                                    | The size of the text (sm, md, lg, xl, 2xl, 3xl, 4xl)                                                 |
+| `pulseEffect`    | `boolean`                                                         | `true`                                                     | Whether to show a subtle pulse animation on the underline                                            |
+

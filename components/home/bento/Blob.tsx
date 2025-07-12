@@ -18,10 +18,13 @@ const Blob = () => {
           <LampHeading
             text="Bulid Innovative"
             gradientColors={{ from: "#6e15ad", to: "#d413ad" }}
-            direction="above"
-            lineHeight={5}
+            direction="below"
+            lampHeight={50}
+            lineHeight={3}
             glowIntensity={0.4}
-            className="text-2xl font-bold text-white"
+            textSize="2xl"
+            showLightRays
+            className="font-bold text-white"
           />
         </div>
       </div>

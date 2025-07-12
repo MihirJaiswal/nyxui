@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import React, { useState, useEffect, useRef } from "react";
 import { cn } from "../../lib/utils";
 import { Minus } from "lucide-react";
-import { Separator } from "../ui/separator";
 
 interface CategoryItem {
   name: string;
@@ -21,13 +20,13 @@ interface GettingStartedSection {
 interface ComponentSidebarClientProps {
   gettingStartedSection: GettingStartedSection;
   componentItems: CategoryItem[]; 
-  templateItems?: CategoryItem[]; // Add this new prop
+  templateItems?: CategoryItem[];
 }
 
 export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
   gettingStartedSection,
   componentItems,
-  templateItems = [], // Default to empty array
+  templateItems = [],
 }) => {
   const currentPath = usePathname();
   const [isScrolling, setIsScrolling] = useState(false);
@@ -66,17 +65,17 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
           key={item.href}
           href={item.href}
           className={cn(
-            "group flex items-center w-full text-xs md:text-sm py-1.5 md:py-2 rounded-md transition-all duration-200",
+            "group relative flex w-full items-center rounded-md border border-transparent py-1 transition duration-200 hover:translate-x-1 hover:text-black dark:hover:text-white text-sm hide-scrollbar",
             isActive
-              ? "bg-primary/10 text-primary font-medium"
-              : "text-foreground/70 hover:text-foreground hover:bg-muted/50",
+              ? "text-foreground font-medium"
+              : "text-muted-foreground"
           )}
         >
           {isActive && (
             <Minus
-              className="mr-1 text-purple-500"
+              className="mr-1 text-violet-500"
               size={20}
-              fill="#3455eb"
+              fill="#9C27B0"
               style={{ transform: "rotate(90deg)" }}
             />
           )}
@@ -85,7 +84,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
               "truncate",
               isActive
                 ? "ml-0"
-                : "ml-2 group-hover:ml-2 transition-all duration-200 text-gray-800 dark:text-[#A1A1AA]",
+                : "ml-2 group-hover:ml-2 transition-all duration-200"
             )}
           >
             {item.name}
@@ -93,7 +92,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
 
           {/* NEW badge */}
           {item.isNew && (
-            <span className="ml-1 md:ml-2 px-1 py-0.5 text-xs font-medium border border-purple-500 text-purple-500 dark:text-white rounded-md">
+            <span className="ml-2 rounded-md border border-violet-400 bg-violet-200 px-1.5 py-0.5 text-xs leading-none text-violet-700 no-underline group-hover:no-underline dark:bg-violet-300/10 dark:text-violet-500">
               New
             </span>
           )}
@@ -114,11 +113,11 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
     >
       <div className="space-y-6 md:space-y-5 hide-scrollbar">
         {/* Getting Started Section */}
-        <div className="space-y-2 md:space-y-3 mb-4 md:mb-6">
-          <div className="font-bold tracking-wider text-black dark:text-white px-1 md:px-2 text-sm md:text-base">
+        <div className="">
+          <h4 className="mb-1 rounded-md px-2 py-1 text-sm font-semibold text-black dark:text-white">
             {gettingStartedSection.title}
-          </div>
-          <div className="space-y-0.5">
+          </h4>
+          <div className="grid grid-flow-row auto-rows-max text-sm">
             {gettingStartedSection.items.map((item) => {
               const isActive = currentPath === item.href;
               return (
@@ -126,15 +125,15 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "group flex items-center w-full text-xs md:text-sm py-1.5 md:py-2 rounded-md transition-all duration-200",
+                    "group relative flex w-full items-center rounded-md border border-transparent py-1 transition duration-200 hover:translate-x-1 hover:text-black dark:hover:text-white",
                     isActive
-                      ? "bg-primary/10 text-gray-800 dark:text-white font-medium"
-                      : "hover:text-foreground text-black dark:text-[#A1A1AA] hover:bg-muted/50",
+                      ? "text-foreground font-medium"
+                      : "text-muted-foreground"
                   )}
                 >
                   {isActive && (
                     <Minus
-                      className="mr-1 text-purple-500"
+                      className="mr-1 text-violet-500"
                       size={20}
                       fill="#9C27B0"
                       style={{ transform: "rotate(90deg)" }}
@@ -145,7 +144,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
                       "truncate",
                       isActive
                         ? "ml-0"
-                        : "ml-2 group-hover:ml-2 transition-all duration-200",
+                        : "ml-2 group-hover:ml-2 transition-all duration-200"
                     )}
                   >
                     {item.name}
@@ -153,7 +152,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
 
                   {/* NEW badge */}
                   {item.isNew && (
-                    <span className="ml-1 md:ml-2 px-1 py-0.5 text-xs font-medium border border-blue-500 text-blue-500 dark:text-[#A1A1AA] rounded-md">
+                    <span className="ml-2 rounded-md border border-violet-400 bg-violet-200 px-1.5 py-0.5 text-xs leading-none text-violet-700 no-underline group-hover:no-underline dark:bg-violet-300/10 dark:text-violet-500">
                       New
                     </span>
                   )}
@@ -161,32 +160,26 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
               );
             })}
           </div>
-          <div className="w-full">
-            <Separator />
-          </div>
         </div>
 
-        {/* Templates Section - Show above components */}
+        {/* Templates Section */}
         {templateItems.length > 0 && (
-          <div className="space-y-2 md:space-y-3 mb-4 md:mb-6">
-            <h1 className="font-bold tracking-wider px-1 md:px-2 text-sm md:text-base">
+          <div>
+            <h4 className="mb-1 rounded-md px-2 py-1 text-sm font-semibold text-black dark:text-white">
               Templates
-            </h1>
-            <div className="space-y-0.5">
+            </h4>
+            <div className="grid grid-flow-row auto-rows-max text-sm">
               {renderSectionItems(templateItems)}
-            </div>
-            <div className="w-full">
-              <Separator />
             </div>
           </div>
         )}
 
         {/* Components Section */}
-        <div className="space-y-2 md:space-y-3">
-          <h1 className="font-bold tracking-wider px-1 md:px-2 text-sm md:text-base">
-            Components
-          </h1>
-          <div className="space-y-0.5">
+        <div className="pb-4">
+          <h4 className="mb-2 rounded-md px-2 py-1 text-sm font-semibold text-black dark:text-white">
+            All Components
+          </h4>
+          <div className="grid gap-1 grid-flow-row auto-rows-max text-sm">
             {renderSectionItems(componentItems)}
           </div>
         </div>
