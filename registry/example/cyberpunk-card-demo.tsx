@@ -5,7 +5,7 @@ import { ChevronRight, Cpu, Zap, Shield } from "lucide-react";
 
 export const CyberpunkCardDemo = () => {
   return (
-    <div className="flex items-center justify-center gap-20 rounded-xl scale-75 md:scale-100">
+    <div className="flex flex-col md:flex-row items-center justify-center gap-20 rounded-xl scale-75 md:scale-100">
       <CyberpunkCard
         theme="neon-pink"
         colorShift
