@@ -4,7 +4,7 @@ import type React from "react"
 import { useState } from "react"
 import reactElementToJSXString from "react-element-to-jsx-string"
 import { toast, Toaster } from "sonner"
-import LampHeading from "../ui/lamp-heading"
+import {LampHeading} from "../ui/lamp-heading"
 import { Copy, Check } from "lucide-react"
 
 interface LampCard {

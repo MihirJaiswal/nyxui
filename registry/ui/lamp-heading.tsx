@@ -1,5 +1,5 @@
 "use client"
-import { useRef, useEffect, useState } from "react"
+import { useRef, useEffect, useState, useCallback, useMemo } from "react"
 import { motion } from "framer-motion"
 import { cn } from "../../lib/utils"
 
@@ -10,6 +10,10 @@ interface Particle {
   size: number
   opacity: number
   speed: number
+  baseOpacity: number
+  phase: number
+  phaseMultiplier: number
+  speedMultiplier: number
 }
 
 interface LampHeadingProps {
@@ -31,6 +35,7 @@ interface LampHeadingProps {
   interactive?: boolean
   textSize?: "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl"
   pulseEffect?: boolean
+  particleCount?: number
 }
 
 export const LampHeading = ({
@@ -52,10 +57,14 @@ export const LampHeading = ({
   interactive = true,
   textSize = "4xl",
   pulseEffect = true,
+  particleCount = 8, 
 }: LampHeadingProps) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const [particles, setParticles] = useState<Particle[]>([])
   const [isHovered, setIsHovered] = useState(false)
+  const animationFrameRef = useRef<number | null>(null)
+  const lastUpdateRef = useRef<number>(0)
+  const particleUpdateInterval = useRef<number>(100)
 
   const textSizeClasses = {
     sm: "text-sm",
@@ -67,48 +76,81 @@ export const LampHeading = ({
     "4xl": "text-4xl",
   }
 
-  // Generate particles
-  useEffect(() => {
-    if (!showParticles) return
-    const generateParticles = () => {
-      const newParticles: Particle[] = []
-      for (let i = 0; i < 20; i++) {
-        newParticles.push({
-          id: i,
-          x: Math.random() * 100,
-          y: Math.random() * 100,
-          size: Math.random() * 2, // Increased size
-          opacity: Math.random() * 0.4 + 1, // Increased opacity
-          speed: Math.random() * 2 + 0.5,
-        })
-      }
-      setParticles(newParticles)
-    }
-    generateParticles()
-  }, [showParticles])
+  const gradientString = useMemo(() => 
+    gradientColors.via
+      ? `linear-gradient(90deg, ${gradientColors.from}, ${gradientColors.via}, ${gradientColors.to})`
+      : `linear-gradient(90deg, ${gradientColors.from}, ${gradientColors.to})`,
+    [gradientColors.from, gradientColors.via, gradientColors.to]
+  )
 
-  // Animate particles
+  const generateParticles = useCallback(() => {
+    if (!showParticles) return []
+    
+    const newParticles: Particle[] = []
+    for (let i = 0; i < particleCount; i++) {
+      const baseOpacity = Math.random() * 0.25 + 0.35 
+      const phase = Math.random() * Math.PI * 2
+      newParticles.push({
+        id: i,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        size: Math.random() * 1.2 + 0.6,
+        opacity: baseOpacity,
+        speed: Math.random() * 1.0 + 0.2, 
+        baseOpacity,
+        phase,
+        phaseMultiplier: Math.random() * 0.1 + 0.05, 
+        speedMultiplier: Math.random() * 0.008 + 0.004, 
+      })
+    }
+    return newParticles
+  }, [showParticles, particleCount])
+
+  useEffect(() => {
+    setParticles(generateParticles())
+  }, [generateParticles])
+
   useEffect(() => {
     if (!showParticles || particles.length === 0) return
-    const animateParticles = () => {
-      setParticles((prev) =>
-        prev.map((particle) => ({
-          ...particle,
-          x: (particle.x + particle.speed * 0.03) % 100,
-          opacity: 0.4 + Math.sin(Date.now() * 0.001 + particle.id) * 0.3, // Increased base opacity
-        })),
-      )
+
+    const animateParticles = (currentTime: number) => {
+      if (currentTime - lastUpdateRef.current < particleUpdateInterval.current) {
+        animationFrameRef.current = requestAnimationFrame(animateParticles)
+        return
+      }
+      
+      lastUpdateRef.current = currentTime
+      const time = currentTime * 0.0005 
+      
+      setParticles(prev => {
+        const updated = []
+        for (let i = 0; i < prev.length; i++) {
+          const particle = prev[i]
+          const newX = (particle.x + particle.speedMultiplier * 100) % 100
+          const newOpacity = particle.baseOpacity + Math.sin(time + particle.phase) * particle.phaseMultiplier
+          
+          updated.push({
+            ...particle,
+            x: newX,
+            opacity: Math.max(0.15, Math.min(0.6, newOpacity))
+          })
+        }
+        return updated
+      })
+      
+      animationFrameRef.current = requestAnimationFrame(animateParticles)
     }
-    const interval = setInterval(animateParticles, 50)
-    return () => clearInterval(interval)
+
+    animationFrameRef.current = requestAnimationFrame(animateParticles)
+    
+    return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current)
+      }
+    }
   }, [particles.length, showParticles])
 
-  const gradientString = gradientColors.via
-    ? `linear-gradient(90deg, ${gradientColors.from}, ${gradientColors.via}, ${gradientColors.to})`
-    : `linear-gradient(90deg, ${gradientColors.from}, ${gradientColors.to})`
-
-  // Updated flow animation for left to right movement
-  const flowAnimation = {
+  const flowAnimation = useMemo(() => ({
     animate: {
       backgroundPosition: ["0% 50%", "200% 50%"],
       transition: {
@@ -117,23 +159,26 @@ export const LampHeading = ({
         repeat: Number.POSITIVE_INFINITY,
       },
     },
-  }
+  }), [animationSpeed])
 
-  const pulseAnimation = pulseEffect
-    ? {
-      animate: {
-        scale: [1, 1.02, 1],
-        opacity: [0.95, 1, 0.95],
-        transition: {
-          duration: animationSpeed * 0.6,
-          ease: "easeInOut",
-          repeat: Number.POSITIVE_INFINITY,
-        },
-      },
-    }
-    : {}
+  const pulseAnimation = useMemo(() => 
+    pulseEffect
+      ? {
+          animate: {
+            scale: [1, 1.02, 1],
+            opacity: [0.95, 1, 0.95],
+            transition: {
+              duration: animationSpeed * 0.6,
+              ease: "easeInOut",
+              repeat: Number.POSITIVE_INFINITY,
+            },
+          },
+        }
+      : {},
+    [pulseEffect, animationSpeed]
+  )
 
-  const lightRayVariants = {
+  const lightRayVariants = useMemo(() => ({
     animate: {
       opacity: [0.6, 1, 0.6],
       scaleY: [0.95, 1.15, 0.95],
@@ -145,7 +190,50 @@ export const LampHeading = ({
         staggerChildren: 0.1,
       },
     },
-  }
+  }), [animationSpeed])
+
+  const particleElements = useMemo(() => {
+    if (!showParticles) return null
+    
+    return particles.map((particle) => (
+      <div
+        key={particle.id}
+        className="absolute rounded-full pointer-events-none"
+        style={{
+          left: `${particle.x}%`,
+          top: `${particle.y}%`,
+          width: `${particle.size}px`,
+          height: `${particle.size}px`,
+          background: gradientString,
+          opacity: particle.opacity,
+          filter: "blur(0.3px)",
+          boxShadow: `0 0 ${particle.size * 1.5}px ${gradientColors.from}30`, 
+          transform: `translate3d(0, 0, 0)`, 
+          willChange: 'transform, opacity', 
+          animation: `particleFloat-${particle.id} ${2.5 + particle.id * 0.2}s ease-in-out infinite`,
+        }}
+      />
+    ))
+  }, [particles, showParticles, gradientString, gradientColors.from])
+
+  useEffect(() => {
+    if (!showParticles) return
+
+    const style = document.createElement('style')
+    style.textContent = particles.map(particle => `
+      @keyframes particleFloat-${particle.id} {
+        0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+        33% { transform: translate3d(${Math.sin(particle.id) * 3}px, ${direction === "below" ? -8 : 8}px, 0) scale(1.05); }
+        66% { transform: translate3d(${Math.sin(particle.id + 1) * 2}px, ${direction === "below" ? -4 : 4}px, 0) scale(0.95); }
+      }
+    `).join('')
+    
+    document.head.appendChild(style)
+    
+    return () => {
+      document.head.removeChild(style)
+    }
+  }, [particles, showParticles, direction])
 
   return (
     <motion.div
@@ -154,12 +242,8 @@ export const LampHeading = ({
       onMouseEnter={() => interactive && setIsHovered(true)}
       onMouseLeave={() => interactive && setIsHovered(false)}
     >
-      {/* Regular Text (No gradient) */}
       <h2 className={cn("font-bold tracking-wide relative z-20 mb-3", className, textSizeClasses[textSize])}>{text}</h2>
-
-      {/* Lamp Container */}
       <div className="w-full relative">
-        {/* Enhanced Floating Particles */}
         {showParticles && (
           <div
             className="absolute pointer-events-none"
@@ -167,120 +251,99 @@ export const LampHeading = ({
               width: "100%",
               height: `${lampHeight + lineHeight + 20}px`,
               top: direction === "below" ? "0" : `-${lampHeight + 10}px`,
+              transform: 'translate3d(0, 0, 0)', 
+              willChange: 'contents',
             }}
           >
-            {particles.map((particle) => (
-              <motion.div
-                key={particle.id}
-                className="absolute rounded-full"
-                style={{
-                  left: `${particle.x}%`,
-                  top: `${particle.y}%`,
-                  width: `${particle.size}px`,
-                  height: `${particle.size}px`,
-                  background: gradientString,
-                  opacity: particle.opacity,
-                  filter: "blur(0.5px)",
-                  boxShadow: `0 0 ${particle.size * 2}px ${gradientColors.from}40`,
-                }}
-                animate={{
-                  y: direction === "below" ? [0, -20, 0] : [0, 20, 0],
-                  opacity: [particle.opacity, particle.opacity * 0.7, particle.opacity],
-                  scale: [1, 1.2, 1],
-                }}
-                transition={{
-                  duration: 3 + particle.id * 0.2,
-                  repeat: Number.POSITIVE_INFINITY,
-                  ease: "easeInOut",
-                }}
-              />
-            ))}
+            {particleElements}
           </div>
         )}
 
-        {/* Improved Light Rays emerging from underline */}
         {showLightRays && (
           <div className="absolute inset-0 pointer-events-none">
-            {[...Array(15)].map((_, i) => (
+            {[...Array(8)].map((_, i) => ( 
               <motion.div
                 key={i}
                 variants={lightRayVariants}
                 animate="animate"
                 className="absolute"
                 style={{
-                  left: `${2 + i * 6.5}%`,
-                  width: `${1.5 + Math.sin(i * 0.5) * 1}px`,
-                  height: `${lampHeight * 0.7 + Math.sin(i) * 20}px`,
+                  left: `${3 + i * 12}%`,
+                  width: `${1.5 + Math.sin(i * 0.5) * 0.8}px`,
+                  height: `${lampHeight * 0.6 + Math.sin(i) * 15}px`,
                   background:
                     direction === "below"
                       ? `linear-gradient(to bottom,
-         ${gradientColors.from}EE 0%,
-         ${gradientColors.from}CC 8%,
-         ${gradientColors.via || gradientColors.from}AA 18%,
-         ${gradientColors.to}88 30%,
-         ${gradientColors.to}55 45%,
-         ${gradientColors.to}33 65%,
-         ${gradientColors.to}18 80%,
-         ${gradientColors.to}08 90%,
+         ${gradientColors.from}DD 0%,
+         ${gradientColors.from}BB 8%,
+         ${gradientColors.via || gradientColors.from}99 18%,
+         ${gradientColors.to}77 30%,
+         ${gradientColors.to}44 45%,
+         ${gradientColors.to}22 65%,
+         ${gradientColors.to}11 80%,
+         ${gradientColors.to}05 90%,
          transparent 100%)`
                       : `linear-gradient(to top,
-         ${gradientColors.from}EE 0%,
-         ${gradientColors.from}CC 8%,
-         ${gradientColors.via || gradientColors.from}AA 18%,
-         ${gradientColors.to}88 30%,
-         ${gradientColors.to}55 45%,
-         ${gradientColors.to}33 65%,
-         ${gradientColors.to}18 80%,
-         ${gradientColors.to}08 90%,
+         ${gradientColors.from}DD 0%,
+         ${gradientColors.from}BB 8%,
+         ${gradientColors.via || gradientColors.from}99 18%,
+         ${gradientColors.to}77 30%,
+         ${gradientColors.to}44 45%,
+         ${gradientColors.to}22 65%,
+         ${gradientColors.to}11 80%,
+         ${gradientColors.to}05 90%,
          transparent 100%)`,
                   top: direction === "below" ? `${lineHeight}px` : "auto",
                   bottom: direction === "above" ? `${lineHeight}px` : "auto",
                   transformOrigin: direction === "below" ? "top" : "bottom",
                   borderRadius: "50px",
-                  filter: `blur(${0.5 + Math.sin(i) * 0.3}px)`,
-                  opacity: 0.7 + Math.sin(i * 0.3) * 0.2,
+                  filter: `blur(${0.4 + Math.sin(i) * 0.2}px)`,
+                  opacity: 0.6 + Math.sin(i * 0.3) * 0.15,
+                  transform: 'translate3d(0, 0, 0)',
+                  willChange: 'transform, opacity',
                 }}
                 transition={{
-                  delay: i * 0.03,
+                  delay: i * 0.04,
                 }}
               />
             ))}
-            {/* Additional softer rays for depth */}
-            {[...Array(10)].map((_, i) => (
+            {[...Array(4)].map((_, i) => ( 
               <motion.div
                 key={`soft-${i}`}
                 variants={lightRayVariants}
                 animate="animate"
                 className="absolute"
                 style={{
-                  left: `${5 + i * 9}%`,
-                  width: `${2.5 + Math.cos(i * 0.7) * 1.2}px`,
-                  height: `${lampHeight * 0.5 + Math.cos(i) * 15}px`,
+                  left: `${8 + i * 20}%`,
+                  width: `${2.0 + Math.cos(i * 0.7) * 1.0}px`,
+                  height: `${lampHeight * 0.4 + Math.cos(i) * 12}px`,
                   background:
                     direction === "below"
                       ? `linear-gradient(to bottom,
-         ${gradientColors.from}99 0%,
-         ${gradientColors.via || gradientColors.from}77 15%,
-         ${gradientColors.to}55 35%,
-         ${gradientColors.to}33 55%,
-         ${gradientColors.to}18 75%,
+         ${gradientColors.from}88 0%,
+         ${gradientColors.via || gradientColors.from}66 15%,
+         ${gradientColors.to}44 35%,
+         ${gradientColors.to}22 55%,
+         ${gradientColors.to}11 75%,
          transparent 100%)`
                       : `linear-gradient(to top,
-         ${gradientColors.from}99 0%,
-         ${gradientColors.via || gradientColors.from}77 15%,
-         ${gradientColors.to}55 35%,
-         ${gradientColors.to}33 55%,
-         ${gradientColors.to}18 75%,
+         ${gradientColors.from}88 0%,
+         ${gradientColors.via || gradientColors.from}66 15%,
+         ${gradientColors.to}44 35%,
+         ${gradientColors.to}22 55%,
+         ${gradientColors.to}11 75%,
          transparent 100%)`,
                   top: direction === "below" ? `${lineHeight}px` : "auto",
                   bottom: direction === "above" ? `${lineHeight}px` : "auto",
                   transformOrigin: direction === "below" ? "top" : "bottom",
                   borderRadius: "50px",
-                  filter: `blur(${1.5 + Math.cos(i) * 0.5}px)`,
-                  opacity: 0.4 + Math.cos(i * 0.4) * 0.2,
+                  filter: `blur(${1.2 + Math.cos(i) * 0.4}px)`,
+                  opacity: 0.3 + Math.cos(i * 0.4) * 0.15,
+                  transform: 'translate3d(0, 0, 0)',
+                  willChange: 'transform, opacity',
                 }}
                 transition={{
-                  delay: i * 0.06,
+                  delay: i * 0.08,
                   duration: animationSpeed * 1.2,
                 }}
               />
@@ -321,6 +384,8 @@ export const LampHeading = ({
             left: 0,
             filter: `blur(${glowSize * 1.2}px)`,
             opacity: glowIntensity * 0.8 * (isHovered ? 1.4 : 1),
+            transform: 'translate3d(0, 0, 0)',
+            willChange: 'transform, opacity',
           }}
         />
 
@@ -355,6 +420,8 @@ export const LampHeading = ({
             left: "2.5%",
             filter: `blur(${glowSize * 0.8}px)`,
             opacity: glowIntensity * 0.9 * (isHovered ? 1.3 : 1),
+            transform: 'translate3d(0, 0, 0)',
+            willChange: 'transform, opacity',
           }}
           transition={{
             duration: animationSpeed * 0.9,
@@ -390,6 +457,8 @@ export const LampHeading = ({
             left: "7.5%",
             filter: `blur(${glowSize * 0.4}px)`,
             opacity: glowIntensity * 1.0 * (isHovered ? 1.2 : 1),
+            transform: 'translate3d(0, 0, 0)',
+            willChange: 'transform, opacity',
           }}
           transition={{
             duration: animationSpeed * 1.1,
@@ -428,6 +497,8 @@ export const LampHeading = ({
             left: "15%",
             filter: `blur(${glowSize * 0.2}px)`,
             opacity: glowIntensity * 1.0 * (isHovered ? 1.1 : 1),
+            transform: 'translate3d(0, 0, 0)',
+            willChange: 'transform, opacity',
           }}
           transition={{
             duration: animationSpeed * 1.3,
@@ -451,11 +522,13 @@ export const LampHeading = ({
             `,
             position: "relative",
             zIndex: 10,
+            transform: 'translate3d(0, 0, 0)',
+            willChange: 'transform, opacity',
           }}
           className="w-full"
         />
 
-        {/* Subtle Inner Highlight on Underline (reduced opacity) */}
+        {/* Subtle Inner Highlight on Underline */}
         <motion.div
           variants={flowAnimation}
           animate="animate"
@@ -470,6 +543,8 @@ export const LampHeading = ({
             zIndex: 15,
             borderRadius: "100px",
             backgroundSize: "200% 100%",
+            transform: 'translate3d(0, 0, 0)',
+            willChange: 'transform',
           }}
           transition={{
             duration: animationSpeed * 0.8,
@@ -515,6 +590,8 @@ export const LampHeading = ({
            transparent 100%)`,
           opacity: isHovered ? 0.9 : 0.6,
           transition: "opacity 0.4s ease",
+          transform: 'translate3d(0, 0, 0)',
+          willChange: 'opacity',
         }}
       />
     </motion.div>
