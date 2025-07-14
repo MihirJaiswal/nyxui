@@ -1,6 +1,6 @@
 "use client"
 import type React from "react"
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
 import Image from "next/image"
 import { StringifyOptions } from "querystring"
@@ -35,7 +35,7 @@ export default function ThreeDLayeredCard({
   mainImage,
   title,
   children,
-  className = "",
+  className,
   width = 288,
   height = {
     collapsed: 130,
@@ -55,7 +55,23 @@ export default function ThreeDLayeredCard({
   titlePosition = 90,
 }: CardProps) {
   const [isHovered, setIsHovered] = useState(false)
+  const [isExpanded, setIsExpanded] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
+
+  // Detect mobile devices
+  useEffect(() => {
+    const checkMobile = () => {
+      const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+                           window.innerWidth < 768 || 
+                           ('ontouchstart' in window)
+      setIsMobile(isMobileDevice)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   // Constants for image sizing
   const IMAGE_SIZE = 128
@@ -70,9 +86,9 @@ export default function ThreeDLayeredCard({
   const mouseXSpring = useSpring(x, { stiffness: 400, damping: 30 })
   const mouseYSpring = useSpring(y, { stiffness: 400, damping: 30 })
 
-  // Transform mouse position to rotation values
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["-12deg", "12deg"])
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["12deg", "-12deg"])
+  // Transform mouse position to rotation values (reduced for mobile)
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], [isMobile ? "-6deg" : "-12deg", isMobile ? "6deg" : "12deg"])
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], [isMobile ? "6deg" : "12deg", isMobile ? "-6deg" : "-12deg"])
 
   // Smooth lens effect that increases/decreases based on mouse position
   const lensOverlay = useTransform(
@@ -92,15 +108,15 @@ export default function ThreeDLayeredCard({
     ],
   )
 
-  // Dynamic movement for logo and text based on tilt direction
-  const logoMovement = logoSize < 30 ? 8 : logoSize < 50 ? 12 : 15
+  // Dynamic movement for logo and text based on tilt direction (reduced for mobile)
+  const logoMovement = isMobile ? (logoSize < 30 ? 4 : logoSize < 50 ? 6 : 8) : (logoSize < 30 ? 8 : logoSize < 50 ? 12 : 15)
   const logoMoveX = useTransform(mouseXSpring, [-0.5, 0.5], [logoMovement, -logoMovement])
   const logoMoveY = useTransform(mouseYSpring, [-0.5, 0.5], [logoMovement, -logoMovement])
-  const textMoveX = useTransform(mouseXSpring, [-0.5, 0.5], [15, -15])
-  const textMoveY = useTransform(mouseYSpring, [-0.5, 0.5], [15, -15])
+  const textMoveX = useTransform(mouseXSpring, [-0.5, 0.5], [isMobile ? 8 : 15, isMobile ? -8 : -15])
+  const textMoveY = useTransform(mouseYSpring, [-0.5, 0.5], [isMobile ? 8 : 15, isMobile ? -8 : -15])
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!ref.current) return
+    if (!ref.current || isMobile) return
     const rect = ref.current.getBoundingClientRect()
     const width = rect.width
     const height = rect.height
@@ -113,14 +129,52 @@ export default function ThreeDLayeredCard({
   }
 
   const handleMouseEnter = () => {
-    setIsHovered(true)
+    if (!isMobile) {
+      setIsHovered(true)
+    }
   }
 
   const handleMouseLeave = () => {
-    setIsHovered(false)
-    x.set(0)
-    y.set(0)
+    if (!isMobile) {
+      setIsHovered(false)
+      x.set(0)
+      y.set(0)
+    }
   }
+
+  // Mobile touch handlers
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (isMobile) {
+      e.preventDefault()
+    }
+  }
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (isMobile) {
+      e.preventDefault()
+      setIsExpanded(!isExpanded)
+      
+      // Add a subtle tilt effect for mobile tap
+      if (!isExpanded) {
+        x.set(0.1)
+        y.set(0.1)
+        setTimeout(() => {
+          x.set(0)
+          y.set(0)
+        }, 300)
+      }
+    }
+  }
+
+  const handleClick = (e: React.MouseEvent) => {
+    if (isMobile) {
+      e.preventDefault()
+      setIsExpanded(!isExpanded)
+    }
+  }
+
+  // Determine if card should be expanded (hover for desktop, tap state for mobile)
+  const shouldBeExpanded = isMobile ? isExpanded : isHovered
 
   const borderStyle = borderColor && borderWidth !== "0"
     ? {
@@ -169,17 +223,22 @@ export default function ThreeDLayeredCard({
   return (
     <motion.div
       ref={ref}
-      className={`relative cursor-pointer ${className}`}
+      className={`relative cursor-pointer ${className} ${isMobile ? 'touch-manipulation' : ''}`}
       style={{
         perspective: "1000px",
         transformStyle: "preserve-3d",
         width: widthStyle,
         height: `${height.collapsed}px`,
-        zIndex: isHovered ? 50 : 1,
+        zIndex: shouldBeExpanded ? 50 : 1,
+        WebkitTapHighlightColor: 'transparent',
+        userSelect: 'none',
       }}
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+      onClick={handleClick}
     >
       {/* Card content with overflow hidden and max-height animation */}
       <motion.div
@@ -189,22 +248,22 @@ export default function ThreeDLayeredCard({
           rotateX: rotateX,
           transformStyle: "preserve-3d",
           overflow: "hidden",
-          position: isHovered ? "absolute" : "relative",
-          top: isHovered ? `${-(height.expanded - height.collapsed) / 2}px` : "auto",
-          left: isHovered ? "0" : "auto",
-          right: isHovered ? "0" : "auto",
+          position: shouldBeExpanded ? "absolute" : "relative",
+          top: shouldBeExpanded ? `${-(height.expanded - height.collapsed) / 2}px` : "auto",
+          left: shouldBeExpanded ? "0" : "auto",
+          right: shouldBeExpanded ? "0" : "auto",
           ...borderStyle,
         }}
         animate={{
-          height: isHovered ? `${height.expanded}px` : `${height.collapsed}px`,
-          boxShadow: isHovered 
+          height: shouldBeExpanded ? `${height.expanded}px` : `${height.collapsed}px`,
+          boxShadow: shouldBeExpanded 
             ? `0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1), 0 0 20px ${glowColor}`
             : "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
         }}
         transition={{
           type: "spring",
-          stiffness: 400,
-          damping: 25,
+          stiffness: isMobile ? 300 : 400,
+          damping: isMobile ? 30 : 25,
           mass: 0.8,
         }}
       >
@@ -212,16 +271,16 @@ export default function ThreeDLayeredCard({
         <motion.div 
           className="relative w-full"
           style={{
-            height: isHovered ? `${height.expanded}px` : `${height.collapsed}px`,
-            minHeight: isHovered ? `${height.expanded}px` : `${height.collapsed}px`,
+            height: shouldBeExpanded ? `${height.expanded}px` : `${height.collapsed}px`,
+            minHeight: shouldBeExpanded ? `${height.expanded}px` : `${height.collapsed}px`,
           }}
           animate={{
-            height: isHovered ? `${height.expanded}px` : `${height.collapsed}px`,
+            height: shouldBeExpanded ? `${height.expanded}px` : `${height.collapsed}px`,
           }}
           transition={{
             type: "spring",
-            stiffness: 400,
-            damping: 25,
+            stiffness: isMobile ? 300 : 400,
+            damping: isMobile ? 30 : 25,
             mass: 0.8,
           }}
         >
@@ -249,7 +308,7 @@ export default function ThreeDLayeredCard({
               zIndex: 24,
             }}
             animate={{
-              opacity: isHovered ? 0.6 : 0.3,
+              opacity: shouldBeExpanded ? 0.6 : 0.3,
             }}
             transition={{
               type: "spring",
@@ -257,6 +316,30 @@ export default function ThreeDLayeredCard({
               damping: 25,
             }}
           />
+
+          {/* Mobile tap indicator */}
+          {isMobile && (
+            <motion.div
+              className="absolute top-2 right-2 pointer-events-none"
+              style={{
+                zIndex: 35,
+                color: textColor,
+                fontSize: "12px",
+                opacity: 0.7,
+              }}
+              animate={{
+                opacity: shouldBeExpanded ? 0 : 0.7,
+                rotate: shouldBeExpanded ? 45 : 0,
+              }}
+              transition={{
+                duration: 0.3,
+              }}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+              </svg>
+            </motion.div>
+          )}
 
           {/* Logo */}
           <motion.div
@@ -274,21 +357,21 @@ export default function ThreeDLayeredCard({
               opacity: 1,
             }}
             animate={{
-              top: isHovered 
+              top: shouldBeExpanded 
                 ? getExpandedLogoPosition() 
                 : getCollapsedLogoPosition(),
             }}
             transition={{
               type: "spring",
-              stiffness: 400,
-              damping: 25,
+              stiffness: isMobile ? 300 : 400,
+              damping: isMobile ? 30 : 25,
               mass: 0.8,
             }}
           >
             <motion.div
               style={{
-                x: isHovered ? logoMoveX : 0,
-                y: isHovered ? logoMoveY : 0,
+                x: shouldBeExpanded ? logoMoveX : 0,
+                y: shouldBeExpanded ? logoMoveY : 0,
                 width: `${logoSize}px`,
                 height: `${logoSize}px`,
               }}
@@ -324,8 +407,8 @@ export default function ThreeDLayeredCard({
                 y: 0,
               }}
               animate={{
-                opacity: isHovered ? 0 : 1,
-                y: isHovered ? -20 : 0,
+                opacity: shouldBeExpanded ? 0 : 1,
+                y: shouldBeExpanded ? -20 : 0,
               }}
               transition={{
                 type: "spring",
@@ -356,8 +439,8 @@ export default function ThreeDLayeredCard({
               y: 20,
             }}
             animate={{
-              opacity: isHovered ? 1 : 0,
-              y: isHovered ? 0 : 20,
+              opacity: shouldBeExpanded ? 1 : 0,
+              y: shouldBeExpanded ? 0 : 20,
             }}
             transition={{
               type: "spring",
@@ -368,8 +451,8 @@ export default function ThreeDLayeredCard({
           >
             <motion.div
               style={{
-                x: isHovered ? textMoveX : 0,
-                y: isHovered ? textMoveY : 0,
+                x: shouldBeExpanded ? textMoveX : 0,
+                y: shouldBeExpanded ? textMoveY : 0,
               }}
               className="flex flex-col items-center justify-center h-full"
             >
@@ -394,8 +477,8 @@ export default function ThreeDLayeredCard({
               scale: 0.8,
             }}
             animate={{
-              opacity: isHovered ? 1 : 0,
-              scale: isHovered ? 1 : 0.8,
+              opacity: shouldBeExpanded ? 1 : 0,
+              scale: shouldBeExpanded ? 1 : 0.8,
             }}
             transition={{
               type: "spring",
@@ -439,7 +522,7 @@ export default function ThreeDLayeredCard({
               zIndex: 5,
             }}
             animate={{
-              opacity: isHovered ? 0.4 : 0.2,
+              opacity: shouldBeExpanded ? 0.4 : 0.2,
             }}
             transition={{
               type: "spring",
@@ -454,7 +537,7 @@ export default function ThreeDLayeredCard({
       <motion.div
         className="absolute left-1/2 transform -translate-x-1/2 pointer-events-none"
         style={{
-          bottom: isHovered ? `${-20 - (height.expanded - height.collapsed)}px` : "-20px",
+          bottom: shouldBeExpanded ? `${-20 - (height.expanded - height.collapsed)}px` : "-20px",
           width: "180px",
           height: "25px",
           zIndex: -1,
@@ -464,8 +547,8 @@ export default function ThreeDLayeredCard({
           scale: 1,
         }}
         animate={{
-          opacity: isHovered ? 0.25 : 0,
-          scale: isHovered ? 1.2 : 1,
+          opacity: shouldBeExpanded ? 0.25 : 0,
+          scale: shouldBeExpanded ? 1.2 : 1,
         }}
         transition={{
           type: "spring",
