@@ -10,7 +10,7 @@ import {
 
 export interface MajesticCardProps
   extends Omit<HTMLMotionProps<"div">, "style"> {
-  variant?: "float" | "magnetic" | "glow" | "breathe";
+  variant?: "float" | "magnetic" | "glow"z;
   intensity?: 1 | 2 | 3 | 4 | 5;
   glowColor?: string;
   hoverEffect?: boolean;

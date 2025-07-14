@@ -258,7 +258,7 @@ function ThreeDLayeredCardDemo() {
                 REVENUE
               </Badge>
               <h1 className="text-white text-[17px] font-semibold tracking-wide leading-tight text-center">
-                Snapchat: The Power of User-Generated Content.
+                Reddit: The Power of Community in Marketing. 
               </h1>
               <div className="flex items-center justify-center gap-2">
                 <Clock className="h-2.5 w-2.5 text-gray-100" />
