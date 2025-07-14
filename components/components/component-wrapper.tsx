@@ -25,13 +25,13 @@ export const ComponentWrapper = ({
       )}
       key={key}
     >
-      <div
+      {/* <div
         className={cn(
           `absolute inset-0 size-full`,
           `bg-[radial-gradient(#00000022_1px,transparent_1px)] dark:bg-[radial-gradient(#ffffff22_1px,transparent_1px)]`,
           "lab-bg pointer-events-none [background-size:16px_16px]",
         )}
-      />
+      /> */}
       <div className="flex items-center justify-end gap-2 p-4">
         <OpenInV0Button url={`https://nuvyxui.vercel.app/r/${name}.json`} />
         <Button

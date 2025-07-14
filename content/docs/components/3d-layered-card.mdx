@@ -1,0 +1,123 @@
+---
+title: 3d Layered Card
+date: 2025-07-14
+description: A 3D interactive card component with layers that moves interacts with hover, smooth animations, and customizable styling.
+author: MihirJaiswal
+published: true
+tags: ["Card", "3D", "Animation", "Interactive"]
+---
+
+<ComponentPreview name="3d-layered-card-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nuvyxui.vercel.app/r/3d-layered-card.json"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies.</Step>
+
+```bash
+npm install framer-motion 
+```
+
+<Step>Create a utils.ts file with the cn utility function</Step>
+
+```tsx
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="interactive-card" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { InteractiveCard } from "@/components/ui/interactive-card";
+```
+
+### Basic Usage
+
+```tsx
+<InteractiveCard
+  logo="/logo.png"
+  mainImage="/character.png"
+  title="Interactive Card"
+>
+  <p>Hover to see the magic!</p>
+</InteractiveCard>
+```
+
+### Custom Styling
+
+```tsx
+<InteractiveCard
+  logo="/logo.png"
+  mainImage="/character.png"
+  title="Custom Card"
+  width={320}
+  height={{ collapsed: 140, expanded: 350 }}
+  logoSize={80}
+  backgroundColor="bg-gradient-to-b from-purple-500 to-blue-600"
+  textColor="white"
+  glowColor="rgba(168, 85, 247, 0.2)"
+  glowGradient="#a855f7"
+  shineIntensity={0.5}
+>
+  <div className="space-y-2">
+    <h3 className="text-lg font-semibold">Custom Title</h3>
+    <p className="text-sm opacity-90">Custom description content</p>
+  </div>
+</InteractiveCard>
+```
+
+## Props
+
+| Prop              | Type                | Default                                                          | Description                                                    |
+| ----------------- | ------------------- | ---------------------------------------------------------------- | -------------------------------------------------------------- |
+| `logo`            | `string`            | **Required**                                                     | Path to the logo image.                                       |
+| `mainImage`       | `string`            | **Required**                                                     | Path to the main character/image displayed on hover.          |
+| `title`           | `string`            | **Required**                                                     | Title text displayed in collapsed state.                      |
+| `children`        | `React.ReactNode`   | `undefined`                                                      | Content displayed in expanded state on hover.                 |
+| `className`       | `string`            | `""`                                                             | Additional CSS classes to apply to the container.             |
+| `width`           | `number \| string`  | `288`                                                            | Width of the card in pixels or CSS units.                     |
+| `height`          | `object`            | `{ collapsed: 130, expanded: 300 }`                              | Height configuration for collapsed and expanded states.       |
+| `logoSize`        | `number`            | `64`                                                             | Size of the logo in pixels.                                   |
+| `logoPosition`    | `object`            | `{ expanded: 15 }`                                               | Logo position from top when expanded (in pixels).             |
+| `shineIntensity`  | `number`            | `0.3`                                                            | Intensity of the shine effect (0-1).                          |
+| `backgroundColor` | `string`            | `"bg-gradient-to-b from-[#FF9901] via-[#DF911A] to-[#724f13]"`  | Background gradient classes or CSS.                           |
+| `borderColor`     | `string`            | `undefined`                                                      | Border color (requires borderWidth).                          |
+| `borderWidth`     | `string`            | `"0"`                                                            | Border width CSS value.                                       |
+| `textColor`       | `string`            | `"white"`                                                        | Text color for title and content.                             |
+| `glowColor`       | `string`            | `"rgba(255, 165, 0, 0.1)"`                                       | Glow color for hover effects.                                 |
+| `glowGradient`    | `string`            | `"#fde047"`                                                      | Gradient color for the character glow effect.                 |
+| `titlePosition`   | `number`            | `90`                                                             | Fixed title position from top in collapsed state (in pixels). |
+

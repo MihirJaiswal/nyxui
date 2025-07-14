@@ -481,5 +481,19 @@ export const ui: Registry["items"] = [
         target: "components/ui/apple-glass-effect.tsx",
       },
     ],
+  },
+  {
+    name: "3d-layered-card",
+    type: "registry:ui",
+    title: "3D Layered Card",
+    description: "A 3D layered card that that provide several effects.",
+    dependencies: ["framer-motion"],
+    files: [
+      {
+        path: "registry/ui/3d-layered-card.tsx",
+        type: "registry:ui",
+        target: "components/ui/3d-layered-card.tsx",
+      },
+    ]
   }
 ];

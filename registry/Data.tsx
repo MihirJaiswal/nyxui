@@ -190,6 +190,13 @@ export const componentsData: ComponentsData = {
       description: "A customizable Apple Glass effect component.",
       image: "/assets/images/showcase/apple-glass-effect.png",
       isNew: true,
+    },
+    "3d-layered-card": {
+      title: "3D Layered Card",
+      tags: ["Card", "3D", "Animation", "Interactive"],
+      description: "A 3D card with layered effects and animations.",
+      image: "/assets/images/showcase/3d-layered-card.png",
+      isNew: true,
     }
   },
   templates: {

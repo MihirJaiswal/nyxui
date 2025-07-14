@@ -524,5 +524,19 @@ export const examples: Registry["items"] = [
         target: "components/apple-glass-effect-demo.tsx",
       },
     ]
+  },
+  {
+    name: "3d-layered-card-demo",
+    type: "registry:example",
+    title: "3D Layered Card Demo",
+    description: "Example showing a 3D layered card.",
+    registryDependencies: ["https://nuvyxui.vercel.app/r/3d-layered-card.json"],
+    files: [
+      {
+        path: "registry/example/3d-layered-card-demo.tsx",
+        type: "registry:example",
+        target: "components/3d-layered-card-demo.tsx",
+    }
+    ]
   }
 ];

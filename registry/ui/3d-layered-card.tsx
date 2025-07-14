@@ -1,0 +1,495 @@
+"use client"
+import type React from "react"
+import { useState, useRef } from "react"
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
+import Image from "next/image"
+
+interface CardProps {
+  logo: string
+  mainImage: string
+  title: string
+  children?: React.ReactNode
+  className?: string
+  // Size customization props
+  width?: number | string
+  height?: {
+    collapsed: number
+    expanded: number
+  }
+  logoSize?: number
+  logoPosition?: {
+    expanded: number
+  }
+  // Shine customization props
+  shineIntensity?: number
+  // Color and styling customization
+  backgroundColor?: string
+  borderColor?: string
+  borderWidth?: string
+  textColor?: string
+  glowColor?: string
+  glowGradient?: string
+  titlePosition?: number
+}
+
+export default function ThreeDLayeredCard({
+  logo,
+  mainImage,
+  title,
+  children,
+  className = "",
+  width = 288,
+  height = {
+    collapsed: 130,
+    expanded: 300,
+  },
+  logoSize = 64,
+  logoPosition = {
+    expanded: 15,
+  },
+  shineIntensity = 0.3,
+  backgroundColor = "bg-gradient-to-b from-[#FF9901] via-[#DF911A] to-[#724f13]",
+  borderColor,
+  borderWidth = "0",
+  textColor = "white",
+  glowColor = "rgba(255, 165, 0, 0.1)",
+  glowGradient = "#fde047",
+  titlePosition = 90,
+}: CardProps) {
+  const [isHovered, setIsHovered] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+
+  // Constants for image sizing
+  const IMAGE_SIZE = 128
+  const HALF_IMAGE_SIZE = IMAGE_SIZE / 2
+  const HALF_LOGO_SIZE = logoSize / 2
+
+  // Mouse position tracking for 3D tilt effect
+  const x = useMotionValue(0)
+  const y = useMotionValue(0)
+
+  // Spring animations for smooth movement
+  const mouseXSpring = useSpring(x, { stiffness: 400, damping: 30 })
+  const mouseYSpring = useSpring(y, { stiffness: 400, damping: 30 })
+
+  // Transform mouse position to rotation values
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["-12deg", "12deg"])
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["12deg", "-12deg"])
+
+  // Smooth lens effect that increases/decreases based on mouse position
+  const lensOverlay = useTransform(
+    mouseYSpring,
+    [-0.5, 0.5],
+    [
+      // Hovering up - darker overlay
+      `linear-gradient(180deg, 
+        rgba(0, 0, 0, ${shineIntensity * 0.4}) 0%, 
+        rgba(0, 0, 0, ${shineIntensity * 0.2}) 50%, 
+        rgba(0, 0, 0, ${shineIntensity * 0.1}) 100%)`,
+      // Hovering down - brighter white overlay
+      `linear-gradient(180deg, 
+        rgba(255, 255, 255, ${shineIntensity * 0.2}) 0%, 
+        rgba(255, 255, 255, ${shineIntensity * 0.5}) 50%, 
+        rgba(255, 255, 255, ${shineIntensity * 0.8}) 100%)`,
+    ],
+  )
+
+  // Dynamic movement for logo and text based on tilt direction
+  const logoMovement = logoSize < 30 ? 8 : logoSize < 50 ? 12 : 15
+  const logoMoveX = useTransform(mouseXSpring, [-0.5, 0.5], [logoMovement, -logoMovement])
+  const logoMoveY = useTransform(mouseYSpring, [-0.5, 0.5], [logoMovement, -logoMovement])
+  const textMoveX = useTransform(mouseXSpring, [-0.5, 0.5], [15, -15])
+  const textMoveY = useTransform(mouseYSpring, [-0.5, 0.5], [15, -15])
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!ref.current) return
+    const rect = ref.current.getBoundingClientRect()
+    const width = rect.width
+    const height = rect.height
+    const mouseX = e.clientX - rect.left
+    const mouseY = e.clientY - rect.top
+
+    // Calculate position relative to center (-0.5 to 0.5) for 3D effect
+    const xPct = mouseX / width - 0.5
+    const yPct = mouseY / height - 0.5
+    x.set(xPct)
+    y.set(yPct)
+  }
+
+  const handleMouseEnter = () => {
+    setIsHovered(true)
+  }
+
+  const handleMouseLeave = () => {
+    setIsHovered(false)
+    x.set(0)
+    y.set(0)
+  }
+
+  // Create border style only if both borderColor and borderWidth are provided
+  const borderStyle = borderColor && borderWidth !== "0"
+    ? {
+        border: `${borderWidth} solid ${borderColor}`,
+        borderRadius: "0.375rem",
+      }
+    : {}
+
+  // Convert width to pixels if it's a number, otherwise use as-is
+  const widthStyle = typeof width === 'number' ? `${width}px` : width
+
+  // Calculate expanded state logo position
+  const getExpandedLogoPosition = () => {
+    if (logoPosition?.expanded !== undefined) {
+      const minTop = -logoSize / 2
+      const maxTop = height.expanded - logoSize + 20
+      return `${Math.max(minTop, Math.min(logoPosition.expanded, maxTop))}px`
+    }
+    
+    // Default positioning based on logo size
+    const basePosition = logoSize < 30 ? 25 : logoSize < 50 ? 18 : logoSize < 70 ? 12 : 8
+    return `${basePosition}px`
+  }
+
+  // Calculate collapsed state logo position
+  const getCollapsedLogoPosition = () => {
+    const availableSpaceAboveTitle = titlePosition - 20
+    const logoTop = availableSpaceAboveTitle - logoSize
+    
+    if (logoTop < 10) {
+      return `${Math.max(10, (availableSpaceAboveTitle - logoSize) / 2)}px`
+    }
+    
+    return `${Math.max(10, logoTop)}px`
+  }
+
+  // Fixed title position
+  const getCollapsedTitlePosition = () => {
+    return `${titlePosition}px`
+  }
+
+  // Check if title will be visible in collapsed state
+  const isTitleVisible = () => {
+    const titleTop = titlePosition
+    const titleHeight = 24
+    return (titleTop + titleHeight) <= height.collapsed
+  }
+
+  return (
+    <motion.div
+      ref={ref}
+      className={`relative cursor-pointer ${className}`}
+      style={{
+        perspective: "1000px",
+        transformStyle: "preserve-3d",
+        width: widthStyle,
+        height: `${height.collapsed}px`,
+        zIndex: isHovered ? 50 : 1,
+      }}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      {/* Card content with overflow hidden and max-height animation */}
+      <motion.div
+        className="relative w-full border rounded-md shadow-2xl"
+        style={{
+          rotateY: rotateY,
+          rotateX: rotateX,
+          transformStyle: "preserve-3d",
+          overflow: "hidden",
+          position: isHovered ? "absolute" : "relative",
+          top: isHovered ? `${-(height.expanded - height.collapsed) / 2}px` : "auto",
+          left: isHovered ? "0" : "auto",
+          right: isHovered ? "0" : "auto",
+          ...borderStyle,
+        }}
+        animate={{
+          height: isHovered ? `${height.expanded}px` : `${height.collapsed}px`,
+          boxShadow: isHovered 
+            ? `0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1), 0 0 20px ${glowColor}`
+            : "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 400,
+          damping: 25,
+          mass: 0.8,
+        }}
+      >
+        {/* Dynamic height inner container */}
+        <motion.div 
+          className="relative w-full"
+          style={{
+            height: isHovered ? `${height.expanded}px` : `${height.collapsed}px`,
+            minHeight: isHovered ? `${height.expanded}px` : `${height.collapsed}px`,
+          }}
+          animate={{
+            height: isHovered ? `${height.expanded}px` : `${height.collapsed}px`,
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 400,
+            damping: 25,
+            mass: 0.8,
+          }}
+        >
+          {/* Background gradient */}
+          <div className={`absolute inset-0 ${backgroundColor}`} />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30" />
+
+          {/* Smooth linear lens effect overlay */}
+          <motion.div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: lensOverlay,
+              mixBlendMode: "overlay",
+              zIndex: 25,
+            }}
+          />
+
+          {/* Glass lens effect */}
+          <motion.div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 25%, transparent 50%, transparent 75%, rgba(255,255,255,0.03) 100%)",
+              mixBlendMode: "soft-light",
+              zIndex: 24,
+            }}
+            animate={{
+              opacity: isHovered ? 0.6 : 0.3,
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 300,
+              damping: 25,
+            }}
+          />
+
+          {/* Logo */}
+          <motion.div
+            className="absolute"
+            style={{
+              transform: "translateZ(60px)",
+              transformStyle: "preserve-3d",
+              left: `calc(50% - ${HALF_LOGO_SIZE}px)`,
+              width: `${logoSize}px`,
+              height: `${logoSize}px`,
+              zIndex: 30,
+            }}
+            initial={{
+              top: getCollapsedLogoPosition(),
+              opacity: 1,
+            }}
+            animate={{
+              top: isHovered 
+                ? getExpandedLogoPosition() 
+                : getCollapsedLogoPosition(),
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 400,
+              damping: 25,
+              mass: 0.8,
+            }}
+          >
+            <motion.div
+              style={{
+                x: isHovered ? logoMoveX : 0,
+                y: isHovered ? logoMoveY : 0,
+                width: `${logoSize}px`,
+                height: `${logoSize}px`,
+              }}
+              className="relative"
+            >
+              <Image 
+                src={logo} 
+                alt="Logo" 
+                fill 
+                className="object-contain"
+                quality={100}
+                sizes={`${logoSize}px`}
+              />
+            </motion.div>
+          </motion.div>
+
+          {/* Compact state title */}
+          {isTitleVisible() && (
+            <motion.div
+              className="absolute font-bold text-center"
+              style={{
+                transform: "translateZ(40px)",
+                transformStyle: "preserve-3d",
+                width: "calc(100% - 1rem)",
+                left: "0.5rem",
+                right: "0.5rem",
+                top: getCollapsedTitlePosition(),
+                zIndex: 30,
+                color: textColor,
+              }}
+              initial={{
+                opacity: 1,
+                y: 0,
+              }}
+              animate={{
+                opacity: isHovered ? 0 : 1,
+                y: isHovered ? -20 : 0,
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 500,
+                damping: 30,
+                mass: 0.7,
+              }}
+            >
+              <h2 className="drop-shadow-lg text-sm leading-tight overflow-hidden text-ellipsis">
+                {title}
+              </h2>
+            </motion.div>
+          )}
+
+          {/* Expanded state children content */}
+          <motion.div
+            className="absolute text-center"
+            style={{
+              transform: "translateZ(40px)",
+              transformStyle: "preserve-3d",
+              width: "calc(100% - 2rem)",
+              left: "1rem",
+              top: "65%",
+              zIndex: 30,
+              color: textColor,
+            }}
+            initial={{
+              opacity: 0,
+              y: 20,
+            }}
+            animate={{
+              opacity: isHovered ? 1 : 0,
+              y: isHovered ? 0 : 20,
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 450,
+              damping: 28,
+              mass: 0.8,
+            }}
+          >
+            <motion.div
+              style={{
+                x: isHovered ? textMoveX : 0,
+                y: isHovered ? textMoveY : 0,
+              }}
+              className="flex flex-col items-center justify-center h-full"
+            >
+              {children}
+            </motion.div>
+          </motion.div>
+
+          {/* Main character image */}
+          <motion.div
+            className="absolute"
+            style={{
+              transform: "translateZ(20px)",
+              transformStyle: "preserve-3d",
+              left: `calc(50% - ${HALF_IMAGE_SIZE}px)`,
+              top: `calc(50% - ${HALF_IMAGE_SIZE + 21}px)`,
+              width: `${IMAGE_SIZE}px`,
+              height: `${IMAGE_SIZE}px`,
+              zIndex: 20,
+            }}
+            initial={{
+              opacity: 0,
+              scale: 0.8,
+            }}
+            animate={{
+              opacity: isHovered ? 1 : 0,
+              scale: isHovered ? 1 : 0.8,
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 500,
+              damping: 30,
+              mass: 0.6,
+            }}
+          >
+            <div
+              className="relative"
+              style={{
+                width: `${IMAGE_SIZE}px`,
+                height: `${IMAGE_SIZE}px`,
+              }}
+            >
+              <Image 
+                src={mainImage} 
+                alt="Character" 
+                fill 
+                className="object-contain mask-b-from-25"
+                sizes={`${IMAGE_SIZE}px`}
+              />
+            </div>
+            {/* Glow effect */}
+            <div
+              className="blur-xl absolute right-0 top-1 rounded-full -z-10"
+              style={{
+                backgroundColor: glowGradient,
+                width: `${IMAGE_SIZE}px`,
+                height: `${IMAGE_SIZE}px`,
+              }}
+            />
+          </motion.div>
+
+          {/* Light reflection effect */}
+          <motion.div
+            className="absolute inset-0 rounded-md"
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 30%, transparent 70%, rgba(255,255,255,0.03) 100%)",
+              zIndex: 5,
+            }}
+            animate={{
+              opacity: isHovered ? 0.4 : 0.2,
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 300,
+              damping: 25,
+            }}
+          />
+        </motion.div>
+      </motion.div>
+
+      {/* Bottom glow effect */}
+      <motion.div
+        className="absolute left-1/2 transform -translate-x-1/2 pointer-events-none"
+        style={{
+          bottom: isHovered ? `${-20 - (height.expanded - height.collapsed)}px` : "-20px",
+          width: "180px",
+          height: "25px",
+          zIndex: -1,
+        }}
+        initial={{
+          opacity: 0,
+          scale: 1,
+        }}
+        animate={{
+          opacity: isHovered ? 0.25 : 0,
+          scale: isHovered ? 1.2 : 1,
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 250,
+          damping: 30,
+        }}
+      >
+        <div
+          className="w-full h-full"
+          style={{
+            background: `radial-gradient(ellipse 100% 100% at 50% 0%, ${glowColor} 0%, rgba(255, 20, 147, 0.03) 30%, rgba(255, 165, 0, 0.01) 60%, transparent 100%)`,
+            filter: "blur(8px)",
+          }}
+        />
+      </motion.div>
+    </motion.div>
+  )
+}

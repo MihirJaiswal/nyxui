@@ -422,6 +422,22 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
+  "3d-layered-card": {
+    name: "3d-layered-card",
+    description: "A 3D layered card that that provide several effects.",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/ui/3d-layered-card.tsx",
+      type: "registry:ui",
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/ui/3d-layered-card.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
   "animated-code-block-demo": {
     name: "animated-code-block-demo",
     description: "Example showing a code block with typing animation effects.",
@@ -1009,6 +1025,22 @@ export const Index: Record<string, any> = {
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/example/apple-glass-effect-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "3d-layered-card-demo": {
+    name: "3d-layered-card-demo",
+    description: "Example showing a 3D layered card.",
+    type: "registry:example",
+    registryDependencies: ["https://nuvyxui.vercel.app/r/3d-layered-card.json"],
+    files: [{
+      path: "registry/example/3d-layered-card-demo.tsx",
+      type: "registry:example",
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/example/3d-layered-card-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
