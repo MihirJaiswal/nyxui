@@ -3,14 +3,14 @@ import type React from "react"
 import { useState, useRef } from "react"
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
 import Image from "next/image"
+import { StringifyOptions } from "querystring"
 
 interface CardProps {
   logo: string
   mainImage: string
   title: string
   children?: React.ReactNode
-  className?: string
-  // Size customization props
+  className?: StringifyOptions
   width?: number | string
   height?: {
     collapsed: number
@@ -20,9 +20,7 @@ interface CardProps {
   logoPosition?: {
     expanded: number
   }
-  // Shine customization props
   shineIntensity?: number
-  // Color and styling customization
   backgroundColor?: string
   borderColor?: string
   borderWidth?: string
@@ -108,8 +106,6 @@ export default function ThreeDLayeredCard({
     const height = rect.height
     const mouseX = e.clientX - rect.left
     const mouseY = e.clientY - rect.top
-
-    // Calculate position relative to center (-0.5 to 0.5) for 3D effect
     const xPct = mouseX / width - 0.5
     const yPct = mouseY / height - 0.5
     x.set(xPct)
@@ -126,7 +122,6 @@ export default function ThreeDLayeredCard({
     y.set(0)
   }
 
-  // Create border style only if both borderColor and borderWidth are provided
   const borderStyle = borderColor && borderWidth !== "0"
     ? {
         border: `${borderWidth} solid ${borderColor}`,
@@ -134,10 +129,8 @@ export default function ThreeDLayeredCard({
       }
     : {}
 
-  // Convert width to pixels if it's a number, otherwise use as-is
   const widthStyle = typeof width === 'number' ? `${width}px` : width
 
-  // Calculate expanded state logo position
   const getExpandedLogoPosition = () => {
     if (logoPosition?.expanded !== undefined) {
       const minTop = -logoSize / 2
@@ -150,7 +143,7 @@ export default function ThreeDLayeredCard({
     return `${basePosition}px`
   }
 
-  // Calculate collapsed state logo position
+  // Calculate collapsed state logo 
   const getCollapsedLogoPosition = () => {
     const availableSpaceAboveTitle = titlePosition - 20
     const logoTop = availableSpaceAboveTitle - logoSize
@@ -167,7 +160,6 @@ export default function ThreeDLayeredCard({
     return `${titlePosition}px`
   }
 
-  // Check if title will be visible in collapsed state
   const isTitleVisible = () => {
     const titleTop = titlePosition
     const titleHeight = 24
@@ -348,7 +340,6 @@ export default function ThreeDLayeredCard({
             </motion.div>
           )}
 
-          {/* Expanded state children content */}
           <motion.div
             className="absolute text-center"
             style={{
