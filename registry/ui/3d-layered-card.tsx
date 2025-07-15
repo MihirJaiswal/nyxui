@@ -498,6 +498,7 @@ export default function ThreeDLayeredCard({
                 src={mainImage} 
                 alt="Character" 
                 fill 
+                quality={100}
                 className="object-contain mask-b-from-25"
                 sizes={`${IMAGE_SIZE}px`}
               />

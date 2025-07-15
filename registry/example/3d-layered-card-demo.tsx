@@ -8,7 +8,7 @@ function ThreeDLayeredCardDemo() {
       <div className="overflow-hidden flex flex-col items-center justify-center gap-3 relative py-24 px-4">
         <div className="flex flex-col md:flex-row gap-3">
           <ThreeDLayeredCard
-            logo="/assets/images/3d-layered-card/snaplogo.png"
+            logo="/assets/images/3d-layered-card/snaplogo.svg"
             logoSize={32}
             mainImage="/assets/images/3d-layered-card/snap.png"
             borderColor="#ffffff"
@@ -25,7 +25,7 @@ function ThreeDLayeredCardDemo() {
                 REVENUE
               </Badge>
               <h1 className="text-white text-[17px] font-semibold tracking-wide leading-tight text-center max-w-sm">
-                The addictive habbits of sending snaps. 
+                The addictive habbit of sending snaps. 
               </h1>
               <div className="flex items-center justify-center gap-2">
                 <Clock className="h-2.5 w-2.5 text-gray-100" />
@@ -35,7 +35,7 @@ function ThreeDLayeredCardDemo() {
           </ThreeDLayeredCard>
 
           <ThreeDLayeredCard
-            logo="/assets/images/3d-layered-card/macdlogo.png"
+            logo="/assets/images/3d-layered-card/macdlogo.svg"
             logoSize={44}
             mainImage="/assets/images/3d-layered-card/macd.png"
             borderColor="#ffffff"
@@ -62,7 +62,7 @@ function ThreeDLayeredCardDemo() {
           </ThreeDLayeredCard>
 
           <ThreeDLayeredCard
-            logo="/assets/images/3d-layered-card/linkedinlogo.png"
+            logo="/assets/images/3d-layered-card/linkedinlogo.svg"
             logoSize={100}
             logoPosition={{ expanded: -12 }}
             mainImage="/assets/images/3d-layered-card/linkedin.png"
@@ -93,7 +93,7 @@ function ThreeDLayeredCardDemo() {
 
         <div className="hidden md:flex gap-3">
           <ThreeDLayeredCard
-            logo="/assets/images/3d-layered-card/tinderlogo.png"
+            logo="/assets/images/3d-layered-card/tinderlogo.svg"
             logoSize={100}
             logoPosition={{ expanded: -12 }}
             mainImage="/assets/images/3d-layered-card/tinder.png"
@@ -122,7 +122,7 @@ function ThreeDLayeredCardDemo() {
           </ThreeDLayeredCard>
 
           <ThreeDLayeredCard
-            logo="/assets/images/3d-layered-card/instalogo.png"
+            logo="/assets/images/3d-layered-card/instalogo.svg"
             logoSize={100}
             logoPosition={{ expanded: -12 }}
             mainImage="/assets/images/3d-layered-card/insta.png"
@@ -210,7 +210,7 @@ function ThreeDLayeredCardDemo() {
           </ThreeDLayeredCard>
 
           <ThreeDLayeredCard
-            logo="/assets/images/3d-layered-card/amazonlogo.png"
+            logo="/assets/images/3d-layered-card/amazonlogo.svg"
             logoSize={100}
             logoPosition={{ expanded: -12 }}
             mainImage="/assets/images/3d-layered-card/amazon.png"
@@ -239,7 +239,7 @@ function ThreeDLayeredCardDemo() {
           </ThreeDLayeredCard>
 
           <ThreeDLayeredCard
-            logo="/assets/images/3d-layered-card/redditlogo.png"
+            logo="/assets/images/3d-layered-card/redditlogo.svg"
             logoSize={90}
             logoPosition={{ expanded: -12 }}
             mainImage="/assets/images/3d-layered-card/reddit.png"
