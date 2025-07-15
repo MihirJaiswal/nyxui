@@ -167,7 +167,7 @@ export const componentsData: ComponentsData = {
     },
     "reveal-card": {
       title: "Reveal Card",
-      tags: ["Cards", "Effects", "3d", "Interactive"],
+      tags: ["Cards", "Effects", "3D", "Interactive"],
       description: "Card with reveal animations that shows content on hover.",
       image: "/assets/images/showcase/reveal-card.png",
     },

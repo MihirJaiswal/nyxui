@@ -1,7 +1,7 @@
 import { componentsData } from "../../../registry/Data";
 import Link from "next/link";
 import Image from "next/image";
-import { MajesticCard } from "../../../registry/ui/glow-card";
+import { GlowCard } from "../../../registry/ui/glow-card";
 import { cn } from "../../../lib/utils";
 
 export default function CategoriesPage() {
@@ -27,8 +27,8 @@ export default function CategoriesPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {sortedTags.map((tag) => (
-          <MajesticCard
-            variant="glow"
+          <GlowCard
+            variant="cosmic"
             className="rounded-md border border-gray-300 dark:border-zinc-800"
             key={tag}
           >
@@ -81,7 +81,7 @@ export default function CategoriesPage() {
                 </div>
               </div>
             </Link>
-          </MajesticCard>
+          </GlowCard>
         ))}
       </div>
     </div>
