@@ -6,6 +6,7 @@ import ThreeDLayeredCard from "@/registry/ui/3d-layered-card";
 import { Clock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { GlowCard } from "@/registry/ui/glow-card";
+import { Button } from "@/components/ui/button";
 
 export const TwitterCard = () => {
 
@@ -60,8 +61,12 @@ export const TwitterCard = () => {
         <div className="mt-3 sm:mt-4">
           <p className="text-xs sm:text-sm text-gray-200">
             Once you go Tailwind, there is no going back 😆{" "}
-            <span className="font-bold ">#webdev</span>{" "}
-            <span className="font-bold">#tailwindcss</span>
+            <span className="text-blue-400 hover:text-blue-300 transition-colors cursor-pointer font-medium">
+              #webdev
+            </span>{" "}
+            <span className="text-blue-400 hover:text-blue-300 transition-colors cursor-pointer font-medium">
+              #tailwindcss
+            </span>
           </p>
           <div className="flex mt-6 items-center justify-center rounded-sm border bg-zinc-800 h-44 relative">
           <div className="absolute inset-0 h-full w-full items-center px-5 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"></div>
@@ -176,26 +181,17 @@ export const TwitterCard = () => {
           1:24 PM · Apr 7, 2025
         </span>
         <Link href="https://www.linkedin.com/in/mihir-jaiswal-322898287/">
-          <button className="font-medium py-1 px-2 sm:px-4 rounded-full transition-all duration-300 transform hover:scale-105 flex items-center gap-1 sm:gap-2 text-xxs sm:text-sm text-white">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="10"
-              height="10"
-              className="sm:w-3 sm:h-3"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#fffff"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-              <circle cx="8.5" cy="7" r="4"></circle>
-              <line x1="20" y1="8" x2="20" y2="14"></line>
-              <line x1="23" y1="11" x2="17" y2="11"></line>
-            </svg>
-            Connect
-          </button>
+        <Button
+            size="sm"
+            className="transition-all duration-300 transform hover:scale-105 font-semibold px-4 py-2 bg-blue-500 rounded-full"
+          >
+              <span className="flex items-center gap-2 text-white">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                </svg>
+                Follow
+              </span>
+          </Button>
         </Link>
       </div>
     </GlowCard>
