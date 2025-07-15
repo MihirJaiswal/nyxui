@@ -1,0 +1,140 @@
+---
+title: Glow Card
+date: 2025-05-09
+description: Cards that has several glowing effects like liquid, laser, cosmic and glitch.
+author: NuvyxUI
+published: true
+tags: ["Cards", "Effects", "Animation", "Interactive"]
+---
+
+<ComponentPreview name="glow-card-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nuvyxui.vercel.app/r/glow-card.json"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Create a utils.ts file with the cn utility function</Step>
+
+```tsx
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="glow-card" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { GlowCard } from "@/components/ui/glow-card";
+```
+
+```tsx
+// Basic usage with liquid effect (default)
+export default function BasicExample() {
+  return (
+    <GlowCard 
+      liquidColor="#3b8000" 
+      className="w-full max-w-md p-6 rounded-xl shadow-lg">
+      <h3 className="text-xl font-bold mb-4">Liquid Card</h3>
+      <p>
+        This card is having the default liquid effect.
+      </p>
+    </GlowCard>
+  );
+}
+
+// cosmic effect
+export function CosmicExample() {
+  return (
+    <GlowCard
+      variant="cosmic"
+      intensity={4}
+      scrollEffect={true}
+      allowCustomBackground
+      className="w-full max-w-md p-6 bg-gradient-to-br from-purple-500 to-indigo-600 text-white rounded-xl"
+    >
+      <h3 className="text-xl font-bold mb-4">Cosmic Effect</h3>
+      <p>This card is having a cosmic effect.</p>
+    </GlowCard>
+  );
+}
+
+// laser effect
+export function LaserExample() {
+  return (
+    <GlowCard
+      variant="laser"
+      laserColor="#ffffff"
+      className="w-full max-w-md p-6 rounded-xl border border-amber-300">
+      <h3 className="text-xl font-bold mb-4">Laser Effect</h3>
+      <p className="text-amber-700">
+        This card is having a cool laser effect.
+      </p>
+    </GlowCard>
+  );
+}
+
+// Glitch effect
+export function GlitchExample() {
+  return (
+    <GlowCard
+      variant="glitch"
+      glitchColor="#f97316a0" // Custom orange glow
+      glitchColor1= "#3b82f6"
+      allowCustomBackground
+      className="w-full max-w-md p-6 bg-slate-900 text-white rounded-xl"
+    >
+      <h3 className="text-xl font-bold mb-4">Glitch Effect</h3>
+      <p>This card is giving a nice glitchy effect.</p>
+    </GlowCard>
+  );
+}
+```
+
+## Props
+
+### Glow Card
+
+
+| Prop                   | Type              | Default     | Description                                                   |
+| ---------------------- | ----------------- | ----------- | ------------------------------------------------------------- |
+| `children`             | `React.ReactNode` | `undefined` | The content to display inside the card.                       |
+| `className`            | `string`          | `undefined` | Additional CSS classes to apply.                              |
+| `variant`              | `string`          | `"liquid"`  | Animation variant: "liquid", "laser", "cosmic", or "glitch".  |
+| `intensity`            | `number`          | `0.8`       | The intensity of the effect (0-1).                            |
+| `liquidColor`          | `string`          | `"#3b82f6"` | The color of the liquid effect (hex format).                  |
+| `laserColor`           | `string`          | `"#ff0000"` | The color of the laser effect (hex format).                   |
+| `glitchColor1`         | `string`          | `"#ff0064"` | The primary color for glitch effect (hex format).             |
+| `glitchColor2`         | `string`          | `"#00ff64"` | The secondary color for glitch effect (hex format).           |
+| `disabled`             | `boolean`         | `false`     | Whether to disable the interactive effects.                   |
+| `allowCustomBackground`| `boolean`         | `false`     | Whether to allow custom background color.                     |

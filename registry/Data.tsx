@@ -133,11 +133,11 @@ export const componentsData: ComponentsData = {
       description: "A component for scanning images with a futuristic effect.",
       image: "/assets/images/showcase/image-scanner.png",
     },
-    "majestic-card": {
-      title: "Majestic Card",
+    "glow-card": {
+      title: "Glow Card",
       tags: ["Cards", "Effects", "Animation", "Interactive"],
       description: "A card component with subtle animation and transitions.",
-      image: "/assets/images/showcase/majestic-card.png",
+      image: "/assets/images/showcase/glow-card.png",
     },
     "marquee": {
       title: "Marquee",

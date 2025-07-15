@@ -8,7 +8,7 @@ import { StringifyOptions } from "querystring"
 interface CardProps {
   logo: string
   mainImage: string
-  title: string
+  title?: string
   children?: React.ReactNode
   className?: StringifyOptions
   width?: number | string

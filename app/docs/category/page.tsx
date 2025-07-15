@@ -1,7 +1,7 @@
 import { componentsData } from "../../../registry/Data";
 import Link from "next/link";
 import Image from "next/image";
-import { MajesticCard } from "../../../registry/ui/majestic-card";
+import { MajesticCard } from "../../../registry/ui/glow-card";
 import { cn } from "../../../lib/utils";
 
 export default function CategoriesPage() {

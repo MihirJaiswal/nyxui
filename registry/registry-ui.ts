@@ -329,16 +329,15 @@ export const ui: Registry["items"] = [
     ],
   },
   {
-    name: "majestic-card",
+    name: "glow-card",
     type: "registry:ui",
-    title: "Majestic Card",
-    description: "A majestic card that that provide several effects.",
-    dependencies: ["motion"],
+    title: "Glow Card",
+    description: "A glow card that that provide several effects.",
     files: [
       {
-        path: "registry/ui/majestic-card.tsx",
+        path: "registry/ui/glow-card.tsx",
         type: "registry:ui",
-        target: "components/ui/majestic-card.tsx",
+        target: "components/ui/glow-card.tsx",
       },
     ],
   },

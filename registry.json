@@ -463,18 +463,15 @@
       ]
     },
     {
-      "name": "majestic-card",
+      "name": "glow-card",
       "type": "registry:ui",
-      "title": "Majestic Card",
-      "description": "A majestic card that that provide several effects.",
-      "dependencies": [
-        "motion"
-      ],
+      "title": "Glow Card",
+      "description": "A glow card that that provide several effects.",
       "files": [
         {
-          "path": "registry/ui/majestic-card.tsx",
+          "path": "registry/ui/glow-card.tsx",
           "type": "registry:ui",
-          "target": "components/ui/majestic-card.tsx"
+          "target": "components/ui/glow-card.tsx"
         }
       ]
     },
@@ -960,18 +957,18 @@
       ]
     },
     {
-      "name": "majestic-card-demo",
+      "name": "glow-card-demo",
       "type": "registry:example",
-      "title": "Majestic Card Demo",
-      "description": "Example showing a majestic card.",
+      "title": "Glow Card Demo",
+      "description": "Example showing a glow card.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/majestic-card.json"
+        "https://nuvyxui.vercel.app/r/glow-card.json"
       ],
       "files": [
         {
-          "path": "registry/example/majestic-card-demo.tsx",
+          "path": "registry/example/glow-card-demo.tsx",
           "type": "registry:example",
-          "target": "components/majestic-card-demo.tsx"
+          "target": "components/glow-card-demo.tsx"
         }
       ]
     },

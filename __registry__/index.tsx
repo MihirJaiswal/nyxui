@@ -246,17 +246,17 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
-  "majestic-card": {
-    name: "majestic-card",
-    description: "A majestic card that that provide several effects.",
+  "glow-card": {
+    name: "glow-card",
+    description: "A glow card that that provide several effects.",
     type: "registry:ui",
     registryDependencies: undefined,
     files: [{
-      path: "registry/ui/majestic-card.tsx",
+      path: "registry/ui/glow-card.tsx",
       type: "registry:ui",
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/ui/majestic-card.tsx")
+      const mod = await import("@/registry/ui/glow-card.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -742,17 +742,17 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
-  "majestic-card-demo": {
-    name: "majestic-card-demo",
-    description: "Example showing a majestic card.",
+  "glow-card-demo": {
+    name: "glow-card-demo",
+    description: "Example showing a glow card.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/majestic-card.json"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/glow-card.json"],
     files: [{
-      path: "registry/example/majestic-card-demo.tsx",
+      path: "registry/example/glow-card-demo.tsx",
       type: "registry:example",
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/majestic-card-demo.tsx")
+      const mod = await import("@/registry/example/glow-card-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),

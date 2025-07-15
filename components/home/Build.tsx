@@ -21,12 +21,30 @@ interface CardInfo {
   uniqueKey?: string;
 }
 
+interface FloatingParticle {
+  top: string;
+  left: string;
+  duration: string;
+  delay: string;
+}
+
 export const Build = () => {
   const textHighlightRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [particles, setParticles] = useState<FloatingParticle[]>([]);
 
   useEffect(() => {
     setIsLoaded(true);
+    
+    // Generate particles only on client side
+    const generatedParticles = Array.from({ length: 20 }, () => ({
+      top: `${Math.random() * 100}%`,
+      left: `${Math.random() * 100}%`,
+      duration: `${5 + Math.random() * 10}s`,
+      delay: `${Math.random() * 5}s`,
+    }));
+    
+    setParticles(generatedParticles);
   }, []);
 
   useEffect(() => {
@@ -106,17 +124,16 @@ export const Build = () => {
           <div className="relative lg:col-span-6 h-full">
             <div className="relative h-full w-full overflow-hidden rounded-lg flex items-center">
               <div className="absolute inset-0 z-0 opacity-50 pointer-events-none">
-                {[...Array(20)].map((_, i) => (
+                {/* Only render particles after they're generated on client */}
+                {particles.map((particle, i) => (
                   <div
                     key={i}
                     className="absolute h-1 w-1 rounded-full bg-blue-400/50 dark:bg-blue-500/40"
                     style={{
-                      top: `${Math.random() * 100}%`,
-                      left: `${Math.random() * 100}%`,
-                      animation: `float ${
-                        5 + Math.random() * 10
-                      }s linear infinite`,
-                      animationDelay: `${Math.random() * 5}s`,
+                      top: particle.top,
+                      left: particle.left,
+                      animation: `float ${particle.duration} linear infinite`,
+                      animationDelay: particle.delay,
                     }}
                   ></div>
                 ))}

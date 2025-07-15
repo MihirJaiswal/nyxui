@@ -1,28 +1,21 @@
 "use client";
-import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { MajesticCard } from "../../../registry/ui/majestic-card";
 import img from "../../../public/assets/images/landing-page/mihir.webp";
+import ThreeDLayeredCard from "@/registry/ui/3d-layered-card";
+import { Clock } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { GlowCard } from "@/registry/ui/glow-card";
 
 export const TwitterCard = () => {
-  const [isHovering, setIsHovering] = useState(false);
-
-  const handleMouseEnter = () => setIsHovering(true);
-  const handleMouseLeave = () => setIsHovering(false);
 
   return (
-    <MajesticCard
-      variant="glow"
-      intensity={4}
-      hoverEffect
-      speed="normal"
-      className="w-full rounded-xl max-w-full h-full mx-auto bg-black shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 border-gray-600 from-gray-950 via-gray-950 to-gray-950 border-none"
+    <GlowCard
+    allowCustomBackground
+      className="w-full !p-0 rounded-xl max-w-full h-full mx-auto bg-black shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 border-gray-600 from-gray-950 via-gray-950 to-gray-950 border-none"
     >
       <div
         className="p-3 sm:p-5"
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
       >
         <div className="flex items-center space-x-2 sm:space-x-3">
           <div className="relative">
@@ -70,62 +63,40 @@ export const TwitterCard = () => {
             <span className="font-bold ">#webdev</span>{" "}
             <span className="font-bold">#tailwindcss</span>
           </p>
-          <div className="mt-2 sm:mt-3 border border-gray-600/50 bg-zinc-900 rounded-lg p-2 sm:p-3 text-xs sm:text-sm font-mono overflow-hidden">
-            <MajesticCard
-              variant={isHovering ? "magnetic" : "float"}
-              intensity={4}
-              className="hidden md:block  border-none shadow-none"
-            >
-              <div className="flex items-center p-1 sm:p-2 text-gray-500 dark:text-gray-400 text-xs mb-1">
-                <div className="flex space-x-1 mr-2">
-                  <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-red-500" />
-                  <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-yellow-500" />
-                  <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-green-500" />
-                </div>
-                <span className="text-xs text-white">Card.tsx</span>
-              </div>
-              <div className="text-gray-700 text-xs p-1 sm:p-2 dark:text-gray-300 overflow-x-auto">
-                <pre className="text-xs text-gray-200">
-                  <code>
-                    {`<div className="max-w-sm p-6">
-  <p className="text-gray-600">
-    Hover on this!
-  </p>
-  <button className="bg-blue-500">
-    Click me
-  </button>
-</div>`}
-                  </code>
-                </pre>
-              </div>
-            </MajesticCard>
-            <div className="md:hidden p-2 rounded-md border-none">
-              <div className="flex items-center p-1 sm:p-2 text-gray-400 text-xs mb-1">
-                <div className="flex space-x-1 mr-2">
-                  <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-red-500" />
-                  <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-yellow-500" />
-                  <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-green-500" />
-                </div>
-                <span className="text-xs text-white">Card.tsx</span>
-              </div>
-              <div className="text-xs p-1 sm:p-2 text-gray-300 overflow-x-auto">
-                <pre className="text-xs">
-                  <code>
-                    {`<div className="max-w-sm p-6">
-  <p className="text-gray-600">
-    Tap on the card
-  </p>
-  <button className="bg-blue-500">
-    Click me
-  </button>
-</div>`}
-                  </code>
-                </pre>
+          <div className="flex mt-6 items-center justify-center rounded-sm border bg-zinc-800 h-44 relative">
+          <div className="absolute inset-0 h-full w-full items-center px-5 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"></div>
+          <ThreeDLayeredCard
+            logo="/assets/images/landing-page/tailwindlogo.svg"
+            logoSize={60}
+            width={300}
+            title="Tailwind"
+            logoPosition={{ expanded: 8 }}
+            mainImage="/assets/images/landing-page/tailwind.png"
+            borderColor="#ffffff"
+            borderWidth="1px"
+            shineIntensity={0.6}
+            backgroundColor="bg-gradient-to-b from-blue-300 via-blue-500 to-blue-800"
+            glowGradient="#43EDFA"
+          >
+            <div className="flex flex-col items-center justify-center gap-1 ">
+              <Badge
+                className="bg-green-950/40 backdrop-blur-3xl text-gray-200 border-green-500/30 py-[1px] relative"
+              >
+                Built with Tailwind ❤️
+              </Badge>
+              <h1 className="text-white text-[17px] font-semibold tracking-wide leading-tight text-center">
+              Tailwind made me faster than ChatGPT on a deadline.
+              </h1>
+              <div className="flex items-center justify-center gap-2">
+                <Clock
+                 className="h-2.5 w-2.5 text-gray-100" />
+                <span className="text-gray-100 text-xs">4 min</span>
               </div>
             </div>
+          </ThreeDLayeredCard>
           </div>
         </div>
-        <div className="mt-3 sm:mt-4 flex items-center justify-between text-gray-400">
+        <div className="mt-3 sm:mt-8 flex items-center justify-between text-gray-400">
           <div className="flex items-center space-x-4 sm:space-x-8">
             <button className="flex items-center space-x-1 group">
               <svg
@@ -227,6 +198,6 @@ export const TwitterCard = () => {
           </button>
         </Link>
       </div>
-    </MajesticCard>
+    </GlowCard>
   );
 };

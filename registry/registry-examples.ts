@@ -268,16 +268,16 @@ export const examples: Registry["items"] = [
     ],
   },
   {
-    name: "majestic-card-demo",
+    name: "glow-card-demo",
     type: "registry:example",
-    title: "Majestic Card Demo",
-    description: "Example showing a majestic card.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/majestic-card.json"],
+    title: "Glow Card Demo",
+    description: "Example showing a glow card.",
+    registryDependencies: ["https://nuvyxui.vercel.app/r/glow-card.json"],
     files: [
       {
-        path: "registry/example/majestic-card-demo.tsx",
+        path: "registry/example/glow-card-demo.tsx",
         type: "registry:example",
-        target: "components/majestic-card-demo.tsx",
+        target: "components/glow-card-demo.tsx",
       },
     ],
   },
