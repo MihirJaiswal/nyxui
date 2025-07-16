@@ -1,0 +1,99 @@
+---
+title: Animated Grainy Background
+date: 2025-05-08
+description: A dynamic animated gradient background component that supports various grainy effects and patterns.
+author: MihirJaiswal
+published: true
+tags: ["Background", "Animation"]
+---
+
+<ComponentPreview name="animated-grainy-bg-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nuvyxui.vercel.app/r/animated-grainy-bg.json"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies.</Step>
+
+```bash
+npm install framer-motion clsx tailwind-merge
+```
+
+<Step>Create a utils.ts file with the cn utility function</Step>
+
+```tsx
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="animated-grainy-bg" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { AnimatedGrainyBg } from "@/components/ui/animated-grainy-bg";
+```
+
+```tsx
+<div className="relative h-[500px] w-full overflow-hidden bg-transparent">
+  <div className="absolute inset-0">
+    <AnimatedGrainyBg
+      position="absolute"
+      colors={["#3b82f6", "#2563eb", "#1d4ed8", "#1e40af"]}
+    />
+  </div>
+  <div className="relative z-10 flex h-full items-center justify-center text-white">
+    <div className="p-4 text-center">Animated gradient</div>
+  </div>
+</div>
+```
+
+## Props
+
+| Prop             | Type                                                                              | Default    | Description                                                                    |
+| ---------------- | --------------------------------------------------------------------------------- | ---------- | ------------------------------------------------------------------------------ |
+| `children`       | `React.ReactNode`                                                                 | `undefined` | Content to render on top of the gradient background.                          |
+| `className`      | `string`                                                                          | `""`       | Additional CSS classes to apply to the container.                             |
+| `colors`         | `string[]`                                                                        | Auto-selected based on `darkMode` | Array of colors to use in the gradient pattern.                               |
+| `speed`          | `number`                                                                          | `1`        | Speed factor for the gradient animation (higher = faster).                    |
+| `grainType`      | `"film" \| "digital" \| "vintage" \| "plasma" \| "scratches" \| "paper"`        | `"film"`   | Type of grain texture to apply to the background.                             |
+| `grainIntensity` | `number`                                                                          | `30`       | Intensity of the grain effect (0-100).                                        |
+| `grainSize`      | `number`                                                                          | `80`       | Size of the grain particles.                                                  |
+| `animationType`  | `"flow" \| "mesh" \| "waves" \| "aurora" \| "spiral" \| "pulse"`                | `"mesh"`   | Type of gradient animation pattern.                                           |
+| `size`           | `"sm" \| "md" \| "lg" \| "full" \| number`                                       | `"full"`   | Size of the background container. Numbers represent pixels.                   |
+| `position`       | `"fixed" \| "absolute" \| "relative"`                                            | `"relative"` | CSS position property for the background container.                           |
+| `zIndex`         | `number`                                                                          | `0`        | z-index of the background container.                                          |
+| `animate`        | `boolean`                                                                         | `true`     | Enable or disable background animation.                                       |
+| `darkMode`       | `boolean`                                                                         | `false`    | Enable dark mode styling and default colors.                                 |
+| `as`             | `"div" \| "section" \| "article" \| "main" \| "aside" \| "header" \| "footer"`  | `"div"`    | HTML element to render as the container.                                     |
+| `onClick`        | `() => void`                                                                      | `undefined` | Click event handler for the background.                                       |

@@ -16,16 +16,16 @@ export const examples: Registry["items"] = [
     ],
   },
   {
-    name: "animated-gradient-bg-demo",
+    name: "animated-grainy-bg-demo",
     type: "registry:example",
-    title: "Animated Gradient Background Demo",
-    description: "Example showing an animated gradient background.",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/animated-gradient-bg"],
+    title: "Animated Grainy Background Demo",
+    description: "Example showing an animated grainy background.",
+    registryDependencies: ["https://nuvyxui.vercel.app/r/animated-grainy-bg"],
     files: [
       {
-        path: "registry/example/animated-gradient-bg-demo.tsx",
+        path: "registry/example/animated-grainy-bg-demo.tsx",
         type: "registry:example",
-        target: "components/animated-gradient-bg-demo.tsx",
+        target: "components/animated-grainy-bg-demo.tsx",
       },
     ],
   },

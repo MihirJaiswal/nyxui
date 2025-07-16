@@ -1,6 +1,6 @@
 "use client";
+import { AnimatedGrainyBg } from "@/registry/ui/animated-grainy-bg";
 import { Cursor } from "@/registry/ui/custom-cursor";
-import { AnimatedGradientBg } from "@/registry/ui/animated-gradient-bg";
 
 export const CustomPointer = () => (
   <div
@@ -8,17 +8,18 @@ export const CustomPointer = () => (
       "flex w-full flex-col justify-between rounded-lg bg-black text-white relative"
     } 
   >
-    <AnimatedGradientBg
-      pattern="waves"
-      colors={["#7A0087", "#005BAB", "#000000", "#000000"]}
-      blur={25}
+    <AnimatedGrainyBg
+      colors={["#0d0d4f", "#84118c", "#8c114c", "#118c61"]}
       speed={2}
-      opacity={0.9}
+      darkMode
       position="absolute"
+      animationType="mesh"
+      grainIntensity={100}
+      grainType="film"
+      grainSize={120}
       size="full"
       zIndex={0}
       animate
-      intensity={2}
       className="bg-gradient-to-b from-white/10 to-50% dark:from-gray-950/20 dark:from-[-25%]"
     />
     <Cursor

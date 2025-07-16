@@ -17,17 +17,17 @@ export const ui: Registry["items"] = [
     ],
   },
   {
-    name: "animated-gradient-bg",
+    name: "animated-grainy-bg",
     type: "registry:ui",
-    title: "Animated Gradient Background",
+    title: "Animated Grainy Background",
     description:
       "A dynamic animated gradient background component that supports various gradient patterns and animations.",
     dependencies: ["motion"],
     files: [
       {
-        path: "registry/ui/animated-gradient-bg.tsx",
+        path: "registry/ui/animated-grainy-bg.tsx",
         type: "registry:ui",
-        target: "components/ui/animated-gradient-bg.tsx",
+        target: "components/ui/animated-grainy-bg.tsx",
       },
     ],
   },

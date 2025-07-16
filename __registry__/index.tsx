@@ -22,17 +22,17 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
-  "animated-gradient-bg": {
-    name: "animated-gradient-bg",
+  "animated-grainy-bg": {
+    name: "animated-grainy-bg",
     description: "A dynamic animated gradient background component that supports various gradient patterns and animations.",
     type: "registry:ui",
     registryDependencies: undefined,
     files: [{
-      path: "registry/ui/animated-gradient-bg.tsx",
+      path: "registry/ui/animated-grainy-bg.tsx",
       type: "registry:ui",
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/ui/animated-gradient-bg.tsx")
+      const mod = await import("@/registry/ui/animated-grainy-bg.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -454,17 +454,17 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
-  "animated-gradient-bg-demo": {
-    name: "animated-gradient-bg-demo",
-    description: "Example showing an animated gradient background.",
+  "animated-grainy-bg-demo": {
+    name: "animated-grainy-bg-demo",
+    description: "Example showing an animated grainy background.",
     type: "registry:example",
-    registryDependencies: ["https://nuvyxui.vercel.app/r/animated-gradient-bg"],
+    registryDependencies: ["https://nuvyxui.vercel.app/r/animated-grainy-bg"],
     files: [{
-      path: "registry/example/animated-gradient-bg-demo.tsx",
+      path: "registry/example/animated-grainy-bg-demo.tsx",
       type: "registry:example",
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/animated-gradient-bg-demo.tsx")
+      const mod = await import("@/registry/example/animated-grainy-bg-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),

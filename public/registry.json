@@ -35,18 +35,18 @@
       ]
     },
     {
-      "name": "animated-gradient-bg",
+      "name": "animated-grainy-bg",
       "type": "registry:ui",
-      "title": "Animated Gradient Background",
+      "title": "Animated Grainy Background",
       "description": "A dynamic animated gradient background component that supports various gradient patterns and animations.",
       "dependencies": [
         "motion"
       ],
       "files": [
         {
-          "path": "registry/ui/animated-gradient-bg.tsx",
+          "path": "registry/ui/animated-grainy-bg.tsx",
           "type": "registry:ui",
-          "target": "components/ui/animated-gradient-bg.tsx"
+          "target": "components/ui/animated-grainy-bg.tsx"
         }
       ]
     },
@@ -669,18 +669,18 @@
       ]
     },
     {
-      "name": "animated-gradient-bg-demo",
+      "name": "animated-grainy-bg-demo",
       "type": "registry:example",
-      "title": "Animated Gradient Background Demo",
-      "description": "Example showing an animated gradient background.",
+      "title": "Animated Grainy Background Demo",
+      "description": "Example showing an animated grainy background.",
       "registryDependencies": [
-        "https://nuvyxui.vercel.app/r/animated-gradient-bg"
+        "https://nuvyxui.vercel.app/r/animated-grainy-bg"
       ],
       "files": [
         {
-          "path": "registry/example/animated-gradient-bg-demo.tsx",
+          "path": "registry/example/animated-grainy-bg-demo.tsx",
           "type": "registry:example",
-          "target": "components/animated-gradient-bg-demo.tsx"
+          "target": "components/animated-grainy-bg-demo.tsx"
         }
       ]
     },
