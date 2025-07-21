@@ -1,5 +1,5 @@
 # Nyx UI 
-![docs-cover](https://github.com/user-attachments/assets/089ea0ba-8a22-410b-869c-0c1a738ec021)
+<img width="1280" height="720" alt="nyx" src="https://github.com/user-attachments/assets/a04a31b2-c89c-4a8b-b7c7-fb956f971079" />
 
 
 ## About The Project
