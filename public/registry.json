@@ -139,22 +139,6 @@
       ]
     },
     {
-      "name": "github-profile-card",
-      "type": "registry:ui",
-      "title": "Github Profile Card",
-      "description": "A card component that displays a GitHub user's profile information. It includes their avatar, name, bio, and links to their GitHub profile.",
-      "dependencies": [
-        "lucide-react"
-      ],
-      "files": [
-        {
-          "path": "registry/ui/github-profile-card.tsx",
-          "type": "registry:ui",
-          "target": "components/ui/github-profile-card.tsx"
-        }
-      ]
-    },
-    {
       "name": "github-repo-card",
       "type": "registry:ui",
       "title": "Github Repo Card",
@@ -761,22 +745,6 @@
           "path": "registry/example/dynamic-ripple-demo.tsx",
           "type": "registry:example",
           "target": "components/dynamic-ripple-demo.tsx"
-        }
-      ]
-    },
-    {
-      "name": "github-profile-card-demo",
-      "type": "registry:example",
-      "title": "Github Profile Card Demo",
-      "description": "Example showing a GitHub profile card.",
-      "registryDependencies": [
-        "https://nyxui.vercel.app/r/github-profile-card.json"
-      ],
-      "files": [
-        {
-          "path": "registry/example/github-profile-card-demo.tsx",
-          "type": "registry:example",
-          "target": "components/github-profile-card-demo.tsx"
         }
       ]
     },

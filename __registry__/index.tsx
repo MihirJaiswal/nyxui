@@ -102,22 +102,6 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
-  "github-profile-card": {
-    name: "github-profile-card",
-    description: "A card component that displays a GitHub user's profile information. It includes their avatar, name, bio, and links to their GitHub profile.",
-    type: "registry:ui",
-    registryDependencies: undefined,
-    files: [{
-      path: "registry/ui/github-profile-card.tsx",
-      type: "registry:ui",
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/ui/github-profile-card.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
   "github-repo-card": {
     name: "github-repo-card",
     description: "A card component that displays information about a GitHub repository. It includes the repository name, description, stars, forks, and a link to the repository.",
@@ -545,22 +529,6 @@ export const Index: Record<string, any> = {
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/example/dynamic-ripple-demo.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "github-profile-card-demo": {
-    name: "github-profile-card-demo",
-    description: "Example showing a GitHub profile card.",
-    type: "registry:example",
-    registryDependencies: ["https://nyxui.vercel.app/r/github-profile-card.json"],
-    files: [{
-      path: "registry/example/github-profile-card-demo.tsx",
-      type: "registry:example",
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/example/github-profile-card-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
