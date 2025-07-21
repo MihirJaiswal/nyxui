@@ -24,7 +24,7 @@ const TerminalDemo = () => {
           finalMessage={`
   ✅ DEPLOYMENT SUCCESSFUL!
   
-  Application deployed to: https://nuvyxui.vercel.app/
+  Application deployed to: https://nyxui.vercel.app/
   Build version: 1.0.42
   Deployment ID: d8f72b3e-9c1a-4f8b-b98c-7f2e9e1fcb5a
   Deployment time: 2m 43s

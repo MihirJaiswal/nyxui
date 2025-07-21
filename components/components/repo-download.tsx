@@ -44,7 +44,7 @@ export default function RepoDownload({ url, free = false }: RepoDownloadProps) {
 
   return (
     <Link
-      href="https://github.com/nuvyxui/nuvyxui"
+      href="https://github.com/nyxui/nyxui"
       target="_blank"
       className={cn(
         buttonVariants({

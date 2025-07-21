@@ -14,7 +14,7 @@
     "@radix-ui/react-dialog"
   ],
   "registryDependencies": [
-    "https://nuvyxui.vercel.app/r/custom-cursor.json"
+    "https://nyxui.vercel.app/r/custom-cursor.json"
   ],
   "files": [
     {

@@ -31,7 +31,7 @@ export const Matrix = () => {
     >
       <MatrixCodeRain
         color={color}
-        charset="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ$#%@!nuvyxui"
+        charset="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ$#%@!nyxui"
         fontSize={14}
         fps={30}
         opacity={0.05}

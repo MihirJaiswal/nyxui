@@ -115,7 +115,7 @@ function AccordionItem({ value, children, className }: AccordionItemProps) {
 
   return (
     <div
-      className={cn("nuvyxui-accordion-item", className)}
+      className={cn("nyxui-accordion-item", className)}
       {...(isExpanded ? { "data-expanded": "" } : { "data-closed": "" })}
     >
       {React.Children.map(children, (child) => {
