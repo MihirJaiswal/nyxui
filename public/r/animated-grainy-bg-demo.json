@@ -13,7 +13,7 @@
   "files": [
     {
       "path": "registry/example/animated-grainy-bg-demo.tsx",
-      "content": "import { AnimatedGrainyBg } from \"../ui/animated-grainy-bg\";\n\n\nexport const AnimatedGradientBgDemo = () => {\n  return (\n    <div className=\"h-[300px] overflow-hidden\">\n      <div className=\"absolute inset-0 overflow-hidden rounded-lg\">\n        <AnimatedGrainyBg\n          position=\"absolute\"\n          size=\"full\"\n          zIndex={0}\n          colors={[\"#4f46e5\", \"#ec4899\", \"#8b5cf6\", \"#06b6d4\"]}\n        />\n      </div>\n    </div>\n  );\n};\n",
+      "content": "import { AnimatedGrainyBg } from \"../ui/animated-grainy-bg\";\n\n\nexport const AnimatedGradientBgDemo = () => {\n  return (\n    <div className=\"h-[300px] overflow-hidden flex items-center justify-center\">\n      <div className=\"absolute inset-0 overflow-hidden rounded-lg\">\n        <AnimatedGrainyBg\n          position=\"absolute\"\n          animationType=\"waves\"\n          grainIntensity={100}\n          grainType=\"film\"\n          grainSize={120}\n          size=\"full\"\n          darkMode \n          zIndex={0}\n          colors={[\"#1b078c\", \"#a3079e\", \"#c20673\", \"#06d4b8\"]}\n        />\n      </div>\n      <div className=\"relative z-10 items-center justify-center flex -mt-12\">\n          <h1>\n            <span className=\"text-white text-2xl font-bold tracking-tight uppercase leading-snug\">\n              Animated grainy background\n            </span>\n          </h1>\n        </div>\n    </div>\n  );\n};\n",
       "type": "registry:example",
       "target": "components/animated-grainy-bg-demo.tsx"
     }
