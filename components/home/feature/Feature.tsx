@@ -104,7 +104,7 @@ export default function AnimatedComponentsShowcase() {
                     style={{
                       backgroundImage:
                         "url('/assets/images/landing-page/bg7.gif')",
-                      backgroundSize: "cover",
+                      backgroundSize: "contain",
                       backgroundPosition: "left top", 
                       backgroundRepeat: "repeat",
                       WebkitBackgroundClip: "text",
