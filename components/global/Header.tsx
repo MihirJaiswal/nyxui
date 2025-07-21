@@ -199,7 +199,7 @@ export default function Header() {
                 size="icon"
                 className="rounded-full h-8 w-8 p-0 hover:bg-muted/80 transition-all duration-300"
               >
-                <Github className="h-4 w-4 text-black dark:text-white" />
+                <GitHubLogoIcon className="h-5 w-5 text-black dark:text-white" />
                 <span className="sr-only">GitHub</span>
               </Button>
             </Link>
@@ -216,8 +216,8 @@ export default function Header() {
                 className="rounded-full h-8 w-8 p-0 hover:bg-muted/80 transition-all duration-300"
               >
                 <svg
-                  height="23"
-                  width="23"
+                  height="17"
+                  width="17"
                   fill="currentColor"
                   viewBox="0 0 1200 1227"
                   xmlns="http://www.w3.org/2000/svg"
