@@ -108,7 +108,7 @@ export default function FooterSection() {
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label="X/Twitter"
-                            className="text-muted-foreground hover:text-primary block">
+                            className="text-primary block rounded-full hover:bg-muted/80 transition-all duration-300 hover:scale-105">
                             <svg
                                 className="size-6"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -125,7 +125,7 @@ export default function FooterSection() {
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label="LinkedIn"
-                            className="text-muted-foreground hover:text-primary block">
+                            className="text-primary block rounded-full hover:bg-muted/80 transition-all duration-300 hover:scale-105">
                             <svg
                                 className="size-6"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -142,7 +142,7 @@ export default function FooterSection() {
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label="GitHub"
-                            className="text-muted-foreground hover:text-primary block">
+                            className="text-primary block rounded-full hover:bg-muted/80 transition-all duration-300 hover:scale-105">
                             <Github className='size-6' />
                         </Link>
                     </div>
