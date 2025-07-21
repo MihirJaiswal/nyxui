@@ -100,20 +100,6 @@ export const examples: Registry["items"] = [
     ],
   },
   {
-    name: "github-profile-card-demo",
-    type: "registry:example",
-    title: "Github Profile Card Demo",
-    description: "Example showing a GitHub profile card.",
-    registryDependencies: ["https://nyxui.vercel.app/r/github-profile-card.json"],
-    files: [
-      {
-        path: "registry/example/github-profile-card-demo.tsx",
-        type: "registry:example",
-        target: "components/github-profile-card-demo.tsx",
-      },
-    ],
-  },
-  {
     name: "github-repo-card-demo",
     type: "registry:example",
     title: "Github Repo Card Demo",

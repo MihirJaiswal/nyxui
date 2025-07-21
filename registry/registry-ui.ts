@@ -122,21 +122,6 @@ export const ui: Registry["items"] = [
     ],
   },
   {
-    name: "github-profile-card",
-    type: "registry:ui",
-    title: "Github Profile Card",
-    description:
-      "A card component that displays a GitHub user's profile information. It includes their avatar, name, bio, and links to their GitHub profile.",
-    dependencies: ["lucide-react"],
-    files: [
-      {
-        path: "registry/ui/github-profile-card.tsx",
-        type: "registry:ui",
-        target: "components/ui/github-profile-card.tsx",
-      },
-    ],
-  },
-  {
     name: "github-repo-card",
     type: "registry:ui",
     title: "Github Repo Card",

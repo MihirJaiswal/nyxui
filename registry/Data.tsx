@@ -87,13 +87,6 @@ export const componentsData: ComponentsData = {
         "Interactive ripple effect that responds to cursor or touch.",
       image: "/assets/images/showcase/dynamic-ripple.png",
     },
-    "github-profile-card": {
-      title: "GitHub Profile Card",
-      tags: ["Cards", "GitHub", "Profile"],
-      description:
-        "A card component that displays GitHub user profile information.",
-      image: "/assets/images/showcase/github-profile-card.png",
-    },
     "github-repo-card": {
       title: "GitHub Repo Card",
       tags: ["Cards", "GitHub"],
