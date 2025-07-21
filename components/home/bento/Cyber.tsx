@@ -25,7 +25,7 @@ export default function Cyber() {
               </Badge>
             </div>
 
-            <div className="relative h-24 w-auto md:w-80 md:h-40 mx-auto z-20">
+            <div className="relative h-24 w-62 md:w-80 md:h-40 mx-auto z-20">
             <div className="w-full h-full bg-[url('/assets/images/cyberpunk-card/david.jpg')] bg-cover bg-center rounded-lg" />
           </div>
 

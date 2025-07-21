@@ -580,3 +580,25 @@
 .steps > h3 {
   @apply mt-8 mb-4 text-base font-semibold;
 }
+
+
+
+.generationShadow {
+  color: transparent;
+  /* default for mobile & sm: 1px offset */
+  text-shadow:
+    -1px -1px 0 #efcdfa,
+    1px -1px 0 #efcdfa,
+    -1px 1px 0 #efcdfa,
+    1px 1px 0 #efcdfa;
+}
+@media (min-width: 768px) {
+  .generationShadow {
+    /* override at md+ (tablet, PC): 0.5px offset */
+    text-shadow:
+      -0.5px -0.5px 0 #efcdfa,
+      0.5px -0.5px 0 #efcdfa,
+      -0.5px 0.5px 0 #efcdfa,
+      0.5px 0.5px 0 #efcdfa;
+  }
+}

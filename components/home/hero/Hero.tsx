@@ -1,4 +1,3 @@
-"use client";
 import Link from "next/link";
 import React from "react";
 import { ArrowRight, Blocks, ChevronRight } from "lucide-react";
@@ -109,8 +108,8 @@ function Hero() {
         </div>
 
         {/* Bottom section - responsive layout */}
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between xl:justify-start mt-12 xl:gap-12 sm:mt-16 lg:mt-18 z-1 lg:scale-95 lg:-ml-8">
-          <div className="mb-8 lg:mb-0">
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between xl:justify-start mt-14 xl:gap-12 sm:mt-16 lg:mt-18 z-1 lg:scale-95 lg:-ml-8">
+          <div className="mb-10 lg:mb-0">
             <p className="text-neutral-700 dark:text-neutral-400 text-sm sm:text-[14.5px] mb-4 text-center lg:text-left">
               Trusted by many developers
             </p>
@@ -157,7 +156,7 @@ function Hero() {
         </div>
 
         {/* Organic Flowing Gradient - responsive */}
-        <div className="absolute -top-24 left-44 md:top-0 md:right-0 md:left-auto w-[300px] h-[300px] sm:w-[500px] sm:h-[400px] lg:w-[720px] lg:h-[600px] opacity-20 dark:opacity-60">
+        <div className="absolute -top-32 left-56 md:top-0 md:right-0 md:left-auto w-[300px] h-[300px] sm:w-[500px] sm:h-[400px] lg:w-[720px] lg:h-[600px] opacity-20 dark:opacity-60">
           <div className="absolute inset-0 bg-gradient-to-br from-green-400 via-purple-500 to-pink-500 rounded-full blur-3xl transform rotate-12 scale-150" />
           <div className="absolute top-10 right-10 sm:top-16 sm:right-16 lg:top-20 lg:right-20 w-48 h-48 sm:w-72 sm:h-72 lg:w-96 lg:h-96 bg-gradient-to-br from-orange-400 via-red-500 to-pink-600 rounded-full blur-2xl opacity-70" />
         </div>
@@ -202,28 +201,6 @@ function Hero() {
           <Matrix />
         </div>
       </div>
-
-      <style jsx>{`
-        .generationShadow {
-          color: transparent;
-          /* default for mobile & sm: 1px offset */
-          text-shadow:
-            -1px -1px 0 #efcdfa,
-            1px -1px 0 #efcdfa,
-            -1px 1px 0 #efcdfa,
-            1px 1px 0 #efcdfa;
-        }
-        @media (min-width: 768px) {
-          .generationShadow {
-            /* override at md+ (tablet, PC): 0.5px offset */
-            text-shadow:
-              -0.5px -0.5px 0 #efcdfa,
-              0.5px -0.5px 0 #efcdfa,
-              -0.5px 0.5px 0 #efcdfa,
-              0.5px 0.5px 0 #efcdfa;
-          }
-        }
-      `}</style>
     </section>
   );
 }
