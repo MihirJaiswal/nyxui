@@ -6,6 +6,14 @@ export interface Component {
   isNew?: boolean;
 }
 
+export interface template {
+  title: string;
+  tags: string[];
+  description: string;
+  image: string;
+  isNew?: boolean;
+}
+
 interface Links {
   documentation: string;
 }
@@ -15,7 +23,10 @@ interface ComponentsData {
   components: {
     [key: string]: Component;
   };
-  templates: Record<string, unknown>;
+  templates: {
+    [key: string]: template;
+  };
+  blocks?: Record<string, unknown>;
 }
 
 export const componentsData: ComponentsData = {

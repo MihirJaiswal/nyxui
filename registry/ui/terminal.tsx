@@ -176,7 +176,7 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({
     >
       <div
         className={cn(
-          "mb-4 p-3 rounded-md border flex items-center justify-between",
+          "mb-4 p-3 rounded-md flex items-center justify-between",
           theme.header,
         )}
       >
@@ -255,11 +255,7 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({
             {promptSymbol} {input}
           </pre>
         )}
-        {autoExecute && repeat && completed && (
-          <pre className="text-gray-500 italic mt-2">
-            Repeating in {Math.ceil(repeatDelay / 1000)}s...
-          </pre>
-        )}
+        
       </div>
 
       {!autoExecute && step === 0 && !commandExecuted && (

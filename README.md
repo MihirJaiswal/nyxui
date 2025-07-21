@@ -1,4 +1,4 @@
-# Nuvyx UI 
+# Nyx UI 
 ![docs-cover](https://github.com/user-attachments/assets/089ea0ba-8a22-410b-869c-0c1a738ec021)
 
 

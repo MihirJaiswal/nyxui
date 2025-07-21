@@ -1,12 +1,9 @@
 import React from "react";
 import {
   Lightbulb,
-  ChevronRight,
   BookOpen,
-  Coffee,
   MessageSquare,
 } from "lucide-react";
-import Image from "next/image";
 
 export default function DocsSidebar() {
   const sections = [
@@ -26,7 +23,7 @@ export default function DocsSidebar() {
   return (
     <div className="text-sm">
       <div className="rounded-xl">
-        <div className="space-y-6 p-3">
+        <div className="space-y-6 py-3">
           <div className="space-y-4">
             <p className="font-semibold text-base tracking-tight border-b pb-2 mb-1">
               On This Page
@@ -45,7 +42,7 @@ export default function DocsSidebar() {
               ))}
             </ul>
           </div>
-          <div className="pt-4">
+         {/*  <div className="pt-4">
             <a
               target="_blank"
               rel="noopener noreferrer"
@@ -67,9 +64,9 @@ export default function DocsSidebar() {
                   <div className="absolute inset-0 flex items-center justify-center">
                     <Image
                       src="/assets/images/docs/template.png"
-                      alt="nuvyx UI Portfolio Template"
+                      alt="nyx UI Portfolio Template"
                       className="w-full h-full object-cover rounded-lg"
-                      width={1200}
+                      width={800}
                       height={630}
                       loading="lazy"
                       quality={100}
@@ -79,7 +76,7 @@ export default function DocsSidebar() {
                 </div>
               </div>
             </a>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

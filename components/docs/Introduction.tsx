@@ -10,7 +10,7 @@ import { ChevronUp } from "lucide-react";
 
 export default function IntroductionPage() {
   return (
-    <div className="sm:container max-w-5xl py-6 mx-auto">
+    <div className="sm:container py-6 mx-auto">
       <div className="space-y-10">
         <div className="space-y-2" id="introduction">
           <h1 className="text-4xl font-bold tracking-tight">Introduction</h1>
@@ -24,7 +24,7 @@ export default function IntroductionPage() {
         <div className="relative overflow-hidden rounded-xl border shadow-md">
           <Image
             src="/docs/docs-cover.png"
-            alt="nuvyx UI Components Preview"
+            alt="nyx UI Components Preview"
             width={1200}
             height={630}
             loading="lazy"
@@ -36,10 +36,10 @@ export default function IntroductionPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           <div className="md:col-span-3">
             <h2 className="text-3xl font-bold tracking-tight mb-4">
-              What is Nuvyx UI?
+              What is Nyx UI?
             </h2>
             <p className="md:text-lg leading-7 text-gray-700 dark:text-gray-300">
-              Nuvyx UI is a top-notch set of reusable components, templates, and
+              Nyx UI is a top-notch set of reusable components, templates, and
               blocks designed for seamless integration into your web projects.
               It focuses on offering components, blocks, and templates ideal for
               building landing pages and UI elements with a creative touch and
@@ -65,7 +65,7 @@ export default function IntroductionPage() {
                 </AccordionTrigger>
                 <AccordionContent>
                   <p className="text-gray-700 dark:text-gray-300">
-                    Nuvyx UI offers components that are ready to be integrated
+                    Nyx UI offers components that are ready to be integrated
                     into your web projects. Every component is self-contained
                     and developed using contemporary React techniques, ensuring
                     a smooth implementation.
@@ -75,13 +75,13 @@ export default function IntroductionPage() {
               <AccordionItem value="advanced-usage" className="py-2">
                 <AccordionTrigger className="w-full text-left text-zinc-950 dark:text-zinc-50">
                   <div className="flex items-center justify-between">
-                    <div>Who can benefit from Nuvyx UI?</div>
+                    <div>Who can benefit from Nyx UI?</div>
                     <ChevronUp className="h-4 w-4 text-zinc-950 transition-transform duration-200 group-data-expanded:-rotate-180 dark:text-zinc-50" />
                   </div>
                 </AccordionTrigger>
                 <AccordionContent>
                   <p className="text-gray-700 dark:text-gray-300">
-                    Nuvyx UI is tailored for web developers and designers of any
+                    Nyx UI is tailored for web developers and designers of any
                     proficiency who want to create interactive and creative UI
                     elements.
                   </p>
@@ -132,14 +132,14 @@ export default function IntroductionPage() {
 
               <div className="space-y-4">
                 <p className="leading-7 text-gray-700 dark:text-gray-300">
-                  Nuvyx UI exemplifies this belief by offering reusable React
+                  Nyx UI exemplifies this belief by offering reusable React
                   components that are both highly functional and visually
                   appealing. Our dedication to quality design ensures that our
                   components are sturdy, refined, and dependable.
                 </p>
 
                 <p className="leading-7 text-gray-700 dark:text-gray-300">
-                  Ultimately, at Nuvyx UI, our commitment to crafting a vibrant
+                  Ultimately, at Nyx UI, our commitment to crafting a vibrant
                   and creative digital experience is evident in every design
                   decision. We infuse every detail with excellence and care,
                   ensuring users feel both inspired and secure.

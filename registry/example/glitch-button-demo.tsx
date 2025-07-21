@@ -227,7 +227,7 @@ export const glitchButtons = [
 </GlitchButton>`
   },
   {
-    name: "Nuvyx UI",
+    name: "Nyx UI",
     description: "Purple themed button with cyan glitch",
     component: (
       <GlitchButton
@@ -236,7 +236,7 @@ export const glitchButtons = [
       >
         <div className="flex items-center">
           <MoonIcon className="mr-1 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-          <span>Nuvyx UI</span>
+          <span>Nyx UI</span>
         </div>
       </GlitchButton>
     ),
@@ -246,7 +246,7 @@ export const glitchButtons = [
 >
   <div className="flex items-center">
     <MoonIcon className="mr-1 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-    <span>Nuvyx UI</span>
+    <span>Nyx UI</span>
   </div>
 </GlitchButton>`
   },

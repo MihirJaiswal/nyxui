@@ -1,18 +1,20 @@
-import Header from "../components/global/Header";
-import { Hero } from "../components/home/Hero";
-import Customize from "../components/home/Customize";
-import { Build } from "../components/home/Build";
 import { ComponentsDemo } from "../components/home/bento/ComponentsDemo";
+import Hero from "@/components/home/hero/Hero";
+import ContainCard from "@/components/home/cards/contain-card";
+import AnimatedComponentsShowcase from "@/components/home/feature/Feature";
+import FinalCTASection from "@/components/home/cta/Cta";
+import Header from "@/components/global/Header";
 export default function Home() {
   return (
     <>
-      <Header />
-      <div className="w-full max-w-screen-2xl mx-auto flex flex-col items-center md:px-8 lg:px-12 xl:px-16 2xl:px-24">
+    <Header/>
+    <div className="min-h-screen overflow-hidden">
         <Hero />
         <ComponentsDemo />
-        <Customize />
-        <Build />
-      </div>
+        <AnimatedComponentsShowcase/>
+        <ContainCard/>
+        <FinalCTASection/>
+    </div>
     </>
   );
 }

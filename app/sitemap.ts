@@ -6,60 +6,91 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const date = new Date();
 
   // Main pages
-  const mainPages = [
+  const mainPages: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
       lastModified: date,
-      changeFrequency: "monthly" as const,
+      changeFrequency: "weekly",
       priority: 1.0,
     },
     {
       url: `${baseUrl}/docs`,
       lastModified: date,
-      changeFrequency: "weekly" as const,
+      changeFrequency: "weekly",
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/documentation`,
+      url: `${baseUrl}/components`,
       lastModified: date,
-      changeFrequency: "weekly" as const,
+      changeFrequency: "daily",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/templates`,
+      lastModified: date,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/category`,
+      lastModified: date,
+      changeFrequency: "weekly",
       priority: 0.8,
     },
   ];
 
-  // Component pages
-  const componentPages = Object.keys(componentsData.components).map(
-    (componentKey) => {
-      return {
-        url: `${baseUrl}/docs/${componentKey}`,
+  const componentPages: MetadataRoute.Sitemap = [];
+  if (componentsData?.components) {
+    Object.entries(componentsData.components).forEach(([key]) => {
+      const slug = key.toLowerCase().replace(/\s+/g, '-');
+      componentPages.push({
+        url: `${baseUrl}/components/${slug}`,
         lastModified: date,
-        changeFrequency: "weekly" as const,
-        priority: 0.8,
-      };
-    },
-  );
+        changeFrequency: "monthly",
+        priority: 0.7,
+      });
+    });
+  }
 
-  // Extract all unique tags from components
+  const templatePages: MetadataRoute.Sitemap = [];
+  if (componentsData?.templates) {
+    Object.entries(componentsData.templates).forEach(([key]) => {
+      const slug = key.toLowerCase().replace(/\s+/g, '-');
+      templatePages.push({
+        url: `${baseUrl}/templates/${slug}`,
+        lastModified: date,
+        changeFrequency: "monthly",
+        priority: 0.6,
+      });
+    });
+  }
+
   const allTags = new Set<string>();
-  Object.values(componentsData.components).forEach((component) => {
-    component.tags.forEach((tag) => allTags.add(tag));
-  });
+  if (componentsData?.components) {
+    Object.values(componentsData.components).forEach((component) => {
+      if (component.tags && Array.isArray(component.tags)) {
+        component.tags.forEach((tag) => allTags.add(tag));
+      }
+    });
+  }
 
-  // Category pages for each tag
-  const categoryPages = Array.from(allTags).map((tag) => ({
-    url: `${baseUrl}/docs/category/${encodeURIComponent(tag.toLowerCase())}`,
+  const categoryPages: MetadataRoute.Sitemap = Array.from(allTags).map((tag) => ({
+    url: `${baseUrl}/category/${encodeURIComponent(tag.toLowerCase().replace(/\s+/g, '-'))}`,
     lastModified: date,
-    changeFrequency: "weekly" as const,
-    priority: 0.7,
+    changeFrequency: "weekly",
+    priority: 0.6,
   }));
 
-  // Category index page
-  const categoryIndexPage = {
-    url: `${baseUrl}/docs/category`,
-    lastModified: date,
-    changeFrequency: "weekly" as const,
-    priority: 0.8,
-  };
+  const allPages = [
+    ...mainPages,
+    ...componentPages,
+    ...templatePages,
+    ...categoryPages,
+  ];
 
-  return [...mainPages, ...componentPages, categoryIndexPage, ...categoryPages];
+  const uniquePages = allPages.filter((page, index, self) => 
+    index === self.findIndex((p) => p.url === page.url)
+  );
+
+  return uniquePages;
 }

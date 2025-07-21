@@ -1,71 +1,153 @@
-import Link from "next/link";
-import React from "react";
+import { Github } from 'lucide-react'
+import Link from 'next/link'
 
-const navLinks = [
-  { href: "/docs", label: "Components" },
-  { href: "/documentation", label: "Documentation" },
-];
+const links = [
+    {
+        group: 'Pages',
+        items: [
+            {
+                title: 'Home',
+                href: '/',
+            },
+            {
+                title: 'All Components',
+                href: '/components',
+            },
+            {
+                title: 'Documentation',
+                href: '/docs',
+            },
+            {
+                title: 'Categories',
+                href: '/category',
+            },
+            {
+                title: 'Templates',
+                href: '/templates',
+            }
+        ],
+    },
+    {
+        group: 'Templates',
+        items: [
+            {
+                title: 'Portfolio',
+                href: '/templates/portfolio',
+            }
+        ],
+    },
+    {
+        group: 'Components',
+        items: [
+            {
+                title: '3D layered Card',
+                href: '/components/3d-layered-card',
+            },
+            {
+                title: 'Animated Code Block',
+                href: '/components/animated-code-block',
+            },
+            {
+                title: 'Apple Glass Effect',
+                href: '/components/apple-glass-effect',
+            },
+            {
+                title: 'More',
+                href: '/components',
+            },
+        ],
+    },
+    {
+        group: 'Blocks',
+        items: [
+            {
+                title: 'Coming Soon',
+                href: '/',
+            }
+        ],
+    },
+]
 
-const Footer = () => {
-  return (
-    <footer className="text-gray-600 dark:text-gray-400 py-6 px-4 md:px-8 font-sans border-t border-gray-200 dark:border-zinc-900">
-      <div className="px-10">
-        <div className="flex flex-col md:flex-row items-center justify-between relative">
-          <div className="flex items-center mb-4 md:mb-0">
-            <Link href="/" className="flex items-center space-x-2 group">
-              <div className="h-7 w-7 border-2 border-background flex items-center justify-center bg-black dark:bg-white rounded-full">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  version="1.0"
-                  fill="currentColor"
-                  viewBox="185.7693927125506 148.35232 684.0200809716599 711.7382399999999"
-                  preserveAspectRatio="xMidYMid meet"
-                  width="28"
-                  height="28"
-                >
-                  <g
-                    transform="translate(0.000000,1024.000000) scale(0.100000,-0.100000)"
-                    fill="currentColor"
-                    className="text-background"
-                  >
-                    <path d="M0 5120 l0 -5120 5120 0 5120 0 0 5120 0 5120 -5120 0 -5120 0 0 -5120z m5375 2860 c140 -12 393 -49 415 -61 10 -5 -2 -8 -34 -9 -70 0 -244 -27 -371 -57 -432 -101 -860 -347 -1160 -665 -351 -372 -581 -849 -662 -1368 -27 -173 -24 -540 5 -710 76 -448 246 -823 520 -1151 351 -419 881 -713 1422 -790 141 -20 478 -18 615 4 526 86 976 314 1364 692 151 147 261 280 367 440 126 192 247 443 304 633 12 40 24 71 26 69 2 -2 -1 -57 -7 -123 -71 -841 -511 -1626 -1193 -2132 -693 -513 -1598 -694 -2436 -486 -1191 296 -2083 1312 -2224 2534 -18 155 -21 467 -6 621 68 689 347 1289 819 1760 197 196 400 347 634 473 475 254 1051 372 1602 326z m1946 -570 c13 -112 50 -246 86 -313 71 -130 243 -220 493 -258 l84 -13 -107 -17 c-388 -62 -499 -187 -565 -639 l-8 -55 -17 128 c-10 70 -28 161 -41 202 -69 217 -223 323 -529 365 -45 7 -83 13 -85 14 -1 2 24 6 56 10 166 19 353 90 435 165 85 78 131 204 162 440 8 58 15 111 16 116 1 6 4 -3 5 -20 2 -16 9 -73 15 -125z m-1840 -48 c141 -133 236 -305 293 -532 37 -146 46 -224 46 -408 0 -93 4 -194 10 -223 21 -114 153 -338 301 -510 117 -136 142 -175 147 -228 5 -64 -23 -102 -128 -173 -158 -106 -176 -156 -99 -276 34 -54 38 -103 10 -148 -25 -41 -78 -81 -137 -103 l-46 -18 42 -7 c48 -8 95 -48 106 -91 9 -34 -11 -77 -65 -139 -37 -42 -41 -53 -41 -100 0 -30 7 -73 16 -97 37 -103 16 -206 -58 -276 -105 -101 -280 -109 -623 -25 -122 29 -170 36 -255 36 -92 1 -111 -2 -154 -23 -137 -67 -201 -210 -194 -429 2 -56 0 -102 -3 -102 -11 0 -157 158 -222 240 -174 217 -272 427 -324 695 -27 140 -24 446 6 585 56 262 165 487 344 710 34 41 176 190 317 330 280 278 357 372 443 539 101 194 134 346 124 565 -6 116 -31 276 -53 330 -14 36 114 -44 197 -122z m1730 -1872 c20 -76 56 -136 103 -175 55 -45 172 -92 252 -102 l59 -7 -93 -18 c-221 -44 -303 -134 -333 -367 -16 -120 -21 -127 -30 -41 -29 267 -109 361 -344 409 l-84 17 84 16 c152 29 250 90 294 184 21 44 50 185 52 253 1 24 6 9 15 -44 7 -44 18 -100 25 -125z" />
-                  </g>
-                </svg>
-              </div>
-              <span className="font-bold text-gray-800 dark:text-gray-100">
-                Nuvyx{" "}
-                <span className="text-purple-700 dark:text-purple-400">UI</span>
-              </span>
-            </Link>
-          </div>
+export default function FooterSection() {
+    return (
+        <footer className="border-t bg-white pt-20 dark:bg-neutral-950 z-10 relative">
+            <div className=" px-6 lg:px-12 xl:px-22 container mx-auto">
+                <div className="grid gap-12 md:grid-cols-5">
+                    <div className="md:col-span-2">
+                        <Link
+                            href="/"
+                            aria-label="go home"
+                            className="block size-fit">
+                           <span className="font-bold text-xl">NYX UI</span>
+                        </Link>
+                    </div>
 
-          <div className="flex items-center space-x-6">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
-
-          <div className="mt-4 md:mt-0 text-gray-900 dark:text-gray-100 relative">
-            <span>Brought to you by </span>
-            <Link
-              href="https://github.com/MihirJaiswal"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-purple-800 dark:text-purple-300 underline tracking-wide italic"
-            >
-              Mihir
-            </Link>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-};
-
-export default Footer;
+                    <div className="grid grid-cols-2 gap-6 sm:grid-cols-4 md:col-span-3">
+                        {links.map((link, index) => (
+                            <div
+                                key={index}
+                                className="space-y-4 text-sm">
+                                <span className="block font-medium">{link.group}</span>
+                                {link.items.map((item, index) => (
+                                    <Link
+                                        key={index}
+                                        href={item.href}
+                                        className="text-muted-foreground hover:text-primary block duration-150">
+                                        <span>{item.title}</span>
+                                    </Link>
+                                ))}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <div className="mt-12 flex flex-wrap items-end justify-between gap-6 border-t py-6">
+                    <span className="text-muted-foreground order-last block text-center text-sm md:order-first">© {new Date().getFullYear()} Nyx UI, All rights reserved</span>
+                    <div className="order-first flex flex-wrap justify-center gap-6 text-sm md:order-last">
+                        <Link
+                            href="https://x.com/nyx_ui"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="X/Twitter"
+                            className="text-muted-foreground hover:text-primary block">
+                            <svg
+                                className="size-6"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="1em"
+                                height="1em"
+                                viewBox="0 0 24 24">
+                                <path
+                                    fill="currentColor"
+                                    d="M10.488 14.651L15.25 21h7l-7.858-10.478L20.93 3h-2.65l-5.117 5.886L8.75 3h-7l7.51 10.015L2.32 21h2.65zM16.25 19L5.75 5h2l10.5 14z"></path>
+                            </svg>
+                        </Link>
+                        <Link
+                            href="https://www.linkedin.com/in/mihir-jaiswal-322898287/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="LinkedIn"
+                            className="text-muted-foreground hover:text-primary block">
+                            <svg
+                                className="size-6"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="1em"
+                                height="1em"
+                                viewBox="0 0 24 24">
+                                <path
+                                    fill="currentColor"
+                                    d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37z"></path>
+                            </svg>
+                        </Link>
+                        <Link
+                            href="https://github.com/MihirJaiswal/nyxui"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="GitHub"
+                            className="text-muted-foreground hover:text-primary block">
+                            <Github className='size-6' />
+                        </Link>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    )
+}

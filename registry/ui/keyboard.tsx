@@ -568,10 +568,7 @@ const InteractiveKeyboard: React.FC<InteractiveKeyboardProps> = ({
       case "cyberpunk":
         return {
           keyboard: {
-            background: `linear-gradient(145deg, ${adjustColorBrightness(
-              keyColor,
-              -5,
-            )}, ${adjustColorBrightness(keyColor, -15)})`,
+            background: `#1A1A1A`,
             boxShadow: `0 15px 40px rgba(0, 0, 0, 0.3), 0 10px 20px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05), inset 0 -1px 0 rgba(0, 0, 0, 0.5)`,
             border: `1px solid ${adjustColorBrightness(keyColor, -20)}`,
             borderRadius: "12px",

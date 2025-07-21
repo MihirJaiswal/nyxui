@@ -43,8 +43,8 @@ export function absoluteUrl(path: string) {
 }
 
 export function constructMetadata({
-  title = "Nuvyx UI - Modern React + Tailwind CSS + Motion components & Templates",
-  description = "Nuvyx UI is a curated collection of the best landing page components built using React + Tailwind CSS + Motion",
+  title = "Nyx UI - Modern React + Tailwind CSS + Motion components & Templates",
+  description = "Nyx UI is a curated collection of the best landing page components built using React + Tailwind CSS + Motion",
   image = absoluteUrl("/og"),
   ...props
 }: {

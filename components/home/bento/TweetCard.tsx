@@ -1,19 +1,16 @@
 "use client";
+import { Button } from "@/components/ui/button";
+import { GlowCard } from "@/registry/ui/glow-card";
 import Image from "next/image";
 import Link from "next/link";
-import img from "../../../public/assets/images/landing-page/mihir.webp";
-import ThreeDLayeredCard from "@/registry/ui/3d-layered-card";
-import { Clock } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import { GlowCard } from "@/registry/ui/glow-card";
-import { Button } from "@/components/ui/button";
+import Imageripple from "./ImageRipple";
 
 export const TwitterCard = () => {
 
   return (
     <GlowCard
     allowCustomBackground
-      className="w-full !p-0 rounded-xl max-w-full h-full mx-auto bg-black shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 border-gray-600 from-gray-950 via-gray-950 to-gray-950 border-none"
+      className="w-full !p-0 rounded-xl hover:rounded-2xl max-w-full h-full mx-auto bg-white dark:bg-black shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 border-gray-600 from-gray-950 via-gray-950 to-gray-950 border-none"
     >
       <div
         className="p-3 sm:p-5"
@@ -23,8 +20,7 @@ export const TwitterCard = () => {
             <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden">
               <div className="w-full h-full flex items-center justify-center">
                 <Image
-                  src={img}
-                  placeholder="blur"
+                  src='/assets/images/landing-page/mihir.webp'
                   alt="Mihir Jaiswal"
                   width={500}
                   height={500}
@@ -38,10 +34,10 @@ export const TwitterCard = () => {
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between">
               <div className="truncate">
-                <h3 className="font-bold text-sm sm:text-base text-white">
+                <h3 className="font-bold text-sm sm:text-base text-black dark:text-white">
                   Mihir Jaiswal
                 </h3>
-                <p className="text-xs sm:text-sm text-gray-400 truncate">
+                <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 truncate">
                   @mihirjaiswal
                 </p>
               </div>
@@ -49,7 +45,7 @@ export const TwitterCard = () => {
                 height="20"
                 width="20"
                 className="flex-shrink-0 ml-1"
-                fill="currentColor"
+                fill="currentcolor"
                 viewBox="0 0 1200 1227"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -59,49 +55,21 @@ export const TwitterCard = () => {
           </div>
         </div>
         <div className="mt-3 sm:mt-4">
-          <p className="text-xs sm:text-sm text-gray-200">
-            Once you go Tailwind, there is no going back 😆{" "}
-            <span className="text-blue-400 hover:text-blue-300 transition-colors cursor-pointer font-medium">
+          <p className="text-xs sm:text-sm text-gray-800 dark:text-gray-200">
+            Hover on the image below to see the magic! 😆{" "}
+            <span className="text-blue-600 dark:text-blue-400 transition-colors cursor-pointer font-medium">
               #webdev
             </span>{" "}
-            <span className="text-blue-400 hover:text-blue-300 transition-colors cursor-pointer font-medium">
-              #tailwindcss
+            <span className="text-blue-600 dark:text-blue-400 transition-colors cursor-pointer font-medium">
+              #magic
             </span>
           </p>
-          <div className="flex mt-6 items-center justify-center rounded-sm border bg-zinc-800 h-44 relative">
-          <div className="absolute inset-0 h-full w-full items-center px-5 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"></div>
-          <ThreeDLayeredCard
-            logo="/assets/images/landing-page/tailwindlogo.svg"
-            logoSize={60}
-            width={300}
-            title="Tailwind"
-            logoPosition={{ expanded: 8 }}
-            mainImage="/assets/images/landing-page/tailwind.png"
-            borderColor="#ffffff"
-            borderWidth="1px"
-            shineIntensity={0.6}
-            backgroundColor="bg-gradient-to-b from-blue-300 via-blue-500 to-blue-800"
-            glowGradient="#43EDFA"
-          >
-            <div className="flex flex-col items-center justify-center gap-1 ">
-              <Badge
-                className="bg-green-950/40 backdrop-blur-3xl text-gray-200 border-green-500/30 py-[1px] relative"
-              >
-                Built with Tailwind ❤️
-              </Badge>
-              <h1 className="text-white text-[17px] font-semibold tracking-wide leading-tight text-center">
-              Tailwind made me faster than ChatGPT on a deadline.
-              </h1>
-              <div className="flex items-center justify-center gap-2">
-                <Clock
-                 className="h-2.5 w-2.5 text-gray-100" />
-                <span className="text-gray-100 text-xs">4 min</span>
-              </div>
-            </div>
-          </ThreeDLayeredCard>
+          <div className="flex mt-6 items-center justify-center overflow-hidden rounded-sm border dark:bg-zinc-800 h-44 relative">
+          <div className="absolute inset-0 h-full w-full items-center px-5 [background:radial-gradient(125%_125%_at_50%_10%,#E5ECFC_40%,#EED5FE_100%)] dark:[background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"></div>
+              <Imageripple/>
           </div>
         </div>
-        <div className="mt-3 sm:mt-8 flex items-center justify-between text-gray-400">
+        <div className="mt-3 sm:mt-8 flex items-center justify-between text-gray-600 dark:text-gray-400">
           <div className="flex items-center space-x-4 sm:space-x-8">
             <button className="flex items-center space-x-1 group">
               <svg
@@ -177,7 +145,7 @@ export const TwitterCard = () => {
         </div>
       </div>
       <div className="px-3 sm:px-5 py-2 sm:py-3 border-t border-gray-800 flex justify-between items-center">
-        <span className="text-xxs sm:text-xs text-gray-400">
+        <span className="text-xxs sm:text-xs text-gray-600 dark:text-gray-400">
           1:24 PM · Apr 7, 2025
         </span>
         <Link href="https://www.linkedin.com/in/mihir-jaiswal-322898287/">

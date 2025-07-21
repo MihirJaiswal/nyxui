@@ -1,6 +1,7 @@
 "use client"
+
 import type React from "react"
-import { useRef, useEffect, useState, useCallback } from "react"
+import { useRef, useEffect, useState, useCallback, useMemo } from "react"
 import { cn } from "@/lib/utils"
 
 interface Particle {
@@ -43,30 +44,39 @@ export function GlowCard({
   const animationRef = useRef<number>(0)
   const waveTimeRef = useRef<number>(0)
   const frameCountRef = useRef<number>(0)
+  const lastMouseMoveRef = useRef<number>(0)
+
   const [isHovered, setIsHovered] = useState(false)
   const [mousePos, setMousePos] = useState({ x: 50, y: 50 })
   const [particles, setParticles] = useState<Particle[]>([])
   const [ripples, setRipples] = useState<Array<{ id: number; x: number; y: number; time: number }>>([])
   const [glitchOffset, setGlitchOffset] = useState({ x: 0, y: 0 })
 
-  const hexToRgb = useCallback((hex: string) => {
-    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
-    return result
-      ? {
-          r: Number.parseInt(result[1], 16),
-          g: Number.parseInt(result[2], 16),
-          b: Number.parseInt(result[3], 16),
-        }
-      : { r: 59, g: 130, b: 246 }
-  }, [])
+  // Memoize color conversions
+  const colorData = useMemo(() => {
+    const hexToRgb = (hex: string) => {
+      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
+      return result
+        ? {
+            r: Number.parseInt(result[1], 16),
+            g: Number.parseInt(result[2], 16),
+            b: Number.parseInt(result[3], 16),
+          }
+        : { r: 59, g: 130, b: 246 }
+    }
 
-  const rgb = hexToRgb(liquidColor)
-  const laserRgb = hexToRgb(laserColor)
+    return {
+      rgb: hexToRgb(liquidColor),
+      laserRgb: hexToRgb(laserColor),
+      glitch1Rgb: hexToRgb(glitchColor1),
+      glitch2Rgb: hexToRgb(glitchColor2),
+    }
+  }, [liquidColor, laserColor, glitchColor1, glitchColor2])
 
-  // Generate cosmic particles
+  // Generate cosmic particles immediately on hover
   const generateCosmicParticles = useCallback((centerX: number, centerY: number) => {
     const newParticles: Particle[] = []
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < 10; i++) {
       const angle = Math.random() * Math.PI * 2
       const distance = Math.random() * 40
       const particleType = Math.random()
@@ -91,27 +101,32 @@ export function GlowCard({
     setParticles((prev) => [...prev.slice(-25), ...newParticles])
   }, [])
 
-  // Animation loop
+  // Optimized animation loop
   const animate = useCallback(() => {
     if (!isHovered) return
+
+    const now = Date.now()
+    if (now - lastMouseMoveRef.current < 16) {
+      animationRef.current = requestAnimationFrame(animate)
+      return
+    }
+
     waveTimeRef.current += 0.5
     frameCountRef.current += 1
-
-    const currentWaveTime = waveTimeRef.current
     const currentFrame = frameCountRef.current
 
-    // Handle different effects
-    if (variant === "cosmic" && currentFrame % 8 === 0) {
+    // Handle different effects with better timing
+    if (variant === "cosmic" && currentFrame % 6 === 0) {
       generateCosmicParticles(mousePos.x, mousePos.y)
-    } else if (variant === "glitch" && currentFrame % 10 === 0) {
+    } else if (variant === "glitch" && currentFrame % 8 === 0) {
       setGlitchOffset({
-        x: (Math.random() - 0.5) * 2,
-        y: (Math.random() - 0.5) * 2,
+        x: (Math.random() - 0.5) * 3,
+        y: (Math.random() - 0.5) * 3,
       })
     }
 
     // Update particles
-    if (currentFrame % 4 === 0) {
+    if (currentFrame % 3 === 0) {
       setParticles((prev) =>
         prev
           .map((p) => ({
@@ -123,15 +138,19 @@ export function GlowCard({
             vy: p.vy * 0.998,
           }))
           .filter((p) => p.life > 0)
-          .slice(-40),
+          .slice(-35),
       )
     }
 
     animationRef.current = requestAnimationFrame(animate)
   }, [isHovered, mousePos, variant, generateCosmicParticles])
 
-  // Event handlers
+  // Throttled mouse move handler
   const handleMouseMove = useCallback((e: MouseEvent) => {
+    const now = Date.now()
+    if (now - lastMouseMoveRef.current < 16) return
+    lastMouseMoveRef.current = now
+
     if (!containerRef.current) return
     const rect = containerRef.current.getBoundingClientRect()
     const x = ((e.clientX - rect.left) / rect.width) * 100
@@ -139,13 +158,21 @@ export function GlowCard({
     setMousePos({ x, y })
   }, [])
 
-  const handleMouseEnter = useCallback(() => setIsHovered(true), [])
+  const handleMouseEnter = useCallback(() => {
+    setIsHovered(true)
+    // Generate initial particles immediately for cosmic effect
+    if (variant === "cosmic") {
+      generateCosmicParticles(mousePos.x, mousePos.y)
+    }
+  }, [variant, generateCosmicParticles, mousePos.x, mousePos.y])
+
   const handleMouseLeave = useCallback(() => {
     setIsHovered(false)
     setMousePos({ x: 50, y: 50 })
     waveTimeRef.current = 0
     frameCountRef.current = 0
     setParticles([])
+    setGlitchOffset({ x: 0, y: 0 })
     if (animationRef.current) cancelAnimationFrame(animationRef.current)
   }, [])
 
@@ -160,8 +187,8 @@ export function GlowCard({
     [variant],
   )
 
-  // Background gradient configuration
-  const getBackgroundGradient = useCallback(() => {
+  // Memoize background gradient
+  const backgroundGradient = useMemo(() => {
     if (allowCustomBackground) return undefined
 
     const gradients = {
@@ -173,8 +200,23 @@ export function GlowCard({
     return gradients[variant]
   }, [variant, allowCustomBackground])
 
-  // Render effect components
+  // Get border gradient
+  const getBorderGradient = () => {
+    const { rgb, laserRgb, glitch1Rgb, glitch2Rgb } = colorData
+
+    return variant === "laser"
+      ? `conic-gradient(from ${waveTimeRef.current * 3}deg at ${mousePos.x}% ${mousePos.y}%, rgba(${laserRgb.r}, ${laserRgb.g}, ${laserRgb.b}, 1) 0deg, rgba(${laserRgb.r + 100}, ${laserRgb.g}, ${laserRgb.b}, 0.8) 60deg, rgba(255, 255, 0, 0.6) 120deg, rgba(0, 255, 100, 0.8) 180deg, rgba(0, 100, 255, 1) 240deg, rgba(100, 0, 255, 0.8) 300deg, rgba(${laserRgb.r}, ${laserRgb.g}, ${laserRgb.b}, 1) 360deg)`
+      : variant === "cosmic"
+        ? `conic-gradient(from ${waveTimeRef.current}deg at ${mousePos.x}% ${mousePos.y}%, rgba(255, 20, 147, 0.8) 0deg, rgba(138, 43, 226, 0.6) 120deg, rgba(75, 0, 130, 0.8) 240deg, rgba(255, 20, 147, 0.8) 360deg)`
+        : variant === "glitch"
+          ? `conic-gradient(from ${waveTimeRef.current * 4}deg at ${mousePos.x}% ${mousePos.y}%, rgba(${glitch1Rgb.r}, ${glitch1Rgb.g}, ${glitch1Rgb.b}, 0.8) 0deg, rgba(${glitch2Rgb.r}, ${glitch2Rgb.g}, ${glitch2Rgb.b}, 0.6) 180deg, rgba(${glitch1Rgb.r}, ${glitch1Rgb.g}, ${glitch1Rgb.b}, 0.8) 360deg)`
+          : `conic-gradient(from ${mousePos.x * 3.6}deg at ${mousePos.x}% ${mousePos.y}%, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.8) 0deg, rgba(${rgb.r + 50}, ${rgb.g + 30}, ${rgb.b + 60}, 0.6) 90deg, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.4) 180deg, rgba(${rgb.r - 30}, ${rgb.g - 20}, ${rgb.b + 40}, 0.6) 270deg, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.8) 360deg)`
+  }
+
+  // Render effects
   const renderEffects = () => {
+    const { rgb, laserRgb, glitch1Rgb, glitch2Rgb } = colorData
+
     switch (variant) {
       case "laser":
         return (
@@ -264,6 +306,7 @@ export function GlowCard({
             />
           </>
         )
+
       case "cosmic":
         return (
           <>
@@ -308,16 +351,24 @@ export function GlowCard({
             />
           </>
         )
+
       case "glitch":
         return isHovered ? (
           <>
             <div
               className="absolute inset-0 pointer-events-none"
               style={{
-                background:
-                  "linear-gradient(90deg, rgba(255, 0, 100, 0.1) 0%, transparent 50%, rgba(0, 255, 100, 0.1) 100%)",
+                background: `linear-gradient(90deg, rgba(${glitch1Rgb.r}, ${glitch1Rgb.g}, ${glitch1Rgb.b}, 0.15) 0%, transparent 50%, rgba(${glitch2Rgb.r}, ${glitch2Rgb.g}, ${glitch2Rgb.b}, 0.15) 100%)`,
                 transform: `translateX(${glitchOffset.x}px) translateY(${glitchOffset.y}px)`,
                 mixBlendMode: "screen",
+              }}
+            />
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: `linear-gradient(45deg, rgba(${glitch1Rgb.r}, ${glitch1Rgb.g}, ${glitch1Rgb.b}, 0.1) 0%, rgba(${glitch2Rgb.r}, ${glitch2Rgb.g}, ${glitch2Rgb.b}, 0.1) 50%, transparent 100%)`,
+                transform: `translateX(${-glitchOffset.x}px) translateY(${glitchOffset.y * 0.5}px)`,
+                mixBlendMode: "multiply",
               }}
             />
             <div
@@ -328,8 +379,17 @@ export function GlowCard({
                 animation: "glitch-lines 0.1s linear infinite",
               }}
             />
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: `radial-gradient(circle at ${mousePos.x}% ${mousePos.y}%, rgba(${glitch1Rgb.r}, ${glitch1Rgb.g}, ${glitch1Rgb.b}, 0.1) 0%, rgba(${glitch2Rgb.r}, ${glitch2Rgb.g}, ${glitch2Rgb.b}, 0.05) 50%, transparent 100%)`,
+                filter: "contrast(1.5) brightness(1.2)",
+                animation: "glitch-noise 0.2s linear infinite",
+              }}
+            />
           </>
         ) : null
+
       case "liquid":
         return (
           <>
@@ -373,34 +433,34 @@ export function GlowCard({
             })}
           </>
         )
+
       default:
         return null
     }
   }
 
-  // Border gradient configuration
-  const getBorderGradient = () => {
-    const baseGradient =
-      variant === "laser"
-        ? `conic-gradient(from ${waveTimeRef.current * 3}deg at ${mousePos.x}% ${mousePos.y}%, rgba(${laserRgb.r}, ${laserRgb.g}, ${laserRgb.b}, 1) 0deg, rgba(${laserRgb.r + 100}, ${laserRgb.g}, ${laserRgb.b}, 0.8) 60deg, rgba(255, 255, 0, 0.6) 120deg, rgba(0, 255, 100, 0.8) 180deg, rgba(0, 100, 255, 1) 240deg, rgba(100, 0, 255, 0.8) 300deg, rgba(${laserRgb.r}, ${laserRgb.g}, ${laserRgb.b}, 1) 360deg)`
-        : variant === "cosmic"
-          ? `conic-gradient(from ${waveTimeRef.current}deg at ${mousePos.x}% ${mousePos.y}%, rgba(255, 20, 147, 0.8) 0deg, rgba(138, 43, 226, 0.6) 120deg, rgba(75, 0, 130, 0.8) 240deg, rgba(255, 20, 147, 0.8) 360deg)`
-          : `conic-gradient(from ${mousePos.x * 3.6}deg at ${mousePos.x}% ${mousePos.y}%, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.8) 0deg, rgba(${rgb.r + 50}, ${rgb.g + 30}, ${rgb.b + 60}, 0.6) 90deg, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.4) 180deg, rgba(${rgb.r - 30}, ${rgb.g - 20}, ${rgb.b + 40}, 0.6) 270deg, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.8) 360deg)`
-
-    return baseGradient
-  }
+  // Memoized container styles
+  const containerStyles = useMemo(
+    () => ({
+      background: backgroundGradient,
+      transformStyle: "preserve-3d" as React.CSSProperties["transformStyle"],
+      perspective: "1000px",
+      filter: variant === "glitch" && isHovered ? `hue-rotate(${waveTimeRef.current * 2}deg) saturate(1.5)` : undefined,
+    }),
+    [backgroundGradient, isHovered, mousePos.x, mousePos.y, variant],
+  )
 
   // Event listeners setup
   useEffect(() => {
     const container = containerRef.current
     if (!container || disabled) return
 
-    container.addEventListener("mousemove", handleMouseMove)
-    container.addEventListener("mouseenter", handleMouseEnter)
-    container.addEventListener("mouseleave", handleMouseLeave)
+    container.addEventListener("mousemove", handleMouseMove, { passive: true })
+    container.addEventListener("mouseenter", handleMouseEnter, { passive: true })
+    container.addEventListener("mouseleave", handleMouseLeave, { passive: true })
 
     if (variant === "liquid") {
-      container.addEventListener("click", createRipple)
+      container.addEventListener("click", createRipple, { passive: true })
     }
 
     return () => {
@@ -428,16 +488,6 @@ export function GlowCard({
     }, 100)
     return () => clearInterval(interval)
   }, [variant])
-
-  const containerStyles = {
-    background: getBackgroundGradient(),
-    transform: isHovered
-      ? `scale(1.02) rotateX(${(mousePos.y - 50) * 0.1}deg) rotateY(${(mousePos.x - 50) * 0.1}deg)`
-      : "scale(1)",
-    transformStyle: "preserve-3d" as React.CSSProperties["transformStyle"],
-    perspective: "1000px",
-    filter: variant === "glitch" && isHovered ? `hue-rotate(${waveTimeRef.current * 2}deg) saturate(1.5)` : undefined,
-  }
 
   return (
     <div
@@ -483,15 +533,35 @@ export function GlowCard({
           style={{
             boxShadow: isHovered
               ? `
-            0 0 15px rgba(${laserRgb.r}, ${laserRgb.g}, ${laserRgb.b}, 1),
-            0 0 30px rgba(${laserRgb.r}, ${laserRgb.g}, ${laserRgb.b}, 0.9),
-            0 0 45px rgba(${laserRgb.r}, ${laserRgb.g}, ${laserRgb.b}, 0.8),
-            0 0 60px rgba(${laserRgb.r}, ${laserRgb.g}, ${laserRgb.b}, 0.7),
-            0 0 80px rgba(${laserRgb.r}, ${laserRgb.g}, ${laserRgb.b}, 0.6),
-            0 0 100px rgba(${laserRgb.r}, ${laserRgb.g}, ${laserRgb.b}, 0.5),
-            inset 0 0 15px rgba(${laserRgb.r}, ${laserRgb.g}, ${laserRgb.b}, 0.6),
-            inset 0 0 30px rgba(${laserRgb.r}, ${laserRgb.g}, ${laserRgb.b}, 0.4),
-            inset 0 0 45px rgba(${laserRgb.r}, ${laserRgb.g}, ${laserRgb.b}, 0.2)
+            0 0 15px rgba(${colorData.laserRgb.r}, ${colorData.laserRgb.g}, ${colorData.laserRgb.b}, 1),
+            0 0 30px rgba(${colorData.laserRgb.r}, ${colorData.laserRgb.g}, ${colorData.laserRgb.b}, 0.9),
+            0 0 45px rgba(${colorData.laserRgb.r}, ${colorData.laserRgb.g}, ${colorData.laserRgb.b}, 0.8),
+            0 0 60px rgba(${colorData.laserRgb.r}, ${colorData.laserRgb.g}, ${colorData.laserRgb.b}, 0.7),
+            0 0 80px rgba(${colorData.laserRgb.r}, ${colorData.laserRgb.g}, ${colorData.laserRgb.b}, 0.6),
+            0 0 100px rgba(${colorData.laserRgb.r}, ${colorData.laserRgb.g}, ${colorData.laserRgb.b}, 0.5),
+            inset 0 0 15px rgba(${colorData.laserRgb.r}, ${colorData.laserRgb.g}, ${colorData.laserRgb.b}, 0.6),
+            inset 0 0 30px rgba(${colorData.laserRgb.r}, ${colorData.laserRgb.g}, ${colorData.laserRgb.b}, 0.4),
+            inset 0 0 45px rgba(${colorData.laserRgb.r}, ${colorData.laserRgb.g}, ${colorData.laserRgb.b}, 0.2)
+          `
+              : "none",
+            zIndex: 25,
+          }}
+        />
+      )}
+
+      {/* Enhanced Glitch Border Glow */}
+      {variant === "glitch" && (
+        <div
+          className={cn(
+            "absolute inset-0 pointer-events-none transition-all duration-300 rounded-2xl",
+            className?.includes("rounded-") ? "" : "rounded-2xl",
+          )}
+          style={{
+            boxShadow: isHovered
+              ? `
+            0 0 20px rgba(${colorData.glitch1Rgb.r}, ${colorData.glitch1Rgb.g}, ${colorData.glitch1Rgb.b}, 0.8),
+            0 0 40px rgba(${colorData.glitch2Rgb.r}, ${colorData.glitch2Rgb.g}, ${colorData.glitch2Rgb.b}, 0.6),
+            0 0 60px rgba(${colorData.glitch1Rgb.r}, ${colorData.glitch1Rgb.g}, ${colorData.glitch1Rgb.b}, 0.4)
           `
               : "none",
             zIndex: 25,
@@ -501,12 +571,54 @@ export function GlowCard({
 
       <div
         className="relative z-30 transition-transform duration-200"
-        style={{
-          transform: `translateZ(20px) translateX(${(mousePos.x - 50) * 0.05}px) translateY(${(mousePos.y - 50) * 0.05}px)`,
-        }}
       >
         {children}
       </div>
+
+      <style jsx>{`
+        @keyframes laser-pulse {
+          0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+          50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+        }
+        
+        @keyframes laser-reticle {
+          0% { transform: translate(-50%, -50%) rotate(0deg); }
+          100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        @keyframes cosmic-pulse {
+          0%, 100% { opacity: 0.8; }
+          50% { opacity: 1; }
+        }
+        
+        @keyframes twinkle {
+          0%, 100% { opacity: 0.3; }
+          50% { opacity: 1; }
+        }
+        
+        @keyframes glitch-lines {
+          0% { transform: translateX(0); }
+          20% { transform: translateX(-2px); }
+          40% { transform: translateX(2px); }
+          60% { transform: translateX(-1px); }
+          80% { transform: translateX(1px); }
+          100% { transform: translateX(0); }
+        }
+        
+        @keyframes glitch-noise {
+          0% { opacity: 0.1; }
+          10% { opacity: 0.2; }
+          20% { opacity: 0.05; }
+          30% { opacity: 0.15; }
+          40% { opacity: 0.1; }
+          50% { opacity: 0.25; }
+          60% { opacity: 0.05; }
+          70% { opacity: 0.2; }
+          80% { opacity: 0.1; }
+          90% { opacity: 0.15; }
+          100% { opacity: 0.1; }
+        }
+      `}</style>
     </div>
   )
 }

@@ -46,9 +46,9 @@ export function CommandPalette() {
     // Fixed path routing to handle templates correctly
     const path =
       section === "components"
-        ? `/docs/components/${id}`
+        ? `/components/${id}`
         : section === "templates"
-          ? `/docs/templates/${id}`
+          ? `/templates/${id}`
           : section === "links"
             ? `/${id}`
             : `/${section}/${id}`;
@@ -89,7 +89,7 @@ export function CommandPalette() {
         onClick={() => setOpen(true)}
       >
         <Search className="mr-2 h-4 w-4" />
-        <span className="hidden md:inline-flex">Search Nuvyx UI...</span>
+        <span className="hidden md:inline-flex">Search Components</span>
         <span className="inline-flex md:hidden">Search...</span>
         <kbd className="pointer-events-none absolute right-1.5 top-1.5 hidden h-6 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-xs font-medium opacity-100 sm:flex">
           <span className="text-xs">⌘</span>K
@@ -98,7 +98,7 @@ export function CommandPalette() {
 
       <CommandDialog open={open} onOpenChange={setOpen}>
         <CommandInput
-          placeholder="Search nuvyx UI..."
+          placeholder="Search nyx UI..."
           value={search}
           onValueChange={setSearch}
         />

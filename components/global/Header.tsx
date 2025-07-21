@@ -34,8 +34,8 @@ export default function Header() {
   }, []);
 
   const navLinks = [
-    { href: "/docs", label: "Components" },
-    { href: "/documentation", label: "Documentation" },
+    { href: "/components", label: "Components" },
+    { href: "/docs", label: "Documentation" },
   ];
 
   const { components } = componentsData;
@@ -60,26 +60,25 @@ export default function Header() {
       className={cn(
         "sticky top-0 z-50 w-full transition-all duration-300",
         scrolled
-          ? "bg-background/90 backdrop-blur-xl shadow-sm"
+          ? "bg-background backdrop-blur-xl shadow-sm"
           : "bg-background/50 backdrop-blur-sm",
       )}
     >
       {/* Gradient overlay with fade effect */}
-      <div className={`absolute h-28 inset-0 pointer-events-none ${scrolled ? "opacity-0" : "opacity-11"} transition-opacity duration-300`}>
+    {/*   <div className={`absolute h-28 inset-0 pointer-events-none ${scrolled ? "opacity-0" : "opacity-11"} transition-opacity duration-300`}>
         <div className={cn(
           "absolute inset-0",
           "bg-[length:300%_100%] motion-safe:animate-[gradient_3s_ease_infinite]",
           "bg-[linear-gradient(90deg,hsl(var(--color-1)),hsl(var(--color-5)),hsl(var(--color-3)),hsl(var(--color-4)),hsl(var(--color-2)),hsl(var(--color-1)))]"
         )}></div>
-        {/* Fade mask overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-transparent to-background"></div>
-      </div>
+      </div> */}
       
       <div className="absolute left-0 top-full h-px w-full pointer-events-none">
         <div className="w-full h-full bg-gradient-to-r from-transparent via-zinc-300 to-transparent dark:via-zinc-600"></div>
       </div>
-      <div className="flex h-16 items-center justify-between px-4 md:px-6 lg:px-16 relative z-10">
+      <div className="flex h-16 items-center justify-between px-4 md:px-6 lg:px-20 container mx-auto relative z-10">
         <div className="flex items-center">
           <Link
             href="/"
@@ -108,7 +107,7 @@ export default function Header() {
               </div>
             </div>
             <span className="hidden md:block text-xl font-bold bg-clip-text text-black dark:text-white bg-gradient-to-r from-foreground to-foreground/80">
-              Nuvyx UI
+              NYX UI
             </span>
           </Link>
           <nav className="hidden lg:flex items-center space-x-1 ml-8">
@@ -146,7 +145,7 @@ export default function Header() {
             <CommandPalette />
             <Link
               aria-label="GitHub"
-              href="https://github.com/MihirJaiswal/nuvyxui"
+              href="https://github.com/MihirJaiswal/nyxui"
               target="_blank"
               rel="noreferrer"
             >
@@ -162,7 +161,7 @@ export default function Header() {
             </Link>
             <Link
               aria-label="Twitter"
-              href="https://twitter.com/nuvyx_ui"
+              href="https://x.com/nyx_ui"
               target="_blank"
               rel="noreferrer"
             >
@@ -189,7 +188,7 @@ export default function Header() {
           <div className="flex lg:hidden items-center space-x-1">
             <Link
               aria-label="GitHub"
-              href="https://github.com/MihirJaiswal/nuvyxui"
+              href="https://github.com/MihirJaiswal/nyxui"
               target="_blank"
               rel="noreferrer"
             >
@@ -205,7 +204,7 @@ export default function Header() {
             </Link>
             <Link
               aria-label="Twitter"
-              href="https://twitter.com/nuvyx_ui"
+              href="https://x.com/nyx_ui"
               target="_blank"
               rel="noreferrer"
             >
@@ -250,7 +249,7 @@ export default function Header() {
                       <div className="h-8 w-8 flex items-center justify-center dark:bg-black bg-white rounded-full">
                         <Image
                           src="/logo.png"
-                          alt="Nuvyx UI Logo"
+                          alt="Nyx UI Logo"
                           width={32}
                           height={32}
                           className="rounded-full"
@@ -260,7 +259,7 @@ export default function Header() {
                       </div>
                       <div>
                         <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80 text-base font-bold">
-                          Nuvyx{" "}
+                          NYX{" "}
                           <span className="text-purple-600 dark:text-purple-400">
                             UI
                           </span>
@@ -302,11 +301,11 @@ export default function Header() {
                       {Object.entries(components).map(([slug, comp]) => (
                         <Link
                           key={slug}
-                          href={`/docs/components/${slug}`}
+                          href={`/components/${slug}`}
                           aria-label={comp.title}
                           className={cn(
                             "flex items-center text-sm p-2 rounded-md transition-colors pl-2.5",
-                            activeLink === `/docs/components/${slug}`
+                            activeLink === `/components/${slug}`
                               ? "text-foreground bg-muted/30 border-l-2 border-primary pl-1.5"
                               : "text-muted-foreground hover:text-foreground hover:bg-muted/20",
                           )}
@@ -322,7 +321,7 @@ export default function Header() {
                     <div className="flex gap-2">
                       <Link
                         aria-label="GitHub"
-                        href="https://github.com/MihirJaiswal/nuvyxui"
+                        href="https://github.com/MihirJaiswal/nyxui"
                         target="_blank"
                         rel="noreferrer"
                         className="h-7 w-7 rounded-full p-0"
@@ -331,7 +330,7 @@ export default function Header() {
                       </Link>
                       <Link
                         aria-label="Twitter"
-                        href="https://twitter.com/nuvyx_ui"
+                        href="https://x.com/nyx_ui"
                         target="_blank"
                         rel="noreferrer"
                         className="h-7 w-7 rounded-full p-0"
@@ -347,7 +346,7 @@ export default function Header() {
                         </svg>
                       </Link>
                     </div>
-                    <div className="text-xs">v1.0.0</div>
+                    <div className="text-xs">v1.2.0</div>
                   </div>
                 </div>
               </SheetContent>
