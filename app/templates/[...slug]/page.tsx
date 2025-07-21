@@ -210,10 +210,10 @@ export default async function TemplatePage({ params }: TemplatePageProps) {
     publisher: {
       "@type": "Organization",
       name: "Nyx UI",
-      url: "https://nuvyxui.vercel.app",
+      url: "https://nyxui.vercel.app/",
       logo: {
         "@type": "ImageObject",
-        url: "https://nuvyxui.vercel.app/logo.png",
+        url: "https://nyxui.vercel.app/logo.png",
       },
     },
     mainEntityOfPage: {
@@ -250,16 +250,8 @@ export default async function TemplatePage({ params }: TemplatePageProps) {
     isPartOf: {
       "@type": "SoftwareApplication",
       name: "Nyx UI Templates",
-      url: "https://nuvyxui.vercel.app/templates",
+      url: "https://nyxui.vercel.app/templates",
       description: "Premium React template collection for Next.js applications"
-    },
-    
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD",
-      availability: "https://schema.org/InStock",
-      description: "Free React template"
     },
     
     screenshot: template.image || "/nyx.png",

@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import { componentsData } from "../registry/Data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://nuvyxui.vercel.app";
+  const baseUrl = "https://nyxui.vercel.app";
   const date = new Date();
 
   // Main pages

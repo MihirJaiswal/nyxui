@@ -4,7 +4,7 @@ import { ComponentSidebar } from "../../components/components/component-sidebar"
 import Header from "../../components/global/Header";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://nuvyxui.vercel.app/"),
+  metadataBase: new URL("https://nyxui.vercel.app/"),
   title: "Docs | Nyx UI",
   description:
     "Comprehensive documentation for Nyx UI - a premium collection of responsive, accessible React components built with Tailwind CSS, Framer Motion, and TypeScript for modern Next.js applications.",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     "web development",
     "frontend framework",
   ],
-  authors: [{ name: "Mihir Jaiswal", url: "https://x.com/nuvyx_ui" }],
+  authors: [{ name: "Mihir Jaiswal", url: "https://x.com/nyx_ui" }],
   creator: "Mihir Jaiswal",
   publisher: "Mihir Jaiswal",
   robots: {
@@ -35,12 +35,12 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://nuvyxui.vercel.app/components",
+    canonical: "https://nyxui.vercel.app/components",
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://nuvyxui.vercel.app/components",
+    url: "https://nyxui.vercel.app/components",
     siteName: "Nyx UI Documentation",
     title: "Nyx UI - Beautiful React Components for Next.js",
     description:
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     title: "Nyx UI - Modern React Components Library",
     description:
       "Discover beautiful UI components for Next.js applications built with Tailwind CSS, Framer Motion, and TypeScript.",
-    images: ["/docs/docs-cover.png"],
+    images: ["/nyx.png"],
     creator: "@nuvyx_ui",
     site: "@nuvyx_ui",
   },

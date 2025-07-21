@@ -14,7 +14,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/", "/_next/static/"],
       }
     ],
-    sitemap: "https://nuvyxui.vercel.app/sitemap.xml",
-    host: "https://nuvyxui.vercel.app",
+    sitemap: "https://nyxui.vercel.app/sitemap.xml",
+    host: "https://nyxui.vercel.app/",
   };
 }

@@ -202,10 +202,10 @@ export default async function ComponentPage({ params }: ComponentPageProps) {
     publisher: {
       "@type": "Organization",
       name: "Nyx UI",
-      url: "https://nuvyxui.vercel.app",
+      url: "https://nyxui.vercel.app/",
       logo: {
         "@type": "ImageObject",
-        url: "https://nuvyxui.vercel.app/logo.png",
+        url: "https://nyxui.vercel.app/logo.png",
       },
     },
     mainEntityOfPage: {
@@ -239,7 +239,7 @@ export default async function ComponentPage({ params }: ComponentPageProps) {
     isPartOf: {
       "@type": "SoftwareApplication",
       name: "Nyx UI",
-      url: "https://nuvyxui.vercel.app",
+      url: "https://nyxui.vercel.app/",
       description: "Premium React UI component library for Next.js applications"
     }
   };
