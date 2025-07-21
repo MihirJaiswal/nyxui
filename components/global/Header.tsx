@@ -16,6 +16,7 @@ import { cn } from "../../lib/utils";
 import { CommandPalette } from "./CommandPallete";
 import { componentsData } from "../../registry/Data";
 import Image from "next/image";
+import { GitHubLogoIcon } from "@radix-ui/react-icons";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -155,7 +156,7 @@ export default function Header() {
                 size="icon"
                 className="rounded-full hover:bg-muted/80 transition-all duration-300 hover:scale-105"
               >
-                <Github className="h-5 w-5 text-black dark:text-white transition-colors" />
+                <GitHubLogoIcon className="h-6 w-6 text-black dark:text-white transition-colors" />
                 <span className="sr-only">GitHub</span>
               </Button>
             </Link>
@@ -172,8 +173,8 @@ export default function Header() {
                 className="rounded-full hover:bg-muted/80 transition-all duration-300 hover:scale-105"
               >
                 <svg
-                  height="23"
-                  width="23"
+                  height="18"
+                  width="18"
                   fill="currentColor"
                   viewBox="0 0 1200 1227"
                   xmlns="http://www.w3.org/2000/svg"
