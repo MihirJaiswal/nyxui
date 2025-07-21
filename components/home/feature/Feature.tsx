@@ -1,4 +1,3 @@
-"use client";
 import { Copy, Zap } from "lucide-react";
 import MusicCardThemeCustomizer from "./Customize";
 import { Safari } from "./Browser";
@@ -11,7 +10,6 @@ export default function AnimatedComponentsShowcase() {
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:30px_30px] sm:bg-[size:40px_40px] lg:bg-[size:50px_50px]" />
 
       <div className="relative z-10 container mx-auto px-4 sm:px-6 md:px-8 lg:px-8 py-8 sm:py-12 lg:py-16 dark:bg-neutral-950 dark:text-white border border-neutral-200 dark:border-neutral-800">
-
         <div className="absolute -top-0.5 left-0 w-4 z-12 h-0.5 border-t border-neutral-600 dark:border-neutral-400 bg-neutral-600 dark:bg-neutral-400"></div>
         <div className="absolute -top-0.5 -left-0.5 w-0.5 z-12 h-4 border-l border-neutral-600 dark:border-neutral-400 bg-neutral-600 dark:bg-neutral-400"></div>
         <div className="absolute -top-0.5 right-0 w-4 z-12 h-0.5 border-t border-neutral-600 dark:border-neutral-400 bg-neutral-600 dark:bg-neutral-400"></div>
@@ -42,14 +40,14 @@ export default function AnimatedComponentsShowcase() {
                     <div className="absolute -bottom-[2px] -right-[2px] w-1 h-1 bg-purple-600 dark:bg-purple-900 rounded-full"></div>
                   </span>
                 </span>{" "}
-                <span className="block sm:inline"> 
+                <span className="block sm:inline">
                   for elegant UIs and clean layouts
                 </span>
               </h1>
             </div>
 
             <div className="space-y-4 relative w-full overflow-hidden">
-            <Safari className="w-full h-auto max-w-full">
+              <Safari className="w-full h-auto max-w-full">
                 <CustomPointer />
               </Safari>
             </div>
@@ -104,19 +102,25 @@ export default function AnimatedComponentsShowcase() {
                   <span
                     className="absolute inset-0 z-10 filter contrast-150"
                     style={{
-                      backgroundImage: "url('/assets/images/landing-page/bg7.gif')",
+                      backgroundImage:
+                        "url('/assets/images/landing-page/bg7.gif')",
                       backgroundSize: "cover",
-                      backgroundPosition: "left",
+                      backgroundPosition: "left top", 
                       backgroundRepeat: "repeat",
                       WebkitBackgroundClip: "text",
-                      filter: "contrast(200%) brightness(1.2) saturate(1.5)",
                       backgroundClip: "text",
                       color: "transparent",
+                      filter: "contrast(200%) brightness(1.2) saturate(1.5)",
                     }}
                   >
                     Components
                   </span>
-                  <span className="relative z-0 generationShadow">
+                  <span className="relative z-0 text-transparent"
+                  style={{
+                    textShadow:
+                        "-0.5px -0.5px 0 #efcdfa, 0.5px -0.5px 0 #efcdfa, -0.5px 0.5px 0 #efcdfa, 0.5px 0.5px 0 #efcdfa",
+                  }}
+                  >
                     Components
                   </span>
                 </span>
@@ -125,7 +129,7 @@ export default function AnimatedComponentsShowcase() {
             </div>
 
             <div className="space-y-4 relative">
-            <Safari className="w-full h-auto max-w-full">
+              <Safari className="w-full h-auto max-w-full">
                 <CustomPointer />
               </Safari>
             </div>
@@ -161,48 +165,6 @@ export default function AnimatedComponentsShowcase() {
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        .generationShadow {
-          color: transparent;
-          /* Mobile: smaller shadow offset */
-          text-shadow:
-            -0.5px -0.5px 0 #efcdfa,
-            0.5px -0.5px 0 #efcdfa,
-            -0.5px 0.5px 0 #efcdfa,
-            0.5px 0.5px 0 #efcdfa;
-        }
-
-        @media (min-width: 640px) /* sm */ {
-          .generationShadow {
-            text-shadow:
-              -0.75px -0.75px 0 #efcdfa,
-              0.75px -0.75px 0 #efcdfa,
-              -0.75px 0.75px 0 #efcdfa,
-              0.75px 0.75px 0 #efcdfa;
-          }
-        }
-
-        @media (min-width: 768px) /* md */ {
-          .generationShadow {
-            text-shadow:
-              -1px -1px 0 #efcdfa,
-              1px -1px 0 #efcdfa,
-              -1px 1px 0 #efcdfa,
-              1px 1px 0 #efcdfa;
-          }
-        }
-
-        @media (min-width: 1280px) /* xl */ {
-          .generationShadow {
-            text-shadow:
-              -0.5px -0.5px 0 #efcdfa,
-              0.5px -0.5px 0 #efcdfa,
-              -0.5px 0.5px 0 #efcdfa,
-              0.5px 0.5px 0 #efcdfa;
-          }
-        }
-      `}</style>
     </div>
   );
 }
