@@ -41,10 +41,10 @@ export default function ContainCard() {
       <div className="mx-auto relative z-12">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-neutral-900 dark:text-neutral-100 mb-4">
-            Featured Projects
+          Explore Our Collection
           </h1>
           <p className="text-lg text-neutral-600 dark:text-neutral-400">
-            Discover our latest AI-powered applications and tools
+          Discover a curated set of production-ready components, templates, and UI blocks.
           </p>
         </div>
 

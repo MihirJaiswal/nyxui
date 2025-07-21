@@ -34,25 +34,15 @@ export default function AnimatedComponentsShowcase() {
               <h1 className="text-3xl md:text-4xl font-bold leading-tight">
                 Polished{" "}
                 <span className="relative inline-block tracking-tight dark:tracking-normal md:tracking-tighter md:dark:tracking-tight">
-                  <span
-                    className="absolute inset-0 z-10"
-                    style={{
-                      backgroundImage: "url('/assets/images/landing-page/bg7.gif')",
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                      backgroundRepeat: "repeat",
-                      WebkitBackgroundClip: "text",
-                      backgroundClip: "text",
-                      color: "transparent",
-                    }}
-                  >
+                  <span className="relative z-0 border border-purple-500 dark:border-purple-900  bg-purple-200 dark:bg-purple-800/40">
                     &lt;Component/&gt;
-                  </span>
-                  <span className="relative z-0 generationShadow">
-                    &lt;Component/&gt;
+                    <div className="absolute -top-[2px] -left-[2px] w-1 h-1 bg-purple-600 dark:bg-purple-900 rounded-full"></div>
+                    <div className="absolute -top-[2px] -right-[2px] w-1 h-1 bg-purple-600 dark:bg-purple-900 rounded-full"></div>
+                    <div className="absolute -bottom-[2px] -left-[2px] w-1 h-1 bg-purple-600 dark:bg-purple-900 rounded-full"></div>
+                    <div className="absolute -bottom-[2px] -right-[2px] w-1 h-1 bg-purple-600 dark:bg-purple-900 rounded-full"></div>
                   </span>
                 </span>{" "}
-                <span className="block sm:inline">
+                <span className="block sm:inline"> 
                   for elegant UIs and clean layouts
                 </span>
               </h1>
@@ -78,22 +68,12 @@ export default function AnimatedComponentsShowcase() {
             <div className="space-y-4 sm:space-y-6">
               <h2 className="text-3xl md:text-4xl font-bold leading-tight">
                 <span className="relative inline-block tracking-tight dark:tracking-normal md:tracking-tighter md:dark:tracking-tight">
-                  <span
-                    className="absolute inset-0 z-10"
-                    style={{
-                      backgroundImage: "url('/assets/images/landing-page/bg6.webp')",
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                      backgroundRepeat: "repeat",
-                      WebkitBackgroundClip: "text",
-                      backgroundClip: "text",
-                      color: "transparent",
-                    }}
-                  >
+                  <span className="relative z-0 border border-pink-500 dark:border-pink-900 bg-pink-200 dark:bg-pink-800/40">
                     Customize
-                  </span>
-                  <span className="relative z-0 generationShadow">
-                    Customize
+                    <div className="absolute -top-[2px] -left-[2px] w-1 h-1 bg-pink-600 dark:bg-pink-900 rounded-full"></div>
+                    <div className="absolute -top-[2px] -right-[2px] w-1 h-1 bg-pink-600 dark:bg-pink-900 rounded-full"></div>
+                    <div className="absolute -bottom-[2px] -left-[2px] w-1 h-1 bg-pink-600 dark:bg-pink-900 rounded-full"></div>
+                    <div className="absolute -bottom-[2px] -right-[2px] w-1 h-1 bg-pink-600 dark:bg-pink-900 rounded-full"></div>
                   </span>
                 </span>{" "}
                 <span className="block sm:inline">
@@ -163,22 +143,12 @@ export default function AnimatedComponentsShowcase() {
             <div className="space-y-5">
               <h2 className="text-4xl font-bold leading-tight">
                 <span className="relative inline-block tracking-tight dark:tracking-normal md:tracking-tighter md:dark:tracking-tight">
-                  <span
-                    className="absolute inset-0 z-10"
-                    style={{
-                      backgroundImage: "url('/assets/images/landing-page/bg6.webp')",
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                      backgroundRepeat: "repeat",
-                      WebkitBackgroundClip: "text",
-                      backgroundClip: "text",
-                      color: "transparent",
-                    }}
-                  >
+                  <span className="relative z-0 bg-purple-200 border border-purple-600 dark:border-purple-900 dark:bg-purple-800/40">
                     Customize
-                  </span>
-                  <span className="relative z-0 generationShadow">
-                    Customize
+                    <div className="absolute -top-[2px] -left-[2px] w-1 h-1 bg-purple-600 dark:bg-purple-900 rounded-full"></div>
+                    <div className="absolute -top-[2px] -right-[2px] w-1 h-1 bg-purple-600 dark:bg-purple-900 rounded-full"></div>
+                    <div className="absolute -bottom-[2px] -left-[2px] w-1 h-1 bg-purple-600 dark:bg-purple-900 rounded-full"></div>
+                    <div className="absolute -bottom-[2px] -right-[2px] w-1 h-1 bg-purple-600 dark:bg-purple-900 rounded-full"></div>
                   </span>
                 </span>{" "}
                 with ease. Launch with speed.
