@@ -8,7 +8,7 @@ const DocsPage = () => {
         <div className="flex-1 order-2 lg:order-1 min-w-0">
           <IntroductionPage />
         </div>
-        <div className="w-full lg:w-56 shrink-0 order-1 lg:order-2 hidden lg:block">
+        <div className="w-full lg:w-56 shrink-0 order-1 lg:order-2 hidden xl:block">
           <div className="sticky top-20 max-h-[calc(100vh-5rem)] overflow-y-auto">
             <DocsSidebar />
           </div>

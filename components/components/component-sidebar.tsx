@@ -35,10 +35,10 @@ export const ComponentSidebar = () => {
         href: `/${key}`,
         isNew: false,
       }))
-    : [{ name: "Introduction", href: "/documentation", isNew: false }];
+    : [{ name: "Introduction", href: "/docs", isNew: false }];
 
   return (
-    <aside className="fixed top-16 z-30 lg:sticky hidden h-[calc(100vh-4rem)] w-66 shrink-0 lg:block backdrop-blur-md pt-[22px]">
+    <aside className="fixed top-16 z-30 lg:sticky hidden h-[calc(100vh-4rem)] w-60 shrink-0 lg:block backdrop-blur-md pt-[22px]">
       <div className="h-full py-4">
         <div className="flex h-full flex-col">
           <div className="space-y-2 md:space-y-3 mb-2">
@@ -55,7 +55,7 @@ export const ComponentSidebar = () => {
                 Twitter @nyx_ui
               </a>
             </div>
-            <div className="w-full">
+            <div className="w-[80%]">
               <div className="shrink-0 bg-border h-[1px] w-full" />
             </div>
           </div>

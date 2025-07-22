@@ -15,7 +15,7 @@ export interface template {
 }
 
 interface Links {
-  documentation: string;
+  docs: string;
 }
 
 interface ComponentsData {
@@ -31,7 +31,7 @@ interface ComponentsData {
 
 export const componentsData: ComponentsData = {
   links: {
-    documentation: "Introduction",
+    docs: "Introduction",
   },
   components: {
     

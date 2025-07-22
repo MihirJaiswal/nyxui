@@ -27,7 +27,7 @@ export default function GrainyBgDemo() {
        <div className="mb-16">
       <div className="mb-16">
         <h2 className="text-2xl font-bold mb-8 text-center">Animation Types</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
           {animationTypes.map((animationType) => (
             <div key={animationType} className="relative">
               <AnimatedGrainyBg
@@ -38,7 +38,7 @@ export default function GrainyBgDemo() {
                 speed={1.5}
                 style={{ 
                   height: "200px",
-                  width: "300px",
+                  width: "200px",
                 }}
               >
                 <div className="flex items-center justify-center h-full">
@@ -56,7 +56,7 @@ export default function GrainyBgDemo() {
       {/* Grain Types Demo */}
      
         <h2 className="text-2xl font-bold mb-8 text-center">Grain Types</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
           {grainTypes.map((grainType) => (
             <div key={grainType} className="relative">
               <AnimatedGrainyBg
@@ -65,7 +65,10 @@ export default function GrainyBgDemo() {
                 grainIntensity={60}
                 colors={["#1b078c", "#a3079e", "#c20673", "#06d4b8"]}
                 speed={0.8}
-                style={{ height: "200px" }}
+                style={{ 
+                  height: "200px",
+                  width: "200px",
+                 }}
               >
                 <div className="flex items-center justify-center h-full">
                   <div className="text-center ">

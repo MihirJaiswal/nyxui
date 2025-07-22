@@ -79,7 +79,7 @@ export default function Header() {
       <div className="absolute left-0 top-full h-px w-full pointer-events-none">
         <div className="w-full h-full bg-gradient-to-r from-transparent via-zinc-300 to-transparent dark:via-zinc-600"></div>
       </div>
-      <div className="flex h-16 items-center justify-between px-4 md:px-6 lg:px-20 container mx-auto relative z-10">
+      <div className="flex h-16 items-center justify-between px-4 md:px-6 xl:px-20 xl:container mx-auto relative z-10">
         <div className="flex items-center">
           <Link
             href="/"

@@ -21,7 +21,7 @@ export function ComponentCard({
             src={imageSrc}
             alt={title}
             width={1024}
-            height={650}
+            height={1020}
             quality={100}
             decoding="async"
             className="transition duration-300 blur-0 rounded-md group-hover:scale-102"
