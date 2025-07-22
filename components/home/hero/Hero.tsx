@@ -21,9 +21,9 @@ function Hero() {
   const hasBlocks = blockCount > 0;
 
   return (
-    <section className="relative px-6 py-12 sm:py-16 md:py-20 lg:px-12 xl:px-22 lg:py-28 mx-auto flex flex-col xl:flex-row container">
-      <div className="container mx-auto z-10">
-        <div className="max-w-5xl  relative mt-6 sm:mt-8 lg:mt-12">
+    <section className="relative px-4 sm:px-6 xl:px-22  py-12 sm:py-16 md:py-20 lg:py-28 flex flex-col xl:flex-row xl:container mx-auto">
+      <div className="w-full xl:flex-1 xl:container xl:mx-auto z-10">
+        <div className="xl:max-w-5xl relative mt-6 sm:mt-8 lg:mt-12">
           {/* Announcement Badge */}
           <Link
             href="/components/apple-glass-effect"
@@ -82,7 +82,7 @@ function Hero() {
           </div>
 
           {/* CTA Buttons */}
-          <div className="relative z-12 mt-6 sm:mt-8 lg:mt-10 xl:mt-6 flex w-full flex-col justify-s space-y-2.5 sm:flex-row sm:space-y-0 sm:space-x-4">
+          <div className="relative z-12 mt-6 sm:mt-8 lg:mt-10 xl:mt-6 flex w-full flex-col justify-start xl:justify-s space-y-2.5 sm:flex-row sm:space-y-0 sm:space-x-4">
             <Link href="/components" rel="noopener noreferrer">
               <div>
                 <Rbutton className="relative rounded-md bg-neutral-900 dark:bg-white dark:text-black no-underline flex space-x-2 group cursor-pointer hover:shadow-2xl hover:shadow-zinc-800/50 hover:bg-neutral-800 dark:hover:bg-neutral-100 hover:-translate-y-0.5 hover:scale-[1.02] transition-all duration-300 ease-out shadow-zinc-900 p-px font-semibold text-white px-4 py-2 h-12 w-full items-center justify-center text-center text-sm sm:w-52">
@@ -108,7 +108,7 @@ function Hero() {
         </div>
 
         {/* Bottom section - responsive layout */}
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between xl:justify-start mt-14 xl:gap-12 sm:mt-16 lg:mt-18 z-1 lg:scale-95 lg:-ml-8">
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between xl:justify-start mt-14 xl:gap-12 sm:mt-16 lg:mt-18 z-1 xl:scale-95 xl:-ml-8">
           <div className="mb-10 lg:mb-0">
             <p className="text-neutral-700 dark:text-neutral-400 text-sm sm:text-[14.5px] mb-4 text-center lg:text-left">
               Trusted by many developers
@@ -116,8 +116,11 @@ function Hero() {
             <SocialProof />
           </div>
 
-          {/* Hide TechStack on smaller screens */}
-          <div className="-12">
+          {/* TechStack - Show on lg and above, hide on xl with custom classes */}
+          <div className="hidden lg:block xl:hidden">
+            <TechStack />
+          </div>
+          <div className="hidden xl:block xl:-12">
             <TechStack />
           </div>
 
@@ -162,9 +165,10 @@ function Hero() {
         </div>
       </div>
 
-      {/* Right side components - Custom breakpoint at 1442px */}
+
+      {/* Right side components - XL screens and above (second version behavior) */}
       {/* For screens >= 1442px - Show all components */}
-      <div className="hidden min-[1442px]:block  relative z-12">
+      <div className="hidden 2xl:block  relative z-12">
         <div className="absolute -top-12 right-158 w-full h-full">
           <Scanner />
         </div>
@@ -183,22 +187,28 @@ function Hero() {
         <div className="absolute bottom-[9.88rem] right-[37.3rem] w-3 h-2 border-t-3 border-neutral-500/40 dark:border-white/60 z-28"></div>
       </div>
 
-      {/* For screens xl to 1441px - Show only Matrix and Scanner shifted right */}
-      <div className="hidden  min-[1280px]:block min-[1442px]:hidden relative z-12">
-        <div className="absolute -top-8 right-96 w-full h-full">
+
+      <div className="hidden xl:block 2xl:hidden relative z-12">
+        <div className="absolute -top-8 right-116 w-full h-full">
           <Scanner />
         </div>
-        <div className="absolute top-44 right-88 w-full h-full z-20">
+        <div className="absolute top-48 right-110 w-full h-full z-20">
           <Matrix />
+        </div>
+        <div className="absolute top-12 right-64 w-full h-full z-12">
+          <GlassMusicPlayer />
         </div>
       </div>
 
       <div className="hidden  min-[1200px]:block min-[1280px]:hidden z-12">
-        <div className="absolute top-36 -right-180 w-full h-full">
+        <div className="absolute top-28 -right-160 w-full h-full">
           <Scanner />
         </div>
-        <div className="absolute top-88 -right-194 w-full h-full z-20">
+        <div className="absolute top-84 -right-172 w-full h-full z-20">
           <Matrix />
+        </div>
+        <div className="absolute top-52 -right-112 w-full h-full z-12">
+          <AnimatedCodeBlockDemo/>
         </div>
       </div>
     </section>

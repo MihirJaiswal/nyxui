@@ -5,16 +5,16 @@ import { Cursor } from "@/registry/ui/custom-cursor";
 export const CustomPointer = () => (
   <div
     className={
-      "flex w-full flex-col justify-between bg-blue-200/40 dark:bg-black text-white relative"
+      "flex w-full h-full flex-col justify-between bg-blue-200/40 dark:bg-black text-white relative"
     } 
   >
     <Cursor
       name="Mihir"
-      className={"relative flex h-fit w-full items-end justify-center"}
+      className={"relative flex h-full w-full items-end justify-center"}
     >
-      <div className={"relative h-[300px] w-full overflow-hidden mt-[55px]"}>
+      <div className={"relative h-full w-full overflow-hidden mt-[55px]"}>
         <div className="relative flex h-full w-full justify-end pt-4">
-          <div className="relative z-[1] h-full w-[80%] rounded-tl-xl bg-white dark:bg-neutral-100 px-6 pt-6 shadow-xl ">
+          <div className="relative z-[1] h-full w-[80%] rounded-tl-xl 2xl:mt-[55px] bg-white dark:bg-neutral-100 px-6 pt-6 shadow-xl ">
             <div className="flex w-full items-center justify-start gap-4 ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -103,7 +103,7 @@ export const CustomPointer = () => (
           </div>
         </div>
       </div>
-      <div className="absolute bottom-0 right-0  h-full w-3/4 rounded-full bg-gradient-to-br from-red-500 via-fuchsia-500 to-red-500 opacity-[0.3] blur-3xl" />
+      <div className="absolute bottom-0 right-0 h-full w-full rounded-full bg-gradient-to-br from-red-500 via-fuchsia-500 to-red-500 opacity-[0.3] blur-3xl" />
     </Cursor>
   </div>
 );

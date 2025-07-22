@@ -127,7 +127,7 @@ const MusicCardThemeCustomizer = () => {
                     <button
                         onClick={() => handleArrowNavigation("prev")}
                         disabled={isAnimating}
-                        className="hidden xl:flex 2xl:hidden items-center justify-center w-12 h-12 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 dark:hover:bg-gray-700"
+                        className="hidden lg:flex 2xl:hidden items-center justify-center w-12 h-12 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 dark:hover:bg-gray-700"
                     >
                         <ChevronLeft className="h-6 w-6 text-gray-600 dark:text-gray-400" />
                     </button>
@@ -173,13 +173,13 @@ const MusicCardThemeCustomizer = () => {
                     <button
                         onClick={() => handleArrowNavigation("next")}
                         disabled={isAnimating}
-                        className="hidden xl:flex 2xl:hidden items-center justify-center w-12 h-12 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 dark:hover:bg-gray-700"
+                        className="hidden lg:flex 2xl:hidden items-center justify-center w-12 h-12 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 dark:hover:bg-gray-700"
                     >
                         <ChevronRight className="h-6 w-6 text-gray-600 dark:text-gray-400" />
                     </button>
 
                     {/* Theme Selection Buttons - Right Side (hidden on XL, shown on 2XL) */}
-                    <div className="flex flex-col gap-4 xl:hidden 2xl:flex">
+                    <div className="flex flex-col gap-4 lg:hidden 2xl:flex">
                         <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">
                             Choose Theme
                         </h3>
@@ -244,7 +244,7 @@ const MusicCardThemeCustomizer = () => {
                                     }
                                     animate="center"
                                     exit={slideDirection === "right" ? "exitLeft" : "exitRight"}
-                                    className="w-full will-change-transform"
+                                    className="will-change-transform max-w-xs mx-auto"
                                     style={{ backfaceVisibility: "hidden" }}
                                 >
                                     <MusicPlayer
