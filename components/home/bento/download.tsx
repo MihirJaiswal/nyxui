@@ -118,7 +118,7 @@ export default function DownloadCompleteSection() {
 
   return (
     <div 
-      className="h-110 mt-40 px-3 sm:px-12 py-6 rounded-lg" 
+      className="h-96 flex items-center justify-center px-3 sm:px-12 py-6 rounded-lg -mt-4" 
       ref={componentRef}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -173,7 +173,7 @@ export default function DownloadCompleteSection() {
 
                     <div
                       className={`
-                      text-xs transition-all duration-300 z-10
+                      text-xs transition-all duration-300 z-10 hidden 2xl:block "
                       ${isActive ? "dark:text-white text-gray-900 font-medium" : "text-gray-700 dark:text-gray-300"}
                     `}
                     >

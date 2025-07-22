@@ -10,7 +10,7 @@ export const TwitterCard = () => {
   return (
     <GlowCard
     allowCustomBackground
-      className="w-full !p-0 rounded-xl hover:rounded-2xl max-w-full h-full mx-auto bg-white dark:bg-black shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 border-gray-600 from-gray-950 via-gray-950 to-gray-950 border-none"
+      className="w-full !p-0 rounded-xl hover:rounded-2xl md:max-w-full h-full mx-auto bg-white dark:bg-black shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 border-none sm:border md:border-none max-w-xs"
     >
       <div
         className="p-3 sm:p-5"

@@ -40,7 +40,7 @@ function Hero() {
           </Link>
 
           {/* Massive Typography */}
-          <h1 className="mb-6 sm:mb-8 text-[2.6rem] md:text-5xl lg:text-[4.5rem] font-black leading-[1.1] md:leading-[0.95] tracking-tighter relative z-1">
+          <h1 className="mb-6 sm:mb-8 text-[2.6rem] sm:text-7xl lg:text-[4.5rem] font-black leading-[1.1] md:leading-[0.95] tracking-tighter relative z-1">
             <span className="relative text-transparent bg-clip-text bg-gradient-to-b from-neutral-700 to-neutral-950 dark:from-zinc-100 dark:to-white">
               Next
             </span>

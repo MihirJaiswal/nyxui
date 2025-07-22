@@ -6,8 +6,8 @@ import React from 'react'
 
 export default function Cyber() {
   return (
-    <div className='h-72'>
-      <div className='absolute -bottom-16 right-0'>
+    <div className='h-96'>
+      <div className='max-w-xs lg:max-w-sm mx-auto lg:ml-auto lg:mt-16'>
         <CyberpunkCard
           theme="neon-purple"
           colorShift
@@ -15,7 +15,7 @@ export default function Cyber() {
           backgroundEffect="circuit"
           className="h-full transition-transform duration-200"
         >
-          <div className="flex flex-col gap-2 p-1 w-full max-w-xs sm:max-w-none sm:w-80">
+          <div className="flex flex-col gap-2 p-1 w-full">
             <div className="flex justify-between items-start">
               <h3 className="text-lg sm:text-2xl font-bold tracking-tight text-white">
                 David

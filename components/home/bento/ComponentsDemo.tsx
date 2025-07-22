@@ -19,9 +19,9 @@ export const ComponentsDemo = () => {
         These are a few components that you can easily plug into your next
         project.
       </h3>
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12">
         <BentoGrid
-          className="lg:col-span-2 hover:scale-[1.01] overflow-hidden  rounded-3xl transition-all duration-300 h-[480px] border border-neutral-200 dark:border-neutral-800"
+          className="md:col-span-2 hover:scale-[1.01] overflow-hidden  rounded-3xl transition-all duration-300 h-[480px] border border-neutral-200 dark:border-neutral-800"
           enableDescription={false}
           enableTitle={false}
           height="h-full"
@@ -58,7 +58,7 @@ export const ComponentsDemo = () => {
           }
         />
         <BentoGrid
-          className="rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.02] border border-neutral-200 dark:border-neutral-800"
+          className="rounded-2xl sm:p-4 p-0 md:p-0 overflow-hidden transition-all duration-300 hover:scale-[1.02] border border-neutral-200 dark:border-neutral-800 bg-purple-200 dark:bg-purple-950"
           height="h-full"
           enableDescription={false}
           enableTitle={false}
@@ -75,10 +75,10 @@ export const ComponentsDemo = () => {
         /> <BentoGrid
           enableDescription={false}
           enableTitle={false}
-          height="h-72"
+          height="h-full"
           className="rounded-2xl bento-download-trigger !p-0 overflow-hidden bg-white dark:bg-black transition-all duration-300 hover:scale-[1.02] border border-neutral-200 dark:border-neutral-800"
           component={
-            <div className="h-72 flex !p-0 items-center justify-center">
+            <div className="h-full flex !p-0 items-center justify-center">
               <DownloadCompleteSection />
             </div>
           }
