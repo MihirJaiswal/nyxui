@@ -211,6 +211,15 @@ function Hero() {
           <AnimatedCodeBlockDemo/>
         </div>
       </div>
+
+      <div className="hidden min-[1000px]:grid min-[1200px]:hidden absolute top-0 right-4 z-12  grid-cols-1 scale-80 gap-8">
+        <div>
+          <Scanner />
+        </div>
+        <div>
+          <Matrix />
+        </div>
+      </div>
     </section>
   );
 }
