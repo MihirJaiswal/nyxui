@@ -4,7 +4,7 @@ export default function GitHubRepoCardDemo() {
     <div className="max-w-md relative">
       <GitHubRepoCard
         manualMode={true}
-        themeId="midnight"
+        themeId="cyberpunk"
         repoData={{
           name: "shadcn-ui",
           fullName: "shadcn/ui",

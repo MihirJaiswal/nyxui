@@ -6,7 +6,7 @@ export default function GithubRepoCardDemo1() {
     <div className="max-w-md relative">
       <GitHubRepoCard
         manualMode={true}
-        themeId="retro"
+        themeId="neo-brutalist"
         repoData={{
           name: "vscode",
           fullName: "microsoft/vscode",

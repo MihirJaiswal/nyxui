@@ -209,7 +209,7 @@ export const componentsData: ComponentsData = {
       isNew: true,
       tags: ["Portfolio", "Template", "Minimalist", "One Page" ],
       description: "A simple, elegant one-page portfolio template.",
-      image: "/assets/images/templates/minimalist-portfolio.png",
+      image: "/assets/images/showcase/minimalist-portfolio.png",
       },
   },
 };

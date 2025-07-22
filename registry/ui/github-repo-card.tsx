@@ -1,6 +1,7 @@
-"use client";
-import { useState, useEffect, useCallback, useMemo } from "react";
-import Link from "next/link";
+"use client"
+
+import { useState, useEffect, useCallback, useMemo } from "react"
+import Link from "next/link"
 import {
   BookOpen,
   Code,
@@ -11,9 +12,12 @@ import {
   GitFork,
   AlertCircle,
   Check,
-} from "lucide-react";
-import { cn } from "../../lib/utils";
-import Image from "next/image";
+  ExternalLink,
+  Calendar,
+  TrendingUp,
+} from "lucide-react"
+import { cn } from "@/lib/utils"
+import Image from "next/image"
 
 const LANGUAGE_COLORS = {
   JavaScript: "#f1e05a",
@@ -33,134 +37,182 @@ const LANGUAGE_COLORS = {
   HTML: "#e34c26",
   CSS: "#563d7c",
   Shell: "#89e051",
-};
+}
 
 export type ThemeOption = {
-  id: string;
-  name: string;
-  description: string;
-  cardBg: string;
-  cardBorder: string;
-  cardHoverShadow: string;
-  accentColor: string;
-  accentColorLight: string;
-  graphColor: string;
-  graphBgColor: string;
-  badgeBg: string;
-  badgeText: string;
-  textMuted: string;
-  textNormal: string;
-};
+  id: string
+  name: string
+  description: string
+  cardBg: string
+  cardBorder: string
+  cardHoverShadow: string
+  accentColor: string
+  accentColorLight: string
+  graphColor: string
+  graphBgColor: string
+  badgeBg: string
+  badgeText: string
+  textMuted: string
+  textNormal: string
+  glowEffect?: string
+  backdropBlur?: string
+}
 
 export const themes: ThemeOption[] = [
   {
     id: "modern-dark",
     name: "Modern Dark",
-    description: "Sleek dark theme with blue accents",
-    cardBg: "bg-gradient-to-br from-slate-900 to-slate-800",
-    cardBorder: "border border-slate-700/50",
+    description: "Sleek dark theme with blue accents and glassmorphism",
+    cardBg: "bg-gradient-to-br from-slate-900/95 via-slate-800/95 to-slate-900/95",
+    cardBorder: "border border-slate-700/50 backdrop-blur-xl",
     cardHoverShadow:
-      "hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300",
+      "hover:shadow-2xl hover:shadow-blue-500/20 hover:scale-[1.02] transition-all duration-500 ease-out",
     accentColor: "text-blue-400",
-    accentColorLight: "text-blue-400/10",
+    accentColorLight: "text-blue-400/20",
     graphColor: "text-blue-400",
     graphBgColor: "text-blue-400/10",
-    badgeBg: "bg-slate-800/80 backdrop-blur-sm",
+    badgeBg: "bg-slate-800/80 backdrop-blur-sm border border-slate-700/50",
     badgeText: "text-blue-300",
     textMuted: "text-slate-400",
-    textNormal: "text-slate-200",
+    textNormal: "text-slate-100",
+    glowEffect: "hover:shadow-blue-500/25",
+    backdropBlur: "backdrop-blur-xl",
   },
   {
     id: "modern-light",
     name: "Modern Light",
-    description: "Clean light theme with subtle shadows",
-    cardBg: "bg-gradient-to-br from-white to-slate-50",
-    cardBorder: "border border-slate-200",
+    description: "Clean light theme with glassmorphism and subtle shadows",
+    cardBg: "bg-gradient-to-br from-white/95 via-slate-50/95 to-white/95",
+    cardBorder: "border border-slate-200/60 backdrop-blur-xl",
     cardHoverShadow:
-      "hover:shadow-lg hover:shadow-slate-200/50 transition-all duration-300",
+      "hover:shadow-2xl hover:shadow-slate-200/60 hover:scale-[1.02] transition-all duration-500 ease-out",
     accentColor: "text-indigo-600",
-    accentColorLight: "text-indigo-600/10",
+    accentColorLight: "text-indigo-600/20",
     graphColor: "text-indigo-600",
     graphBgColor: "text-indigo-600/10",
-    badgeBg: "bg-indigo-50",
+    badgeBg: "bg-indigo-50/80 backdrop-blur-sm border border-indigo-200/50",
     badgeText: "text-indigo-700",
     textMuted: "text-slate-600",
     textNormal: "text-slate-900",
+    glowEffect: "hover:shadow-indigo-200/40",
+    backdropBlur: "backdrop-blur-xl",
   },
   {
-    id: "retro",
+    id: "cyberpunk",
+    name: "Cyberpunk",
+    description: "Futuristic neon theme with electric colors",
+    cardBg: "bg-gradient-to-br from-black/95 via-purple-950/95 to-black/95",
+    cardBorder: "border border-cyan-500/30 backdrop-blur-xl",
+    cardHoverShadow:
+      "hover:shadow-2xl hover:shadow-cyan-500/40 hover:scale-[1.02] hover:border-cyan-400/50 transition-all duration-500 ease-out",
+    accentColor: "text-cyan-400",
+    accentColorLight: "text-cyan-400/20",
+    graphColor: "text-cyan-400",
+    graphBgColor: "text-cyan-400/10",
+    badgeBg: "bg-purple-950/80 backdrop-blur-sm border border-cyan-500/30",
+    badgeText: "text-cyan-300",
+    textMuted: "text-slate-400",
+    textNormal: "text-cyan-100",
+    glowEffect: "hover:shadow-cyan-500/30",
+    backdropBlur: "backdrop-blur-xl",
+  },
+  {
+    id: "neo-brutalist",
     name: "Neo Brutalist",
-    description: "Bold contrasting theme with box shadows",
-    cardBg: "bg-amber-50",
+    description: "Bold contrasting theme with dynamic shadows",
+    cardBg: "bg-gradient-to-br from-amber-50 to-orange-50",
     cardBorder: "border-2 border-black",
     cardHoverShadow:
-      "hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all duration-300",
+      "hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all duration-300 ease-out",
     accentColor: "text-rose-600",
-    accentColorLight: "text-rose-600/10",
+    accentColorLight: "text-rose-600/20",
     graphColor: "text-rose-600",
     graphBgColor: "text-rose-600/10",
-    badgeBg: "bg-white border border-black",
+    badgeBg: "bg-white border-2 border-black",
     badgeText: "text-black font-bold",
     textMuted: "text-slate-700",
     textNormal: "text-black",
   },
   {
-    id: "midnight",
-    name: "Midnight",
-    description: "Deep dark theme with vibrant purples",
-    cardBg: "bg-gradient-to-br from-slate-950 to-slate-900",
-    cardBorder: "border border-purple-900/30",
+    id: "aurora",
+    name: "Aurora",
+    description: "Ethereal theme with aurora-like gradients",
+    cardBg: "bg-gradient-to-br from-violet-900/95 via-purple-800/95 to-indigo-900/95",
+    cardBorder: "border border-violet-500/30 backdrop-blur-xl",
     cardHoverShadow:
-      "hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300",
-    accentColor: "text-purple-400",
-    accentColorLight: "text-purple-400/10",
-    graphColor: "text-purple-400",
-    graphBgColor: "text-purple-400/10",
-    badgeBg: "bg-purple-950/80 backdrop-blur-sm",
-    badgeText: "text-purple-300",
-    textMuted: "text-slate-400",
-    textNormal: "text-slate-200",
+      "hover:shadow-2xl hover:shadow-violet-500/30 hover:scale-[1.02] transition-all duration-500 ease-out",
+    accentColor: "text-violet-300",
+    accentColorLight: "text-violet-300/20",
+    graphColor: "text-violet-300",
+    graphBgColor: "text-violet-300/10",
+    badgeBg: "bg-violet-950/80 backdrop-blur-sm border border-violet-500/30",
+    badgeText: "text-violet-200",
+    textMuted: "text-violet-300/70",
+    textNormal: "text-violet-100",
+    glowEffect: "hover:shadow-violet-500/25",
+    backdropBlur: "backdrop-blur-xl",
   },
-];
+  {
+    id: "forest",
+    name: "Forest",
+    description: "Nature-inspired theme with green accents",
+    cardBg: "bg-gradient-to-br from-emerald-950/95 via-green-900/95 to-teal-950/95",
+    cardBorder: "border border-emerald-500/30 backdrop-blur-xl",
+    cardHoverShadow:
+      "hover:shadow-2xl hover:shadow-emerald-500/30 hover:scale-[1.02] transition-all duration-500 ease-out",
+    accentColor: "text-emerald-400",
+    accentColorLight: "text-emerald-400/20",
+    graphColor: "text-emerald-400",
+    graphBgColor: "text-emerald-400/10",
+    badgeBg: "bg-emerald-950/80 backdrop-blur-sm border border-emerald-500/30",
+    badgeText: "text-emerald-300",
+    textMuted: "text-emerald-300/70",
+    textNormal: "text-emerald-100",
+    glowEffect: "hover:shadow-emerald-500/25",
+    backdropBlur: "backdrop-blur-xl",
+  },
+]
 
 export type RepoData = {
-  name: string;
-  fullName: string;
-  description?: string;
+  name: string
+  fullName: string
+  description?: string
   owner: {
-    login: string;
-    avatarUrl: string;
-  };
-  stars: number;
-  forks: number;
-  watchers: number;
-  issues: number;
-  language?: string;
-  languageColor?: string;
-  updatedAt: string;
-  topics: string[];
-  activityData?: number[];
-  isPrivate: boolean;
-};
-const CACHE_TTL = 15 * 60 * 1000;
+    login: string
+    avatarUrl: string
+  }
+  stars: number
+  forks: number
+  watchers: number
+  issues: number
+  language?: string
+  languageColor?: string
+  updatedAt: string
+  topics: string[]
+  activityData?: number[]
+  isPrivate: boolean
+}
+
+const CACHE_TTL = 15 * 60 * 1000
 
 interface GitHubRepoCardProps {
-  repoOwner?: string;
-  repoName?: string;
-  githubToken?: string;
-  manualMode?: boolean;
-  repoData?: RepoData;
-  themeId?: string;
+  repoOwner?: string
+  repoName?: string
+  githubToken?: string
+  manualMode?: boolean
+  repoData?: RepoData
+  themeId?: string
 }
 
 const getLanguageColor = (language: string) => {
-  return LANGUAGE_COLORS[language as keyof typeof LANGUAGE_COLORS] || "#858585";
-};
+  return LANGUAGE_COLORS[language as keyof typeof LANGUAGE_COLORS] || "#858585"
+}
 
 const formatRelativeTime = (dateString: string) => {
-  const date = new Date(dateString);
-  const now = new Date();
-  const diffInSeconds = Math.floor((now.getTime() - date.getTime()) / 1000);
+  const date = new Date(dateString)
+  const now = new Date()
+  const diffInSeconds = Math.floor((now.getTime() - date.getTime()) / 1000)
+
   const intervals = {
     year: 31536000,
     month: 2592000,
@@ -168,19 +220,20 @@ const formatRelativeTime = (dateString: string) => {
     hour: 3600,
     minute: 60,
     second: 1,
-  };
+  }
+
   for (const [unit, seconds] of Object.entries(intervals)) {
-    const count = Math.floor(diffInSeconds / seconds);
+    const count = Math.floor(diffInSeconds / seconds)
     if (count >= 1) {
-      return `${count} ${unit}${count !== 1 ? "s" : ""} ago`;
+      return `${count} ${unit}${count !== 1 ? "s" : ""} ago`
     }
   }
-  return "just now";
-};
+  return "just now"
+}
 
 const getCacheKey = (repoOwner: string, repoName: string) => {
-  return `github_repo_${repoOwner}_${repoName}`;
-};
+  return `github_repo_${repoOwner}_${repoName}`
+}
 
 export function GitHubRepoCard({
   repoOwner,
@@ -190,130 +243,117 @@ export function GitHubRepoCard({
   repoData,
   themeId = "modern-light",
 }: GitHubRepoCardProps) {
-  const [copied, setCopied] = useState(false);
-  const [loading, setLoading] = useState(!manualMode);
-  const [error, setError] = useState<string | null>(null);
-  const [repo, setRepo] = useState<RepoData | null>(
-    manualMode ? repoData || null : null,
-  );
+  const [copied, setCopied] = useState(false)
+  const [loading, setLoading] = useState(!manualMode)
+  const [error, setError] = useState<string | null>(null)
+  const [repo, setRepo] = useState<RepoData | null>(manualMode ? repoData || null : null)
   const [rateLimit, setRateLimit] = useState<{
-    remaining: number;
-    limit: number;
-  } | null>(null);
+    remaining: number
+    limit: number
+  } | null>(null)
 
-  const currentTheme = useMemo(
-    () => themes.find((theme) => theme.id === themeId) || themes[0],
-    [themeId],
-  );
+  const currentTheme = useMemo(() => themes.find((theme) => theme.id === themeId) || themes[0], [themeId])
 
   const repoUrl = useMemo(() => {
-    if (!repo) return "";
-    return `https://github.com/${repo.fullName}`;
-  }, [repo]);
+    if (!repo) return ""
+    return `https://github.com/${repo.fullName}`
+  }, [repo])
 
   const cloneCommand = useMemo(() => {
-    if (!repo) return "";
-    return `git clone https://github.com/${repo.fullName}.git`;
-  }, [repo]);
+    if (!repo) return ""
+    return `git clone https://github.com/${repo.fullName}.git`
+  }, [repo])
 
   const getCachedData = useCallback(() => {
-    if (!repoOwner || !repoName || typeof window === "undefined") return null;
-
+    if (!repoOwner || !repoName || typeof window === "undefined") return null
     try {
-      const cacheKey = getCacheKey(repoOwner, repoName);
-      const cachedData = localStorage.getItem(cacheKey);
-
+      const cacheKey = getCacheKey(repoOwner, repoName)
+      const cachedData = localStorage.getItem(cacheKey)
       if (cachedData) {
-        const { data, timestamp } = JSON.parse(cachedData);
-
+        const { data, timestamp } = JSON.parse(cachedData)
         if (Date.now() - timestamp < CACHE_TTL) {
-          return data;
+          return data
         } else {
-          localStorage.removeItem(cacheKey);
+          localStorage.removeItem(cacheKey)
         }
       }
     } catch (err) {
-      console.error("Error reading from cache:", err);
+      console.error("Error reading from cache:", err)
     }
-
-    return null;
-  }, [repoOwner, repoName]);
+    return null
+  }, [repoOwner, repoName])
 
   const setCachedData = useCallback(
     (data: RepoData) => {
-      if (!repoOwner || !repoName || typeof window === "undefined") return;
-
+      if (!repoOwner || !repoName || typeof window === "undefined") return
       try {
-        const cacheKey = getCacheKey(repoOwner, repoName);
+        const cacheKey = getCacheKey(repoOwner, repoName)
         const cacheData = JSON.stringify({
           data,
           timestamp: Date.now(),
-        });
-
-        localStorage.setItem(cacheKey, cacheData);
+        })
+        localStorage.setItem(cacheKey, cacheData)
       } catch (err) {
-        console.error("Error writing to cache:", err);
+        console.error("Error writing to cache:", err)
       }
     },
     [repoOwner, repoName],
-  );
+  )
 
   const fetchRepoData = useCallback(async () => {
-    if (!repoOwner || !repoName) return;
+    if (!repoOwner || !repoName) return
 
-    const cachedData = getCachedData();
+    const cachedData = getCachedData()
     if (cachedData) {
-      setRepo(cachedData);
-      setLoading(false);
-      return;
+      setRepo(cachedData)
+      setLoading(false)
+      return
     }
-    setLoading(true);
-    setError(null);
+
+    setLoading(true)
+    setError(null)
+
     try {
-      const headers: HeadersInit = {};
+      const headers: HeadersInit = {}
       if (githubToken) {
-        headers.Authorization = `token ${githubToken}`;
+        headers.Authorization = `token ${githubToken}`
       }
-      const repoResponse = await fetch(
-        `https://api.github.com/repos/${repoOwner}/${repoName}`,
-        { headers },
-      );
-      const rateLimitRemaining = repoResponse.headers.get(
-        "x-ratelimit-remaining",
-      );
-      const rateLimitLimit = repoResponse.headers.get("x-ratelimit-limit");
+
+      const repoResponse = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}`, { headers })
+
+      const rateLimitRemaining = repoResponse.headers.get("x-ratelimit-remaining")
+      const rateLimitLimit = repoResponse.headers.get("x-ratelimit-limit")
 
       if (rateLimitRemaining && rateLimitLimit) {
         setRateLimit({
-          remaining: parseInt(rateLimitRemaining, 10),
-          limit: parseInt(rateLimitLimit, 10),
-        });
+          remaining: Number.parseInt(rateLimitRemaining, 10),
+          limit: Number.parseInt(rateLimitLimit, 10),
+        })
       }
+
       if (!repoResponse.ok) {
         if (repoResponse.status === 403 && rateLimitRemaining === "0") {
-          throw new Error(
-            "GitHub API rate limit exceeded. Please provide a GitHub token.",
-          );
+          throw new Error("GitHub API rate limit exceeded. Please provide a GitHub token.")
         } else {
-          throw new Error(
-            `Failed to fetch repository data: ${repoResponse.status}`,
-          );
+          throw new Error(`Failed to fetch repository data: ${repoResponse.status}`)
         }
       }
-      const repoData = await repoResponse.json();
+
+      const repoData = await repoResponse.json()
+
       const commitsResponse = await fetch(
         `https://api.github.com/repos/${repoOwner}/${repoName}/stats/commit_activity`,
         { headers },
-      );
-      let activityData: number[] = [];
+      )
+
+      let activityData: number[] = []
       if (commitsResponse.ok) {
-        const commitsData = await commitsResponse.json();
-        const recentCommits = commitsData
-          .slice(-12)
-          .map((week: { total: number }) => week.total);
-        const maxCommit = Math.max(...recentCommits, 1);
-        activityData = recentCommits.map((count: number) => count / maxCommit);
+        const commitsData = await commitsResponse.json()
+        const recentCommits = commitsData.slice(-12).map((week: { total: number }) => week.total)
+        const maxCommit = Math.max(...recentCommits, 1)
+        activityData = recentCommits.map((count: number) => count / maxCommit)
       }
+
       const transformedRepo: RepoData = {
         name: repoData.name,
         fullName: repoData.full_name,
@@ -327,166 +367,144 @@ export function GitHubRepoCard({
         watchers: repoData.watchers_count,
         issues: repoData.open_issues_count,
         language: repoData.language,
-        languageColor: repoData.language
-          ? getLanguageColor(repoData.language)
-          : undefined,
+        languageColor: repoData.language ? getLanguageColor(repoData.language) : undefined,
         updatedAt: repoData.updated_at,
         topics: repoData.topics || [],
         activityData,
         isPrivate: repoData.private,
-      };
+      }
 
-      setRepo(transformedRepo);
-      setCachedData(transformedRepo);
-      setLoading(false);
+      setRepo(transformedRepo)
+      setCachedData(transformedRepo)
+      setLoading(false)
     } catch (err) {
-      setError(
-        err instanceof Error ? err.message : "An unknown error occurred",
-      );
-      setLoading(false);
+      setError(err instanceof Error ? err.message : "An unknown error occurred")
+      setLoading(false)
     }
-  }, [repoOwner, repoName, githubToken, getCachedData, setCachedData]);
+  }, [repoOwner, repoName, githubToken, getCachedData, setCachedData])
 
   useEffect(() => {
     if (manualMode && repoData) {
-      setRepo(repoData);
-      setLoading(false);
-      return;
+      setRepo(repoData)
+      setLoading(false)
+      return
     }
 
     if (!manualMode && repoOwner && repoName) {
-      fetchRepoData();
+      fetchRepoData()
     }
-  }, [manualMode, repoData, repoOwner, repoName, fetchRepoData]);
+  }, [manualMode, repoData, repoOwner, repoName, fetchRepoData])
 
   const copyToClipboard = () => {
     if (repo) {
       navigator.clipboard
         .writeText(cloneCommand)
         .then(() => {
-          setCopied(true);
-          setTimeout(() => setCopied(false), 2000);
+          setCopied(true)
+          setTimeout(() => setCopied(false), 2000)
         })
-        .catch(console.error);
+        .catch(console.error)
     }
-  };
+  }
 
   const renderLoadingState = () => (
     <div
       className={cn(
-        "w-full max-w-full overflow-hidden transition-all duration-300 p-4 sm:p-6 rounded-md",
+        "w-full max-w-full overflow-hidden transition-all duration-500 p-6 rounded-xl relative",
         currentTheme.cardBg,
         currentTheme.cardBorder,
-        currentTheme.cardHoverShadow,
+        currentTheme.backdropBlur,
       )}
       aria-busy="true"
       aria-live="polite"
     >
-      <div className="pb-2">
-        <div className="mb-2">
+      {/* Animated gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-pulse rounded-xl" />
+
+      <div className="relative space-y-6">
+        {/* Header skeleton */}
+        <div className="space-y-3">
+          <div className="flex items-center gap-3">
+            <div className="h-5 w-5 bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-600 rounded animate-pulse" />
+            <div className="flex items-center gap-2">
+              <div className="h-4 w-24 bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-600 rounded animate-pulse" />
+              <div className="h-4 w-1 bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-600 rounded animate-pulse" />
+              <div className="h-4 w-32 bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-600 rounded animate-pulse" />
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <div className="h-8 w-8 bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-600 rounded-full animate-pulse" />
+            <div className="h-6 w-40 bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-600 rounded animate-pulse" />
+            <div className="ml-auto h-6 w-20 bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-600 rounded-lg animate-pulse" />
+          </div>
+
+          <div className="space-y-2">
+            <div className="h-4 w-full bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-600 rounded animate-pulse" />
+            <div className="h-4 w-3/4 bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-600 rounded animate-pulse" />
+          </div>
+        </div>
+
+        {/* Activity graph skeleton */}
+        <div className="space-y-3">
+          <div className="h-20 bg-gradient-to-r from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-700 rounded-lg animate-pulse" />
+
+          <div className="grid grid-cols-4 gap-4">
+            {[0, 1, 2, 3].map((index) => (
+              <div key={index} className="flex items-center gap-2">
+                <div className="h-4 w-4 bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-600 rounded animate-pulse" />
+                <div className="h-4 w-12 bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-600 rounded animate-pulse" />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Footer skeleton */}
+        <div className="space-y-3">
           <div className="flex items-center gap-2">
-            <div className="h-4 w-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
-            <div className="flex items-center">
-              <div className="h-4 w-20 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
-              <div className="mx-1 h-4 w-2 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
-              <div className="h-4 w-24 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
-            </div>
-            <div className="ml-auto h-4 w-28 bg-gray-200 dark:bg-gray-700 rounded animate-pulse hidden sm:block" />
-          </div>
-        </div>
-
-        <div className="flex items-center gap-2 mb-3">
-          <div className="h-6 w-6 bg-gray-200 dark:bg-gray-700 rounded-full animate-pulse" />
-          <div className="h-5 w-32 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
-          <div className="ml-auto h-6 w-16 bg-gray-200 dark:bg-gray-700 rounded-lg animate-pulse" />
-        </div>
-
-        <div className="space-y-2 mb-4">
-          <div className="h-4 w-full bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
-          <div className="h-4 w-3/4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
-        </div>
-      </div>
-      <div className="pb-2">
-        <div className="mb-4 sm:mb-6 rounded-md border border-gray-200 dark:border-gray-700 shadow-sm">
-          <div className="mb-1 sm:mb-2 flex items-center justify-between p-1.5 sm:p-2">
-            <div className="h-4 w-16 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
-            <div className="h-4 w-24 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
-          </div>
-          <div className="h-[40px] sm:h-[60px] w-full rounded-b-lg bg-gray-100 dark:bg-gray-800 p-1 sm:p-2 animate-pulse">
-            <div className="h-full w-full bg-gray-200 dark:bg-gray-700 rounded opacity-30 animate-pulse" />
-          </div>
-        </div>
-        <div className="grid grid-cols-2 xs:grid-cols-4 gap-1 sm:gap-2">
-          {[0, 1, 2, 3].map((index) => (
-            <div key={index} className="flex items-center gap-1">
-              <div className="h-4 w-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
-              <div className="h-4 w-10 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
-            </div>
-          ))}
-        </div>
-        <div className="mt-3 sm:mt-4">
-          <div className="mb-1.5 sm:mb-2 flex items-center gap-2">
-            <div className="flex items-center gap-1.5">
-              <div className="h-3 w-3 rounded-full bg-gray-200 dark:bg-gray-700 animate-pulse" />
-              <div className="h-4 w-16 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
-            </div>
+            <div className="h-3 w-3 bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-600 rounded-full animate-pulse" />
+            <div className="h-4 w-20 bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-600 rounded animate-pulse" />
           </div>
 
-          <div className="flex flex-col xs:flex-row items-start xs:items-center justify-between gap-2">
-            <div className="flex flex-wrap gap-1.5">
+          <div className="flex items-center justify-between">
+            <div className="flex gap-2">
               {[0, 1, 2].map((index) => (
                 <div
                   key={index}
-                  className="h-6 w-16 bg-gray-200 dark:bg-gray-700 rounded-md animate-pulse"
+                  className="h-6 w-16 bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-600 rounded-md animate-pulse"
                 />
               ))}
             </div>
-            <div className="w-full xs:w-auto flex justify-end">
-              <div className="h-6 w-16 bg-gray-200 dark:bg-gray-700 rounded-md animate-pulse" />
-            </div>
+            <div className="h-8 w-20 bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-600 rounded-md animate-pulse" />
           </div>
         </div>
       </div>
     </div>
-  );
+  )
+
   const renderErrorState = () => (
     <div
       className={cn(
-        "w-full max-w-full overflow-hidden transition-all duration-300 p-4 sm:p-6 rounded-md",
+        "w-full max-w-full overflow-hidden transition-all duration-500 p-6 rounded-xl relative",
         currentTheme.cardBg,
         currentTheme.cardBorder,
-        currentTheme.cardHoverShadow,
+        currentTheme.backdropBlur,
       )}
       aria-live="assertive"
     >
-      <div className="flex flex-col items-center justify-center py-6 sm:py-8">
+      <div className="flex flex-col items-center justify-center py-8 text-center">
         <div
           className={cn(
-            "flex items-center justify-center w-16 h-16 mb-4 rounded-full",
+            "flex items-center justify-center w-20 h-20 mb-6 rounded-full animate-pulse",
             currentTheme.badgeBg,
           )}
         >
-          <AlertCircle
-            className={cn("h-8 w-8", currentTheme.accentColor)}
-            aria-hidden="true"
-          />
+          <AlertCircle className={cn("h-10 w-10", currentTheme.accentColor)} aria-hidden="true" />
         </div>
 
-        <h3
-          className={cn(
-            "text-lg font-semibold mb-2 text-center",
-            currentTheme.textNormal,
-          )}
-        >
-          Repository Not Found
-        </h3>
+        <h3 className={cn("text-xl font-bold mb-3", currentTheme.textNormal)}>Repository Not Found</h3>
 
-        <p
-          className={cn(
-            "text-sm text-center max-w-xs mb-4",
-            currentTheme.textMuted,
-          )}
-        >
+        <p className={cn("text-sm max-w-md mb-6 leading-relaxed", currentTheme.textMuted)}>
           {error?.includes("404")
             ? "This repository doesn't exist or you might not have access to it."
             : error?.includes("rate limit")
@@ -500,37 +518,21 @@ export function GitHubRepoCard({
               onClick={() => {
                 if (typeof window !== "undefined") {
                   try {
-                    const cacheKey = getCacheKey(
-                      repoOwner || "",
-                      repoName || "",
-                    );
-                    localStorage.removeItem(cacheKey);
+                    const cacheKey = getCacheKey(repoOwner || "", repoName || "")
+                    localStorage.removeItem(cacheKey)
                   } catch (e) {
-                    console.error("Error clearing cache:", e);
+                    console.error("Error clearing cache:", e)
                   }
                 }
-                fetchRepoData();
+                fetchRepoData()
               }}
               className={cn(
-                "flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-md",
+                "flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 hover:scale-105",
                 currentTheme.badgeBg,
                 currentTheme.badgeText,
-                "hover:opacity-90 transition-all duration-200",
               )}
             >
-              <svg
-                className="h-4 w-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-                />
-              </svg>
+              <TrendingUp className="h-4 w-4" />
               Try Again
             </button>
           )}
@@ -540,216 +542,197 @@ export function GitHubRepoCard({
             target="_blank"
             rel="noopener noreferrer"
             className={cn(
-              "flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-md",
+              "flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 hover:scale-105",
               currentTheme.badgeBg,
               currentTheme.badgeText,
-              "hover:opacity-90 transition-all duration-200",
             )}
           >
-            <Github className="h-4 w-4" aria-hidden="true" />
+            <Github className="h-4 w-4" />
             Visit GitHub
           </Link>
         </div>
       </div>
     </div>
-  );
+  )
 
-  if (loading) return renderLoadingState();
-  if (error) return renderErrorState();
-  if (!repo) return null;
+  if (loading) return renderLoadingState()
+  if (error) return renderErrorState()
+  if (!repo) return null
 
   return (
     <div
       className={cn(
-        "w-full max-w-full overflow-hidden transition-all duration-300 p-4 sm:p-6 rounded-md",
+        "w-full max-w-full overflow-hidden transition-all duration-500 p-6 rounded-xl relative group",
         currentTheme.cardBg,
         currentTheme.cardBorder,
         currentTheme.cardHoverShadow,
+        currentTheme.backdropBlur,
       )}
       role="article"
       aria-label={`GitHub repository: ${repo?.name}`}
     >
-      <div className="pb-2">
-        <div>
-          <div className="mb-2">
-            <div className="flex flex-wrap items-center gap-1 sm:gap-2">
-              <Github
-                className={cn(
-                  "h-3 w-3 sm:h-4 sm:w-4",
-                  currentTheme.accentColor,
-                )}
-                aria-hidden="true"
-              />
-              <div className="flex items-center text-xs sm:text-sm">
-                <Link
-                  href={`https://github.com/${repo.owner.login}`}
-                  className={cn(
-                    "hover:underline font-medium",
-                    currentTheme.textMuted,
-                  )}
-                  aria-label={`View ${repo.owner.login}'s GitHub profile`}
-                >
-                  {repo.owner.login}
-                </Link>
-                <span
-                  className={cn("mx-1", currentTheme.textMuted)}
-                  aria-hidden="true"
-                >
-                  /
-                </span>
-                <Link
-                  href={repoUrl}
-                  className={cn(
-                    "font-medium hover:underline",
-                    currentTheme.accentColor,
-                  )}
-                  aria-label={`View ${repo.name} repository on GitHub`}
-                >
-                  {repo.name}
-                </Link>
-              </div>
-              {rateLimit && (
-                <div
-                  className={cn(
-                    "ml-auto text-xs font-medium hidden sm:flex items-center",
-                    currentTheme.textMuted,
-                  )}
-                  aria-label={`GitHub API rate limit: ${rateLimit.remaining} of ${rateLimit.limit} requests remaining`}
-                >
-                  <span>
-                    {rateLimit.remaining}/{rateLimit.limit}
-                  </span>
-                  <span className="ml-1 text-xs">API requests</span>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="relative inline-flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center overflow-hidden rounded-full">
-            {repo.owner.avatarUrl ? (
-              <Image
-                src={repo.owner.avatarUrl}
-                alt={`${repo.owner.login}'s avatar`}
-                className="h-full w-full object-cover"
-                width={24}
-                height={24}
-                loading="lazy"
-              />
-            ) : (
-              <div className="flex h-full w-full items-center justify-center bg-gray-200 text-xs font-medium">
-                {repo.owner.login.substring(0, 2).toUpperCase()}
-              </div>
-            )}
-          </div>
-          <h1
-            className={cn(
-              "text-sm sm:text-lg font-semibold truncate max-w-[150px] sm:max-w-full",
-              currentTheme.textNormal,
-            )}
-          >
-            {repo.name}
-          </h1>
-          <h1
-            className={cn(
-              "ml-auto text-[10px] sm:text-xs font-medium px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-lg border",
-              currentTheme.badgeBg,
-              currentTheme.badgeText,
-            )}
-          >
-            {repo.isPrivate ? "Private" : "Public"}
-          </h1>
-        </div>
+      {/* Subtle glow effect on hover */}
+      {currentTheme.glowEffect && (
         <div
           className={cn(
-            "line-clamp-2 text-xs sm:text-sm font-normal leading-snug tracking-wide my-2 sm:my-3",
-            currentTheme.textMuted,
+            "absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500",
+            currentTheme.glowEffect,
           )}
-        >
-          {repo.description || "No description provided"}
-        </div>
-      </div>
-      <div className="pb-2">
-        <div
-          className="mb-4 sm:mb-6 rounded-md border border-border shadow-sm"
-          aria-label="Repository activity graph"
-        >
-          <div className="mb-1 sm:mb-2 flex items-center justify-between text-xs p-1.5 sm:p-2">
-            <span
-              className={cn(
-                "flex items-center gap-0.5 sm:gap-1 font-semibold text-[10px] sm:text-xs",
-                currentTheme.textMuted,
-              )}
-            >
-              <History className="h-3 w-3 sm:h-4 sm:w-4" aria-hidden="true" />
-              Activity
-            </span>
-            <span
-              className={cn(
-                "text-[10px] sm:text-xs font-medium",
-                currentTheme.textMuted,
-              )}
-            >
-              Updated {formatRelativeTime(repo.updatedAt)}
-            </span>
+        />
+      )}
+
+      <div className="relative space-y-6">
+        {/* Header Section */}
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2 text-sm">
+              <Github className={cn("h-4 w-4", currentTheme.accentColor)} aria-hidden="true" />
+              <Link
+                href={`https://github.com/${repo.owner.login}`}
+                className={cn("hover:underline font-medium transition-colors duration-200", currentTheme.textMuted)}
+                aria-label={`View ${repo.owner.login}'s GitHub profile`}
+              >
+                {repo.owner.login}
+              </Link>
+              <span className={cn("text-xs", currentTheme.textMuted)}>/</span>
+              <Link
+                href={repoUrl}
+                className={cn("font-semibold hover:underline transition-colors duration-200", currentTheme.accentColor)}
+                aria-label={`View ${repo.name} repository on GitHub`}
+              >
+                {repo.name}
+              </Link>
+            </div>
+
+            {rateLimit && (
+              <div
+                className={cn(
+                  "text-xs font-medium flex items-center gap-1 px-2 py-1 rounded-md",
+                  currentTheme.badgeBg,
+                  currentTheme.badgeText,
+                )}
+                aria-label={`GitHub API rate limit: ${rateLimit.remaining} of ${rateLimit.limit} requests remaining`}
+              >
+                <span>
+                  {rateLimit.remaining}/{rateLimit.limit}
+                </span>
+              </div>
+            )}
           </div>
+
+          <div className="flex items-center gap-3">
+            <div className="relative">
+              <div className="h-10 w-10 rounded-full overflow-hidden ring-2 ring-white/20 transition-transform duration-200 group-hover:scale-110">
+                {repo.owner.avatarUrl ? (
+                  <Image
+                    src={repo.owner.avatarUrl || "/placeholder.svg"}
+                    alt={`${repo.owner.login}'s avatar`}
+                    className="h-full w-full object-cover"
+                    width={40}
+                    height={40}
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-slate-200 to-slate-300 text-sm font-bold">
+                    {repo.owner.login.substring(0, 2).toUpperCase()}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className="flex-1 min-w-0">
+              <h1 className={cn("text-xl font-bold truncate", currentTheme.textNormal)}>{repo.name}</h1>
+              <div className="flex items-center gap-2 mt-1">
+                <span
+                  className={cn(
+                    "text-xs font-medium px-2 py-1 rounded-md border",
+                    currentTheme.badgeBg,
+                    currentTheme.badgeText,
+                  )}
+                >
+                  {repo.isPrivate ? "Private" : "Public"}
+                </span>
+                <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                  <Calendar className="h-3 w-3" />
+                  <span>Updated {formatRelativeTime(repo.updatedAt)}</span>
+                </div>
+              </div>
+            </div>
+
+            <Link
+              href={repoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(
+                "p-2 rounded-lg transition-all duration-200 hover:scale-110",
+                currentTheme.badgeBg,
+                currentTheme.badgeText,
+              )}
+              aria-label="Open repository in new tab"
+            >
+              <ExternalLink className="h-4 w-4" />
+            </Link>
+          </div>
+
+          <p className={cn("text-sm leading-relaxed", currentTheme.textMuted)}>
+            {repo.description || "No description provided"}
+          </p>
+        </div>
+
+        {/* Activity Graph Section */}
+        <div className="space-y-3">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <History className={cn("h-4 w-4", currentTheme.accentColor)} />
+              <span className={cn("text-sm font-semibold", currentTheme.textNormal)}>Activity</span>
+            </div>
+            <span className={cn("text-xs", currentTheme.textMuted)}>Last 12 weeks</span>
+          </div>
+
           <div
-            className="h-[40px] sm:h-[60px] w-full overflow-hidden rounded-b-lg bg-muted/50 dark:bg-gray-800/50 p-1 sm:p-2"
+            className={cn(
+              "h-16 w-full rounded-lg p-3 transition-all duration-300 hover:scale-[1.02]",
+              currentTheme.badgeBg,
+            )}
             role="img"
             aria-label="Repository commit activity visualization"
           >
             {repo.activityData && repo.activityData.length > 0 ? (
-              <svg
-                className="h-full w-full"
-                viewBox="0 0 100 20"
-                preserveAspectRatio="none"
-                aria-hidden="true"
-              >
-                <line
-                  x1="0"
-                  y1="5"
-                  x2="100"
-                  y2="5"
-                  stroke="currentColor"
-                  strokeWidth="0.2"
-                  strokeDasharray="1"
-                  className="text-muted/30"
-                />
-                <line
-                  x1="0"
-                  y1="10"
-                  x2="100"
-                  y2="10"
-                  stroke="currentColor"
-                  strokeWidth="0.2"
-                  strokeDasharray="1"
-                  className="text-muted/30"
-                />
-                <line
-                  x1="0"
-                  y1="15"
-                  x2="100"
-                  y2="15"
-                  stroke="currentColor"
-                  strokeWidth="0.2"
-                  strokeDasharray="1"
-                  className="text-muted/30"
-                />
+              <svg className="h-full w-full" viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden="true">
+                {/* Grid lines */}
+                {[5, 10, 15].map((y) => (
+                  <line
+                    key={y}
+                    x1="0"
+                    y1={y}
+                    x2="100"
+                    y2={y}
+                    stroke="currentColor"
+                    strokeWidth="0.2"
+                    strokeDasharray="1,2"
+                    className="text-muted-foreground/20"
+                  />
+                ))}
+
+                {/* Data points */}
                 {repo.activityData.map((value, index) => (
                   <circle
                     key={index}
                     cx={`${index * (100 / (repo.activityData?.length || 1))}`}
-                    cy={`${20 - value * 20}`}
-                    r="0.8"
-                    className={currentTheme.graphColor}
+                    cy={`${20 - value * 18}`}
+                    r="1"
+                    className={cn(currentTheme.graphColor, "animate-pulse")}
+                    style={{
+                      animationDelay: `${index * 100}ms`,
+                      animationDuration: "2s",
+                    }}
                   />
                 ))}
+
+                {/* Connecting line */}
                 <polyline
                   points={repo.activityData
-                    .map(
-                      (value, index) =>
-                        `${index * (100 / (repo.activityData?.length || 1))},${20 - value * 20}`,
-                    )
+                    .map((value, index) => `${index * (100 / (repo.activityData?.length || 1))},${20 - value * 18}`)
                     .join(" ")}
                   fill="none"
                   stroke="currentColor"
@@ -758,12 +741,11 @@ export function GitHubRepoCard({
                   strokeLinejoin="round"
                   className={currentTheme.graphColor}
                 />
+
+                {/* Area fill */}
                 <path
                   d={`M0,20 ${repo.activityData
-                    .map(
-                      (value, index) =>
-                        `L${index * (100 / (repo.activityData?.length || 1))},${20 - value * 20}`,
-                    )
+                    .map((value, index) => `L${index * (100 / (repo.activityData?.length || 1))},${20 - value * 18}`)
                     .join(" ")} L100,20 Z`}
                   fill="currentColor"
                   className={currentTheme.graphBgColor}
@@ -771,161 +753,102 @@ export function GitHubRepoCard({
               </svg>
             ) : (
               <div
-                className={cn(
-                  "flex h-full items-center justify-center rounded-md bg-background/50 text-xs font-medium",
-                  currentTheme.textMuted,
-                )}
-                aria-label="No activity data available"
+                className={cn("flex h-full items-center justify-center text-xs font-medium", currentTheme.textMuted)}
               >
                 No activity data available
               </div>
             )}
           </div>
         </div>
-        <div
-          className="grid grid-cols-2 xs:grid-cols-4 gap-1 sm:gap-2 text-xs sm:text-sm"
-          role="group"
-          aria-label="Repository statistics"
-        >
-          <div>
+
+        {/* Stats Section */}
+        <div className="grid grid-cols-4 gap-4">
+          {[
+            { icon: Star, value: repo.stars, label: "Stars" },
+            { icon: GitFork, value: repo.forks, label: "Forks" },
+            { icon: Eye, value: repo.watchers, label: "Watchers" },
+            { icon: BookOpen, value: repo.issues, label: "Issues" },
+          ].map(({ icon: Icon, value, label }) => (
             <div
+              key={label}
               className={cn(
-                "flex items-center gap-0.5 sm:gap-1 font-normal",
-                currentTheme.textMuted,
+                "flex flex-col items-center p-3 rounded-lg transition-all duration-200 hover:scale-105",
+                currentTheme.badgeBg,
               )}
-              aria-label={`${repo.stars.toLocaleString()} stars`}
             >
-              <Star className="h-3 w-3 sm:h-4 sm:w-4" aria-hidden="true" />
-              <span>{repo.stars.toLocaleString()}</span>
+              <Icon className={cn("h-4 w-4 mb-1", currentTheme.accentColor)} />
+              <span className={cn("text-sm font-bold", currentTheme.textNormal)}>{value.toLocaleString()}</span>
+              <span className={cn("text-xs", currentTheme.textMuted)}>{label}</span>
             </div>
-          </div>
-          <div>
-            <div
-              className={cn(
-                "flex items-center gap-0.5 sm:gap-1 font-normal",
-                currentTheme.textMuted,
-              )}
-              aria-label={`${repo.forks.toLocaleString()} forks`}
-            >
-              <GitFork className="h-3 w-3 sm:h-4 sm:w-4" aria-hidden="true" />
-              <span>{repo.forks.toLocaleString()}</span>
-            </div>
-          </div>
-          <div>
-            <div
-              className={cn(
-                "flex items-center gap-0.5 sm:gap-1 font-normal",
-                currentTheme.textMuted,
-              )}
-              aria-label={`${repo.watchers.toLocaleString()} watchers`}
-            >
-              <Eye className="h-3 w-3 sm:h-4 sm:w-4" aria-hidden="true" />
-              <span>{repo.watchers.toLocaleString()}</span>
-            </div>
-          </div>
-          <div>
-            <div
-              className={cn(
-                "flex items-center gap-0.5 sm:gap-1 font-normal",
-                currentTheme.textMuted,
-              )}
-              aria-label={`${repo.issues.toLocaleString()} issues`}
-            >
-              <BookOpen className="h-3 w-3 sm:h-4 sm:w-4" aria-hidden="true" />
-              <span>{repo.issues.toLocaleString()}</span>
-            </div>
-          </div>
+          ))}
         </div>
-        <div className="mt-3 sm:mt-4">
+
+        {/* Footer Section */}
+        <div className="space-y-3">
           {repo.language && (
-            <div
-              className="mb-1.5 sm:mb-2 flex items-center gap-2"
-              aria-label={`Primary language: ${repo.language}`}
-            >
-              <div className="flex items-center gap-1 sm:gap-1.5">
-                <div
-                  className="h-2 w-2 sm:h-3 sm:w-3 rounded-full"
-                  style={{ backgroundColor: repo.languageColor }}
-                  aria-hidden="true"
-                />
-                <span
-                  className={cn(
-                    "text-xs sm:text-sm font-medium",
-                    currentTheme.textNormal,
-                  )}
-                >
-                  {repo.language}
-                </span>
-              </div>
+            <div className="flex items-center gap-2">
+              <div className="h-3 w-3 rounded-full" style={{ backgroundColor: repo.languageColor }} />
+              <span className={cn("text-sm font-medium", currentTheme.textNormal)}>{repo.language}</span>
             </div>
           )}
-          <div className="flex flex-col xs:flex-row items-start xs:items-center justify-between gap-2">
-            <div className="w-full xs:w-auto">
+
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex-1 min-w-0">
               {repo.topics && repo.topics.length > 0 && (
-                <div
-                  className="flex flex-wrap gap-1 sm:gap-1.5"
-                  role="group"
-                  aria-label="Repository topics"
-                >
-                  {repo.topics.slice(0, 2).map((topic) => (
-                    <h1
+                <div className="flex flex-wrap gap-2">
+                  {repo.topics.slice(0, 3).map((topic) => (
+                    <span
                       key={topic}
                       className={cn(
-                        "text-[10px] sm:text-xs font-medium px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-md border leading-snug tracking-wide",
+                        "text-xs font-medium px-2 py-1 rounded-md border transition-all duration-200 hover:scale-105",
                         currentTheme.badgeBg,
                         currentTheme.badgeText,
                       )}
                     >
                       {topic}
-                    </h1>
+                    </span>
                   ))}
-                  {repo.topics.length > 2 && (
-                    <h1
+                  {repo.topics.length > 3 && (
+                    <span
                       className={cn(
-                        "text-[10px] sm:text-xs font-medium px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-md border leading-snug tracking-wide",
+                        "text-xs font-medium px-2 py-1 rounded-md border",
                         currentTheme.badgeBg,
                         currentTheme.badgeText,
                       )}
                     >
-                      +{repo.topics.length - 2} more
-                    </h1>
+                      +{repo.topics.length - 3} more
+                    </span>
                   )}
                 </div>
               )}
             </div>
-            <div className="w-full xs:w-auto flex justify-end">
-              <button
-                className={`flex items-center gap-1 border border-${currentTheme.accentColor.split(" ")[0]} text-[15px] sm:text-xs font-medium px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-md transition-colors duration-200 ${currentTheme.accentColor} hover:bg-slate-100/20 dark:hover:bg-slate-800/20 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 ${currentTheme.textNormal}`}
-                onClick={copyToClipboard}
-                type="button"
-                aria-label={
-                  copied
-                    ? "Clone command copied to clipboard"
-                    : "Copy clone command to clipboard"
-                }
-              >
-                {copied ? (
-                  <>
-                    <Check
-                      className="h-3 w-3 sm:h-3.5 sm:w-3.5"
-                      aria-hidden="true"
-                    />
-                    <span>Copied</span>
-                  </>
-                ) : (
-                  <>
-                    <Code
-                      className="h-3 w-3 sm:h-3.5 sm:w-3.5"
-                      aria-hidden="true"
-                    />
-                    <span>Clone</span>
-                  </>
-                )}
-              </button>
-            </div>
+
+            <button
+              className={cn(
+                "flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2",
+                currentTheme.badgeBg,
+                currentTheme.badgeText,
+                copied ? "bg-green-500/20 border-green-500/50 text-green-600" : "",
+              )}
+              onClick={copyToClipboard}
+              type="button"
+              aria-label={copied ? "Clone command copied to clipboard" : "Copy clone command to clipboard"}
+            >
+              {copied ? (
+                <>
+                  <Check className="h-4 w-4" />
+                  <span>Copied!</span>
+                </>
+              ) : (
+                <>
+                  <Code className="h-4 w-4" />
+                  <span>Clone</span>
+                </>
+              )}
+            </button>
           </div>
         </div>
       </div>
     </div>
-  );
+  )
 }

@@ -96,7 +96,7 @@ export function ManualExample() {
     <div className="w-full max-w-md mx-auto">
       <GitHubRepoCard
         manualMode={true}
-        themeId="retro"
+        themeId="neo-brutalist"
         repoData={{
           name: "tailwindcss",
           fullName: "tailwindlabs/tailwindcss",
@@ -125,26 +125,28 @@ export function ManualExample() {
 }
 ```
 
+# GitHub Repo Card
+
 ## Props
 
 ### GitHub Repo Card
 
-| Prop          | Type             | Default          | Description                                                                                                                                        |
-| ------------- | ---------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `repoOwner`   | `string`         | `undefined`      | GitHub username or organization name that owns the repository. Required when not using manualMode.                                                 |
-| `repoName`    | `string`         | `undefined`      | Name of the GitHub repository. Required when not using manualMode.                                                                                 |
-| `githubToken` | `string`         | `undefined`      | Optional GitHub API token for increased rate limits (unauthenticated: 60/hr, authenticated: 5,000/hr). Store securely using environment variables. |
-| `manualMode`  | `boolean`        | `false`          | When true, uses provided repoData instead of fetching from GitHub API. Useful for avoiding rate limits or displaying custom repository data.       |
-| `repoData`    | `ManualRepoData` | `undefined`      | Repository data object for manual mode. Required when manualMode is true. Includes fields for repository name, stars, forks, language, etc.        |
-| `themeId`     | `string`         | `"modern-light"` | Visual theme for the card. Options: modern-dark, modern-light, retro, midnight. Some themes support automatic light/dark mode switching.           |
+| Prop          | Type       | Default          | Description                                                                                                                                        |
+| ------------- | ---------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `repoOwner`   | `string`   | `undefined`      | GitHub username or organization name that owns the repository. Required when not using manualMode.                                                 |
+| `repoName`    | `string`   | `undefined`      | Name of the GitHub repository. Required when not using manualMode.                                                                                 |
+| `githubToken` | `string`   | `undefined`      | Optional GitHub API token for increased rate limits (unauthenticated: 60/hr, authenticated: 5,000/hr). Store securely using environment variables. |
+| `manualMode`  | `boolean`  | `false`          | When true, uses provided repoData instead of fetching from GitHub API. Useful for avoiding rate limits or displaying custom repository data.       |
+| `repoData`    | `RepoData` | `undefined`      | Repository data object for manual mode. Required when manualMode is true. Includes fields for repository name, stars, forks, language, etc.        |
+| `themeId`     | `string`   | `"modern-light"` | Visual theme for the card. Available options: "modern-dark", "modern-light", "cyberpunk", "neo-brutalist", "aurora", "forest".                    |
 
-### ManualRepoData Type
+### RepoData Type
 
 | Property        | Type       | Default                        | Description                                                                                        |
 | --------------- | ---------- | ------------------------------ | -------------------------------------------------------------------------------------------------- |
 | `name`          | `string`   | `""`                           | Repository name (e.g., 'next.js').                                                                 |
 | `fullName`      | `string`   | `""`                           | Full repository name with owner (e.g., 'vercel/next.js').                                          |
-| `description`   | `string`   | `""`                           | Repository description (optional).                                                                 |
+| `description`   | `string`   | `undefined`                    | Repository description (optional).                                                                 |
 | `owner`         | `object`   | `{ login: '', avatarUrl: '' }` | Repository owner with login (username) and avatarUrl properties.                                   |
 | `stars`         | `number`   | `0`                            | Number of repository stars.                                                                        |
 | `forks`         | `number`   | `0`                            | Number of repository forks.                                                                        |
@@ -156,3 +158,4 @@ export function ManualExample() {
 | `topics`        | `string[]` | `[]`                           | Array of repository topics/tags to display on the card.                                            |
 | `activityData`  | `number[]` | `undefined`                    | Array of 12 normalized values (0-1) representing repository commit activity for the graph display. |
 | `isPrivate`     | `boolean`  | `false`                        | Whether the repository is private (displays badge on card).                                        |
+
