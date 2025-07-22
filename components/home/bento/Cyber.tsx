@@ -6,7 +6,7 @@ import React from 'react'
 
 export default function Cyber() {
   return (
-    <div className='h-96'>
+    <div className='h-88'>
       <div className='max-w-xs lg:max-w-sm mx-auto lg:ml-auto lg:mt-16'>
         <CyberpunkCard
           theme="neon-purple"
