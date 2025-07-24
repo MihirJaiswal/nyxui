@@ -148,7 +148,7 @@ export const TwitterCard = () => {
         <span className="text-xxs sm:text-xs text-gray-600 dark:text-gray-400">
           1:24 PM · Apr 7, 2025
         </span>
-        <Link href="https://www.linkedin.com/in/mihir-jaiswal-322898287/">
+        <Link href="https://www.linkedin.com/in/mihir_jaiswal_" target="_blank" rel="noopener noreferrer">
         <Button
             size="sm"
             className="transition-all duration-300 transform hover:scale-105 font-semibold px-4 py-2 bg-blue-500 rounded-full"
