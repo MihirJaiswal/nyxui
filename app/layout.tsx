@@ -79,11 +79,13 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://nyxui.vercel.app/",
   },
+  verification: {
+    google: "XNSEycxa9cfRCuvJ0zP9yC5u_J0R-oriqXxyEM4Yp-Q",
+  },
   other: {
     "application-name": "Nyx UI",
     "msapplication-TileColor": "#000000",
     "theme-color": "#000000",
-    "google-site-verification": "google23857aecce6e6602"
   }
 };
 
