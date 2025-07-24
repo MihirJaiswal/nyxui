@@ -61,8 +61,8 @@ export const metadata: Metadata = {
     description:
       "30+ premium React components built with Tailwind CSS and Framer Motion. The ultimate UI library for modern Next.js applications.",
     images: ["/nyx.png"],
-    creator: "@nyx_ui",
-    site: "@nyx_ui"
+    creator: "@mihir_jaiswal_",
+    site: "@mihir_jaiswal_",
   },
   robots: {
     index: true,
@@ -114,7 +114,7 @@ export default function RootLayout({
               "author": {
                 "@type": "Person",
                 "name": "Mihir Jaiswal",
-                "url": "https://x.com/nyx_ui"
+                "url": "https://x.com/mihir_jaiswal_"
               },
               "applicationCategory": "DeveloperApplication",
               "operatingSystem": "Web Browser",

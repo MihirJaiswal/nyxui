@@ -104,7 +104,7 @@ export default function FooterSection() {
                     <span className="text-muted-foreground order-last block text-center text-sm md:order-first">© {new Date().getFullYear()} Nyx UI, All rights reserved</span>
                     <div className="order-first flex flex-wrap justify-center gap-6 text-sm md:order-last">
                         <Link
-                            href="https://x.com/nyx_ui"
+                            href="https://x.com/mihir_jaiswal_"
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label="X/Twitter"

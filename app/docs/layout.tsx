@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     "web development",
     "frontend framework",
   ],
-  authors: [{ name: "Mihir Jaiswal", url: "https://x.com/nyx_ui" }],
+  authors: [{ name: "Mihir Jaiswal", url: "https://x.com/mihir_jaiswal_" }],
   creator: "Mihir Jaiswal",
   publisher: "Mihir Jaiswal",
   robots: {

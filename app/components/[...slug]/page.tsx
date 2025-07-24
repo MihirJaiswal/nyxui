@@ -91,7 +91,7 @@ export async function generateMetadata({
     title: enhancedTitle,
     description: enhancedDescription,
     keywords: componentKeywords,
-    authors: [{ name: "Mihir Jaiswal", url: "https://x.com/nyx_ui" }],
+    authors: [{ name: "Mihir Jaiswal", url: "https://x.com/mihir_jaiswal_" }],
     creator: "Nyx UI",
     publisher: "Nyx UI",
     
@@ -116,8 +116,8 @@ export async function generateMetadata({
       title: `${doc.title} React Component | Nyx UI`,
       description: enhancedDescription,
       images: [doc.image || "/nyx.png"],
-      creator: "@nyx_ui",
-      site: "@nyx_ui"
+      creator: "@mihir_jaiswal_",
+      site: "@mihir_jaiswal_",
     },
     
     alternates: {
@@ -197,7 +197,7 @@ export default async function ComponentPage({ params }: ComponentPageProps) {
     author: {
       "@type": "Person",
       name: "Mihir Jaiswal",
-      url: "https://x.com/nyx_ui"
+      url: "https://x.com/mihir_jaiswal_"
     },
     publisher: {
       "@type": "Organization",

@@ -63,7 +63,7 @@ export default function FinalCTASection() {
               Follow for new updates
               </p>
               <Link
-                href="https://x.com/nyx_ui"
+                href="https://x.com/mihir_jaiswal_"
                 target="_blank"
                 rel="noopener noreferrer"
               >

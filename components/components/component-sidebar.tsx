@@ -43,16 +43,16 @@ export const ComponentSidebar = () => {
         <div className="flex h-full flex-col">
           <div className="space-y-2 md:space-y-3 mb-2">
             <div className="font-bold tracking-wider text-black dark:text-white px-1 md:px-2 text-sm md:text-base">
-              Follow for updates
+              Twitter
             </div>
             <div className="space-y-0.5">
               <a 
                 className="group flex items-center w-full text-xs md:text-sm py-1.5 md:py-2 rounded-md transition-all duration-200 hover:text-foreground text-black dark:text-[#A1A1AA] hover:bg-muted/50 ml-2 group-hover:ml-2 transition-all duration-200"
                 target="_blank" 
                 rel="noopener noreferrer" 
-                href="https://x.com/nyx_ui"
+                href="https://x.com/mihir_jaiswal_"
               >
-                Twitter @nyx_ui
+               @mihir_jaiswal_
               </a>
             </div>
             <div className="w-[80%]">

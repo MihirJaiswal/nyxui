@@ -49,7 +49,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: `NyxUI - ${componentCount}+ React Components`,
       description: `Premium React components for Next.js. Built with TypeScript & Tailwind CSS.`,
       images: ["/nyx.png"],
-      creator: "@nyx_ui",
+      creator: "@mihir_jaiswal_",
     },
 
     robots: {

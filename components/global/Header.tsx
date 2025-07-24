@@ -162,7 +162,7 @@ export default function Header() {
             </Link>
             <Link
               aria-label="Twitter"
-              href="https://x.com/nyx_ui"
+              href="https://x.com/mihir_jaiswal_"
               target="_blank"
               rel="noreferrer"
             >
@@ -205,7 +205,7 @@ export default function Header() {
             </Link>
             <Link
               aria-label="Twitter"
-              href="https://x.com/nyx_ui"
+              href="https://x.com/mihir_jaiswal_"
               target="_blank"
               rel="noreferrer"
             >
@@ -331,7 +331,7 @@ export default function Header() {
                       </Link>
                       <Link
                         aria-label="Twitter"
-                        href="https://x.com/nyx_ui"
+                        href="https://x.com/mihir_jaiswal_"
                         target="_blank"
                         rel="noreferrer"
                         className="h-7 w-7 rounded-full p-0"

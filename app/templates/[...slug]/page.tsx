@@ -97,7 +97,7 @@ export async function generateMetadata({
     title: enhancedTitle,
     description: enhancedDescription,
     keywords: templateKeywords,
-    authors: [{ name: "Mihir Jaiswal", url: "https://x.com/nyx_ui" }],
+    authors: [{ name: "Mihir Jaiswal", url: "https://x.com/mihir_jaiswal_" }],
     creator: "Nyx UI",
     publisher: "Nyx UI",
     
@@ -205,7 +205,7 @@ export default async function TemplatePage({ params }: TemplatePageProps) {
     author: {
       "@type": "Person",
       name: "Mihir Jaiswal",
-      url: "https://x.com/nyx_ui"
+      url: "https://x.com/mihir_jaiswal_"
     },
     publisher: {
       "@type": "Organization",
