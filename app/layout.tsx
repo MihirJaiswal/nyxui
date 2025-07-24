@@ -82,7 +82,8 @@ export const metadata: Metadata = {
   other: {
     "application-name": "Nyx UI",
     "msapplication-TileColor": "#000000",
-    "theme-color": "#000000"
+    "theme-color": "#000000",
+    "google-site-verification": "google23857aecce6e6602"
   }
 };
 
