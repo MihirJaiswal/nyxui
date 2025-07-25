@@ -16,7 +16,7 @@ import {
   useSpring,
   useTransform,
   AnimationOptions,
-} from "framer-motion";
+} from "motion/react";
 
 const SliderContext = createContext<
   | {

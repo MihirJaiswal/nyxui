@@ -78,23 +78,10 @@ import {
   <ImageLayer src="/path/to/after-image.jpg" alt="After Image" layer="second" />
   <Divider />
 </ImageSlider>;
+```
 
-{
-  /* Vertical orientation with custom handle icon */
-}
-<ImageSlider
-  className="h-96 w-full overflow-hidden"
-  orientation="vertical"
-  defaultPosition={40}
->
-  <ImageLayer src="/path/to/original.jpg" alt="Original" layer="first" />
-  <ImageLayer src="/path/to/edited.jpg" alt="Edited" layer="second" />
-  <Divider handleIcon={<ArrowUpDown size={16} />} />
-</ImageSlider>;
-
-{
-  /* Hover-controlled comparison */
-}
+```tsx
+/* Hover-controlled */
 <ImageSlider
   className="h-96 w-full overflow-hidden rounded-xl"
   hoverControl={true}

@@ -925,6 +925,22 @@
       ]
     },
     {
+      "name": "image-scanner-demo1",
+      "type": "registry:example",
+      "title": "Image Scanner Demo 1",
+      "description": "Example showing a image scanner.",
+      "registryDependencies": [
+        "https://nyxui.vercel.app/r/image-scanner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/example/image-scanner-demo1.tsx",
+          "type": "registry:example",
+          "target": "components/image-scanner-demo1.tsx"
+        }
+      ]
+    },
+    {
       "name": "glow-card-demo",
       "type": "registry:example",
       "title": "Glow Card Demo",
@@ -937,6 +953,22 @@
           "path": "registry/example/glow-card-demo.tsx",
           "type": "registry:example",
           "target": "components/glow-card-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "glow-card-demo1",
+      "type": "registry:example",
+      "title": "Glow Card Demo 1",
+      "description": "Example showing a glow card.",
+      "registryDependencies": [
+        "https://nyxui.vercel.app/r/glow-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/example/glow-card-demo1.tsx",
+          "type": "registry:example",
+          "target": "components/glow-card-demo1.tsx"
         }
       ]
     },

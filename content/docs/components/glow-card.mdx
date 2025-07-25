@@ -52,6 +52,12 @@ export function cn(...inputs: ClassValue[]) {
 
 </Tabs>
 
+## Examples
+
+### Pokemon Glow Card
+
+<ComponentPreview name="glow-card-demo1" />
+
 ## Usage
 
 ```tsx
@@ -59,7 +65,6 @@ import { GlowCard } from "@/components/ui/glow-card";
 ```
 
 ```tsx
-// Basic usage with liquid effect (default)
 export default function BasicExample() {
   return (
     <GlowCard 
@@ -73,52 +78,6 @@ export default function BasicExample() {
   );
 }
 
-// cosmic effect
-export function CosmicExample() {
-  return (
-    <GlowCard
-      variant="cosmic"
-      intensity={4}
-      scrollEffect={true}
-      allowCustomBackground
-      className="w-full max-w-md p-6 bg-gradient-to-br from-purple-500 to-indigo-600 text-white rounded-xl"
-    >
-      <h3 className="text-xl font-bold mb-4">Cosmic Effect</h3>
-      <p>This card is having a cosmic effect.</p>
-    </GlowCard>
-  );
-}
-
-// laser effect
-export function LaserExample() {
-  return (
-    <GlowCard
-      variant="laser"
-      laserColor="#ffffff"
-      className="w-full max-w-md p-6 rounded-xl border border-amber-300">
-      <h3 className="text-xl font-bold mb-4">Laser Effect</h3>
-      <p className="text-amber-700">
-        This card is having a cool laser effect.
-      </p>
-    </GlowCard>
-  );
-}
-
-// Glitch effect
-export function GlitchExample() {
-  return (
-    <GlowCard
-      variant="glitch"
-      glitchColor="#f97316a0" // Custom orange glow
-      glitchColor1= "#3b82f6"
-      allowCustomBackground
-      className="w-full max-w-md p-6 bg-slate-900 text-white rounded-xl"
-    >
-      <h3 className="text-xl font-bold mb-4">Glitch Effect</h3>
-      <p>This card is giving a nice glitchy effect.</p>
-    </GlowCard>
-  );
-}
 ```
 
 ## Props

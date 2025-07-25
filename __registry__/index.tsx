@@ -710,6 +710,22 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
+  "image-scanner-demo1": {
+    name: "image-scanner-demo1",
+    description: "Example showing a image scanner.",
+    type: "registry:example",
+    registryDependencies: ["https://nyxui.vercel.app/r/image-scanner.json"],
+    files: [{
+      path: "registry/example/image-scanner-demo1.tsx",
+      type: "registry:example",
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/example/image-scanner-demo1.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
   "glow-card-demo": {
     name: "glow-card-demo",
     description: "Example showing a glow card.",
@@ -721,6 +737,22 @@ export const Index: Record<string, any> = {
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/example/glow-card-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "glow-card-demo1": {
+    name: "glow-card-demo1",
+    description: "Example showing a glow card.",
+    type: "registry:example",
+    registryDependencies: ["https://nyxui.vercel.app/r/glow-card.json"],
+    files: [{
+      path: "registry/example/glow-card-demo1.tsx",
+      type: "registry:example",
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/example/glow-card-demo1.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),

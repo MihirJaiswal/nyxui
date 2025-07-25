@@ -1,5 +1,4 @@
 "use client"
-
 import type React from "react"
 import { useRef, useEffect, useState, useCallback, useMemo } from "react"
 import { cn } from "@/lib/utils"
@@ -45,14 +44,11 @@ export function GlowCard({
   const waveTimeRef = useRef<number>(0)
   const frameCountRef = useRef<number>(0)
   const lastMouseMoveRef = useRef<number>(0)
-
   const [isHovered, setIsHovered] = useState(false)
   const [mousePos, setMousePos] = useState({ x: 50, y: 50 })
   const [particles, setParticles] = useState<Particle[]>([])
   const [ripples, setRipples] = useState<Array<{ id: number; x: number; y: number; time: number }>>([])
   const [glitchOffset, setGlitchOffset] = useState({ x: 0, y: 0 })
-
-  // Memoize color conversions
   const colorData = useMemo(() => {
     const hexToRgb = (hex: string) => {
       const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
@@ -73,7 +69,7 @@ export function GlowCard({
     }
   }, [liquidColor, laserColor, glitchColor1, glitchColor2])
 
-  // Generate cosmic particles immediately on hover
+  // Generate cosmic particles
   const generateCosmicParticles = useCallback((centerX: number, centerY: number) => {
     const newParticles: Particle[] = []
     for (let i = 0; i < 10; i++) {
@@ -115,7 +111,6 @@ export function GlowCard({
     frameCountRef.current += 1
     const currentFrame = frameCountRef.current
 
-    // Handle different effects with better timing
     if (variant === "cosmic" && currentFrame % 6 === 0) {
       generateCosmicParticles(mousePos.x, mousePos.y)
     } else if (variant === "glitch" && currentFrame % 8 === 0) {
@@ -145,7 +140,6 @@ export function GlowCard({
     animationRef.current = requestAnimationFrame(animate)
   }, [isHovered, mousePos, variant, generateCosmicParticles])
 
-  // Throttled mouse move handler
   const handleMouseMove = useCallback((e: MouseEvent) => {
     const now = Date.now()
     if (now - lastMouseMoveRef.current < 16) return
@@ -160,7 +154,6 @@ export function GlowCard({
 
   const handleMouseEnter = useCallback(() => {
     setIsHovered(true)
-    // Generate initial particles immediately for cosmic effect
     if (variant === "cosmic") {
       generateCosmicParticles(mousePos.x, mousePos.y)
     }
@@ -187,7 +180,6 @@ export function GlowCard({
     [variant],
   )
 
-  // Memoize background gradient
   const backgroundGradient = useMemo(() => {
     if (allowCustomBackground) return undefined
 
@@ -200,7 +192,6 @@ export function GlowCard({
     return gradients[variant]
   }, [variant, allowCustomBackground])
 
-  // Get border gradient
   const getBorderGradient = () => {
     const { rgb, laserRgb, glitch1Rgb, glitch2Rgb } = colorData
 
@@ -221,7 +212,6 @@ export function GlowCard({
       case "laser":
         return (
           <>
-            {/* Laser beams and crosshair */}
             {isHovered && (
               <>
                 <div
@@ -294,7 +284,6 @@ export function GlowCard({
                 </div>
               </>
             )}
-            {/* Dark overlay */}
             <div
               className="absolute inset-0 pointer-events-none transition-all duration-300"
               style={{
@@ -409,7 +398,6 @@ export function GlowCard({
                 opacity: isHovered ? 1 : 0,
               }}
             />
-            {/* Ripples */}
             {ripples.map((ripple) => {
               const age = Date.now() - ripple.time
               const progress = Math.min(age / 1000, 1)
@@ -438,8 +426,6 @@ export function GlowCard({
         return null
     }
   }
-
-  // Memoized container styles
   const containerStyles = useMemo(
     () => ({
       background: backgroundGradient,
@@ -450,7 +436,6 @@ export function GlowCard({
     [backgroundGradient, isHovered, mousePos.x, mousePos.y, variant],
   )
 
-  // Event listeners setup
   useEffect(() => {
     const container = containerRef.current
     if (!container || disabled) return
@@ -480,7 +465,7 @@ export function GlowCard({
     }
   }, [animate, isHovered])
 
-  // Ripple cleanup
+  // cleanup
   useEffect(() => {
     if (variant !== "liquid") return
     const interval = setInterval(() => {
@@ -502,7 +487,7 @@ export function GlowCard({
       )}
       style={containerStyles}
     >
-      {/* Render variant-specific effects */}
+      {/* variant-specific effects */}
       {renderEffects()}
 
       {/* Universal Border Effects */}
@@ -523,7 +508,7 @@ export function GlowCard({
         }}
       />
 
-      {/* Enhanced Laser Border Glow */}
+      {/* Laser Border Glow */}
       {variant === "laser" && (
         <div
           className={cn(
@@ -549,7 +534,7 @@ export function GlowCard({
         />
       )}
 
-      {/* Enhanced Glitch Border Glow */}
+      {/*Glitch Border Glow */}
       {variant === "glitch" && (
         <div
           className={cn(
@@ -574,51 +559,6 @@ export function GlowCard({
       >
         {children}
       </div>
-
-      <style jsx>{`
-        @keyframes laser-pulse {
-          0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-          50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
-        }
-        
-        @keyframes laser-reticle {
-          0% { transform: translate(-50%, -50%) rotate(0deg); }
-          100% { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-        
-        @keyframes cosmic-pulse {
-          0%, 100% { opacity: 0.8; }
-          50% { opacity: 1; }
-        }
-        
-        @keyframes twinkle {
-          0%, 100% { opacity: 0.3; }
-          50% { opacity: 1; }
-        }
-        
-        @keyframes glitch-lines {
-          0% { transform: translateX(0); }
-          20% { transform: translateX(-2px); }
-          40% { transform: translateX(2px); }
-          60% { transform: translateX(-1px); }
-          80% { transform: translateX(1px); }
-          100% { transform: translateX(0); }
-        }
-        
-        @keyframes glitch-noise {
-          0% { opacity: 0.1; }
-          10% { opacity: 0.2; }
-          20% { opacity: 0.05; }
-          30% { opacity: 0.15; }
-          40% { opacity: 0.1; }
-          50% { opacity: 0.25; }
-          60% { opacity: 0.05; }
-          70% { opacity: 0.2; }
-          80% { opacity: 0.1; }
-          90% { opacity: 0.15; }
-          100% { opacity: 0.1; }
-        }
-      `}</style>
     </div>
   )
 }
