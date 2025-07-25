@@ -235,8 +235,8 @@ export const liquidMetalButtons = [
     description: "Gold outline liquid metal button",
     component: (
       <LiquidMetalButton
-        variant="outline"
         theme="gold"
+        variant="outline"
         className="rounded-lg"
       >
         <div className="flex items-center">
@@ -261,9 +261,7 @@ export const liquidMetalButtons = [
     description: "Mercury flow liquid metal button with animation",
     component: (
       <LiquidMetalButton
-        variant="mercury"
         theme="mercury"
-        intensity={5}
         className="rounded-lg"
       >
         <div className="flex items-center">
@@ -273,9 +271,7 @@ export const liquidMetalButtons = [
       </LiquidMetalButton>
     ),
     code: `<LiquidMetalButton
-  variant="mercury"
   theme="mercury"
-  intensity={5}
   className="rounded-lg"
 >
   <div className="flex items-center">
@@ -286,12 +282,10 @@ export const liquidMetalButtons = [
   },
   {
     name: "Ripple Wave",
-    description: "Steel ripple wave liquid metal button",
+    description: "Saphire ripple wave liquid metal button",
     component: (
       <LiquidMetalButton
-        variant="ripple"
-        theme="steel"
-        intensity={4}
+        theme="sapphire"
         className="rounded-lg group"
       >
         <div className="flex items-center">
@@ -301,9 +295,7 @@ export const liquidMetalButtons = [
       </LiquidMetalButton>
     ),
     code: `<LiquidMetalButton
-  variant="ripple"
-  theme="steel"
-  intensity={4}
+  theme="sapphire"
   className="rounded-lg group"
 >
   <div className="flex items-center">
@@ -317,9 +309,7 @@ export const liquidMetalButtons = [
     description: "Premium gold liquid metal button with texture",
     component: (
       <LiquidMetalButton
-        variant="mercury"
         theme="gold"
-        intensity={5}
         textured={true}
         className="rounded-lg relative bg-background"
       >
@@ -330,9 +320,7 @@ export const liquidMetalButtons = [
       </LiquidMetalButton>
     ),
     code: `<LiquidMetalButton
-  variant="mercury"
   theme="gold"
-  intensity={5}
   textured={true}
   className="rounded-lg relative bg-background"
 >
@@ -347,28 +335,25 @@ export const liquidMetalButtons = [
     description: "Elite steel liquid metal button with ripple effect",
     component: (
       <LiquidMetalButton
-        variant="ripple"
-        theme="steel"
-        intensity={5}
+        variant="default"
+        theme="emerald"
         textured={true}
         className="rounded-lg relative group bg-background"
       >
         <div className="flex items-center">
           <Zap className="mr-2 h-4 w-4" />
-          <span>Steel Elite</span>
+          <span>Emeral Elite</span>
         </div>
       </LiquidMetalButton>
     ),
     code: `<LiquidMetalButton
-  variant="ripple"
-  theme="steel"
-  intensity={5}
+  theme="emerald"
   textured={true}
   className="rounded-lg relative group bg-background"
 >
   <div className="flex items-center">
     <Zap className="mr-2 h-4 w-4" />
-    <span>Steel Elite</span>
+    <span>Emeral Elite</span>
   </div>
 </LiquidMetalButton>`
   }

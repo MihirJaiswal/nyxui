@@ -72,7 +72,6 @@ import { LiquidMetalButton } from "@/components/ui/liquid-metal-button";
 <LiquidMetalButton
   theme="gold"
   variant="outline"
-  intensity={4}
   textured={true}
 >
   Metallic Effect
@@ -86,7 +85,6 @@ import { LiquidMetalButton } from "@/components/ui/liquid-metal-button";
     shadow: "rgb(10, 20, 40)",
     text: "rgb(240, 240, 255)"
   }}
-  variant="mercury"
 >
   Custom Theme
 </LiquidMetalButton>
@@ -98,14 +96,11 @@ import { LiquidMetalButton } from "@/components/ui/liquid-metal-button";
 
 | Prop             | Type              | Default     | Description                                                                                                      |
 | ---------------- | ----------------- | ----------- | ---------------------------------------------------------------------------------------------------------------- |
-| `variant`        | `string`          | `"default"` | Button variant: "default", "outline", "ghost", "mercury", "ripple", "gradient"                                   |
+| `variant`        | `string`          | `"default"` | Button variant: "default", "outline", "ghost"                                   |
 | `size`           | `string`          | `"md"`      | Button size: "xs", "sm", "md", "lg", "xl", "2xl"                                                                 |
-| `theme`          | `string`          | `"silver"`  | Color theme: "silver", "gold", "copper", "mercury", "steel", "obsidian", "emerald", "ruby", "sapphire", "custom" |
-| `customColors`   | `object`          | `undefined` | Custom colors for "custom" theme (base, highlight, shadow, text, border, glow)                                   |
-| `intensity`      | `number`          | `3`         | Intensity of liquid effect (1-5)                                                                                 |
-| `magnetic`       | `boolean`         | `true`      | Enable magnetic pull effect                                                                                      |
+| `theme`          | `string`          | `"silver"`  | Color theme: "silver", "gold", "copper", "mercury", "steel", "emerald", "sapphire", "custom" |
+| `customColors`   | `object`          | `undefined` | Custom colors for "custom" theme (base, highlight, shadow, text, border, glow)                                   |       
 | `clickEffect`    | `boolean`         | `true`      | Enable click animation                                                                                           |
-| `asChild`        | `boolean`         | `false`     | Render as child element                                                                                          |
 | `hoverAnimation` | `boolean`         | `true`      | Enable hover animation                                                                                           |
 | `textured`       | `boolean`         | `false`     | Apply textured effect                                                                                            |
 | `icon`           | `React.ReactNode` | `undefined` | Icon displayed before children                                                                                   |
