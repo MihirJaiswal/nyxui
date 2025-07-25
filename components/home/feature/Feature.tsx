@@ -5,7 +5,7 @@ import { CustomPointer } from "./CustomPointer";
 
 export default function AnimatedComponentsShowcase() {
   return (
-    <div className="w-full pt-16 pb-24 overflow-x-hidden px-6 xl:px-22 xl:container mx-auto">
+    <div className="w-full pt-16 pb-24 lg:pt-0 lg:pb-0 overflow-hidden px-6 xl:px-22 xl:container mx-auto">
       {/* Grid pattern background */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:30px_30px] sm:bg-[size:40px_40px] lg:bg-[size:50px_50px]" />
 
@@ -134,7 +134,7 @@ export default function AnimatedComponentsShowcase() {
   </div>
 
   {/* Vertical Divider - Only visible on large screens */}
-  <div className="hidden lg:block h-full w-[0.5px] bg-neutral-200 dark:bg-neutral-800 absolute top-0 left-1/2 transform -translate-x-1/2"></div>
+  
 
   {/* Right Section - Development Speed */}
   <div className="space-y-8">
@@ -161,6 +161,7 @@ export default function AnimatedComponentsShowcase() {
     </div>
   </div>
 </div>
+<div className="hidden lg:block h-full w-[0.5px] bg-neutral-200 dark:bg-neutral-800 absolute top-0 left-1/2 transform -translate-x-1/2"></div>
       </div>
     </div>
   );

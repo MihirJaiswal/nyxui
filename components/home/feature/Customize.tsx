@@ -3,12 +3,43 @@
 import React, { useState } from "react";
 import { Volume2, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MusicPlayer } from "@/registry/ui/music-player";
+import { MusicPlayer, Track } from "@/registry/ui/music-player";
 
 const MusicCardThemeCustomizer = () => {
     const [cardTheme, setCardTheme] = useState("spotify");
     const [slideDirection, setSlideDirection] = useState("right");
     const [isAnimating, setIsAnimating] = useState(false);
+
+    // Sample track data
+    const sampleTrack: Track = {
+        id: "blinding-lights",
+        title: "Blinding Lights",
+        artist: "The Weeknd",
+        album: "After Hours",
+        artwork: "/assets/images/landing-page/song.jpg",
+        duration: 217,
+    };
+
+    // Sample queue for demonstration
+    const sampleQueue: Track[] = [
+        sampleTrack,
+        {
+            id: "save-your-tears",
+            title: "Save Your Tears",
+            artist: "The Weeknd",
+            album: "After Hours",
+            artwork: "/assets/images/landing-page/song.jpg",
+            duration: 215,
+        },
+        {
+            id: "starboy",
+            title: "Starboy",
+            artist: "The Weeknd ft. Daft Punk",
+            album: "Starboy",
+            artwork: "/assets/images/landing-page/song.jpg",
+            duration: 230,
+        },
+    ];
 
     const themeOptions = [
         {
@@ -24,17 +55,24 @@ const MusicCardThemeCustomizer = () => {
             color: "text-indigo-400",
         },
         {
-            name: "Nebula",
-            value: "nebula",
+            name: "Midnight",
+            value: "midnight",
             icon: <Volume2 className="h-3.5 w-3.5" />,
-            color: "text-purple-400",
+            color: "text-slate-400",
+        },
+        {
+            name: "Default",
+            value: "default",
+            icon: <Volume2 className="h-3.5 w-3.5" />,
+            color: "text-cyan-400",
         },
     ];
 
     const borderColors: Record<string, string> = {
+        spotify: "border-green-400",
         cosmic: "border-indigo-400",
-        nebula: "border-purple-400",
-        default: "border-green-400",
+        midnight: "border-slate-400",
+        default: "border-cyan-400",
     };
 
     const handleThemeChange = (newTheme: string) => {
@@ -135,7 +173,7 @@ const MusicCardThemeCustomizer = () => {
                     {/* Music Player - Center */}
                     <div className="flex-1 flex items-center justify-center">
                         <div
-                            className="w-[330px] h-[400px] relative overflow-hidden"
+                            className="w-[380px] h-[400px] relative overflow-hidden"
                             style={{ perspective: "1200px" }}
                         >
                             <AnimatePresence
@@ -155,14 +193,14 @@ const MusicCardThemeCustomizer = () => {
                                     style={{ backfaceVisibility: "hidden" }}
                                 >
                                     <MusicPlayer
-                                        theme={cardTheme}
-                                        artwork="/assets/images/landing-page/song.jpg"
-                                        className="shadow-lg rounded-lg mr-1"
-                                        trackTitle="Blinding Lights"
-                                        artist="The Weeknd"
-                                        album="After Hours"
+                                        theme={cardTheme as "default" | "spotify" | "cosmic" | "midnight"}
+                                        currentTrack={sampleTrack}
+                                        queue={sampleQueue}
+                                        currentIndex={0}
                                         initialTime={45}
-                                        totalDuration={217}
+                                        className="shadow-lg rounded-lg mr-1 scale-80 -mt-12"
+                                        autoPlay={false}
+                                        showEqualizer={true}
                                     />
                                 </motion.div>
                             </AnimatePresence>
@@ -204,17 +242,12 @@ const MusicCardThemeCustomizer = () => {
                 {/* Mobile Layout - Vertical */}
                 <div className="md:hidden">
                     <div className="flex flex-col items-center mb-6">
-                        <div className="flex gap-2 justify-center">
+                        <div className="flex gap-2 justify-center flex-wrap">
                             {themeOptions.map((option) => (
                                 <button
                                     key={option.value}
                                     className={`flex bg-white dark:bg-black items-center gap-1 px-3 py-1.5 border rounded-full transition-all ${cardTheme === option.value
-                                            ? `border-${option.value === "cosmic"
-                                                ? "indigo"
-                                                : option.value === "nebula"
-                                                    ? "purple"
-                                                    : "green"
-                                            }-400 ${option.color}`
+                                            ? `${borderColors[option.value]} ${option.color}`
                                             : "border-gray-300 dark:border-gray-700 opacity-70 hover:opacity-100"
                                         }`}
                                     onClick={() => handleThemeChange(option.value)}
@@ -226,7 +259,7 @@ const MusicCardThemeCustomizer = () => {
                             ))}
                         </div>
                     </div>
-                    <div className="flex justify-center">
+                    <div className="flex justify-center px-4">
                         <div
                             className="w-full relative overflow-hidden"
                             style={{ perspective: "1200px" }}
@@ -244,18 +277,18 @@ const MusicCardThemeCustomizer = () => {
                                     }
                                     animate="center"
                                     exit={slideDirection === "right" ? "exitLeft" : "exitRight"}
-                                    className="will-change-transform max-w-xs mx-auto"
+                                    className="will-change-transform max-w-sm mx-auto"
                                     style={{ backfaceVisibility: "hidden" }}
                                 >
                                     <MusicPlayer
-                                        theme={cardTheme}
-                                        artwork="/assets/images/landing-page/song.jpg"
-                                        className="shadow-lg rounded-lg"
-                                        trackTitle="Blinding Lights"
-                                        artist="The Weeknd"
-                                        album="After Hours"
+                                        theme={cardTheme as "default" | "spotify" | "cosmic" | "midnight"}
+                                        currentTrack={sampleTrack}
+                                        queue={sampleQueue}
+                                        currentIndex={0}
                                         initialTime={45}
-                                        totalDuration={217}
+                                        className="shadow-lg rounded-lg"
+                                        autoPlay={false}
+                                        showEqualizer={true}
                                     />
                                 </motion.div>
                             </AnimatePresence>
