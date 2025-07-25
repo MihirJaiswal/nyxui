@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useCallback } from 'react'
-import { motion, AnimatePresence, useMotionValue } from 'framer-motion'
+import { motion, AnimatePresence, useMotionValue } from 'motion/react'
 import { cn } from '@/lib/utils'
 
 // Default pointer SVG component
@@ -167,7 +167,7 @@ export const FollowCursor = ({
         "w-fit rounded-full px-2 py-1 text-white pointer-events-none text-xs whitespace-nowrap",
         bgClass
       )}>
-        {name || 'User'}
+        {name}
       </div>
     </motion.div>
   )

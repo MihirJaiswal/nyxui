@@ -1,21 +1,7 @@
 "use client"
-
-import { useState, useEffect, useCallback, useMemo } from "react"
+import { useState, useMemo } from "react"
 import Link from "next/link"
-import {
-  BookOpen,
-  Code,
-  Eye,
-  Github,
-  History,
-  Star,
-  GitFork,
-  AlertCircle,
-  Check,
-  ExternalLink,
-  Calendar,
-  TrendingUp,
-} from "lucide-react"
+import { BookOpen, Code, Eye, Github, History, Star, GitFork, Check, ExternalLink, Calendar} from "lucide-react"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
 
@@ -65,8 +51,7 @@ export const themes: ThemeOption[] = [
     description: "Sleek dark theme with blue accents and glassmorphism",
     cardBg: "bg-gradient-to-br from-slate-900/95 via-slate-800/95 to-slate-900/95",
     cardBorder: "border border-slate-700/50 backdrop-blur-xl",
-    cardHoverShadow:
-      "hover:shadow-2xl hover:shadow-blue-500/20 hover:scale-[1.02] transition-all duration-500 ease-out",
+    cardHoverShadow: "hover:shadow-2xl hover:shadow-blue-500/20 hover:scale-[1.02] transition-all duration-500 ease-out",
     accentColor: "text-blue-400",
     accentColorLight: "text-blue-400/20",
     graphColor: "text-blue-400",
@@ -84,8 +69,7 @@ export const themes: ThemeOption[] = [
     description: "Clean light theme with glassmorphism and subtle shadows",
     cardBg: "bg-gradient-to-br from-white/95 via-slate-50/95 to-white/95",
     cardBorder: "border border-slate-200/60 backdrop-blur-xl",
-    cardHoverShadow:
-      "hover:shadow-2xl hover:shadow-slate-200/60 hover:scale-[1.02] transition-all duration-500 ease-out",
+    cardHoverShadow:"hover:shadow-2xl hover:shadow-slate-200/60 hover:scale-[1.02] transition-all duration-500 ease-out",
     accentColor: "text-indigo-600",
     accentColorLight: "text-indigo-600/20",
     graphColor: "text-indigo-600",
@@ -103,8 +87,7 @@ export const themes: ThemeOption[] = [
     description: "Futuristic neon theme with electric colors",
     cardBg: "bg-gradient-to-br from-black/95 via-purple-950/95 to-black/95",
     cardBorder: "border border-cyan-500/30 backdrop-blur-xl",
-    cardHoverShadow:
-      "hover:shadow-2xl hover:shadow-cyan-500/40 hover:scale-[1.02] hover:border-cyan-400/50 transition-all duration-500 ease-out",
+    cardHoverShadow:"hover:shadow-xl hover:shadow-cyan-500/40 hover:scale-[1.02] hover:border-cyan-400/50 transition-all duration-500 ease-out",
     accentColor: "text-cyan-400",
     accentColorLight: "text-cyan-400/20",
     graphColor: "text-cyan-400",
@@ -122,8 +105,7 @@ export const themes: ThemeOption[] = [
     description: "Bold contrasting theme with dynamic shadows",
     cardBg: "bg-gradient-to-br from-amber-50 to-orange-50",
     cardBorder: "border-2 border-black",
-    cardHoverShadow:
-      "hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all duration-300 ease-out",
+    cardHoverShadow:"hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all duration-300 ease-out",
     accentColor: "text-rose-600",
     accentColorLight: "text-rose-600/20",
     graphColor: "text-rose-600",
@@ -139,8 +121,7 @@ export const themes: ThemeOption[] = [
     description: "Ethereal theme with aurora-like gradients",
     cardBg: "bg-gradient-to-br from-violet-900/95 via-purple-800/95 to-indigo-900/95",
     cardBorder: "border border-violet-500/30 backdrop-blur-xl",
-    cardHoverShadow:
-      "hover:shadow-2xl hover:shadow-violet-500/30 hover:scale-[1.02] transition-all duration-500 ease-out",
+    cardHoverShadow:"hover:shadow-2xl hover:shadow-violet-500/30 hover:scale-[1.02] transition-all duration-500 ease-out",
     accentColor: "text-violet-300",
     accentColorLight: "text-violet-300/20",
     graphColor: "text-violet-300",
@@ -158,8 +139,7 @@ export const themes: ThemeOption[] = [
     description: "Nature-inspired theme with green accents",
     cardBg: "bg-gradient-to-br from-emerald-950/95 via-green-900/95 to-teal-950/95",
     cardBorder: "border border-emerald-500/30 backdrop-blur-xl",
-    cardHoverShadow:
-      "hover:shadow-2xl hover:shadow-emerald-500/30 hover:scale-[1.02] transition-all duration-500 ease-out",
+    cardHoverShadow:"hover:shadow-2xl hover:shadow-emerald-500/30 hover:scale-[1.02] transition-all duration-500 ease-out",
     accentColor: "text-emerald-400",
     accentColorLight: "text-emerald-400/20",
     graphColor: "text-emerald-400",
@@ -175,33 +155,24 @@ export const themes: ThemeOption[] = [
 
 export type RepoData = {
   name: string
-  fullName: string
+  owner: string
+  ownerAvatar?: string
   description?: string
-  owner: {
-    login: string
-    avatarUrl: string
-  }
   stars: number
   forks: number
   watchers: number
   issues: number
   language?: string
-  languageColor?: string
   updatedAt: string
-  topics: string[]
+  topics?: string[]
   activityData?: number[]
-  isPrivate: boolean
+  isPrivate?: boolean
 }
 
-const CACHE_TTL = 15 * 60 * 1000
-
 interface GitHubRepoCardProps {
-  repoOwner?: string
-  repoName?: string
-  githubToken?: string
-  manualMode?: boolean
-  repoData?: RepoData
-  themeId?: string
+  repo: RepoData
+  theme?: string
+  className?: string
 }
 
 const getLanguageColor = (language: string) => {
@@ -231,333 +202,38 @@ const formatRelativeTime = (dateString: string) => {
   return "just now"
 }
 
-const getCacheKey = (repoOwner: string, repoName: string) => {
-  return `github_repo_${repoOwner}_${repoName}`
-}
-
 export function GitHubRepoCard({
-  repoOwner,
-  repoName,
-  githubToken,
-  manualMode = false,
-  repoData,
-  themeId = "modern-light",
+  repo,
+  theme = "modern-light",
+  className,
 }: GitHubRepoCardProps) {
   const [copied, setCopied] = useState(false)
-  const [loading, setLoading] = useState(!manualMode)
-  const [error, setError] = useState<string | null>(null)
-  const [repo, setRepo] = useState<RepoData | null>(manualMode ? repoData || null : null)
-  const [rateLimit, setRateLimit] = useState<{
-    remaining: number
-    limit: number
-  } | null>(null)
 
-  const currentTheme = useMemo(() => themes.find((theme) => theme.id === themeId) || themes[0], [themeId])
+  const currentTheme = useMemo(() => themes.find((t) => t.id === theme) || themes[0], [theme])
 
   const repoUrl = useMemo(() => {
-    if (!repo) return ""
-    return `https://github.com/${repo.fullName}`
-  }, [repo])
+    return `https://github.com/${repo.owner}/${repo.name}`
+  }, [repo.owner, repo.name])
 
   const cloneCommand = useMemo(() => {
-    if (!repo) return ""
-    return `git clone https://github.com/${repo.fullName}.git`
-  }, [repo])
-
-  const getCachedData = useCallback(() => {
-    if (!repoOwner || !repoName || typeof window === "undefined") return null
-    try {
-      const cacheKey = getCacheKey(repoOwner, repoName)
-      const cachedData = localStorage.getItem(cacheKey)
-      if (cachedData) {
-        const { data, timestamp } = JSON.parse(cachedData)
-        if (Date.now() - timestamp < CACHE_TTL) {
-          return data
-        } else {
-          localStorage.removeItem(cacheKey)
-        }
-      }
-    } catch (err) {
-      console.error("Error reading from cache:", err)
-    }
-    return null
-  }, [repoOwner, repoName])
-
-  const setCachedData = useCallback(
-    (data: RepoData) => {
-      if (!repoOwner || !repoName || typeof window === "undefined") return
-      try {
-        const cacheKey = getCacheKey(repoOwner, repoName)
-        const cacheData = JSON.stringify({
-          data,
-          timestamp: Date.now(),
-        })
-        localStorage.setItem(cacheKey, cacheData)
-      } catch (err) {
-        console.error("Error writing to cache:", err)
-      }
-    },
-    [repoOwner, repoName],
-  )
-
-  const fetchRepoData = useCallback(async () => {
-    if (!repoOwner || !repoName) return
-
-    const cachedData = getCachedData()
-    if (cachedData) {
-      setRepo(cachedData)
-      setLoading(false)
-      return
-    }
-
-    setLoading(true)
-    setError(null)
-
-    try {
-      const headers: HeadersInit = {}
-      if (githubToken) {
-        headers.Authorization = `token ${githubToken}`
-      }
-
-      const repoResponse = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}`, { headers })
-
-      const rateLimitRemaining = repoResponse.headers.get("x-ratelimit-remaining")
-      const rateLimitLimit = repoResponse.headers.get("x-ratelimit-limit")
-
-      if (rateLimitRemaining && rateLimitLimit) {
-        setRateLimit({
-          remaining: Number.parseInt(rateLimitRemaining, 10),
-          limit: Number.parseInt(rateLimitLimit, 10),
-        })
-      }
-
-      if (!repoResponse.ok) {
-        if (repoResponse.status === 403 && rateLimitRemaining === "0") {
-          throw new Error("GitHub API rate limit exceeded. Please provide a GitHub token.")
-        } else {
-          throw new Error(`Failed to fetch repository data: ${repoResponse.status}`)
-        }
-      }
-
-      const repoData = await repoResponse.json()
-
-      const commitsResponse = await fetch(
-        `https://api.github.com/repos/${repoOwner}/${repoName}/stats/commit_activity`,
-        { headers },
-      )
-
-      let activityData: number[] = []
-      if (commitsResponse.ok) {
-        const commitsData = await commitsResponse.json()
-        const recentCommits = commitsData.slice(-12).map((week: { total: number }) => week.total)
-        const maxCommit = Math.max(...recentCommits, 1)
-        activityData = recentCommits.map((count: number) => count / maxCommit)
-      }
-
-      const transformedRepo: RepoData = {
-        name: repoData.name,
-        fullName: repoData.full_name,
-        description: repoData.description || "",
-        owner: {
-          login: repoData.owner.login,
-          avatarUrl: repoData.owner.avatar_url,
-        },
-        stars: repoData.stargazers_count,
-        forks: repoData.forks_count,
-        watchers: repoData.watchers_count,
-        issues: repoData.open_issues_count,
-        language: repoData.language,
-        languageColor: repoData.language ? getLanguageColor(repoData.language) : undefined,
-        updatedAt: repoData.updated_at,
-        topics: repoData.topics || [],
-        activityData,
-        isPrivate: repoData.private,
-      }
-
-      setRepo(transformedRepo)
-      setCachedData(transformedRepo)
-      setLoading(false)
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "An unknown error occurred")
-      setLoading(false)
-    }
-  }, [repoOwner, repoName, githubToken, getCachedData, setCachedData])
-
-  useEffect(() => {
-    if (manualMode && repoData) {
-      setRepo(repoData)
-      setLoading(false)
-      return
-    }
-
-    if (!manualMode && repoOwner && repoName) {
-      fetchRepoData()
-    }
-  }, [manualMode, repoData, repoOwner, repoName, fetchRepoData])
+    return `git clone https://github.com/${repo.owner}/${repo.name}.git`
+  }, [repo.owner, repo.name])
 
   const copyToClipboard = () => {
-    if (repo) {
-      navigator.clipboard
-        .writeText(cloneCommand)
-        .then(() => {
-          setCopied(true)
-          setTimeout(() => setCopied(false), 2000)
-        })
-        .catch(console.error)
-    }
+    navigator.clipboard
+      .writeText(cloneCommand)
+      .then(() => {
+        setCopied(true)
+        setTimeout(() => setCopied(false), 2000)
+      })
+      .catch(console.error)
   }
 
-  const renderLoadingState = () => (
-    <div
-      className={cn(
-        "w-full max-w-full overflow-hidden transition-all duration-500 p-6 rounded-xl relative",
-        currentTheme.cardBg,
-        currentTheme.cardBorder,
-        currentTheme.backdropBlur,
-      )}
-      aria-busy="true"
-      aria-live="polite"
-    >
-      {/* Animated gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-pulse rounded-xl" />
-
-      <div className="relative space-y-6">
-        {/* Header skeleton */}
-        <div className="space-y-3">
-          <div className="flex items-center gap-3">
-            <div className="h-5 w-5 bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-600 rounded animate-pulse" />
-            <div className="flex items-center gap-2">
-              <div className="h-4 w-24 bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-600 rounded animate-pulse" />
-              <div className="h-4 w-1 bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-600 rounded animate-pulse" />
-              <div className="h-4 w-32 bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-600 rounded animate-pulse" />
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <div className="h-8 w-8 bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-600 rounded-full animate-pulse" />
-            <div className="h-6 w-40 bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-600 rounded animate-pulse" />
-            <div className="ml-auto h-6 w-20 bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-600 rounded-lg animate-pulse" />
-          </div>
-
-          <div className="space-y-2">
-            <div className="h-4 w-full bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-600 rounded animate-pulse" />
-            <div className="h-4 w-3/4 bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-600 rounded animate-pulse" />
-          </div>
-        </div>
-
-        {/* Activity graph skeleton */}
-        <div className="space-y-3">
-          <div className="h-20 bg-gradient-to-r from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-700 rounded-lg animate-pulse" />
-
-          <div className="grid grid-cols-4 gap-4">
-            {[0, 1, 2, 3].map((index) => (
-              <div key={index} className="flex items-center gap-2">
-                <div className="h-4 w-4 bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-600 rounded animate-pulse" />
-                <div className="h-4 w-12 bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-600 rounded animate-pulse" />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Footer skeleton */}
-        <div className="space-y-3">
-          <div className="flex items-center gap-2">
-            <div className="h-3 w-3 bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-600 rounded-full animate-pulse" />
-            <div className="h-4 w-20 bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-600 rounded animate-pulse" />
-          </div>
-
-          <div className="flex items-center justify-between">
-            <div className="flex gap-2">
-              {[0, 1, 2].map((index) => (
-                <div
-                  key={index}
-                  className="h-6 w-16 bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-600 rounded-md animate-pulse"
-                />
-              ))}
-            </div>
-            <div className="h-8 w-20 bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-600 rounded-md animate-pulse" />
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-
-  const renderErrorState = () => (
-    <div
-      className={cn(
-        "w-full max-w-full overflow-hidden transition-all duration-500 p-6 rounded-xl relative",
-        currentTheme.cardBg,
-        currentTheme.cardBorder,
-        currentTheme.backdropBlur,
-      )}
-      aria-live="assertive"
-    >
-      <div className="flex flex-col items-center justify-center py-8 text-center">
-        <div
-          className={cn(
-            "flex items-center justify-center w-20 h-20 mb-6 rounded-full animate-pulse",
-            currentTheme.badgeBg,
-          )}
-        >
-          <AlertCircle className={cn("h-10 w-10", currentTheme.accentColor)} aria-hidden="true" />
-        </div>
-
-        <h3 className={cn("text-xl font-bold mb-3", currentTheme.textNormal)}>Repository Not Found</h3>
-
-        <p className={cn("text-sm max-w-md mb-6 leading-relaxed", currentTheme.textMuted)}>
-          {error?.includes("404")
-            ? "This repository doesn't exist or you might not have access to it."
-            : error?.includes("rate limit")
-              ? "GitHub API rate limit exceeded. Please try again later or use a GitHub token."
-              : error}
-        </p>
-
-        <div className="flex flex-wrap gap-3 justify-center">
-          {error?.includes("rate limit") && (
-            <button
-              onClick={() => {
-                if (typeof window !== "undefined") {
-                  try {
-                    const cacheKey = getCacheKey(repoOwner || "", repoName || "")
-                    localStorage.removeItem(cacheKey)
-                  } catch (e) {
-                    console.error("Error clearing cache:", e)
-                  }
-                }
-                fetchRepoData()
-              }}
-              className={cn(
-                "flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 hover:scale-105",
-                currentTheme.badgeBg,
-                currentTheme.badgeText,
-              )}
-            >
-              <TrendingUp className="h-4 w-4" />
-              Try Again
-            </button>
-          )}
-
-          <Link
-            href={`https://github.com/${repoOwner || ""}/${repoName || ""}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={cn(
-              "flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 hover:scale-105",
-              currentTheme.badgeBg,
-              currentTheme.badgeText,
-            )}
-          >
-            <Github className="h-4 w-4" />
-            Visit GitHub
-          </Link>
-        </div>
-      </div>
-    </div>
-  )
-
-  if (loading) return renderLoadingState()
-  if (error) return renderErrorState()
-  if (!repo) return null
+  // Set language color if not provided
+  const repoWithColor = useMemo(() => ({
+    ...repo,
+    languageColor: repo.language ? getLanguageColor(repo.language) : undefined
+  }), [repo])
 
   return (
     <div
@@ -567,11 +243,11 @@ export function GitHubRepoCard({
         currentTheme.cardBorder,
         currentTheme.cardHoverShadow,
         currentTheme.backdropBlur,
+        className
       )}
       role="article"
-      aria-label={`GitHub repository: ${repo?.name}`}
+      aria-label={`GitHub repository: ${repoWithColor.name}`}
     >
-      {/* Subtle glow effect on hover */}
       {currentTheme.glowEffect && (
         <div
           className={cn(
@@ -588,45 +264,30 @@ export function GitHubRepoCard({
             <div className="flex items-center gap-2 text-sm">
               <Github className={cn("h-4 w-4", currentTheme.accentColor)} aria-hidden="true" />
               <Link
-                href={`https://github.com/${repo.owner.login}`}
+                href={`https://github.com/${repoWithColor.owner}`}
                 className={cn("hover:underline font-medium transition-colors duration-200", currentTheme.textMuted)}
-                aria-label={`View ${repo.owner.login}'s GitHub profile`}
+                aria-label={`View ${repoWithColor.owner}'s GitHub profile`}
               >
-                {repo.owner.login}
+                {repoWithColor.owner}
               </Link>
               <span className={cn("text-xs", currentTheme.textMuted)}>/</span>
               <Link
                 href={repoUrl}
                 className={cn("font-semibold hover:underline transition-colors duration-200", currentTheme.accentColor)}
-                aria-label={`View ${repo.name} repository on GitHub`}
+                aria-label={`View ${repoWithColor.name} repository on GitHub`}
               >
-                {repo.name}
+                {repoWithColor.name}
               </Link>
             </div>
-
-            {rateLimit && (
-              <div
-                className={cn(
-                  "text-xs font-medium flex items-center gap-1 px-2 py-1 rounded-md",
-                  currentTheme.badgeBg,
-                  currentTheme.badgeText,
-                )}
-                aria-label={`GitHub API rate limit: ${rateLimit.remaining} of ${rateLimit.limit} requests remaining`}
-              >
-                <span>
-                  {rateLimit.remaining}/{rateLimit.limit}
-                </span>
-              </div>
-            )}
           </div>
 
           <div className="flex items-center gap-3">
             <div className="relative">
               <div className="h-10 w-10 rounded-full overflow-hidden ring-2 ring-white/20 transition-transform duration-200 group-hover:scale-110">
-                {repo.owner.avatarUrl ? (
+                {repoWithColor.ownerAvatar ? (
                   <Image
-                    src={repo.owner.avatarUrl || "/placeholder.svg"}
-                    alt={`${repo.owner.login}'s avatar`}
+                    src={repoWithColor.ownerAvatar || "/placeholder.svg"}
+                    alt={`${repoWithColor.owner}'s avatar`}
                     className="h-full w-full object-cover"
                     width={40}
                     height={40}
@@ -634,14 +295,14 @@ export function GitHubRepoCard({
                   />
                 ) : (
                   <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-slate-200 to-slate-300 text-sm font-bold">
-                    {repo.owner.login.substring(0, 2).toUpperCase()}
+                    {repoWithColor.owner.substring(0, 2).toUpperCase()}
                   </div>
                 )}
               </div>
             </div>
 
             <div className="flex-1 min-w-0">
-              <h1 className={cn("text-xl font-bold truncate", currentTheme.textNormal)}>{repo.name}</h1>
+              <h1 className={cn("text-xl font-bold truncate", currentTheme.textNormal)}>{repoWithColor.name}</h1>
               <div className="flex items-center gap-2 mt-1">
                 <span
                   className={cn(
@@ -650,11 +311,11 @@ export function GitHubRepoCard({
                     currentTheme.badgeText,
                   )}
                 >
-                  {repo.isPrivate ? "Private" : "Public"}
+                  {repoWithColor.isPrivate ? "Private" : "Public"}
                 </span>
-                <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                <div className={cn("flex items-center gap-1 text-xs", currentTheme.textMuted)}>
                   <Calendar className="h-3 w-3" />
-                  <span>Updated {formatRelativeTime(repo.updatedAt)}</span>
+                  <span>Updated {formatRelativeTime(repoWithColor.updatedAt)}</span>
                 </div>
               </div>
             </div>
@@ -675,7 +336,7 @@ export function GitHubRepoCard({
           </div>
 
           <p className={cn("text-sm leading-relaxed", currentTheme.textMuted)}>
-            {repo.description || "No description provided"}
+            {repoWithColor.description || "No description provided"}
           </p>
         </div>
 
@@ -697,7 +358,7 @@ export function GitHubRepoCard({
             role="img"
             aria-label="Repository commit activity visualization"
           >
-            {repo.activityData && repo.activityData.length > 0 ? (
+            {repoWithColor.activityData && repoWithColor.activityData.length > 0 ? (
               <svg className="h-full w-full" viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden="true">
                 {/* Grid lines */}
                 {[5, 10, 15].map((y) => (
@@ -715,10 +376,10 @@ export function GitHubRepoCard({
                 ))}
 
                 {/* Data points */}
-                {repo.activityData.map((value, index) => (
+                {repoWithColor.activityData.map((value, index) => (
                   <circle
                     key={index}
-                    cx={`${index * (100 / (repo.activityData?.length || 1))}`}
+                    cx={`${index * (100 / (repoWithColor.activityData?.length || 1))}`}
                     cy={`${20 - value * 18}`}
                     r="1"
                     className={cn(currentTheme.graphColor, "animate-pulse")}
@@ -731,8 +392,8 @@ export function GitHubRepoCard({
 
                 {/* Connecting line */}
                 <polyline
-                  points={repo.activityData
-                    .map((value, index) => `${index * (100 / (repo.activityData?.length || 1))},${20 - value * 18}`)
+                  points={repoWithColor.activityData
+                    .map((value, index) => `${index * (100 / (repoWithColor.activityData?.length || 1))},${20 - value * 18}`)
                     .join(" ")}
                   fill="none"
                   stroke="currentColor"
@@ -744,8 +405,8 @@ export function GitHubRepoCard({
 
                 {/* Area fill */}
                 <path
-                  d={`M0,20 ${repo.activityData
-                    .map((value, index) => `L${index * (100 / (repo.activityData?.length || 1))},${20 - value * 18}`)
+                  d={`M0,20 ${repoWithColor.activityData
+                    .map((value, index) => `L${index * (100 / (repoWithColor.activityData?.length || 1))},${20 - value * 18}`)
                     .join(" ")} L100,20 Z`}
                   fill="currentColor"
                   className={currentTheme.graphBgColor}
@@ -764,10 +425,10 @@ export function GitHubRepoCard({
         {/* Stats Section */}
         <div className="grid grid-cols-4 gap-4">
           {[
-            { icon: Star, value: repo.stars, label: "Stars" },
-            { icon: GitFork, value: repo.forks, label: "Forks" },
-            { icon: Eye, value: repo.watchers, label: "Watchers" },
-            { icon: BookOpen, value: repo.issues, label: "Issues" },
+            { icon: Star, value: repoWithColor.stars, label: "Stars" },
+            { icon: GitFork, value: repoWithColor.forks, label: "Forks" },
+            { icon: Eye, value: repoWithColor.watchers, label: "Watchers" },
+            { icon: BookOpen, value: repoWithColor.issues, label: "Issues" },
           ].map(({ icon: Icon, value, label }) => (
             <div
               key={label}
@@ -785,18 +446,18 @@ export function GitHubRepoCard({
 
         {/* Footer Section */}
         <div className="space-y-3">
-          {repo.language && (
+          {repoWithColor.language && (
             <div className="flex items-center gap-2">
-              <div className="h-3 w-3 rounded-full" style={{ backgroundColor: repo.languageColor }} />
-              <span className={cn("text-sm font-medium", currentTheme.textNormal)}>{repo.language}</span>
+              <div className="h-3 w-3 rounded-full" style={{ backgroundColor: repoWithColor.languageColor }} />
+              <span className={cn("text-sm font-medium", currentTheme.textNormal)}>{repoWithColor.language}</span>
             </div>
           )}
 
           <div className="flex items-center justify-between gap-4">
             <div className="flex-1 min-w-0">
-              {repo.topics && repo.topics.length > 0 && (
+              {repoWithColor.topics && repoWithColor.topics.length > 0 && (
                 <div className="flex flex-wrap gap-2">
-                  {repo.topics.slice(0, 3).map((topic) => (
+                  {repoWithColor.topics.slice(0, 3).map((topic) => (
                     <span
                       key={topic}
                       className={cn(
@@ -808,7 +469,7 @@ export function GitHubRepoCard({
                       {topic}
                     </span>
                   ))}
-                  {repo.topics.length > 3 && (
+                  {repoWithColor.topics.length > 3 && (
                     <span
                       className={cn(
                         "text-xs font-medium px-2 py-1 rounded-md border",
@@ -816,7 +477,7 @@ export function GitHubRepoCard({
                         currentTheme.badgeText,
                       )}
                     >
-                      +{repo.topics.length - 3} more
+                      +{repoWithColor.topics.length - 3} more
                     </span>
                   )}
                 </div>
@@ -828,7 +489,7 @@ export function GitHubRepoCard({
                 "flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2",
                 currentTheme.badgeBg,
                 currentTheme.badgeText,
-                copied ? "bg-green-500/20 border-green-500/50 text-green-600" : "",
+                copied ? "bg-green-500/20 text-green-600" : "",
               )}
               onClick={copyToClipboard}
               type="button"

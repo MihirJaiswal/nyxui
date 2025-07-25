@@ -5,23 +5,18 @@ export default function GithubRepoCardDemo2() {
   return (
     <div className="w-full max-w-md mx-auto relative">
       <GitHubRepoCard
-        manualMode={true}
-        themeId="modern-dark"
-        repoData={{
+        theme="modern-dark"
+        repo={{
           name: "tailwindcss",
-          fullName: "tailwindlabs/tailwindcss",
           description:
             "A utility-first CSS framework for rapid UI development.",
-          owner: {
-            login: "tailwindlabs",
-            avatarUrl: "https://avatars.githubusercontent.com/u/67109815?v=4",
-          },
+          owner: "tailwindlabs",
+          ownerAvatar: "https://avatars.githubusercontent.com/u/115471?v=4",
           stars: 68000,
           forks: 3500,
           watchers: 1800,
           issues: 95,
           language: "JavaScript",
-          languageColor: "#f1e05a",
           updatedAt: "2025-04-02T08:15:43Z",
           topics: ["css", "framework", "design", "frontend"],
           activityData: [

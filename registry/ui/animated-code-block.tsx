@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { cn } from "@/lib/utils";
 import {
   Play,
@@ -13,7 +13,6 @@ import {
   Download,
 } from "lucide-react";
 import Prism from "prismjs";
-import "prismjs/themes/prism-tomorrow.css"; // Dark theme
 import "prismjs/components/prism-javascript";
 import "prismjs/components/prism-typescript";
 import "prismjs/components/prism-jsx";

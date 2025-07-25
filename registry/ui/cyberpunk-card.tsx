@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect } from "react"
 import { cn } from "../../lib/utils"
 
 export interface CyberpunkCardProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -160,7 +160,6 @@ export const CyberpunkCard = ({
   const [colorPhase, setColorPhase] = useState(0)
   const [glitchPhase, setGlitchPhase] = useState(0)
   const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; opacity: number }>>([])
-  const cardRef = useRef<HTMLDivElement>(null)
 
   const speedMultiplier = {
     slow: 0.5,
@@ -290,31 +289,29 @@ export const CyberpunkCard = ({
       border: "border-cyan-300",
     },
     custom: {
-      primary: customColors
-        ? `from-[${customColors.primary}] to-[${customColors.secondary}]`
-        : "from-blue-500 to-cyan-400",
-      secondary: customColors
-        ? `from-[${customColors.secondary}] to-[${customColors.primary}]`
-        : "from-blue-600 to-cyan-500",
-      accent: customColors ? `bg-[${customColors.accent}]` : "bg-blue-400",
+      primary: "", 
+      secondary: "",
+      accent: "",
       text: "text-gray-50",
-      glow: customColors ? `shadow-[${customColors.primary}]/50` : "shadow-blue-500/50",
-      border: customColors ? `border-[${customColors.accent}]` : "border-blue-400",
+      glow: "",
+      border: "",
     },
   }
 
   const currentTheme = themeColors[theme]
+  const customStyles = theme === "custom" && customColors ? {
+    background: `linear-gradient(to bottom right, ${customColors.primary}, ${customColors.secondary})`,
+    borderColor: customColors.accent,
+    boxShadow: glow ? `0 20px 25px -5px ${customColors.primary}50, 0 10px 10px -5px ${customColors.primary}40` : undefined,
+  } : {}
 
   const borderStyles = {
     solid: "border-2",
     dashed: "border-2 border-dashed",
     glitch: `border-2 ${glitchPhase % 3 === 0 ? "border-dashed" : glitchPhase % 3 === 1 ? "border-dotted" : "border-solid"}`,
-    corners:
-      "border-0 before:content-[''] before:absolute before:w-8 before:h-8 before:border-t-2 before:border-l-2 before:top-0 before:left-0 after:content-[''] after:absolute after:w-8 after:h-8 after:border-b-2 after:border-r-2 after:bottom-0 after:right-0",
-    animated:
-      "border-2 before:content-[''] before:absolute before:inset-0 before:border-2 before:border-current before:animate-pulse before:rounded-[inherit] before:pointer-events-none",
-    circuit:
-      "border-2 border-dashed before:content-[''] before:absolute before:inset-0 before:border-2 before:border-dotted before:border-current before:animate-ping before:rounded-[inherit] before:pointer-events-none before:opacity-75",
+    corners:"border-0 before:content-[''] before:absolute before:w-8 before:h-8 before:border-t-2 before:border-l-2 before:top-0 before:left-0 after:content-[''] after:absolute after:w-8 after:h-8 after:border-b-2 after:border-r-2 after:bottom-0 after:right-0",
+    animated:"border-2 before:content-[''] before:absolute before:inset-0 before:border-2 before:border-current before:animate-pulse before:rounded-[inherit] before:pointer-events-none",
+    circuit:"border-2 border-dashed before:content-[''] before:absolute before:inset-0 before:border-2 before:border-dotted before:border-current before:animate-ping before:rounded-[inherit] before:pointer-events-none before:opacity-75",
   }
 
   const roundedStyles = {
@@ -333,6 +330,8 @@ export const CyberpunkCard = ({
   }
 
   const getBackgroundPattern = () => {
+    const patternColor = theme === "custom" && customColors ? customColors.accent : "currentColor"
+    
     switch (backgroundEffect) {
       case "circuit":
         return (
@@ -340,8 +339,8 @@ export const CyberpunkCard = ({
             <svg className="w-full h-full" viewBox="0 0 100 100">
               <defs>
                 <pattern id="circuit" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                  <path d="M 10,0 L 10,10 L 0,10" stroke="currentColor" strokeWidth="0.5" fill="none" />
-                  <circle cx="10" cy="10" r="1" fill="currentColor" />
+                  <path d="M 10,0 L 10,10 L 0,10" stroke={patternColor} strokeWidth="0.5" fill="none" />
+                  <circle cx="10" cy="10" r="1" fill={patternColor} />
                 </pattern>
               </defs>
               <rect width="100%" height="100%" fill="url(#circuit)" />
@@ -357,13 +356,19 @@ export const CyberpunkCard = ({
       case "scanlines":
         return (
           <div className="absolute inset-0 opacity-20">
-            <div className="w-full h-full bg-gradient-to-b from-transparent via-current to-transparent bg-[length:100%_4px] animate-pulse" />
+            <div 
+              className="w-full h-full bg-gradient-to-b from-transparent via-current to-transparent bg-[length:100%_4px] animate-pulse" 
+              style={{ color: patternColor }}
+            />
           </div>
         )
       case "waves":
         return (
           <div className="absolute inset-0 opacity-30 overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-current to-transparent animate-pulse transform -skew-x-12" />
+            <div 
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-current to-transparent animate-pulse transform -skew-x-12" 
+              style={{ color: patternColor }}
+            />
           </div>
         )
       default:
@@ -373,15 +378,14 @@ export const CyberpunkCard = ({
 
   return (
     <div
-      ref={cardRef}
       className={cn(
         "relative p-6 border transition-all duration-300 overflow-hidden cursor-pointer",
-        `bg-gradient-to-br ${currentTheme.primary}`,
+        theme !== "custom" && `bg-gradient-to-br ${currentTheme.primary}`,
         borderStyles[borderStyle],
         roundedStyles[rounded],
-        currentTheme.border,
-        glow && glowIntensityStyles[glowIntensity],
-        glow && currentTheme.glow,
+        theme !== "custom" && currentTheme.border,
+        theme !== "custom" && glow && glowIntensityStyles[glowIntensity],
+        theme !== "custom" && glow && currentTheme.glow,
         currentTheme.text,
         pulseAnimation && "before:animate-pulse",
         hologramFlicker && isHovered && "animate-pulse",
@@ -391,7 +395,9 @@ export const CyberpunkCard = ({
         className,
       )}
       style={{
-        borderColor: colorShift && isHovered ? `hsl(${(colorPhase * 3.6) % 360}, 100%, 70%)` : undefined,
+        ...customStyles,
+        borderColor: colorShift && isHovered ? `hsl(${(colorPhase * 3.6) % 360}, 100%, 70%)` : 
+          theme === "custom" && customColors ? customColors.accent : undefined,
         filter: hologramFlicker && isHovered ? `hue-rotate(${colorPhase * 3.6}deg)` : undefined,
       }}
       onMouseMove={handleMouseMove}
@@ -400,7 +406,6 @@ export const CyberpunkCard = ({
       onClick={handleClick}
       {...props}
     >
-      {/* Background Pattern */}
       {getBackgroundPattern()}
 
       {/* Particles Effect */}
@@ -408,11 +413,12 @@ export const CyberpunkCard = ({
         particles.map((particle) => (
           <div
             key={particle.id}
-            className="absolute w-1 h-1 bg-current rounded-full animate-ping"
+            className="absolute w-1 h-1 rounded-full animate-ping"
             style={{
               left: `${particle.x}%`,
               top: `${particle.y}%`,
               opacity: particle.opacity,
+              backgroundColor: theme === "custom" && customColors ? customColors.accent : "currentColor",
             }}
           />
         ))}
@@ -420,27 +426,36 @@ export const CyberpunkCard = ({
       {/* Light Trail */}
       {lightTrail && isHovered && (
         <div
-          className="absolute w-32 h-32 rounded-full bg-white/20 blur-xl pointer-events-none transition-all duration-300"
+          className="absolute w-32 h-32 rounded-full blur-xl pointer-events-none transition-all duration-300"
           style={{
             left: mousePosition.x - 64,
             top: mousePosition.y - 64,
             opacity: 0.6,
-            background: `radial-gradient(circle, ${currentTheme.accent.replace("bg-", "")} 0%, transparent 70%)`,
+            background: `radial-gradient(circle, ${
+              theme === "custom" && customColors ? customColors.accent : currentTheme.accent.replace("bg-", "")
+            } 0%, transparent 70%)`,
           }}
         />
       )}
 
       {dataStream && (
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-current to-transparent animate-pulse" />
+        <div 
+          className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-current to-transparent animate-pulse"
+          style={{ color: theme === "custom" && customColors ? customColors.accent : "currentColor" }}
+        />
       )}
+      
       {loading && (
         <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
           <div className="flex space-x-1">
             {[...Array(3)].map((_, i) => (
               <div
                 key={i}
-                className="w-2 h-2 bg-current rounded-full animate-bounce"
-                style={{ animationDelay: `${i * 0.1}s` }}
+                className="w-2 h-2 rounded-full animate-bounce"
+                style={{ 
+                  backgroundColor: theme === "custom" && customColors ? customColors.accent : "currentColor",
+                  animationDelay: `${i * 0.1}s` 
+                }}
               />
             ))}
           </div>
@@ -456,16 +471,26 @@ export const CyberpunkCard = ({
       >
         {children}
       </div>
+      
       <div
         className={cn(
           "absolute -bottom-2 -right-2 w-16 h-16 transform rotate-45 opacity-70 transition-all duration-300",
-          currentTheme.accent,
+          theme !== "custom" && currentTheme.accent,
           isHovered && "scale-110 opacity-90",
         )}
+        style={{
+          backgroundColor: theme === "custom" && customColors ? customColors.accent : undefined,
+        }}
       />
 
-      <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-current opacity-50" />
-      <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-current opacity-50" />
+      <div 
+        className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 opacity-50" 
+        style={{ borderColor: theme === "custom" && customColors ? customColors.accent : "currentColor" }}
+      />
+      <div 
+        className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 opacity-50" 
+        style={{ borderColor: theme === "custom" && customColors ? customColors.accent : "currentColor" }}
+      />
       {isHovered && (
         <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
       )}

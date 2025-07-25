@@ -2,7 +2,7 @@ import BubbleBackground from "../ui/bubble-background";
 
 export const BubblesBackgroundDemo = () => {
   return (
-    <div className="h-[350px] overflow-hidden rounded-lg">
+    <div className="h-[550px] overflow-hidden rounded-lg">
       <div className="absolute inset-0 overflow-hidden rounded-lg">
         <BubbleBackground
           bgColorA="rgb(30, 0, 60)"

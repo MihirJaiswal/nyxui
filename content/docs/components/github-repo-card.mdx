@@ -60,11 +60,11 @@ export function cn(...inputs: ClassValue[]) {
 
 ## Examples
 
-### Retro Theme
+### Neo Brutalist Theme
 
 <ComponentPreview name="github-repo-card-demo1" />
 
-### Midnight Theme
+### Modern Dark Theme
 
 <ComponentPreview name="github-repo-card-demo2" />
 
@@ -75,48 +75,24 @@ import { GitHubRepoCard } from "@/components/ui/github-repo-card";
 ```
 
 ```tsx
-// Using API mode with GitHub token (recommended)
 export default function MyComponent() {
-  const token = process.env.GITHUB_TOKEN;
   return (
     <div className="w-full max-w-md mx-auto">
       <GitHubRepoCard
-        repoOwner="shadcn-ui"
-        repoName="ui"
-        themeId="modern-dark"
-        githubToken={token}
-      />
-    </div>
-  );
-}
-
-// Using manual mode with provided data
-export function ManualExample() {
-  return (
-    <div className="w-full max-w-md mx-auto">
-      <GitHubRepoCard
-        manualMode={true}
-        themeId="neo-brutalist"
-        repoData={{
-          name: "tailwindcss",
-          fullName: "tailwindlabs/tailwindcss",
-          description:
-            "A utility-first CSS framework for rapid UI development.",
-          owner: {
-            login: "tailwindlabs",
-            avatarUrl: "https://avatars.githubusercontent.com/u/67109815?v=4",
-          },
-          stars: 68000,
-          forks: 3500,
-          watchers: 1800,
-          issues: 95,
-          language: "JavaScript",
-          languageColor: "#f1e05a",
-          updatedAt: "2025-04-02T08:15:43Z",
-          topics: ["css", "framework", "design", "frontend"],
-          activityData: [
-            0.5, 0.6, 0.4, 0.5, 0.7, 0.8, 0.9, 1.0, 0.8, 0.6, 0.7, 0.8,
-          ],
+        theme="modern-dark"
+        repo={{
+          name: "ui",
+          owner: "shadcn",
+          ownerAvatar: "https://avatars.githubusercontent.com/u/124599?v=4",
+          description: "Beautifully designed components built with Radix UI and Tailwind CSS.",
+          stars: 42000,
+          forks: 3600,
+          watchers: 1600,
+          issues: 310,
+          language: "TypeScript",
+          updatedAt: "2025-04-07T14:18:57Z",
+          topics: ["ui", "components", "tailwindcss", "radix"],
+          activityData: [0.4, 0.5, 0.6, 0.8, 0.7, 0.9, 1.0, 0.9, 0.8, 0.7, 0.9, 1.0],
           isPrivate: false,
         }}
       />
@@ -125,37 +101,31 @@ export function ManualExample() {
 }
 ```
 
-# GitHub Repo Card
-
 ## Props
 
 ### GitHub Repo Card
 
-| Prop          | Type       | Default          | Description                                                                                                                                        |
-| ------------- | ---------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `repoOwner`   | `string`   | `undefined`      | GitHub username or organization name that owns the repository. Required when not using manualMode.                                                 |
-| `repoName`    | `string`   | `undefined`      | Name of the GitHub repository. Required when not using manualMode.                                                                                 |
-| `githubToken` | `string`   | `undefined`      | Optional GitHub API token for increased rate limits (unauthenticated: 60/hr, authenticated: 5,000/hr). Store securely using environment variables. |
-| `manualMode`  | `boolean`  | `false`          | When true, uses provided repoData instead of fetching from GitHub API. Useful for avoiding rate limits or displaying custom repository data.       |
-| `repoData`    | `RepoData` | `undefined`      | Repository data object for manual mode. Required when manualMode is true. Includes fields for repository name, stars, forks, language, etc.        |
-| `themeId`     | `string`   | `"modern-light"` | Visual theme for the card. Available options: "modern-dark", "modern-light", "cyberpunk", "neo-brutalist", "aurora", "forest".                    |
+| Prop        | Type       | Default          | Description                                                                                                                    |
+| ----------- | ---------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `repo`      | `RepoData` | `undefined`      | **Required.** Repository data object containing all information to display on the card.                                        |
+| `theme`     | `string`   | `modern-light` | Visual theme for the card. Available options: "modern-dark", "modern-light", "cyberpunk", "neo-brutalist", "aurora", "forest". |
+| `className` | `string`   | `undefined`      | Additional CSS classes to apply to the card container.                                                                         |
 
 ### RepoData Type
 
-| Property        | Type       | Default                        | Description                                                                                        |
-| --------------- | ---------- | ------------------------------ | -------------------------------------------------------------------------------------------------- |
-| `name`          | `string`   | `""`                           | Repository name (e.g., 'next.js').                                                                 |
-| `fullName`      | `string`   | `""`                           | Full repository name with owner (e.g., 'vercel/next.js').                                          |
-| `description`   | `string`   | `undefined`                    | Repository description (optional).                                                                 |
-| `owner`         | `object`   | `{ login: '', avatarUrl: '' }` | Repository owner with login (username) and avatarUrl properties.                                   |
-| `stars`         | `number`   | `0`                            | Number of repository stars.                                                                        |
-| `forks`         | `number`   | `0`                            | Number of repository forks.                                                                        |
-| `watchers`      | `number`   | `0`                            | Number of repository watchers.                                                                     |
-| `issues`        | `number`   | `0`                            | Number of open issues in the repository.                                                           |
-| `language`      | `string`   | `undefined`                    | Primary programming language used in the repository (optional).                                    |
-| `languageColor` | `string`   | `undefined`                    | Hex color code for the language indicator (optional, defaults to standard GitHub language colors). |
-| `updatedAt`     | `string`   | `""`                           | ISO date string of when the repository was last updated.                                           |
-| `topics`        | `string[]` | `[]`                           | Array of repository topics/tags to display on the card.                                            |
-| `activityData`  | `number[]` | `undefined`                    | Array of 12 normalized values (0-1) representing repository commit activity for the graph display. |
-| `isPrivate`     | `boolean`  | `false`                        | Whether the repository is private (displays badge on card).                                        |
+| Property        | Type       |  Default     | Description                                                                                      |
+| --------------- | ---------- |  ----------- | -------------------------------------------------------------------------------------------------|
+| `name`          | `string`   |  -           | Repository name (e.g., 'next.js').                                                               |
+| `owner`         | `string`   |  -           | Repository owner username or organization name (e.g., 'vercel').                                 |
+| `stars`         | `number`   |  -           | Number of repository stars.                                                                      |
+| `forks`         | `number`   |  -           | Number of repository forks.                                                                      |
+| `watchers`      | `number`   |  -           | Number of repository watchers.                                                                   |
+| `issues`        | `number`   |  -           | Number of open issues in the repository.                                                         |
+| `updatedAt`     | `string`   |  -           | ISO date string of when the repository was last updated.                                         |
+| `ownerAvatar`   | `string`   |  `undefined` | URL to the owner's avatar image. If not provided, shows initials fallback.                       |
+| `description`   | `string`   |  `undefined` | Repository description. Shows "No description provided" if omitted.                              |
+| `language`      | `string`   |  `undefined` | Primary programming language used in the repository. Automatically gets color-coded.             |
+| `topics`        | `string[]` |  `undefined` | Array of repository topics/tags to display as badges (shows first 3, with "+X more" for extras). |
+| `activityData`  | `number[]` |  `undefined` | Array of 12 normalized values (0-1) representing repository activity for the graph display.      |
+| `isPrivate`     | `boolean`  |  `false`     | Whether the repository is private (displays "Private" or "Public" badge).                        |
 

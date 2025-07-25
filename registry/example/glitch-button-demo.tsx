@@ -156,7 +156,7 @@ export const glitchButtons = [
     component: (
       <GlitchButton
         glitchOnHover={true}
-        className="text-sm sm:text-base bg-black text-green-400 rounded-md"
+        className="text-sm sm:text-base bg-black text-green-400"
       >
         <div className="flex items-center">
           <Download className="mr-2 h-5 w-5" />
@@ -166,7 +166,8 @@ export const glitchButtons = [
     ),
     code: `<GlitchButton
   glitchOnHover={true}
-  className="text-sm sm:text-base bg-black text-green-400 rounded-md"
+  borderColor="#05DF72"
+  className="text-sm sm:text-base bg-black text-green-400 rounded-sm"
 >
   <div className="flex items-center">
     <Download className="mr-2 h-5 w-5" />

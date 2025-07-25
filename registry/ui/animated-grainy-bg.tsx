@@ -1,7 +1,7 @@
 "use client"
 import type React from "react"
 import { useMemo } from "react"
-import { motion, type Variants } from "framer-motion"
+import { motion, type Variants } from "motion/react"
 import { cn } from "@/lib/utils"
 
 export interface GrainyAnimatedBgProps {

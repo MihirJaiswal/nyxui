@@ -1,4 +1,4 @@
-import React, { useId } from 'react';
+import React, { useId, memo } from 'react';
 
 interface GlassContainerProps {
   children: React.ReactNode;
@@ -18,7 +18,7 @@ interface GlassContainerProps {
   specularIntensity?: number;
 }
 
-export const GlassContainer: React.FC<GlassContainerProps & React.HTMLAttributes<HTMLDivElement>> = ({
+export const GlassContainer: React.FC<GlassContainerProps & React.HTMLAttributes<HTMLDivElement>> = memo(({
   children,
   className = '',
   variant = 'default',
@@ -75,8 +75,11 @@ export const GlassContainer: React.FC<GlassContainerProps & React.HTMLAttributes
       className={`relative font-semibold text-white cursor-pointer bg-transparent overflow-hidden transition-all duration-[400ms] rounded-[2rem] p-4 shadow-lg ${
         hover ? 'hover:scale-[1.02] hover:shadow-2xl' : ''
       } ${className}`}
+      aria-label='Glass Container'
+      role='presentation'
       style={{
         transitionTimingFunction: 'cubic-bezier(0.175, 0.885, 0.32, 2.2)',
+        borderRadius: '2rem',
         ...props.style,
       }}
       {...props}
@@ -86,7 +89,6 @@ export const GlassContainer: React.FC<GlassContainerProps & React.HTMLAttributes
         style={{
           backdropFilter: `blur(${finalBlur}px)`,
           filter: distortion !== 'none' ? `url(#${filterId})` : 'none',
-          borderRadius: '2rem',
         }}
       />
       
@@ -97,7 +99,6 @@ export const GlassContainer: React.FC<GlassContainerProps & React.HTMLAttributes
           style={{
             background: tintStyles[tint],
             opacity: finalOpacity,
-            borderRadius: '2rem',
           }}
         />
       )}
@@ -107,7 +108,6 @@ export const GlassContainer: React.FC<GlassContainerProps & React.HTMLAttributes
         className="absolute inset-0 z-15 opacity-[0.03]"
         style={{
           background: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crest width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-          borderRadius: '2rem',
         }}
       />
       
@@ -117,7 +117,6 @@ export const GlassContainer: React.FC<GlassContainerProps & React.HTMLAttributes
           className="absolute inset-0 z-20 pointer-events-none"
           style={{
             border: '1px solid rgba(255, 255, 255, 0.2)',
-            borderRadius: '2rem',
             boxShadow: `
               inset 0 1px 0 rgba(255, 255, 255, 0.6),
               inset 0 0 20px ${innerGlowColor},
@@ -132,7 +131,6 @@ export const GlassContainer: React.FC<GlassContainerProps & React.HTMLAttributes
         className="absolute inset-0 z-25 pointer-events-none"
         style={{
           opacity: highlightOpacity,
-          borderRadius: '2rem',
           background: `
             linear-gradient(135deg, 
               ${highlightColor.replace(/rgba?\([^)]*\)/, `rgba(255, 255, 255, ${specularIntensity})`)} 0%, 
@@ -149,7 +147,6 @@ export const GlassContainer: React.FC<GlassContainerProps & React.HTMLAttributes
         className="absolute inset-0 z-30 pointer-events-none"
         style={{
           opacity: innerGlowOpacity,
-          borderRadius: '2rem',
           boxShadow: `
             inset 0 0 20px ${innerGlowColor},
             inset 0 1px 2px ${highlightColor}
@@ -186,4 +183,4 @@ export const GlassContainer: React.FC<GlassContainerProps & React.HTMLAttributes
       )}
     </div>
   );
-};
+});

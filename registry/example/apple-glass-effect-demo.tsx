@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import { GlassContainer } from "../ui/apple-glass-effect";
 import {
@@ -22,7 +21,6 @@ import {
   Bell
 } from "lucide-react";
 import Image from "next/image";
-import { motion } from "framer-motion";
 
 export const GlassExamples = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -30,18 +28,17 @@ export const GlassExamples = () => {
   const volume = 75;
 
   return (
-    <div className="min-h-screen py-8 px-4 md:p-8 relative overflow-hidden">
+    <div className="min-h-screen py-8 px-2 2xl:p-8">
       {/* Background */}
       <div className="absolute inset-0">
       <Image
             src="/assets/images/apple-glass-effect/img.jpg"
             alt="background image"
-            height={2000}
-            width={1000}
+            fill
             priority
             className="h-full w-full object-cover absolute inset-0"
           />
-        <motion.div
+     {/*    <motion.div
           className="h-full w-full"
           animate={{
             y: [-120, 30, -120],
@@ -55,19 +52,18 @@ export const GlassExamples = () => {
           <Image
             src="/assets/images/apple-glass-effect/img.jpg"
             alt="background image"
-            height={2000}
-            width={1000}
+            fill
             priority
             className="h-full w-full object-cover"
           />
-        </motion.div>
+        </motion.div> */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/30 to-pink-900/20" />
       </div>
       
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Top Row - Control Center Style */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-8">
           {/* Music Player Widget */}
           <GlassContainer
             blur={0}
@@ -167,7 +163,7 @@ export const GlassExamples = () => {
         </div>
 
         {/* Middle Row - Widgets */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
           {/* Weather Widget */}
           <GlassContainer
             blur={15}
