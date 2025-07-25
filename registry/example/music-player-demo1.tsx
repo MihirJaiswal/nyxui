@@ -1,15 +1,25 @@
-import { MusicPlayer } from "../ui/music-player";
+import { MusicPlayer, Track } from "../ui/music-player";
 
 export default function MusicPlayerDemo1() {
+
+  const currentTrack: Track = {
+    id: "1",
+    title: "Changes",
+    artist: "XXXTENTACION",
+    album: "?",
+    artwork: "/assets/images/music-player/cover.jpg",
+    duration: 194, 
+  };
   return (
-    <div className="w-full max-w-xs mx-auto border border-gray-300 dark:border-gray-700 rounded-md relative">
+    <div className="w-full max-w-sm mx-auto rounded-md relative">
       <MusicPlayer
-        theme="default"
-        trackTitle="changes"
-        artist="XXXTENTACION"
-        album="?"
-        artwork="/assets/images/music-player/cover.jpg"
-        className="rounded-xl"
+        theme="midnight"
+        currentTrack={currentTrack}
+          currentIndex={0}
+          initialTime={30}
+          autoPlay={false}
+          showEqualizer={true}
+          className="rounded-xl"
       />
     </div>
   );

@@ -6,7 +6,7 @@ import {
   useTransform,
   type MotionValue,
   type MotionProps,
-} from "framer-motion";
+} from "motion/react";
 import { cn } from "../../lib/utils";
 
 export interface ScrollAnimationTriggerProps {
