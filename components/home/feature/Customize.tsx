@@ -156,6 +156,9 @@ const MusicCardThemeCustomizer = () => {
         },
     };
 
+    // Get current theme info for mobile display
+    const currentThemeOption = themeOptions.find(opt => opt.value === cardTheme);
+
     return (
         <div className="md:px-6">
             <div className="max-w-6xl mx-auto">
@@ -239,27 +242,37 @@ const MusicCardThemeCustomizer = () => {
                     </div>
                 </div>
 
-                {/* Mobile Layout - Vertical */}
+                {/* Mobile Layout - Vertical with Slider */}
                 <div className="md:hidden">
-                    <div className="flex flex-col items-center mb-6">
-                        <div className="flex gap-2 justify-center flex-wrap">
-                            {themeOptions.map((option) => (
-                                <button
-                                    key={option.value}
-                                    className={`flex bg-white dark:bg-black items-center gap-1 px-3 py-1.5 border rounded-full transition-all ${cardTheme === option.value
-                                            ? `${borderColors[option.value]} ${option.color}`
-                                            : "border-gray-300 dark:border-gray-700 opacity-70 hover:opacity-100"
-                                        }`}
-                                    onClick={() => handleThemeChange(option.value)}
-                                    disabled={isAnimating}
-                                >
-                                    {option.icon}
-                                    <span className="text-xs font-medium">{option.name}</span>
-                                </button>
-                            ))}
+                    {/* Theme Slider */}
+                    <div className="flex items-center justify-center gap-4 mb-6 px-4">
+                        {/* Left Arrow */}
+                        <button
+                            onClick={() => handleArrowNavigation("prev")}
+                            disabled={isAnimating}
+                            className="flex items-center justify-center w-10 h-10 rounded-full shadow-md hover:shadow-lg transition-all duration-200 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed "
+                        >
+                            <ChevronLeft className="h-5 w-5 text-gray-600 dark:text-gray-400" />
+                        </button>
+
+                        {/* Current Theme Display */}
+                        <div className={`flex items-center gap-3 px-6 py-3 bg-white dark:bg-black border rounded-xl shadow-md min-w-[140px] justify-center ${borderColors[cardTheme]} ${currentThemeOption?.color}`}>
+                            {currentThemeOption?.icon}
+                            <span className="text-base font-medium">{currentThemeOption?.name}</span>
                         </div>
+
+                        {/* Right Arrow */}
+                        <button
+                            onClick={() => handleArrowNavigation("next")}
+                            disabled={isAnimating}
+                            className="flex items-center justify-center w-10 h-10 rounded-full shadow-md hover:shadow-lg transition-all duration-200 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                            <ChevronRight className="h-5 w-5 text-gray-600 dark:text-gray-400" />
+                        </button>
                     </div>
-                    <div className="flex justify-center px-4">
+
+                    {/* Music Player */}
+                    <div className="flex justify-center">
                         <div
                             className="w-full relative overflow-hidden"
                             style={{ perspective: "1200px" }}
