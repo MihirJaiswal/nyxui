@@ -163,14 +163,14 @@ const MusicCardThemeCustomizer = () => {
         <div className="md:px-6">
             <div className="max-w-6xl mx-auto">
                 {/* Desktop Layout - Side by side */}
-                <div className="hidden md:flex justify-center items-center gap-12 relative">
+                <div className="hidden md:flex justify-center items-center lg:gap-4 xl:gap-12 relative">
                     {/* Left Arrow Button - Only visible on XL screens */}
                     <button
                         onClick={() => handleArrowNavigation("prev")}
                         disabled={isAnimating}
                         className="hidden lg:flex 2xl:hidden items-center justify-center w-12 h-12 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 dark:hover:bg-gray-700"
                     >
-                        <ChevronLeft className="h-6 w-6 text-gray-600 dark:text-gray-400" />
+                        <ChevronLeft className="h-6 w-6 text-neutral-600 dark:text-neutral-400" />
                     </button>
 
                     {/* Music Player - Center */}
@@ -216,7 +216,7 @@ const MusicCardThemeCustomizer = () => {
                         disabled={isAnimating}
                         className="hidden lg:flex 2xl:hidden items-center justify-center w-12 h-12 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 dark:hover:bg-gray-700"
                     >
-                        <ChevronRight className="h-6 w-6 text-gray-600 dark:text-gray-400" />
+                        <ChevronRight className="h-6 w-6 text-neutral-600 dark:text-neutral-400" />
                     </button>
 
                     {/* Theme Selection Buttons - Right Side (hidden on XL, shown on 2XL) */}
@@ -252,7 +252,7 @@ const MusicCardThemeCustomizer = () => {
                             disabled={isAnimating}
                             className="flex items-center justify-center w-10 h-10 rounded-full shadow-md hover:shadow-lg transition-all duration-200 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed "
                         >
-                            <ChevronLeft className="h-5 w-5 text-gray-600 dark:text-gray-400" />
+                            <ChevronLeft className="h-5 w-5 text-neutral-600 dark:text-neutral-400" />
                         </button>
 
                         {/* Current Theme Display */}
@@ -267,7 +267,7 @@ const MusicCardThemeCustomizer = () => {
                             disabled={isAnimating}
                             className="flex items-center justify-center w-10 h-10 rounded-full shadow-md hover:shadow-lg transition-all duration-200 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                            <ChevronRight className="h-5 w-5 text-gray-600 dark:text-gray-400" />
+                            <ChevronRight className="h-5 w-5 text-neutral-600 dark:text-neutral-400" />
                         </button>
                     </div>
 
