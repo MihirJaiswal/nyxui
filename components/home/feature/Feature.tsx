@@ -5,7 +5,7 @@ import { CustomPointer } from "./CustomPointer";
 
 export default function AnimatedComponentsShowcase() {
   return (
-    <div className="w-full pt-16 pb-24 lg:pt-0 lg:pb-0 overflow-hidden px-6 xl:px-22 xl:container mx-auto">
+    <div className="w-full pt-16 pb-24 overflow-hidden px-6 xl:px-22 xl:container mx-auto">
       {/* Grid pattern background */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:30px_30px] sm:bg-[size:40px_40px] lg:bg-[size:50px_50px]" />
 
