@@ -67,7 +67,7 @@ export const ComponentsDemo = () => {
         <BentoGrid
           enableDescription={false}
           enableTitle={false}
-          height="h-full"
+          height="h-96"
           className="rounded-2xl overflow-hidden transition-all duration-500  hover:scale-[1.02] border border-neutral-200 dark:border-neutral-800 tracking-wider"
           component={
             <Cyber/>

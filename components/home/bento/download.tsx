@@ -1,13 +1,13 @@
 "use client"
-
 import { useState, useEffect, useRef } from "react"
 import { Download, FileCode, Zap, Settings } from "lucide-react"
 import { motion } from "framer-motion"
+import { cn } from "@/lib/utils"
 import { DynamicRipple } from "@/registry/ui/dynamic-ripple"
 
 // Main Component
 export default function DownloadCompleteSection() {
-   const [activeCard, setActiveCard] = useState(0)
+  const [activeCard, setActiveCard] = useState(0)
   const [isHovering, setIsHovering] = useState(false)
   const [cardOrder, setCardOrder] = useState([0, 1, 2, 3])
   const componentRef = useRef<HTMLDivElement>(null)
@@ -23,6 +23,7 @@ export default function DownloadCompleteSection() {
       iconColor: "text-blue-400 dark:text-blue-400 text-blue-600",
       descColor: "text-blue-300 dark:text-blue-300 text-blue-500",
       textColor: "text-white dark:text-gray-900",
+      color: "#3B82F6",
       time: "8 minutes ago",
     },
     {
@@ -35,6 +36,7 @@ export default function DownloadCompleteSection() {
       iconColor: "text-purple-400 dark:text-purple-400 text-purple-600",
       descColor: "text-purple-300 dark:text-purple-300 text-purple-500",
       textColor: "text-white dark:text-gray-900",
+      color: "#8B5CF6",
       time: "5 minutes ago",
     },
     {
@@ -47,6 +49,7 @@ export default function DownloadCompleteSection() {
       iconColor: "text-green-400 dark:text-green-400 text-green-600",
       descColor: "text-green-300 dark:text-green-300 text-green-500",
       textColor: "text-white dark:text-gray-900",
+      color: "#10B981",
       time: "2 minutes ago",
     },
     {
@@ -59,6 +62,7 @@ export default function DownloadCompleteSection() {
       iconColor: "text-amber-400 dark:text-amber-400 text-amber-600",
       descColor: "text-amber-300 dark:text-amber-300 text-amber-500",
       textColor: "text-white dark:text-gray-900",
+      color: "#F59E0B",
       time: "Just now",
     },
   ]
@@ -66,7 +70,6 @@ export default function DownloadCompleteSection() {
   // Simplified hover detection - removed MutationObserver complexity
   const handleMouseEnter = () => {
     setIsHovering(true)
-    // Start animation immediately on hover
     setActiveCard(0)
   }
 
@@ -77,10 +80,8 @@ export default function DownloadCompleteSection() {
   // Immediate animation rotation when hovering
   useEffect(() => {
     if (!isHovering) return
-
-    // Start first rotation immediately, then continue with intervals
     let currentIndex = 0
-    
+
     const rotateCards = () => {
       setCardOrder((prev) => {
         const newOrder = [...prev.slice(1), prev[0]]
@@ -90,11 +91,9 @@ export default function DownloadCompleteSection() {
       setActiveCard(currentIndex)
     }
 
-    // Start first rotation after a short delay for smooth transition
     const initialTimeout = setTimeout(rotateCards, 300)
-    
-    // Then continue with regular intervals
-    const interval = setInterval(rotateCards, 1500) // Reduced from 2000ms for faster animation
+
+    const interval = setInterval(rotateCards, 1500)
 
     return () => {
       clearTimeout(initialTimeout)
@@ -102,7 +101,6 @@ export default function DownloadCompleteSection() {
     }
   }, [cards.length, isHovering])
 
-  // Reset order when not hovering
   useEffect(() => {
     if (!isHovering) {
       setCardOrder([0, 1, 2, 3])
@@ -110,15 +108,9 @@ export default function DownloadCompleteSection() {
     }
   }, [isHovering])
 
-  const iconVariants = {
-    initial: { scale: 1, rotate: 0 },
-    hover: { scale: 1.2, rotate: 360 },
-    active: { scale: 1.3, rotate: 720 },
-  }
-
   return (
-    <div 
-      className="h-96 flex items-center justify-center px-3 sm:px-12 py-6 rounded-lg -mt-4" 
+    <div
+      className="h-96 flex items-center justify-center px-3 sm:px-12 py-6 rounded-lg -mt-4"
       ref={componentRef}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -128,56 +120,49 @@ export default function DownloadCompleteSection() {
           {cardOrder.map((cardIndex) => {
             const card = cards[cardIndex]
             const isActive = activeCard === cardIndex
-
             return (
-              <motion.div
-                key={cardIndex}
-                layout
-                transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              >
+              <motion.div key={cardIndex} layout transition={{ type: "spring", stiffness: 400, damping: 25 }}>
                 <DynamicRipple
                   theme={card.theme}
                   intensity={isActive ? 5 : isHovering ? 4 : 3}
                   speed={isActive ? 5 : isHovering ? 4 : 3}
                   autoAnimate={isHovering || isActive}
                   reactToCursor={true}
-                  className={`
-                    border ${card.borderColor} ${card.bgColor} backdrop-blur-sm p-4 cursor-pointer group mt-6 rounded-lg
-                    transform transition-all duration-300 ease-out
-                    hover:scale-105 hover:-translate-y-1
-                    ${isActive ? "ring-2 ring-white/20 shadow-xl shadow-white/10" : ""}
-                  `}
+                  className={cn(
+                    "relative mx-auto min-h-fit w-full max-w-[400px] cursor-pointer overflow-hidden rounded-2xl p-4 mt-6",
+                    // animation styles
+                    "transition-all duration-300 ease-out hover:scale-105 hover:-translate-y-1",
+                    // light styles
+                    "bg-white [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)]",
+                    // dark styles
+                    "transform-gpu dark:bg-transparent dark:backdrop-blur-md dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset]",
+                    // active state
+                    isActive ? "ring-2 ring-white/20 shadow-xl shadow-white/10 -translate-y-1" : "",
+                  )}
                 >
-                  <div className="flex items-center space-x-3 relative overflow-hidden">
+                  <div className="flex flex-row items-center gap-3 relative overflow-hidden">
                     <motion.div
-                      className={`${card.iconColor} transition-all duration-300 relative z-10`}
-                      variants={iconVariants}
+                      className="flex size-10 items-center justify-center rounded-2xl text-white relative z-10"
+                      style={{
+                        backgroundColor: card.color,
+                      }}
                       animate={isActive ? "active" : isHovering ? "hover" : "initial"}
                       transition={{ duration: 0.3 }}
                     >
                       {card.icon}
                     </motion.div>
-
-                    <div className="flex-1 z-10">
-                      <motion.p
-                        className={`text-sm transition-all duration-300 
-                          ${isActive ? "font-semibold text-black dark:text-white" : "text-neutral-700 dark:text-neutral-300"}
-                        `}
-                        animate={isActive ? { scale: 1.05 } : { scale: 1 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        {card.title}
-                      </motion.p>
-                      <p className={`${card.descColor} text-xs transition-all duration-300`}>{card.description}</p>
-                    </div>
-
-                    <div
-                      className={`
-                      text-xs transition-all duration-300 z-10 hidden 2xl:block "
-                      ${isActive ? "dark:text-white text-gray-900 font-medium" : "text-gray-700 dark:text-gray-300"}
-                    `}
-                    >
-                      {card.time}
+                    <div className="flex flex-col overflow-hidden flex-1 z-10">
+                      <div className="flex flex-row items-center whitespace-pre text-lg font-medium dark:text-white">
+                        <motion.span
+                          className="text-sm sm:text-lg"
+                          transition={{ duration: 0.2 }}
+                        >
+                          {card.title}
+                        </motion.span>
+                        <span className="mx-1">·</span>
+                        <span className="text-xs text-gray-500 hidden 2xl:block">{card.time}</span>
+                      </div>
+                      <p className="text-sm font-normal dark:text-white/60 text-gray-600">{card.description}</p>
                     </div>
                   </div>
                 </DynamicRipple>

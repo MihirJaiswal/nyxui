@@ -76,7 +76,8 @@ export default function ContainCard() {
                         <Image
                           src={project.image || "/placeholder.svg"}
                           alt={`${project.title} preview`}
-                          fill
+                          width={400}
+                          height={300}
                           quality={100}
                           loading='lazy'
                           className="rounded-[16px] object-cover absolute h-full w-full inset-0 transition-transform duration-300 group-hover:scale-105"
@@ -143,7 +144,8 @@ export default function ContainCard() {
                         <Image
                           src={project.image || "/placeholder.svg"}
                           alt={`${project.title} preview`}
-                          fill
+                          width={400}
+                          height={300}
                           quality={100}
                           loading='lazy'
                           className="rounded-[16px] object-cover absolute h-full w-full inset-0"
