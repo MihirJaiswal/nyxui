@@ -1,67 +1,193 @@
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { CyberpunkCard } from '@/registry/ui/cyberpunk-card'
-import { ChevronRight, Cpu, Shield, Zap } from 'lucide-react'
-import React from 'react'
+"use client"
+import { Copy, Palette, Code } from "lucide-react"
+import { CyberpunkCard } from "@/registry/ui/cyberpunk-card"
 
 export default function Cyber() {
   return (
-    <div className='h-88'>
-      <div className='max-w-xs lg:max-w-sm mx-auto lg:ml-auto lg:mt-16'>
+    <div className="flex items-end justify-end h-full w-full relative">
+      <div className="w-72 flex items-end justify-end z-10">
         <CyberpunkCard
-          theme="neon-purple"
-          colorShift
-          borderStyle="circuit"
+          theme="custom"
+          customColors={{
+            primary: "#2D1B69",
+            secondary: "#1A0B3D",
+            accent: "#8B5CF6",
+          }}
+          glowIntensity={4}
           backgroundEffect="circuit"
-          className="h-full transition-transform duration-200"
+          dataStream={true}
+          className="w-full transition-all duration-500"
         >
-          <div className="flex flex-col gap-2 p-1 w-full">
-            <div className="flex justify-between items-start">
-              <h3 className="text-lg sm:text-2xl font-bold tracking-tight text-white">
-                David
-              </h3>
-              <Badge className="bg-purple-500/20 text-purple-100 hover:bg-purple-500/30 text-xs">
-                Edgerunner
-              </Badge>
+          <div className="flex flex-col gap-4 h-full">
+            {/* Header */}
+            <div className="flex justify-between items-start mb-2">
+              <div className="flex flex-col">
+                <h3 className="text-2xl font-bold tracking-tight text-white">Cyberpunk Card</h3>
+                <div className="flex items-center gap-2 mt-1">
+                  <span className="text-xs font-bold text-purple-300">COMPONENT</span>
+                </div>
+              </div>
             </div>
 
-            <div className="relative h-24 w-62 md:w-80 md:h-40 mx-auto z-20">
-            <div className="w-full h-full bg-[url('/assets/images/cyberpunk-card/david.jpg')] bg-cover bg-center rounded-lg" />
+            {/* Copy • Paste • Customize Flow */}
+            <div className="flex-1 space-y-4">
+              <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-purple-900/40 to-transparent rounded-lg border-l-2 border-purple-400">
+                <Copy className="w-5 h-5 text-purple-300" />
+                <div className="flex-1">
+                  <span className="text-white font-bold text-sm">COPY</span>
+                  <div className="text-xs text-purple-200">Instant duplication</div>
+                </div>
+                <span className="text-xs font-bold text-purple-300">01</span>
+              </div>
+
+              <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-blue-900/40 to-transparent rounded-lg border-l-2 border-blue-400">
+                <Code className="w-5 h-5 text-blue-300" />
+                <div className="flex-1">
+                  <span className="text-white font-bold text-sm">PASTE</span>
+                  <div className="text-xs text-blue-200">Deploy anywhere</div>
+                </div>
+                <span className="text-xs font-bold text-blue-300">02</span>
+              </div>
+
+              <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-purple-900/40 to-transparent rounded-lg border-l-2 border-purple-400">
+                <Palette className="w-5 h-5 text-purple-300" />
+                <div className="flex-1">
+                  <span className="text-white font-bold text-sm">CUSTOMIZE</span>
+                  <div className="text-xs text-purple-200">Adapt & style</div>
+                </div>
+                <span className="text-xs font-bold text-purple-300">03</span>
+              </div>
+            </div>
+
+            {/* Action Button */}
+           {/*  <Button className="mt-auto bg-purple-600/20 text-purple-100 hover:bg-purple-500/40 border border-purple-400/30 w-full justify-between text-sm py-3 font-bold">
+              <span></span>
+              <ChevronRight className="w-5 h-5" />
+            </Button> */}
           </div>
-
-            <p className="text-xs text-gray-50 my-2 sm:my-3">
-              Advanced cybernetic enhancement module for combat performance
-            </p>
-
-            <div className="space-y-1.5 sm:space-y-2">
-              <div className="flex items-center gap-1.5 sm:gap-2">
-                <Zap className="w-3 h-3 sm:w-4 sm:h-4 text-purple-100" />
-                <div className="h-1 sm:h-1.5 bg-purple-800 rounded-full w-full">
-                  <div className="h-full bg-gradient-to-r from-purple-200 to-purple-300 rounded-full w-3/4"></div>
+        </CyberpunkCard>
+      </div>
+      <div className="absolute inset-0 h-full w-72 top-8 left-16 z-9">
+        <CyberpunkCard
+          theme="neon-blue"
+          customColors={{
+            primary: "#2D1B69",
+            secondary: "#1A0B3D",
+            accent: "#8B5CF6",
+          }}
+          glowIntensity={4}
+          backgroundEffect="circuit"
+          dataStream={true}
+          className="w-full transition-all duration-500"
+        >
+          <div className="flex flex-col gap-4 h-full">
+            {/* Header */}
+            <div className="flex justify-between items-start mb-2">
+              <div className="flex flex-col">
+                <h3 className="text-2xl font-bold tracking-tight text-white">Cyberpunk Card</h3>
+                <div className="flex items-center gap-2 mt-1">
+                  <span className="text-xs font-bold text-purple-300">COMPONENT</span>
                 </div>
-                <span className="text-xs font-medium text-purple-200">75%</span>
-              </div>
-
-              <div className="flex items-center gap-1.5 sm:gap-2">
-                <Cpu className="w-3 h-3 sm:w-4 sm:h-4 text-purple-100" />
-                <div className="h-1 sm:h-1.5 bg-purple-800 rounded-full w-full">
-                  <div className="h-full bg-gradient-to-r from-purple-200 to-purple-300 rounded-full w-4/5"></div>
-                </div>
-                <span className="text-xs font-medium text-purple-200">80%</span>
-              </div>
-
-              <div className="flex items-center gap-1.5 sm:gap-2">
-                <Shield className="w-3 h-3 sm:w-4 sm:h-4 text-purple-100" />
-                <div className="h-1 sm:h-1.5 bg-purple-800 rounded-full w-full">
-                  <div className="h-full bg-gradient-to-r from-purple-200 to-purple-300 rounded-full w-5/6"></div>
-                </div>
-                <span className="text-xs font-medium text-purple-300">85%</span>
               </div>
             </div>
 
-            <Button className="mt-1 bg-purple-500/20 text-purple-100 hover:bg-purple-500/40 w-full justify-between text-xs sm:text-sm py-1.5 sm:py-2">
-              ENGAGE <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4" />
-            </Button>
+            {/* Copy • Paste • Customize Flow */}
+            <div className="flex-1 space-y-4">
+              <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-purple-900/40 to-transparent rounded-lg border-l-2 border-purple-400">
+                <Copy className="w-5 h-5 text-purple-300" />
+                <div className="flex-1">
+                  <span className="text-white font-bold text-sm">COPY</span>
+                  <div className="text-xs text-purple-200">Instant duplication</div>
+                </div>
+                <span className="text-xs font-bold text-purple-300">01</span>
+              </div>
+
+              <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-blue-900/40 to-transparent rounded-lg border-l-2 border-blue-400">
+                <Code className="w-5 h-5 text-blue-300" />
+                <div className="flex-1">
+                  <span className="text-white font-bold text-sm">PASTE</span>
+                  <div className="text-xs text-blue-200">Deploy anywhere</div>
+                </div>
+                <span className="text-xs font-bold text-blue-300">02</span>
+              </div>
+
+              <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-purple-900/40 to-transparent rounded-lg border-l-2 border-purple-400">
+                <Palette className="w-5 h-5 text-purple-300" />
+                <div className="flex-1">
+                  <span className="text-white font-bold text-sm">CUSTOMIZE</span>
+                  <div className="text-xs text-purple-200">Adapt & style</div>
+                </div>
+                <span className="text-xs font-bold text-purple-300">03</span>
+              </div>
+            </div>
+
+            {/* Action Button */}
+           {/*  <Button className="mt-auto bg-purple-600/20 text-purple-100 hover:bg-purple-500/40 border border-purple-400/30 w-full justify-between text-sm py-3 font-bold">
+              <span></span>
+              <ChevronRight className="w-5 h-5" />
+            </Button> */}
+          </div>
+        </CyberpunkCard>
+      </div>
+      <div className="absolute inset-0 h-full w-72 -top-2 left-32 z-8">
+        <CyberpunkCard
+          theme="neon-pink"
+          customColors={{
+            primary: "#2D1B69",
+            secondary: "#1A0B3D",
+            accent: "#8B5CF6",
+          }}
+          glowIntensity={4}
+          backgroundEffect="circuit"
+          dataStream={true}
+          className="w-full transition-all duration-500"
+        >
+          <div className="flex flex-col gap-4 h-full">
+            {/* Header */}
+            <div className="flex justify-between items-start mb-2">
+              <div className="flex flex-col">
+                <h3 className="text-2xl font-bold tracking-tight text-white">Cyberpunk Card</h3>
+                <div className="flex items-center gap-2 mt-1">
+                  <span className="text-xs font-bold text-purple-300">COMPONENT</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Copy • Paste • Customize Flow */}
+            <div className="flex-1 space-y-4">
+              <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-purple-900/40 to-transparent rounded-lg border-l-2 border-purple-400">
+                <Copy className="w-5 h-5 text-purple-300" />
+                <div className="flex-1">
+                  <span className="text-white font-bold text-sm">COPY</span>
+                  <div className="text-xs text-purple-200">Instant duplication</div>
+                </div>
+                <span className="text-xs font-bold text-purple-300">01</span>
+              </div>
+
+              <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-blue-900/40 to-transparent rounded-lg border-l-2 border-blue-400">
+                <Code className="w-5 h-5 text-blue-300" />
+                <div className="flex-1">
+                  <span className="text-white font-bold text-sm">PASTE</span>
+                  <div className="text-xs text-blue-200">Deploy anywhere</div>
+                </div>
+                <span className="text-xs font-bold text-blue-300">02</span>
+              </div>
+
+              <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-purple-900/40 to-transparent rounded-lg border-l-2 border-purple-400">
+                <Palette className="w-5 h-5 text-purple-300" />
+                <div className="flex-1">
+                  <span className="text-white font-bold text-sm">CUSTOMIZE</span>
+                  <div className="text-xs text-purple-200">Adapt & style</div>
+                </div>
+                <span className="text-xs font-bold text-purple-300">03</span>
+              </div>
+            </div>
+
+            {/* Action Button */}
+           {/*  <Button className="mt-auto bg-purple-600/20 text-purple-100 hover:bg-purple-500/40 border border-purple-400/30 w-full justify-between text-sm py-3 font-bold">
+              <span></span>
+              <ChevronRight className="w-5 h-5" />
+            </Button> */}
           </div>
         </CyberpunkCard>
       </div>

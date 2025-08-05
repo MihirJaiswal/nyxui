@@ -6,7 +6,7 @@ import {
   motion,
   useAnimation,
   useInView,
-} from "framer-motion";
+} from "motion/react";
 
 type AnimationType =
   | "blink"
