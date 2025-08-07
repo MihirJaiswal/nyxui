@@ -18,7 +18,7 @@ export default function MSpaintDemo() {
     }, "image/png");
   };
   return (
-    <div className="h-screen w-screen overflow-hidden relative">
+    <div className="h-screen max-w-4xl w-screen overflow-hidden relative">
       <DrawingCanvas
         title="My Drawing App"
         onSave={handleSave}

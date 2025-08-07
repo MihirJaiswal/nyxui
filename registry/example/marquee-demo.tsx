@@ -2,7 +2,7 @@ import { Marquee } from "../ui/marquee";
 
 export const MarqueeDemo = () => {
   return (
-    <div className="w-full max-w-4xl mx-auto p-6">
+    <div className="w-full max-w-4xl mx-auto p-6 overflow-hidden">
       <h1 className="text-2xl font-bold mb-10 text-center">Marquee</h1>
 
       <div className="overflow-hidden flex items-center">
