@@ -76,7 +76,6 @@ export default function AnimatedChatDemo() {
     scrollToBottom()
   }, [messages, isTyping])
 
-  // Auto demo functionality - one message at a time
   useEffect(() => {
     if (!isAutoDemo || demoIndex >= demoMessages.length) {
       // Reset demo when finished
@@ -123,8 +122,8 @@ export default function AnimatedChatDemo() {
             msg.id === message.id ? { ...msg, status: 'read' } : msg
           ))
         }, 1500)
-      }, Math.random() * 1000 + 1500) // Random typing time between 1.5-2.5s
-    }, 2500) // Pause between messages
+      }, Math.random() * 1000 + 1500) 
+    }, 2500) 
 
     return () => clearTimeout(timer)
   }, [demoIndex, isAutoDemo])
@@ -168,7 +167,6 @@ export default function AnimatedChatDemo() {
 
   return (
     <div className="w-full h-full relative">
-      {/* Fixed height messages container with proper scroll */}
       <div 
         ref={messagesContainerRef}
         className="h-full overflow-y-auto p-4 bg-zinc-50 dark:bg-black scroll-smooth"
@@ -179,7 +177,6 @@ export default function AnimatedChatDemo() {
         }}
       >
         <div className="space-y-3 min-h-full flex flex-col">
-          {/* Spacer to push messages to bottom initially */}
           <div className="flex-1"></div>
           
           {messages.map((message, index) => (
@@ -253,7 +250,6 @@ export default function AnimatedChatDemo() {
             </div>
           ))}
           
-          {/* Typing Indicator - positioned at the bottom */}
           {isTyping && typingUser && (
             <div className={`flex w-full ${
               typingUser === 'user1' ? 'justify-end' : 'justify-start'
@@ -272,7 +268,6 @@ export default function AnimatedChatDemo() {
           </div>
           )}
           
-          {/* Invisible element to ensure proper scrolling */}
           <div ref={messagesEndRef} className="h-1" />
         </div>
       </div>
