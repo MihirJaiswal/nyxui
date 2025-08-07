@@ -7,7 +7,7 @@ import { TerminalKeyboardDemo } from "./keybord-termial";
 import { Rbutton } from "@/components/ui/Rbutton";
 import { Sparkles } from "@/components/ui/particles";
 import DownloadCompleteSection from "./download";
-import Cyber from "./Cyber";
+import AnimatedChatDemo from "./Cyber";
 
 export const ComponentsDemo = () => {
   return (
@@ -70,7 +70,7 @@ export const ComponentsDemo = () => {
           height="h-110"
           className="rounded-2xl flex items-start justify-end transition-all duration-500  hover:scale-[1.02] border border-neutral-200 dark:border-neutral-800 tracking-wider "
           component={
-            <Cyber/>
+            <AnimatedChatDemo/>
           }
         /> <BentoGrid
           enableDescription={false}
