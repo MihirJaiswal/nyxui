@@ -4,9 +4,9 @@ import ThreeDLayeredCard from "../ui/3d-layered-card";
 
 function ThreeDLayeredCardDemo() {
   return (
-    <div className="flex items-center justify-center relative z-1">
+    <div className="flex items-center justify-center relative z-1 max-w-4xl mx-auto overflow-hidden">
       <div className="overflow-hidden flex flex-col items-center justify-center gap-3 relative py-24 px-4">
-        <div className="flex flex-col md:flex-row gap-3">
+        <div className="flex flex-col md:flex-row  gap-3">
           <ThreeDLayeredCard
             logo="/assets/images/3d-layered-card/snaplogo.svg"
             logoSize={32}
@@ -72,6 +72,7 @@ function ThreeDLayeredCardDemo() {
             shineIntensity={0.6}
             backgroundColor="bg-gradient-to-b from-blue-400 to-blue-600"
             glowGradient="#34CEEE"
+            className="hidden 2xl:block"
           >
             <div className="flex flex-col items-center justify-center gap-1 px-4">
               <Badge
@@ -90,7 +91,6 @@ function ThreeDLayeredCardDemo() {
             </div>
           </ThreeDLayeredCard>
         </div>
-
         <div className="hidden md:flex gap-3">
           <ThreeDLayeredCard
             logo="/assets/images/3d-layered-card/tinderlogo.svg"
@@ -161,6 +161,7 @@ function ThreeDLayeredCardDemo() {
             shineIntensity={0.6}
             backgroundColor="bg-gradient-to-b from-white via-gray-100 to-neutral-600"
             glowGradient="#ffffff"
+            className="hidden 2xl:block"
           >
             <div className="flex flex-col items-center justify-center gap-1 px-2">
               <Badge
@@ -249,6 +250,7 @@ function ThreeDLayeredCardDemo() {
             shineIntensity={0.6}
             backgroundColor="bg-gradient-to-b from-[#FF3203] to-[#FF3203]"
             glowGradient="#F27323"
+            className="hidden 2xl:block"
           >
             <div className="flex flex-col items-center justify-center gap-1 px-4">
               <Badge
