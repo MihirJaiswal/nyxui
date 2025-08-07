@@ -4,7 +4,8 @@ import Image from "next/image";
 
 export default function MarqueeDemo1() {
   return (
-    <Marquee gap={50} reverse className="max-w-4xl mx-auto">
+    <div className="max-w-4xl mx-auto w-full overflow-hidden"> 
+      <Marquee gap={50} reverse className="flex max-w-4xl mx-auto w-full overflow-hidden">
       <Image
         src="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/DC.png"
         alt="DC logo"
@@ -51,5 +52,6 @@ export default function MarqueeDemo1() {
         className="h-[120px] w-auto"
       />
     </Marquee>
+    </div>
   );
 }

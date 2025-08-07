@@ -2,10 +2,10 @@ import { Marquee } from "../ui/marquee";
 
 export const MarqueeDemo = () => {
   return (
-    <div className="w-full max-w-4xl mx-auto p-6">
+    <div className="flex flex-col max-w-4xl mx-auto w-full overflow-hidden">
       <h1 className="text-2xl font-bold mb-10 text-center">Marquee</h1>
 
-      <div className="overflow-hidden flex items-center">
+      <div className="overflow-hidden flex items-center lg:max-w-xl 2xl:max-w-4xl mx-auto">
         <Marquee
           speed={30}
           direction="horizontal"

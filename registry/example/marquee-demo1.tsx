@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function MarqueeDemo1() {
   return (
-    <div className="flex h-[400px] max-w-4xl mx-auto space-x-4 overflow-hidden">
+    <div className="flex h-[400px] space-x-4">
       <Marquee direction="vertical">
         <Image
           src="https://raw.githubusercontent.com/MihirJaiswal/hero-hq/refs/heads/main/public/icons/Vector.png"
