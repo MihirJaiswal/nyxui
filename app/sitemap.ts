@@ -37,6 +37,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.8,
     },
+    {
+      url: `${baseUrl}/playground`,
+      lastModified: date,
+      changeFrequency: "weekly",
+      priority: 0.7,
+    }
   ];
 
   const componentPages: MetadataRoute.Sitemap = [];
