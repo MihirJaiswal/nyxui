@@ -13,10 +13,12 @@ const nextConfig: NextConfig = withBundlerAnalyzer({
   images: {
     remotePatterns: [
       {
-        hostname: "raw.githubusercontent.com",
+        protocol: 'https',
+        hostname: '**',
       },
       {
-        hostname: "avatars.githubusercontent.com",
+        protocol: 'http',
+        hostname: '**',
       },
     ],
   },

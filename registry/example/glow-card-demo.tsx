@@ -6,7 +6,7 @@ export function GlowCardDemo() {
   return (
     <div className="w-full flex flex-col items-center justify-center mx-auto">
       <div className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-8">
             <GlowCard variant="cosmic" intensity={1.2} className="h-64 aspect-4/3 shadow-gray-500/30 shadow-md border">
               <div className="space-y-3">
                 <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30">

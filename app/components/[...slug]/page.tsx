@@ -6,6 +6,8 @@ import { allDocs } from "content-collections";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Button } from "../../../components/ui/button";
+import { Play } from "lucide-react";
 
 interface ComponentPageProps {
   params: Promise<{
@@ -189,6 +191,11 @@ export default async function ComponentPage({ params }: ComponentPageProps) {
     console.log("Component not found or not published:", componentName);
     notFound();
   }
+
+  // Components that should NOT show the playground button
+  const excludedComponents = ['marquee', 'ms-paint', 'scroll-animation-trigger', 'image-comparison', 'reveal-card'];
+  const shouldShowPlaygroundButton = componentName && !excludedComponents.includes(componentName.toLowerCase());
+
   const schemaData = {
     "@context": "https://schema.org",
     "@type": ["TechArticle", "SoftwareSourceCode"],
@@ -289,41 +296,52 @@ export default async function ComponentPage({ params }: ComponentPageProps) {
                   {tag}
                 </Link>
               ))}
+              {/* Open in Playground Button - Only show for non-excluded components */}
+              {shouldShowPlaygroundButton && (
+                <Link href={`/playground?component=${componentName}`}>
+                  <Button variant="default" size="sm" className="gap-2">
+                    <Play className="w-4 h-4" />
+                    Open in Playground
+                  </Button>
+                </Link>
+              )}
             </div>
           )}
 
-          {doc.links ? (
-            <div className="flex items-center space-x-2 pt-2">
-              {doc.links?.doc && (
-                <Link
-                  href={doc.links.doc}
-                  target="_blank"
-                  rel="noreferrer"
-                  className={cn(
-                    badgeVariants({ variant: "secondary" }),
-                    "gap-1 hover:bg-gray-200 dark:hover:bg-zinc-700",
-                  )}
-                >
-                  Docs
-                  <ExternalLinkIcon className="size-3" />
-                </Link>
-              )}
-              {doc.links?.api && (
-                <Link
-                  href={doc.links.api}
-                  target="_blank"
-                  rel="noreferrer"
-                  className={cn(
-                    badgeVariants({ variant: "secondary" }),
-                    "gap-1 hover:bg-gray-200 dark:hover:bg-zinc-700",
-                  )}
-                >
-                  API Reference
-                  <ExternalLinkIcon className="size-3" />
-                </Link>
-              )}
-            </div>
-          ) : null}
+          <div className="flex items-center space-x-2 pt-2">
+            {doc.links ? (
+              <>
+                {doc.links?.doc && (
+                  <Link
+                    href={doc.links.doc}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={cn(
+                      badgeVariants({ variant: "secondary" }),
+                      "gap-1 hover:bg-gray-200 dark:hover:bg-zinc-700",
+                    )}
+                  >
+                    Docs
+                    <ExternalLinkIcon className="size-3" />
+                  </Link>
+                )}
+                {doc.links?.api && (
+                  <Link
+                    href={doc.links.api}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={cn(
+                      badgeVariants({ variant: "secondary" }),
+                      "gap-1 hover:bg-gray-200 dark:hover:bg-zinc-700",
+                    )}
+                  >
+                    API Reference
+                    <ExternalLinkIcon className="size-3" />
+                  </Link>
+                )}
+              </>
+            ) : null}
+          </div>
         </div>
 
         <div className="mt-6 space-y-8">

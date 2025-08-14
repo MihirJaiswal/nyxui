@@ -561,12 +561,12 @@ export function AnimatedCodeBlock({
     <div
       ref={containerRef}
       className={cn(
-        "animated-code-block rounded-lg overflow-hidden flex flex-col",
+        "animated-code-block rounded-lg overflow-hidden flex flex-col w-full",
         themeStyles.background,
         themeStyles.text,
         themeStyles.border,
         themeStyles.shadow,
-        "border transition-all duration-300",
+        "border transition-all duration-300", 
         isFullscreen ? "fixed inset-0 z-50 rounded-none h-screen" : "",
         className
       )}

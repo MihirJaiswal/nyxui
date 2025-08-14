@@ -24,6 +24,10 @@ const links = [
             {
                 title: 'Templates',
                 href: '/templates',
+            },
+            {
+                title: 'Playground',
+                href: '/playground',
             }
         ],
     },
