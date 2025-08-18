@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState } from "react";
 import { Volume2, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";

@@ -1,5 +1,4 @@
 import { SVGProps } from "react";
-
 type SafariMode = "default" | "simple";
 
 export interface SafariProps extends SVGProps<SVGSVGElement> {
@@ -9,7 +8,7 @@ export interface SafariProps extends SVGProps<SVGSVGElement> {
   width?: number;
   height?: number;
   mode?: SafariMode;
-  children?: React.ReactNode; // Add children prop for custom content
+  children?: React.ReactNode; 
 }
 
 export function Safari({
@@ -19,7 +18,7 @@ export function Safari({
   width = 1203,
   height = 753,
   mode = "default",
-  children, // Accept children
+  children, 
   ...props
 }: SafariProps) {
   return (

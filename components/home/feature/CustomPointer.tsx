@@ -5,12 +5,12 @@ import { Cursor } from "@/registry/ui/custom-cursor";
 export const CustomPointer = () => (
   <div
     className={
-      "flex w-full h-full flex-col justify-between bg-blue-200/40 dark:bg-black text-white relative"
+      "flex w-full h-full flex-col justify-between rounded-none bg-blue-200/40 dark:bg-black text-white relative"
     } 
   >
     <Cursor
       name="Mihir"
-      className={"relative flex h-full w-full items-end justify-center"}
+      className={"relative flex h-full w-full items-end justify-center !rounded-none"}
     >
       <div className={"relative h-full w-full overflow-hidden mt-[55px]"}>
         <div className="relative flex h-full w-full justify-end pt-4">
