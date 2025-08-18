@@ -110,7 +110,7 @@ export default function DownloadCompleteSection() {
 
   return (
     <div
-      className="h-96 flex items-center justify-center px-3 sm:px-12 py-6 rounded-lg -mt-4"
+      className="h-full flex items-center justify-center px-3 sm:px-12 py-6 rounded-lg -mt-4"
       ref={componentRef}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
