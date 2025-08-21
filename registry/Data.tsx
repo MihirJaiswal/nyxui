@@ -105,7 +105,6 @@ export const componentsData: ComponentsData = {
       tags: ["Interactive", "Tools", "Mock"],
       description: "Interactive keyboard component with customizable keys.",
       image: "/assets/images/showcase/keyboard.png",
-      isNew: true,
     },
     "ms-paint": {
       title: "MS Paint",
@@ -206,7 +205,6 @@ export const componentsData: ComponentsData = {
   templates: {
     "singlepage-portfolio": { 
       title: "Single Page Portfolio",
-      isNew: true,
       tags: ["Portfolio", "Template", "Minimalist", "Single Page" ],
       description: "A simple, elegant single page portfolio template.",
       image: "/assets/images/showcase/single-page-portfolio.png",
