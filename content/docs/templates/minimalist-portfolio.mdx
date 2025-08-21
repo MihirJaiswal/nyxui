@@ -1,0 +1,58 @@
+---
+title: Minimalist Portfolio Template
+date: 2025-08-21
+description: A minimalist portfolio template that is easy to use and customize.
+author: mihirJaiswal
+published: true
+---
+
+<div className="flex flex-col gap-4">
+  <video
+    autoPlay
+    loop
+    muted
+    src="/assets/videos/minimalist-portfolio.mp4"
+    className="w-full aspect-4/3 md:aspect-video object-cover rounded-xl border mb-3"
+  />
+  <div className="flex flex-col justify-start items-start gap-3 sm:flex-row">
+    <RepoDownload
+      url="https://github.com/MihirJaiswal/minimal-portfolio/archive/refs/tags/v1.0.0.zip"
+      free
+    />
+    <TemplatePreview href="https://minimal-portfolio-three-azure.vercel.app/">
+      Live Preview{" "}
+    </TemplatePreview>
+  </div>
+</div>
+
+## What is this?
+
+A complete template to market yourself and your portfolio to the world as a developer
+
+## How can I customize this?
+
+- Edit the project.ts and constants.ts file inside the lib folder.
+- Edit the images in the template to your own
+- You can also write your own blogs in the content folder in mdx format.
+- Deploy the template to vercel
+- Share the link to your portfolio
+
+## How many pages are there?
+
+This template includes the following sections:
+
+- Home Page
+- Blogs Page
+- Projects Page
+
+## Tech Stack
+
+<TechStack
+  technologies={[
+    "nextjs",
+    "react",
+    "typescript",
+    "tailwindcss",
+    "shadcn",
+  ]}
+/>

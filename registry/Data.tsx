@@ -204,12 +204,19 @@ export const componentsData: ComponentsData = {
     }
   },
   templates: {
-    "portfolio": { 
+    "singlepage-portfolio": { 
+      title: "Single Page Portfolio",
+      isNew: true,
+      tags: ["Portfolio", "Template", "Minimalist", "Single Page" ],
+      description: "A simple, elegant single page portfolio template.",
+      image: "/assets/images/showcase/single-page-portfolio.png",
+      },
+    "minimalist-portfolio": {
       title: "Minimalist Portfolio",
       isNew: true,
-      tags: ["Portfolio", "Template", "Minimalist", "One Page" ],
-      description: "A simple, elegant one-page portfolio template.",
+      tags: ["Portfolio", "Template", "Minimalist", "Single Page" ],
+      description: "A simple, elegant minimalist portfolio template.",
       image: "/assets/images/showcase/minimalist-portfolio.png",
-      },
+    },
   },
 };
