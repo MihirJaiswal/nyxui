@@ -36,6 +36,7 @@ export default function Header() {
 
   const navLinks = [
     { href: "/components", label: "Components" },
+    { href: "/templates", label: "Templates" },
     { href: "/playground", label: "Playground" },
     { href: "/docs", label: "Documentation" },
   ];
