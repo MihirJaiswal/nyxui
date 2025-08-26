@@ -7,7 +7,7 @@ export default function TemplateGrid() {
   );
 
   return (
-    <div className="container mx-auto px-2 py-8">
+    <div className="container mx-auto md:px-2 py-8">
       <div className="relative z-40 grid grid-cols-1 items-start gap-4 pb-8 md:grid-cols-1 lg:grid-cols-2 lg:gap-10 xl:grid-cols-2">
         {sortedComponents.map(([slug, template]) => (
           <ComponentCard
