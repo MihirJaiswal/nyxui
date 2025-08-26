@@ -78,7 +78,7 @@ export const metadata: Metadata = {
   },
   category: "Web Development",
   alternates: {
-    canonical: "https://nyxui.vercel.app/",
+    // Do not set a global canonical. Route-level pages define precise canonicals.
   },
   verification: {
     google: "XNSEycxa9cfRCuvJ0zP9yC5u_J0R-oriqXxyEM4Yp-Q",

@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://nyxui.vercel.app
+
+# Sitemaps
+Sitemap: https://nyxui.vercel.app/sitemap.xml

@@ -1,5 +1,7 @@
 import { componentsData } from "../../../registry/Data";
 import { ComponentCard } from "../../../components/components/ComponentCard";
+import type { Metadata } from "next";
+import { absoluteUrl } from "../../../lib/utils";
 
 interface CategoryPageProps {
   params: Promise<{
@@ -63,6 +65,60 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     </div>
   );
 }
+
+export async function generateMetadata({
+  params,
+}: CategoryPageProps): Promise<Metadata> {
+  const decodedCategory = await getCategoryFromParams(params);
+  const normalized = decodedCategory ? decodedCategory.toLowerCase() : "";
+  const titleCategory = decodedCategory
+    ? decodedCategory.charAt(0).toUpperCase() + decodedCategory.slice(1)
+    : "Category";
+
+  const description = decodedCategory
+    ? `Explore ${titleCategory} React UI components from Nyx UI. Built with TypeScript, Tailwind CSS, and Framer Motion for Next.js applications.`
+    : "Browse React UI components by category from Nyx UI.";
+
+  return {
+    title: `${titleCategory} Components | Nyx UI`,
+    description,
+    keywords: [
+      `${titleCategory.toLowerCase()} components`,
+      "nyx ui",
+      "nyxui",
+      "react components",
+      "next.js components",
+      "tailwind css",
+    ],
+    alternates: {
+      canonical: absoluteUrl(`/category/${encodeURIComponent(normalized)}`),
+    },
+    robots: { index: true, follow: true },
+    openGraph: {
+      title: `${titleCategory} Components | Nyx UI`,
+      description,
+      url: absoluteUrl(`/category/${encodeURIComponent(normalized)}`),
+      siteName: "Nyx UI",
+      type: "website",
+      images: [
+        {
+          url: "/nyx.png",
+          width: 1200,
+          height: 630,
+          alt: `${titleCategory} Components - Nyx UI`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${titleCategory} Components | Nyx UI`,
+      description,
+      images: ["/nyx.png"],
+    },
+  };
+}
+
+export const revalidate = 86400; // Revalidate daily
 
 export async function generateStaticParams(): Promise<
   Awaited<CategoryPageProps["params"]>[]

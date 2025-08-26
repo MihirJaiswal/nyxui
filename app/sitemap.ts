@@ -1,5 +1,5 @@
 import { MetadataRoute } from "next";
-import { componentsData } from "../registry/Data";
+import { allDocs } from "content-collections";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://nyxui.vercel.app";
@@ -45,40 +45,39 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   ];
 
-  const componentPages: MetadataRoute.Sitemap = [];
-  if (componentsData?.components) {
-    Object.entries(componentsData.components).forEach(([key]) => {
-      const slug = key.toLowerCase().replace(/\s+/g, '-');
-      componentPages.push({
+  const componentPages: MetadataRoute.Sitemap = (allDocs || [])
+    .filter((doc) => doc.slugAsParams?.startsWith("components/") && doc.published)
+    .map((doc) => {
+      const slug = doc.slugAsParams.replace("components/", "");
+      return {
         url: `${baseUrl}/components/${slug}`,
         lastModified: date,
         changeFrequency: "monthly",
         priority: 0.7,
-      });
+      } as MetadataRoute.Sitemap[number];
     });
-  }
 
-  const templatePages: MetadataRoute.Sitemap = [];
-  if (componentsData?.templates) {
-    Object.entries(componentsData.templates).forEach(([key]) => {
-      const slug = key.toLowerCase().replace(/\s+/g, '-');
-      templatePages.push({
+  const templatePages: MetadataRoute.Sitemap = (allDocs || [])
+    .filter((doc) => doc.slugAsParams?.startsWith("templates/") && doc.published)
+    .map((doc) => {
+      const slug = doc.slugAsParams.replace("templates/", "");
+      return {
         url: `${baseUrl}/templates/${slug}`,
         lastModified: date,
         changeFrequency: "monthly",
         priority: 0.6,
-      });
+      } as MetadataRoute.Sitemap[number];
     });
-  }
 
   const allTags = new Set<string>();
-  if (componentsData?.components) {
-    Object.values(componentsData.components).forEach((component) => {
-      if (component.tags && Array.isArray(component.tags)) {
-        component.tags.forEach((tag) => allTags.add(tag));
+  (allDocs || [])
+    .filter((doc) => doc.slugAsParams?.startsWith("components/") && doc.published)
+    .forEach((doc) => {
+      const tags = (doc).tags as string[] | undefined;
+      if (Array.isArray(tags)) {
+        tags.forEach((tag) => allTags.add(tag));
       }
     });
-  }
 
   const categoryPages: MetadataRoute.Sitemap = Array.from(allTags).map((tag) => ({
     url: `${baseUrl}/category/${encodeURIComponent(tag.toLowerCase().replace(/\s+/g, '-'))}`,
