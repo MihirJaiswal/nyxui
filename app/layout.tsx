@@ -42,27 +42,27 @@ export const metadata: Metadata = {
   creator: "Mihir Jaiswal",
   publisher: "Mihir Jaiswal",
   openGraph: {
+    title: "Nyx UI - Premium React UI Library & Component Collection",
+    description:
+      "The most comprehensive React UI library for Next.js. 30+ premium components built with Tailwind CSS and Framer Motion. Start building beautiful interfaces today.",
+    images: [{ 
+      url: "/nyx.png", 
+      width: 1200, 
+      height: 630,
+      alt: "Nyx UI - Premium React UI Library Components Preview"
+    }],
     type: "website",
     locale: "en_US",
-    url: "https://nyxui.vercel.app/",
-    title: "Nyx UI - Premium React UI Library & Components for Next.js",
-    description: "Nyx UI is the ultimate React UI library with 30+ premium components for Next.js. Built with Tailwind CSS, Framer Motion, and TypeScript.",
-    siteName: "Nyx UI",
-    images: [
-      {
-        url: "https://nyxui.vercel.app/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Nyx UI - Premium React UI Library",
-      },
-    ],
+    siteName: "Nyx UI"
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nyx UI - Premium React UI Library & Components for Next.js",
-    description: "Nyx UI is the ultimate React UI library with 30+ premium components for Next.js. Built with Tailwind CSS, Framer Motion, and TypeScript.",
-    images: ["https://nyxui.vercel.app/og-image.png"],
+    title: "Nyx UI - Premium React UI Library for Next.js",
+    description:
+      "30+ premium React components built with Tailwind CSS and Framer Motion. The ultimate UI library for modern Next.js applications.",
+    images: ["/nyx.png"],
     creator: "@mihir_jaiswal_",
+    site: "@mihir_jaiswal_",
   },
   robots: {
     index: true,
@@ -70,18 +70,21 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
     },
+
   },
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+  category: "Web Development",
+  alternates: {
+    canonical: "https://nyxui.vercel.app/",
   },
-  manifest: "/site.webmanifest",
+  verification: {
+    google: "XNSEycxa9cfRCuvJ0zP9yC5u_J0R-oriqXxyEM4Yp-Q",
+  },
   other: {
+    "application-name": "Nyx UI",
     "msapplication-TileColor": "#000000",
     "theme-color": "#000000",
   }
@@ -95,25 +98,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${GeistSans.variable} ${GeistMono.variable}`}
+      className={`${GeistSans.variable} ${GeistMono.variable} dark`}
       suppressHydrationWarning
     >
       <head>
-        {/* Prevent FOUC by setting theme before page loads */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  var theme = localStorage.getItem('nyx-ui-theme') || 'dark';
-                  document.documentElement.classList.add(theme);
-                } catch (e) {
-                  document.documentElement.classList.add('dark');
-                }
-              })();
-            `,
-          }}
-        />
         {/* Add JSON-LD structured data */}
         <script
           type="application/ld+json"
@@ -141,7 +129,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-white dark:bg-[#0A0A0A] transition-colors duration-150">
+      <body className="bg-background">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
