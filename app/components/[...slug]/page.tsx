@@ -283,7 +283,7 @@ export default async function ComponentPage({ params }: ComponentPageProps) {
           )}
 
           {doc.tags && doc.tags.length > 0 && (
-            <div className="flex flex-wrap justify-between gap-2 pt-2">
+            <div className="flex flex-col sm:flex-row flex-wrap justify-between gap-2 pt-2">
               <div className="flex flex-wrap gap-2">
               {doc.tags.map((tag: string) => (
                 <Link
