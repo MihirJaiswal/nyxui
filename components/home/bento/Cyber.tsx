@@ -224,7 +224,7 @@ export default function AnimatedChatDemo() {
                       {message.reactions.map((reaction, idx) => (
                         <span 
                           key={idx} 
-                          className="text-sm animate-in zoom-in-75 duration-300 bg-white/20 rounded-full px-2 py-1"
+                          className="text-sm animate-in zoom-in-75 duration-300 bg-white/20 rounded-full py-1"
                           style={{ animationDelay: `${idx * 150}ms` }}
                         >
                           {reaction}

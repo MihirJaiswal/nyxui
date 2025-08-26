@@ -9,7 +9,7 @@ import Footer from "../components/global/Footer";
 export const metadata: Metadata = {
   metadataBase: new URL("https://nyxui.vercel.app/"),
   title: {
-    default: "Nyx UI - Premium React UI Library & Components for Next.js",
+    default: "Nyx UI",
     template: "%s | Nyx UI - React UI Library"
   },
   description:
@@ -42,14 +42,14 @@ export const metadata: Metadata = {
   creator: "Mihir Jaiswal",
   publisher: "Mihir Jaiswal",
   openGraph: {
-    title: "Nyx UI - Premium React UI Library & Component Collection",
+    title: "Nyx UI",
     description:
-      "The most comprehensive React UI library for Next.js. 30+ premium components built with Tailwind CSS and Framer Motion. Start building beautiful interfaces today.",
+      "The most comprehensive React UI library for Next.js. 30+ modern components built with Tailwind CSS and Framer Motion. Start building beautiful interfaces today.",
     images: [{ 
       url: "/nyx.png", 
       width: 1200, 
       height: 630,
-      alt: "Nyx UI - Premium React UI Library Components Preview"
+      alt: "Nyx UI - Modern React UI Library Components Preview"
     }],
     type: "website",
     locale: "en_US",
@@ -57,9 +57,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nyx UI - Premium React UI Library for Next.js",
+    title: "Nyx UI",
     description:
-      "30+ premium React components built with Tailwind CSS and Framer Motion. The ultimate UI library for modern Next.js applications.",
+      "30+ modern React components built with Tailwind CSS and Framer Motion. The ultimate UI library for modern Next.js applications.",
     images: ["/nyx.png"],
     creator: "@mihir_jaiswal_",
     site: "@mihir_jaiswal_",

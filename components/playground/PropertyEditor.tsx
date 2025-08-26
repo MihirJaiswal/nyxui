@@ -100,7 +100,7 @@ const PropertyEditor = ({ component, config, onChange }: PropertyEditorProps) =>
                   step={prop.step || 1}
                   className="w-full"
                 />
-                <div className="text-xs text-muted-foreground text-center font-mono rounded px-2 py-1">
+                <div className="text-xs text-muted-foreground text-center font-mono rounded py-1">
                   {numValue}
                 </div>
               </div>

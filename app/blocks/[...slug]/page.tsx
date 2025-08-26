@@ -7,7 +7,7 @@ import { badgeVariants } from "../../../components/ui/badge";
 import { cn } from "../../../lib/utils";
 import Link from "next/link";
 import { allDocs } from "content-collections";
-import { Maximize2, ExternalLink } from "lucide-react";
+import { Scan } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface BlockPageProps {
@@ -136,7 +136,7 @@ export default async function BlockPage({ params }: BlockPageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
       />
       
-      <div className="mx-auto w-full max-w-[1200px] px-2">
+      <div className="mx-auto w-full max-w-[1200px]">
         <div className="space-y-4 mt-5">
           <div className="flex flex-wrap items-start gap-3 sm:items-center justify-between">
             <h1 className="scroll-m-20 text-3xl font-bold tracking-tight sm:text-4xl break-words">
@@ -151,9 +151,7 @@ export default async function BlockPage({ params }: BlockPageProps) {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 py-2"
             >
-              <Maximize2 className="w-4 h-4" />
-              Full Screen
-              <ExternalLink className="w-4 h-4" />
+              <Scan className="w-4 h-4" />Full Screen
             </Link>
             </Button>
           </div>
@@ -161,7 +159,7 @@ export default async function BlockPage({ params }: BlockPageProps) {
           {block.description && (
             <div>
               <p className="text-muted-foreground dark:text-[#A1A1AA] text-lg">
-                <span className="inline-block align-top no-underline [text-wrap:balance]">
+                <span className="md:inline-block align-top no-underline md:[text-wrap:balance]">
                   {block.description}
                 </span>
               </p>

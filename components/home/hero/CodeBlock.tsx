@@ -300,7 +300,7 @@ export function AnimatedCodeBlock({
               >
                 <RotateCcw size={14} />
                 {showTooltip === "restart" && (
-                  <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 px-2 py-1 bg-black text-white text-xs rounded whitespace-nowrap">
+                  <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 py-1 bg-black text-white text-xs rounded whitespace-nowrap">
                     Restart
                   </div>
                 )}

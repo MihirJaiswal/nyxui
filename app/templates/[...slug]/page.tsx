@@ -282,7 +282,7 @@ export default async function TemplatePage({ params }: TemplatePageProps) {
       <meta name="styling" content="Tailwind CSS" />
       <meta name="template-type" content="Website Template" />
       
-      <div className="mx-auto w-full max-w-[1200px] px-2">
+      <div className="mx-auto w-full max-w-[1200px]">
         <div className="space-y-4 mt-5">
           <div className="flex flex-wrap items-start gap-3 sm:items-center">
             <h1 className="scroll-m-20 text-3xl font-bold tracking-tight sm:text-4xl break-words">
@@ -293,7 +293,7 @@ export default async function TemplatePage({ params }: TemplatePageProps) {
           {template.description && (
             <div>
               <p className="text-muted-foreground dark:text-[#A1A1AA] text-lg">
-                <span className="inline-block align-top no-underline [text-wrap:balance]">
+                <span className="md:inline-block align-top no-underline md:[text-wrap:balance]">
                   {template.description}
                 </span>
               </p>

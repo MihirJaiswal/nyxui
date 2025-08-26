@@ -178,7 +178,7 @@ const LivePreview = ({ componentKey, config, component, showCode, onToggleCode, 
               <div className="space-y-2">
                 <h3 className="text-yellow-800 font-bold text-xl">Component Not Found</h3>
                 <p className="text-yellow-700">
-                  Component <code className="bg-yellow-100 px-2 py-1 rounded font-mono text-sm">{componentKey}</code> is
+                  Component <code className="bg-yellow-100 py-1 rounded font-mono text-sm">{componentKey}</code> is
                   not registered
                 </p>
               </div>
