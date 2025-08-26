@@ -44,8 +44,8 @@ export const ComponentWrapper = ({
       </div>
 
       <div className="flex min-h-[400px] overflow-hidden w-full items-center justify-center p-2 sm:p-4 md:p-6 lg:p-8 xl:p-10">
-        <div className="w-full max-w-full flex items-center justify-center">
-          <div className="w-full">
+        <div className="w-full max-w-full flex items-center justify-center mx-auto">
+          <div className="w-full flex items-center justify-center mx-auto">
             {children}
           </div>
         </div>
