@@ -301,7 +301,7 @@ export default async function ComponentPage({ params }: ComponentPageProps) {
               {/* Open in Playground Button - Only show for non-excluded components */}
               {shouldShowPlaygroundButton && (
                 <Link href={`/playground?component=${componentName}`}>
-                  <Button variant="default" size="sm" className="gap-2">
+                  <Button variant="default" size="sm" className="gap-2 w-full mt-4 sm:mt-0">
                     <Play className="w-4 h-4" />
                     Open in Playground
                   </Button>
