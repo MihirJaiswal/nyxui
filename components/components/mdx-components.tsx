@@ -112,34 +112,34 @@ const components = {
   ),
   a: ({ className, ...props }: React.HTMLAttributes<HTMLAnchorElement>) => (
     <CustomLink
-      className={cn("font-medium underline underline-offset-4", className)}
+      className={cn("font-medium underline underline-offset-4 text-foreground", className)}
       {...props}
     />
   ),
   p: ({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
     <p
-      className={cn("leading-7 [&:not(:first-child)]:mt-6", className)}
+      className={cn("leading-7 [&:not(:first-child)]:mt-6 text-foreground", className)}
       {...props}
     />
   ),
   ul: ({ className, ...props }: React.HTMLAttributes<HTMLUListElement>) => (
     <ul
-      className={cn("ml-6 list-disc w-full max-w-full", className)}
+      className={cn("ml-6 list-disc w-full max-w-full text-foreground", className)}
       {...props}
     />
   ),
   ol: ({ className, ...props }: React.HTMLAttributes<HTMLOListElement>) => (
     <ol
-      className={cn("ml-6 list-decimal w-full max-w-full", className)}
+      className={cn("ml-6 list-decimal w-full max-w-full text-foreground", className)}
       {...props}
     />
   ),
   li: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
-    <li className={cn("mt-2", className)} {...props} />
+    <li className={cn("mt-2 text-foreground", className)} {...props} />
   ),
   blockquote: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
     <blockquote
-      className={cn("mt-6 border-l-2 pl-6 italic", className)}
+      className={cn("mt-6 border-l-2 pl-6 italic text-foreground", className)}
       {...props}
     />
   ),
