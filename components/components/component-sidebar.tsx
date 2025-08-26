@@ -1,7 +1,11 @@
 import { componentsData } from "../../registry/Data";
 import { ComponentSidebarClient } from "./ComponentSidebarClient";
 
-export const ComponentSidebar = () => {
+interface ComponentSidebarProps {
+  type?: "components" | "blocks";
+}
+
+export const ComponentSidebar = ({ type = "components" }: ComponentSidebarProps) => {
   const processedComponents = Object.entries(
     componentsData.components || {},
   )
@@ -25,6 +29,19 @@ export const ComponentSidebar = () => {
         href: `/templates/${key}`,
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         isNew: Boolean((template as any).isNew),
+      };
+    })
+    .sort((a, b) => a.name.localeCompare(b.name));
+
+  // Add processing for blocks
+  const processedBlocks = Object.entries(
+    componentsData.blocks || {},
+  )
+    .map(([key, block]) => {
+      return {
+        name: block.title,
+        href: `/blocks/${key}`,
+        isNew: Boolean(block.isNew),
       };
     })
     .sort((a, b) => a.name.localeCompare(b.name));
@@ -66,6 +83,8 @@ export const ComponentSidebar = () => {
             }}
             componentItems={processedComponents}
             templateItems={processedTemplates}
+            blockItems={processedBlocks}
+            type={type}
           />
         </div>
       </div>

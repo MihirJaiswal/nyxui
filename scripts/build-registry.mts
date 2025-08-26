@@ -8,6 +8,7 @@ import { z } from "zod";
 import { examples } from "../registry/registry-examples";
 import { lib } from "../registry/registry-lib";
 import { ui } from "../registry/registry-ui";
+import { blocks } from "../registry/registry-blocks";
 
 // Helper function to normalize paths (always use forward slashes)
 function normalizePath(filePath: string): string {
@@ -38,11 +39,13 @@ const DEPRECATED_ITEMS = ["toast"];
 console.log("🔍 Loaded registry-ui items:", ui.map((i) => i.name));
 console.log("🔍 Loaded registry-examples items:", examples.map((i) => i.name));
 console.log("🔍 Loaded registry-lib items:", lib.map((i) => i.name));
+console.log("🔍 Loaded registry-blocks items:", blocks.map((i) => i.name));
 
 // Normalize all paths before creating the registry
 const normalizedUi = ui.map(normalizeRegistryItem);
 const normalizedExamples = examples.map(normalizeRegistryItem);
 const normalizedLib = lib.map(normalizeRegistryItem);
+const normalizedBlocks = blocks.map(normalizeRegistryItem);
 
 const registry = {
   name: "shadcn/ui",
@@ -66,6 +69,7 @@ const registry = {
         ...normalizedUi,
         ...normalizedExamples,
         ...normalizedLib,
+        ...normalizedBlocks,
       ].filter((item) => !DEPRECATED_ITEMS.includes(item.name))
     ),
 } satisfies Registry;

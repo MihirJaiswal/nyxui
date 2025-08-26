@@ -1062,4 +1062,20 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
+  "footer": {
+    name: "footer",
+    description: "A simple footer component i will add some more modern components in the future.",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/blocks/footer.tsx",
+      type: "registry:ui",
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/blocks/footer.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
   }

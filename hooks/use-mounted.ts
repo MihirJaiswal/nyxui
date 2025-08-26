@@ -1,9 +1,11 @@
-import * as React from "react";
+"use client";
+
+import { useEffect, useState } from "react";
 
 export function useMounted() {
-  const [mounted, setMounted] = React.useState(false);
+  const [mounted, setMounted] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setMounted(true);
   }, []);
 

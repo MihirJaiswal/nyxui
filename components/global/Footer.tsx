@@ -35,8 +35,12 @@ const links = [
         group: 'Templates',
         items: [
             {
-                title: 'Portfolio',
-                href: '/templates/portfolio',
+                title: 'Single Page Portfolio',
+                href: '/templates/singlepage-portfolio',
+            },
+            {
+                title: 'Minimalist Portfolio',
+                href: '/templates/minimalist-portfolio',
             }
         ],
     },
@@ -65,8 +69,8 @@ const links = [
         group: 'Blocks',
         items: [
             {
-                title: 'Coming Soon',
-                href: '/',
+                title: 'Footer',
+                href: '/blocks/footer',
             }
         ],
     },

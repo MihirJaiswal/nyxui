@@ -8,6 +8,7 @@ import * as React from "react";
 interface ComponentPreviewProps extends React.HTMLAttributes<HTMLDivElement> {
   name: string;
   preview?: boolean;
+  type?: "components" | "blocks";
 }
 
 export function ComponentPreview({
@@ -42,7 +43,7 @@ export function ComponentPreview({
   return (
     <div
       className={cn(
-        "relative my-4 flex flex-col space-y-2 lg:max-w-[120ch]",
+        "relative my-4 flex flex-col space-y-2",
         className,
       )}
       {...props}

@@ -14,6 +14,14 @@ export interface template {
   isNew?: boolean;
 }
 
+export interface Block {
+  title: string;
+  tags: string[];
+  description: string;
+  image: string;
+  isNew?: boolean;
+}
+
 interface Links {
   docs: string;
 }
@@ -26,7 +34,9 @@ interface ComponentsData {
   templates: {
     [key: string]: template;
   };
-  blocks?: Record<string, unknown>;
+  blocks: {
+    [key: string]: Block;
+  };
 }
 
 export const componentsData: ComponentsData = {
@@ -39,166 +49,166 @@ export const componentsData: ComponentsData = {
       title: "Water Ripple Effect",
       tags: ["Interactive", "Visual Effects", "Image"],
       description: "A mesmerizing water ripple effect for Images.",
-      image: "/assets/images/showcase/water-ripple-effect.png",
+      image: "/assets/images/showcase/components/water-ripple-effect.png",
       isNew: true,
     },
     "custom-cursor": {
       title: "Custom Cursor",
       tags: ["Cursor", "Animation", "Interactive"],
       description: "A customizable cursor that follows the mouse.",
-      image: "/assets/images/showcase/custom-cursor.png",
+      image: "/assets/images/showcase/components/custom-cursor.png",
       isNew: true,
     },
     "animated-code-block": {
       title: "Animated Code Block",
       tags: ["Animation", "Interactive"],
       description: "Code snippets with typing and highlishting effects.",
-      image: "/assets/images/showcase/animated-code-block.png",
+      image: "/assets/images/showcase/components/animated-code-block.png",
     },
     "cyberpunk-card": {
       title: "Cyberpunk Card",
       tags: ["Cards", "Futuristic"],
       description:
         "A futuristic card design with neon glow and tech aeshetics.",
-      image: "/assets/images/showcase/cyberpunkcard.png",
+      image: "/assets/images/showcase/components/cyberpunkcard.png",
     },
     "animated-grainy-bg": {
       title: "Animated Grainy Background",
       tags: ["Background", "Animation"],
       description: "Smooth shifting grainy background for modern UIs.",
-      image: "/assets/images/showcase/animated-grainy-bg.png",
+      image: "/assets/images/showcase/components/animated-grainy-bg.png",
     },
     "animated-text": {
       title: "Animated Text",
       tags: ["Typography", "Animation"],
       description: "Text with various animation effects and transitions.",
-      image: "/assets/images/showcase/animated-text.png",
+      image: "/assets/images/showcase/components/animated-text.png",
     },
     "bubble-background": {
       title: "Bubble Background",
       tags: ["Background", "Interactive", "Animation"],
       description: "Floating bubbles interactive animation for bg.",
-      image: "/assets/images/showcase/bubbles-background.png",
+      image: "/assets/images/showcase/components/bubbles-background.png",
     },
     "dynamic-ripple": {
       title: "Dynamic Ripple",
       tags: ["Effects", "Interactive"],
       description:
         "Interactive ripple effect that responds to cursor or touch.",
-      image: "/assets/images/showcase/dynamic-ripple.png",
+      image: "/assets/images/showcase/components/dynamic-ripple.png",
     },
     "github-repo-card": {
       title: "GitHub Repo Card",
       tags: ["Cards", "GitHub"],
       description:
         "A card component that displays GitHub repository information.",
-      image: "/assets/images/showcase/github-repo-card.png",
+      image: "/assets/images/showcase/components/github-repo-card.png",
     },
     "glitch-button": {
       title: "Glitch Button",
       tags: ["Buttons", "Effects", "Glitch"],
       description: "A button with a digital glitch effect on hover and click.",
-      image: "/assets/images/showcase/glitch-button.png",
+      image: "/assets/images/showcase/components/glitch-button.png",
     },
     "keyboard": {
       title: "Keyboard",
       tags: ["Interactive", "Tools", "Mock"],
       description: "Interactive keyboard component with customizable keys.",
-      image: "/assets/images/showcase/keyboard.png",
+      image: "/assets/images/showcase/components/keyboard.png",
     },
     "ms-paint": {
       title: "MS Paint",
       tags: ["Interactive", "Tools", "Mock"],
       description: "A nostalgic MS Paint-like drawing tool.",
-      image: "/assets/images/showcase/ms-paint.png",
+      image: "/assets/images/showcase/components/ms-paint.png",
     },
     "lamp-heading": {
       title: "Lamp Heading",
       tags: ["Typography", "Effects", "Futuristic"],
       description: "A heading component with a lamp effect.",
-      image: "/assets/images/showcase/lamp-heading.png",
+      image: "/assets/images/showcase/components/lamp-heading.png",
     },
     "liquid-metal-button": {
       title: "Liquid Metal Button",
       tags: ["Buttons", "Effects", "Interactive"],
       description: "A button with fluid mettallic animation effects.",
-      image: "/assets/images/showcase/liquid-metal-button.png",
+      image: "/assets/images/showcase/components/liquid-metal-button.png",
     },
     "image-comparison": {
       title: "Image Comparison",
       tags: ["Interactive", "Image", "Media"],
       description: "A component for comparing two images side-by-side.",
-      image: "/assets/images/showcase/image-comparison.png",
+      image: "/assets/images/showcase/components/image-comparison.png",
     },
     "image-scanner": {
       title: "Image Scanner",
       tags: ["Interactive", "Image", "Media"],
       description: "A component for scanning images with a futuristic effect.",
-      image: "/assets/images/showcase/image-scanner.png",
+      image: "/assets/images/showcase/components/image-scanner.png",
     },
     "glow-card": {
       title: "Glow Card",
       tags: ["Cards", "Effects", "Animation", "Interactive"],
       description: "A card component with subtle animation and transitions.",
-      image: "/assets/images/showcase/glow-card.png",
+      image: "/assets/images/showcase/components/glow-card.png",
     },
     "marquee": {
       title: "Marquee",
       tags: ["Interactive", "Interactive", "Animation"],
       description: "A customizable, interactive scrolling marquee component.",
-      image: "/assets/images/showcase/marquee.png",
+      image: "/assets/images/showcase/components/marquee.png",
     },
     "matrix-code-rain": {
       title: "Matrix Code Rain",
       tags: ["Background", "Effects", "Animation"],
       description: "A component that simulates a matrix code rain effect.",
-      image: "/assets/images/showcase/matrix-code-rain.png",
+      image: "/assets/images/showcase/components/matrix-code-rain.png",
     },
     "morphing-blob": {
       title: "Morphing Blob",
       tags: ["Background", "Effects", "Animation"],
       description:
         "A dynamic blob that powered by Three.js and shaders.",
-      image: "/assets/images/showcase/morphing-blob.png",
+      image: "/assets/images/showcase/components/morphing-blob.png",
     },
     "music-player": {
       title: "Music Player",
       tags: ["Interactive", "Media", "Player"],
       description:
         "A customizable music player component with multiple themes.",
-      image: "/assets/images/showcase/music-player.png",
+      image: "/assets/images/showcase/components/music-player.png",
     },
     "reveal-card": {
       title: "Reveal Card",
       tags: ["Cards", "Effects", "3D", "Interactive"],
       description: "Card with reveal animations that shows content on hover.",
-      image: "/assets/images/showcase/reveal-card.png",
+      image: "/assets/images/showcase/components/reveal-card.png",
     },
     "scroll-animation-trigger": {
       title: "Scroll Animation Trigger",
       tags: ["Interactive", "Animation", "Scroll", "Effects"],
       description: "Elements that animate when scrolled into view.",
-      image: "/assets/images/showcase/scroll-animation-trigger.png",
+      image: "/assets/images/showcase/components/scroll-animation-trigger.png",
     },
     "terminal": {
       title: "Terminal",
       tags: ["Interactive", "Mock", "Tools"],
       description:
         "Command line interface with typing animations and responses",
-      image: "/assets/images/showcase/interactive-terminal.png",
+      image: "/assets/images/showcase/components/interactive-terminal.png",
     },
     "apple-glass-effect": {
       title: "Apple Glass Effect",
       tags: ["Effects", "Glassmorphism", "Interactive"],
       description: "A customizable Apple Glass effect component.",
-      image: "/assets/images/showcase/apple-glass-effect.png",
+      image: "/assets/images/showcase/components/apple-glass-effect.png",
       isNew: true,
     },
     "3d-layered-card": {
       title: "3D Layered Card",
       tags: ["Card", "3D", "Animation", "Interactive"],
       description: "A 3D card with layered effects and animations.",
-      image: "/assets/images/showcase/3d-layered-card.png",
+      image: "/assets/images/showcase/components/3d-layered-card.png",
       isNew: true,
     }
   },
@@ -207,14 +217,23 @@ export const componentsData: ComponentsData = {
       title: "Single Page Portfolio",
       tags: ["Portfolio", "Template", "Minimalist", "Single Page" ],
       description: "A simple, elegant single page portfolio template.",
-      image: "/assets/images/showcase/single-page-portfolio.png",
+      image: "/assets/images/showcase/templates/single-page-portfolio.png",
       },
     "minimalist-portfolio": {
       title: "Minimalist Portfolio",
       isNew: true,
       tags: ["Portfolio", "Template", "Minimalist", "Single Page" ],
       description: "A simple, elegant minimalist portfolio template.",
-      image: "/assets/images/showcase/minimalist-portfolio.png",
+      image: "/assets/images/showcase/templates/minimalist-portfolio.png",
     },
+  },
+  blocks: {
+    "footer": {
+      title: "Footer",
+      tags: ["Footer", "Section"],
+      description: "A simple footer component.",
+      image: "/assets/images/showcase/blocks/footer.png",
+      isNew: true,
+    }
   },
 };

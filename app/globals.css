@@ -44,6 +44,82 @@
   --animate-grid: grid 15s linear infinite;
 }
 
+/* Smooth theme transitions - more selective approach */
+html {
+  transition: background-color 0.2s ease-in-out;
+}
+
+body {
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+/* Theme transition utilities */
+.theme-transition {
+  transition: background-color 0.2s ease-in-out, 
+              border-color 0.2s ease-in-out, 
+              color 0.2s ease-in-out, 
+              box-shadow 0.2s ease-in-out;
+}
+
+/* Specific transitions for common theme elements */
+.bg-background,
+.bg-foreground,
+.bg-muted,
+.bg-muted-foreground,
+.bg-primary,
+.bg-primary-foreground,
+.bg-secondary,
+.bg-secondary-foreground,
+.bg-accent,
+.bg-accent-foreground,
+.bg-destructive,
+.bg-destructive-foreground,
+.bg-border,
+.bg-input,
+.bg-ring,
+.bg-card,
+.bg-card-foreground,
+.bg-popover,
+.bg-popover-foreground {
+  transition: background-color 0.2s ease-in-out;
+}
+
+.text-foreground,
+.text-muted-foreground,
+.text-primary,
+.text-primary-foreground,
+.text-secondary,
+.text-secondary-foreground,
+.text-accent,
+.text-accent-foreground,
+.text-destructive,
+.text-destructive-foreground,
+.text-border,
+.text-input,
+.text-ring,
+.text-card,
+.text-card-foreground,
+.text-popover,
+.text-popover-foreground {
+  transition: color 0.2s ease-in-out;
+}
+
+.border-border,
+.border-input,
+.border-ring,
+.border-primary,
+.border-secondary,
+.border-accent,
+.border-destructive,
+.border-muted {
+  transition: border-color 0.2s ease-in-out;
+}
+
+/* Remove overly aggressive global transitions */
+* {
+  /* Remove the global transition that was causing conflicts */
+}
+
 @keyframes grid {
   0% {
     transform: translateY(-50%);
@@ -568,29 +644,12 @@
 
 /* Steps utility */
 @layer utilities {
-  .steps {
-    counter-reset: steps;
-  }
-
-  .steps > h3 {
-    counter-increment: steps;
-  }
-
   .steps > h3:before {
     @apply absolute inline-flex h-9 w-9 items-center justify-center rounded-full border-4 border-background bg-muted text-center -indent-px font-mono text-base font-medium;
     @apply ml-[-50px] mt-[-4px];
-    content: counter(steps);
+    content: ""
   }
 }
-
-.mdx > .steps:first-child > h3:first-child {
-  @apply mt-0;
-}
-
-.steps > h3 {
-  @apply mt-8 mb-4 text-base font-semibold;
-}
-
 
 
 .generationShadow {

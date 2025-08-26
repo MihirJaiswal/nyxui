@@ -7,14 +7,18 @@ export function ComponentCard({
   title,
   description,
   imageSrc,
+  type = "components",
 }: {
   slug: string;
   title: string;
   description: string;
   imageSrc: string;
+  type?: "components" | "blocks";
 }) {
+  const href = type === "blocks" ? `/blocks/${slug}` : `/components/${slug}`;
+
   return (
-    <Link href={`/components/${slug}`} className="block">
+    <Link href={href} className="block">
       <div className="rounded-lg overflow-hidden max-w-4xl transition-all duration-300 cursor-pointer h-full">
         <div className="relative dark:border bg-black flex items-center justify-center rounded-lg dark:border-white/[0.1] overflow-hidden transition duration-200 hover:scale-105">
           <Image

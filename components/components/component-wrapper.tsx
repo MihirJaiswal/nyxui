@@ -20,7 +20,7 @@ export const ComponentWrapper = ({
   return (
     <div
       className={cn(
-        "max-w-screen relative rounded-xl border bg-background",
+        "relative rounded-xl border bg-background",
         className,
       )}
       key={key}
@@ -43,8 +43,12 @@ export const ComponentWrapper = ({
         </Button>
       </div>
 
-      <div className="flex min-h-[400px] overflow-hidden w-full items-center justify-center p-2 md:p-10">
-        {children}
+      <div className="flex min-h-[400px] overflow-hidden w-full items-center justify-center p-2 sm:p-4 md:p-6 lg:p-8 xl:p-10">
+        <div className="w-full max-w-full flex items-center justify-center">
+          <div className="w-full">
+            {children}
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -48,11 +48,7 @@ const components = {
   RepoDownload,
   TemplatePreview,
   Image,
-  ComponentPreview: ({ name, ...props }: { name: string }) => (
-    <div className="w-full max-w-full overflow-hidden">
-      <ComponentPreview name={name} {...props} />
-    </div>
-  ),
+
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ComponentSource: (props: any) => (
@@ -327,15 +323,26 @@ const components = {
 interface MDXProps {
   code: string;
   className?: string;
+  type?: "components" | "blocks";
 }
 
-export function Mdx({ code, className }: MDXProps) {
+export function Mdx({ code, className, type = "components" }: MDXProps) {
   const Component = useMDXComponent(code);
+
+  // Create components with the type prop
+  const componentsWithType = {
+    ...components,
+    ComponentPreview: ({ name, ...props }: { name: string }) => (
+      <div className="w-full max-w-full overflow-hidden">
+        <ComponentPreview name={name} type={type} {...props} />
+      </div>
+    ),
+  };
 
   return (
     <div className="w-full max-w-full overflow-hidden">
       <article className={cn("mx-auto max-w-[120ch] w-full", className)}>
-        <Component components={components} />
+        <Component components={componentsWithType} />
       </article>
     </div>
   );

@@ -49,6 +49,7 @@ export const TerminalKeyboardDemo = () => {
             allowPhysicalKeyboard={true}
             perspective={800}
             rotateX={15}
+            accentColor="#00C24E"
             
           />
         </div>

@@ -21,12 +21,16 @@ interface ComponentSidebarClientProps {
   gettingStartedSection: GettingStartedSection;
   componentItems: CategoryItem[]; 
   templateItems?: CategoryItem[];
+  blockItems?: CategoryItem[];
+  type?: "components" | "blocks";
 }
 
 export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
   gettingStartedSection,
   componentItems,
   templateItems = [],
+  blockItems = [],
+  type = "components",
 }) => {
   const currentPath = usePathname();
   const [isScrolling, setIsScrolling] = useState(false);
@@ -175,14 +179,28 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
         )}
 
         {/* Components Section */}
-        <div className="pb-4">
-          <h4 className="mb-2 rounded-md px-2 py-1 text-sm font-semibold text-black dark:text-white">
-            All Components
-          </h4>
-          <div className="grid gap-1 grid-flow-row auto-rows-max text-sm">
-            {renderSectionItems(componentItems)}
+        {type === "components" && (
+          <div className="pb-4">
+            <h4 className="mb-2 rounded-md px-2 py-1 text-sm font-semibold text-black dark:text-white">
+              All Components
+            </h4>
+            <div className="grid gap-1 grid-flow-row auto-rows-max text-sm">
+              {renderSectionItems(componentItems)}
+            </div>
           </div>
-        </div>
+        )}
+
+        {/* Blocks Section */}
+        {type === "blocks" && (
+          <div className="pb-4">
+            <h4 className="mb-2 rounded-md px-2 py-1 text-sm font-semibold text-black dark:text-white">
+              All Blocks
+            </h4>
+            <div className="grid gap-1 grid-flow-row auto-rows-max text-sm">
+              {renderSectionItems(blockItems)}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

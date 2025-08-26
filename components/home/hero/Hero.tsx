@@ -125,7 +125,7 @@ function Hero() {
           </div>
 
           {/* Navigation menu - responsive with dynamic data */}
-          <div className="flex mt-12 lg:mt-0 gap-4 sm:gap-x-6 text-neutral-950 dark:text-gray-50 font-mono relative z-12 justify-center lg:justify-start">
+          <div className="flex flex-wrap mt-12 lg:mt-0 gap-4 sm:gap-x-6 text-neutral-950 dark:text-gray-50 font-mono relative z-12 justify-center lg:justify-start">
             <Link
               href="/components"
               className="flex items-center space-x-3 group hover:text-black dark:hover:text-white transition-colors cursor-pointer"

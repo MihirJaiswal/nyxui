@@ -8,6 +8,7 @@ export default function ContainCard() {
   // Calculate counts dynamically from imported data
   const componentCount = Object.keys(componentsData.components).length;
   const templateCount = Object.keys(componentsData.templates).length;
+  const blocksCount = Object.keys(componentsData.blocks).length;
 
   const projects = [
     {
@@ -31,8 +32,8 @@ export default function ContainCard() {
       title: "Blocks",
       description: "Explore modern and responsive UI blocks designed for various use cases.",
       image: "/assets/images/landing-page/blocks.png",
-      quantity: "Coming soon",
-      route: null // No route for coming soon items
+      quantity: blocksCount.toString(),
+      route: "/blocks" // No route for coming soon items
     },
   ];
 
