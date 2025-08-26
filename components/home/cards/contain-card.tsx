@@ -21,7 +21,7 @@ export default function ContainCard() {
     },
     {
       id: 2,
-      title: "Template",
+      title: "Templates",
       description: "Modern Landing page templates, including a portfolio, saas, and more coming soon.",
       image: "/assets/images/landing-page/templates.png",
       quantity: templateCount.toString(),
