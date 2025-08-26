@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     siteName: "Nyx UI Documentation",
     title: "Nyx UI - Beautiful React Components for Next.js",
     description:
-      "Premium UI components for Next.js applications built with Tailwind CSS, Framer Motion, and TypeScript. Create stunning user interfaces with ease.",
+      "Modern UI components for Next.js applications built with Tailwind CSS, Framer Motion, and TypeScript. Create stunning user interfaces with ease.",
     images: [
       {
         url: "/docs/docs-cover.png",

@@ -251,7 +251,7 @@ export default async function TemplatePage({ params }: TemplatePageProps) {
       "@type": "SoftwareApplication",
       name: "Nyx UI Templates",
       url: "https://nyxui.vercel.app/templates",
-      description: "Premium React template collection for Next.js applications"
+      description: "Modern React template collection for Next.js applications"
     },
     
     screenshot: template.image || "/nyx.png",

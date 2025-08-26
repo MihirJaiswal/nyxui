@@ -13,7 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
   
   return {
     title: `Nyx UI | Blocks`,
-    description: `Browse ${blockCount}+ premium React UI blocks. Complete sections like hero, footer, CTA, and more. Built with TypeScript, Tailwind CSS & Framer Motion.`,
+    description: `Browse ${blockCount}+ modern React UI blocks. Complete sections like hero, footer, CTA, and more. Built with TypeScript, Tailwind CSS & Framer Motion.`,
     keywords: [
       "nyx ui blocks",
       "nyxui block library", 
@@ -46,7 +46,7 @@ export async function generateMetadata(): Promise<Metadata> {
     twitter: {
       card: "summary_large_image",
       title: `NyxUI - ${blockCount}+ React Section Blocks`,
-      description: `Premium React section blocks for Next.js. Built with TypeScript & Tailwind CSS.`,
+      description: `Modern React section blocks for Next.js. Built with TypeScript & Tailwind CSS.`,
       images: ["/nyx.png"],
       creator: "@mihir_jaiswal_",
     },

@@ -247,7 +247,7 @@ export default async function ComponentPage({ params }: ComponentPageProps) {
       "@type": "SoftwareApplication",
       name: "Nyx UI",
       url: "https://nyxui.vercel.app/",
-      description: "Premium React UI component library for Next.js applications"
+      description: "Modern React UI component library for Next.js applications"
     }
   };
 

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     template: "%s | Nyx UI - React UI Library"
   },
   description:
-    "Nyx UI is the ultimate React UI library with 30+ premium components for Next.js. Built with Tailwind CSS, Framer Motion, and TypeScript. Create beautiful, responsive interfaces faster with our comprehensive UI component library.",
+    "Nyx UI is the ultimate React UI library with 30+ modern components for Next.js. Built with Tailwind CSS, Framer Motion, and TypeScript. Create beautiful, responsive interfaces faster with our comprehensive UI component library.",
   keywords: [
     "UI library",
     "React UI library", 
@@ -110,7 +110,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "SoftwareApplication",
               "name": "Nyx UI",
-              "description": "Premium React UI library with 50+ components for Next.js applications",
+              "description": "Modern React UI library with 50+ components for Next.js applications",
               "url": "https://nyxui.vercel.app/",
               "author": {
                 "@type": "Person",
