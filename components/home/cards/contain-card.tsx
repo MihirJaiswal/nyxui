@@ -33,7 +33,7 @@ export default function ContainCard() {
       description: "Explore modern and responsive UI blocks designed for various use cases.",
       image: "/assets/images/landing-page/blocks.png",
       quantity: blocksCount.toString(),
-      route: "/blocks" // No route for coming soon items
+      route: "/blocks"
     },
   ];
 
@@ -66,10 +66,10 @@ export default function ContainCard() {
                   `}
                   >
                     <TextureCardContent className="p-0">
-                      {/* Project Image with MinimalCard styling */}
+                      {/* Project Image using aspect ratio instead of fixed height */}
                       <div
                         className={`
-                        relative h-[250px] md:h-[300px] w-full rounded-[20px] mb-6 overflow-hidden
+                        relative aspect-[4/3] w-full rounded-[20px] mb-6 overflow-hidden
                         shadow-[0px_1px_1px_0px_rgba(0,0,0,0.05),0px_1px_1px_0px_rgba(255,252,240,0.5)_inset,0px_0px_0px_1px_hsla(0,0%,100%,0.1)_inset,0px_0px_1px_0px_rgba(28,27,26,0.5)]
                         dark:shadow-[0_1px_0_0_rgba(255,255,255,0.03)_inset,0_0_0_1px_rgba(255,255,255,0.03)_inset,0_0_0_1px_rgba(0,0,0,0.1),0_2px_2px_0_rgba(0,0,0,0.1),0_4px_4px_0_rgba(0,0,0,0.1),0_8px_8px_0_rgba(0,0,0,0.1)]
                       `}
@@ -77,11 +77,10 @@ export default function ContainCard() {
                         <Image
                           src={project.image || "/placeholder.svg"}
                           alt={`${project.title} preview`}
-                          width={400}
-                          height={300}
+                          fill
                           quality={100}
                           loading='lazy'
-                          className="rounded-[16px] object-cover absolute h-full w-full inset-0 transition-transform duration-300 group-hover:scale-105"
+                          className="rounded-[16px] object-cover transition-transform duration-300 group-hover:scale-105"
                         />
 
                         {/* Complex shadow overlay like MinimalCard */}
@@ -103,7 +102,7 @@ export default function ContainCard() {
 
                         {/* Badge */}
                         <Badge
-                          className={`absolute bottom-3 right-3 bg-zinc-800 text-white font-medium px-3 py-1`}
+                          className={`absolute bottom-3 right-3 bg-zinc-800 text-white group-hover:text-blue-400 font-medium px-3 py-1`}
                         >
                           {project.quantity}
                         </Badge>
@@ -134,10 +133,10 @@ export default function ContainCard() {
                   `}
                   >
                     <TextureCardContent className="p-0">
-                      {/* Project Image with MinimalCard styling */}
+                      {/* Project Image using aspect ratio instead of fixed height */}
                       <div
                         className={`
-                        relative h-[250px] md:h-[300px] w-full rounded-[20px] mb-6 overflow-hidden
+                        relative aspect-[4/3] w-full rounded-[20px] mb-6 overflow-hidden
                         shadow-[0px_1px_1px_0px_rgba(0,0,0,0.05),0px_1px_1px_0px_rgba(255,252,240,0.5)_inset,0px_0px_0px_1px_hsla(0,0%,100%,0.1)_inset,0px_0px_1px_0px_rgba(28,27,26,0.5)]
                         dark:shadow-[0_1px_0_0_rgba(255,255,255,0.03)_inset,0_0_0_1px_rgba(255,255,255,0.03)_inset,0_0_0_1px_rgba(0,0,0,0.1),0_2px_2px_0_rgba(0,0,0,0.1),0_4px_4px_0_rgba(0,0,0,0.1),0_8px_8px_0_rgba(0,0,0,0.1)]
                       `}
@@ -145,11 +144,10 @@ export default function ContainCard() {
                         <Image
                           src={project.image || "/placeholder.svg"}
                           alt={`${project.title} preview`}
-                          width={400}
-                          height={300}
+                          fill
                           quality={100}
                           loading='lazy'
-                          className="rounded-[16px] object-cover absolute h-full w-full inset-0"
+                          className="rounded-[16px] object-cover"
                         />
 
                         {/* Complex shadow overlay like MinimalCard */}
