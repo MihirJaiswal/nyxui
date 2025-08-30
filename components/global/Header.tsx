@@ -15,7 +15,6 @@ import { ModeToggle } from "./ThemeToggle";
 import { cn } from "../../lib/utils";
 import { CommandPalette } from "./CommandPallete";
 import { componentsData } from "../../registry/Data";
-import Image from "next/image";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { useMounted } from "../../hooks/use-mounted";
 import Logo from "./Logo";
