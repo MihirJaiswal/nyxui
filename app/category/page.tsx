@@ -52,11 +52,11 @@ export default function CategoriesPage() {
                 <div className="flex flex-col h-full">
                   <div className="mb-6 w-12 h-12 rounded-full">
                     <Image
-                      src="/logo.png"
+                      src="/logo.svg"
                       alt="Logo"
                       width={150}
                       height={150}
-                      className="inline-block mr-2 rounded-full"
+                      className="inline-block rounded-lg bg-white"
                       quality={100}
                       loading="lazy"
                     />

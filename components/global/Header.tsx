@@ -18,6 +18,7 @@ import { componentsData } from "../../registry/Data";
 import Image from "next/image";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { useMounted } from "../../hooks/use-mounted";
+import Logo from "./Logo";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -47,7 +48,7 @@ export default function Header() {
 
   const openSearch = () => {
     document.dispatchEvent(
-      new KeyboardEvent("keydown", { key: "k", ctrlKey: true }),
+      new KeyboardEvent("keydown", { key: "k", ctrlKey: true })
     );
   };
 
@@ -65,8 +66,8 @@ export default function Header() {
       <header
         style={gradientStyle}
         className={cn(
-          "sticky top-0 z-50 w-full transition-all duration-200 ease-in-out",
-          "bg-background/50 backdrop-blur-sm",
+          "sticky top-0 z-50 w-full transition-all duration-200 ease-in-out px-2",
+          "bg-background/50 backdrop-blur-sm"
         )}
       >
         <div className="absolute left-0 top-full h-px w-full pointer-events-none">
@@ -96,11 +97,11 @@ export default function Header() {
         "sticky top-0 z-50 w-full transition-all duration-200 ease-in-out",
         scrolled
           ? "bg-background/95 backdrop-blur-xl shadow-sm border-b border-border/50"
-          : "bg-background/80 backdrop-blur-md",
+          : "bg-background/80 backdrop-blur-md"
       )}
     >
       {/* Gradient overlay with fade effect */}
-    {/*   <div className={`absolute h-28 inset-0 pointer-events-none ${scrolled ? "opacity-0" : "opacity-11"} transition-opacity duration-300`}>
+      {/*   <div className={`absolute h-28 inset-0 pointer-events-none ${scrolled ? "opacity-0" : "opacity-11"} transition-opacity duration-300`}>
         <div className={cn(
           "absolute inset-0",
           "bg-[length:300%_100%] motion-safe:animate-[gradient_3s_ease_infinite]",
@@ -109,7 +110,7 @@ export default function Header() {
         <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-transparent to-background"></div>
       </div> */}
-      
+
       <div className="absolute left-0 top-full h-px w-full pointer-events-none">
         <div className="w-full h-full bg-gradient-to-r from-transparent via-zinc-300 to-transparent dark:via-zinc-600 transition-colors duration-200"></div>
       </div>
@@ -121,28 +122,12 @@ export default function Header() {
             className="group flex items-center transition-all duration-200"
           >
             <div className="relative flex items-center justify-center overflow-hidden">
-              <div className="h-10 w-10 border-4 border-background flex items-center justify-center bg-black dark:bg-white rounded-full transition-all duration-200">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  version="1.0"
-                  fill="currentColor"
-                  viewBox="185.769 148.352 684.02 711.738"
-                  preserveAspectRatio="xMidYMid meet"
-                  width="684.02"
-                  height="711.738"
-                >
-                  <g
-                    transform="translate(0 1024) scale(0.1 -0.1)"
-                    fill="currentColor"
-                    className="text-background transition-colors duration-200"
-                  >
-                    <path d="M0 5120l0-5120 5120 0 5120 0 0 5120 0 5120-5120 0-5120 0 0-5120zm5375 2860c140-12 393-49 415-61 10-5-2-8-34-9-70 0-244-27-371-57-432-101-860-347-1160-665-351-372-581-849-662-1368-27-173-24-540 5-710 76-448 246-823 520-1151 351-419 881-713 1422-790 141-20 478-18 615 4 526 86 976 314 1364 692 151 147 261 280 367 440 126 192 247 443 304 633 12 40 24 71 26 69 2-2-1-57-7-123-71-841-511-1626-1193-2132-693-513-1598-694-2436-486-1191 296-2083 1312-2224 2534-18 155-21 467-6 621 68 689 347 1289 819 1760 197 196 400 347 634 473 475 254 1051 372 1602 326zm1946-570c13-112 50-246 86-313 71-130 243-220 493-258l84-13-107-17c-388-62-499-187-565-639l-8-55-17 128c-10 70-28 161-41 202-69 217-223 323-529 365-45 7-83 13-85 14-1 2 24 6 56 10 166 19 353 90 435 165 85 78 131 204 162 440 8 58 15 111 16 116 1 6 4-3 5-20 2-16 9-73 15-125zm-1840-48c141-133 236-305 293-532 37-146 46-224 46-408 0-93 4-194 10-223 21-114 153-338 301-510 117-136 142-175 147-228 5-64-23-102-128-173-158-106-176-156-99-276 34-54 38-103 10-148-25-41-78-81-137-103l-46-18 42-7c48-8 95-48 106-91 9-34-11-77-65-139-37-42-41-53-41-100 0-30 7-73 16-97 37-103 16-206-58-276-105-101-280-109-623-25-122 29-170 36-255 36-92 1-111-2-154-23-137-67-201-210-194-429 2-56 0-102-3-102-11 0-157 158-222 240-174 217-272 427-324 695-27 140-24 446 6 585 56 262 165 487 344 710 34 41 176 190 317 330 280 278 357 372 443 539 101 194 134 346 124 565-6 116-31 276-53 330-14 36 114-44 197-122zm1730-1872c20-76 56-136 103-175 55-45 172-92 252-102l59-7-93-18c-221-44-303-134-333-367-16-120-21-127-30-41-29 267-109 361-344 409l-84 17 84 16c152 29 250 90 294 184 21 44 50 185 52 253 1 24 6 9 15-44 7-44 18-100 25-125z" />
-                  </g>
-                </svg>
+              <div className="h-8 w-8 md:h-9 md:w-9 border-4 border-background flex items-center justify-center rounded-full transition-all duration-200">
+                <Logo className="transition-colors duration-200" />
               </div>
             </div>
-            <span className="hidden md:block text-xl font-bold bg-clip-text text-black dark:text-white bg-gradient-to-r from-foreground to-foreground/80 transition-colors duration-200">
-              NYX UI
+            <span className="hidden md:block text-xl ml-1 font-bold bg-clip-text sr-only text-black dark:text-white bg-gradient-to-r from-foreground to-foreground/80 transition-colors duration-200">
+              Nyx UI
             </span>
           </Link>
           <nav className="hidden lg:flex items-center space-x-1 ml-8">
@@ -156,7 +141,7 @@ export default function Header() {
                   "after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-0.5 after:bg-primary after:rounded-full after:transition-all after:duration-200 hover:after:w-4/5",
                   activeLink === link.href
                     ? "text-foreground after:w-4/5 bg-muted/30"
-                    : "text-muted-foreground",
+                    : "text-muted-foreground"
                 )}
               >
                 {link.label}
@@ -172,7 +157,9 @@ export default function Header() {
             onClick={openSearch}
           >
             <Search className="mr-2 h-4 w-4 text-black dark:text-white transition-colors duration-200" />
-            <span className="text-black dark:text-white transition-colors duration-200">Search</span>
+            <span className="text-black dark:text-white transition-colors duration-200">
+              Search
+            </span>
           </Button>
         </div>
         <div className="flex items-center space-x-2">
@@ -283,16 +270,8 @@ export default function Header() {
                 <div className="bg-gradient-to-r from-purple-50/50 to-background/10 dark:from-purple-950/20 dark:to-background/5 p-4 border-b border-muted/20 transition-colors duration-200">
                   <SheetHeader>
                     <SheetTitle className="flex items-center gap-3">
-                      <div className="h-8 w-8 flex items-center justify-center dark:bg-black bg-white rounded-full transition-colors duration-200">
-                        <Image
-                          src="/logo.png"
-                          alt="Nyx UI Logo"
-                          width={32}
-                          height={32}
-                          className="rounded-full"
-                          quality={100}
-                          loading="lazy"
-                          />
+                      <div className="h-8 w-8 md:h-9 md:w-9 border-4 border-background flex items-center justify-center rounded-full transition-all duration-200">
+                        <Logo className="transition-colors duration-200" />
                       </div>
                       <div>
                         <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80 text-base font-bold transition-colors duration-200">
@@ -319,7 +298,7 @@ export default function Header() {
                           "flex items-center text-sm font-medium p-2.5 rounded-md transition-colors duration-200",
                           activeLink === link.href
                             ? "text-foreground bg-muted/60 border-l-2 border-primary pl-[8px]"
-                            : "text-muted-foreground hover:text-foreground hover:bg-muted/30",
+                            : "text-muted-foreground hover:text-foreground hover:bg-muted/30"
                         )}
                       >
                         {link.label}
@@ -344,7 +323,7 @@ export default function Header() {
                             "flex items-center text-sm p-2 rounded-md transition-colors duration-200 pl-2.5",
                             activeLink === `/components/${slug}`
                               ? "text-foreground bg-muted/30 border-l-2 border-primary pl-1.5"
-                              : "text-muted-foreground hover:text-foreground hover:bg-muted/20",
+                              : "text-muted-foreground hover:text-foreground hover:bg-muted/20"
                           )}
                         >
                           {comp.title}
@@ -384,7 +363,9 @@ export default function Header() {
                         </svg>
                       </Link>
                     </div>
-                    <div className="text-xs transition-colors duration-200">v1.2.0</div>
+                    <div className="text-xs transition-colors duration-200">
+                      v1.2.0
+                    </div>
                   </div>
                 </div>
               </SheetContent>

@@ -471,7 +471,7 @@ export default function CustomCursorDemo() {
                 </div>
 
                 <div className="flex-1 flex items-center justify-center">
-                  <Image src="/logo.png" alt="Placeholder" width={200} height={200} className="rounded-full" />
+                  <Image src="/logo.svg" alt="Placeholder" width={150} height={150} className="rounded-xl" />
                 </div>
 
                 <div className="space-y-3 sm:space-y-4">
