@@ -268,17 +268,14 @@ export default function Header() {
               >
                 <div className="bg-gradient-to-r from-purple-50/50 to-background/10 dark:from-purple-950/20 dark:to-background/5 p-4 border-b border-muted/20 transition-colors duration-200">
                   <SheetHeader>
-                    <SheetTitle className="flex items-center gap-3">
+                    <SheetTitle className="flex items-end gap-3">
                       <div className="h-8 w-8 md:h-9 md:w-9 border-4 border-background flex items-center justify-center rounded-full transition-all duration-200">
                         <Logo className="transition-colors duration-200" />
                       </div>
                       <div>
-                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80 text-base font-bold transition-colors duration-200">
-                          NYX{" "}
-                          <span className="text-purple-600 dark:text-purple-400 transition-colors duration-200">
-                            UI
-                          </span>
-                        </span>
+                        <h1 className="bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80 text-md font-bold transition-colors duration-200">
+                          Nyx UI
+                        </h1>
                       </div>
                     </SheetTitle>
                   </SheetHeader>

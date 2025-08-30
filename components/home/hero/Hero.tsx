@@ -159,7 +159,7 @@ function Hero() {
         </div>
 
         {/* Organic Flowing Gradient - responsive */}
-        <div className="absolute -top-32 left-56 md:top-0 md:right-0 md:left-auto w-[300px] h-[300px] sm:w-[500px] sm:h-[400px] lg:w-[720px] lg:h-[600px] opacity-20 dark:opacity-60">
+        <div className="absolute -top-32 left-56 md:top-0 md:right-0 md:left-auto w-[300px] h-[300px] sm:w-[500px] sm:h-[400px] lg:w-[680px] lg:h-[600px] opacity-20 dark:opacity-60">
           <div className="absolute inset-0 bg-gradient-to-br from-green-400 via-purple-500 to-pink-500 rounded-full blur-3xl transform rotate-12 scale-150" />
           <div className="absolute top-10 right-10 sm:top-16 sm:right-16 lg:top-20 lg:right-20 w-48 h-48 sm:w-72 sm:h-72 lg:w-96 lg:h-96 bg-gradient-to-br from-orange-400 via-red-500 to-pink-600 rounded-full blur-2xl opacity-70" />
         </div>
