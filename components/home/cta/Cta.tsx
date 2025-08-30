@@ -7,7 +7,7 @@ export default function FinalCTASection() {
   return (
     <section className="relative pt-16 pb-24 px-6 mb-12 overflow-hidden">
       {/* Animated Background Elements */}
-      <div className="absolute inset-0 opacity-30">
+      {/* <div className="absolute inset-0 opacity-30">
         <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
         <div
           className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse"
@@ -17,17 +17,17 @@ export default function FinalCTASection() {
           className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"
           style={{ animationDelay: "2s" }}
         ></div>
-      </div>
+      </div> */}
 
       {/* Grid Pattern Overlay */}
-      <div
+      {/* <div
         className="absolute inset-0 opacity-10"
         style={{
           backgroundImage:
             "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0)",
           backgroundSize: "50px 50px",
         }}
-      ></div>
+      ></div> */}
 
       <div className="container mx-auto max-w-7xl relative z-10">
         {/* Main Heading */}
