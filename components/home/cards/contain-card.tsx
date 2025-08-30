@@ -3,6 +3,9 @@ import { componentsData } from '@/registry/Data';
 import TextureCard, { TextureCardContent, TextureCardDescription, TextureCardTitle } from './texture-card';
 import { Badge } from '@/components/ui/badge';
 import Image from 'next/image';
+import blocks from '../../../public/assets/images/landing-page/blocks.png'
+import temlplates from '../../../public/assets/images/landing-page/templates.png'
+import components from '../../../public/assets/images/landing-page/components.png'
 
 export default function ContainCard() {
   // Calculate counts dynamically from imported data
@@ -15,7 +18,7 @@ export default function ContainCard() {
       id: 1,
       title: "Components",
       description: "A collection of modern componets that are ready to be used in your next project.",
-      image: "/assets/images/landing-page/components.png",
+      image: components,
       quantity: componentCount.toString(),
       route: "/components"
     },
@@ -23,7 +26,7 @@ export default function ContainCard() {
       id: 2,
       title: "Templates",
       description: "Modern Landing page templates, including a portfolio, saas, and more coming soon.",
-      image: "/assets/images/landing-page/templates.png",
+      image: temlplates,
       quantity: templateCount.toString(),
       route: "/templates"
     },
@@ -31,7 +34,7 @@ export default function ContainCard() {
       id: 3,
       title: "Blocks",
       description: "Explore modern and responsive UI blocks designed for various use cases.",
-      image: "/assets/images/landing-page/blocks.png",
+      image: blocks,
       quantity: blocksCount.toString(),
       route: "/blocks"
     },
@@ -80,6 +83,7 @@ export default function ContainCard() {
                           fill
                           quality={100}
                           loading='lazy'
+                          placeholder='blur'
                           className="rounded-[16px] object-cover transition-transform duration-300 group-hover:scale-105"
                         />
 
