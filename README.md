@@ -1,5 +1,5 @@
 # Nyx UI 
-<img width="1280" height="720" alt="nyx" src="https://github.com/user-attachments/assets/a04a31b2-c89c-4a8b-b7c7-fb956f971079" />
+<img width="2560" height="1440" alt="nyx" src="https://github.com/user-attachments/assets/ca016ef0-7a6f-473a-814b-d53697bc1b0a" />
 
 
 ## About The Project
