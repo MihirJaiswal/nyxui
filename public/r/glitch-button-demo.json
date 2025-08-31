@@ -12,7 +12,7 @@
     "@radix-ui/react-icons"
   ],
   "registryDependencies": [
-    "https://nyxui.vercel.app/r/glitch-button.json"
+    "https://nyxui.com/r/glitch-button.json"
   ],
   "files": [
     {

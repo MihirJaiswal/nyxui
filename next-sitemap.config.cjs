@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 module.exports = {
-    siteUrl: "https://nyxui.vercel.app",
+    siteUrl: "https://nyxui.com",
     generateRobotsTxt: true,
     sitemapSize: 7000,
     generateIndexSitemap: true,

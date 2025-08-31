@@ -8,7 +8,7 @@
     ".."
   ],
   "registryDependencies": [
-    "https://nyxui.vercel.app/r/keyboard.json"
+    "https://nyxui.com/r/keyboard.json"
   ],
   "files": [
     {

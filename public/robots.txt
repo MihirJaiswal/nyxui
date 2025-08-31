@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://nyxui.vercel.app
+Host: https://nyxui.com
 
 # Sitemaps
-Sitemap: https://nyxui.vercel.app/sitemap.xml
+Sitemap: https://nyxui.com/sitemap.xml

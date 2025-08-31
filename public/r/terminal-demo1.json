@@ -9,7 +9,7 @@
     "lucide-react"
   ],
   "registryDependencies": [
-    "https://nyxui.vercel.app/r/terminal.json"
+    "https://nyxui.com/r/terminal.json"
   ],
   "files": [
     {

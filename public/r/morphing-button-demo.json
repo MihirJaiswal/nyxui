@@ -9,7 +9,7 @@
     "lucide-react"
   ],
   "registryDependencies": [
-    "https://nyxui.vercel.app/r/morphing-button.json"
+    "https://nyxui.com/r/morphing-button.json"
   ],
   "files": [
     {

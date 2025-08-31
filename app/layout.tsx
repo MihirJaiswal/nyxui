@@ -7,7 +7,7 @@ import { Banner } from "../components/global/Banner";
 import Footer from "../components/global/Footer";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://nyxui.vercel.app/"),
+  metadataBase: new URL("https://nyxui.com/"),
   title: {
     default: "Nyx UI",
     template: "%s | Nyx UI - React UI Library"
@@ -111,7 +111,7 @@ export default function RootLayout({
               "@type": "SoftwareApplication",
               "name": "Nyx UI",
               "description": "Modern React UI library with 50+ components for Next.js applications",
-              "url": "https://nyxui.vercel.app/",
+              "url": "https://nyxui.com/",
               "author": {
                 "@type": "Person",
                 "name": "Mihir Jaiswal",

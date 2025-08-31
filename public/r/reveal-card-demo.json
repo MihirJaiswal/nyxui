@@ -8,7 +8,7 @@
     ".."
   ],
   "registryDependencies": [
-    "https://nyxui.vercel.app/r/reveal-card.json"
+    "https://nyxui.com/r/reveal-card.json"
   ],
   "files": [
     {

@@ -39,7 +39,7 @@ export function formatDate(input: string | number): string {
 }
 
 export function absoluteUrl(path: string) {
-  return `${process.env.NEXT_PUBLIC_APP_URL || "https://nyxui.vercel.app"}${path}`;
+  return `${process.env.NEXT_PUBLIC_APP_URL || "https://nyxui.com"}${path}`;
 }
 
 export function constructMetadata({
@@ -84,7 +84,7 @@ export function constructMetadata({
       creator: "@mihirjaiswal",
     },
     icons: "/favicon.ico",
-    metadataBase: new URL("https://nyxui.vercel.app/"),
+    metadataBase: new URL("https://nyxui.com/"),
     authors: [
       {
         name: "Mihir Jaiswal",

@@ -4,7 +4,7 @@ import { ComponentSidebar } from "../../components/components/component-sidebar"
 import Header from "../../components/global/Header";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://nyxui.vercel.app/"),
+  metadataBase: new URL("https://nyxui.com/"),
   title: "Docs | Nyx UI",
   description:
     "Comprehensive documentation for Nyx UI - a premium collection of responsive, accessible React components built with Tailwind CSS, Framer Motion, and TypeScript for modern Next.js applications.",
@@ -35,12 +35,12 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://nyxui.vercel.app/components",
+    canonical: "https://nyxui.com/components",
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://nyxui.vercel.app/components",
+    url: "https://nyxui.com/components",
     siteName: "Nyx UI Documentation",
     title: "Nyx UI - Beautiful React Components for Next.js",
     description:

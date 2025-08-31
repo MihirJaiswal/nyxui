@@ -79,7 +79,7 @@ const ComponentsPage = () => {
     publisher: {
       "@type": "Organization",
       name: "Nyx UI",
-      url: "https://nyxui.vercel.app/"
+      url: "https://nyxui.com/"
     }
   };
 

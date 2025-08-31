@@ -9,7 +9,7 @@
     "lucide-react"
   ],
   "registryDependencies": [
-    "https://nyxui.vercel.app/r/scroll-animation-trigger.json"
+    "https://nyxui.com/r/scroll-animation-trigger.json"
   ],
   "files": [
     {
