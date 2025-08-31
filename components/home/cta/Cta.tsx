@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import ThreeDLayeredCard from "@/registry/ui/3d-layered-card";
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
+import AnimatedLogo from "./animated-logo";
 
 export default function FinalCTASection() {
   return (
@@ -36,14 +37,20 @@ export default function FinalCTASection() {
             NYX UI
           </h1> */}
 
-          <div className="max-w-4xl mx-auto space-y-2">
-            <p className="text-3xl md:text-5xl leading-relaxed font-bold">
+          <div className="max-w-4xl flex flex-col items-center justify-center mx-auto">
+            <AnimatedLogo
+            className="text-primary mb-4"
+            width={130}
+            height={115}
+            strokeWidth={90}
+            durationMs={1400}
+            aria-hidden="true"
+            />
+            {/* <p className="text-3xl md:text-4xl leading-relaxed font-bold">
               Follow us
-            </p>
+            </p> */}
             <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
-              Follow us on GitHub & X for early access to new components, UI
-              experiments, product updates, and the ideas shaping the next wave
-              of frontend design.
+              Follow us on social media for the latest updates.
             </p>
           </div>
         </div>
