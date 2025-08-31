@@ -1,13 +1,11 @@
 'use client'
-import { useMemo, useRef, Suspense, useState, useEffect, useCallback } from "react"
+import React, { useMemo, useRef, Suspense, useState, useEffect } from "react"
 import { Canvas, useFrame, useThree } from "@react-three/fiber"
 import { EffectComposer, Bloom, ChromaticAberration } from "@react-three/postprocessing"
 import { Environment } from "@react-three/drei"
 import * as THREE from "three"
 
-/* ----------------------------------------------------------------– */
 /* --------------------------  SHADERS  ---------------------------- */
-/* ----------------------------------------------------------------– */
 
 const vertexShader = /* glsl */ `
   uniform float uTime;
@@ -32,12 +30,10 @@ const vertexShader = /* glsl */ `
 
     vec3 i = floor(v + dot(v, C.yyy));
     vec3 x0 = v - i + dot(i, C.xxx);
-
     vec3 g = step(x0.yzx, x0.xyz);
     vec3 l = 1. - g;
     vec3 i1 = min(g.xyz, l.zxy);
     vec3 i2 = max(g.xyz, l.zxy);
-
     vec3 x1 = x0 - i1 + C.xxx;
     vec3 x2 = x0 - i2 + C.yyy;
     vec3 x3 = x0 - D.yyy;
@@ -165,9 +161,8 @@ const shaderMaterial = new THREE.ShaderMaterial({
   side: THREE.DoubleSide,
 })
 
-/* ----------------------------------------------------------------– */
 /* ----------------------  BLOB   MESH  ----------------------------- */
-/* ----------------------------------------------------------------– */
+
 function Blob({
   theme,
   complexity,
@@ -179,7 +174,6 @@ function Blob({
 }) {
   const { pointer, clock } = useThree()
   const mesh = useRef<THREE.Mesh>(null!)
-
   const themes = {
     primary: { a: "#0A0F8A", b: "#1E40FF", c: "#00D4FF" },
     aurora: { a: "#4A00FF", b: "#FF006B", c: "#00FFFF" },
@@ -189,8 +183,6 @@ function Blob({
   } as const
 
   const { a, b, c } = themes[theme] ?? themes.aurora
-
-  // Cached geometry - only create once
   const geometry = useMemo(() => new THREE.IcosahedronGeometry(2, 6), []) // Keep original quality
 
   // Stable uniforms reference
@@ -207,8 +199,6 @@ function Blob({
     }),
     [a, b, c, complexity, speed],
   )
-
-  // Cloned material with uniforms
   const material = useMemo(() => {
     const mat = shaderMaterial.clone()
     mat.uniforms = uniforms
@@ -225,13 +215,10 @@ function Blob({
   )
 }
 
-/* ----------------------------------------------------------------– */
 /* ----------------------  PARTICLES  ------------------------------- */
-/* ----------------------------------------------------------------– */
-function Particles({ count = 150, color = "#00FFFF" }) { // Restored original count
-  const points = useRef<THREE.Points>(null!)
 
-  // Cached geometry and attributes
+function Particles({ count = 150, color = "#00FFFF" }) { 
+  const points = useRef<THREE.Points>(null!)
   const { geometry, material } = useMemo(() => {
     const pos = new Float32Array(count * 3)
     const scl = new Float32Array(count)
@@ -294,9 +281,8 @@ function Particles({ count = 150, color = "#00FFFF" }) { // Restored original co
   return <points ref={points} geometry={geometry} material={material} />
 }
 
-/* ----------------------------------------------------------------– */
 /* ----------------------  EFFECTS  -------------------------------- */
-/* ----------------------------------------------------------------– */
+
 function PostProcessingEffects({ enabled = true }: { enabled?: boolean }) {
   if (!enabled) return null
 
@@ -312,9 +298,34 @@ function PostProcessingEffects({ enabled = true }: { enabled?: boolean }) {
   )
 }
 
-/* ----------------------------------------------------------------– */
+/* ----------------------  ERROR BOUNDARY  ------------------------- */
+
+class EnvironmentErrorBoundary extends React.Component<
+  { children: React.ReactNode; fallback: React.ReactNode },
+  { hasError: boolean }
+> {
+  constructor(props: { children: React.ReactNode; fallback: React.ReactNode }) {
+    super(props)
+    this.state = { hasError: false }
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true }
+  }
+
+  componentDidCatch() {
+    // Environment loading failed
+  }
+  render() {
+    if (this.state.hasError) {
+      return this.props.fallback
+    }
+    return this.props.children
+  }
+}
+
 /* ----------------------  SCENE  ---------------------------------- */
-/* ----------------------------------------------------------------– */
+
 function Scene({
   theme = "aurora",
   complexity = 3,
@@ -336,27 +347,36 @@ function Scene({
     danger: "#FFAA00",
   }
 
+  // Fallback lighting when Environment fails
+  const FallbackLighting = () => (
+    <>
+      <ambientLight intensity={0.4} color="#1a1a2e" />
+      <pointLight position={[10, 10, 10]} intensity={1.8} color="#ffffff" /> 
+      <pointLight position={[-10, -10, -10]} intensity={1.2} color="#4444ff" />
+      <pointLight position={[0, -10, 5]} intensity={0.8} color="#8844ff" />
+    </>
+  )
+
   return (
     <>
       <Blob theme={theme} complexity={complexity} speed={speed} />
       <Particles count={particleCount} color={particleColors[theme]} />
-
       <ambientLight intensity={0.3} />
       <pointLight position={[10, 10, 10]} intensity={1.5} color="#ffffff" /> 
       <pointLight position={[-10, -10, -10]} intensity={1.0} color="#4444ff" />
-      
-      <Suspense fallback={null}>
-        <Environment preset="night" />
-      </Suspense>
+      <EnvironmentErrorBoundary fallback={<FallbackLighting />}>
+        <Suspense fallback={<FallbackLighting />}>
+          <Environment preset="night" />
+        </Suspense>
+      </EnvironmentErrorBoundary>
 
       <PostProcessingEffects enabled={enableEffects} />
     </>
   )
 }
 
-/* ----------------------------------------------------------------– */
 /* --------------------  EXPORTED  COMPONENT  ----------------------- */
-/* ----------------------------------------------------------------– */
+
 export function MorphingBlob({
   size = 400,
   theme = "aurora",
@@ -382,8 +402,6 @@ export function MorphingBlob({
   useEffect(() => {
     setIsClient(true)
   }, [])
-
-  // Simplified fallback without animations
   const FallbackComponent = () => (
     <div 
       className={className} 
