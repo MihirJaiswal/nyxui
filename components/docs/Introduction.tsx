@@ -7,6 +7,7 @@ import {
   AccordionTrigger,
 } from "../ui/accordion";
 import { ChevronUp } from "lucide-react";
+import img from "../../public/docs/docs-cover.png";
 
 export default function IntroductionPage() {
   return (
@@ -23,11 +24,12 @@ export default function IntroductionPage() {
         </div>
         <div className="relative overflow-hidden rounded-xl border shadow-md">
           <Image
-            src="/docs/docs-cover.png"
+            src={img}
             alt="nyx UI Components Preview"
             width={1200}
             height={630}
             loading="lazy"
+            placeholder="blur"
             quality={100}
             className="w-full"
           />
