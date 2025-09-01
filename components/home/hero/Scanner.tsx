@@ -16,7 +16,7 @@ export const Scanner = () => {
   return (
     <div className="h-[300px] w-[300px]">
       <ImageScanner
-        image="/assets/images/landing-page/nyx.png"
+        image="/assets/images/landing-page/img.webp"
         scanType='matrix'
         scanColor="emerald"
         scanDelay={5}

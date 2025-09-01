@@ -1,5 +1,6 @@
+'use client'
 import Link from "next/link";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { ArrowRight, Blocks, ChevronRight } from "lucide-react";
 import TechStack from "./Tech";
 import { Badge } from "../../ui/badge";
@@ -12,6 +13,9 @@ import { AnimatedCodeBlockDemo } from "./CodeBlock";
 import { componentsData } from "@/registry/Data";
 
 function Hero() {
+  // State for gradient animation
+  const [showGradient, setShowGradient] = useState(false);
+
   // Calculate counts dynamically from imported data
   const componentCount = Object.keys(componentsData.components || {}).length;
   const templateCount = Object.keys(componentsData.templates || {}).length;
@@ -19,6 +23,15 @@ function Hero() {
     ? Object.keys(componentsData.blocks).length
     : 0;
   const hasBlocks = blockCount > 0;
+
+  // Trigger gradient animation after component mounts
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowGradient(true);
+    }, 800); // Delay of 800ms - adjust as needed
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <section className="relative px-6 xl:px-22 py-12 sm:py-16 md:py-20 lg:py-28 flex flex-col xl:flex-row xl:container mx-auto">
@@ -158,13 +171,16 @@ function Hero() {
           </div>
         </div>
 
-        {/* Organic Flowing Gradient - responsive */}
-        <div className="absolute -top-32 left-56 md:top-0 md:right-0 md:left-auto w-[300px] h-[300px] sm:w-[500px] sm:h-[400px] lg:w-[680px] lg:h-[600px] opacity-20 dark:opacity-60">
-          <div className="absolute inset-0 bg-gradient-to-br from-green-400 via-purple-500 to-pink-500 rounded-full blur-3xl transform rotate-12 scale-150" />
+        {/* Animated Organic Flowing Gradient */}
+        <div className={`absolute -top-32 left-56 md:top-0 md:right-0 md:left-auto w-[300px] h-[300px] sm:w-[500px] sm:h-[400px] lg:w-[680px] lg:h-[600px] transition-all duration-1000 ease-out ${
+          showGradient 
+            ? 'opacity-20 dark:opacity-70 scale-100' 
+            : 'opacity-0 scale-75'
+        }`}>
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-500 via-purple-600 to-pink-600 rounded-full blur-3xl transform rotate-12 scale-150" />
           <div className="absolute top-10 right-10 sm:top-16 sm:right-16 lg:top-20 lg:right-20 w-48 h-48 sm:w-72 sm:h-72 lg:w-96 lg:h-96 bg-gradient-to-br from-orange-400 via-red-500 to-pink-600 rounded-full blur-2xl opacity-70" />
         </div>
       </div>
-
 
       {/* Right side components - XL screens and above (second version behavior) */}
       {/* For screens >= 1442px - Show all components */}
@@ -186,7 +202,6 @@ function Hero() {
         <div className="absolute bottom-[10.2rem] right-[37.55rem] w-2 h-3 border-l-3 border-neutral-500/40 dark:border-white/60 z-28"></div>
         <div className="absolute bottom-[9.88rem] right-[37.3rem] w-3 h-2 border-t-3 border-neutral-500/40 dark:border-white/60 z-28"></div>
       </div>
-
 
       <div className="hidden xl:block 2xl:hidden relative z-12">
         <div className="absolute -top-8 right-116 w-full h-full">

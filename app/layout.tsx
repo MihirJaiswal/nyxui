@@ -15,6 +15,8 @@ export const metadata: Metadata = {
   description:
     "Nyx UI is the ultimate React UI library with 30+ modern components for Next.js. Built with Tailwind CSS, Framer Motion, and TypeScript. Create beautiful, responsive interfaces faster with our comprehensive UI component library.",
   keywords: [
+    "Nyx UI",
+    "nyxui",
     "UI library",
     "React UI library", 
     "Next.js UI library",
@@ -35,8 +37,7 @@ export const metadata: Metadata = {
     "frontend UI library",
     "Tailwind UI library",
     "React design system",
-    "UI kit",
-    "component framework"
+    "UI kit"
   ],
   authors: [{ name: "Mihir Jaiswal", url: "https://mihirjaiswal-portfolio.vercel.app/" }],
   creator: "Mihir Jaiswal",

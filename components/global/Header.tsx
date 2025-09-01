@@ -59,7 +59,6 @@ export default function Header() {
     "--color-5": "39, 100%, 58%" /* Yellow/Orange */,
   } as React.CSSProperties;
 
-  // Prevent hydration mismatch by not rendering until mounted
   if (!mounted) {
     return (
       <header
@@ -93,7 +92,7 @@ export default function Header() {
     <header
       style={gradientStyle}
       className={cn(
-        "sticky top-0 z-50 w-full transition-all duration-200 ease-in-out",
+        "sticky top-0 z-50 w-full transition-all duration-200 ease-in-out px-2",
         scrolled
           ? "bg-background/95 backdrop-blur-xl shadow-sm border-b border-border/50"
           : "bg-background/80 backdrop-blur-md"
