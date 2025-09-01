@@ -80,7 +80,8 @@ export default function ContainCard() {
                         <Image
                           src={project.image || "/placeholder.svg"}
                           alt={`${project.title} preview`}
-                          fill
+                          height={1200}
+                          width={900}
                           quality={100}
                           loading='lazy'
                           placeholder='blur'

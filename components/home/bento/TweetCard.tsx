@@ -4,6 +4,7 @@ import { GlowCard } from "@/registry/ui/glow-card";
 import Image from "next/image";
 import Link from "next/link";
 import Imageripple from "./ImageRipple";
+import img from '../../../public/assets/images/landing-page/mihir.webp'
 
 export const TwitterCard = () => {
 
@@ -20,11 +21,12 @@ export const TwitterCard = () => {
             <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden">
               <div className="w-full h-full flex items-center justify-center">
                 <Image
-                  src='/assets/images/landing-page/mihir.webp'
+                  src={img}
                   alt="Mihir Jaiswal"
                   width={500}
                   height={500}
                   loading="lazy"
+                  placeholder="blur"
                   quality={100}
                   className="rounded-full object-cover"
                 />
