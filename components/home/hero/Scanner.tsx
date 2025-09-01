@@ -19,7 +19,7 @@ export const Scanner = () => {
         image="/assets/images/landing-page/img.webp"
         scanType='matrix'
         scanColor="emerald"
-        scanDelay={0} // Changed from 5 to 0 for immediate scanning
+        scanDelay={5} 
         showDataOverlay={false}
         showScanResults
         scanResults={personScanResults}
