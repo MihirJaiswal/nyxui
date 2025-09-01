@@ -2,7 +2,6 @@ import { ImageScanner } from '@/registry/ui/image-scanner'
 import React from 'react'
 
 export const Scanner = () => {
-  // Define your custom scan results
   const personScanResults = [
     {
       id: "person-1",
@@ -15,11 +14,12 @@ export const Scanner = () => {
 
   return (
     <div className="h-[300px] w-[300px]">
+      <link rel="preload" as="image" href="/assets/images/landing-page/img.webp" />
       <ImageScanner
         image="/assets/images/landing-page/img.webp"
         scanType='matrix'
         scanColor="emerald"
-        scanDelay={5}
+        scanDelay={0} // Changed from 5 to 0 for immediate scanning
         showDataOverlay={false}
         showScanResults
         scanResults={personScanResults}
