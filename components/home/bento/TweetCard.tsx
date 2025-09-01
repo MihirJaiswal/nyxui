@@ -27,7 +27,6 @@ export const TwitterCard = () => {
                   height={500}
                   loading="lazy"
                   placeholder="blur"
-                  quality={100}
                   className="rounded-full object-cover"
                 />
               </div>

@@ -39,7 +39,7 @@ function Hero() {
         <div className="xl:max-w-5xl relative mt-6 sm:mt-8 lg:mt-12">
           {/* Announcement Badge */}
           <Link
-            href="/components/apple-glass-effect"
+            href="/playground"
             rel="noopener noreferrer"
             className="z-12"
           >
@@ -47,7 +47,7 @@ function Hero() {
               <div className="border-r border-zinc-500 pr-2">
                 <Blocks className="h-3 w-3 sm:h-4 sm:w-4 group-hover:fill-purple-400 dark:group-hover:fill-purple-700 group-hover:rotate-12" />
               </div>
-              New! <span className="hidden sm:inline">Glow Card</span>
+              New! <span className="hidden sm:inline">Playground</span>
               <ArrowRight className="ml-1 sm:ml-2 h-3 w-3 sm:h-4 sm:w-4 group-hover:ml-4 transform transition-all duration-200" />
             </Badge>
           </Link>
