@@ -121,7 +121,7 @@ function Hero() {
         </div>
 
         {/* Bottom section - responsive layout */}
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between xl:justify-start mt-14 xl:gap-12 sm:mt-16 lg:mt-18 z-1 xl:scale-95 xl:-ml-8">
+        <div className="flex flex-col lg:flex-row flex-wrap lg:items-end lg:justify-between xl:justify-start mt-14 lg:gap-y-12 xl:gap-12 sm:mt-16 lg:mt-18 z-1 xl:scale-95 xl:-ml-8 relative">
           <div className="mb-10 lg:mb-0">
             <p className="text-neutral-700 dark:text-neutral-400 text-sm sm:text-[14.5px] mb-4 text-center lg:text-left">
               Trusted by many developers

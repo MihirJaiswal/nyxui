@@ -20,7 +20,7 @@ export default function CategoriesPage() {
   });
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto py-8">
       <h1 className="text-3xl font-bold mb-14 text-gray-900 dark:text-gray-100">
         Categories
       </h1>
@@ -29,7 +29,8 @@ export default function CategoriesPage() {
         {sortedTags.map((tag) => (
           <GlowCard
             variant="cosmic"
-            className="rounded-md border border-gray-300 dark:border-zinc-800"
+            allowCustomBackground
+            className="rounded-xl border border-gray-300 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 h-60" // Added fixed height
             key={tag}
           >
             <div
@@ -42,15 +43,15 @@ export default function CategoriesPage() {
             <Link
               key={tag}
               href={`/category/${encodeURIComponent(tag.toLowerCase())}`}
-              className="group relative"
+              className="group relative h-full" 
             >
               <div className="absolute inset-0 rounded-lg transition-all duration-500 ease-out group-hover:border-transparent group-hover:scale-[1.02] group-hover:shadow-[0_0_0_1px_rgba(0,0,0,0.05),0_1px_3px_0_rgba(0,0,0,0.1),0_10px_30px_-5px_rgba(0,0,0,0.08)] dark:group-hover:shadow-[0_0_0_1px_rgba(255,255,255,0.05),0_1px_3px_0_rgba(0,0,0,0.1),0_10px_30px_-5px_rgba(0,0,0,0.25)]"></div>
 
               <div className="absolute inset-0 bg-gradient-to-br from-transparent to-transparent group-hover:from-gray-50/50 group-hover:to-gray-100/50 dark:group-hover:from-gray-900/50 dark:group-hover:to-gray-800/50 rounded-lg transition-all duration-500 ease-out opacity-0 group-hover:opacity-100"></div>
 
-              <div className="relative p-8 rounded-lg">
+              <div className="relative p-8 rounded-lg h-full">
                 <div className="flex flex-col h-full">
-                  <div className="mb-6 w-12 h-12 rounded-full">
+                  <div className="mb-6 w-12 h-12 rounded-full flex-shrink-0">
                     <Image
                       src="/logo.svg"
                       alt="Logo"
@@ -62,13 +63,13 @@ export default function CategoriesPage() {
                     />
                   </div>
 
-                  <div className="mb-2">
-                    <h2 className="text-xl font-medium text-gray-900 dark:text-gray-50 transition-all duration-300 ease-out group-hover:translate-x-1">
+                  <div className="mb-2 flex-grow">
+                    <h2 className="text-xl font-medium text-gray-900 dark:text-gray-50 transition-all duration-300 ease-out group-hover:translate-x-1 line-clamp-2"> {/* Added line-clamp-2 to limit text to 2 lines */}
                       {tag}
                     </h2>
                   </div>
 
-                  <div className="mt-auto flex justify-between items-end">
+                  <div className="flex justify-between items-end flex-shrink-0">
                     <span className="text-sm text-gray-500 dark:text-gray-400 transition-all duration-300 ease-out group-hover:text-gray-900 dark:group-hover:text-gray-100">
                       {tagCounts[tag]}{" "}
                       {tagCounts[tag] === 1 ? "component" : "components"}

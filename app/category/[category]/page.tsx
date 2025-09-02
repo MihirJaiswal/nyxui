@@ -19,7 +19,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
   if (!decodedCategory) {
     return (
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto py-8">
         <h1 className="text-3xl font-bold mb-6 text-red-500">
           Error: Category parameter is missing
         </h1>
@@ -38,12 +38,12 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   );
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto py-8">
       <h1 className="text-3xl font-bold mb-6 text-gray-800 dark:text-gray-100">
         {displayCategory} Components
       </h1>
 
-      <div className="relative z-40 grid grid-cols-1 items-start gap-20 pb-12 md:grid-cols-1 lg:grid-cols-2 lg:gap-10 xl:grid-cols-2">
+      <div className="relative z-40 grid grid-cols-1 items-start gap-6 pb-12 md:grid-cols-1 lg:grid-cols-2 lg:gap-10 xl:grid-cols-2">
         {filteredComponents.map(([slug, component]) => (
           <ComponentCard
             key={slug}
