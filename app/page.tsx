@@ -4,6 +4,7 @@ import ContainCard from "@/components/home/cards/contain-card";
 import AnimatedComponentsShowcase from "@/components/home/feature/Feature";
 import FinalCTASection from "@/components/home/cta/Cta";
 import Header from "@/components/global/Header";
+import SupportSection from "@/components/home/support/Support";
 export default function Home() {
   return (
     <>
@@ -14,6 +15,7 @@ export default function Home() {
         <AnimatedComponentsShowcase/>
         <ContainCard/>
         <FinalCTASection/>
+        <SupportSection/>
     </div>
     </>
   );

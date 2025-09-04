@@ -42,6 +42,7 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
   --animate-grid: grid 15s linear infinite;
+  --animate-ripple: ripple var(--duration, 2s) ease calc(var(--i, 0) * 0.2s) infinite;
 }
 
 /* Smooth theme transitions - more selective approach */
@@ -118,6 +119,16 @@ body {
 /* Remove overly aggressive global transitions */
 * {
   /* Remove the global transition that was causing conflicts */
+}
+
+@keyframes ripple {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(0.9);
+  }
 }
 
 @keyframes grid {
