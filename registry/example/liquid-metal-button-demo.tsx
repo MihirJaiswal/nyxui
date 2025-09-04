@@ -310,7 +310,6 @@ export const liquidMetalButtons = [
     component: (
       <LiquidMetalButton
         theme="gold"
-        textured={true}
         className="rounded-lg relative bg-background"
       >
         <div className="flex items-center">
@@ -337,7 +336,6 @@ export const liquidMetalButtons = [
       <LiquidMetalButton
         variant="default"
         theme="emerald"
-        textured={true}
         className="rounded-lg relative group bg-background"
       >
         <div className="flex items-center">
