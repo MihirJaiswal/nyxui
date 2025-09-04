@@ -41,17 +41,18 @@ export default function SupportSection() {
 
   return (
     <div className="w-full pt-20 pb-24 overflow-hidden px-6 xl:px-22 xl:container mx-auto">
-      <div className="relative flex flex-col justify-start z-10 px-4 sm:px-6 md:px-8 lg:px-8 py-2 dark:bg-neutral-950/80 dark:text-white bg-white border border-neutral-200/60 dark:border-neutral-800/60 backdrop-blur-sm rounded-lg">
+      <div className="relative flex flex-col justify-start z-10 px-4 sm:px-6 md:px-8 lg:px-8 py-2 dark:bg-neutral-950/80 dark:text-white bg-white border border-neutral-200/60 dark:border-neutral-800/60 backdrop-blur-sm">
         
         {/* Enhanced corner decorations with glow */}
-        <div className="absolute -top-0.5 left-0 w-4 z-12 h-0.5 border-t border-neutral-600/80 dark:border-neutral-400/80 bg-gradient-to-r from-neutral-600/80 to-transparent dark:from-neutral-400/80 pointer-events-none shadow-sm"></div>
-        <div className="absolute -top-0.5 -left-0.5 w-0.5 z-12 h-4 border-l border-neutral-600/80 dark:border-neutral-400/80 bg-gradient-to-b from-neutral-600/80 to-transparent dark:from-neutral-400/80 pointer-events-none shadow-sm"></div>
-        <div className="absolute -top-0.5 right-0 w-4 z-12 h-0.5 border-t border-neutral-600/80 dark:border-neutral-400/80 bg-gradient-to-l from-neutral-600/80 to-transparent dark:from-neutral-400/80 pointer-events-none shadow-sm"></div>
-        <div className="absolute -top-0.5 -right-0.5 w-0.5 z-12 h-4 border-r border-neutral-600/80 dark:border-neutral-400/80 bg-gradient-to-b from-neutral-600/80 to-transparent dark:from-neutral-400/80 pointer-events-none shadow-sm"></div>
-        <div className="absolute -bottom-0.5 left-0 w-4 z-12 h-0.5 border-b border-neutral-600/80 dark:border-neutral-400/80 bg-gradient-to-r from-neutral-600/80 to-transparent dark:from-neutral-400/80 pointer-events-none shadow-sm"></div>
-        <div className="absolute -bottom-0.5 -left-0.5 w-0.5 z-12 h-4 border-l border-neutral-600/80 dark:border-neutral-400/80 bg-gradient-to-t from-neutral-600/80 to-transparent dark:from-neutral-400/80 pointer-events-none shadow-sm"></div>
-        <div className="absolute -bottom-0.5 right-0 w-4 z-12 h-0.5 border-b border-neutral-600/80 dark:border-neutral-400/80 bg-gradient-to-l from-neutral-600/80 to-transparent dark:from-neutral-400/80 pointer-events-none shadow-sm"></div>
-        <div className="absolute -bottom-0.5 -right-0.5 w-0.5 z-12 h-4 border-r border-neutral-600/80 dark:border-neutral-400/80 bg-gradient-to-t from-neutral-600/80 to-transparent dark:from-neutral-400/80 pointer-events-none shadow-sm"></div>
+        <div className="absolute -top-0.5 left-0 w-4 z-12 h-0.5 border-t border-neutral-600 dark:border-neutral-400 bg-neutral-600 dark:bg-neutral-400"></div>
+        <div className="absolute -top-0.5 -left-0.5 w-0.5 z-12 h-4 border-l border-neutral-600 dark:border-neutral-400 bg-neutral-600 dark:bg-neutral-400"></div>
+        <div className="absolute -top-0.5 right-0 w-4 z-12 h-0.5 border-t border-neutral-600 dark:border-neutral-400 bg-neutral-600 dark:bg-neutral-400"></div>
+        <div className="absolute -top-0.5 -right-0.5 w-0.5 z-12 h-4 border-r border-neutral-600 dark:border-neutral-400 bg-neutral-600 dark:bg-neutral-400"></div>
+
+        <div className="absolute -bottom-0.5 left-0 w-4 z-12 h-0.5 border-b border-neutral-600 dark:border-neutral-400 bg-neutral-600 dark:bg-neutral-400"></div>
+        <div className="absolute -bottom-0.5 -left-0.5 w-0.5 z-12 h-4 border-l border-neutral-600 dark:border-neutral-400 bg-neutral-600 dark:bg-neutral-400"></div>
+        <div className="absolute -bottom-0.5 right-0 w-4 z-12 h-0.5 border-b border-neutral-600 dark:border-neutral-400 bg-neutral-600 dark:bg-neutral-400"></div>
+        <div className="absolute -bottom-0.5 -right-0.5 w-0.5 z-12 h-4 border-r border-neutral-600 dark:border-neutral-400 bg-neutral-600 dark:bg-neutral-400"></div>
 
         {/* LinkedIn Phone - Enhanced */}
         <motion.div
