@@ -11,7 +11,8 @@ import AnimatedChatDemo from "./Cyber";
 
 export const ComponentsDemo = () => {
   return (
-    <div className="container mx-auto mt-8 px-6 lg:px-12 xl:px-22 py-12">
+    <div className="container flex flex-col items-center justify-center mx-auto px-6 lg:px-12 xl:px-22 py-20">
+      <div className="flex flex-col items-center justify-center">
       <h2 className="text-3xl sm:text-5xl text-center lg:text-5xl font-extrabold tracking-tight leading-tight">
         Component Demos
       </h2>
@@ -19,6 +20,7 @@ export const ComponentsDemo = () => {
         These are a few components that you can easily plug into your next
         project.
       </h3>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12">
         <BentoGrid
           className="md:col-span-2 hover:scale-[1.01] overflow-hidden  rounded-3xl transition-all duration-300 h-[480px] border border-neutral-200 dark:border-neutral-800"
@@ -84,7 +86,7 @@ export const ComponentsDemo = () => {
           }
         />
       </div>
-      <div className="relative mt-12 flex w-full flex-col justify-center space-y-2 sm:flex-row sm:space-y-0 sm:space-x-4 my-16 px-8">
+      <div className="relative mt-12 flex w-full flex-col justify-center space-y-2 sm:flex-row sm:space-y-0 sm:space-x-4 px-8">
         <Link href="/components" rel="noopener noreferrer">
           <Rbutton className="bg-slate-900 dark:bg-white dark:text-black no-underline flex space-x-2 group cursor-pointer relative transition duration-200 p-px font-semibold text-white px-4 py-2 h-14 w-full items-center justify-center rounded-2xl text-center text-sm sm:w-52">
             All Components

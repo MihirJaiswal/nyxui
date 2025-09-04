@@ -40,7 +40,7 @@ export default function SupportSection() {
   };
 
   return (
-    <div className="w-full pt-20 pb-24 overflow-hidden px-6 xl:px-22 xl:container mx-auto">
+    <div className="w-full py-20 overflow-hidden px-6 xl:px-22 xl:container mx-auto">
       <div className="relative flex flex-col justify-start z-10 px-4 sm:px-6 md:px-8 lg:px-8 py-2 dark:bg-neutral-950/80 dark:text-white bg-white border border-neutral-200/60 dark:border-neutral-800/60 backdrop-blur-sm">
         
         {/* Enhanced corner decorations with glow */}

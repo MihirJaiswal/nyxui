@@ -41,7 +41,7 @@ export default function ContainCard() {
   ];
 
   return (
-    <div className="py-8 px-6 xl:px-22 xl:container mx-auto">
+    <div className="py-20 px-6 xl:px-22 xl:container mx-auto">
       <div className="mx-auto relative z-12">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-neutral-900 dark:text-neutral-100 mb-4">

@@ -6,7 +6,7 @@ import AnimatedLogo from "./animated-logo";
 
 export default function FinalCTASection() {
   return (
-    <section className="relative pt-16 pb-24 px-6 mb-12 overflow-hidden">
+    <section className="relative pt-20 pb-24 px-6 overflow-hidden">
       {/* Animated Background Elements */}
       {/* <div className="absolute inset-0 opacity-30">
         <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>

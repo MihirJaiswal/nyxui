@@ -72,7 +72,6 @@ import { LiquidMetalButton } from "@/components/ui/liquid-metal-button";
 <LiquidMetalButton
   theme="gold"
   variant="outline"
-  textured={true}
 >
   Metallic Effect
 </LiquidMetalButton>
@@ -96,13 +95,12 @@ import { LiquidMetalButton } from "@/components/ui/liquid-metal-button";
 
 | Prop             | Type              | Default     | Description                                                                                                      |
 | ---------------- | ----------------- | ----------- | ---------------------------------------------------------------------------------------------------------------- |
-| `variant`        | `string`          | `"default"` | Button variant: "default", "outline", "ghost"                                   |
+| `variant`        | `string`          | `"default"` | Button variant: "default", "outline", "ghost"                                                                    |
 | `size`           | `string`          | `"md"`      | Button size: "xs", "sm", "md", "lg", "xl", "2xl"                                                                 |
-| `theme`          | `string`          | `"silver"`  | Color theme: "silver", "gold", "copper", "mercury", "steel", "emerald", "sapphire", "custom" |
+| `theme`          | `string`          | `"silver"`  | Color theme: "silver", "gold", "copper", "mercury", "steel", "emerald", "sapphire", "custom"                     |
 | `customColors`   | `object`          | `undefined` | Custom colors for "custom" theme (base, highlight, shadow, text, border, glow)                                   |       
 | `clickEffect`    | `boolean`         | `true`      | Enable click animation                                                                                           |
 | `hoverAnimation` | `boolean`         | `true`      | Enable hover animation                                                                                           |
-| `textured`       | `boolean`         | `false`     | Apply textured effect                                                                                            |
 | `icon`           | `React.ReactNode` | `undefined` | Icon displayed before children                                                                                   |
 | `iconAfter`      | `React.ReactNode` | `undefined` | Icon displayed after children                                                                                    |
 | `className`      | `string`          | `""`        | Additional CSS classes                                                                                           |

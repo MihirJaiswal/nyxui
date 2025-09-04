@@ -34,7 +34,7 @@ function Hero() {
   }, []);
 
   return (
-    <section className="relative px-6 xl:px-22 py-12 sm:py-16 md:py-20 lg:py-28 flex flex-col xl:flex-row xl:container mx-auto">
+    <section className="relative px-6 xl:px-22 py-12 sm:py-16 md:py-20 lg:pt-28 lg:pb-20 flex flex-col xl:flex-row xl:container mx-auto">
       <div className="w-full xl:flex-1 xl:container xl:mx-auto z-10">
         <div className="xl:max-w-5xl relative mt-6 sm:mt-8 lg:mt-12">
           {/* Announcement Badge */}
