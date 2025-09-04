@@ -57,10 +57,6 @@ export default function SupportSection() {
         {/* LinkedIn Phone - Enhanced */}
         <motion.div
           className="absolute bottom-0 left-1/2 -translate-x-4 xl:translate-x-4 hidden lg:block"
-          initial={{ opacity: 0, y: 32 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1], delay: 0.1 }}
         >
           <div style={{ perspective: 1000 }}>
             <LinkedInPhoneComponent/>
@@ -70,10 +66,6 @@ export default function SupportSection() {
         {/* X Phone - Enhanced */}
         <motion.div
           className="absolute bottom-0 right-5 xl:right-15 hidden lg:block"
-          initial={{ opacity: 0, y: 32, scale: 0.95 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1], delay: 0.2 }}
         >
           <div style={{ perspective: 1200 }}>
             <XPhoneComponent/>
