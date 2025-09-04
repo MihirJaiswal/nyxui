@@ -41,7 +41,7 @@ export default function SupportSection() {
 
   return (
     <div className="w-full pt-20 pb-24 overflow-hidden px-6 xl:px-22 xl:container mx-auto">
-      <div className="relative flex flex-col justify-start z-10 px-4 sm:px-6 md:px-8 lg:px-8 py-2 dark:bg-neutral-950/80 dark:text-white bg-white border border-neutral-200/60 dark:border-neutral-800/60 shadow-xl backdrop-blur-sm rounded-lg">
+      <div className="relative flex flex-col justify-start z-10 px-4 sm:px-6 md:px-8 lg:px-8 py-2 dark:bg-neutral-950/80 dark:text-white bg-white border border-neutral-200/60 dark:border-neutral-800/60 backdrop-blur-sm rounded-lg">
         
         {/* Enhanced corner decorations with glow */}
         <div className="absolute -top-0.5 left-0 w-4 z-12 h-0.5 border-t border-neutral-600/80 dark:border-neutral-400/80 bg-gradient-to-r from-neutral-600/80 to-transparent dark:from-neutral-400/80 pointer-events-none shadow-sm"></div>
@@ -97,7 +97,7 @@ export default function SupportSection() {
               ready-to-use posts for you, just click share.
             </motion.p>
             <motion.div
-              className="flex items-center gap-2 mt-2 border border-zinc-700 rounded-sm overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 w-full sm:w-96"
+              className="flex items-center gap-2 mt-2 border rounded-sm overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 w-full sm:w-96"
               whileHover={{ scale: 1.005 }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
@@ -105,26 +105,26 @@ export default function SupportSection() {
               <button 
                 onClick={() => handleShare('linkedin')}
                 disabled={isSharing}
-                className="flex items-center gap-3 hover:bg-blue-700 px-4 py-3 w-full cursor-pointer transition-colors duration-200 border-none bg-transparent"
+                className="flex items-center gap-3 hover:bg-blue-300 dark:hover:bg-blue-700 px-4 py-3 w-full cursor-pointer transition-colors duration-200 border-none bg-transparent"
               >
                 <div className="flex-shrink-0">
                   <FaLinkedinIn
-                    className="h-5 w-5 text-white cursor-pointer"
+                    className="h-5 w-5 cursor-pointer"
                     title="Share on LinkedIn"
                     aria-label="Share on LinkedIn"
                   />
                 </div>
                 <div className="flex-1 flex items-center justify-between">
-                  <span className="text-sm font-medium text-white">
+                  <span className="text-sm font-medium">
                     Share on LinkedIn
                   </span>
-                  <ExternalLink className="h-4 w-4 text-white opacity-80" />
+                  <ExternalLink className="h-4 w-4 opacity-80" />
                 </div>
               </button>
             </motion.div>
 
             <motion.div
-              className="flex items-center gap-2 border border-zinc-700 rounded-sm overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 w-full sm:w-96"
+              className="flex items-center gap-2 border rounded-sm overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 w-full sm:w-96"
               whileHover={{ scale: 1.005 }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
@@ -132,25 +132,25 @@ export default function SupportSection() {
               <button 
                 onClick={() => handleShare('twitter')}
                 disabled={isSharing}
-                className="flex items-center gap-3 bg-black hover:bg-zinc-700 px-4 py-3 w-full cursor-pointer transition-colors duration-200 border-none"
+                className="flex items-center gap-3 hover:bg-zinc-300 dark:hover:bg-zinc-700 px-4 py-3 w-full cursor-pointer transition-colors duration-200 border-none"
               >
                 <div className="flex-shrink-0">
                   <FaXTwitter
-                    className="h-5 w-5 text-white cursor-pointer"
+                    className="h-5 w-5 cursor-pointer"
                     title="Share on X"
                     aria-label="Share on X"
                   />
                 </div>
                 <div className="flex-1 flex items-center justify-between">
-                  <span className="text-sm font-medium text-white">
+                  <span className="text-sm font-medium">
                     Share on X
                   </span>
-                  <ExternalLink className="h-4 w-4 text-white opacity-80" />
+                  <ExternalLink className="h-4 w-4 opacity-80" />
                 </div>
               </button>
             </motion.div>
             <motion.div
-              className="flex items-center gap-2 border border-zinc-700 rounded-sm overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 w-full sm:w-96"
+              className="flex items-center gap-2 border rounded-sm overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 w-full sm:w-96"
               whileHover={{ scale: 1.005 }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
@@ -158,20 +158,20 @@ export default function SupportSection() {
               <button 
                 onClick={() => handleShare('github')}
                 disabled={isSharing}
-                className="flex items-center gap-3 bg-black hover:bg-gray-800 px-4 py-3 w-full cursor-pointer transition-colors duration-200 border-none"
+                className="flex items-center gap-3 hover:bg-gray-300 dark:hover:bg-gray-800 px-4 py-3 w-full cursor-pointer transition-colors duration-200 border-none"
               >
                 <div className="flex-shrink-0">
                   <FaGithub
-                    className="h-5 w-5 text-white cursor-pointer"
+                    className="h-5 w-5 cursor-pointer"
                     title="Star on Github"
                     aria-label="Star on Github"
                   />
                 </div>
                 <div className="flex-1 flex items-center justify-between">
-                  <span className="text-sm font-medium text-white">
+                  <span className="text-sm font-medium">
                     Star on Github
                   </span>
-                  <ExternalLink className="h-4 w-4 text-white opacity-80" />
+                  <ExternalLink className="h-4 w-4 opacity-80" />
                 </div>
               </button>
             </motion.div>
