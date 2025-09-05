@@ -62,11 +62,12 @@ function Hero() {
               <span
                 className="absolute inset0 z-10"
                 style={{
-                  backgroundImage: "url('/assets/bg.webp')",
+                  backgroundImage: "url('/assets/images/landing-page/bg.webp')",
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   backgroundRepeat: "repeat",
                   WebkitBackgroundClip: "text",
+                  animation: "bgMove 20s linear infinite, textPulse 3s ease-in-out infinite",
                   backgroundClip: "text",
                   color: "transparent",
                 }}
