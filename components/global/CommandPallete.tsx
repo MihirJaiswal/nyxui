@@ -14,12 +14,6 @@ import { TooltipProvider } from "../ui/tooltip";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { componentsData, Component } from "../../registry/Data";
 
-// We don't need to define ComponentItem as it's already in the imported file
-// The Component interface is already defined in the imported Data file
-
-// We can use the actual ComponentsData interface from the imported file
-// No need to recreate it here as it's already defined in the imported file
-
 export function CommandPalette() {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
@@ -43,7 +37,6 @@ export function CommandPalette() {
 
   const handleItemClick = (value: string) => {
     const [section, id] = value.split(":");
-    // Fixed path routing to handle templates correctly
     const path =
       section === "components"
         ? `/components/${id}`
@@ -56,13 +49,11 @@ export function CommandPalette() {
     setOpen(false);
   };
 
-  // Updated mapping logic with proper typing
   const sections = Object.entries(componentsData).map(
     ([sectionKey, itemsObj]) => ({
       key: sectionKey,
       items: Object.entries(itemsObj).map(([id, item]) => ({
         value: `${sectionKey}:${id}`,
-        // Check if this is a component with a title property
         name:
           sectionKey === "components"
             ? (item as Component).title

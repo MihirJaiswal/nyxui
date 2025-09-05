@@ -67,7 +67,6 @@ export default function DownloadCompleteSection() {
     },
   ]
 
-  // Simplified hover detection - removed MutationObserver complexity
   const handleMouseEnter = () => {
     setIsHovering(true)
     setActiveCard(0)
@@ -77,7 +76,6 @@ export default function DownloadCompleteSection() {
     setIsHovering(false)
   }
 
-  // Immediate animation rotation when hovering
   useEffect(() => {
     if (!isHovering) return
     let currentIndex = 0
@@ -92,7 +90,6 @@ export default function DownloadCompleteSection() {
     }
 
     const initialTimeout = setTimeout(rotateCards, 300)
-
     const interval = setInterval(rotateCards, 1500)
 
     return () => {

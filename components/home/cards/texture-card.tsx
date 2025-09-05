@@ -14,11 +14,9 @@ const TextureCardStyled = React.forwardRef<
     )}
     {...props}
   >
-    {/* Nested structure for aesthetic borders */}
     <div className="rounded-[23px] border  dark:border-neutral-900/80 border-black/10 ">
       <div className="rounded-[22px] border  dark:border-neutral-950 border-white/50">
         <div className="rounded-[21px] border  dark:border-neutral-900/70  border-neutral-950/20">
-          {/* Inner content wrapper */}
           <div className=" w-full border border-white/50 dark:border-neutral-700/50 rounded-[20px] text-neutral-500 ">
             {children}
           </div>
@@ -30,7 +28,6 @@ const TextureCardStyled = React.forwardRef<
 
 TextureCardStyled.displayName = "TextureCardStyled"
 
-// Clean version without nested borders - perfect for MinimalCard styling
 const TextureCard = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & {
@@ -52,7 +49,7 @@ const TextureCard = React.forwardRef<
       ref={ref}
       className={cn(
         "rounded-lg border border-white/60 dark:border-border/30",
-        "rounded-[calc(var(--radius))]", // Base radius with fallback
+        "rounded-[calc(var(--radius))]", 
         className,
       )}
       {...props}
@@ -77,7 +74,7 @@ const TextureCardHeader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<
     <div
       ref={ref}
       className={cn(
-        "first:pt-6 last:pb-6 ", // Adjust padding for first and last child
+        "first:pt-6 last:pb-6 ", 
         className,
       )}
       {...props}

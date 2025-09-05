@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "../ui/button";
@@ -98,17 +97,6 @@ export default function Header() {
           : "bg-background/80 backdrop-blur-md"
       )}
     >
-      {/* Gradient overlay with fade effect */}
-      {/*   <div className={`absolute h-28 inset-0 pointer-events-none ${scrolled ? "opacity-0" : "opacity-11"} transition-opacity duration-300`}>
-        <div className={cn(
-          "absolute inset-0",
-          "bg-[length:300%_100%] motion-safe:animate-[gradient_3s_ease_infinite]",
-          "bg-[linear-gradient(90deg,hsl(var(--color-1)),hsl(var(--color-5)),hsl(var(--color-3)),hsl(var(--color-4)),hsl(var(--color-2)),hsl(var(--color-1)))]"
-        )}></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-transparent to-background"></div>
-      </div> */}
-
       <div className="absolute left-0 top-full h-px w-full pointer-events-none">
         <div className="w-full h-full bg-gradient-to-r from-transparent via-zinc-300 to-transparent dark:via-zinc-600 transition-colors duration-200"></div>
       </div>

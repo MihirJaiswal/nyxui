@@ -6,8 +6,8 @@ import Blob from "./Blob";
 import { TerminalKeyboardDemo } from "./keybord-termial";
 import { Rbutton } from "@/components/ui/Rbutton";
 import { Sparkles } from "@/components/ui/particles";
-import DownloadCompleteSection from "./download";
-import AnimatedChatDemo from "./Cyber";
+import DownloadCompleteSection from "./ProgressSteps";
+import AnimatedChatDemo from "./Chat";
 
 export const ComponentsDemo = () => {
   return (

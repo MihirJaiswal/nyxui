@@ -93,7 +93,6 @@ const Blob = () => {
 
   return (
     <>
-      {/* Add CSS animation for fallback */}
       <style jsx>{`
         @keyframes blob-morph {
           0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }

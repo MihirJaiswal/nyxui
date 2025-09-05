@@ -17,7 +17,6 @@ export default function AnimatedComponentsShowcase() {
         <div className="absolute -bottom-0.5 -left-0.5 w-0.5 z-12 h-4 border-l border-neutral-600 dark:border-neutral-400 bg-neutral-600 dark:bg-neutral-400"></div>
         <div className="absolute -bottom-0.5 right-0 w-4 z-12 h-0.5 border-b border-neutral-600 dark:border-neutral-400 bg-neutral-600 dark:bg-neutral-400"></div>
         <div className="absolute -bottom-0.5 -right-0.5 w-0.5 z-12 h-4 border-r border-neutral-600 dark:border-neutral-400 bg-neutral-600 dark:bg-neutral-400"></div>
-        {/* Mobile and Tablet Layout (stacked) */}
         <div className="block lg:hidden space-y-12 sm:space-y-16">
           {/* Left Section - Copy/Paste Components */}
           <div className="space-y-6 sm:space-y-8">

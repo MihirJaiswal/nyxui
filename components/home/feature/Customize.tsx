@@ -9,7 +9,6 @@ const MusicCardThemeCustomizer = () => {
     const [slideDirection, setSlideDirection] = useState("right");
     const [isAnimating, setIsAnimating] = useState(false);
 
-    // Sample track data
     const sampleTrack: Track = {
         id: "blinding-lights",
         title: "Blinding Lights",
@@ -19,7 +18,6 @@ const MusicCardThemeCustomizer = () => {
         duration: 217,
     };
 
-    // Sample queue for demonstration
     const sampleQueue: Track[] = [
         sampleTrack,
         {
@@ -161,9 +159,7 @@ const MusicCardThemeCustomizer = () => {
     return (
         <div className="md:px-6">
             <div className="max-w-6xl mx-auto">
-                {/* Desktop Layout - Side by side */}
                 <div className="hidden md:flex justify-center items-center lg:gap-4 xl:gap-12 relative">
-                    {/* Left Arrow Button - Only visible on XL screens */}
                     <button
                         onClick={() => handleArrowNavigation("prev")}
                         disabled={isAnimating}
@@ -172,7 +168,6 @@ const MusicCardThemeCustomizer = () => {
                         <ChevronLeft className="h-6 w-6 text-neutral-600 dark:text-neutral-400" />
                     </button>
 
-                    {/* Music Player - Center */}
                     <div className="flex-1 flex items-center justify-center">
                         <div
                             className="w-[380px] h-[400px] relative overflow-hidden"
@@ -208,8 +203,6 @@ const MusicCardThemeCustomizer = () => {
                             </AnimatePresence>
                         </div>
                     </div>
-
-                    {/* Right Arrow Button - Only visible on XL screens */}
                     <button
                         onClick={() => handleArrowNavigation("next")}
                         disabled={isAnimating}
@@ -217,8 +210,6 @@ const MusicCardThemeCustomizer = () => {
                     >
                         <ChevronRight className="h-6 w-6 text-neutral-600 dark:text-neutral-400" />
                     </button>
-
-                    {/* Theme Selection Buttons - Right Side (hidden on XL, shown on 2XL) */}
                     <div className="flex flex-col gap-4 lg:hidden 2xl:flex">
                         <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">
                             Choose Theme
@@ -241,11 +232,8 @@ const MusicCardThemeCustomizer = () => {
                     </div>
                 </div>
 
-                {/* Mobile Layout - Vertical with Slider */}
                 <div className="md:hidden">
-                    {/* Theme Slider */}
                     <div className="flex items-center justify-center gap-4 mb-6 px-4">
-                        {/* Left Arrow */}
                         <button
                             onClick={() => handleArrowNavigation("prev")}
                             disabled={isAnimating}

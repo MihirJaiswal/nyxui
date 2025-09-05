@@ -7,7 +7,6 @@ import Imageripple from "./ImageRipple";
 import img from '../../../public/assets/images/landing-page/mihir.webp'
 
 export const TwitterCard = () => {
-
   return (
     <GlowCard
     allowCustomBackground
