@@ -3,18 +3,31 @@ import { Button } from "@/components/ui/button";
 import { GlowCard } from "@/registry/ui/glow-card";
 import Image from "next/image";
 import Link from "next/link";
-import Imageripple from "./ImageRipple";
+import { lazy, Suspense, useState } from "react";
 import img from '../../../public/assets/images/landing-page/mihir.webp'
 
+// Lazy load the ImageRipple component
+const ImageRipple = lazy(() => import("./ImageRipple"));
+
+// Loading placeholder component
+const RippleLoader = () => (
+  <div className="flex items-center justify-center h-full w-full bg-gradient-to-br from-blue-50 to-purple-100 dark:from-gray-800 dark:to-gray-900 rounded-sm">
+    <div className="animate-pulse flex flex-col items-center space-y-2">
+      <div className="w-8 h-8 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+      <span className="text-xs text-gray-500 dark:text-gray-400">Loading magic...</span>
+    </div>
+  </div>
+);
+
 export const TwitterCard = () => {
+  const [shouldLoadRipple, setShouldLoadRipple] = useState(false);
+
   return (
     <GlowCard
-    allowCustomBackground
+      allowCustomBackground
       className="w-full !p-0 rounded-xl hover:rounded-2xl md:max-w-full h-full mx-auto bg-white dark:bg-black shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 border-none sm:border md:border-none max-w-xs"
     >
-      <div
-        className="p-3 sm:p-5"
-      >
+      <div className="p-3 sm:p-5">
         <div className="flex items-center space-x-2 sm:space-x-3">
           <div className="relative">
             <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden">
@@ -64,9 +77,27 @@ export const TwitterCard = () => {
               #magic
             </span>
           </p>
-          <div className="flex mt-6 items-center justify-center overflow-hidden rounded-sm border dark:bg-zinc-800 h-44 relative">
-          <div className="absolute inset-0 h-full w-full items-center px-5 [background:radial-gradient(125%_125%_at_50%_10%,#E5ECFC_40%,#EED5FE_100%)] dark:[background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"></div>
-              <Imageripple/>
+          <div 
+            className="flex mt-6 items-center justify-center overflow-hidden rounded-sm border dark:bg-zinc-800 h-44 relative"
+            onMouseEnter={() => setShouldLoadRipple(true)}
+          >
+            <div className="absolute inset-0 h-full w-full items-center px-5 [background:radial-gradient(125%_125%_at_50%_10%,#E5ECFC_40%,#EED5FE_100%)] dark:[background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"></div>
+            {shouldLoadRipple ? (
+              <Suspense fallback={<RippleLoader />}>
+                <ImageRipple />
+              </Suspense>
+            ) : (
+              <div className="flex items-center justify-center h-full w-full cursor-pointer">
+                <div className="text-center space-y-2">
+                  <div className="w-12 h-12 mx-auto bg-white/20 dark:bg-black/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                    <svg className="w-6 h-6 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <p className="text-xs text-gray-600 dark:text-gray-300">Hover to see magic</p>
+                </div>
+              </div>
+            )}
           </div>
         </div>
         <div className="mt-3 sm:mt-8 flex items-center justify-between text-gray-600 dark:text-gray-400">
@@ -149,16 +180,16 @@ export const TwitterCard = () => {
           1:24 PM · Apr 7, 2025
         </span>
         <Link href="https://x.com/mihir_jaiswal_" target="_blank" rel="noopener noreferrer">
-        <Button
+          <Button
             size="sm"
             className="transition-all duration-300 transform hover:scale-105 font-semibold px-4 py-2 bg-blue-500 rounded-full"
           >
-              <span className="flex items-center gap-2 text-white">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                </svg>
-                Follow
-              </span>
+            <span className="flex items-center gap-2 text-white">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+              </svg>
+              Follow
+            </span>
           </Button>
         </Link>
       </div>
