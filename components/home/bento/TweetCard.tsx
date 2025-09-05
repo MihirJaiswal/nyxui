@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { GlowCard } from "@/registry/ui/glow-card";
 import Image from "next/image";
 import Link from "next/link";
-import { lazy, Suspense, useState } from "react";
+import { lazy, Suspense, useState, useEffect } from "react";
 import img from '../../../public/assets/images/landing-page/mihir.webp'
 
 // Lazy load the ImageRipple component
@@ -21,6 +21,13 @@ const RippleLoader = () => (
 
 export const TwitterCard = () => {
   const [shouldLoadRipple, setShouldLoadRipple] = useState(false);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShouldLoadRipple(true);
+    }, 100); 
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <GlowCard
@@ -69,7 +76,7 @@ export const TwitterCard = () => {
         </div>
         <div className="mt-3 sm:mt-4">
           <p className="text-xs sm:text-sm text-gray-800 dark:text-gray-200">
-            Hover on the image below to see the magic! 😆{" "}
+            Check out this cool ripple effect! 😆{" "}
             <span className="text-blue-600 dark:text-blue-400 transition-colors cursor-pointer font-medium">
               #webdev
             </span>{" "}
@@ -77,24 +84,21 @@ export const TwitterCard = () => {
               #magic
             </span>
           </p>
-          <div 
-            className="flex mt-6 items-center justify-center overflow-hidden rounded-sm border dark:bg-zinc-800 h-44 relative"
-            onMouseEnter={() => setShouldLoadRipple(true)}
-          >
+          <div className="flex mt-6 items-center justify-center overflow-hidden rounded-sm border dark:bg-zinc-800 h-44 relative">
             <div className="absolute inset-0 h-full w-full items-center px-5 [background:radial-gradient(125%_125%_at_50%_10%,#E5ECFC_40%,#EED5FE_100%)] dark:[background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"></div>
             {shouldLoadRipple ? (
               <Suspense fallback={<RippleLoader />}>
                 <ImageRipple />
               </Suspense>
             ) : (
-              <div className="flex items-center justify-center h-full w-full cursor-pointer">
+              <div className="flex items-center justify-center h-full w-full">
                 <div className="text-center space-y-2">
                   <div className="w-12 h-12 mx-auto bg-white/20 dark:bg-black/20 rounded-full flex items-center justify-center backdrop-blur-sm">
                     <svg className="w-6 h-6 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
-                  <p className="text-xs text-gray-600 dark:text-gray-300">Hover to see magic</p>
+                  <p className="text-xs text-gray-600 dark:text-gray-300">Loading...</p>
                 </div>
               </div>
             )}
