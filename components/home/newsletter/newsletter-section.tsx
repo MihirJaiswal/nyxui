@@ -2,8 +2,6 @@
 import type React from "react"
 import { useState, useRef } from "react"
 import { Button } from "@/components/ui/button"
-import { db } from "@/lib/firebase" 
-import { collection, addDoc } from "firebase/firestore"
 import { z } from "zod"
 
 // Zod schema for email validation
@@ -21,15 +19,6 @@ const emailSchema = z.string()
     return !suspiciousPatterns.some(pattern => pattern.test(email));
   }, "Email format appears invalid")
   .transform((email) => email.toLowerCase().trim());
-
-// Type for newsletter data
-const newsletterSchema = z.object({
-  email: emailSchema,
-  subscribedAt: z.date(),
-  isActive: z.boolean(),
-});
-
-type NewsletterData = z.infer<typeof newsletterSchema>;
 
 export function NewsletterSection() {
   const [email, setEmail] = useState("")
@@ -91,65 +80,49 @@ export function NewsletterSection() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    
-    setErrors([]);
-    setSuccessMessage("");
-
-    if (!email) {
-      setErrors(["Email is required"]);
+    e.preventDefault();
+  
+    // 🔹 1. Client-side validation
+    const { isValid, errors: validationErrors } = validateEmail(email);
+    if (!isValid) {
+      setErrors(validationErrors);
       return;
     }
-
-    // Rate limiting check
+  
+    // 🔹 2. Rate-limit check
     if (!checkRateLimit()) {
-      setErrors(['Please wait before submitting again. Too many requests.']);
+      setErrors(["Too many attempts. Please wait before trying again."]);
       return;
     }
-    
-    // Validate email with Zod
-    const validation = validateEmail(email);
-    if (!validation.isValid) {
-      setErrors(validation.errors);
-      return;
-    }
-
+  
     setIsLoading(true);
-
+  
     try {
-      // Parse and transform the email using Zod schema
-      const validatedEmail = emailSchema.parse(email);
-      const newsletterData: NewsletterData = {
-        email: validatedEmail,
-        subscribedAt: new Date(),
-        isActive: true
-      };
-
-      // Validate the entire object (optional but recommended)
-      const validatedData = newsletterSchema.parse(newsletterData);
-
-      await addDoc(collection(db, 'newsletter'), validatedData);
-
-      // Update rate limiting
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+  
+      if (!res.ok) {
+        throw new Error("Failed to subscribe");
+      }
+  
+      // ✅ update submission trackers
       lastSubmissionTime.current = Date.now();
       submissionCount.current += 1;
-
+  
       setIsSubmitted(true);
       setEmail("");
-      setErrors([]);
-      
     } catch (error) {
-      console.error('Error adding email:', error);
-      
-      if (error instanceof z.ZodError) {
-        setErrors(error.errors.map(err => err.message));
-      } else {
-        setErrors(['Something went wrong. Please try again.']);
-      }
+      console.error(error);
+      setErrors(["Something went wrong. Please try again."]);
     }
-
+  
     setIsLoading(false);
-  }
+  };
+  
+  
 
   if (isSubmitted) {
     return (
