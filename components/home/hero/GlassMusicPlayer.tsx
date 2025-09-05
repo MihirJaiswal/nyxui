@@ -3,6 +3,7 @@ import { GlassContainer } from "@/registry/ui/apple-glass-effect"
 import { Pause, Play, SkipBack, SkipForward, Shuffle, Repeat } from "lucide-react"
 import Image from "next/image"
 import { useState, useEffect } from "react"
+import img from '../../../public/assets/images/landing-page/cover.webp'
 
 function GlassMusicPlayer() {
   const [isPlaying, setIsPlaying] = useState(false)
@@ -57,10 +58,12 @@ function GlassMusicPlayer() {
             <div className="relative">
               <div className="w-16 h-16 rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/20">
                 <Image
-                  src="/assets/images/landing-page/cover.jpeg"
+                  src={img}
                   alt="Album Cover"
                   width={64}
                   height={64}
+                  loading="lazy"
+                  placeholder="blur"
                   className="w-full h-full object-cover"
                 />
               </div>
