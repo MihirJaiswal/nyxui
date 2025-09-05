@@ -4,7 +4,7 @@ import { ExternalLink } from "lucide-react";
 import Link from "next/link";
 import AnimatedLogo from "./animated-logo";
 
-export default function FinalCTASection() {
+export default function Social() {
   return (
     <section className="relative pt-20 pb-24 px-6 overflow-hidden">
       {/* Animated Background Elements */}
