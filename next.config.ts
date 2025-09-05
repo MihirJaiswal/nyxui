@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 import { withContentCollections } from "@content-collections/next";
+import withPlaiceholder from "@plaiceholder/next"
 
 const withBundlerAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
@@ -24,4 +25,4 @@ const nextConfig: NextConfig = withBundlerAnalyzer({
   },
 });
 
-export default withContentCollections(nextConfig);
+export default withPlaiceholder(withContentCollections(nextConfig));

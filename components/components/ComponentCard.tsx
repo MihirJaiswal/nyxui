@@ -1,8 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { getPlaiceholder } from "plaiceholder";
+import { readFile } from "fs/promises";
+import path from "path";
 
-export function ComponentCard({
+export async function ComponentCard({
   slug,
   title,
   description,
@@ -16,6 +19,16 @@ export function ComponentCard({
   type?: "components" | "blocks";
 }) {
   const href = type === "blocks" ? `/blocks/${slug}` : `/components/${slug}`;
+  let base64 = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q==";
+
+  try {
+    const imagePath = path.join(process.cwd(), 'public', imageSrc);
+    const imageBuffer = await readFile(imagePath);
+    const placeholder = await getPlaiceholder(imageBuffer);
+    base64 = placeholder.base64;
+  } catch (error) {
+    console.warn(`Could not generate placeholder for ${imageSrc}:`, error);
+  }
 
   return (
     <Link href={href} className="block">
@@ -28,6 +41,8 @@ export function ComponentCard({
             height={720}
             quality={100}
             decoding="async"
+            placeholder="blur"
+            blurDataURL={base64}
             className="transition duration-300 blur-0 rounded-md group-hover:scale-102"
             loading="lazy"
           />
