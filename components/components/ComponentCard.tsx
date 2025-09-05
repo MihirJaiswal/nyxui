@@ -16,9 +16,20 @@ export async function ComponentCard({
   title: string;
   description: string;
   imageSrc: string;
-  type?: "components" | "blocks";
+  type?: "components" | "blocks" | "templates";
 }) {
-  const href = type === "blocks" ? `/blocks/${slug}` : `/components/${slug}`;
+  // Generate the correct href based on type
+  const getHref = () => {
+    switch (type) {
+      case "blocks":
+        return `/blocks/${slug}`;
+      case "templates":
+        return `/templates/${slug}`;
+      default:
+        return `/components/${slug}`;
+    }
+  };
+
   let base64 = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q==";
 
   try {
@@ -30,15 +41,18 @@ export async function ComponentCard({
     console.warn(`Could not generate placeholder for ${imageSrc}:`, error);
   }
 
+  // Set image dimensions based on type (templates use different dimensions)
+  const imageHeight = type === "templates" ? 650 : 720;
+
   return (
-    <Link href={href} className="block">
+    <Link href={getHref()} className="block">
       <div className="rounded-lg overflow-hidden max-w-4xl transition-all duration-300 cursor-pointer h-full">
         <div className="relative dark:border bg-black flex items-center justify-center rounded-lg dark:border-white/[0.1] overflow-hidden transition duration-200 hover:scale-105">
           <Image
             src={imageSrc}
             alt={title}
             width={1024}
-            height={720}
+            height={imageHeight}
             quality={100}
             decoding="async"
             placeholder="blur"

@@ -2,11 +2,22 @@ import { ComponentCard } from "./ComponentCard";
 import { componentsData } from "../../registry/Data";
 
 interface ComponentGridProps {
-  type?: "components" | "blocks";
+  type?: "components" | "blocks" | "templates";
 }
 
 export default function ComponentGrid({ type = "components" }: ComponentGridProps) {
-  const data = type === "blocks" ? componentsData.blocks : componentsData.components;
+  const getData = () => {
+    switch (type) {
+      case "blocks":
+        return componentsData.blocks;
+      case "templates":
+        return componentsData.templates;
+      default:
+        return componentsData.components;
+    }
+  };
+
+  const data = getData();
   const sortedItems = Object.entries(data).sort(
     ([, a], [, b]) => a.title.localeCompare(b.title)
   );
