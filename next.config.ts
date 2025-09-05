@@ -25,4 +25,4 @@ const nextConfig: NextConfig = withBundlerAnalyzer({
   },
 });
 
-export default withPlaiceholder(withContentCollections(nextConfig));
+export default withContentCollections(withPlaiceholder(nextConfig));
