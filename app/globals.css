@@ -677,16 +677,6 @@ body {
     -1px 1px 0 #efcdfa,
     1px 1px 0 #efcdfa;
 }
-@media (min-width: 768px) {
-  .generationShadow {
-    /* override at md+ (tablet, PC): 0.5px offset */
-    text-shadow:
-      -0.5px -0.5px 0 #efcdfa,
-      0.5px -0.5px 0 #efcdfa,
-      -0.5px 0.5px 0 #efcdfa,
-      0.5px 0.5px 0 #efcdfa;
-  }
-}
 
 /* Playground Slider Styles */
 .slider::-webkit-slider-thumb {
