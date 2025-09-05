@@ -155,7 +155,7 @@ export function NewsletterSection() {
     return (
       <section className="w-full py-20 px-6">
         <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl font-semibold text-white mb-4 animate-in fade-in duration-500">
+          <h2 className="text-2xl sm:text-4xl font-semibold text-white mb-4 animate-in fade-in duration-500">
             Thanks for subscribing!
           </h2>
           <button
