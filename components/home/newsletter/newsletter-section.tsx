@@ -126,7 +126,7 @@ export function NewsletterSection() {
 
   if (isSubmitted) {
     return (
-      <section className="w-full py-20 px-6">
+      <section className="w-full pt-20 pb-28 px-6">
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-2xl sm:text-4xl font-semibold text-white mb-4 animate-in fade-in duration-500">
             Thanks for subscribing!
@@ -145,7 +145,7 @@ export function NewsletterSection() {
   const hasErrors = errors.length > 0;
 
   return (
-    <section className="w-full py-20 px-6">
+    <section className="w-full pt-20 pb-28 px-6">
       <div className="max-w-2xl mx-auto">
         <h2 className="text-3xl sm:text-4xl text-center font-bold tracking-tight leading-tight mb-2">
           Want our product updates and news?
@@ -155,7 +155,7 @@ export function NewsletterSection() {
         </p>
         <form
           onSubmit={handleSubmit}
-          className="flex items-center gap-3 max-w-lg mx-auto animate-in slide-in-from-bottom-6 duration-700 delay-1500"
+          className="flex items-center gap-3 max-w-lg mx-auto animate-in slide-in-from-bottom-6 duration-700 delay-1500 mt-3"
         >
           <div className="flex-1 relative">
             <input
@@ -167,7 +167,7 @@ export function NewsletterSection() {
               disabled={isLoading}
               maxLength={100}
               autoComplete="email"
-              className={`w-full bg-transparent border rounded-sm px-6 py-4 text-white placeholder-gray-400 focus:outline-none focus:border-gray-500 transition-colors duration-200 text-lg ${
+              className={`w-full bg-transparent border rounded-sm px-6 py-2 sm:py-4 text-white placeholder-gray-400 focus:outline-none focus:border-gray-500 transition-colors duration-200 text-lg ${
                 hasErrors ? 'border-red-500 bg-red-900/20' : 'border-gray-600'
               }`}
             />
@@ -176,7 +176,7 @@ export function NewsletterSection() {
           <Button
             type="submit"
             disabled={isLoading || !email.trim()}
-            className="px-6 py-7 rounded-sm hover:bg-gray-100 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed group"
+            className="px-6 py-5.5 sm:py-7 rounded-sm hover:bg-gray-100 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed group"
           >
             {isLoading ? 'Sending...' : 'Send'}
           </Button>
