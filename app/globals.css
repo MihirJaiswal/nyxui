@@ -267,6 +267,16 @@ body {
   80% { clip-path: inset(10% 0 70% 0); }
 }
 
+@keyframes fade {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-fade {
+  animation: fade 0.8s ease-in-out infinite;
+}
+
+
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);

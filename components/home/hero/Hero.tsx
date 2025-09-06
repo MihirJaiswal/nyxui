@@ -9,7 +9,7 @@ import { Rbutton } from "../../ui/Rbutton";
 import GlassMusicPlayer from "./GlassMusicPlayer";
 import { Scanner } from "./Scanner";
 import { Matrix } from "./Matrix";
-import { AnimatedCodeBlockDemo } from "./CodeBlock";
+import AnimatedCodeBlockDemo from "./CodeBlock";
 import { componentsData } from "@/registry/Data";
 
 function Hero() {
@@ -36,7 +36,7 @@ function Hero() {
   return (
     <section className="relative px-6 xl:px-22 py-12 sm:py-16 md:py-20 lg:pt-28 lg:pb-20 flex flex-col xl:flex-row xl:container mx-auto">
       <div className="w-full xl:flex-1 xl:container xl:mx-auto z-10">
-        <div className="xl:max-w-5xl relative mt-6 sm:mt-8 lg:mt-12">
+        <div className="xl:max-w-5xl mt-6 sm:mt-8 lg:mt-12">
           {/* Announcement Badge */}
           <Link
             href="/playground"
@@ -216,23 +216,11 @@ function Hero() {
         </div>
       </div>
 
-      <div className="hidden  min-[1200px]:block min-[1280px]:hidden z-12">
-        <div className="absolute top-28 -right-160 w-full h-full">
+      <div className="hidden  lg:block xl:hidden z-12">
+        <div className="absolute top-28 right-28 h-full">
           <Scanner />
         </div>
-        <div className="absolute top-84 -right-172 w-full h-full z-20">
-          <Matrix />
-        </div>
-        <div className="absolute top-52 -right-112 w-full h-full z-12">
-          <AnimatedCodeBlockDemo/>
-        </div>
-      </div>
-
-      <div className="hidden min-[1025px]:grid min-[1200px]:hidden absolute top-16 right-4 z-12  grid-cols-1 scale-80 gap-8">
-        <div>
-          <Scanner />
-        </div>
-        <div>
+        <div className="absolute top-84 right-14 h-full z-20">
           <Matrix />
         </div>
       </div>

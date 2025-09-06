@@ -62,7 +62,7 @@ function GlassMusicPlayer() {
                   alt="Album Cover"
                   width={64}
                   height={64}
-                  loading="lazy"
+                  priority
                   placeholder="blur"
                   className="w-full h-full object-cover"
                 />
