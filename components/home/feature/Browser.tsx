@@ -1,7 +1,7 @@
 import { SVGProps } from "react";
 type SafariMode = "default" | "simple";
 
-export interface SafariProps extends SVGProps<SVGSVGElement> {
+export interface  BrowserProps extends SVGProps<SVGSVGElement> {
   url?: string;
   imageSrc?: string;
   videoSrc?: string;
@@ -11,7 +11,7 @@ export interface SafariProps extends SVGProps<SVGSVGElement> {
   children?: React.ReactNode; 
 }
 
-export function Safari({
+export function Browser({
   imageSrc,
   videoSrc,
   url,
@@ -20,7 +20,7 @@ export function Safari({
   mode = "default",
   children, 
   ...props
-}: SafariProps) {
+}: BrowserProps) {
   return (
     <div className="relative">
       <svg
@@ -193,7 +193,7 @@ export function Safari({
             width: `${(1200 / width) * 100}%`, // Content area width
             height: `${(700 / height) * 100}%`, // Content area height
             overflow: 'hidden',
-            borderRadius: '0 0 12px 12px' // Match the browser's bottom border radius
+            borderRadius: '0 0 5px 5px' // Match the browser's bottom border radius
           }}
         >
           {children}

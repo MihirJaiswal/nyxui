@@ -20,7 +20,7 @@ const ScannerSkeleton = () => {
   return (
     <div className="h-[300px] w-[300px]">
       <div className="relative overflow-hidden w-full h-full">
-        <div className="w-full h-full relative overflow-hidden">
+        <div className="w-full h-full relative overflow-hidden bg-zinc-900">
           <Image
             src="/assets/images/landing-page/img.webp"
             alt="AI Scanner Target"
@@ -32,7 +32,6 @@ const ScannerSkeleton = () => {
             decoding="sync"
             loading="eager"
           />
-          
           {/* Static corner brackets */}
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 opacity-30 border-gray-400 dark:border-gray-600" />

@@ -1,6 +1,6 @@
 import { Copy, Zap } from "lucide-react";
 import MusicCardThemeCustomizer from "./Customize";
-import { Safari } from "./Browser";
+import { Browser } from "./Browser";
 import { CustomPointer } from "./CustomPointer";
 
 export default function AnimatedComponentsShowcase() {
@@ -44,9 +44,9 @@ export default function AnimatedComponentsShowcase() {
             </div>
 
             <div className="space-y-4 relative w-full overflow-hidden">
-              <Safari className="w-full h-auto max-w-full">
+              <Browser url="https://nyxui.com/" className="w-full h-auto max-w-full">
                 <CustomPointer />
-              </Safari>
+              </Browser>
             </div>
           </div>
 
@@ -126,9 +126,9 @@ export default function AnimatedComponentsShowcase() {
               </h1>
             </div>
             <div className="space-y-4 relative">
-              <Safari className="w-full h-auto max-w-full">
+              <Browser url="https://nyxui.com/" className="w-full h-auto max-w-full">
                 <CustomPointer />
-              </Safari>
+              </Browser>
             </div>
           </div>
 

@@ -3,7 +3,6 @@ import { GlitchButton } from "@/registry/ui/glitch-button";
 import { MatrixCodeRain } from "@/registry/ui/matrix-code-rain";
 import { useState } from "react";
 
-
 const colors = [
   "#00ff00",
   "#ff0000",

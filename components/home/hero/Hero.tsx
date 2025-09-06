@@ -194,7 +194,8 @@ function Hero() {
           <AnimatedCodeBlockDemo />
         </div>
         <div className="absolute bottom-[9.85rem] right-68 w-84 h-2 border-t border-dashed border-neutral-500/40 dark:border-gray-200/35 z-5 hidden 2xl:block"></div>
-        <div className="absolute top-56 right-150 w-2 h-64 border-l border-dashed border-neutral-500/40 dark:border-gray-200/35 z-5 hidden 2xl:block"></div>
+        <div className="absolute top-48 right-68 w-84 h-2 border-t border-dashed border-neutral-500/40 dark:border-gray-200/35 z-5 hidden 2xl:block"></div>
+        <div className="absolute top-48 right-150 w-2 h-72 border-l border-dashed border-neutral-500/40 dark:border-gray-200/35 z-5 hidden 2xl:block"></div>
         <div className="absolute bottom-[10.2rem] right-[37.55rem] w-2 h-3 border-l-3 border-neutral-500/40 dark:border-white/60 z-5 hidden 2xl:block"></div>
         <div className="absolute bottom-[9.88rem] right-[37.3rem] w-3 h-2 border-t-3 border-neutral-500/40 dark:border-white/60 z-5 hidden 2xl:block"></div>
       </div>
