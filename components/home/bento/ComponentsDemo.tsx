@@ -5,9 +5,9 @@ import { TwitterCard } from "./TweetCard";
 import Blob from "./Blob";
 import { TerminalKeyboardDemo } from "./keybord-termial";
 import { Rbutton } from "@/components/ui/Rbutton";
-import { Sparkles } from "@/components/ui/particles";
 import DownloadCompleteSection from "./ProgressSteps";
 import AnimatedChatDemo from "./Chat";
+import { LazySparkles } from "./Sparkles";
 
 export const ComponentsDemo = () => {
   return (
@@ -45,15 +45,7 @@ export const ComponentsDemo = () => {
               </div>
               <div className='absolute -bottom-68 h-full w-full max-w-full overflow-hidden [mask-image:radial-gradient(50%_50%,white,transparent)] before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_bottom_center,#DA33FF,transparent_90%)] before:opacity-40 after:absolute after:-left-1/2 after:top-1/2 after:aspect-[1/0.7] after:w-[200%] after:rounded-[10%] after:border-t after:border-[#4e1674] after:bg-[#20082b]'>
                 <div className="absolute inset-0 w-full h-full overflow-hidden">
-                  <Sparkles
-                    density={800}
-                    speed={1.2}
-                    size={1.2}
-                    direction='top'
-                    opacitySpeed={2}
-                    color='#DA33FF'
-                    className='w-full h-full'
-                  />
+                  <LazySparkles/>
                 </div>
               </div>
             </>

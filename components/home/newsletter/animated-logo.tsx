@@ -28,6 +28,8 @@ export default function AnimatedLogo({
   const svgRef = useRef<SVGSVGElement>(null)
 
   useEffect(() => {
+    const currentElement = svgRef.current
+    
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -47,39 +49,32 @@ export default function AnimatedLogo({
       },
     )
 
-    if (svgRef.current) {
-      observer.observe(svgRef.current)
+    if (currentElement) {
+      observer.observe(currentElement)
     }
 
     return () => {
-      if (svgRef.current) {
-        observer.unobserve(svgRef.current)
+      if (currentElement) {
+        observer.unobserve(currentElement) 
       }
     }
   }, [threshold, triggerOnce, hasAnimated, rootMargin])
 
-  // Split total duration into draw and fill phases
   const drawMs = Math.max(800, Math.floor(durationMs * 0.65))
   const fillMs = Math.max(300, Math.floor(durationMs * 0.35))
   const strokeFadeStartMs = Math.floor(drawMs + fillMs * 0.25)
   const strokeFadeMs = Math.max(200, Math.floor(fillMs * 0.4))
-
   const revealDelayMs = Math.max(drawMs + fillMs, strokeFadeStartMs + strokeFadeMs)
-
-  // Convert ms to s strings for SMIL
   const toSec = (ms: number) => (ms / 1000).toFixed(3) + "s"
-
-  // Create unique key to force re-render and restart animations
   const animationKey = shouldAnimate ? Date.now() : "static"
 
   useEffect(() => {
     if (shouldAnimate) {
       if (revealAfterAnimation) {
-        setRevealed(false) // keep hidden until animation completes
+        setRevealed(false) 
         const t = setTimeout(() => setRevealed(true), revealDelayMs)
         return () => clearTimeout(t)
       } else {
-        // show immediately so drawing is visible (snappier)
         setRevealed(true)
       }
     } else if (!triggerOnce) {

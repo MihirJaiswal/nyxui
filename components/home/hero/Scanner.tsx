@@ -1,5 +1,5 @@
 "use client"
-import { useState, useEffect, useRef, useCallback } from "react"
+import { useState, useEffect, useRef, useCallback, useMemo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { CheckCircle } from "lucide-react"
 import Image from "next/image"
@@ -16,7 +16,6 @@ const cn = (...classes: (string | undefined | false)[]) => {
   return classes.filter(Boolean).join(' ')
 }
 
-// Optimized skeleton that shows the actual image immediately for LCP
 const ScannerSkeleton = () => {
   return (
     <div className="h-[300px] w-[300px]">
@@ -79,7 +78,7 @@ const ScannerCore = ({ onImageLoad }: { onImageLoad?: () => void }) => {
     cssColor: "#10b981",
   }
 
-  const personScanResults = [
+  const personScanResults = useMemo(() => [
     {
       id: "person-1",
       type: "object" as const,
@@ -87,7 +86,7 @@ const ScannerCore = ({ onImageLoad }: { onImageLoad?: () => void }) => {
       position: { x: 50, y: 40 },
       label: "Person"
     }
-  ]
+  ], [])
 
   const clearAllTimers = useCallback(() => {
     if (scanTimer.current) {
@@ -465,7 +464,7 @@ export const Scanner = () => {
         )}
       </AnimatePresence>
 
-      {/* Render main component but keep it hidden until image loads */}
+      {/*Main component */}
       {showMainComponent && (
         <motion.div
           key="main"

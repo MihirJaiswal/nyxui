@@ -2,55 +2,16 @@ import { Button } from "@/components/ui/button";
 import ThreeDLayeredCard from "@/registry/ui/3d-layered-card";
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
-import AnimatedLogo from "./animated-logo";
 
 export default function Social() {
   return (
     <section className="relative pt-20 pb-24 px-6 overflow-hidden">
-      {/* Animated Background Elements */}
-      {/* <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
-        <div
-          className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse"
-          style={{ animationDelay: "1s" }}
-        ></div>
-        <div
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"
-          style={{ animationDelay: "2s" }}
-        ></div>
-      </div> */}
-
-      {/* Grid Pattern Overlay */}
-      {/* <div
-        className="absolute inset-0 opacity-10"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0)",
-          backgroundSize: "50px 50px",
-        }}
-      ></div> */}
-
       <div className="container mx-auto max-w-7xl relative z-10">
-        {/* Main Heading */}
         <div className="text-center mb-8 transition-all duration-1000 ">
-          {/*  <h1 className="text-7xl md:text-9xl font-black mb-8 bg-gradient-to-r from-white via-neutral-100 to-neutral-300 bg-clip-text text-transparent leading-tight">
-            NYX UI
-          </h1> */}
-
           <div className="max-w-4xl flex flex-col items-center justify-center mx-auto">
-            <AnimatedLogo
-            className="text-primary mb-4"
-            width={130}
-            height={115}
-            strokeWidth={90}
-            durationMs={1400}
-            aria-hidden="true"
-            />
-            {/* <p className="text-3xl md:text-4xl leading-relaxed font-bold">
-              Follow us
-            </p> */}
+            <h1 className="text-3xl sm:text-4xl text-center font-bold tracking-tight leading-tight mb-2">Follow us</h1>
             <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
-              Follow us on social media for the latest updates.
+              Join our social media for the latest updates.
             </p>
           </div>
         </div>
