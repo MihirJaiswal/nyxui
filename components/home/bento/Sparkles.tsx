@@ -1,5 +1,4 @@
 'use client'
-
 import { useState, useEffect } from "react";
 import { Sparkles } from "@/components/ui/particles";
 

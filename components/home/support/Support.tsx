@@ -1,9 +1,9 @@
 'use client'
-import React, { useState } from "react";
+import { useState } from "react";
 import { ExternalLink } from "lucide-react";
 import { FaGithub, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
 import { BsChatSquareHeartFill } from "react-icons/bs";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import LinkedInPhoneComponent from "./LinkedinPhone";
 import XPhoneComponent from "./XPhone";
 

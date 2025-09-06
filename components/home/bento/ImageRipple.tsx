@@ -1,5 +1,4 @@
 import WaterRippleEffect from "@/registry/ui/water-ripple-effect";
-import React from "react";
 
 function Imageripple() {
   return (

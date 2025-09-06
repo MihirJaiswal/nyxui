@@ -1,7 +1,7 @@
 "use client"
 import { useState, useEffect, useRef } from "react"
 import { Download, FileCode, Zap, Settings } from "lucide-react"
-import { motion } from "framer-motion"
+import { motion } from "motion/react"
 import { cn } from "@/lib/utils"
 import { DynamicRipple } from "@/registry/ui/dynamic-ripple"
 

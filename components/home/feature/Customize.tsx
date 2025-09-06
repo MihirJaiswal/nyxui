@@ -1,7 +1,7 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Volume2, ChevronLeft, ChevronRight } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { MusicPlayer, Track } from "@/registry/ui/music-player";
 
 const MusicCardThemeCustomizer = () => {

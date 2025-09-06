@@ -1,6 +1,6 @@
 "use client";
 import { clsx } from "clsx";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 export function BentoGrid({
   dark = false,

@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { BatteryFull, Signal, Wifi } from "lucide-react";
 
 export const PhoneStatusBar = () => {

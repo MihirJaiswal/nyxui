@@ -1,6 +1,6 @@
 'use client'
 import LampHeading from "@/registry/ui/lamp-heading";
-import React, { lazy, Suspense, useState, useEffect, useCallback } from "react";
+import { lazy, Suspense, useState, useEffect, useCallback } from "react";
 
 const MorphingBlob = lazy(() => 
   import("@/registry/ui/morphing-blob").then(module => ({
@@ -62,23 +62,6 @@ const OptimizedBlobFallback = () => (
         }}
       />
     </div>
-
-    {/* Particle effect simulation */}
-    <div className="absolute inset-0 rounded-full overflow-hidden">
-      {Array.from({ length: 20 }).map((_, i) => (
-        <div
-          key={i}
-          className="absolute w-1 h-1 bg-pink-400/60 rounded-full animate-ping"
-          style={{
-            left: `${20 + Math.random() * 60}%`,
-            top: `${20 + Math.random() * 60}%`,
-            animationDelay: `${Math.random() * 2}s`,
-            animationDuration: `${2 + Math.random() * 3}s`
-          }}
-        />
-      ))}
-    </div>
-
     {/* Background effects */}
     <div className="absolute scale-95 -z-1 top-12 left-1/2 -ml-2 -translate-x-1/2 -translate-y-1/2 h-72 w-72 bg-gradient-to-b from-transparent via-purple-500/10 blur-xl to-[#5C0B63]/40 rounded-full shadow-[0_0_50px_rgba(96,165,250,0.4)] animate-pulse"/>
     <div className="absolute scale-95 -z-1 top-24 left-1/2 -ml-2 -translate-x-1/2 -translate-y-1/2 h-12 w-32 bg-purple-500/80 blur-2xl rounded-b-full shadow-[0_0_50px_rgba(96,165,250,0.4)] animate-pulse"/>
