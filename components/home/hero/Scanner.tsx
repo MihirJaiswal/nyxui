@@ -1,6 +1,6 @@
 "use client"
 import { useState, useEffect, useRef, useCallback, useMemo } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence } from "motion/react"
 import { CheckCircle } from "lucide-react"
 import Image from "next/image"
 
@@ -59,8 +59,8 @@ const ScannerSkeleton = () => {
   )
 }
 
-// Main scanner component (lazy loaded after page load)
-const ScannerCore = ({ onImageLoad }: { onImageLoad?: () => void }) => {
+// Main scanner component
+const ScannerCore = () => {
   const [isScanning, setIsScanning] = useState(false)
   const [scanComplete, setScanComplete] = useState(false)
   const [scanCycle, setScanCycle] = useState(0)
@@ -142,7 +142,6 @@ const ScannerCore = ({ onImageLoad }: { onImageLoad?: () => void }) => {
 
   const handleImageLoad = () => {
     setImageLoaded(true)
-    onImageLoad?.()
   }
 
   const renderMatrixPattern = () => {
@@ -420,40 +419,30 @@ const ScannerCore = ({ onImageLoad }: { onImageLoad?: () => void }) => {
 
 export const Scanner = () => {
   const [showMainComponent, setShowMainComponent] = useState(false)
-  const [mainImageLoaded, setMainImageLoaded] = useState(false)
   
+  // Reset states when component mounts/remounts
   useEffect(() => {
-    const loadMainComponent = () => {
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(() => {
-          setShowMainComponent(true)
-        }, { timeout: 3000 })
-      } else {
-        setTimeout(() => {
-          setShowMainComponent(true)
-        }, 2000)
-      }
-    }
+    setShowMainComponent(false)
     
-    if (document.readyState === 'complete') {
-      loadMainComponent()
-    } else {
-      window.addEventListener('load', loadMainComponent, { once: true })
-      return () => window.removeEventListener('load', loadMainComponent)
+    // Load main component after a delay
+    const loadTimer = setTimeout(() => {
+      setShowMainComponent(true)
+    }, 1500)
+    
+    return () => {
+      clearTimeout(loadTimer)
     }
-  }, [])
-
-  const handleMainImageLoad = () => {
-    setMainImageLoaded(true)
-  }
+  }, []) // Empty dependency array ensures this runs on every mount
   
   return (
     <div className="relative h-[300px] w-[300px]">
+      {/* Always show skeleton initially - no animation delays */}
       <AnimatePresence>
-        {(!showMainComponent || !mainImageLoaded) && (
+        {!showMainComponent && (
           <motion.div
             key="skeleton"
-            initial={{ opacity: 1 }}
+            initial={{ opacity: 1 }} // Start visible immediately
+            animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
             className="absolute inset-0 z-10"
@@ -463,18 +452,21 @@ export const Scanner = () => {
         )}
       </AnimatePresence>
 
-      {/*Main component */}
-      {showMainComponent && (
-        <motion.div
-          key="main"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: mainImageLoaded ? 1 : 0 }}
-          transition={{ duration: 0.3 }}
-          className="absolute inset-0 z-20"
-        >
-          <ScannerCore onImageLoad={handleMainImageLoad} />
-        </motion.div>
-      )}
+      {/* Main component */}
+      <AnimatePresence>
+        {showMainComponent && (
+          <motion.div
+            key="main"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            className="absolute inset-0 z-20"
+          >
+            <ScannerCore />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
