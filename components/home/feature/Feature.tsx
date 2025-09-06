@@ -99,12 +99,13 @@ export default function AnimatedComponentsShowcase() {
                     className="absolute inset-0 z-10 filter contrast-150"
                     style={{
                       backgroundImage:
-                        "url('/assets/images/landing-page/bg7.gif')",
+                        "url('/assets/images/landing-page/text-bg.webp')",
                       backgroundSize: "contain",
                       backgroundPosition: "left top",
                       backgroundRepeat: "repeat",
                       WebkitBackgroundClip: "text",
                       backgroundClip: "text",
+                      animation: "bgMove 20s linear infinite, textPulse 3s ease-in-out infinite",
                       color: "transparent",
                       filter: "contrast(200%) brightness(1.2) saturate(1.5)",
                     }}
