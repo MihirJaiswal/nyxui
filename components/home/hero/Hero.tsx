@@ -183,44 +183,29 @@ function Hero() {
         </div>
       </div>
 
-      {/* Right side components - XL screens and above (second version behavior) */}
-      {/* For screens >= 1442px - Show all components */}
-      <div className="hidden 2xl:block  relative z-12">
-        <div className="absolute -top-12 right-158 w-full h-full">
+      <div className="hidden xl:block  relative z-12">
+        <div className="absolute xl:-top-12 right-50 2xl:right-83">
           <Scanner />
         </div>
-        <div className="absolute top-40 right-148 w-full h-full z-20">
+        <div className="absolute top-45 2xl:top-40 right-25 2xl:right-60 z-20">
           <Matrix />
         </div>
-        <div className="absolute -top-6 right-74 w-full h-full z-24">
+        <div className="absolute top-3 2xl:-top-6 right-0 z-24 hidden xl:block">
           <GlassMusicPlayer />
         </div>
-        <div className="absolute top-60 right-76 w-full h-full z-10">
+        <div className="absolute top-60 -right-8 z-10 hidden 2xl:block">
           <AnimatedCodeBlockDemo />
         </div>
-        <div className="absolute bottom-[9.85rem] right-68 w-84 h-2 border-t border-dashed border-neutral-500/40 dark:border-gray-200/35 z-28"></div>
-        <div className="absolute top-56 right-150 w-2 h-64 border-l border-dashed border-neutral-500/40 dark:border-gray-200/35 z-28"></div>
-        <div className="absolute bottom-[10.2rem] right-[37.55rem] w-2 h-3 border-l-3 border-neutral-500/40 dark:border-white/60 z-28"></div>
-        <div className="absolute bottom-[9.88rem] right-[37.3rem] w-3 h-2 border-t-3 border-neutral-500/40 dark:border-white/60 z-28"></div>
+        <div className="absolute bottom-[9.85rem] right-68 w-84 h-2 border-t border-dashed border-neutral-500/40 dark:border-gray-200/35 z-5 hidden 2xl:block"></div>
+        <div className="absolute top-56 right-150 w-2 h-64 border-l border-dashed border-neutral-500/40 dark:border-gray-200/35 z-5 hidden 2xl:block"></div>
+        <div className="absolute bottom-[10.2rem] right-[37.55rem] w-2 h-3 border-l-3 border-neutral-500/40 dark:border-white/60 z-5 hidden 2xl:block"></div>
+        <div className="absolute bottom-[9.88rem] right-[37.3rem] w-3 h-2 border-t-3 border-neutral-500/40 dark:border-white/60 z-5 hidden 2xl:block"></div>
       </div>
-
-      <div className="hidden xl:block 2xl:hidden relative z-12">
-        <div className="absolute -top-8 right-116 w-full h-full z-15">
+      <div className="hidden lg:block xl:hidden z-12">
+        <div className="absolute top-28 right-20 h-full">
           <Scanner />
         </div>
-        <div className="absolute top-48 right-110 w-full h-full z-20">
-          <Matrix />
-        </div>
-        <div className="absolute top-12 right-64 w-full h-full z-18">
-          <GlassMusicPlayer />
-        </div>
-      </div>
-
-      <div className="hidden  lg:block xl:hidden z-12">
-        <div className="absolute top-28 right-28 h-full">
-          <Scanner />
-        </div>
-        <div className="absolute top-84 right-14 h-full z-20">
+        <div className="absolute top-84 right-8 h-full z-20">
           <Matrix />
         </div>
       </div>
