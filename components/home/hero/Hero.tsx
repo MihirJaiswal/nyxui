@@ -205,13 +205,13 @@ function Hero() {
       </div>
 
       <div className="hidden xl:block 2xl:hidden relative z-12">
-        <div className="absolute -top-8 right-116 w-full h-full">
+        <div className="absolute -top-8 right-116 w-full h-full z-15">
           <Scanner />
         </div>
         <div className="absolute top-48 right-110 w-full h-full z-20">
           <Matrix />
         </div>
-        <div className="absolute top-12 right-64 w-full h-full z-12">
+        <div className="absolute top-12 right-64 w-full h-full z-18">
           <GlassMusicPlayer />
         </div>
       </div>
