@@ -83,7 +83,7 @@ function Hero() {
 
           {/* CTA Buttons */}
           <div className="relative z-12 mt-6 sm:mt-8 lg:mt-10 xl:mt-6 flex w-full flex-col justify-start sm:justify-center lg:justify-start space-y-2.5 sm:flex-row sm:space-y-0 sm:space-x-4">
-            <Link href="/components" rel="noopener noreferrer" prefetch >
+            <Link href="/components" rel="noopener noreferrer">
               <div>
                 <Rbutton className="relative rounded-md bg-neutral-900 dark:bg-white dark:text-black no-underline flex space-x-2 group cursor-pointer hover:shadow-2xl hover:shadow-zinc-800/50 hover:bg-neutral-800 dark:hover:bg-neutral-100 hover:-translate-y-0.5 hover:scale-[1.02] transition-all duration-300 ease-out shadow-zinc-900 p-px font-semibold text-white px-4 py-2 h-12 w-full items-center justify-center text-center text-sm sm:w-52">
                   <span className="transition-all duration-200 group-hover:tracking-wide">
