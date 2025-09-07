@@ -42,8 +42,8 @@ export const TwitterCard = () => {
                 <Image
                   src={img}
                   alt="Mihir Jaiswal"
-                  width={500}
-                  height={500}
+                  width={60}
+                  height={59}
                   loading="lazy"
                   placeholder="blur"
                   className="rounded-full object-cover"

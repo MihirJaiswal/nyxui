@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const colors = [
   "#00ff00",
-  "#ff0000",
+  "#ff0000", 
   "#0000ff",
   "#ffff00",
   "#ff00ff",
@@ -18,15 +18,16 @@ const colors = [
 
 export const Matrix = () => {
   const [color, setColor] = useState("#00ff00");
+
   const handleChange = () => {
     const randomColor = colors[Math.floor(Math.random() * colors.length)];
     setColor(randomColor);
   };
+
   return (
-    <div className="xl:w-[350px] bg-white dark:bg-black xl:h-[303px] h-[260px] w-[320px] relative border-2"
-    style={{
-      borderColor: color,
-    }}
+    <div 
+      className="xl:w-[350px] bg-white dark:bg-black xl:h-[303px] h-[260px] w-[320px] relative border-2"
+      style={{ borderColor: color }}
     >
       <MatrixCodeRain
         color={color}
@@ -37,6 +38,7 @@ export const Matrix = () => {
         fullScreen={false}
         height="100%"
       />
+      
       <div className="absolute inset-0 flex items-center justify-center">
         <GlitchButton
           className="font-mono text-lg font-bold tracking-wider z-10 drop-shadow-lg bg-black px-4 py-2 border-2"

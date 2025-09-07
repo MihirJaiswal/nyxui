@@ -1,10 +1,15 @@
 'use client'
-import LampHeading from "@/registry/ui/lamp-heading";
 import { lazy, Suspense, useState, useEffect, useCallback } from "react";
 
 const MorphingBlob = lazy(() => 
   import("@/registry/ui/morphing-blob").then(module => ({
     default: module.MorphingBlob
+  }))
+);
+
+const LampHeading = lazy(() => 
+  import("@/registry/ui/lamp-heading").then(module => ({
+    default: module.LampHeading
   }))
 );
 
@@ -71,6 +76,24 @@ const OptimizedBlobFallback = () => (
   </div>
 );
 
+const LampHeadingFallback = () => (
+  <div className="text-center z-1 w-full flex flex-col items-center justify-center gap-3 -mt-4 pb-12">
+    {/* Simple fallback for LampHeading */}
+    <div className="relative">
+      <h2 className="font-bold text-white text-2xl tracking-wide mb-3">
+        Build Innovative
+      </h2>
+      <div 
+        className="w-full h-1 rounded-full"
+        style={{
+          background: 'linear-gradient(90deg, #6e15ad, #d413ad)',
+          boxShadow: '0 0 20px rgba(110, 21, 173, 0.5)'
+        }}
+      />
+    </div>
+  </div>
+);
+
 const Blob = () => {
   const { shouldLoad, observeRef } = useProgressiveLoad(1000);
 
@@ -106,23 +129,29 @@ const Blob = () => {
             <OptimizedBlobFallback />
           )}
 
-          <div className="text-center z-1 w-full flex flex-col items-center justify-center gap-3 -mt-4 pb-12">
-            <LampHeading
-              text="Build Innovative"
-              gradientColors={{ from: "#6e15ad", to: "#d413ad" }}
-              direction="below"
-              lampHeight={50}
-              lineHeight={3}
-              glowIntensity={0.4}
-              textSize="2xl"
-              showLightRays
-              className="font-bold text-white"
-            />
-          </div>
+          {shouldLoad ? (
+            <Suspense fallback={<LampHeadingFallback />}>
+              <div className="text-center z-1 w-full flex flex-col items-center justify-center gap-3 -mt-4 pb-12">
+                <LampHeading
+                  text="Build Innovative"
+                  gradientColors={{ from: "#6e15ad", to: "#d413ad" }}
+                  direction="below"
+                  lampHeight={50}
+                  lineHeight={3}
+                  glowIntensity={0.4}
+                  textSize="2xl"
+                  showLightRays
+                  className="font-bold text-white"
+                />
+              </div>
+            </Suspense>
+          ) : (
+            <LampHeadingFallback />
+          )}
         </div>
       </div>
     </>
   );
 };
 
-export default Blob;
+export default Blob;  

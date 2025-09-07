@@ -1,15 +1,29 @@
 "use client"
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, lazy, Suspense } from "react"
 import { Download, FileCode, Zap, Settings } from "lucide-react"
 import { motion } from "motion/react"
 import { cn } from "@/lib/utils"
-import { DynamicRipple } from "@/registry/ui/dynamic-ripple"
+
+// Lazy load the DynamicRipple component
+const DynamicRipple = lazy(() => 
+  import("@/registry/ui/dynamic-ripple").then(module => ({ 
+    default: module.DynamicRipple 
+  }))
+)
+
+// Fallback component for loading state
+const RippleFallback = ({ className, children }: { className?: string; children: React.ReactNode }) => (
+  <div className={cn(className, "animate-pulse")}>
+    {children}
+  </div>
+)
 
 // Main Component
 export default function DownloadCompleteSection() {
   const [activeCard, setActiveCard] = useState(0)
   const [isHovering, setIsHovering] = useState(false)
   const [cardOrder, setCardOrder] = useState([0, 1, 2, 3])
+  const [shouldLoadRipple, setShouldLoadRipple] = useState(false)
   const componentRef = useRef<HTMLDivElement>(null)
 
   const cards = [
@@ -70,11 +84,24 @@ export default function DownloadCompleteSection() {
   const handleMouseEnter = () => {
     setIsHovering(true)
     setActiveCard(0)
+    // Trigger lazy loading when user starts interacting
+    if (!shouldLoadRipple) {
+      setShouldLoadRipple(true)
+    }
   }
 
   const handleMouseLeave = () => {
     setIsHovering(false)
   }
+
+  // Load ripple component on mount with a small delay for better UX
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShouldLoadRipple(true)
+    }, 100) // Small delay to prioritize initial render
+
+    return () => clearTimeout(timer)
+  }, [])
 
   useEffect(() => {
     if (!isHovering) return
@@ -117,52 +144,84 @@ export default function DownloadCompleteSection() {
           {cardOrder.map((cardIndex) => {
             const card = cards[cardIndex]
             const isActive = activeCard === cardIndex
+            
+            const cardContent = (
+              <div className="flex flex-row items-center gap-3 relative overflow-hidden">
+                <motion.div
+                  className="flex size-10 items-center justify-center rounded-2xl text-white relative z-10"
+                  style={{
+                    backgroundColor: card.color,
+                  }}
+                  animate={isActive ? "active" : isHovering ? "hover" : "initial"}
+                  transition={{ duration: 0.3 }}
+                >
+                  {card.icon}
+                </motion.div>
+                <div className="flex flex-col overflow-hidden flex-1 z-10">
+                  <div className="flex flex-row items-center whitespace-pre text-lg font-medium dark:text-white">
+                    <motion.span
+                      className="text-sm sm:text-lg"
+                      transition={{ duration: 0.2 }}
+                    >
+                      {card.title}
+                    </motion.span>
+                    <span className="mx-1">·</span>
+                    <span className="text-xs text-gray-500 hidden 2xl:block">{card.time}</span>
+                  </div>
+                  <p className="text-sm font-normal dark:text-white/60 text-gray-600">{card.description}</p>
+                </div>
+              </div>
+            )
+
             return (
               <motion.div key={cardIndex} layout transition={{ type: "spring", stiffness: 400, damping: 25 }}>
-                <DynamicRipple
-                  theme={card.theme}
-                  intensity={isActive ? 5 : isHovering ? 4 : 3}
-                  speed={isActive ? 5 : isHovering ? 4 : 3}
-                  autoAnimate={isHovering || isActive}
-                  reactToCursor={true}
-                  className={cn(
-                    "relative mx-auto min-h-fit w-full max-w-[400px] cursor-pointer overflow-hidden rounded-2xl p-4 mt-6",
-                    // animation styles
-                    "transition-all duration-300 ease-out hover:scale-105 hover:-translate-y-1",
-                    // light styles
-                    "bg-white [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)]",
-                    // dark styles
-                    "transform-gpu dark:bg-transparent dark:backdrop-blur-md dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset]",
-                    // active state
-                    isActive ? "ring-2 ring-white/20 shadow-xl shadow-white/10 -translate-y-1" : "",
-                  )}
-                >
-                  <div className="flex flex-row items-center gap-3 relative overflow-hidden">
-                    <motion.div
-                      className="flex size-10 items-center justify-center rounded-2xl text-white relative z-10"
-                      style={{
-                        backgroundColor: card.color,
-                      }}
-                      animate={isActive ? "active" : isHovering ? "hover" : "initial"}
-                      transition={{ duration: 0.3 }}
+                {shouldLoadRipple ? (
+                  <Suspense
+                    fallback={
+                      <RippleFallback
+                        className={cn(
+                          "relative mx-auto min-h-fit w-full max-w-[400px] cursor-pointer overflow-hidden rounded-2xl p-4 mt-6",
+                          "transition-all duration-300 ease-out hover:scale-105 hover:-translate-y-1",
+                          "bg-white [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)]",
+                          "transform-gpu dark:bg-transparent dark:backdrop-blur-md dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset]",
+                          isActive ? "ring-2 ring-white/20 shadow-xl shadow-white/10 -translate-y-1" : "",
+                        )}
+                      >
+                        {cardContent}
+                      </RippleFallback>
+                    }
+                  >
+                    <DynamicRipple
+                      theme={card.theme}
+                      intensity={isActive ? 5 : isHovering ? 4 : 3}
+                      speed={isActive ? 5 : isHovering ? 4 : 3}
+                      autoAnimate={isHovering || isActive}
+                      reactToCursor={true}
+                      className={cn(
+                        "relative mx-auto min-h-fit w-full max-w-[400px] cursor-pointer overflow-hidden rounded-2xl p-4 mt-6",
+                        "transition-all duration-300 ease-out hover:scale-105 hover:-translate-y-1",
+                        "bg-white [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)]",
+                        "transform-gpu dark:bg-transparent dark:backdrop-blur-md dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset]",
+                        isActive ? "ring-2 ring-white/20 shadow-xl shadow-white/10 -translate-y-1" : "",
+                      )}
                     >
-                      {card.icon}
-                    </motion.div>
-                    <div className="flex flex-col overflow-hidden flex-1 z-10">
-                      <div className="flex flex-row items-center whitespace-pre text-lg font-medium dark:text-white">
-                        <motion.span
-                          className="text-sm sm:text-lg"
-                          transition={{ duration: 0.2 }}
-                        >
-                          {card.title}
-                        </motion.span>
-                        <span className="mx-1">·</span>
-                        <span className="text-xs text-gray-500 hidden 2xl:block">{card.time}</span>
-                      </div>
-                      <p className="text-sm font-normal dark:text-white/60 text-gray-600">{card.description}</p>
-                    </div>
+                      {cardContent}
+                    </DynamicRipple>
+                  </Suspense>
+                ) : (
+                  // Render without ripple initially
+                  <div
+                    className={cn(
+                      "relative mx-auto min-h-fit w-full max-w-[400px] cursor-pointer overflow-hidden rounded-2xl p-4 mt-6",
+                      "transition-all duration-300 ease-out hover:scale-105 hover:-translate-y-1",
+                      "bg-white [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)]",
+                      "transform-gpu dark:bg-transparent dark:backdrop-blur-md dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset]",
+                      isActive ? "ring-2 ring-white/20 shadow-xl shadow-white/10 -translate-y-1" : "",
+                    )}
+                  >
+                    {cardContent}
                   </div>
-                </DynamicRipple>
+                )}
               </motion.div>
             )
           })}
