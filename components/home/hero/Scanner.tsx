@@ -275,7 +275,7 @@ const ScannerCore = () => {
             width={300}
             height={300}
             quality={100}
-            loading="lazy"
+            priority
             className={cn(
               "w-full h-full object-cover transition-all duration-500 ease-out",
               isScanning ? "hue-rotate-15 animate-pulse" : "",
