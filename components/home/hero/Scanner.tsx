@@ -24,10 +24,10 @@ const ScannerSkeleton = () => {
           <Image
             src="/assets/images/landing-page/img.webp"
             alt="AI Scanner Target"
-            width={300}
-            height={300}
+            width={375}
+            height={375}
             priority
-            className="w-full h-full object-cover"
+            className="object-cover"
             fetchPriority="high"
             decoding="sync"
             loading="eager"
@@ -272,12 +272,12 @@ const ScannerCore = () => {
           <Image
             src="/assets/images/landing-page/img.webp"
             alt="AI Scanner Target"
-            width={300}
-            height={300}
+            width={375}
+            height={375}
             quality={100}
             priority
             className={cn(
-              "w-full h-full object-cover transition-all duration-500 ease-out",
+              "object-cover transition-all duration-500 ease-out",
               isScanning ? "hue-rotate-15 animate-pulse" : "",
             )}
             onLoad={handleImageLoad}
