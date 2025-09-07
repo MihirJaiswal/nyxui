@@ -27,6 +27,7 @@ function Hero() {
           <Link
             href="/playground"
             rel="noopener noreferrer"
+            prefetch={false}
             className="z-12 sm:flex items-center justify-center lg:justify-start"
           >
             <Badge className="z-12 mb-4 sm:mb-6 group cursor-pointer inline-flex items-center text-black dark:text-white gap-2 rounded-full border border-gray-300 px-3 py-1 sm:px-4 sm:py-1.5 text-xs font-semibold dark:border-gray-600 bg-background">
