@@ -1,6 +1,4 @@
-'use client'
 import Link from "next/link";
-import React, { useState, useEffect } from "react";
 import { ArrowRight, Blocks, ChevronRight } from "lucide-react";
 import TechStack from "./Tech";
 import { Badge } from "../../ui/badge";
@@ -11,24 +9,15 @@ import { Scanner } from "./Scanner";
 import { Matrix } from "./Matrix";
 import AnimatedCodeBlockDemo from "./CodeBlock";
 import { componentsData } from "@/registry/Data";
+import { AnimatedBackground } from "./AnimatedBackground";
 
 function Hero() {
-  const [showGradient, setShowGradient] = useState(false);
   const componentCount = Object.keys(componentsData.components || {}).length;
   const templateCount = Object.keys(componentsData.templates || {}).length;
   const blockCount = componentsData.blocks
     ? Object.keys(componentsData.blocks).length
     : 0;
   const hasBlocks = blockCount > 0;
-
-  // Trigger gradient animation after component mounts
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowGradient(true);
-    }, 800);
-
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <section className="relative px-6 xl:px-22 py-12 sm:py-16 md:py-20 lg:pt-28 lg:pb-20 flex flex-col xl:flex-row xl:container mx-auto">
@@ -94,7 +83,7 @@ function Hero() {
 
           {/* CTA Buttons */}
           <div className="relative z-12 mt-6 sm:mt-8 lg:mt-10 xl:mt-6 flex w-full flex-col justify-start sm:justify-center lg:justify-start space-y-2.5 sm:flex-row sm:space-y-0 sm:space-x-4">
-            <Link href="/components" rel="noopener noreferrer">
+            <Link href="/components" rel="noopener noreferrer" prefetch >
               <div>
                 <Rbutton className="relative rounded-md bg-neutral-900 dark:bg-white dark:text-black no-underline flex space-x-2 group cursor-pointer hover:shadow-2xl hover:shadow-zinc-800/50 hover:bg-neutral-800 dark:hover:bg-neutral-100 hover:-translate-y-0.5 hover:scale-[1.02] transition-all duration-300 ease-out shadow-zinc-900 p-px font-semibold text-white px-4 py-2 h-12 w-full items-center justify-center text-center text-sm sm:w-52">
                   <span className="transition-all duration-200 group-hover:tracking-wide">
@@ -170,14 +159,7 @@ function Hero() {
         </div>
 
         {/* Animated Organic Flowing Gradient */}
-        <div className={`absolute -top-32 left-56 md:top-0 sm:right:1/2 lg:right-0 lg:left-auto w-[300px] h-[300px] sm:w-[500px] sm:h-[400px] lg:w-[680px] lg:h-[600px] transition-all duration-1000 ease-out ${
-          showGradient 
-            ? 'opacity-20 dark:opacity-70 scale-100' 
-            : 'opacity-0 scale-75'
-        }`}>
-          <div className="absolute inset-0 sm:-top-50 md:inset-0 bg-gradient-to-br sm:bg-gradient-to-b lg:bg-gradient-to-br from-purple-500 via-purple-600 to-pink-600 sm:to-transparent lg:to-pink-600 rounded-full blur-3xl transform rotate-12 sm:rotate-0 lg:rotate-12 scale-150 sm:opacity-80 lg:opacity-100" />
-          <div className="absolute top-10 right-10 sm:-top-12 sm:right-16 md:-top-30 lg:top-20 lg:right-20 w-48 h-48 sm:w-72 sm:h-72 lg:w-96 lg:h-96 bg-gradient-to-br from-orange-400 via-red-500 to-pink-600 rounded-full blur-2xl opacity-70" />
-        </div>
+        <AnimatedBackground/>
       </div>
 
       <div className="hidden xl:block  relative z-12">

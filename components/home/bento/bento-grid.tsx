@@ -1,6 +1,4 @@
-"use client";
 import { clsx } from "clsx";
-import { motion } from "motion/react";
 
 export function BentoGrid({
   dark = false,
@@ -17,7 +15,6 @@ export function BentoGrid({
   titleClassName = "mt-1 text-2xl font-medium tracking-tight",
   descriptionClassName = "mt-2 max-w-[600px] text-sm",
   gradientPercentage = "to-50%",
-  onHover,
 }: {
   dark?: boolean;
   className?: string;
@@ -33,26 +30,16 @@ export function BentoGrid({
   titleClassName?: string;
   descriptionClassName?: string;
   gradientPercentage?: string;
-  onHover?: () => void;
 }) {
-  const hoverVariants = {
-    idle: { scale: 1 },
-    active: { scale: 1.005, transition: { duration: 0.3 } },
-  };
-
   return (
-    <motion.div
-      initial="idle"
-      whileHover="active"
-      variants={hoverVariants}
-      onHoverStart={() => onHover?.()}
+    <div
       data-dark={dark ? "true" : undefined}
       className={clsx(
         className,
         "group relative flex flex-col overflow-hidden rounded-lg",
         "bg-white dark:bg-zinc-950 shadow-md ring-1 ring-black/5 dark:ring-white/5",
         "data-[dark]:bg-zinc-950 data-[dark]:ring-white/5",
-        "transition-all duration-300",
+        "transition-all duration-300 hover:scale-[1.005]",
         isFull && "h-full",
       )}
       role="article"
@@ -122,6 +109,6 @@ export function BentoGrid({
           )}
         </div>
       )}
-    </motion.div>
+    </div>
   );
 }

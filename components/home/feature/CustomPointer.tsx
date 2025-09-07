@@ -1,4 +1,3 @@
-"use client";
 import { Cursor } from "@/registry/ui/custom-cursor";
 
 export const CustomPointer = () => (

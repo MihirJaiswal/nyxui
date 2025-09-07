@@ -193,7 +193,7 @@ export function Browser({
             width: `${(1200 / width) * 100}%`, // Content area width
             height: `${(700 / height) * 100}%`, // Content area height
             overflow: 'hidden',
-            borderRadius: '0 0 5px 5px' // Match the browser's bottom border radius
+            borderRadius: '0 0 6px 6px' // Match the browser's bottom border radius
           }}
         >
           {children}

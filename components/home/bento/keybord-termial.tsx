@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import InteractiveKeyboard from "@/registry/ui/keyboard"
 import InteractiveTerminal from "@/registry/ui/terminal"
 import { Code } from "lucide-react"
@@ -49,7 +49,6 @@ export const TerminalKeyboardDemo = () => {
             perspective={800}
             rotateX={15}
             accentColor="#00C24E"
-            
           />
         </div>
       </div>
