@@ -264,7 +264,7 @@ const ScannerCore = () => {
       <div className="relative overflow-hidden w-full h-full">
         <div
           className={cn(
-            "w-full h-full relative overflow-hidden transition-all duration-500",
+            "w-full h-full relative overflow-hidden transition-all duration-500 bg-zinc-900",
             scanComplete ? `ring-2 ring-offset-2 dark:ring-offset-gray-900 ${emeraldColor.border}` : "",
             isScanning ? "backdrop-blur-sm brightness-110 contrast-110" : "",
           )}
