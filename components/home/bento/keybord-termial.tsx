@@ -1,12 +1,8 @@
-'use client'
-import InteractiveKeyboard from "@/registry/ui/keyboard"
 import InteractiveTerminal from "@/registry/ui/terminal"
 import { Code } from "lucide-react"
-import { useTheme } from "next-themes"
+import Keyboard from "./keyboard"
 
 export const TerminalKeyboardDemo = () => {
-    const theme = useTheme()
-  const keyboardVariant = theme.theme === "light" ? "neon" : "cyberpunk"
   return (
     <div className="rounded-xl overflow-hidden relative w-full h-full bg-black/90 dark:from-zinc-900 dark:to-black shadow-lg">
       <div className="w-full  overflow-hidden overscroll-none  ">
@@ -36,14 +32,10 @@ export const TerminalKeyboardDemo = () => {
 
       <div className="flex-grow relative w-full flex items-center justify-end lg:justify-start">
         <div className="transform scale-70 md:scale-80 origin-center lg:origin-top -mt-56">
-          <InteractiveKeyboard
-            layout="standard"
-            showFunctionKeys={false}
-            showNavigationCluster={false}
+          <Keyboard
             activeKeys={["Enter"]}
             activeKeyGlowColor="#00C24E"
             activeKeyGlowIntensity={2}
-            theme={keyboardVariant}
             keyPressAnimationDuration={800}
             allowPhysicalKeyboard={true}
             perspective={800}

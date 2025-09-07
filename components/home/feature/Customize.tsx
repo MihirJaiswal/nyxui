@@ -2,14 +2,14 @@
 import { useState } from "react";
 import { Volume2, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import { MusicPlayer, Track } from "@/registry/ui/music-player";
+import { MusicPlayer } from "@/registry/ui/music-player";
 
 const MusicCardThemeCustomizer = () => {
     const [cardTheme, setCardTheme] = useState("spotify");
     const [slideDirection, setSlideDirection] = useState("right");
     const [isAnimating, setIsAnimating] = useState(false);
 
-    const sampleTrack: Track = {
+    const sampleTrack = {
         id: "blinding-lights",
         title: "Blinding Lights",
         artist: "The Weeknd",
@@ -17,26 +17,6 @@ const MusicCardThemeCustomizer = () => {
         artwork: "/assets/images/landing-page/song.jpg",
         duration: 217,
     };
-
-    const sampleQueue: Track[] = [
-        sampleTrack,
-        {
-            id: "save-your-tears",
-            title: "Save Your Tears",
-            artist: "The Weeknd",
-            album: "After Hours",
-            artwork: "/assets/images/landing-page/song.jpg",
-            duration: 215,
-        },
-        {
-            id: "starboy",
-            title: "Starboy",
-            artist: "The Weeknd ft. Daft Punk",
-            album: "Starboy",
-            artwork: "/assets/images/landing-page/song.jpg",
-            duration: 230,
-        },
-    ];
 
     const themeOptions = [
         {
@@ -192,7 +172,6 @@ const MusicCardThemeCustomizer = () => {
                                     <MusicPlayer
                                         theme={cardTheme as "default" | "spotify" | "cosmic" | "midnight"}
                                         currentTrack={sampleTrack}
-                                        queue={sampleQueue}
                                         currentIndex={0}
                                         initialTime={45}
                                         className="shadow-lg rounded-lg mr-1 scale-80 -mt-12"
@@ -283,7 +262,6 @@ const MusicCardThemeCustomizer = () => {
                                     <MusicPlayer
                                         theme={cardTheme as "default" | "spotify" | "cosmic" | "midnight"}
                                         currentTrack={sampleTrack}
-                                        queue={sampleQueue}
                                         currentIndex={0}
                                         initialTime={45}
                                         className="shadow-lg rounded-lg"
