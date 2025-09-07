@@ -1,9 +1,0 @@
-# *
-User-agent: *
-Allow: /
-
-# Host
-Host: https://nyxui.com
-
-# Sitemaps
-Sitemap: https://nyxui.com/sitemap.xml
