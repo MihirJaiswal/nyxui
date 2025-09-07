@@ -131,7 +131,7 @@ function Hero() {
               className="flex items-center space-x-3 group hover:text-black dark:hover:text-white transition-colors cursor-pointer"
             >
               <span className="text-base sm:text-lg">
-                {componentCount.toString().padStart(2, "0")}/components
+                {componentCount.toString().padStart(2, "0")} components
               </span>
               <ArrowRight className="h-4 w-4 group-hover:ml-4 transform transition-all duration-200" />
             </Link>
@@ -140,7 +140,7 @@ function Hero() {
               className="flex items-center group space-x-3 hover:text-black dark:hover:text-white transition-colors cursor-pointer"
             >
               <span className="text-base sm:text-lg">
-                {templateCount.toString().padStart(2, "0")}/templates
+                {templateCount.toString().padStart(2, "0")} templates
               </span>
               <ArrowRight className="h-4 w-4 group-hover:ml-4 transform transition-all duration-200" />
             </Link>
@@ -150,7 +150,7 @@ function Hero() {
                 className="flex items-center group space-x-3 hover:text-black dark:hover:text-white transition-colors cursor-pointer"
               >
                 <span className="text-base sm:text-lg">
-                  {blockCount.toString().padStart(2, "0")}/blocks
+                  {blockCount.toString().padStart(2, "0")} blocks
                 </span>
                 <ArrowRight className="h-4 w-4 group-hover:ml-4 transform transition-all duration-200" />
               </Link>

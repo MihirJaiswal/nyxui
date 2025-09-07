@@ -112,7 +112,7 @@ export default function Header() {
                 <Logo className="transition-colors duration-200" />
               </div>
             </div>
-            <span className="hidden md:block text-xl ml-1 font-bold bg-clip-text sr-only text-black dark:text-white bg-gradient-to-r from-foreground to-foreground/80 transition-colors duration-200">
+            <span className="text-xl ml-1 font-bold bg-clip-text sr-only text-black dark:text-white bg-gradient-to-r from-foreground to-foreground/80 transition-colors duration-200">
               Nyx UI
             </span>
           </Link>
