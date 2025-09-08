@@ -42,6 +42,9 @@ export const metadata: Metadata = {
   authors: [{ name: "Mihir Jaiswal", url: "https://mihirjaiswal-portfolio.vercel.app/" }],
   creator: "Mihir Jaiswal",
   publisher: "Mihir Jaiswal",
+  alternates: {
+    canonical: "https://nyxui.com",
+  },
   openGraph: {
     title: "Nyx UI",
     description:
