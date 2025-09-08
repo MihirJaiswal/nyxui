@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     template: "%s | Nyx UI - React UI Library"
   },
   description:
-    "Nyx UI is the ultimate React UI library with 30+ modern components for Next.js. Built with Tailwind CSS, Framer Motion, and TypeScript. Create beautiful, responsive interfaces faster with our comprehensive UI component library.",
+    "Beautiful React UI components for Next.js developers. Copy, customize, and ship responsive apps faster with Nyx UI",
   keywords: [
     "Nyx UI",
     "nyxui",
@@ -78,9 +78,6 @@ export const metadata: Metadata = {
 
   },
   category: "Web Development",
-  alternates: {
-    // Do not set a global canonical. Route-level pages define precise canonicals.
-  },
   verification: {
     google: "XNSEycxa9cfRCuvJ0zP9yC5u_J0R-oriqXxyEM4Yp-Q",
   },
