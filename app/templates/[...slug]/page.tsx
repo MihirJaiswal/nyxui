@@ -110,7 +110,7 @@ export async function generateMetadata({
       locale: "en_US",
       images: [
         {
-          url: template.image || "/nyx.png",
+          url: template.image || "/nyx.webp",
           width: 1200,
           height: 630,
           alt: `${template.title} React Template - Nyx UI`,
@@ -121,7 +121,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: `${template.title} React Template | Nyx UI`,
       description: enhancedDescription,
-      images: [template.image || "/nyx.png"],
+      images: [template.image || "/nyx.webp"],
       creator: "@nuvyx_ui",
       site: "@nuvyx_ui"
     },
@@ -254,7 +254,7 @@ export default async function TemplatePage({ params }: TemplatePageProps) {
       description: "Modern React template collection for Next.js applications"
     },
     
-    screenshot: template.image || "/nyx.png",
+    screenshot: template.image || "/nyx.webp",
     
     applicationSubCategory: "Web Template",
     

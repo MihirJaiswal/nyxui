@@ -102,7 +102,7 @@ export async function generateMetadata({
       type: "website",
       images: [
         {
-          url: "/nyx.png",
+          url: "/nyx.webp",
           width: 1200,
           height: 630,
           alt: `${titleCategory} Components - Nyx UI`,
@@ -113,7 +113,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: `${titleCategory} Components | Nyx UI`,
       description,
-      images: ["/nyx.png"],
+      images: ["/nyx.webp"],
     },
   };
 }

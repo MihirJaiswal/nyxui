@@ -48,7 +48,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: `NyxUI - ${componentCount}+ React Components`,
       description: `Modern React components for Next.js. Built with TypeScript & Tailwind CSS.`,
-      images: ["/nyx.png"],
+      images: ["/nyx.webp"],
       creator: "@mihir_jaiswal_",
     },
 

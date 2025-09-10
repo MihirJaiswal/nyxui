@@ -106,7 +106,7 @@ export async function generateMetadata({
       locale: "en_US",
       images: [
         {
-          url: doc.image || "/nyx.png",
+          url: doc.image || "/nyx.webp",
           width: 1200,
           height: 630,
           alt: `${doc.title} React Component - Nyx UI`,
@@ -117,7 +117,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: `${doc.title} React Component | Nyx UI`,
       description: enhancedDescription,
-      images: [doc.image || "/nyx.png"],
+      images: [doc.image || "/nyx.webp"],
       creator: "@mihir_jaiswal_",
       site: "@mihir_jaiswal_",
     },

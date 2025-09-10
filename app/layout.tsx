@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     description:
       "The most comprehensive React UI library for Next.js. 30+ modern components built with Tailwind CSS and Framer Motion. Start building beautiful interfaces today.",
     images: [{ 
-      url: "/nyx.png", 
+      url: "/nyx.webp", 
       alt: "Nyx UI - Design Sharp. Ship Fast."
     }],
     type: "website",
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     title: "Nyx UI",
     description:
       "30+ modern React components built with Tailwind CSS and Framer Motion. The ultimate UI library for modern Next.js applications.",
-    images: ["/nyx.png"],
+    images: ["/nyx.webp"],
     creator: "@mihir_jaiswal_",
     site: "@mihir_jaiswal_",
   },

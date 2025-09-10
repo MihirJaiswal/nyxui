@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     title: "Nyx UI - Modern React Components Library",
     description:
       "Discover beautiful UI components for Next.js applications built with Tailwind CSS, Framer Motion, and TypeScript.",
-    images: ["/nyx.png"],
+    images: ["/nyx.webp"],
     creator: "@nuvyx_ui",
     site: "@nuvyx_ui",
   },
