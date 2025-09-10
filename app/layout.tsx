@@ -10,10 +10,10 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://nyxui.com/"),
   title: {
     default: "Nyx UI",
-    template: "%s | Nyx UI - React UI Library"
+    template: "%s | Nyx UI"
   },
   description:
-    "Beautiful React UI components for Next.js developers. Copy, customize, and ship responsive apps faster with Nyx UI",
+    "Nyx UI is a collection of modern React components and templates for developers. 25+ components built with Tailwind CSS and Framer Motion. Start building beautiful interfaces today.",
   keywords: [
     "Nyx UI",
     "nyxui",
@@ -51,9 +51,7 @@ export const metadata: Metadata = {
       "The most comprehensive React UI library for Next.js. 30+ modern components built with Tailwind CSS and Framer Motion. Start building beautiful interfaces today.",
     images: [{ 
       url: "/nyx.png", 
-      width: 1200, 
-      height: 630,
-      alt: "Nyx UI - Modern React UI Library Components Preview"
+      alt: "Nyx UI - Design Sharp. Ship Fast."
     }],
     type: "website",
     locale: "en_US",
@@ -111,7 +109,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "SoftwareApplication",
               "name": "Nyx UI",
-              "description": "Modern React UI library with 50+ components for Next.js applications",
+              "description": "Nyx UI is a collection of modern React components and templates for developers.",
               "url": "https://nyxui.com/",
               "author": {
                 "@type": "Person",
@@ -120,11 +118,6 @@ export default function RootLayout({
               },
               "applicationCategory": "DeveloperApplication",
               "operatingSystem": "Web Browser",
-              "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "USD"
-              },
               "keywords": "UI library, React components, Next.js, Tailwind CSS, TypeScript"
             })
           }}
