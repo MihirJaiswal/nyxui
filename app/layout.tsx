@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     template: "%s | Nyx UI"
   },
   description:
-    "Nyx UI is a collection of modern React components and templates for developers. 25+ components built with Tailwind CSS and Framer Motion. Start building beautiful interfaces today.",
+    "Build stunning landing pages and web apps with NyxUI — 25+ React + Tailwind components and templates, powered by Framer Motion for smooth animations.",
   keywords: [
     "Nyx UI",
     "nyxui",
