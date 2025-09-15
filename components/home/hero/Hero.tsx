@@ -9,7 +9,6 @@ import { Matrix } from "./Matrix";
 import AnimatedCodeBlockDemo from "./CodeBlock";
 import { componentsData } from "@/registry/Data";
 import { AnimatedBackground } from "./AnimatedBackground";
-import { PeerlistButton } from "./PeerlistButton";
 
 function Hero() {
   const componentCount = Object.keys(componentsData.components || {}).length;
@@ -34,7 +33,17 @@ function Hero() {
               New! <span className="hidden sm:inline">Playground</span>
               <ArrowRight className="ml-1 sm:ml-2 h-3 w-3 sm:h-4 sm:w-4 group-hover:ml-4 transform transition-all duration-200" />
             </Badge> */}
-            <PeerlistButton/>
+            <a href="https://peerlist.io/jaiswalmihir/project/nyx-ui" target="_blank" rel="noreferrer">
+              <img
+                src="https://peerlist.io/api/v1/projects/embed/PRJHBAROKRJOARL9LIOMLGEEALNG6R?showUpvote=true&theme=dark"
+                alt="Nyx UI"
+                style={{
+                  width: "auto",
+                  height: "50px",
+                }}
+              />
+            </a>
+
           </div>
 
           {/* Massive Typography */}
@@ -158,7 +167,7 @@ function Hero() {
         </div>
 
         {/* Animated Organic Flowing Gradient */}
-        <AnimatedBackground/>
+        <AnimatedBackground />
       </div>
 
       <div className="hidden xl:block  relative z-12">
