@@ -22,10 +22,10 @@ function Hero() {
   return (
     <section className="relative px-6 xl:px-22 py-12 sm:py-16 md:py-20 lg:pt-28 lg:pb-20 flex flex-col xl:flex-row xl:container mx-auto">
       <div className="w-full xl:flex-1 xl:container xl:mx-auto z-10">
-        <div className="xl:max-w-5xl mt-6 sm:mt-8 lg:mt-10"> {/*12*/}
+        <div className="xl:max-w-5xl mt-6 sm:mt-8 lg:mt-6"> {/*12*/}
           {/* Announcement Badge */}
           <div
-            className="z-12 sm:flex items-center justify-center lg:justify-start mb-2"
+            className="z-12 sm:flex items-start justify-center lg:justify-start mb-5 relative"
           >
             {/* <Badge className="z-12 mb-4 sm:mb-6 group cursor-pointer inline-flex items-center text-black dark:text-white gap-2 rounded-full border border-gray-300 px-3 py-1 sm:px-4 sm:py-1.5 text-xs font-semibold dark:border-gray-600 bg-background">
               <div className="border-r border-zinc-500 pr-2">
