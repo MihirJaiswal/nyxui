@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { ArrowRight, Blocks, ChevronRight } from "lucide-react";
 import TechStack from "./Tech";
 import SocialProof from "./Social-proof";
 import { Rbutton } from "../../ui/Rbutton";
@@ -9,6 +9,7 @@ import { Matrix } from "./Matrix";
 import AnimatedCodeBlockDemo from "./CodeBlock";
 import { componentsData } from "@/registry/Data";
 import { AnimatedBackground } from "./AnimatedBackground";
+import { Badge } from "@/components/ui/badge";
 
 function Hero() {
   const componentCount = Object.keys(componentsData.components || {}).length;
@@ -21,29 +22,18 @@ function Hero() {
   return (
     <section className="relative px-6 xl:px-22 py-12 sm:py-16 md:py-20 lg:pt-28 lg:pb-20 flex flex-col xl:flex-row xl:container mx-auto">
       <div className="w-full xl:flex-1 xl:container xl:mx-auto z-10">
-        <div className="xl:max-w-5xl mt-6 sm:mt-8 lg:mt-6"> {/*12*/}
+        <div className="xl:max-w-5xl mt-6 sm:mt-8 lg:mt-12">
           {/* Announcement Badge */}
           <div
-            className="z-12 sm:flex items-start justify-center lg:justify-start mb-5 relative"
+            className="z-12 sm:flex items-start justify-center lg:justify-start relative"
           >
-            {/* <Badge className="z-12 mb-4 sm:mb-6 group cursor-pointer inline-flex items-center text-black dark:text-white gap-2 rounded-full border border-gray-300 px-3 py-1 sm:px-4 sm:py-1.5 text-xs font-semibold dark:border-gray-600 bg-background">
+            <Badge className="z-12 mb-4 sm:mb-6 group cursor-pointer inline-flex items-center text-black dark:text-white gap-2 rounded-full border border-gray-300 px-3 py-1 sm:px-4 sm:py-1.5 text-xs font-semibold dark:border-gray-600 bg-background">
               <div className="border-r border-zinc-500 pr-2">
                 <Blocks className="h-3 w-3 sm:h-4 sm:w-4 group-hover:fill-purple-400 dark:group-hover:fill-purple-700 group-hover:rotate-12" />
               </div>
               New! <span className="hidden sm:inline">Playground</span>
               <ArrowRight className="ml-1 sm:ml-2 h-3 w-3 sm:h-4 sm:w-4 group-hover:ml-4 transform transition-all duration-200" />
-            </Badge> */}
-            <a href="https://peerlist.io/jaiswalmihir/project/nyx-ui" target="_blank" rel="noreferrer">
-              <img
-                src="https://peerlist.io/api/v1/projects/embed/PRJHBAROKRJOARL9LIOMLGEEALNG6R?showUpvote=true&theme=dark"
-                alt="Nyx UI"
-                style={{
-                  width: "auto",
-                  height: "50px",
-                }}
-              />
-            </a>
-
+            </Badge>
           </div>
 
           {/* Massive Typography */}
@@ -183,11 +173,11 @@ function Hero() {
         <div className="absolute top-60 -right-8 z-10 hidden 2xl:block">
           <AnimatedCodeBlockDemo />
         </div>
-        {/* <div className="absolute bottom-[9.85rem] right-68 w-84 h-2 border-t border-dashed border-neutral-500/40 dark:border-gray-200/35 z-5 hidden 2xl:block"></div>
+        <div className="absolute bottom-[9.85rem] right-68 w-84 h-2 border-t border-dashed border-neutral-500/40 dark:border-gray-200/35 z-5 hidden 2xl:block"></div>
         <div className="absolute top-48 right-68 w-84 h-2 border-t border-dashed border-neutral-500/40 dark:border-gray-200/35 z-5 hidden 2xl:block"></div>
         <div className="absolute top-48 right-150 w-2 h-72 border-l border-dashed border-neutral-500/40 dark:border-gray-200/35 z-5 hidden 2xl:block"></div>
         <div className="absolute bottom-[10.2rem] right-[37.55rem] w-2 h-3 border-l-3 border-neutral-500/40 dark:border-white/60 z-5 hidden 2xl:block"></div>
-        <div className="absolute bottom-[9.88rem] right-[37.3rem] w-3 h-2 border-t-3 border-neutral-500/40 dark:border-white/60 z-5 hidden 2xl:block"></div> */}
+        <div className="absolute bottom-[9.88rem] right-[37.3rem] w-3 h-2 border-t-3 border-neutral-500/40 dark:border-white/60 z-5 hidden 2xl:block"></div>
       </div>
       <div className="hidden lg:block xl:hidden z-12">
         <div className="absolute top-28 right-20 h-full">
