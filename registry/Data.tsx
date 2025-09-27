@@ -47,7 +47,7 @@ export const componentsData: ComponentsData = {
     
     "water-ripple-effect": {
       title: "Water Ripple Effect",
-      tags: ["Interactive", "Visual Effects", "Image"],
+      tags: ["Interactive", "Visual Effects", "image"],
       description: "A mesmerizing water ripple effect for Images.",
       image: "/assets/images/showcase/components/water-ripple-effect.png",
       isNew: true,
@@ -136,13 +136,13 @@ export const componentsData: ComponentsData = {
     },
     "image-comparison": {
       title: "Image Comparison",
-      tags: ["Interactive", "Image", "Media"],
+      tags: ["Interactive", "image", "Media"],
       description: "A component for comparing two images side-by-side.",
       image: "/assets/images/showcase/components/image-comparison.png",
     },
     "image-scanner": {
       title: "Image Scanner",
-      tags: ["Interactive", "Image", "Media"],
+      tags: ["Interactive", "image", "Media"],
       description: "A component for scanning images with a futuristic effect.",
       image: "/assets/images/showcase/components/image-scanner.png",
     },
