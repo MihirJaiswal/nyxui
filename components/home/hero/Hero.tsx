@@ -37,7 +37,7 @@ function Hero() {
           </div>
 
           {/* Massive Typography */}
-          <h1 className="mb-6 sm:mb-8 text-[2.6rem] sm:text-7xl lg:text-[4.5rem] font-black leading-[1.1] md:leading-[0.95] tracking-tighter relative z-1 sm:text-center lg:text-left">
+          <h1 className="mb-6 text-[2.6rem] sm:text-7xl lg:text-[4.5rem] font-black leading-[1.1] md:leading-[0.95] tracking-tighter relative z-1 sm:text-center lg:text-left">
             <span className="relative text-transparent bg-clip-text bg-gradient-to-b from-neutral-700 to-neutral-950 dark:from-zinc-100 dark:to-white">
               Next
             </span>
@@ -173,11 +173,11 @@ function Hero() {
         <div className="absolute top-60 -right-8 z-10 hidden 2xl:block">
           <AnimatedCodeBlockDemo />
         </div>
-        <div className="absolute bottom-[9.85rem] right-68 w-84 h-2 border-t border-dashed border-neutral-500/40 dark:border-gray-200/35 z-5 hidden 2xl:block"></div>
+        {/* <div className="absolute bottom-[9.85rem] right-68 w-84 h-2 border-t border-dashed border-neutral-500/40 dark:border-gray-200/35 z-5 hidden 2xl:block"></div>
         <div className="absolute top-48 right-68 w-84 h-2 border-t border-dashed border-neutral-500/40 dark:border-gray-200/35 z-5 hidden 2xl:block"></div>
         <div className="absolute top-48 right-150 w-2 h-72 border-l border-dashed border-neutral-500/40 dark:border-gray-200/35 z-5 hidden 2xl:block"></div>
         <div className="absolute bottom-[10.2rem] right-[37.55rem] w-2 h-3 border-l-3 border-neutral-500/40 dark:border-white/60 z-5 hidden 2xl:block"></div>
-        <div className="absolute bottom-[9.88rem] right-[37.3rem] w-3 h-2 border-t-3 border-neutral-500/40 dark:border-white/60 z-5 hidden 2xl:block"></div>
+        <div className="absolute bottom-[9.88rem] right-[37.3rem] w-3 h-2 border-t-3 border-neutral-500/40 dark:border-white/60 z-5 hidden 2xl:block"></div> */}
       </div>
       <div className="hidden lg:block xl:hidden z-12">
         <div className="absolute top-28 right-20 h-full">
