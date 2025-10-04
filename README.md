@@ -9,7 +9,7 @@ A modern and flexible UI library built for Next.js projects, leveraging [Tailwin
 ## 👤 Brought to you by Mihir Jaiswal
 
 - X: [@mihir_jaiswal_]([https://x.com/naymur_dev](https://x.com/mihir_jaiswal_))
-- Portfolio: [mihir](https://mihirjaiswal-portfolio.vercel.app/)
+- Portfolio: [mihir](https://mihirjaiswal.me/)
 
 
 ## ❤️ Support
