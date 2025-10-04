@@ -80,7 +80,7 @@ export const metadata: Metadata = {
   },
   category: "Web Development",
   verification: {
-    google: "XNSEycxa9cfRCuvJ0zP9yC5u_J0R-oriqXxyEM4Yp-Q",
+    google: "M2NNSOGxLgGT60G80UjLsGMvidIOIXtGO2OY4nJxe_k",
   },
   other: {
     "application-name": "Nyx UI",
