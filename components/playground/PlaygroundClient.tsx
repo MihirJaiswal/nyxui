@@ -62,7 +62,7 @@ const PlaygroundContent = ({ initialComponent }: { initialComponent?: string }) 
         setSelectedComponent(componentFromUrl)
       }
     }
-  }, [searchParams, initialComponent])
+  }, [searchParams, initialComponent, selectedComponent])
 
   const handleComponentSelect = (componentKey: string) => {
     // Prevent update if already selected
