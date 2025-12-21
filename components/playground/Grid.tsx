@@ -6,7 +6,7 @@ import { AnimateText } from "@/registry/ui/animated-text";
 
 export function Grid() {
   return (
-    <div className="relative flex h-[700px] w-full flex-col items-center justify-center overflow-hidden rounded-sm border bg-white dark:bg-black">
+    <div className="relative flex h-[85vh] w-full flex-col items-center justify-center overflow-hidden rounded-sm border bg-white dark:bg-black">
       <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

@@ -401,7 +401,7 @@ const LivePreview = ({ componentKey, config, component, showCode, onToggleCode, 
           transition={{ duration: 0.3 }}
           className="relative"
         >
-          <div className="bg-white dark:bg-black flex items-center justify-center border rounded-sm shadow-lg overflow-auto">
+          <div className="lg:min-h-[80vh] bg-white dark:bg-black flex items-center justify-center border rounded-sm shadow-lg overflow-auto">
             <div
               className="transition-all duration-300 h-full flex items-center justify-center p-6 mx-auto"
               style={getViewportStyles()}

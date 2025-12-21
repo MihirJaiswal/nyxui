@@ -96,7 +96,7 @@ const ComponentSelector = ({ components, selectedComponent, onSelect }: Componen
 
   return (
     <div className="relative w-full" ref={dropdownRef}>
-      <div className="border border-border shadow-sm">
+      <div className="border border-border/60 shadow-sm">
         <button
           onClick={handleToggleDropdown}
           className="w-full flex items-center justify-between p-4 text-left hover:bg-muted/50 transition-colors rounded-sm"
