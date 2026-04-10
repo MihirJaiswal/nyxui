@@ -76,13 +76,15 @@ export function CommandPalette() {
     <TooltipProvider>
       <Button
         variant="outline"
-        className="relative shadow-none h-9 w-full md:w-64 justify-start bg-white dark:bg-black/10 backdrop-blur-3xl text-sm text-muted-foreground rounded-md border px-3 py-2"
+        className="relative flex items-center gap-2 group shadow-sm hover:shadow-md transition-all duration-200 h-8 w-full justify-start bg-white/80 dark:bg-neutral-950/80 backdrop-blur-xl text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 rounded-lg border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 px-0.5"
         onClick={() => setOpen(true)}
       >
-        <Search className="mr-2 h-4 w-4" />
-        <span className="hidden md:inline-flex">Search Components</span>
+        <Search className="ml-1 h-4 w-4 text-neutral-400 dark:text-neutral-600 group-hover:text-neutral-600 dark:group-hover:text-neutral-400 transition-colors" />
+        <span className="hidden md:inline-flex font-normal text-xs">
+          Search components
+        </span>
         <span className="inline-flex md:hidden">Search...</span>
-        <kbd className="pointer-events-none absolute right-1.5 top-1.5 hidden h-6 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-xs font-medium opacity-100 sm:flex">
+        <kbd className="pointer-events-none hidden h-6 select-none items-center gap-1 rounded-md bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 px-2 font-mono text-[10px] font-medium text-neutral-600 dark:text-neutral-400 opacity-100 sm:flex transition-all group-hover:bg-neutral-200 dark:group-hover:bg-neutral-800">
           <span className="text-xs">⌘</span>K
         </kbd>
       </Button>
