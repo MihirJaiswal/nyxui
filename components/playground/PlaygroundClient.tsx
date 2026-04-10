@@ -83,7 +83,7 @@ const PlaygroundContent = ({ initialComponent }: { initialComponent?: string }) 
 
       // Update URL in a transition to make it non-blocking
       startTransition(() => {
-        router.replace(`/playground/${componentKey}`, { scroll: false })
+        router.replace(`/playground?component=${componentKey}`, { scroll: false })
       })
     }
   }
@@ -127,9 +127,9 @@ const PlaygroundContent = ({ initialComponent }: { initialComponent?: string }) 
   return (
     <div className="h-full flex flex-col bg-background">
       {/* Main Content */}
-      <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
+      <div className="flex-1 flex flex-col lg:flex-row">
         {/* Left Sidebar - Controls */}
-        <div className="w-full lg:w-80 xl:w-96 flex-shrink-0 border-b lg:border-b-0 lg:border border-border/60 flex flex-col max-h-[40vh] lg:max-h-none overflow-hidden">
+        <div className="w-full lg:w-80 xl:w-96 flex-shrink-0 border-b lg:border-b-0 lg:border-r border-border/60 flex flex-col max-h-[40vh] lg:max-h-screen lg:sticky lg:top-0 overflow-hidden">
           {/* Component Selector */}
           <div className="flex-shrink-0">
             <ComponentSelector
@@ -165,8 +165,8 @@ const PlaygroundContent = ({ initialComponent }: { initialComponent?: string }) 
 
         {/* Right Side - Live Preview or Empty State */}
         {selectedComponent ? (
-          <div className="flex-1 flex flex-col overflow-hidden min-w-0">
-            <div className="flex-1 p-4 lg:p-6 overflow-auto">
+          <div className="flex-1 flex flex-col min-w-0">
+            <div className="flex-1 p-4 lg:p-6">
               <LivePreview
                 componentKey={selectedComponent}
                 config={componentConfig}
