@@ -11,23 +11,20 @@ import { Play } from "lucide-react";
 
 interface ComponentPageProps {
   params: Promise<{
-    slug: string[]; 
+    slug: string[];
   }>;
 }
 
 async function getComponentFromParams(params: Promise<{ slug: string[] }>) {
   const { slug } = await params;
   const component = slug?.[0];
-  
+
   if (!component) {
     return null;
   }
-  
-  const possibleSlugs = [
-    `components/${component}`,
-    component,
-  ];
-  
+
+  const possibleSlugs = [`components/${component}`, component];
+
   for (const slugPattern of possibleSlugs) {
     const doc = allDocs?.find((doc) => doc.slugAsParams === slugPattern);
     if (doc) {
@@ -39,7 +36,10 @@ async function getComponentFromParams(params: Promise<{ slug: string[] }>) {
 }
 
 // Function to generate component-specific keywords
-function generateComponentKeywords(title: string, description: string): string[] {
+function generateComponentKeywords(
+  title: string,
+  description: string,
+): string[] {
   const componentName = title.toLowerCase();
   const baseKeywords = [
     `${componentName} nyx ui`,
@@ -61,8 +61,8 @@ function generateComponentKeywords(title: string, description: string): string[]
 
   if (description) {
     const descWords = description.toLowerCase().match(/\b\w{4,}\b/g) || [];
-    descWords.forEach(word => {
-      if (!word.includes('component') && !word.includes('react')) {
+    descWords.forEach((word) => {
+      if (!word.includes("component") && !word.includes("react")) {
         baseKeywords.push(`${word} ${componentName} component`);
       }
     });
@@ -79,13 +79,16 @@ export async function generateMetadata({
   if (!doc) {
     return {
       title: "Component Not Found | Nyx UI",
-      description: "The requested component could not be found."
+      description: "The requested component could not be found.",
     };
   }
 
   const { slug } = await params;
   const componentName = slug?.[0];
-  const componentKeywords = generateComponentKeywords(doc.title, doc.description || "");
+  const componentKeywords = generateComponentKeywords(
+    doc.title,
+    doc.description || "",
+  );
   const enhancedTitle = `${doc.title} Component - React & Next.js | Nyx UI Library`;
   const enhancedDescription = `${doc.description || `${doc.title} component for React and Next.js applications.`} Built with Tailwind CSS, TypeScript, and Framer Motion. Part of Nyx UI component library. Free to use, customizable, and accessible.`;
 
@@ -96,7 +99,7 @@ export async function generateMetadata({
     authors: [{ name: "Mihir Jaiswal", url: "https://x.com/mihir_jaiswal_" }],
     creator: "Nyx UI",
     publisher: "Nyx UI",
-    
+
     openGraph: {
       title: `${doc.title} - React Component | Nyx UI`,
       description: enhancedDescription,
@@ -121,28 +124,28 @@ export async function generateMetadata({
       creator: "@mihir_jaiswal_",
       site: "@mihir_jaiswal_",
     },
-    
+
     alternates: {
       canonical: absoluteUrl(`/components/${componentName}`),
     },
-    
+
     robots: {
       index: true,
       follow: true,
       googleBot: {
         index: true,
         follow: true,
-        'max-video-preview': -1,
-        'max-image-preview': 'large',
-        'max-snippet': -1,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
       },
     },
-    
+
     category: "Web Development",
     other: {
       "article:section": "UI Components",
       "article:tag": doc.tags?.join(", ") || "React, UI Components, Next.js",
-    }
+    },
   };
 }
 
@@ -153,7 +156,7 @@ export async function generateStaticParams(): Promise<
     if (!allDocs) {
       return [];
     }
-    
+
     if (!Array.isArray(allDocs)) {
       return [];
     }
@@ -164,14 +167,17 @@ export async function generateStaticParams(): Promise<
 
     const componentParams = allDocs
       .filter((doc) => {
-        const isComponent = doc.slugAsParams.startsWith("components/") && doc.published;
-        console.log(`Doc: ${doc.slugAsParams}, isComponent: ${isComponent}, published: ${doc.published}`);
+        const isComponent =
+          doc.slugAsParams.startsWith("components/") && doc.published;
+        console.log(
+          `Doc: ${doc.slugAsParams}, isComponent: ${isComponent}, published: ${doc.published}`,
+        );
         return isComponent;
       })
       .map((doc) => {
         const component = doc.slugAsParams.replace("components/", "");
         console.log(`Generating param for component: ${component}`);
-        return { slug: [component] }; 
+        return { slug: [component] };
       });
 
     console.log("Generated static params:", componentParams);
@@ -193,18 +199,27 @@ export default async function ComponentPage({ params }: ComponentPageProps) {
   }
 
   // Components that should NOT show the playground button
-  const excludedComponents = ['marquee', 'ms-paint', 'scroll-animation-trigger', 'image-comparison', 'reveal-card'];
-  const shouldShowPlaygroundButton = componentName && !excludedComponents.includes(componentName.toLowerCase());
+  const excludedComponents = [
+    "marquee",
+    "ms-paint",
+    "scroll-animation-trigger",
+    "image-comparison",
+    "reveal-card",
+  ];
+  const shouldShowPlaygroundButton =
+    componentName && !excludedComponents.includes(componentName.toLowerCase());
 
   const schemaData = {
     "@context": "https://schema.org",
     "@type": ["TechArticle", "SoftwareSourceCode"],
     headline: `${doc.title} React Component - Nyx UI Documentation`,
-    description: doc.description || `${doc.title} component for React and Next.js applications built with Tailwind CSS and TypeScript.`,
+    description:
+      doc.description ||
+      `${doc.title} component for React and Next.js applications built with Tailwind CSS and TypeScript.`,
     author: {
       "@type": "Person",
       name: "Mihir Jaiswal",
-      url: "https://x.com/mihir_jaiswal_"
+      url: "https://x.com/mihir_jaiswal_",
     },
     publisher: {
       "@type": "Organization",
@@ -225,7 +240,7 @@ export default async function ComponentPage({ params }: ComponentPageProps) {
     runtimePlatform: "Web Browser",
     operatingSystem: "Cross-platform",
     applicationCategory: "DeveloperApplication",
-    
+
     keywords: [
       doc.title.toLowerCase(),
       "react component",
@@ -234,21 +249,21 @@ export default async function ComponentPage({ params }: ComponentPageProps) {
       "nyxui",
       "tailwind css",
       "typescript",
-      ...(doc.tags || [])
+      ...(doc.tags || []),
     ].join(", "),
-    
+
     about: {
       "@type": "Thing",
       name: `${doc.title} Component`,
-      description: `A ${doc.title.toLowerCase()} component built for React and Next.js applications using Tailwind CSS and TypeScript.`
+      description: `A ${doc.title.toLowerCase()} component built for React and Next.js applications using Tailwind CSS and TypeScript.`,
     },
-    
+
     isPartOf: {
       "@type": "SoftwareApplication",
       name: "Nyx UI",
       url: "https://nyxui.com/",
-      description: "Modern React UI component library for Next.js applications"
-    }
+      description: "Modern React UI component library for Next.js applications",
+    },
   };
 
   return (
@@ -257,13 +272,13 @@ export default async function ComponentPage({ params }: ComponentPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
       />
-      
+
       {/* Additional meta tags in head */}
       <meta name="component-name" content={doc.title} />
       <meta name="ui-library" content="Nyx UI" />
       <meta name="framework" content="React, Next.js" />
       <meta name="styling" content="Tailwind CSS" />
-      
+
       <div className="mx-auto w-full max-w-[1200px]">
         <div className="space-y-4 mt-5">
           <div className="flex flex-wrap items-start gap-3 sm:items-center">
@@ -285,23 +300,27 @@ export default async function ComponentPage({ params }: ComponentPageProps) {
           {doc.tags && doc.tags.length > 0 && (
             <div className="flex flex-col sm:flex-row flex-wrap justify-between gap-2 pt-2">
               <div className="flex flex-wrap gap-2">
-              {doc.tags.map((tag: string) => (
-                <Link
-                  key={tag}
-                  href={`/category/${tag.toLowerCase().replace(/\s+/g, "-")}`}
-                  className={cn(
-                    badgeVariants({ variant: "outline" }),
-                    "bg-gray-100 dark:bg-zinc-900 transition-colors hover:bg-gray-200 dark:hover:bg-zinc-800",
-                  )}
-                >
-                  {tag}
-                </Link>
-              ))}
+                {doc.tags.map((tag: string) => (
+                  <Link
+                    key={tag}
+                    href={`/category/${tag.toLowerCase().replace(/\s+/g, "-")}`}
+                    className={cn(
+                      badgeVariants({ variant: "outline" }),
+                      "bg-gray-100 dark:bg-zinc-900 transition-colors hover:bg-gray-200 dark:hover:bg-zinc-800",
+                    )}
+                  >
+                    {tag}
+                  </Link>
+                ))}
               </div>
               {/* Open in Playground Button - Only show for non-excluded components */}
               {shouldShowPlaygroundButton && (
                 <Link href={`/playground?component=${componentName}`}>
-                  <Button variant="default" size="sm" className="gap-2 w-full mt-4 sm:mt-0">
+                  <Button
+                    variant="default"
+                    size="sm"
+                    className="gap-2 w-full mt-4 sm:mt-0"
+                  >
                     <Play className="w-4 h-4" />
                     Open in Playground
                   </Button>

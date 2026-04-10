@@ -17,7 +17,7 @@ const app = initializeApp(firebaseConfig);
 // Firestore
 export const db = getFirestore(app);
 
-// Analytics 
+// Analytics
 let analytics;
 if (typeof window !== "undefined") {
   analytics = getAnalytics(app);

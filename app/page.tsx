@@ -9,16 +9,16 @@ import Social from "@/components/home/social/social";
 export default function Home() {
   return (
     <>
-    <Header/>
-    <div className="min-h-screen overflow-hidden">
+      <Header />
+      <div className="min-h-screen overflow-hidden">
         <Hero />
         <ComponentsDemo />
-        <AnimatedComponentsShowcase/>
-        <ContainCard/>
-        <Social/>
-        <SupportSection/>
-        <NewsletterSection/>
-    </div>
+        <AnimatedComponentsShowcase />
+        <ContainCard />
+        <Social />
+        <SupportSection />
+        <NewsletterSection />
+      </div>
     </>
   );
 }

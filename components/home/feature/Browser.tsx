@@ -1,14 +1,14 @@
 import { SVGProps } from "react";
 type SafariMode = "default" | "simple";
 
-export interface  BrowserProps extends SVGProps<SVGSVGElement> {
+export interface BrowserProps extends SVGProps<SVGSVGElement> {
   url?: string;
   imageSrc?: string;
   videoSrc?: string;
   width?: number;
   height?: number;
   mode?: SafariMode;
-  children?: React.ReactNode; 
+  children?: React.ReactNode;
 }
 
 export function Browser({
@@ -18,7 +18,7 @@ export function Browser({
   width = 1203,
   height = 753,
   mode = "default",
-  children, 
+  children,
   ...props
 }: BrowserProps) {
   return (
@@ -182,18 +182,18 @@ export function Browser({
           </clipPath>
         </defs>
       </svg>
-      
+
       {/* Content area overlay - positioned absolutely within the browser viewport */}
       {children && (
-        <div 
+        <div
           className="absolute"
           style={{
             top: `${(52 / height) * 100}%`, // Start from browser content area
-            left: `${(1 / width) * 100}%`,   // Account for border
+            left: `${(1 / width) * 100}%`, // Account for border
             width: `${(1200 / width) * 100}%`, // Content area width
             height: `${(700 / height) * 100}%`, // Content area height
-            overflow: 'hidden',
-            borderRadius: '0 0 6px 6px' // Match the browser's bottom border radius
+            overflow: "hidden",
+            borderRadius: "0 0 6px 6px", // Match the browser's bottom border radius
           }}
         >
           {children}

@@ -10,13 +10,13 @@ function getBlockCount() {
 export async function generateMetadata(): Promise<Metadata> {
   const blockCount = getBlockCount();
   const currentYear = new Date().getFullYear();
-  
+
   return {
     title: `Nyx UI | Blocks`,
     description: `Browse ${blockCount}+ modern React UI blocks. Complete sections like hero, footer, CTA, and more. Built with TypeScript, Tailwind CSS & Framer Motion.`,
     keywords: [
       "nyx ui blocks",
-      "nyxui block library", 
+      "nyxui block library",
       "react ui blocks",
       "nextjs blocks",
       "tailwind css blocks",
@@ -27,7 +27,7 @@ export async function generateMetadata(): Promise<Metadata> {
       "section blocks",
       "hero blocks",
       "footer blocks",
-      "cta blocks"
+      "cta blocks",
     ],
 
     openGraph: {
@@ -35,12 +35,14 @@ export async function generateMetadata(): Promise<Metadata> {
       description: `Browse and copy ${blockCount}+ premium React section blocks for your next project.`,
       url: absoluteUrl("/blocks"),
       siteName: "Nyx UI",
-      images: [{
-        url: "/api/og/blocks",
-        width: 1200,
-        height: 630,
-        alt: `NyxUI Blocks Library - ${blockCount}+ Section Blocks`,
-      }],
+      images: [
+        {
+          url: "/api/og/blocks",
+          width: 1200,
+          height: 630,
+          alt: `NyxUI Blocks Library - ${blockCount}+ Section Blocks`,
+        },
+      ],
     },
 
     twitter: {
@@ -58,7 +60,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
     alternates: {
       canonical: absoluteUrl("/blocks"),
-    }
+    },
   };
 }
 
@@ -78,8 +80,8 @@ const BlocksPage = () => {
     publisher: {
       "@type": "Organization",
       name: "Nyx UI",
-      url: "https://nyxui.com/"
-    }
+      url: "https://nyxui.com/",
+    },
   };
 
   return (
@@ -98,8 +100,3 @@ const BlocksPage = () => {
 };
 
 export default BlocksPage;
-
-
-
-
-

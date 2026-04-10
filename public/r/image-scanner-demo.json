@@ -4,12 +4,8 @@
   "type": "registry:example",
   "title": "Image Scanner Demo",
   "description": "Example showing a image scanner.",
-  "dependencies": [
-    ".."
-  ],
-  "registryDependencies": [
-    "https://nyxui.com/r/image-scanner.json"
-  ],
+  "dependencies": [".."],
+  "registryDependencies": ["https://nyxui.com/r/image-scanner.json"],
   "files": [
     {
       "path": "registry/example/image-scanner-demo.tsx",

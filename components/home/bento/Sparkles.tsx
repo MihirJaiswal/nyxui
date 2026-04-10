@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { useState, useEffect } from "react";
 import { Sparkles } from "@/components/ui/particles";
 
@@ -20,10 +20,10 @@ export const LazySparkles = () => {
       density={800}
       speed={1.2}
       size={1.2}
-      direction='top'
+      direction="top"
       opacitySpeed={2}
-      color='#DA33FF'
-      className='w-full h-full'
+      color="#DA33FF"
+      className="w-full h-full"
     />
   );
 };

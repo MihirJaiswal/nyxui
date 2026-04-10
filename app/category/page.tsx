@@ -43,7 +43,7 @@ export default function CategoriesPage() {
             <Link
               key={tag}
               href={`/category/${encodeURIComponent(tag.toLowerCase())}`}
-              className="group relative h-full" 
+              className="group relative h-full"
             >
               <div className="absolute inset-0 rounded-lg transition-all duration-500 ease-out group-hover:border-transparent group-hover:scale-[1.02] group-hover:shadow-[0_0_0_1px_rgba(0,0,0,0.05),0_1px_3px_0_rgba(0,0,0,0.1),0_10px_30px_-5px_rgba(0,0,0,0.08)] dark:group-hover:shadow-[0_0_0_1px_rgba(255,255,255,0.05),0_1px_3px_0_rgba(0,0,0,0.1),0_10px_30px_-5px_rgba(0,0,0,0.25)]"></div>
 
@@ -64,7 +64,9 @@ export default function CategoriesPage() {
                   </div>
 
                   <div className="mb-2 flex-grow">
-                    <h2 className="text-xl font-medium text-gray-900 dark:text-gray-50 transition-all duration-300 ease-out group-hover:translate-x-1 line-clamp-2"> {/* Added line-clamp-2 to limit text to 2 lines */}
+                    <h2 className="text-xl font-medium text-gray-900 dark:text-gray-50 transition-all duration-300 ease-out group-hover:translate-x-1 line-clamp-2">
+                      {" "}
+                      {/* Added line-clamp-2 to limit text to 2 lines */}
                       {tag}
                     </h2>
                   </div>

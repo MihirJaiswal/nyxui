@@ -87,7 +87,7 @@ export const GlitchButtonDemo = () => {
         }
         return "UnknownComponent";
       },
-      functionValue: (fn) => fn.name || 'function',
+      functionValue: (fn) => fn.name || "function",
     });
 
     if (buttonString) {
@@ -148,7 +148,7 @@ export const glitchButtons = [
     <Power className="mr-2 h-5 w-5" />
     <span>Always Glitch</span>
   </div>
-</GlitchButton>`
+</GlitchButton>`,
   },
   {
     name: "Download",
@@ -173,7 +173,7 @@ export const glitchButtons = [
     <Download className="mr-2 h-5 w-5" />
     <span>DOWNLOAD</span>
   </div>
-</GlitchButton>`
+</GlitchButton>`,
   },
   {
     name: "Warning",
@@ -199,7 +199,7 @@ export const glitchButtons = [
     <ShieldCheck className="mr-2 h-5 w-5" />
     <span>WARNING</span>
   </div>
-</GlitchButton>`
+</GlitchButton>`,
   },
   {
     name: "Subscribe",
@@ -225,7 +225,7 @@ export const glitchButtons = [
     <Mail className="mr-2 h-5 w-5" />
     <span>SUBSCRIBE</span>
   </div>
-</GlitchButton>`
+</GlitchButton>`,
   },
   {
     name: "Nyx UI",
@@ -249,7 +249,7 @@ export const glitchButtons = [
     <MoonIcon className="mr-1 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5" />
     <span>Nyx UI</span>
   </div>
-</GlitchButton>`
+</GlitchButton>`,
   },
   {
     name: "More Info",
@@ -275,7 +275,7 @@ export const glitchButtons = [
     <Info className="mr-2 h-5 w-5" />
     <span>MORE INFO</span>
   </div>
-</GlitchButton>`
+</GlitchButton>`,
   },
   {
     name: "Enter The Void",
@@ -299,7 +299,7 @@ export const glitchButtons = [
     <span>ENTER THE VOID</span>
     <ArrowRight className="h-5 w-5" />
   </div>
-</GlitchButton>`
+</GlitchButton>`,
   },
   {
     name: "The Matrix",
@@ -311,7 +311,7 @@ export const glitchButtons = [
     ),
     code: `<GlitchButton className="text-sm sm:text-base bg-green-600 text-black font-extrabold rounded-lg">
   The Matrix
-</GlitchButton>`
+</GlitchButton>`,
   },
   {
     name: "Hacker Man",
@@ -329,6 +329,6 @@ export const glitchButtons = [
   className="text-sm sm:text-base bg-black text-white rounded-lg"
 >
   Hacker Man
-</GlitchButton>`
+</GlitchButton>`,
   },
 ];

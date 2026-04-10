@@ -1,12 +1,12 @@
 import { motion } from "motion/react";
-import { 
-  MessageCircle, 
-  MoreHorizontal, 
-  Share2, 
-  ThumbsUp, 
-  Check, 
+import {
+  MessageCircle,
+  MoreHorizontal,
+  Share2,
+  ThumbsUp,
+  Check,
   User,
-  Linkedin
+  Linkedin,
 } from "lucide-react";
 import { PhoneStatusBar } from "./PhoneStatusBar";
 import { Ripple } from "@/components/ui/ripple";
@@ -32,7 +32,7 @@ const LinkedInPost = () => {
             width={40}
             height={40}
             loading="lazy"
-            alt='User avatar'
+            alt="User avatar"
             className="h-10 w-10 rounded-full border border-zinc-800/60 shadow-sm object-cover"
           />
           <div>
@@ -49,19 +49,25 @@ const LinkedInPost = () => {
               </motion.div>
             </div>
             <p className="text-[11px] text-zinc-400 mt-1 font-medium">
-            Product Designer • 2h
+              Product Designer • 2h
             </p>
           </div>
         </div>
         <div className="w-full">
-          <p className="mt-3 text-sm text-pretty leading-relaxed text-zinc-800 dark:text-white/90">🚀 Just came across Nyx UI, - a sleek collection of modern components!<br /> It is a React component library that makes building modern web interfaces so much faster. <br /> <span className="text-blue-500">#webdev #UI #frontend</span></p>
-            <motion.div
-              className="mt-3 flex items-center justify-center p-3 overflow-hidden rounded-lg border border-zinc-300 dark:border-zinc-800/70 shadow-sm"
-              whileHover={{ scale: 1.01 }}
-              transition={{ type: "spring", stiffness: 200, damping: 20 }}
-            >
-              <Logo height={80} width={80}/>
-            </motion.div>
+          <p className="mt-3 text-sm text-pretty leading-relaxed text-zinc-800 dark:text-white/90">
+            🚀 Just came across Nyx UI, - a sleek collection of modern
+            components!
+            <br /> It is a React component library that makes building modern
+            web interfaces so much faster. <br />{" "}
+            <span className="text-blue-500">#webdev #UI #frontend</span>
+          </p>
+          <motion.div
+            className="mt-3 flex items-center justify-center p-3 overflow-hidden rounded-lg border border-zinc-300 dark:border-zinc-800/70 shadow-sm"
+            whileHover={{ scale: 1.01 }}
+            transition={{ type: "spring", stiffness: 200, damping: 20 }}
+          >
+            <Logo height={80} width={80} />
+          </motion.div>
           <div className="mt-2 flex items-center justify-between text-[12px] text-zinc-400">
             <motion.button
               className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 hover:bg-blue-50/10 hover:text-blue-600 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
@@ -179,7 +185,7 @@ const LinkedInPhoneComponent = ({ shouldReduceMotion = false }) => {
         {/* Enhanced glass reflection */}
         <motion.div
           className="pointer-events-none hidden dark:block absolute inset-0 bg-gradient-to-br from-white/[0.08] via-transparent to-transparent opacity-0 group-hover/phone:opacity-100 group-focus-within/phone:opacity-100"
-          initial={false} 
+          initial={false}
           whileHover={{
             background: [
               "linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 50%, transparent 100%)",

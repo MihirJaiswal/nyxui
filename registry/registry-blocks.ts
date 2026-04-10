@@ -5,7 +5,8 @@ export const blocks: Registry["items"] = [
     name: "footer",
     type: "registry:ui",
     title: "Footer",
-    description: "A simple footer component i will add some more modern components in the future.",
+    description:
+      "A simple footer component i will add some more modern components in the future.",
     dependencies: ["lucide-react"],
     files: [
       {
@@ -14,8 +15,5 @@ export const blocks: Registry["items"] = [
         target: "components/blocks/footer.tsx",
       },
     ],
-  }
+  },
 ];
-
-
-

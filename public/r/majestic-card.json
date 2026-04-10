@@ -4,11 +4,7 @@
   "type": "registry:ui",
   "title": "Majestic Card",
   "description": "A majestic card that that provide several effects.",
-  "dependencies": [
-    "motion",
-    "..",
-    "framer-motion"
-  ],
+  "dependencies": ["motion", "..", "framer-motion"],
   "files": [
     {
       "path": "registry/ui/majestic-card.tsx",

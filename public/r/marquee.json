@@ -4,11 +4,7 @@
   "type": "registry:ui",
   "title": "Marquee",
   "description": "A customizable, interactive scrolling marquee component.",
-  "dependencies": [
-    "motion",
-    "..",
-    "motion"
-  ],
+  "dependencies": ["motion", "..", "motion"],
   "files": [
     {
       "path": "registry/ui/marquee.tsx",

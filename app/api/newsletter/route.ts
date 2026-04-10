@@ -21,7 +21,7 @@ export async function POST(req: Request) {
     console.error("Error adding email:", error);
     return NextResponse.json(
       { error: "Something went wrong" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

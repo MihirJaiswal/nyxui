@@ -9,7 +9,9 @@ export default function Social() {
       <div className="container mx-auto max-w-7xl relative z-10">
         <div className="text-center mb-8 transition-all duration-1000 ">
           <div className="max-w-4xl flex flex-col items-center justify-center mx-auto">
-            <h1 className="text-3xl sm:text-4xl text-center font-bold tracking-tight leading-tight mb-2">Follow us</h1>
+            <h1 className="text-3xl sm:text-4xl text-center font-bold tracking-tight leading-tight mb-2">
+              Follow us
+            </h1>
             <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
               Join our social media for the latest updates.
             </p>
@@ -27,8 +29,8 @@ export default function Social() {
             shineIntensity={0.6}
           >
             <div className="flex flex-col items-center justify-center gap-1">
-            <p className="text-sm text-neutral-200 mb-2">
-              Follow for new updates
+              <p className="text-sm text-neutral-200 mb-2">
+                Follow for new updates
               </p>
               <Link
                 href="https://x.com/mihir_jaiswal_"

@@ -49,7 +49,6 @@ const components = {
   TemplatePreview,
   Image,
 
-
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ComponentSource: (props: any) => (
     <div className="w-full max-w-full overflow-hidden">
@@ -112,25 +111,37 @@ const components = {
   ),
   a: ({ className, ...props }: React.HTMLAttributes<HTMLAnchorElement>) => (
     <CustomLink
-      className={cn("font-medium underline underline-offset-4 text-foreground", className)}
+      className={cn(
+        "font-medium underline underline-offset-4 text-foreground",
+        className,
+      )}
       {...props}
     />
   ),
   p: ({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
     <p
-      className={cn("leading-7 [&:not(:first-child)]:mt-6 text-foreground", className)}
+      className={cn(
+        "leading-7 [&:not(:first-child)]:mt-6 text-foreground",
+        className,
+      )}
       {...props}
     />
   ),
   ul: ({ className, ...props }: React.HTMLAttributes<HTMLUListElement>) => (
     <ul
-      className={cn("ml-6 list-disc w-full max-w-full text-foreground", className)}
+      className={cn(
+        "ml-6 list-disc w-full max-w-full text-foreground",
+        className,
+      )}
       {...props}
     />
   ),
   ol: ({ className, ...props }: React.HTMLAttributes<HTMLOListElement>) => (
     <ol
-      className={cn("ml-6 list-decimal w-full max-w-full text-foreground", className)}
+      className={cn(
+        "ml-6 list-decimal w-full max-w-full text-foreground",
+        className,
+      )}
       {...props}
     />
   ),

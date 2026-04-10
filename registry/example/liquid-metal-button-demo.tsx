@@ -3,7 +3,16 @@ import React, { useState } from "react";
 import reactElementToJSXString from "react-element-to-jsx-string";
 import { toast, Toaster } from "sonner";
 import { LiquidMetalButton } from "@/registry/ui/liquid-metal-button";
-import { Copy, Crown, Download, Shield, ShoppingCart, Trophy, Zap, Check } from "lucide-react";
+import {
+  Copy,
+  Crown,
+  Download,
+  Shield,
+  ShoppingCart,
+  Trophy,
+  Zap,
+  Check,
+} from "lucide-react";
 
 interface ButtonsCard {
   children: React.ReactNode;
@@ -22,11 +31,9 @@ const ButtonsCard = ({ children, onClick, isCopied }: ButtonsCard) => {
   return (
     <div
       className="border group relative border-gray-300 dark:border-zinc-800 hover:border-zinc-500 hover:dark:border-zinc-500 rounded-lg p-6 flex flex-col items-center justify-center h-52 cursor-pointer hover:shadow-lg transition-shadow duration-200"
-      onClick={onClick}    
+      onClick={onClick}
     >
-      <div className="mb-4">
-        {children}
-      </div>
+      <div className="mb-4">{children}</div>
       <div className="absolute top-2 right-2">
         {isCopied ? (
           <Check className="h-3 w-3 text-green-500 transition-all duration-200" />
@@ -79,7 +86,7 @@ export function LiquidMetalButtons() {
         }
         return "UnknownComponent";
       },
-      functionValue: (fn) => fn.name || 'function',
+      functionValue: (fn) => fn.name || "function",
     });
 
     if (buttonString) {
@@ -110,8 +117,8 @@ export function LiquidMetalButtons() {
       <Toaster position="top-center" />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full max-w-7xl mx-auto gap-6">
         {liquidMetalButtons.map((button, idx) => (
-          <ButtonsCard 
-            key={idx} 
+          <ButtonsCard
+            key={idx}
             onClick={() => copy(button, idx)}
             isCopied={copiedIndex === idx}
           >
@@ -150,7 +157,7 @@ export const liquidMetalButtons = [
     <Crown className="mr-2 h-4 w-4" />
     <span>Gold</span>
   </div>
-</LiquidMetalButton>`
+</LiquidMetalButton>`,
   },
   {
     name: "Silver Shield",
@@ -176,7 +183,7 @@ export const liquidMetalButtons = [
     <Shield className="mr-2 h-4 w-4" />
     <span>Silver</span>
   </div>
-</LiquidMetalButton>`
+</LiquidMetalButton>`,
   },
   {
     name: "Copper Trophy",
@@ -202,17 +209,13 @@ export const liquidMetalButtons = [
     <Trophy className="mr-2 h-4 w-4" />
     <span>Copper</span>
   </div>
-</LiquidMetalButton>`
+</LiquidMetalButton>`,
   },
   {
     name: "Steel Zap",
     description: "Steel liquid metal button with zap icon",
     component: (
-      <LiquidMetalButton
-        variant="default"
-        theme="steel"
-        className="rounded-lg"
-      >
+      <LiquidMetalButton variant="default" theme="steel" className="rounded-lg">
         <div className="flex items-center">
           <Zap className="mr-2 h-4 w-4" />
           <span>Steel</span>
@@ -228,17 +231,13 @@ export const liquidMetalButtons = [
     <Zap className="mr-2 h-4 w-4" />
     <span>Steel</span>
   </div>
-</LiquidMetalButton>`
+</LiquidMetalButton>`,
   },
   {
     name: "Gold Outline",
     description: "Gold outline liquid metal button",
     component: (
-      <LiquidMetalButton
-        theme="gold"
-        variant="outline"
-        className="rounded-lg"
-      >
+      <LiquidMetalButton theme="gold" variant="outline" className="rounded-lg">
         <div className="flex items-center">
           <Crown className="mr-2 h-4 w-4" />
           <span>Outline</span>
@@ -254,16 +253,13 @@ export const liquidMetalButtons = [
     <Crown className="mr-2 h-4 w-4" />
     <span>Outline</span>
   </div>
-</LiquidMetalButton>`
+</LiquidMetalButton>`,
   },
   {
     name: "Mercury Flow",
     description: "Mercury flow liquid metal button with animation",
     component: (
-      <LiquidMetalButton
-        theme="mercury"
-        className="rounded-lg"
-      >
+      <LiquidMetalButton theme="mercury" className="rounded-lg">
         <div className="flex items-center">
           <Download className="mr-2 h-4 w-4" />
           <span>Mercury Flow</span>
@@ -278,16 +274,13 @@ export const liquidMetalButtons = [
     <Download className="mr-2 h-4 w-4" />
     <span>Mercury Flow</span>
   </div>
-</LiquidMetalButton>`
+</LiquidMetalButton>`,
   },
   {
     name: "Ripple Wave",
     description: "Saphire ripple wave liquid metal button",
     component: (
-      <LiquidMetalButton
-        theme="sapphire"
-        className="rounded-lg group"
-      >
+      <LiquidMetalButton theme="sapphire" className="rounded-lg group">
         <div className="flex items-center">
           <ShoppingCart className="mr-2 h-4 w-4" />
           <span>Ripple Wave</span>
@@ -302,7 +295,7 @@ export const liquidMetalButtons = [
     <ShoppingCart className="mr-2 h-4 w-4" />
     <span>Ripple Wave</span>
   </div>
-</LiquidMetalButton>`
+</LiquidMetalButton>`,
   },
   {
     name: "Gold Premium",
@@ -327,7 +320,7 @@ export const liquidMetalButtons = [
     <Crown className="mr-2 h-4 w-4" />
     <span>Gold Premium</span>
   </div>
-</LiquidMetalButton>`
+</LiquidMetalButton>`,
   },
   {
     name: "Steel Elite",
@@ -353,6 +346,6 @@ export const liquidMetalButtons = [
     <Zap className="mr-2 h-4 w-4" />
     <span>Emeral Elite</span>
   </div>
-</LiquidMetalButton>`
-  }
+</LiquidMetalButton>`,
+  },
 ];

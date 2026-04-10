@@ -1,5 +1,5 @@
-import ComponentGrid from '@/components/components/ComponentGrid'
-import React from 'react'
+import ComponentGrid from "@/components/components/ComponentGrid";
+import React from "react";
 
 export default function page() {
   return (
@@ -10,5 +10,5 @@ export default function page() {
         </div>
       </div>
     </>
-  )
+  );
 }

@@ -1,9 +1,9 @@
 import { lazy, Suspense } from "react";
 
-const Cursor = lazy(() => 
-  import("@/registry/ui/custom-cursor").then(module => ({ 
-    default: module.Cursor 
-  }))
+const Cursor = lazy(() =>
+  import("@/registry/ui/custom-cursor").then((module) => ({
+    default: module.Cursor,
+  })),
 );
 const CursorLoader = () => (
   <div className="relative flex h-full w-full items-end justify-center !rounded-none animate-pulse">
@@ -28,12 +28,14 @@ export const CustomPointer = () => (
   <div
     className={
       "flex w-full h-full flex-col justify-between rounded-none bg-blue-200/40 dark:bg-black text-white relative"
-    } 
+    }
   >
     <Suspense fallback={<CursorLoader />}>
       <Cursor
         name="Mihir"
-        className={"relative flex h-full w-full items-end justify-center !rounded-none"}
+        className={
+          "relative flex h-full w-full items-end justify-center !rounded-none"
+        }
       >
         <div className={"relative h-full w-full overflow-hidden mt-[55px]"}>
           <div className="relative flex h-full w-full justify-end pt-4">

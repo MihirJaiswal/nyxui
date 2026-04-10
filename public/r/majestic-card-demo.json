@@ -4,12 +4,8 @@
   "type": "registry:example",
   "title": "Majestic Card Demo",
   "description": "Example showing a majestic card.",
-  "dependencies": [
-    ".."
-  ],
-  "registryDependencies": [
-    "https://nyxui.com/r/majestic-card.json"
-  ],
+  "dependencies": [".."],
+  "registryDependencies": ["https://nyxui.com/r/majestic-card.json"],
   "files": [
     {
       "path": "registry/example/majestic-card-demo.tsx",

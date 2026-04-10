@@ -1,7 +1,22 @@
 "use client";
 import React from "react";
 import { useState, useEffect, useRef } from "react";
-import { Play, Pause, SkipForward, SkipBack, Heart, Repeat, Shuffle, Volume2, VolumeX, MoreHorizontal, Maximize2, Minimize2, List, X } from 'lucide-react';
+import {
+  Play,
+  Pause,
+  SkipForward,
+  SkipBack,
+  Heart,
+  Repeat,
+  Shuffle,
+  Volume2,
+  VolumeX,
+  MoreHorizontal,
+  Maximize2,
+  Minimize2,
+  List,
+  X,
+} from "lucide-react";
 import Image from "next/image";
 
 export interface Track {
@@ -340,7 +355,9 @@ export const MusicPlayer = ({
         <div className="p-4 sm:p-6">
           <div className="flex items-start justify-between mb-4 sm:mb-6">
             <div className="flex-1 min-w-0 pr-2">
-              <h1 className="text-lg sm:text-xl font-bold mb-1 truncate">{track.title}</h1>
+              <h1 className="text-lg sm:text-xl font-bold mb-1 truncate">
+                {track.title}
+              </h1>
               <p className="text-xs sm:text-sm opacity-70 truncate">
                 {track.artist} • {track.album}
               </p>
@@ -438,8 +455,8 @@ export const MusicPlayer = ({
               <button
                 onClick={() => skipTrack("prev")}
                 className={`p-1.5 sm:p-2 transition-all hover:scale-110 ${
-                  queue.length > 0 
-                    ? "text-black/80 hover:text-black dark:text-white/80 dark:hover:text-white" 
+                  queue.length > 0
+                    ? "text-black/80 hover:text-black dark:text-white/80 dark:hover:text-white"
                     : "text-black/40 dark:text-white/40 cursor-not-allowed"
                 }`}
                 disabled={queue.length === 0}
@@ -461,8 +478,8 @@ export const MusicPlayer = ({
               <button
                 onClick={() => skipTrack("next")}
                 className={`p-1.5 sm:p-2 transition-all hover:scale-110 ${
-                  queue.length > 0 
-                    ? "text-black/80 hover:text-black dark:text-white/80 dark:hover:text-white" 
+                  queue.length > 0
+                    ? "text-black/80 hover:text-black dark:text-white/80 dark:hover:text-white"
                     : "text-black/40 dark:text-white/40 cursor-not-allowed"
                 }`}
                 disabled={queue.length === 0}
@@ -514,12 +531,12 @@ export const MusicPlayer = ({
                   </div>
                 </div>
               )}
-              
-              <button 
+
+              <button
                 onClick={() => setShowQueue(!showQueue)}
                 className={`p-1.5 sm:p-2 rounded-full transition-all hover:scale-110 hidden sm:block ${
                   showQueue || queue.length > 0
-                    ? "text-black dark:text-white" 
+                    ? "text-black dark:text-white"
                     : "text-black/60 dark:text-white/60"
                 } ${queue.length === 0 ? "opacity-50" : ""}`}
                 disabled={queue.length === 0}
@@ -532,7 +549,9 @@ export const MusicPlayer = ({
       </div>
 
       {showQueue && queue.length > 0 && (
-        <div className={`${getThemeStyles()} rounded-2xl mt-4 overflow-hidden shadow-lg w-full max-w-md mx-auto`}>
+        <div
+          className={`${getThemeStyles()} rounded-2xl mt-4 overflow-hidden shadow-lg w-full max-w-md mx-auto`}
+        >
           <div className="p-4 sm:p-6">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold">Queue ({queue.length})</h3>
@@ -543,7 +562,7 @@ export const MusicPlayer = ({
                 <X className="h-4 w-4" />
               </button>
             </div>
-            
+
             <div className="space-y-2 max-h-64 overflow-y-auto">
               {queue.map((queueTrack, index) => (
                 <div
@@ -563,9 +582,13 @@ export const MusicPlayer = ({
                     />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className={`text-sm font-medium truncate ${
-                      index === currentIndex ? "text-black dark:text-white" : "text-black/80 dark:text-white/80"
-                    }`}>
+                    <p
+                      className={`text-sm font-medium truncate ${
+                        index === currentIndex
+                          ? "text-black dark:text-white"
+                          : "text-black/80 dark:text-white/80"
+                      }`}
+                    >
                       {queueTrack.title}
                     </p>
                     <p className="text-xs opacity-60 truncate">
@@ -576,7 +599,9 @@ export const MusicPlayer = ({
                     {formatTime(queueTrack.duration)}
                   </div>
                   {index === currentIndex && (
-                    <div className={`w-2 h-2 rounded-full ${getAccentColor()} flex-shrink-0`} />
+                    <div
+                      className={`w-2 h-2 rounded-full ${getAccentColor()} flex-shrink-0`}
+                    />
                   )}
                 </div>
               ))}

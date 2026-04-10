@@ -23,6 +23,12 @@
       "content-collections": ["./.content-collections/generated"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "content/docs/components/apple-glass-effect.mdx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "content/docs/components/apple-glass-effect.mdx"
+  ],
   "exclude": ["node_modules"]
 }

@@ -4,9 +4,7 @@
   "type": "registry:ui",
   "title": "Apple Glass Effect",
   "description": "A apple glass effect that that provide several effects.",
-  "dependencies": [
-    "motion"
-  ],
+  "dependencies": ["motion"],
   "files": [
     {
       "path": "registry/ui/apple-glass-effect.tsx",

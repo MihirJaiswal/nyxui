@@ -4,12 +4,8 @@
   "type": "registry:example",
   "title": "Github Profile Card Demo",
   "description": "Example showing a GitHub profile card.",
-  "dependencies": [
-    ".."
-  ],
-  "registryDependencies": [
-    "https://nyxui.com/r/github-profile-card.json"
-  ],
+  "dependencies": [".."],
+  "registryDependencies": ["https://nyxui.com/r/github-profile-card.json"],
   "files": [
     {
       "path": "registry/example/github-profile-card-demo.tsx",

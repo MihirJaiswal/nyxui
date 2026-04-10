@@ -4,12 +4,7 @@
   "type": "registry:ui",
   "title": "Animated Grainy Background",
   "description": "A dynamic animated gradient background component that supports various gradient patterns and animations.",
-  "dependencies": [
-    "motion",
-    "motion",
-    "clsx",
-    "tailwind-merge"
-  ],
+  "dependencies": ["motion", "motion", "clsx", "tailwind-merge"],
   "files": [
     {
       "path": "registry/ui/animated-grainy-bg.tsx",

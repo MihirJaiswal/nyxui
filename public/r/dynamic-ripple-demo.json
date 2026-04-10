@@ -4,13 +4,8 @@
   "type": "registry:example",
   "title": "Dynamic Ripple Demo",
   "description": "Example showing a dynamic ripple effect.",
-  "dependencies": [
-    "..",
-    "lucide-react"
-  ],
-  "registryDependencies": [
-    "https://nyxui.com/r/dynamic-ripple.json"
-  ],
+  "dependencies": ["..", "lucide-react"],
+  "registryDependencies": ["https://nyxui.com/r/dynamic-ripple.json"],
   "files": [
     {
       "path": "registry/example/dynamic-ripple-demo.tsx",

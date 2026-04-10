@@ -255,7 +255,6 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({
             {promptSymbol} {input}
           </pre>
         )}
-        
       </div>
 
       {!autoExecute && step === 0 && !commandExecuted && (

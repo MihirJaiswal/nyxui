@@ -9,7 +9,8 @@ export default function GitHubRepoCardDemo() {
           name: "shadcn-ui",
           owner: "shadcn",
           ownerAvatar: "https://avatars.githubusercontent.com/u/124599?v=4",
-          description: "Beautifully designed components built with Radix UI and Tailwind CSS.",
+          description:
+            "Beautifully designed components built with Radix UI and Tailwind CSS.",
           stars: 42000,
           forks: 3600,
           watchers: 1600,
@@ -17,7 +18,9 @@ export default function GitHubRepoCardDemo() {
           language: "TypeScript",
           updatedAt: "2025-04-07T14:18:57Z",
           topics: ["ui", "components", "tailwindcss", "radix"],
-          activityData: [0.4, 0.5, 0.6, 0.8, 0.7, 0.9, 1.0, 0.9, 0.8, 0.7, 0.9, 1.0],
+          activityData: [
+            0.4, 0.5, 0.6, 0.8, 0.7, 0.9, 1.0, 0.9, 0.8, 0.7, 0.9, 1.0,
+          ],
           isPrivate: false,
         }}
       />

@@ -358,12 +358,17 @@ export const ui: Registry["items"] = [
     type: "registry:ui",
     title: "Morphing Blob",
     description: "A morphing blob that that provide several effects.",
-    dependencies: ["three", "@react-three/fiber", "@react-three/drei", "@react-three/postprocessing"],
+    dependencies: [
+      "three",
+      "@react-three/fiber",
+      "@react-three/drei",
+      "@react-three/postprocessing",
+    ],
     files: [
       {
-        "path": "registry/ui/morphing-blob.tsx",
-        "type": "registry:ui",
-        "target": "components/ui/morphing-blob.tsx",
+        path: "registry/ui/morphing-blob.tsx",
+        type: "registry:ui",
+        target: "components/ui/morphing-blob.tsx",
       },
     ],
   },
@@ -449,8 +454,8 @@ export const ui: Registry["items"] = [
         path: "registry/ui/custom-cursor.tsx",
         type: "registry:ui",
         target: "components/ui/custom-cursor.tsx",
-        },
-    ]
+      },
+    ],
   },
   {
     name: "apple-glass-effect",
@@ -478,6 +483,6 @@ export const ui: Registry["items"] = [
         type: "registry:ui",
         target: "components/ui/3d-layered-card.tsx",
       },
-    ]
-  }
+    ],
+  },
 ];

@@ -4,11 +4,7 @@
   "type": "registry:ui",
   "title": "Footer Section",
   "description": "A comprehensive footer with links, social media, and branding.",
-  "dependencies": [
-    "lucide-react",
-    "..",
-    "lucide-react"
-  ],
+  "dependencies": ["lucide-react", "..", "lucide-react"],
   "files": [
     {
       "path": "registry/blocks/footer-section.tsx",

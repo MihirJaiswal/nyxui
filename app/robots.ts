@@ -12,7 +12,7 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: "Googlebot",
         allow: "/",
         disallow: ["/api/", "/_next/static/"],
-      }
+      },
     ],
     sitemap: "https://nyxui.com/sitemap.xml",
     host: "https://nyxui.com/",

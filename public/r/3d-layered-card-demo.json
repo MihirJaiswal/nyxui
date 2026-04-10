@@ -10,9 +10,7 @@
     "..",
     "lucide-react"
   ],
-  "registryDependencies": [
-    "https://nyxui.com/r/3d-layered-card.json"
-  ],
+  "registryDependencies": ["https://nyxui.com/r/3d-layered-card.json"],
   "files": [
     {
       "path": "registry/example/3d-layered-card-demo.tsx",

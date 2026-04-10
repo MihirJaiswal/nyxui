@@ -1,98 +1,112 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { motion } from "motion/react"
-import { ChevronDown, Grid3X3, Check, Search } from "lucide-react"
-import type { ComponentRegistry } from "./types"
-import { useState, useEffect, useRef } from "react"
+import { motion } from "motion/react";
+import { ChevronDown, Grid3X3, Check, Search } from "lucide-react";
+import type { ComponentRegistry } from "./types";
+import { useState, useEffect, useRef } from "react";
 
 interface ComponentSelectorProps {
-  components: ComponentRegistry
-  selectedComponent: string
-  onSelect: (componentKey: string) => void
+  components: ComponentRegistry;
+  selectedComponent: string;
+  onSelect: (componentKey: string) => void;
 }
 
-const ComponentSelector = ({ components, selectedComponent, onSelect }: ComponentSelectorProps) => {
-  const [isOpen, setIsOpen] = useState(false)
-  const [searchQuery, setSearchQuery] = useState("")
-  const [highlightedIndex, setHighlightedIndex] = useState(-1)
-  const dropdownRef = useRef<HTMLDivElement>(null)
-  const searchInputRef = useRef<HTMLInputElement>(null)
+const ComponentSelector = ({
+  components,
+  selectedComponent,
+  onSelect,
+}: ComponentSelectorProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
-  const componentEntries = Object.entries(components)
-  const selectedComponentData = components[selectedComponent]
+  const componentEntries = Object.entries(components);
+  const selectedComponentData = components[selectedComponent];
 
   const filteredComponents = componentEntries.filter(
     ([key, component]) =>
       component.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       key.toLowerCase().includes(searchQuery.toLowerCase()),
-  )
+  );
 
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false)
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
       }
-    }
+    };
 
-    document.addEventListener("mousedown", handleClickOutside)
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside)
-    }
-  }, [])
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     if (isOpen && searchInputRef.current) {
-      searchInputRef.current.focus()
+      searchInputRef.current.focus();
     }
-    setHighlightedIndex(-1)
-  }, [isOpen])
+    setHighlightedIndex(-1);
+  }, [isOpen]);
 
   useEffect(() => {
     if (filteredComponents.length > 0) {
-      setHighlightedIndex(0)
+      setHighlightedIndex(0);
     } else {
-      setHighlightedIndex(-1)
+      setHighlightedIndex(-1);
     }
-  }, [searchQuery, filteredComponents.length])
+  }, [searchQuery, filteredComponents.length]);
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (!isOpen) return
+    if (!isOpen) return;
 
     switch (event.key) {
       case "ArrowDown":
-        event.preventDefault()
-        setHighlightedIndex((prev) => (prev < filteredComponents.length - 1 ? prev + 1 : 0))
-        break
+        event.preventDefault();
+        setHighlightedIndex((prev) =>
+          prev < filteredComponents.length - 1 ? prev + 1 : 0,
+        );
+        break;
       case "ArrowUp":
-        event.preventDefault()
-        setHighlightedIndex((prev) => (prev > 0 ? prev - 1 : filteredComponents.length - 1))
-        break
+        event.preventDefault();
+        setHighlightedIndex((prev) =>
+          prev > 0 ? prev - 1 : filteredComponents.length - 1,
+        );
+        break;
       case "Enter":
-        event.preventDefault()
-        const indexToSelect = highlightedIndex >= 0 ? highlightedIndex : 0
-        if (filteredComponents.length > 0 && indexToSelect < filteredComponents.length) {
-          const [key] = filteredComponents[indexToSelect]
-          onSelect(key)
-          setIsOpen(false)
-          setSearchQuery("")
+        event.preventDefault();
+        const indexToSelect = highlightedIndex >= 0 ? highlightedIndex : 0;
+        if (
+          filteredComponents.length > 0 &&
+          indexToSelect < filteredComponents.length
+        ) {
+          const [key] = filteredComponents[indexToSelect];
+          onSelect(key);
+          setIsOpen(false);
+          setSearchQuery("");
         }
-        break
+        break;
       case "Escape":
-        setIsOpen(false)
-        setSearchQuery("")
-        break
+        setIsOpen(false);
+        setSearchQuery("");
+        break;
     }
-  }
+  };
 
   const handleToggleDropdown = () => {
     if (isOpen) {
-      setSearchQuery("")
+      setSearchQuery("");
     }
-    setIsOpen(!isOpen)
-  }
+    setIsOpen(!isOpen);
+  };
 
   return (
     <div className="relative w-full" ref={dropdownRef}>
@@ -107,7 +121,9 @@ const ComponentSelector = ({ components, selectedComponent, onSelect }: Componen
             </div>
             <div className="min-w-0 flex-1">
               <span className="font-medium text-sm block truncate">
-                {selectedComponentData ? selectedComponentData.name : "Select a Component"}
+                {selectedComponentData
+                  ? selectedComponentData.name
+                  : "Select a Component"}
               </span>
             </div>
           </div>
@@ -148,9 +164,9 @@ const ComponentSelector = ({ components, selectedComponent, onSelect }: Componen
                     <motion.button
                       key={key}
                       onClick={() => {
-                        onSelect(key)
-                        setIsOpen(false)
-                        setSearchQuery("")
+                        onSelect(key);
+                        setIsOpen(false);
+                        setSearchQuery("");
                       }}
                       className={`w-full text-left p-3 rounded-md transition-all duration-200 ${
                         selectedComponent === key
@@ -165,9 +181,13 @@ const ComponentSelector = ({ components, selectedComponent, onSelect }: Componen
                     >
                       <div className="flex items-center justify-between">
                         <div className="min-w-0 flex-1">
-                          <h4 className="font-medium text-sm truncate">{component.name}</h4>
+                          <h4 className="font-medium text-sm truncate">
+                            {component.name}
+                          </h4>
                         </div>
-                        {selectedComponent === key && <Check className="w-4 h-4 text-primary flex-shrink-0 ml-2" />}
+                        {selectedComponent === key && (
+                          <Check className="w-4 h-4 text-primary flex-shrink-0 ml-2" />
+                        )}
                       </div>
                     </motion.button>
                   ))
@@ -191,7 +211,7 @@ const ComponentSelector = ({ components, selectedComponent, onSelect }: Componen
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default ComponentSelector
+export default ComponentSelector;

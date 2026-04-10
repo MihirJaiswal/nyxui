@@ -55,23 +55,20 @@ import { GlassContainer } from "@/components/ui/glass-container";
 
 ## Props
 
-| Prop                 | Type                                              | Default                      | Description                                                                     |
-| -------------------- | ------------------------------------------------- | ---------------------------- | ------------------------------------------------------------------------------- |
-| `children`           | `React.ReactNode`                                 | `undefined`                  | Content to be rendered inside the glass container.                              |
-| `className`          | `string`                                          | `""`                         | Additional CSS classes to apply.                                                |
-| `variant`            | `string`                                          | `"default"`                  | Predefined variants with different blur, opacity, and shadow configurations (default, prominent, regular, thin).    |
-| `blur`               | `number`                                          | `varies by variant`          | Backdrop blur amount in pixels.                                                 |
-| `opacity`            | `number`                                          | `varies by variant`          | Opacity of the glass overlay.                                                  |
-| `distortion`         | `string`                                          | `"medium"`                   | Glass distortion effect intensity (none, subtle, medium, strong).                                              |
-| `tint`               | `string`                                          | `"warm"`                     | Color tint of the glass effect (neutral, warm, cool, vibrant).                                               |
-| `border`             | `boolean`                                         | `true`                       | Whether to show the glass border highlight.                                     |
-| `hover`              | `boolean`                                         | `true`                       | Whether to enable hover effects (scale and shadow).                             |
-| `glassOverlay`       | `boolean`                                         | `true`                       | Whether to apply the tinted glass overlay.                                      |
-| `highlightColor`     | `string`                                          | `rgba(255,255,255,0.4)`      | Color of the specular highlights.                                               |
-| `highlightOpacity`   | `number`                                          | `1`                          | Opacity of the highlight effect.                                                |
-| `innerGlowColor`     | `string`                                          | `rgba(255,255,255,0.1)`      | Color of the inner glow effect.                                                 |
-| `innerGlowOpacity`   | `number`                                          | `1`                          | Opacity of the inner glow effect.                                               |
-| `specularIntensity`  | `number`                                          | `0.4`                        | Intensity of the specular highlights (0-1).                                     |
-
-
-
+| Prop                | Type              | Default                 | Description                                                                                                      |
+| ------------------- | ----------------- | ----------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `children`          | `React.ReactNode` | `undefined`             | Content to be rendered inside the glass container.                                                               |
+| `className`         | `string`          | `""`                    | Additional CSS classes to apply.                                                                                 |
+| `variant`           | `string`          | `"default"`             | Predefined variants with different blur, opacity, and shadow configurations (default, prominent, regular, thin). |
+| `blur`              | `number`          | `varies by variant`     | Backdrop blur amount in pixels.                                                                                  |
+| `opacity`           | `number`          | `varies by variant`     | Opacity of the glass overlay.                                                                                    |
+| `distortion`        | `string`          | `"medium"`              | Glass distortion effect intensity (none, subtle, medium, strong).                                                |
+| `tint`              | `string`          | `"warm"`                | Color tint of the glass effect (neutral, warm, cool, vibrant).                                                   |
+| `border`            | `boolean`         | `true`                  | Whether to show the glass border highlight.                                                                      |
+| `hover`             | `boolean`         | `true`                  | Whether to enable hover effects (scale and shadow).                                                              |
+| `glassOverlay`      | `boolean`         | `true`                  | Whether to apply the tinted glass overlay.                                                                       |
+| `highlightColor`    | `string`          | `rgba(255,255,255,0.4)` | Color of the specular highlights.                                                                                |
+| `highlightOpacity`  | `number`          | `1`                     | Opacity of the highlight effect.                                                                                 |
+| `innerGlowColor`    | `string`          | `rgba(255,255,255,0.1)` | Color of the inner glow effect.                                                                                  |
+| `innerGlowOpacity`  | `number`          | `1`                     | Opacity of the inner glow effect.                                                                                |
+| `specularIntensity` | `number`          | `0.4`                   | Intensity of the specular highlights (0-1).                                                                      |

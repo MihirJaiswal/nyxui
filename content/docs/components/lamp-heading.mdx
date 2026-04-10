@@ -79,10 +79,10 @@ import { LampHeading } from "@/components/ui/lamp-heading";
 // Custom gradient colors with via color
 <LampHeading
   text="Our Services"
-  gradientColors={{ 
-    from: "#8a2be2", 
-    via: "#ff69b4", 
-    to: "#ff8c00" 
+  gradientColors={{
+    from: "#8a2be2",
+    via: "#ff69b4",
+    to: "#ff8c00"
   }}
 />
 
@@ -99,20 +99,19 @@ import { LampHeading } from "@/components/ui/lamp-heading";
 
 ## Props
 
-| Prop             | Type                                                              | Default                                                    | Description                                                                                          |
-| ---------------- | ----------------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `text`           | `string`                                                          | `""`                                                       | The text content of the heading                                                                      |
-| `className`      | `string`                                                          | `""`                                                       | Additional CSS classes to apply for styling the heading                                              |
-| `gradientColors` | `object`                                                          | `{ from: "#FF33C7", via: "#CD35FF", to: "#4533F7" }`       | The gradient colors used for the underline and effects. Object with 'from', optional 'via', and 'to' |
-| `lineHeight`     | `number`                                                          | `4`                                                        | The height of the underline in pixels                                                                |
-| `lampHeight`     | `number`                                                          | `80`                                                       | The height of the lamp cone effect in pixels                                                         |
-| `glowIntensity`  | `number`                                                          | `1.0`                                                      | The intensity of the glow effect (0-2)                                                               |
-| `glowSize`       | `number`                                                          | `30`                                                       | The size of the glow effect in pixels                                                                |
-| `animationSpeed` | `number`                                                          | `4`                                                        | The speed of animations in seconds                                                                   |
-| `direction`      | `"above" \| "below"`                                              | `"below"`                                                  | The direction of the lamp effect (above or below the text)                                           |
-| `showParticles`  | `boolean`                                                         | `true`                                                     | Whether to show floating particles effect                                                            |
-| `showLightRays`  | `boolean`                                                         | `false`                                                    | Whether to show light rays emerging from the underline                                               |
-| `interactive`    | `boolean`                                                         | `true`                                                     | Whether the lamp responds to hover interactions                                                      |
-| `textSize`       | `string`                                                          | `"4xl"`                                                    | The size of the text (sm, md, lg, xl, 2xl, 3xl, 4xl)                                                 |
-| `pulseEffect`    | `boolean`                                                         | `true`                                                     | Whether to show a subtle pulse animation on the underline                                            |
-
+| Prop             | Type                 | Default                                              | Description                                                                                          |
+| ---------------- | -------------------- | ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `text`           | `string`             | `""`                                                 | The text content of the heading                                                                      |
+| `className`      | `string`             | `""`                                                 | Additional CSS classes to apply for styling the heading                                              |
+| `gradientColors` | `object`             | `{ from: "#FF33C7", via: "#CD35FF", to: "#4533F7" }` | The gradient colors used for the underline and effects. Object with 'from', optional 'via', and 'to' |
+| `lineHeight`     | `number`             | `4`                                                  | The height of the underline in pixels                                                                |
+| `lampHeight`     | `number`             | `80`                                                 | The height of the lamp cone effect in pixels                                                         |
+| `glowIntensity`  | `number`             | `1.0`                                                | The intensity of the glow effect (0-2)                                                               |
+| `glowSize`       | `number`             | `30`                                                 | The size of the glow effect in pixels                                                                |
+| `animationSpeed` | `number`             | `4`                                                  | The speed of animations in seconds                                                                   |
+| `direction`      | `"above" \| "below"` | `"below"`                                            | The direction of the lamp effect (above or below the text)                                           |
+| `showParticles`  | `boolean`            | `true`                                               | Whether to show floating particles effect                                                            |
+| `showLightRays`  | `boolean`            | `false`                                              | Whether to show light rays emerging from the underline                                               |
+| `interactive`    | `boolean`            | `true`                                               | Whether the lamp responds to hover interactions                                                      |
+| `textSize`       | `string`             | `"4xl"`                                              | The size of the text (sm, md, lg, xl, 2xl, 3xl, 4xl)                                                 |
+| `pulseEffect`    | `boolean`            | `true`                                               | Whether to show a subtle pulse animation on the underline                                            |

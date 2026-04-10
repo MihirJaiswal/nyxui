@@ -1,11 +1,15 @@
-import Link from 'next/link';
-import { componentsData } from '@/registry/Data';
-import TextureCard, { TextureCardContent, TextureCardDescription, TextureCardTitle } from './texture-card';
-import { Badge } from '@/components/ui/badge';
-import Image from 'next/image';
-import blocks from '../../../public/assets/images/landing-page/blocks.png'
-import temlplates from '../../../public/assets/images/landing-page/templates.png'
-import components from '../../../public/assets/images/landing-page/components.png'
+import Link from "next/link";
+import { componentsData } from "@/registry/Data";
+import TextureCard, {
+  TextureCardContent,
+  TextureCardDescription,
+  TextureCardTitle,
+} from "./texture-card";
+import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
+import blocks from "../../../public/assets/images/landing-page/blocks.png";
+import temlplates from "../../../public/assets/images/landing-page/templates.png";
+import components from "../../../public/assets/images/landing-page/components.png";
 
 export default function ContainCard() {
   const componentCount = Object.keys(componentsData.components).length;
@@ -16,26 +20,29 @@ export default function ContainCard() {
     {
       id: 1,
       title: "Components",
-      description: "A collection of modern componets that are ready to be used in your next project.",
+      description:
+        "A collection of modern componets that are ready to be used in your next project.",
       image: components,
       quantity: componentCount.toString(),
-      route: "/components"
+      route: "/components",
     },
     {
       id: 2,
       title: "Templates",
-      description: "Modern Landing page templates, including a portfolio, saas, and more coming soon.",
+      description:
+        "Modern Landing page templates, including a portfolio, saas, and more coming soon.",
       image: temlplates,
       quantity: templateCount.toString(),
-      route: "/templates"
+      route: "/templates",
     },
     {
       id: 3,
       title: "Blocks",
-      description: "Explore modern and responsive UI blocks designed for various use cases.",
+      description:
+        "Explore modern and responsive UI blocks designed for various use cases.",
       image: blocks,
       quantity: blocksCount.toString(),
-      route: "/blocks"
+      route: "/blocks",
     },
   ];
 
@@ -44,10 +51,11 @@ export default function ContainCard() {
       <div className="mx-auto relative z-12">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-neutral-900 dark:text-neutral-100 mb-4">
-          Explore Our Collection
+            Explore Our Collection
           </h1>
           <p className="text-lg text-neutral-600 dark:text-neutral-400">
-          Discover a curated set of production-ready components, templates, and UI blocks.
+            Discover a curated set of production-ready components, templates,
+            and UI blocks.
           </p>
         </div>
 
@@ -82,8 +90,8 @@ export default function ContainCard() {
                           height={1200}
                           width={900}
                           quality={100}
-                          loading='lazy'
-                          placeholder='blur'
+                          loading="lazy"
+                          placeholder="blur"
                           className="rounded-[16px] object-cover transition-transform duration-300 group-hover:scale-105"
                         />
 
@@ -150,7 +158,7 @@ export default function ContainCard() {
                           alt={`${project.title} preview`}
                           fill
                           quality={100}
-                          loading='lazy'
+                          loading="lazy"
                           className="rounded-[16px] object-cover"
                         />
 

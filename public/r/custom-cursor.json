@@ -4,12 +4,7 @@
   "type": "registry:ui",
   "title": "Custom Cursor",
   "description": "A custom cursor that that provide several effects.",
-  "dependencies": [
-    "motion",
-    "motion",
-    "clsx",
-    "tailwind-merge"
-  ],
+  "dependencies": ["motion", "motion", "clsx", "tailwind-merge"],
   "files": [
     {
       "path": "registry/ui/custom-cursor.tsx",

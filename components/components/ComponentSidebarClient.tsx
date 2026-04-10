@@ -19,7 +19,7 @@ interface GettingStartedSection {
 
 interface ComponentSidebarClientProps {
   gettingStartedSection: GettingStartedSection;
-  componentItems: CategoryItem[]; 
+  componentItems: CategoryItem[];
   templateItems?: CategoryItem[];
   blockItems?: CategoryItem[];
   type?: "components" | "blocks";
@@ -70,9 +70,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
           href={item.href}
           className={cn(
             "group relative flex w-full items-center rounded-md border border-transparent py-1 transition duration-200 hover:translate-x-1 hover:text-black dark:hover:text-white text-sm hide-scrollbar",
-            isActive
-              ? "text-foreground font-medium"
-              : "text-muted-foreground"
+            isActive ? "text-foreground font-medium" : "text-muted-foreground",
           )}
         >
           {isActive && (
@@ -88,7 +86,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
               "truncate",
               isActive
                 ? "ml-0"
-                : "ml-2 group-hover:ml-2 transition-all duration-200"
+                : "ml-2 group-hover:ml-2 transition-all duration-200",
             )}
           >
             {item.name}
@@ -132,7 +130,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
                     "group relative flex w-full items-center rounded-md border border-transparent py-1 transition duration-200 hover:translate-x-1 hover:text-black dark:hover:text-white",
                     isActive
                       ? "text-foreground font-medium"
-                      : "text-muted-foreground"
+                      : "text-muted-foreground",
                   )}
                 >
                   {isActive && (
@@ -148,7 +146,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
                       "truncate",
                       isActive
                         ? "ml-0"
-                        : "ml-2 group-hover:ml-2 transition-all duration-200"
+                        : "ml-2 group-hover:ml-2 transition-all duration-200",
                     )}
                   >
                     {item.name}

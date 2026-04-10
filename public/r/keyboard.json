@@ -4,10 +4,7 @@
   "type": "registry:ui",
   "title": "Keyboard",
   "description": "A keyboard component that simulates a physical keyboard.",
-  "dependencies": [
-    "lucide-react",
-    "lucide-react"
-  ],
+  "dependencies": ["lucide-react", "lucide-react"],
   "files": [
     {
       "path": "registry/ui/keyboard.tsx",

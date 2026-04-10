@@ -4,12 +4,8 @@
   "type": "registry:example",
   "title": "Animated Gradient Background Demo",
   "description": "Example showing an animated gradient background.",
-  "dependencies": [
-    ".."
-  ],
-  "registryDependencies": [
-    "https://nyxui.com/r/animated-gradient-bg"
-  ],
+  "dependencies": [".."],
+  "registryDependencies": ["https://nyxui.com/r/animated-gradient-bg"],
   "files": [
     {
       "path": "registry/example/animated-gradient-bg-demo.tsx",

@@ -6,7 +6,6 @@ import { CustomPointer } from "./CustomPointer";
 export default function AnimatedComponentsShowcase() {
   return (
     <div className="w-full py-20 overflow-hidden px-6 xl:px-22 xl:container mx-auto">
-
       <div className="relative z-10 xl:container mx-auto px-4 sm:px-6 md:px-8 lg:px-8 py-8 sm:py-12 lg:py-16 dark:bg-neutral-950 dark:text-white border border-neutral-200 dark:border-neutral-800">
         <div className="absolute -top-0.5 left-0 w-4 z-12 h-0.5 border-t border-neutral-600 dark:border-neutral-400 bg-neutral-600 dark:bg-neutral-400"></div>
         <div className="absolute -top-0.5 -left-0.5 w-0.5 z-12 h-4 border-l border-neutral-600 dark:border-neutral-400 bg-neutral-600 dark:bg-neutral-400"></div>
@@ -44,7 +43,10 @@ export default function AnimatedComponentsShowcase() {
             </div>
 
             <div className="space-y-4 relative w-full overflow-hidden">
-              <Browser url="https://nyxui.com/" className="w-full h-auto max-w-full">
+              <Browser
+                url="https://nyxui.com/"
+                className="w-full h-auto max-w-full"
+              >
                 <CustomPointer />
               </Browser>
             </div>
@@ -105,7 +107,8 @@ export default function AnimatedComponentsShowcase() {
                       backgroundRepeat: "repeat",
                       WebkitBackgroundClip: "text",
                       backgroundClip: "text",
-                      animation: "bgMove 20s linear infinite, textPulse 3s ease-in-out infinite",
+                      animation:
+                        "bgMove 20s linear infinite, textPulse 3s ease-in-out infinite",
                       color: "transparent",
                       filter: "contrast(200%) brightness(1.2) saturate(1.5)",
                     }}
@@ -126,7 +129,10 @@ export default function AnimatedComponentsShowcase() {
               </h1>
             </div>
             <div className="space-y-4 relative">
-              <Browser url="https://nyxui.com/" className="w-full h-auto max-w-full">
+              <Browser
+                url="https://nyxui.com/"
+                className="w-full h-auto max-w-full"
+              >
                 <CustomPointer />
               </Browser>
             </div>

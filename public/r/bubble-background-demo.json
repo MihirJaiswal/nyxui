@@ -4,12 +4,8 @@
   "type": "registry:example",
   "title": "Bubble Background Demo",
   "description": "Example showing an interactive fluid background.",
-  "dependencies": [
-    ".."
-  ],
-  "registryDependencies": [
-    "https://nyxui.com/r/bubble-background.json"
-  ],
+  "dependencies": [".."],
+  "registryDependencies": ["https://nyxui.com/r/bubble-background.json"],
   "files": [
     {
       "path": "registry/example/bubble-background-demo.tsx",

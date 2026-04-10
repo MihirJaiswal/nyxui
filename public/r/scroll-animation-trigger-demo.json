@@ -4,13 +4,8 @@
   "type": "registry:example",
   "title": "Scroll Animation Trigger Demo",
   "description": "Example showing a scroll animation trigger.",
-  "dependencies": [
-    "..",
-    "lucide-react"
-  ],
-  "registryDependencies": [
-    "https://nyxui.com/r/scroll-animation-trigger.json"
-  ],
+  "dependencies": ["..", "lucide-react"],
+  "registryDependencies": ["https://nyxui.com/r/scroll-animation-trigger.json"],
   "files": [
     {
       "path": "registry/example/scroll-animation-trigger-demo.tsx",

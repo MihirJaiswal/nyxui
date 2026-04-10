@@ -4,13 +4,8 @@
   "type": "registry:example",
   "title": "Terminal Demo",
   "description": "Example showing a terminal.",
-  "dependencies": [
-    "..",
-    "lucide-react"
-  ],
-  "registryDependencies": [
-    "https://nyxui.com/r/terminal.json"
-  ],
+  "dependencies": ["..", "lucide-react"],
+  "registryDependencies": ["https://nyxui.com/r/terminal.json"],
   "files": [
     {
       "path": "registry/example/terminal-demo.tsx",

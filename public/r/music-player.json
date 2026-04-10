@@ -4,10 +4,7 @@
   "type": "registry:ui",
   "title": "Music Player",
   "description": "A music player that that provide several effects.",
-  "dependencies": [
-    "lucide-react",
-    "lucide-react"
-  ],
+  "dependencies": ["lucide-react", "lucide-react"],
   "files": [
     {
       "path": "registry/ui/music-player.tsx",

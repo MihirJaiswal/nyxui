@@ -21,10 +21,7 @@ async function getTemplateFromParams(params: Promise<{ slug: string[] }>) {
     return null;
   }
 
-  const possibleSlugs = [
-    `templates/${template}`,
-    template,
-  ];
+  const possibleSlugs = [`templates/${template}`, template];
 
   for (const slugPattern of possibleSlugs) {
     const doc = allDocs?.find((doc) => doc.slugAsParams === slugPattern);
@@ -39,7 +36,10 @@ async function getTemplateFromParams(params: Promise<{ slug: string[] }>) {
 }
 
 // Function to generate template-specific keywords
-function generateTemplateKeywords(title: string, description: string): string[] {
+function generateTemplateKeywords(
+  title: string,
+  description: string,
+): string[] {
   const templateName = title.toLowerCase();
   const baseKeywords = [
     `${templateName} nyx ui template`,
@@ -60,13 +60,13 @@ function generateTemplateKeywords(title: string, description: string): string[] 
     `${templateName} dashboard template`,
     `ui template library`,
     `react template library`,
-    `nextjs template library`
+    `nextjs template library`,
   ];
 
   if (description) {
     const descWords = description.toLowerCase().match(/\b\w{4,}\b/g) || [];
-    descWords.forEach(word => {
-      if (!word.includes('template') && !word.includes('react')) {
+    descWords.forEach((word) => {
+      if (!word.includes("template") && !word.includes("react")) {
         baseKeywords.push(`${word} ${templateName} template`);
       }
     });
@@ -83,13 +83,16 @@ export async function generateMetadata({
   if (!template) {
     return {
       title: "Template Not Found | Nyx UI Templates",
-      description: "The requested template could not be found."
+      description: "The requested template could not be found.",
     };
   }
 
   const { slug } = await params;
   const templateName = slug?.[0];
-  const templateKeywords = generateTemplateKeywords(template.title, template.description || "");
+  const templateKeywords = generateTemplateKeywords(
+    template.title,
+    template.description || "",
+  );
   const enhancedTitle = `${template.title} Template - React & Next.js | Nyx UI Templates`;
   const enhancedDescription = `${template.description || `${template.title} template for React and Next.js applications.`} Built with Tailwind CSS, TypeScript, and Framer Motion. Professional template from Nyx UI library. Free to use, customizable, and production-ready.`;
 
@@ -100,7 +103,7 @@ export async function generateMetadata({
     authors: [{ name: "Mihir Jaiswal", url: "https://x.com/mihir_jaiswal_" }],
     creator: "Nyx UI",
     publisher: "Nyx UI",
-    
+
     openGraph: {
       title: `${template.title} - React Template | Nyx UI`,
       description: enhancedDescription,
@@ -123,30 +126,31 @@ export async function generateMetadata({
       description: enhancedDescription,
       images: [template.image || "/nyx.webp"],
       creator: "@nuvyx_ui",
-      site: "@nuvyx_ui"
+      site: "@nuvyx_ui",
     },
-    
+
     alternates: {
       canonical: absoluteUrl(`/templates/${templateName}`),
     },
-    
+
     robots: {
       index: true,
       follow: true,
       googleBot: {
         index: true,
         follow: true,
-        'max-video-preview': -1,
-        'max-image-preview': 'large',
-        'max-snippet': -1,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
       },
     },
-    
+
     category: "Web Development",
     other: {
       "article:section": "UI Templates",
-      "article:tag": template.tags?.join(", ") || "React, UI Templates, Next.js",
-    }
+      "article:tag":
+        template.tags?.join(", ") || "React, UI Templates, Next.js",
+    },
   };
 }
 
@@ -157,7 +161,7 @@ export async function generateStaticParams(): Promise<
     if (!allDocs) {
       return [];
     }
-    
+
     if (!Array.isArray(allDocs)) {
       return [];
     }
@@ -168,8 +172,11 @@ export async function generateStaticParams(): Promise<
 
     const templateParams = allDocs
       .filter((doc) => {
-        const isTemplate = doc.slugAsParams.startsWith("templates/") && doc.published;
-        console.log(`Template: ${doc.slugAsParams}, isTemplate: ${isTemplate}, published: ${doc.published}`);
+        const isTemplate =
+          doc.slugAsParams.startsWith("templates/") && doc.published;
+        console.log(
+          `Template: ${doc.slugAsParams}, isTemplate: ${isTemplate}, published: ${doc.published}`,
+        );
         return isTemplate;
       })
       .map((doc) => {
@@ -201,11 +208,13 @@ export default async function TemplatePage({ params }: TemplatePageProps) {
     "@type": ["WebApplication", "SoftwareSourceCode", "CreativeWork"],
     headline: `${template.title} React Template - Nyx UI Documentation`,
     name: `${template.title} Template`,
-    description: template.description || `${template.title} template for React and Next.js applications built with Tailwind CSS and TypeScript.`,
+    description:
+      template.description ||
+      `${template.title} template for React and Next.js applications built with Tailwind CSS and TypeScript.`,
     author: {
       "@type": "Person",
       name: "Mihir Jaiswal",
-      url: "https://x.com/mihir_jaiswal_"
+      url: "https://x.com/mihir_jaiswal_",
     },
     publisher: {
       "@type": "Organization",
@@ -227,7 +236,7 @@ export default async function TemplatePage({ params }: TemplatePageProps) {
     operatingSystem: "Cross-platform",
     applicationCategory: "DeveloperApplication",
     softwareVersion: "1.0",
-    
+
     keywords: [
       template.title.toLowerCase(),
       "react template",
@@ -238,34 +247,34 @@ export default async function TemplatePage({ params }: TemplatePageProps) {
       "typescript",
       "website template",
       "ui template",
-      ...(template.tags || [])
+      ...(template.tags || []),
     ].join(", "),
-    
+
     about: {
       "@type": "Thing",
       name: `${template.title} Template`,
-      description: `A ${template.title.toLowerCase()} template built for React and Next.js applications using Tailwind CSS and TypeScript.`
+      description: `A ${template.title.toLowerCase()} template built for React and Next.js applications using Tailwind CSS and TypeScript.`,
     },
-    
+
     isPartOf: {
       "@type": "SoftwareApplication",
       name: "Nyx UI Templates",
       url: "https://nyxui.com/templates",
-      description: "Modern React template collection for Next.js applications"
+      description: "Modern React template collection for Next.js applications",
     },
-    
+
     screenshot: template.image || "/nyx.webp",
-    
+
     applicationSubCategory: "Web Template",
-    
+
     featureList: [
       "React & Next.js Compatible",
       "Tailwind CSS Styling",
       "TypeScript Support",
       "Responsive Design",
       "Production Ready",
-      "Customizable Components"
-    ]
+      "Customizable Components",
+    ],
   };
 
   return (
@@ -274,14 +283,14 @@ export default async function TemplatePage({ params }: TemplatePageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
       />
-      
+
       {/* Additional meta tags in head */}
       <meta name="template-name" content={template.title} />
       <meta name="template-library" content="Nyx UI" />
       <meta name="framework" content="React, Next.js" />
       <meta name="styling" content="Tailwind CSS" />
       <meta name="template-type" content="Website Template" />
-      
+
       <div className="mx-auto w-full max-w-[1200px]">
         <div className="space-y-4 mt-5">
           <div className="flex flex-wrap items-start gap-3 sm:items-center">
@@ -361,15 +370,13 @@ export default async function TemplatePage({ params }: TemplatePageProps) {
         <div className="mt-12 pt-6 border-t border-border">
           <div className="flex flex-wrap gap-4 justify-between items-center">
             <div className="text-sm text-muted-foreground">
-              Need help with this template? Check out our documentation or reach out to support.
+              Need help with this template? Check out our documentation or reach
+              out to support.
             </div>
             <div className="flex gap-2">
               <Link
                 href="/templates"
-                className={cn(
-                  badgeVariants({ variant: "outline" }),
-                  "gap-1",
-                )}
+                className={cn(badgeVariants({ variant: "outline" }), "gap-1")}
               >
                 ← All Templates
               </Link>

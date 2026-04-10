@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://nyxui.com/"),
   title: {
     default: "Nyx UI",
-    template: "%s | Nyx UI"
+    template: "%s | Nyx UI",
   },
   description:
     "Build stunning landing pages and web apps with NyxUI — 25+ React + Tailwind components and templates, powered by Framer Motion for smooth animations.",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "Nyx UI",
     "nyxui",
     "UI library",
-    "React UI library", 
+    "React UI library",
     "Next.js UI library",
     "component library",
     "React component library",
@@ -37,9 +37,14 @@ export const metadata: Metadata = {
     "frontend UI library",
     "Tailwind UI library",
     "React design system",
-    "UI kit"
+    "UI kit",
   ],
-  authors: [{ name: "Mihir Jaiswal", url: "https://mihirjaiswal-portfolio.vercel.app/" }],
+  authors: [
+    {
+      name: "Mihir Jaiswal",
+      url: "https://mihirjaiswal-portfolio.vercel.app/",
+    },
+  ],
   creator: "Mihir Jaiswal",
   publisher: "Mihir Jaiswal",
   alternates: {
@@ -49,13 +54,15 @@ export const metadata: Metadata = {
     title: "Nyx UI",
     description:
       "The most comprehensive React UI library for Next.js. 30+ modern components built with Tailwind CSS and Framer Motion. Start building beautiful interfaces today.",
-    images: [{ 
-      url: "/nyx.webp", 
-      alt: "Nyx UI - Design Sharp. Ship Fast."
-    }],
+    images: [
+      {
+        url: "/nyx.webp",
+        alt: "Nyx UI - Design Sharp. Ship Fast.",
+      },
+    ],
     type: "website",
     locale: "en_US",
-    siteName: "Nyx UI"
+    siteName: "Nyx UI",
   },
   twitter: {
     card: "summary_large_image",
@@ -72,11 +79,10 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
-
   },
   category: "Web Development",
   verification: {
@@ -86,7 +92,7 @@ export const metadata: Metadata = {
     "application-name": "Nyx UI",
     "msapplication-TileColor": "#000000",
     "theme-color": "#000000",
-  }
+  },
 };
 
 export default function RootLayout({
@@ -108,18 +114,20 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "SoftwareApplication",
-              "name": "Nyx UI",
-              "description": "Nyx UI is a collection of modern React components and templates for developers.",
-              "url": "https://nyxui.com/",
-              "author": {
+              name: "Nyx UI",
+              description:
+                "Nyx UI is a collection of modern React components and templates for developers.",
+              url: "https://nyxui.com/",
+              author: {
                 "@type": "Person",
-                "name": "Mihir Jaiswal",
-                "url": "https://x.com/mihir_jaiswal_"
+                name: "Mihir Jaiswal",
+                url: "https://x.com/mihir_jaiswal_",
               },
-              "applicationCategory": "DeveloperApplication",
-              "operatingSystem": "Web Browser",
-              "keywords": "UI library, React components, Next.js, Tailwind CSS, TypeScript"
-            })
+              applicationCategory: "DeveloperApplication",
+              operatingSystem: "Web Browser",
+              keywords:
+                "UI library, React components, Next.js, Tailwind CSS, TypeScript",
+            }),
           }}
         />
       </head>
@@ -137,4 +145,3 @@ export default function RootLayout({
     </html>
   );
 }
-

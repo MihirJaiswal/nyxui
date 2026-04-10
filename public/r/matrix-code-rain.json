@@ -4,9 +4,7 @@
   "type": "registry:ui",
   "title": "Matrix Code Rain",
   "description": "A matrix code rain that that provide several effects.",
-  "dependencies": [
-    ".."
-  ],
+  "dependencies": [".."],
   "files": [
     {
       "path": "registry/ui/matrix-code-rain.tsx",

@@ -4,9 +4,7 @@
   "type": "registry:ui",
   "title": "Dynamic Ripple",
   "description": "A ripple effect component that follows the cursor and can be customized with various options.",
-  "dependencies": [
-    ".."
-  ],
+  "dependencies": [".."],
   "files": [
     {
       "path": "registry/ui/dynamic-ripple.tsx",

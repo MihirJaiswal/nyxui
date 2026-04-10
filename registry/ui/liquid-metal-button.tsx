@@ -46,7 +46,7 @@ export function LiquidMetalButton({
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [isPressed, setIsPressed] = useState(false);
-  
+
   const themeColors = useMemo(
     () => ({
       silver: {
@@ -65,7 +65,8 @@ export function LiquidMetalButton({
         shadow: "rgba(120, 80, 0, 0.4)",
         glow: "shadow-amber-400/50",
         border: "border-amber-500",
-        textShadow: "0 1px 3px rgba(120,80,0,0.4), 0 0 8px rgba(255,235,150,0.3)",
+        textShadow:
+          "0 1px 3px rgba(120,80,0,0.4), 0 0 8px rgba(255,235,150,0.3)",
       },
       copper: {
         base: "bg-gradient-to-b from-orange-200 via-orange-300 to-orange-600 dark:from-orange-700 dark:via-orange-800 dark:to-orange-900",
@@ -74,7 +75,8 @@ export function LiquidMetalButton({
         shadow: "rgba(120, 60, 0, 0.4)",
         glow: "shadow-orange-400/50",
         border: "border-orange-500",
-        textShadow: "0 1px 3px rgba(120,60,0,0.4), 0 0 6px rgba(255,200,150,0.2)",
+        textShadow:
+          "0 1px 3px rgba(120,60,0,0.4), 0 0 6px rgba(255,200,150,0.2)",
       },
       mercury: {
         base: "bg-gradient-to-b from-blue-200 via-blue-300 to-blue-400 dark:from-blue-700 dark:via-blue-800 dark:to-blue-900",
@@ -83,7 +85,8 @@ export function LiquidMetalButton({
         shadow: "rgba(0, 50, 120, 0.4)",
         glow: "shadow-blue-400/50",
         border: "border-blue-400",
-        textShadow: "0 1px 3px rgba(0,50,120,0.4), 0 0 8px rgba(200,230,255,0.3)",
+        textShadow:
+          "0 1px 3px rgba(0,50,120,0.4), 0 0 8px rgba(200,230,255,0.3)",
       },
       steel: {
         base: "bg-gradient-to-b from-slate-300 via-slate-400 to-slate-600 dark:from-slate-700 dark:via-slate-800 dark:to-slate-900",
@@ -92,7 +95,8 @@ export function LiquidMetalButton({
         shadow: "rgba(30, 40, 50, 0.4)",
         glow: "shadow-slate-400/50",
         border: "border-slate-500",
-        textShadow: "0 1px 2px rgba(30,40,50,0.4), 0 0 6px rgba(220,230,240,0.2)",
+        textShadow:
+          "0 1px 2px rgba(30,40,50,0.4), 0 0 6px rgba(220,230,240,0.2)",
       },
       emerald: {
         base: "bg-gradient-to-b from-emerald-300 via-emerald-400 to-emerald-600 dark:from-emerald-700 dark:via-emerald-800 dark:to-emerald-900",
@@ -101,7 +105,8 @@ export function LiquidMetalButton({
         shadow: "rgba(0, 80, 60, 0.4)",
         glow: "shadow-emerald-500/50",
         border: "border-emerald-500",
-        textShadow: "0 1px 3px rgba(0,80,60,0.4), 0 0 8px rgba(180,255,220,0.3)",
+        textShadow:
+          "0 1px 3px rgba(0,80,60,0.4), 0 0 8px rgba(180,255,220,0.3)",
       },
       sapphire: {
         base: "bg-gradient-to-b from-indigo-300 via-indigo-400 to-indigo-600 dark:from-indigo-700 dark:via-indigo-800 dark:to-indigo-900",
@@ -110,7 +115,8 @@ export function LiquidMetalButton({
         shadow: "rgba(40, 0, 100, 0.4)",
         glow: "shadow-indigo-500/50",
         border: "border-indigo-500",
-        textShadow: "0 1px 3px rgba(40,0,100,0.4), 0 0 8px rgba(200,200,255,0.3)",
+        textShadow:
+          "0 1px 3px rgba(40,0,100,0.4), 0 0 8px rgba(200,200,255,0.3)",
       },
       custom: {
         base: customColors?.base
@@ -197,7 +203,7 @@ export function LiquidMetalButton({
       onMouseUp={handleMouseUp}
       {...props}
     >
-      <span 
+      <span
         className="relative z-10 flex items-center gap-2"
         style={{ textShadow: currentTheme.textShadow }}
       >
@@ -215,7 +221,9 @@ export function LiquidMetalButton({
             className="absolute inset-0 opacity-70 transition-all duration-300"
             style={{
               background: `linear-gradient(135deg, ${currentTheme.highlight} 0%, transparent 50%, ${currentTheme.shadow} 100%)`,
-              transform: isHovered ? "rotate(45deg) scale(1.05)" : "rotate(0deg) scale(1)",
+              transform: isHovered
+                ? "rotate(45deg) scale(1.05)"
+                : "rotate(0deg) scale(1)",
               transition: isHovered
                 ? "transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.2s ease"
                 : "transform 0.4s ease-out, opacity 0.3s ease",
@@ -238,7 +246,8 @@ export function LiquidMetalButton({
           className="absolute inset-0 pointer-events-none opacity-20"
           style={{
             borderRadius: "inherit",
-            boxShadow: "inset 0 1px 3px rgba(0,0,0,0.2), inset 0 -1px 2px rgba(255,255,255,0.2)",
+            boxShadow:
+              "inset 0 1px 3px rgba(0,0,0,0.2), inset 0 -1px 2px rgba(255,255,255,0.2)",
           }}
         />
       )}

@@ -4,12 +4,8 @@
   "type": "registry:example",
   "title": "Water Ripple Effect Demo",
   "description": "Example showing a water ripple effect.",
-  "dependencies": [
-    ".."
-  ],
-  "registryDependencies": [
-    "https://nyxui.com/r/water-ripple-effect.json"
-  ],
+  "dependencies": [".."],
+  "registryDependencies": ["https://nyxui.com/r/water-ripple-effect.json"],
   "files": [
     {
       "path": "registry/example/water-ripple-effect-demo.tsx",

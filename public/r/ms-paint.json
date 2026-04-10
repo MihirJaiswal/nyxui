@@ -4,10 +4,7 @@
   "type": "registry:ui",
   "title": "MS Paint",
   "description": "A customizable drawing canvas component with paint-like interface.",
-  "dependencies": [
-    "lucide-react",
-    "lucide-react"
-  ],
+  "dependencies": ["lucide-react", "lucide-react"],
   "files": [
     {
       "path": "registry/ui/ms-paint.tsx",

@@ -10,9 +10,7 @@
     "..",
     "lucide-react"
   ],
-  "registryDependencies": [
-    "https://nyxui.com/r/animated-text.json"
-  ],
+  "registryDependencies": ["https://nyxui.com/r/animated-text.json"],
   "files": [
     {
       "path": "registry/example/animated-text-demo.tsx",

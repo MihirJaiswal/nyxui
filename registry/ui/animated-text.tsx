@@ -1,12 +1,7 @@
 "use client";
 
 import { FC, useRef, useEffect } from "react";
-import {
-  HTMLMotionProps,
-  motion,
-  useAnimation,
-  useInView,
-} from "motion/react";
+import { HTMLMotionProps, motion, useAnimation, useInView } from "motion/react";
 
 type AnimationType =
   | "blink"

@@ -1,37 +1,37 @@
-"use client"
-import { useState, useEffect, useRef, useCallback } from "react"
-import { motion, AnimatePresence } from "motion/react"
-import { cn } from "@/lib/utils"
-import Image from "next/image"
-import { Activity, CheckCircle } from "lucide-react"
+"use client";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import { cn } from "@/lib/utils";
+import Image from "next/image";
+import { Activity, CheckCircle } from "lucide-react";
 
 export interface ImageScannerProps {
-  image: string
-  alt?: string
-  scanSpeed?: number
-  scanColor?: "emerald" | "blue" | "purple" | "amber" | "red" | "cyan" | "pink"
-  scanType?: "default" | "grid" | "radar" | "pulse" | "wave" | "matrix"
-  className?: string
-  onScanComplete?: (results?: ScanResult[]) => void
-  autoScan?: boolean
-  scanDelay?: number
-  scanAtScroll?: boolean
-  showDataOverlay?: boolean
-  showProgress?: boolean
-  scanIntensity?: "low" | "medium" | "high" | "extreme"
-  showScanResults?: boolean
-  loop?: boolean
-  scanResults?: ScanResult[]
-  triggerScan?: boolean
-  disableClickToScan?: boolean
+  image: string;
+  alt?: string;
+  scanSpeed?: number;
+  scanColor?: "emerald" | "blue" | "purple" | "amber" | "red" | "cyan" | "pink";
+  scanType?: "default" | "grid" | "radar" | "pulse" | "wave" | "matrix";
+  className?: string;
+  onScanComplete?: (results?: ScanResult[]) => void;
+  autoScan?: boolean;
+  scanDelay?: number;
+  scanAtScroll?: boolean;
+  showDataOverlay?: boolean;
+  showProgress?: boolean;
+  scanIntensity?: "low" | "medium" | "high" | "extreme";
+  showScanResults?: boolean;
+  loop?: boolean;
+  scanResults?: ScanResult[];
+  triggerScan?: boolean;
+  disableClickToScan?: boolean;
 }
 
 interface ScanResult {
-  id: string
-  type: "object" | "anomaly" | "data" | "threat"
-  confidence: number
-  position: { x: number; y: number }
-  label: string
+  id: string;
+  type: "object" | "anomaly" | "data" | "threat";
+  confidence: number;
+  position: { x: number; y: number };
+  label: string;
 }
 
 export const ImageScanner = ({
@@ -54,19 +54,19 @@ export const ImageScanner = ({
   triggerScan,
   disableClickToScan = false,
 }: ImageScannerProps) => {
-  const [isScanning, setIsScanning] = useState(false)
-  const [scanComplete, setScanComplete] = useState(false)
-  const [hasScanned, setHasScanned] = useState(false)
-  const [scanCycle, setScanCycle] = useState(0)
-  const [progress, setProgress] = useState(0)
-  const [scanResults, setScanResults] = useState<ScanResult[]>([])
-  const [currentPhase, setCurrentPhase] = useState<string>("Initializing")
-  const [showIndicators, setShowIndicators] = useState(false)
-  const ref = useRef<HTMLDivElement>(null)
-  const scanTimer = useRef<NodeJS.Timeout | null>(null)
-  const completeTimer = useRef<NodeJS.Timeout | null>(null)
-  const progressTimer = useRef<NodeJS.Timeout | null>(null)
-  const loopTimer = useRef<NodeJS.Timeout | null>(null)
+  const [isScanning, setIsScanning] = useState(false);
+  const [scanComplete, setScanComplete] = useState(false);
+  const [hasScanned, setHasScanned] = useState(false);
+  const [scanCycle, setScanCycle] = useState(0);
+  const [progress, setProgress] = useState(0);
+  const [scanResults, setScanResults] = useState<ScanResult[]>([]);
+  const [currentPhase, setCurrentPhase] = useState<string>("Initializing");
+  const [showIndicators, setShowIndicators] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const scanTimer = useRef<NodeJS.Timeout | null>(null);
+  const completeTimer = useRef<NodeJS.Timeout | null>(null);
+  const progressTimer = useRef<NodeJS.Timeout | null>(null);
+  const loopTimer = useRef<NodeJS.Timeout | null>(null);
 
   const colorMap = {
     emerald: {
@@ -118,14 +118,14 @@ export const ImageScanner = ({
       gradient: "from-pink-500/80 to-pink-300/40",
       cssColor: "#ec4899",
     },
-  }
+  };
 
   const intensityMap = {
     low: { glowIntensity: 0.3, scanLines: 1 },
     medium: { glowIntensity: 0.6, scanLines: 2 },
     high: { glowIntensity: 0.8, scanLines: 3 },
     extreme: { glowIntensity: 1.0, scanLines: 5 },
-  }
+  };
 
   const phases = [
     "Initializing Scanner",
@@ -133,22 +133,22 @@ export const ImageScanner = ({
     "Processing Data",
     "Identifying Objects",
     "Finalizing Results",
-  ]
+  ];
 
   const generateScanResults = useCallback((): ScanResult[] => {
-    if (externalScanResults) return externalScanResults
+    if (externalScanResults) return externalScanResults;
 
-    const results: ScanResult[] = []
-    const resultTypes = ["object", "anomaly", "data", "threat"] as const
+    const results: ScanResult[] = [];
+    const resultTypes = ["object", "anomaly", "data", "threat"] as const;
     const labels = {
       object: ["Person", "Vehicle", "Building", "Equipment"],
       anomaly: ["Unknown Signal", "Interference", "Distortion"],
       data: ["Metadata", "Timestamp", "Location Data"],
       threat: ["Security Risk", "Unauthorized Access", "Suspicious Activity"],
-    }
+    };
 
     for (let i = 0; i < Math.floor(Math.random() * 5) + 2; i++) {
-      const type = resultTypes[Math.floor(Math.random() * resultTypes.length)]
+      const type = resultTypes[Math.floor(Math.random() * resultTypes.length)];
       results.push({
         id: `result-${i}`,
         type,
@@ -158,94 +158,94 @@ export const ImageScanner = ({
           y: Math.floor(Math.random() * 80) + 10,
         },
         label: labels[type][Math.floor(Math.random() * labels[type].length)],
-      })
+      });
     }
-    return results
-  }, [externalScanResults])
+    return results;
+  }, [externalScanResults]);
 
   const clearAllTimers = useCallback(() => {
     if (scanTimer.current) {
-      clearTimeout(scanTimer.current)
-      scanTimer.current = null
+      clearTimeout(scanTimer.current);
+      scanTimer.current = null;
     }
     if (completeTimer.current) {
-      clearTimeout(completeTimer.current)
-      completeTimer.current = null
+      clearTimeout(completeTimer.current);
+      completeTimer.current = null;
     }
     if (progressTimer.current) {
-      clearInterval(progressTimer.current)
-      progressTimer.current = null
+      clearInterval(progressTimer.current);
+      progressTimer.current = null;
     }
     if (loopTimer.current) {
-      clearTimeout(loopTimer.current)
-      loopTimer.current = null
+      clearTimeout(loopTimer.current);
+      loopTimer.current = null;
     }
-  }, [])
+  }, []);
 
   const runScan = useCallback(() => {
-    if (isScanning) return
+    if (isScanning) return;
 
-    clearAllTimers()
-    setIsScanning(true)
-    setScanComplete(false)
-    setScanCycle((prev) => prev + 1)
-    setProgress(0)
-    setCurrentPhase(phases[0])
-    setScanResults([])
-    setShowIndicators(true)
+    clearAllTimers();
+    setIsScanning(true);
+    setScanComplete(false);
+    setScanCycle((prev) => prev + 1);
+    setProgress(0);
+    setCurrentPhase(phases[0]);
+    setScanResults([]);
+    setShowIndicators(true);
 
     // Progress simulation
     if (showProgress) {
-      let currentProgress = 0
+      let currentProgress = 0;
       progressTimer.current = setInterval(() => {
-        currentProgress += Math.random() * 15 + 5
+        currentProgress += Math.random() * 15 + 5;
         if (currentProgress >= 100) {
-          currentProgress = 100
+          currentProgress = 100;
           if (progressTimer.current) {
-            clearInterval(progressTimer.current)
-            progressTimer.current = null
+            clearInterval(progressTimer.current);
+            progressTimer.current = null;
           }
         }
-        setProgress(currentProgress)
-      }, 200)
+        setProgress(currentProgress);
+      }, 200);
     }
 
     // Phase progression
     phases.forEach((phase, index) => {
       setTimeout(
         () => {
-          setCurrentPhase(phase)
+          setCurrentPhase(phase);
         },
         (scanSpeed * 1000 * index) / phases.length,
-      )
-    })
+      );
+    });
 
     // Complete scan
     completeTimer.current = setTimeout(() => {
-      setScanComplete(true)
-      setHasScanned(true)
-      const results = generateScanResults()
-      setScanResults(results)
+      setScanComplete(true);
+      setHasScanned(true);
+      const results = generateScanResults();
+      setScanResults(results);
 
-      if (onScanComplete) onScanComplete(results)
+      if (onScanComplete) onScanComplete(results);
 
       setTimeout(() => {
-        setScanComplete(false)
-        setIsScanning(false)
-        setShowIndicators(false)
+        setScanComplete(false);
+        setIsScanning(false);
+        setShowIndicators(false);
 
         if (progressTimer.current) {
-          clearInterval(progressTimer.current)
-          progressTimer.current = null
+          clearInterval(progressTimer.current);
+          progressTimer.current = null;
         }
 
         if (loop || autoScan) {
           loopTimer.current = setTimeout(() => {
-            runScan()
-          }, 1000)
+            runScan();
+          }, 1000);
         }
-      }, 2000)
-    }, scanSpeed * 1000)
+      }, 2000);
+    }, scanSpeed * 1000);
   }, [
     isScanning,
     scanSpeed,
@@ -256,65 +256,68 @@ export const ImageScanner = ({
     loop,
     autoScan,
     clearAllTimers,
-  ])
+  ]);
 
   // Intersection Observer for scroll trigger
   useEffect(() => {
-    if (!scanAtScroll || !ref.current) return
+    if (!scanAtScroll || !ref.current) return;
     const observer = new IntersectionObserver(
       (entries) => {
-        const [entry] = entries
+        const [entry] = entries;
         if (entry.isIntersecting && !hasScanned && !isScanning) {
-          runScan()
+          runScan();
         }
       },
       { threshold: 0.5 },
-    )
-    observer.observe(ref.current)
-    return () => observer.disconnect()
-  }, [scanAtScroll, hasScanned, isScanning, runScan])
+    );
+    observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [scanAtScroll, hasScanned, isScanning, runScan]);
 
   // Auto scan effect
   useEffect(() => {
     if (autoScan && !isScanning) {
       scanTimer.current = setTimeout(() => {
-        runScan()
-      }, scanDelay * 1000)
+        runScan();
+      }, scanDelay * 1000);
     }
     return () => {
       if (scanTimer.current) {
-        clearTimeout(scanTimer.current)
-        scanTimer.current = null
+        clearTimeout(scanTimer.current);
+        scanTimer.current = null;
       }
-    }
-  }, [autoScan, scanDelay, runScan, isScanning])
+    };
+  }, [autoScan, scanDelay, runScan, isScanning]);
 
   // Trigger scan effect
   useEffect(() => {
     if (triggerScan && !isScanning) {
-      runScan()
+      runScan();
     }
-  }, [triggerScan, isScanning, runScan])
+  }, [triggerScan, isScanning, runScan]);
 
   // Clean up all timers on unmount
   useEffect(() => {
     return () => {
-      clearAllTimers()
-    }
-  }, [clearAllTimers])
+      clearAllTimers();
+    };
+  }, [clearAllTimers]);
 
-  const selectedColor = colorMap[scanColor] || colorMap.emerald
-  const intensity = intensityMap[scanIntensity]
+  const selectedColor = colorMap[scanColor] || colorMap.emerald;
+  const intensity = intensityMap[scanIntensity];
 
   const renderScanPattern = () => {
-    const patterns = []
+    const patterns = [];
     switch (scanType) {
       case "grid":
         for (let i = 0; i < intensity.scanLines; i++) {
           patterns.push(
             <motion.div
               key={`grid-h-${i}-${scanCycle}`}
-              className={cn("absolute left-0 right-0 h-0.5", selectedColor.scan)}
+              className={cn(
+                "absolute left-0 right-0 h-0.5",
+                selectedColor.scan,
+              )}
               style={{ top: `${(i + 1) * (100 / (intensity.scanLines + 1))}%` }}
               initial={{ opacity: 0, scaleX: 0 }}
               animate={{ opacity: [0, 1, 0], scaleX: [0, 1, 0] }}
@@ -322,15 +325,20 @@ export const ImageScanner = ({
             />,
             <motion.div
               key={`grid-v-${i}-${scanCycle}`}
-              className={cn("absolute top-0 bottom-0 w-0.5", selectedColor.scan)}
-              style={{ left: `${(i + 1) * (100 / (intensity.scanLines + 1))}%` }}
+              className={cn(
+                "absolute top-0 bottom-0 w-0.5",
+                selectedColor.scan,
+              )}
+              style={{
+                left: `${(i + 1) * (100 / (intensity.scanLines + 1))}%`,
+              }}
               initial={{ opacity: 0, scaleY: 0 }}
               animate={{ opacity: [0, 1, 0], scaleY: [0, 1, 0] }}
               transition={{ duration: scanSpeed, delay: i * 0.2 + 0.1 }}
             />,
-          )
+          );
         }
-        break
+        break;
       case "radar":
         patterns.push(
           <motion.div
@@ -344,9 +352,9 @@ export const ImageScanner = ({
             }}
             initial={{ rotate: 0 }}
             animate={{
-               rotate: 380,
-               opacity: [1,1,1,1,0]
-              }}
+              rotate: 380,
+              opacity: [1, 1, 1, 1, 0],
+            }}
             transition={{
               duration: scanSpeed,
               ease: "linear",
@@ -436,32 +444,38 @@ export const ImageScanner = ({
               repeat: 0,
             }}
           />,
-        )
-        break
+        );
+        break;
       case "pulse":
         for (let i = 0; i < 3; i++) {
           patterns.push(
             <motion.div
               key={`pulse-${i}-${scanCycle}`}
-              className={cn("absolute inset-0 border-2 rounded-full", selectedColor.border)}
+              className={cn(
+                "absolute inset-0 border-2 rounded-full",
+                selectedColor.border,
+              )}
               initial={{ scale: 0, opacity: 1 }}
               animate={{ scale: [0, 1.5, 2], opacity: [1, 0.5, 0] }}
               transition={{ duration: scanSpeed, delay: i * 0.3 }}
             />,
-          )
+          );
         }
-        break
+        break;
       case "wave":
         patterns.push(
           <motion.div
             key={`wave-${scanCycle}`}
-            className={cn("absolute inset-0 bg-gradient-to-r", selectedColor.gradient)}
+            className={cn(
+              "absolute inset-0 bg-gradient-to-r",
+              selectedColor.gradient,
+            )}
             initial={{ x: "-100%" }}
             animate={{ x: "100%" }}
             transition={{ duration: scanSpeed, ease: "easeInOut" }}
           />,
-        )
-        break
+        );
+        break;
       case "matrix":
         for (let i = 0; i < 12; i++) {
           patterns.push(
@@ -484,7 +498,7 @@ export const ImageScanner = ({
                 ease: "easeInOut",
               }}
             />,
-          )
+          );
         }
 
         for (let col = 0; col < 8; col++) {
@@ -510,8 +524,24 @@ export const ImageScanner = ({
               }}
             >
               {Array.from({ length: 20 }, (_, row) => {
-                const chars = ["0", "1", "ア", "カ", "サ", "タ", "ナ", "ハ", "マ", "ヤ", "ラ", "ワ", "0", "1"]
-                const randomChar = chars[Math.floor(Math.random() * chars.length)]
+                const chars = [
+                  "0",
+                  "1",
+                  "ア",
+                  "カ",
+                  "サ",
+                  "タ",
+                  "ナ",
+                  "ハ",
+                  "マ",
+                  "ヤ",
+                  "ラ",
+                  "ワ",
+                  "0",
+                  "1",
+                ];
+                const randomChar =
+                  chars[Math.floor(Math.random() * chars.length)];
                 return (
                   <motion.div
                     key={`char-${row}`}
@@ -526,10 +556,10 @@ export const ImageScanner = ({
                   >
                     {randomChar}
                   </motion.div>
-                )
+                );
               })}
             </motion.div>,
-          )
+          );
         }
 
         patterns.push(
@@ -550,7 +580,7 @@ export const ImageScanner = ({
               ease: "easeInOut",
             }}
           />,
-        )
+        );
 
         patterns.push(
           <motion.div
@@ -570,9 +600,9 @@ export const ImageScanner = ({
               ease: "linear",
             }}
           />,
-        )
-        break
-        default: 
+        );
+        break;
+      default:
         // Single scanline moving from top to bottom
         patterns.push(
           <motion.div
@@ -585,7 +615,7 @@ export const ImageScanner = ({
             animate={{ top: "100%", opacity: 0.7 }}
             transition={{ duration: scanSpeed, ease: "linear" }}
           />,
-        )
+        );
 
         // Corners
         const corners = [
@@ -593,7 +623,7 @@ export const ImageScanner = ({
           { position: "top-0 right-0", borders: "border-t-2 border-r-2" },
           { position: "bottom-0 left-0", borders: "border-b-2 border-l-2" },
           { position: "bottom-0 right-0", borders: "border-b-2 border-r-2" },
-        ]
+        ];
 
         corners.forEach((corner, index) => {
           patterns.push(
@@ -610,22 +640,26 @@ export const ImageScanner = ({
               exit={{ opacity: 0, scale: 0.5 }}
               transition={{ duration: 0.3, delay: index * 0.1 }}
             />,
-          )
-        })
+          );
+        });
     }
-    return patterns
-  }
+    return patterns;
+  };
 
   const startScan = () => {
     if (!disableClickToScan) {
-      runScan()
+      runScan();
     }
-  }
+  };
 
   return (
     <div
       ref={ref}
-      className={cn("relative overflow-hidden", className, !disableClickToScan && "cursor-pointer")}
+      className={cn(
+        "relative overflow-hidden",
+        className,
+        !disableClickToScan && "cursor-pointer",
+      )}
       onClick={!disableClickToScan ? startScan : undefined}
     >
       <div
@@ -654,11 +688,16 @@ export const ImageScanner = ({
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-500/5 to-transparent animate-pulse" />
         )}
 
-        <AnimatePresence mode="wait">{isScanning && renderScanPattern()}</AnimatePresence>
-        
+        <AnimatePresence mode="wait">
+          {isScanning && renderScanPattern()}
+        </AnimatePresence>
+
         {isScanning && (
           <motion.div
-            className={cn("absolute inset-0 pointer-events-none", selectedColor.glow)}
+            className={cn(
+              "absolute inset-0 pointer-events-none",
+              selectedColor.glow,
+            )}
             initial={{ opacity: 0 }}
             animate={{ opacity: intensity.glowIntensity }}
             exit={{ opacity: 0 }}
@@ -736,7 +775,9 @@ export const ImageScanner = ({
                   />
                   <div className="absolute top-4 left-1/2 transform -translate-x-1/2 text-xs font-mono text-white bg-black/80 px-2 py-1 rounded whitespace-nowrap">
                     {result.label}
-                    <div className="text-xs opacity-70">{result.confidence}%</div>
+                    <div className="text-xs opacity-70">
+                      {result.confidence}%
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -756,7 +797,10 @@ export const ImageScanner = ({
                 <motion.div
                   className={cn("w-2 h-2 rounded-full", selectedColor.scan)}
                   animate={{ scale: [1, 1.2, 1] }}
-                  transition={{ duration: 0.8, repeat: Number.POSITIVE_INFINITY }}
+                  transition={{
+                    duration: 0.8,
+                    repeat: Number.POSITIVE_INFINITY,
+                  }}
                 />
                 <span>SCANNING</span>
               </>
@@ -771,10 +815,30 @@ export const ImageScanner = ({
         )}
 
         <div className="absolute inset-0 pointer-events-none">
-          <div className={cn("absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 opacity-30", selectedColor.border)} />
-          <div className={cn("absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 opacity-30", selectedColor.border)} />
-          <div className={cn("absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 opacity-30", selectedColor.border)} />
-          <div className={cn("absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 opacity-30", selectedColor.border)} />
+          <div
+            className={cn(
+              "absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 opacity-30",
+              selectedColor.border,
+            )}
+          />
+          <div
+            className={cn(
+              "absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 opacity-30",
+              selectedColor.border,
+            )}
+          />
+          <div
+            className={cn(
+              "absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 opacity-30",
+              selectedColor.border,
+            )}
+          />
+          <div
+            className={cn(
+              "absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 opacity-30",
+              selectedColor.border,
+            )}
+          />
         </div>
 
         {isScanning && (
@@ -800,7 +864,7 @@ export const ImageScanner = ({
             }}
           />
         )}
-        
+
         {autoScan && (
           <motion.div
             className="absolute top-2 left-2 flex items-center gap-1 text-xs font-mono text-white bg-black/60 px-2 py-1 rounded backdrop-blur-sm"
@@ -818,5 +882,5 @@ export const ImageScanner = ({
         )}
       </div>
     </div>
-  )
-}
+  );
+};

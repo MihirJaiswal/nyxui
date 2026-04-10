@@ -4,10 +4,7 @@
   "type": "registry:ui",
   "title": "Lamp Heading",
   "description": "A heading component with a lamp effect.",
-  "dependencies": [
-    "motion",
-    ".."
-  ],
+  "dependencies": ["motion", ".."],
   "files": [
     {
       "path": "registry/ui/lamp-heading.tsx",

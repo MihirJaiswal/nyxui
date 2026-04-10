@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  Lightbulb,
-  BookOpen,
-  MessageSquare,
-} from "lucide-react";
+import { Lightbulb, BookOpen, MessageSquare } from "lucide-react";
 
 export default function DocsSidebar() {
   const sections = [
@@ -42,7 +38,7 @@ export default function DocsSidebar() {
               ))}
             </ul>
           </div>
-         {/*  <div className="pt-4">
+          {/*  <div className="pt-4">
             <a
               target="_blank"
               rel="noopener noreferrer"

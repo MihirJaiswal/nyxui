@@ -311,7 +311,7 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
     },
   },
 
-  "keyboard": {
+  keyboard: {
     name: "Interactive Keyboard",
     component: "InteractiveKeyboard",
     props: {
@@ -466,6 +466,13 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
         description: "URL for the logo image",
         category: "Content",
       },
+      className: {
+        type: "string",
+        default: "",
+        label: "CSS Classes",
+        description: "Additional Tailwind CSS classes for styling",
+        category: "Appearance",
+      },
       mainImage: {
         type: "string",
         default:
@@ -540,27 +547,9 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
         category: "Dimensions",
       },
 
-      // Heights
-      collapsedHeight: {
-        type: "number",
-        default: 130,
-        min: 100,
-        max: 200,
-        step: 10,
-        label: "Collapsed Height",
-        description: "Height when card is collapsed",
-        category: "Dimensions",
-      },
-      expandedHeight: {
-        type: "number",
-        default: 300,
-        min: 250,
-        max: 500,
-        step: 10,
-        label: "Expanded Height",
-        description: "Height when card is expanded",
-        category: "Dimensions",
-      },
+      // Heights (deprecated - use height object instead)
+      // Note: collapsedHeight and expandedHeight are legacy props
+      // The component uses height={ collapsed: number, expanded: number }
 
       // Styling
       backgroundColor: {
@@ -1732,6 +1721,13 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
         description: "Text content of the button",
         category: "Content",
       },
+      className: {
+        type: "string",
+        default: "",
+        label: "CSS Classes",
+        description: "Additional Tailwind CSS classes for styling",
+        category: "Appearance",
+      },
       glitchOnHover: {
         type: "boolean",
         default: true,
@@ -1746,18 +1742,14 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
         description: "Keep glitch effect always active",
         category: "Behavior",
       },
-      "glitchColors.primary": {
-        type: "string",
-        default: "#ef00ef",
-        label: "Primary Glitch Color",
-        description: "Primary color for glitch effect",
-        category: "Colors",
-      },
-      "glitchColors.secondary": {
-        type: "string",
-        default: "#00ffff",
-        label: "Secondary Glitch Color",
-        description: "Secondary color for glitch effect",
+      glitchColors: {
+        type: "object",
+        default: {
+          primary: "#ef00ef",
+          secondary: "#00ffff",
+        },
+        label: "Glitch Colors",
+        description: "Colors for the glitch effect",
         category: "Colors",
       },
       borderColor: {
@@ -1795,19 +1787,14 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
         description: "Color theme for ripples",
         category: "Colors",
       },
-      "customColors.primary": {
-        type: "string",
-        default: "rgba(59, 130, 246, 0.7)",
-        label: "Custom Primary Color",
-        description: "Primary color for custom theme",
-        category: "Colors",
-        conditional: { property: "theme", value: "custom" },
-      },
-      "customColors.secondary": {
-        type: "string",
-        default: "rgba(6, 182, 212, 0.7)",
-        label: "Custom Secondary Color",
-        description: "Secondary color for custom theme",
+      customColors: {
+        type: "object",
+        default: {
+          primary: "rgba(59, 130, 246, 0.7)",
+          secondary: "rgba(6, 182, 212, 0.7)",
+        },
+        label: "Custom Colors",
+        description: "Custom colors when theme is set to custom",
         category: "Colors",
         conditional: { property: "theme", value: "custom" },
       },
@@ -1858,7 +1845,7 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
       },
     },
   },
-  "terminal": {
+  terminal: {
     name: "Interactive Terminal",
     component: "InteractiveTerminal",
     props: {
@@ -1923,6 +1910,21 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
         default: false,
         label: "Repeat",
         description: "Repeat command execution continuously",
+      },
+      repeatDelay: {
+        type: "number",
+        default: 3000,
+        min: 1000,
+        max: 10000,
+        step: 500,
+        label: "Repeat Delay (ms)",
+        description: "Delay between repetitions when repeat is enabled",
+      },
+      className: {
+        type: "string",
+        default: "",
+        label: "CSS Classes",
+        description: "Additional Tailwind CSS classes for styling",
       },
       theme: {
         type: "select",
@@ -2126,7 +2128,36 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
       },
       scanResults: {
         type: "textarea",
-        default:[{"id":"target-1","type":"object","confidence":95,"position":{"x":25,"y":30},"label":"Target Alpha"},{"id":"anomaly-1","type":"anomaly","confidence":78,"position":{"x":65,"y":45},"label":"Anomaly Beta"},{"id":"data-1","type":"data","confidence":89,"position":{"x":40,"y":70},"label":"Data Node"},{"id":"threat-1","type":"threat","confidence":85,"position":{"x":80,"y":20},"label":"Security Risk"}],
+        default: [
+          {
+            id: "target-1",
+            type: "object",
+            confidence: 95,
+            position: { x: 25, y: 30 },
+            label: "Target Alpha",
+          },
+          {
+            id: "anomaly-1",
+            type: "anomaly",
+            confidence: 78,
+            position: { x: 65, y: 45 },
+            label: "Anomaly Beta",
+          },
+          {
+            id: "data-1",
+            type: "data",
+            confidence: 89,
+            position: { x: 40, y: 70 },
+            label: "Data Node",
+          },
+          {
+            id: "threat-1",
+            type: "threat",
+            confidence: 85,
+            position: { x: 80, y: 20 },
+            label: "Security Risk",
+          },
+        ],
         label: "Scan Results (JSON)",
         description:
           "Custom scan results as JSON string. Leave empty to use auto-generated results.",
