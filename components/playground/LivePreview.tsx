@@ -395,7 +395,7 @@ const LivePreview = ({ componentKey, config, component, showCode, onToggleCode, 
       {/* Preview */}
       {!showCode && (
         <motion.div
-          key={`${componentKey}-${JSON.stringify(config)}-${Date.now()}`}
+          key={`preview-${componentKey}`}
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.3 }}
