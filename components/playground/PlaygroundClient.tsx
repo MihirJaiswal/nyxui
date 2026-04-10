@@ -7,7 +7,6 @@ import {
   useRef,
   startTransition,
   useCallback,
-  useMemo,
 } from "react";
 import { Play, AlertCircle } from "lucide-react";
 import ComponentSelector from "./ComponentSelector";
