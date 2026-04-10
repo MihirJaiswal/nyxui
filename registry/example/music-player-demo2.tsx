@@ -8,7 +8,7 @@ export default function MusicPlayerDemo2() {
     artist: "Maroon 5",
     album: "V",
     artwork: "/assets/images/music-player/cover2.jpg",
-    duration: 235, 
+    duration: 235,
   };
 
   const queue: Track[] = [

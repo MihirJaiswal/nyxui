@@ -1,5 +1,13 @@
 "use client";
-import { ArrowDown, ArrowLeft, ArrowRight, ArrowUp, ChevronsUp, Command, Menu } from "lucide-react";
+import {
+  ArrowDown,
+  ArrowLeft,
+  ArrowRight,
+  ArrowUp,
+  ChevronsUp,
+  Command,
+  Menu,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 
 interface KeyObject {
@@ -133,30 +141,29 @@ const MinimalKeyboard: React.FC<MinimalKeyboardProps> = ({
   };
 
   const renderKeyIcon = (key: KeyObject) => {
-      if (!key.icon) return null;
-  
-      switch (key.icon) {
-        case "windows":
-          return <Command className="h-3 w-3" />;
-        case "menu":
-          return <Menu className="h-3 w-3" />;
-        case "capslock":
-          return <ChevronsUp className="h-3 w-3 mr-1" />;
-        case "arrowup":
-          return <ArrowUp className="h-3 w-3" />;
-        case "arrowdown":
-          return <ArrowDown className="h-3 w-3" />;
-        case "arrowleft":
-          return <ArrowLeft className="h-3 w-3" />;
-        case "arrowright":
-          return <ArrowRight className="h-3 w-3" />;
-        case "backspace":
-          return <ArrowLeft className="h-3 w-3" />;
-        default:
-          return null;
-      }
-    };
-  
+    if (!key.icon) return null;
+
+    switch (key.icon) {
+      case "windows":
+        return <Command className="h-3 w-3" />;
+      case "menu":
+        return <Menu className="h-3 w-3" />;
+      case "capslock":
+        return <ChevronsUp className="h-3 w-3 mr-1" />;
+      case "arrowup":
+        return <ArrowUp className="h-3 w-3" />;
+      case "arrowdown":
+        return <ArrowDown className="h-3 w-3" />;
+      case "arrowleft":
+        return <ArrowLeft className="h-3 w-3" />;
+      case "arrowright":
+        return <ArrowRight className="h-3 w-3" />;
+      case "backspace":
+        return <ArrowLeft className="h-3 w-3" />;
+      default:
+        return null;
+    }
+  };
 
   useEffect(() => {
     if (!allowPhysicalKeyboard) return;
@@ -234,11 +241,16 @@ const MinimalKeyboard: React.FC<MinimalKeyboardProps> = ({
     return activeKeys.includes(code);
   };
 
-  const getKeyStyle = (key: KeyObject, isPressed: boolean, isActive: boolean) => {
+  const getKeyStyle = (
+    key: KeyObject,
+    isPressed: boolean,
+    isActive: boolean,
+  ) => {
     const size = key.size || 1;
     const keyUnit = 40;
     const keySpacing = 6;
-    const calcKeyWidth = (size: number): number => keyUnit * size + keySpacing * (size - 1);
+    const calcKeyWidth = (size: number): number =>
+      keyUnit * size + keySpacing * (size - 1);
 
     // Exact cyberpunk theme styles from InteractiveKeyboard
     let baseStyle = {
@@ -358,7 +370,9 @@ const MinimalKeyboard: React.FC<MinimalKeyboardProps> = ({
                   onMouseDown={() => key.code && handleKeyDown(key.code)}
                   onMouseUp={() => key.code && handleKeyUp(key.code)}
                   onMouseLeave={() =>
-                    key.code && pressedKeys.has(key.code) && handleKeyUp(key.code)
+                    key.code &&
+                    pressedKeys.has(key.code) &&
+                    handleKeyUp(key.code)
                   }
                   onTouchStart={(e) => {
                     e.preventDefault();

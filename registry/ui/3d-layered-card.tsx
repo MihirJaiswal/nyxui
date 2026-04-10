@@ -63,7 +63,7 @@ export default function ThreeDLayeredCard({
     const checkMobile = () => {
       const isMobileDevice =
         /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-          navigator.userAgent
+          navigator.userAgent,
         ) ||
         window.innerWidth < 768 ||
         "ontouchstart" in window;
@@ -92,12 +92,12 @@ export default function ThreeDLayeredCard({
   const rotateX = useTransform(
     mouseYSpring,
     [-0.5, 0.5],
-    [isMobile ? "-6deg" : "-12deg", isMobile ? "6deg" : "12deg"]
+    [isMobile ? "-6deg" : "-12deg", isMobile ? "6deg" : "12deg"],
   );
   const rotateY = useTransform(
     mouseXSpring,
     [-0.5, 0.5],
-    [isMobile ? "6deg" : "12deg", isMobile ? "-6deg" : "-12deg"]
+    [isMobile ? "6deg" : "12deg", isMobile ? "-6deg" : "-12deg"],
   );
 
   // Smooth lens effect that increases/decreases based on mouse position
@@ -115,7 +115,7 @@ export default function ThreeDLayeredCard({
         rgba(255, 255, 255, ${shineIntensity * 0.2}) 0%, 
         rgba(255, 255, 255, ${shineIntensity * 0.5}) 50%, 
         rgba(255, 255, 255, ${shineIntensity * 0.8}) 100%)`,
-    ]
+    ],
   );
 
   // Dynamic movement for logo and text based on tilt direction (reduced for mobile)
@@ -133,22 +133,22 @@ export default function ThreeDLayeredCard({
   const logoMoveX = useTransform(
     mouseXSpring,
     [-0.5, 0.5],
-    [logoMovement, -logoMovement]
+    [logoMovement, -logoMovement],
   );
   const logoMoveY = useTransform(
     mouseYSpring,
     [-0.5, 0.5],
-    [logoMovement, -logoMovement]
+    [logoMovement, -logoMovement],
   );
   const textMoveX = useTransform(
     mouseXSpring,
     [-0.5, 0.5],
-    [isMobile ? 8 : 15, isMobile ? -8 : -15]
+    [isMobile ? 8 : 15, isMobile ? -8 : -15],
   );
   const textMoveY = useTransform(
     mouseYSpring,
     [-0.5, 0.5],
-    [isMobile ? 8 : 15, isMobile ? -8 : -15]
+    [isMobile ? 8 : 15, isMobile ? -8 : -15],
   );
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -277,7 +277,7 @@ export default function ThreeDLayeredCard({
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       onClick={handleClick}
-      aria-label={title? `Interactive card for ${title}` : "Interactive card"}
+      aria-label={title ? `Interactive card for ${title}` : "Interactive card"}
       role="button"
     >
       {/* Card content with overflow hidden and max-height animation */}

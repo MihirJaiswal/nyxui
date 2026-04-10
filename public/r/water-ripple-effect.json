@@ -4,10 +4,7 @@
   "type": "registry:ui",
   "title": "Water Ripple Effect",
   "description": "A water ripple effect that that provide several effects.",
-  "dependencies": [
-    "three",
-    "three"
-  ],
+  "dependencies": ["three", "three"],
   "files": [
     {
       "path": "registry/ui/water-ripple-effect.tsx",

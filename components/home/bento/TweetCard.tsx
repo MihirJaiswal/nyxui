@@ -4,7 +4,7 @@ import { GlowCard } from "@/registry/ui/glow-card";
 import Image from "next/image";
 import Link from "next/link";
 import { lazy, Suspense, useState, useEffect } from "react";
-import img from '../../../public/assets/images/landing-page/mihir.webp'
+import img from "../../../public/assets/images/landing-page/mihir.webp";
 
 // Lazy load the ImageRipple component
 const ImageRipple = lazy(() => import("./ImageRipple"));
@@ -14,7 +14,9 @@ const RippleLoader = () => (
   <div className="flex items-center justify-center h-full w-full bg-gradient-to-br from-blue-50 to-purple-100 dark:from-gray-800 dark:to-gray-900 rounded-sm">
     <div className="animate-pulse flex flex-col items-center space-y-2">
       <div className="w-8 h-8 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-      <span className="text-xs text-gray-500 dark:text-gray-400">Loading magic...</span>
+      <span className="text-xs text-gray-500 dark:text-gray-400">
+        Loading magic...
+      </span>
     </div>
   </div>
 );
@@ -24,7 +26,7 @@ export const TwitterCard = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShouldLoadRipple(true);
-    }, 100); 
+    }, 100);
 
     return () => clearTimeout(timer);
   }, []);
@@ -94,11 +96,23 @@ export const TwitterCard = () => {
               <div className="flex items-center justify-center h-full w-full">
                 <div className="text-center space-y-2">
                   <div className="w-12 h-12 mx-auto bg-white/20 dark:bg-black/20 rounded-full flex items-center justify-center backdrop-blur-sm">
-                    <svg className="w-6 h-6 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <svg
+                      className="w-6 h-6 text-gray-600 dark:text-gray-300"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
                     </svg>
                   </div>
-                  <p className="text-xs text-gray-600 dark:text-gray-300">Loading...</p>
+                  <p className="text-xs text-gray-600 dark:text-gray-300">
+                    Loading...
+                  </p>
                 </div>
               </div>
             )}
@@ -183,14 +197,28 @@ export const TwitterCard = () => {
         <span className="text-xxs sm:text-xs text-gray-600 dark:text-gray-400">
           1:24 PM · Apr 7, 2025
         </span>
-        <Link href="https://x.com/mihir_jaiswal_" target="_blank" rel="noopener noreferrer">
+        <Link
+          href="https://x.com/mihir_jaiswal_"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <Button
             size="sm"
             className="transition-all duration-300 transform hover:scale-105 font-semibold px-4 py-2 bg-blue-500 rounded-full"
           >
             <span className="flex items-center gap-2 text-white">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                />
               </svg>
               Follow
             </span>

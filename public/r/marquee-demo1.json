@@ -4,12 +4,8 @@
   "type": "registry:example",
   "title": "Marquee Demo 1",
   "description": "Example showing a marquee.",
-  "dependencies": [
-    ".."
-  ],
-  "registryDependencies": [
-    "https://nyxui.com/r/marquee.json"
-  ],
+  "dependencies": [".."],
+  "registryDependencies": ["https://nyxui.com/r/marquee.json"],
   "files": [
     {
       "path": "registry/example/marquee-demo1.tsx",

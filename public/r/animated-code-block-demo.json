@@ -4,12 +4,8 @@
   "type": "registry:example",
   "title": "Animated Code Block Demo",
   "description": "Example showing a code block with typing animation effects.",
-  "dependencies": [
-    ".."
-  ],
-  "registryDependencies": [
-    "https://nyxui.com/r/animated-code-block"
-  ],
+  "dependencies": [".."],
+  "registryDependencies": ["https://nyxui.com/r/animated-code-block"],
   "files": [
     {
       "path": "registry/example/animated-code-block-demo.tsx",

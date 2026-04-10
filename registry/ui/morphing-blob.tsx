@@ -1,9 +1,13 @@
-'use client'
-import React, { useMemo, useRef, Suspense, useState, useEffect } from "react"
-import { Canvas, useFrame, useThree } from "@react-three/fiber"
-import { EffectComposer, Bloom, ChromaticAberration } from "@react-three/postprocessing"
-import { Environment } from "@react-three/drei"
-import * as THREE from "three"
+"use client";
+import React, { useMemo, useRef, Suspense, useState, useEffect } from "react";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import {
+  EffectComposer,
+  Bloom,
+  ChromaticAberration,
+} from "@react-three/postprocessing";
+import { Environment } from "@react-three/drei";
+import * as THREE from "three";
 
 /* --------------------------  SHADERS  ---------------------------- */
 
@@ -101,7 +105,7 @@ const vertexShader = /* glsl */ `
 
     gl_Position = projectionMatrix * modelViewMatrix * vec4(pos,1.);
   }
-`
+`;
 
 const fragmentShader = /* glsl */ `
   uniform float uTime;
@@ -150,7 +154,7 @@ const fragmentShader = /* glsl */ `
     
     gl_FragColor = vec4(col, alpha * 0.95);
   }
-`
+`;
 
 // Precompiled shader material
 const shaderMaterial = new THREE.ShaderMaterial({
@@ -159,7 +163,7 @@ const shaderMaterial = new THREE.ShaderMaterial({
   transparent: true,
   alphaTest: 0.01,
   side: THREE.DoubleSide,
-})
+});
 
 /* ----------------------  BLOB   MESH  ----------------------------- */
 
@@ -168,22 +172,22 @@ function Blob({
   complexity,
   speed,
 }: {
-  theme: "primary" | "aurora" | "cosmic" | "liquid" | "danger"
-  complexity: number
-  speed: number
+  theme: "primary" | "aurora" | "cosmic" | "liquid" | "danger";
+  complexity: number;
+  speed: number;
 }) {
-  const { pointer, clock } = useThree()
-  const mesh = useRef<THREE.Mesh>(null!)
+  const { pointer, clock } = useThree();
+  const mesh = useRef<THREE.Mesh>(null!);
   const themes = {
     primary: { a: "#0A0F8A", b: "#1E40FF", c: "#00D4FF" },
     aurora: { a: "#4A00FF", b: "#FF006B", c: "#00FFFF" },
     cosmic: { a: "#660A8A", b: "#C81EFF", c: "#B700FF" },
     liquid: { a: "#805AFC", b: "#04E9AD", c: "#FC8EED" },
     danger: { a: "#FF0000", b: "#FF4000", c: "#FFAA00" },
-  } as const
+  } as const;
 
-  const { a, b, c } = themes[theme] ?? themes.aurora
-  const geometry = useMemo(() => new THREE.IcosahedronGeometry(2, 6), []) // Keep original quality
+  const { a, b, c } = themes[theme] ?? themes.aurora;
+  const geometry = useMemo(() => new THREE.IcosahedronGeometry(2, 6), []); // Keep original quality
 
   // Stable uniforms reference
   const uniforms = useMemo(
@@ -198,43 +202,41 @@ function Blob({
       uC: { value: new THREE.Color(c) },
     }),
     [a, b, c, complexity, speed],
-  )
+  );
   const material = useMemo(() => {
-    const mat = shaderMaterial.clone()
-    mat.uniforms = uniforms
-    return mat
-  }, [uniforms])
+    const mat = shaderMaterial.clone();
+    mat.uniforms = uniforms;
+    return mat;
+  }, [uniforms]);
 
   useFrame(() => {
-    uniforms.uTime.value = clock.elapsedTime
-    uniforms.uPointer.value.copy(pointer)
-  })
+    uniforms.uTime.value = clock.elapsedTime;
+    uniforms.uPointer.value.copy(pointer);
+  });
 
-  return (
-    <mesh ref={mesh} geometry={geometry} material={material} />
-  )
+  return <mesh ref={mesh} geometry={geometry} material={material} />;
 }
 
 /* ----------------------  PARTICLES  ------------------------------- */
 
-function Particles({ count = 150, color = "#00FFFF" }) { 
-  const points = useRef<THREE.Points>(null!)
+function Particles({ count = 150, color = "#00FFFF" }) {
+  const points = useRef<THREE.Points>(null!);
   const { geometry, material } = useMemo(() => {
-    const pos = new Float32Array(count * 3)
-    const scl = new Float32Array(count)
+    const pos = new Float32Array(count * 3);
+    const scl = new Float32Array(count);
     for (let i = 0; i < count; i++) {
-      const r = 4 + Math.random() * 3
-      const theta = Math.random() * Math.PI * 2
-      const phi = Math.acos(Math.random() * 2 - 1)
-      pos[i * 3] = r * Math.sin(phi) * Math.cos(theta)
-      pos[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta)
-      pos[i * 3 + 2] = r * Math.cos(phi)
-      scl[i] = Math.random() * 0.8 + 0.2
+      const r = 4 + Math.random() * 3;
+      const theta = Math.random() * Math.PI * 2;
+      const phi = Math.acos(Math.random() * 2 - 1);
+      pos[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+      pos[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+      pos[i * 3 + 2] = r * Math.cos(phi);
+      scl[i] = Math.random() * 0.8 + 0.2;
     }
 
-    const geom = new THREE.BufferGeometry()
-    geom.setAttribute('position', new THREE.BufferAttribute(pos, 3))
-    geom.setAttribute('scale', new THREE.BufferAttribute(scl, 1))
+    const geom = new THREE.BufferGeometry();
+    geom.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+    geom.setAttribute("scale", new THREE.BufferAttribute(scl, 1));
 
     const mat = new THREE.ShaderMaterial({
       uniforms: {
@@ -269,33 +271,33 @@ function Particles({ count = 150, color = "#00FFFF" }) {
       blending: THREE.AdditiveBlending,
       depthWrite: false,
       transparent: true,
-    })
+    });
 
-    return { geometry: geom, material: mat }
-  }, [count, color])
+    return { geometry: geom, material: mat };
+  }, [count, color]);
 
   useFrame(({ clock }) => {
-    material.uniforms.uTime.value = clock.elapsedTime
-  })
+    material.uniforms.uTime.value = clock.elapsedTime;
+  });
 
-  return <points ref={points} geometry={geometry} material={material} />
+  return <points ref={points} geometry={geometry} material={material} />;
 }
 
 /* ----------------------  EFFECTS  -------------------------------- */
 
 function PostProcessingEffects({ enabled = true }: { enabled?: boolean }) {
-  if (!enabled) return null
+  if (!enabled) return null;
 
   return (
     <EffectComposer>
-      <Bloom 
-        intensity={1.5} 
+      <Bloom
+        intensity={1.5}
         luminanceThreshold={0.02}
         luminanceSmoothing={0.8}
       />
       <ChromaticAberration offset={[0.002, 0.002]} />
     </EffectComposer>
-  )
+  );
 }
 
 /* ----------------------  ERROR BOUNDARY  ------------------------- */
@@ -305,12 +307,12 @@ class EnvironmentErrorBoundary extends React.Component<
   { hasError: boolean }
 > {
   constructor(props: { children: React.ReactNode; fallback: React.ReactNode }) {
-    super(props)
-    this.state = { hasError: false }
+    super(props);
+    this.state = { hasError: false };
   }
 
   static getDerivedStateFromError() {
-    return { hasError: true }
+    return { hasError: true };
   }
 
   componentDidCatch() {
@@ -318,9 +320,9 @@ class EnvironmentErrorBoundary extends React.Component<
   }
   render() {
     if (this.state.hasError) {
-      return this.props.fallback
+      return this.props.fallback;
     }
-    return this.props.children
+    return this.props.children;
   }
 }
 
@@ -333,11 +335,11 @@ function Scene({
   particleCount = 150,
   enableEffects = true,
 }: {
-  theme?: "primary" | "aurora" | "cosmic" | "liquid" | "danger"
-  complexity?: number
-  speed?: number
-  particleCount?: number
-  enableEffects?: boolean
+  theme?: "primary" | "aurora" | "cosmic" | "liquid" | "danger";
+  complexity?: number;
+  speed?: number;
+  particleCount?: number;
+  enableEffects?: boolean;
 }) {
   const particleColors = {
     primary: "#00D4FF",
@@ -345,24 +347,24 @@ function Scene({
     cosmic: "#FF006B",
     liquid: "#00FFAA",
     danger: "#FFAA00",
-  }
+  };
 
   // Fallback lighting when Environment fails
   const FallbackLighting = () => (
     <>
       <ambientLight intensity={0.4} color="#1a1a2e" />
-      <pointLight position={[10, 10, 10]} intensity={1.8} color="#ffffff" /> 
+      <pointLight position={[10, 10, 10]} intensity={1.8} color="#ffffff" />
       <pointLight position={[-10, -10, -10]} intensity={1.2} color="#4444ff" />
       <pointLight position={[0, -10, 5]} intensity={0.8} color="#8844ff" />
     </>
-  )
+  );
 
   return (
     <>
       <Blob theme={theme} complexity={complexity} speed={speed} />
       <Particles count={particleCount} color={particleColors[theme]} />
       <ambientLight intensity={0.3} />
-      <pointLight position={[10, 10, 10]} intensity={1.5} color="#ffffff" /> 
+      <pointLight position={[10, 10, 10]} intensity={1.5} color="#ffffff" />
       <pointLight position={[-10, -10, -10]} intensity={1.0} color="#4444ff" />
       <EnvironmentErrorBoundary fallback={<FallbackLighting />}>
         <Suspense fallback={<FallbackLighting />}>
@@ -372,7 +374,7 @@ function Scene({
 
       <PostProcessingEffects enabled={enableEffects} />
     </>
-  )
+  );
 }
 
 /* --------------------  EXPORTED  COMPONENT  ----------------------- */
@@ -388,74 +390,80 @@ export function MorphingBlob({
   className,
   ...rest
 }: {
-  size?: number
-  theme?: "primary" | "aurora" | "cosmic" | "liquid" | "danger"
-  complexity?: number
-  speed?: number
-  particleCount?: number
-  enableEffects?: boolean
-  children?: React.ReactNode
-  className?: string
+  size?: number;
+  theme?: "primary" | "aurora" | "cosmic" | "liquid" | "danger";
+  complexity?: number;
+  speed?: number;
+  particleCount?: number;
+  enableEffects?: boolean;
+  children?: React.ReactNode;
+  className?: string;
 } & React.HTMLAttributes<HTMLDivElement>) {
-  const [isClient, setIsClient] = useState(false)
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    setIsClient(true)
-  }, [])
+    setIsClient(true);
+  }, []);
   const FallbackComponent = () => (
-    <div 
-      className={className} 
-      style={{ 
-        width: size, 
-        height: size, 
-        position: 'relative',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+    <div
+      className={className}
+      style={{
+        width: size,
+        height: size,
+        position: "relative",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
         background: `radial-gradient(circle at 30% 30%, ${
-          theme === 'aurora' ? 'rgba(74, 0, 255, 0.2)' :
-          theme === 'cosmic' ? 'rgba(183, 102, 234, 0.2)' :
-          theme === 'liquid' ? 'rgba(128, 90, 252, 0.2)' :
-          theme === 'danger' ? 'rgba(255, 0, 0, 0.2)' :
-          'rgba(10, 15, 138, 0.2)'
+          theme === "aurora"
+            ? "rgba(74, 0, 255, 0.2)"
+            : theme === "cosmic"
+              ? "rgba(183, 102, 234, 0.2)"
+              : theme === "liquid"
+                ? "rgba(128, 90, 252, 0.2)"
+                : theme === "danger"
+                  ? "rgba(255, 0, 0, 0.2)"
+                  : "rgba(10, 15, 138, 0.2)"
         }, transparent 70%)`,
-        borderRadius: '50%',
-        overflow: 'hidden'
-      }} 
+        borderRadius: "50%",
+        overflow: "hidden",
+      }}
       {...rest}
     >
       {children}
     </div>
-  )
+  );
 
   if (!isClient) {
-    return <FallbackComponent />
+    return <FallbackComponent />;
   }
 
   return (
-    <div 
-      className={className} 
-      style={{ 
-        width: size, 
-        height: size, 
-        position: 'relative',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }} 
+    <div
+      className={className}
+      style={{
+        width: size,
+        height: size,
+        position: "relative",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
       {...rest}
     >
-      <div style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        zIndex: 1,
-      }}>
-        <Canvas 
-          camera={{ position: [0, 0, 8], fov: 45 }} 
-          gl={{ 
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          zIndex: 1,
+        }}
+      >
+        <Canvas
+          camera={{ position: [0, 0, 8], fov: 45 }}
+          gl={{
             antialias: true, // Re-enabled for quality
             alpha: true,
             powerPreference: "high-performance",
@@ -463,24 +471,24 @@ export function MorphingBlob({
             preserveDrawingBuffer: false,
             failIfMajorPerformanceCaveat: false,
             stencil: false,
-            depth: true
+            depth: true,
           }}
           dpr={[1, 2]} // Responsive DPR for better quality
-          style={{ 
-            background: 'transparent',
-            width: '100%',
-            height: '100%'
+          style={{
+            background: "transparent",
+            width: "100%",
+            height: "100%",
           }}
           onCreated={({ gl }) => {
-            gl.toneMapping = THREE.ACESFilmicToneMapping
-            gl.toneMappingExposure = 1.5 
-            gl.setClearColor(0x000000, 0)
+            gl.toneMapping = THREE.ACESFilmicToneMapping;
+            gl.toneMappingExposure = 1.5;
+            gl.setClearColor(0x000000, 0);
           }}
         >
-          <Scene 
-            theme={theme} 
-            complexity={complexity} 
-            speed={speed} 
+          <Scene
+            theme={theme}
+            complexity={complexity}
+            speed={speed}
             particleCount={particleCount}
             enableEffects={enableEffects}
           />
@@ -488,10 +496,8 @@ export function MorphingBlob({
       </div>
 
       {children && (
-        <div style={{ position: 'relative', zIndex: 2 }}>
-          {children}
-        </div>
+        <div style={{ position: "relative", zIndex: 2 }}>{children}</div>
       )}
     </div>
-  )
+  );
 }

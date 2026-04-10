@@ -10,9 +10,7 @@
     "..",
     "lucide-react"
   ],
-  "registryDependencies": [
-    "https://nyxui.com/r/liquid-metal-button.json"
-  ],
+  "registryDependencies": ["https://nyxui.com/r/liquid-metal-button.json"],
   "files": [
     {
       "path": "registry/example/liquid-metal-button-demo.tsx",

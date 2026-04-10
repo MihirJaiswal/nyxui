@@ -1,35 +1,42 @@
-"use client"
-import { GlassContainer } from "@/registry/ui/apple-glass-effect"
-import { Pause, Play, SkipBack, SkipForward, Shuffle, Repeat } from "lucide-react"
-import Image from "next/image"
-import { useState, useEffect } from "react"
-import img from '../../../public/assets/images/landing-page/cover.webp'
+"use client";
+import { GlassContainer } from "@/registry/ui/apple-glass-effect";
+import {
+  Pause,
+  Play,
+  SkipBack,
+  SkipForward,
+  Shuffle,
+  Repeat,
+} from "lucide-react";
+import Image from "next/image";
+import { useState, useEffect } from "react";
+import img from "../../../public/assets/images/landing-page/cover.webp";
 
 function GlassMusicPlayer() {
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [progress, setProgress] = useState(45)
-  const [currentTime, setCurrentTime] = useState(125) 
-  const duration = 248
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [progress, setProgress] = useState(45);
+  const [currentTime, setCurrentTime] = useState(125);
+  const duration = 248;
 
   const formatTime = (seconds: number) => {
-    const mins = Math.floor(seconds / 60)
-    const secs = seconds % 60
-    return `${mins}:${secs.toString().padStart(2, "0")}`
-  }
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, "0")}`;
+  };
 
   useEffect(() => {
-    let interval: NodeJS.Timeout
+    let interval: NodeJS.Timeout;
     if (isPlaying) {
       interval = setInterval(() => {
         setCurrentTime((prev) => {
-          const newTime = prev + 1
-          setProgress((newTime / duration) * 100)
-          return newTime >= duration ? 0 : newTime
-        })
-      }, 1000)
+          const newTime = prev + 1;
+          setProgress((newTime / duration) * 100);
+          return newTime >= duration ? 0 : newTime;
+        });
+      }, 1000);
     }
-    return () => clearInterval(interval)
-  }, [isPlaying, duration])
+    return () => clearInterval(interval);
+  }, [isPlaying, duration]);
 
   return (
     <div className="">
@@ -45,7 +52,9 @@ function GlassMusicPlayer() {
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
               <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-              <span className="text-xs font-medium text-neutral-900/40 dark:text-white/70 uppercase tracking-wider">Now Playing</span>
+              <span className="text-xs font-medium text-neutral-900/40 dark:text-white/70 uppercase tracking-wider">
+                Now Playing
+              </span>
             </div>
             <div className="flex items-center gap-2">
               <Shuffle className="w-4 h-4 text-neutral-900/30 dark:text-white/50 hover:text-neutral-800/50 dark:hover:text-white/80 cursor-pointer transition-colors" />
@@ -75,10 +84,16 @@ function GlassMusicPlayer() {
             </div>
 
             <div className="flex-1 min-w-0">
-              <h2 className="text-lg font-bold text-neutral-900 dark:text-white truncate mb-1">Until I Found You</h2>
-              <p className="text-sm text-neutral-900/70 dark:text-white/70 truncate mb-1">Stephen Sanchez</p>
-              <p className="text-xs text-neutral-900/50 dark:text-white/50 truncate">Single • 2022</p>
-            </div> 
+              <h2 className="text-lg font-bold text-neutral-900 dark:text-white truncate mb-1">
+                Until I Found You
+              </h2>
+              <p className="text-sm text-neutral-900/70 dark:text-white/70 truncate mb-1">
+                Stephen Sanchez
+              </p>
+              <p className="text-xs text-neutral-900/50 dark:text-white/50 truncate">
+                Single • 2022
+              </p>
+            </div>
           </div>
 
           {/* Progress Bar */}
@@ -87,11 +102,11 @@ function GlassMusicPlayer() {
               <div
                 className="flex-1 h-1.5 bg-zinc-900/10 dark:bg-white/20 rounded-full overflow-hidden cursor-pointer group"
                 onClick={(e) => {
-                  const rect = e.currentTarget.getBoundingClientRect()
-                  const x = e.clientX - rect.left
-                  const percentage = (x / rect.width) * 100
-                  setProgress(Math.max(0, Math.min(100, percentage)))
-                  setCurrentTime(Math.floor((percentage / 100) * duration))
+                  const rect = e.currentTarget.getBoundingClientRect();
+                  const x = e.clientX - rect.left;
+                  const percentage = (x / rect.width) * 100;
+                  setProgress(Math.max(0, Math.min(100, percentage)));
+                  setCurrentTime(Math.floor((percentage / 100) * duration));
                 }}
               >
                 <div
@@ -118,7 +133,11 @@ function GlassMusicPlayer() {
               onClick={() => setIsPlaying(!isPlaying)}
               className="w-12 h-12 bg-white/60 dark:bg-white/15 hover:bg-white/25 rounded-full flex items-center justify-center transition-all duration-200 backdrop-blur-sm border border-white/20 shadow-lg hover:scale-105"
             >
-              {isPlaying ? <Pause className="w-6 h-6 text-neutral-900 dark:text-white" /> : <Play className="w-6 h-6 text-neutral-900 dark:text-white ml-0.5" />}
+              {isPlaying ? (
+                <Pause className="w-6 h-6 text-neutral-900 dark:text-white" />
+              ) : (
+                <Play className="w-6 h-6 text-neutral-900 dark:text-white ml-0.5" />
+              )}
             </button>
 
             <button className="p-2 hover:bg-white/10 rounded-full transition-colors">
@@ -128,7 +147,7 @@ function GlassMusicPlayer() {
         </div>
       </GlassContainer>
     </div>
-  )
+  );
 }
 
-export default GlassMusicPlayer
+export default GlassMusicPlayer;

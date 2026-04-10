@@ -10,9 +10,7 @@
     "@radix-ui/react-slot",
     "class-variance-authority"
   ],
-  "registryDependencies": [
-    "https://nyxui.com/r/image-scanner.json"
-  ],
+  "registryDependencies": ["https://nyxui.com/r/image-scanner.json"],
   "files": [
     {
       "path": "registry/example/image-scanner-demo1.tsx",

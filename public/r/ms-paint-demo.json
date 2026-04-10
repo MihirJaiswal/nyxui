@@ -4,12 +4,8 @@
   "type": "registry:example",
   "title": "MS Paint Demo",
   "description": "Example showing a MS Paint clone.",
-  "dependencies": [
-    ".."
-  ],
-  "registryDependencies": [
-    "https://nyxui.com/r/ms-paint.json"
-  ],
+  "dependencies": [".."],
+  "registryDependencies": ["https://nyxui.com/r/ms-paint.json"],
   "files": [
     {
       "path": "registry/example/ms-paint-demo.tsx",

@@ -7,9 +7,7 @@
     "class-variance-authority",
     "lucide-react"
   ],
-  "registryDependencies": [
-    "utils"
-  ],
+  "registryDependencies": ["utils"],
   "files": [],
   "cssVars": {}
 }

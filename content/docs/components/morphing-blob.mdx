@@ -60,12 +60,7 @@ import { MorphingBlob } from "@/components/ui/morphing-blob";
 export default function MyComponent() {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-900">
-      <MorphingBlob 
-        size={400}
-        theme="aurora"
-        complexity={3}
-        speed={2}
-      />
+      <MorphingBlob size={400} theme="aurora" complexity={3} speed={2} />
     </div>
   );
 }
@@ -73,14 +68,13 @@ export default function MyComponent() {
 
 ## Props
 
-| Prop             | Type                                                    | Default     | Description                                                              |
-| ---------------- | ------------------------------------------------------- | ----------- | ------------------------------------------------------------------------ |
-| `size`           | `number`                                                | `400`       | The size of the blob container in pixels                                 |
-| `theme`          | `string`                                                | `"aurora"`  | The color theme of the blob (primary, aurora, cosmic, liquid, danger)    |
-| `complexity`     | `number`                                                | `3`         | The complexity of the morphing effect (1-5)                              |
-| `speed`          | `number`                                                | `3`         | The speed of the morphing animation (1-5)                                |
-| `particleCount`  | `number`                                                | `150`       | The number of animated particles around the blob                         |
-| `enableEffects`  | `boolean`                                               | `true`      | Whether to enable post-processing effects (bloom, etc.)                  |
-| `children`       | `React.ReactNode`                                       | `undefined` | Content to display over the blob                                         |
-| `className`      | `string`                                                | `undefined` | Additional CSS classes for the container                                 |
-
+| Prop            | Type              | Default     | Description                                                           |
+| --------------- | ----------------- | ----------- | --------------------------------------------------------------------- |
+| `size`          | `number`          | `400`       | The size of the blob container in pixels                              |
+| `theme`         | `string`          | `"aurora"`  | The color theme of the blob (primary, aurora, cosmic, liquid, danger) |
+| `complexity`    | `number`          | `3`         | The complexity of the morphing effect (1-5)                           |
+| `speed`         | `number`          | `3`         | The speed of the morphing animation (1-5)                             |
+| `particleCount` | `number`          | `150`       | The number of animated particles around the blob                      |
+| `enableEffects` | `boolean`         | `true`      | Whether to enable post-processing effects (bloom, etc.)               |
+| `children`      | `React.ReactNode` | `undefined` | Content to display over the blob                                      |
+| `className`     | `string`          | `undefined` | Additional CSS classes for the container                              |

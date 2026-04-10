@@ -4,12 +4,7 @@
   "type": "registry:ui",
   "title": "Github Repo Card",
   "description": "A card component that displays information about a GitHub repository. It includes the repository name, description, stars, forks, and a link to the repository.",
-  "dependencies": [
-    "lucide-react",
-    "lucide-react",
-    "clsx",
-    "tailwind-merge"
-  ],
+  "dependencies": ["lucide-react", "lucide-react", "clsx", "tailwind-merge"],
   "files": [
     {
       "path": "registry/ui/github-repo-card.tsx",

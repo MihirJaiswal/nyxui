@@ -3,24 +3,23 @@ import { allDocs } from "content-collections";
 import { absoluteUrl } from "../../lib/utils";
 import type { Metadata } from "next";
 
-
 function getComponentCount() {
   if (!allDocs || !Array.isArray(allDocs)) return 0;
-  return allDocs.filter((doc) => 
-    doc.slugAsParams.startsWith("components/") && doc.published
+  return allDocs.filter(
+    (doc) => doc.slugAsParams.startsWith("components/") && doc.published,
   ).length;
 }
 
 export async function generateMetadata(): Promise<Metadata> {
   const componentCount = getComponentCount();
   const currentYear = new Date().getFullYear();
-  
+
   return {
     title: ` Nyx UI | Components`,
     description: `Browse ${componentCount}+ premium React UI components. Built with TypeScript, Tailwind CSS & Framer Motion. Copy, paste, and ship faster with NyxUI component library.`,
     keywords: [
       "nyx ui components",
-      "nyxui component library", 
+      "nyxui component library",
       "react ui components",
       "nextjs components",
       "tailwind css components",
@@ -28,7 +27,7 @@ export async function generateMetadata(): Promise<Metadata> {
       "free react components",
       "ui component library",
       "typescript components",
-      "component collection"
+      "component collection",
     ],
 
     openGraph: {
@@ -36,12 +35,14 @@ export async function generateMetadata(): Promise<Metadata> {
       description: `Browse and copy ${componentCount}+ premium React components for your next project.`,
       url: absoluteUrl("/components"),
       siteName: "Nyx UI",
-      images: [{
-        url: "/api/og/components",
-        width: 1200,
-        height: 630,
-        alt: `NyxUI Components Library - ${componentCount}+ Components`,
-      }],
+      images: [
+        {
+          url: "/api/og/components",
+          width: 1200,
+          height: 630,
+          alt: `NyxUI Components Library - ${componentCount}+ Components`,
+        },
+      ],
     },
 
     twitter: {
@@ -59,7 +60,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
     alternates: {
       canonical: absoluteUrl("/components"),
-    }
+    },
   };
 }
 
@@ -79,8 +80,8 @@ const ComponentsPage = () => {
     publisher: {
       "@type": "Organization",
       name: "Nyx UI",
-      url: "https://nyxui.com/"
-    }
+      url: "https://nyxui.com/",
+    },
   };
 
   return (

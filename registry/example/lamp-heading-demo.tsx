@@ -1,24 +1,24 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState } from "react"
-import reactElementToJSXString from "react-element-to-jsx-string"
-import { toast, Toaster } from "sonner"
-import {LampHeading} from "../ui/lamp-heading"
-import { Copy, Check } from "lucide-react"
+import type React from "react";
+import { useState } from "react";
+import reactElementToJSXString from "react-element-to-jsx-string";
+import { toast, Toaster } from "sonner";
+import { LampHeading } from "../ui/lamp-heading";
+import { Copy, Check } from "lucide-react";
 
 interface LampCard {
-  children: React.ReactNode
-  onClick: () => void
-  isCopied: boolean
+  children: React.ReactNode;
+  onClick: () => void;
+  isCopied: boolean;
 }
 
 type LampHeadingType = {
-  name: string
-  description: string
-  component: React.ReactNode
-  code?: string
-}
+  name: string;
+  description: string;
+  component: React.ReactNode;
+  code?: string;
+};
 
 const LampCard = ({ children, onClick, isCopied }: LampCard) => {
   return (
@@ -26,7 +26,9 @@ const LampCard = ({ children, onClick, isCopied }: LampCard) => {
       className="border group relative border-gray-300 dark:border-zinc-800 hover:border-zinc-500 hover:dark:border-zinc-500 rounded-lg p-6 flex flex-col items-center justify-center h-60 cursor-pointer hover:shadow-lg transition-all duration-300 bg-white dark:bg-black/50 backdrop-blur-sm"
       onClick={onClick}
     >
-      <div className="mb-4 w-full flex items-center justify-center">{children}</div>
+      <div className="mb-4 w-full flex items-center justify-center">
+        {children}
+      </div>
       <div className="absolute top-3 right-3">
         {isCopied ? (
           <Check className="h-4 w-4 text-green-500 transition-all duration-200" />
@@ -35,16 +37,16 @@ const LampCard = ({ children, onClick, isCopied }: LampCard) => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
 export const LampHeadingDemo = () => {
-  const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
+  const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
 
   const copy = (lamp: LampHeadingType, index: number) => {
     if (lamp.code) {
-      copyToClipboard(lamp.code, index)
-      return
+      copyToClipboard(lamp.code, index);
+      return;
     }
 
     const lampString = reactElementToJSXString(lamp.component, {
@@ -56,34 +58,34 @@ export const LampHeadingDemo = () => {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (element as any).type?.name === "LampHeading"
         ) {
-          return "LampHeading"
+          return "LampHeading";
         }
-        return "UnknownComponent"
+        return "UnknownComponent";
       },
       functionValue: (fn) => fn.name || "function",
-    })
+    });
 
     if (lampString) {
-      copyToClipboard(lampString, index)
+      copyToClipboard(lampString, index);
     }
-  }
+  };
 
   const copyToClipboard = (text: string, index: number) => {
     navigator.clipboard
       .writeText(text)
       .then(() => {
-        console.log("Text copied to clipboard:", text)
-        toast.success("Copied to clipboard")
-        setCopiedIndex(index)
+        console.log("Text copied to clipboard:", text);
+        toast.success("Copied to clipboard");
+        setCopiedIndex(index);
         setTimeout(() => {
-          setCopiedIndex(null)
-        }, 2000)
+          setCopiedIndex(null);
+        }, 2000);
       })
       .catch((err) => {
-        console.error("Error copying text to clipboard:", err)
-        toast.error("Error copying to clipboard")
-      })
-  }
+        console.error("Error copying text to clipboard:", err);
+        toast.error("Error copying to clipboard");
+      });
+  };
 
   return (
     <div className="w-full">
@@ -91,15 +93,19 @@ export const LampHeadingDemo = () => {
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {lampHeadings.map((lamp, idx) => (
-            <LampCard key={idx} onClick={() => copy(lamp, idx)} isCopied={copiedIndex === idx}>
+            <LampCard
+              key={idx}
+              onClick={() => copy(lamp, idx)}
+              isCopied={copiedIndex === idx}
+            >
               {lamp.component}
             </LampCard>
           ))}
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export const lampHeadings = [
   {
@@ -313,5 +319,5 @@ export const lampHeadings = [
   animationSpeed={3}
   interactive={true}
 />`,
-  }
-]
+  },
+];

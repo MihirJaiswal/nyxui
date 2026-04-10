@@ -4,9 +4,7 @@
   "type": "registry:ui",
   "title": "Cyberpunk Card",
   "description": "A card component with a cyberpunk aesthetic. Features neon colors and a futuristic design.",
-  "dependencies": [
-    ".."
-  ],
+  "dependencies": [".."],
   "files": [
     {
       "path": "registry/ui/cyberpunk-card.tsx",

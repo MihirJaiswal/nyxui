@@ -4,12 +4,8 @@
   "type": "registry:example",
   "title": "Gradient Button Demo",
   "description": "Example showing a gradient button.",
-  "dependencies": [
-    ".."
-  ],
-  "registryDependencies": [
-    "https://nyxui.com/r/gradient-button.json"
-  ],
+  "dependencies": [".."],
+  "registryDependencies": ["https://nyxui.com/r/gradient-button.json"],
   "files": [
     {
       "path": "registry/example/gradient-button-demo.tsx",

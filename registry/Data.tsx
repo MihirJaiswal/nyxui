@@ -44,7 +44,6 @@ export const componentsData: ComponentsData = {
     docs: "Introduction",
   },
   components: {
-    
     "water-ripple-effect": {
       title: "Water Ripple Effect",
       tags: ["Interactive", "Visual Effects", "image"],
@@ -110,7 +109,7 @@ export const componentsData: ComponentsData = {
       description: "A button with a digital glitch effect on hover and click.",
       image: "/assets/images/showcase/components/glitch-button.png",
     },
-    "keyboard": {
+    keyboard: {
       title: "Keyboard",
       tags: ["Interactive", "Tools", "Mock"],
       description: "Interactive keyboard component with customizable keys.",
@@ -152,7 +151,7 @@ export const componentsData: ComponentsData = {
       description: "A card component with subtle animation and transitions.",
       image: "/assets/images/showcase/components/glow-card.png",
     },
-    "marquee": {
+    marquee: {
       title: "Marquee",
       tags: ["Interactive", "Interactive", "Animation"],
       description: "A customizable, interactive scrolling marquee component.",
@@ -167,8 +166,7 @@ export const componentsData: ComponentsData = {
     "morphing-blob": {
       title: "Morphing Blob",
       tags: ["Background", "Effects", "Animation"],
-      description:
-        "A dynamic blob that powered by Three.js and shaders.",
+      description: "A dynamic blob that powered by Three.js and shaders.",
       image: "/assets/images/showcase/components/morphing-blob.png",
     },
     "music-player": {
@@ -190,7 +188,7 @@ export const componentsData: ComponentsData = {
       description: "Elements that animate when scrolled into view.",
       image: "/assets/images/showcase/components/scroll-animation-trigger.png",
     },
-    "terminal": {
+    terminal: {
       title: "Terminal",
       tags: ["Interactive", "Mock", "Tools"],
       description:
@@ -210,30 +208,30 @@ export const componentsData: ComponentsData = {
       description: "A 3D card with layered effects and animations.",
       image: "/assets/images/showcase/components/3d-layered-card.png",
       isNew: true,
-    }
+    },
   },
   templates: {
-    "singlepage-portfolio": { 
+    "singlepage-portfolio": {
       title: "Single Page Portfolio",
-      tags: ["Portfolio", "Template", "Minimalist", "Single Page" ],
+      tags: ["Portfolio", "Template", "Minimalist", "Single Page"],
       description: "A simple, elegant single page portfolio template.",
       image: "/assets/images/showcase/templates/single-page-portfolio.png",
-      },
+    },
     "minimalist-portfolio": {
       title: "Minimalist Portfolio",
       isNew: true,
-      tags: ["Portfolio", "Template", "Minimalist", "Single Page" ],
+      tags: ["Portfolio", "Template", "Minimalist", "Single Page"],
       description: "A simple, elegant minimalist portfolio template.",
       image: "/assets/images/showcase/templates/minimalist-portfolio.png",
     },
   },
   blocks: {
-    "footer": {
+    footer: {
       title: "Footer",
       tags: ["Footer", "Section"],
       description: "A simple footer component.",
       image: "/assets/images/showcase/blocks/footer.png",
       isNew: true,
-    }
+    },
   },
 };

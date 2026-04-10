@@ -4,12 +4,8 @@
   "type": "registry:example",
   "title": "Image Comparison Demo",
   "description": "Example showing a image comparison.",
-  "dependencies": [
-    ".."
-  ],
-  "registryDependencies": [
-    "https://nyxui.com/r/image-comparison.json"
-  ],
+  "dependencies": [".."],
+  "registryDependencies": ["https://nyxui.com/r/image-comparison.json"],
   "files": [
     {
       "path": "registry/example/image-comparison-demo.tsx",

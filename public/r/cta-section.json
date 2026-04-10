@@ -4,11 +4,7 @@
   "type": "registry:ui",
   "title": "CTA Section",
   "description": "A compelling call-to-action section to drive user engagement.",
-  "dependencies": [
-    "lucide-react",
-    "..",
-    "lucide-react"
-  ],
+  "dependencies": ["lucide-react", "..", "lucide-react"],
   "files": [
     {
       "path": "registry/blocks/cta-section.tsx",

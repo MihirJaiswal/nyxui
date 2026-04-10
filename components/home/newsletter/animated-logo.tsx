@@ -1,16 +1,16 @@
-"use client"
-import type * as React from "react"
-import { useEffect, useRef, useState } from "react"
+"use client";
+import type * as React from "react";
+import { useEffect, useRef, useState } from "react";
 
 type AnimatedLogoProps = React.SVGProps<SVGSVGElement> & {
-  strokeWidth?: number
-  durationMs?: number
-  threshold?: number
-  triggerOnce?: boolean 
-  revealAfterAnimation?: boolean 
-  fadeMs?: number 
-  rootMargin?: string 
-}
+  strokeWidth?: number;
+  durationMs?: number;
+  threshold?: number;
+  triggerOnce?: boolean;
+  revealAfterAnimation?: boolean;
+  fadeMs?: number;
+  rootMargin?: string;
+};
 
 export default function AnimatedLogo({
   strokeWidth = 120,
@@ -22,72 +22,77 @@ export default function AnimatedLogo({
   rootMargin = "0px 0px -10% 0px",
   ...props
 }: AnimatedLogoProps) {
-  const [shouldAnimate, setShouldAnimate] = useState(false)
-  const [hasAnimated, setHasAnimated] = useState(false)
-  const [revealed, setRevealed] = useState(false)
-  const svgRef = useRef<SVGSVGElement>(null)
+  const [shouldAnimate, setShouldAnimate] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const [revealed, setRevealed] = useState(false);
+  const svgRef = useRef<SVGSVGElement>(null);
 
   useEffect(() => {
-    const currentElement = svgRef.current
-    
+    const currentElement = svgRef.current;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           if (!triggerOnce || !hasAnimated) {
-            setShouldAnimate(true)
+            setShouldAnimate(true);
             if (triggerOnce) {
-              setHasAnimated(true)
+              setHasAnimated(true);
             }
           }
         } else if (!triggerOnce) {
-          setShouldAnimate(false)
+          setShouldAnimate(false);
         }
       },
       {
         threshold,
         rootMargin,
       },
-    )
+    );
 
     if (currentElement) {
-      observer.observe(currentElement)
+      observer.observe(currentElement);
     }
 
     return () => {
       if (currentElement) {
-        observer.unobserve(currentElement) 
+        observer.unobserve(currentElement);
       }
-    }
-  }, [threshold, triggerOnce, hasAnimated, rootMargin])
+    };
+  }, [threshold, triggerOnce, hasAnimated, rootMargin]);
 
-  const drawMs = Math.max(800, Math.floor(durationMs * 0.65))
-  const fillMs = Math.max(300, Math.floor(durationMs * 0.35))
-  const strokeFadeStartMs = Math.floor(drawMs + fillMs * 0.25)
-  const strokeFadeMs = Math.max(200, Math.floor(fillMs * 0.4))
-  const revealDelayMs = Math.max(drawMs + fillMs, strokeFadeStartMs + strokeFadeMs)
-  const toSec = (ms: number) => (ms / 1000).toFixed(3) + "s"
-  const animationKey = shouldAnimate ? Date.now() : "static"
+  const drawMs = Math.max(800, Math.floor(durationMs * 0.65));
+  const fillMs = Math.max(300, Math.floor(durationMs * 0.35));
+  const strokeFadeStartMs = Math.floor(drawMs + fillMs * 0.25);
+  const strokeFadeMs = Math.max(200, Math.floor(fillMs * 0.4));
+  const revealDelayMs = Math.max(
+    drawMs + fillMs,
+    strokeFadeStartMs + strokeFadeMs,
+  );
+  const toSec = (ms: number) => (ms / 1000).toFixed(3) + "s";
+  const animationKey = shouldAnimate ? Date.now() : "static";
 
   useEffect(() => {
     if (shouldAnimate) {
       if (revealAfterAnimation) {
-        setRevealed(false) 
-        const t = setTimeout(() => setRevealed(true), revealDelayMs)
-        return () => clearTimeout(t)
+        setRevealed(false);
+        const t = setTimeout(() => setRevealed(true), revealDelayMs);
+        return () => clearTimeout(t);
       } else {
-        setRevealed(true)
+        setRevealed(true);
       }
     } else if (!triggerOnce) {
-      setRevealed(false)
+      setRevealed(false);
     }
-  }, [shouldAnimate, revealDelayMs, triggerOnce, revealAfterAnimation])
+  }, [shouldAnimate, revealDelayMs, triggerOnce, revealAfterAnimation]);
 
-  const { style: styleProp, ...rest } = props as { style?: React.CSSProperties }
+  const { style: styleProp, ...rest } = props as {
+    style?: React.CSSProperties;
+  };
   const mergedStyle: React.CSSProperties = {
     opacity: revealed ? 1 : 0,
     transition: `opacity ${fadeMs}ms ease`,
     ...(styleProp || {}),
-  }
+  };
 
   return (
     <svg
@@ -103,7 +108,11 @@ export default function AnimatedLogo({
       style={mergedStyle}
       {...rest}
     >
-      <g transform="translate(0.000000,347.000000) scale(0.100000,-0.100000)" fill="currentColor" stroke="none">
+      <g
+        transform="translate(0.000000,347.000000) scale(0.100000,-0.100000)"
+        fill="currentColor"
+        stroke="none"
+      >
         {/* Path 1 */}
         <path
           d="M203 3373 l-83 -4 0 -1629 c0 -897 -1 -1633 -2 -1637 -4 -10 470 -16 529 -8 l43 6 2 1285 3 1285 104 -143 c58 -79 256 -345 440 -592 l335 -449 35 43 c20 23 95 124 168 223 l132 181 -47 66 c-110 155 -507 700 -632 865 -74 99 -191 255 -260 348 l-124 167 -281 -2 c-154 -1 -317 -4 -362 -5z"
@@ -119,7 +128,13 @@ export default function AnimatedLogo({
         >
           {shouldAnimate && (
             <>
-              <animate attributeName="stroke-dashoffset" from="1" to="0" dur={toSec(drawMs)} fill="freeze" />
+              <animate
+                attributeName="stroke-dashoffset"
+                from="1"
+                to="0"
+                dur={toSec(drawMs)}
+                fill="freeze"
+              />
               <animate
                 attributeName="fill-opacity"
                 begin={toSec(drawMs)}
@@ -227,5 +242,5 @@ export default function AnimatedLogo({
         </path>
       </g>
     </svg>
-  )
+  );
 }

@@ -4,12 +4,8 @@
   "type": "registry:example",
   "title": "Reveal Card Demo",
   "description": "Example showing a reveal card.",
-  "dependencies": [
-    ".."
-  ],
-  "registryDependencies": [
-    "https://nyxui.com/r/reveal-card.json"
-  ],
+  "dependencies": [".."],
+  "registryDependencies": ["https://nyxui.com/r/reveal-card.json"],
   "files": [
     {
       "path": "registry/example/reveal-card-demo.tsx",

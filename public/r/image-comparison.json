@@ -4,10 +4,7 @@
   "type": "registry:ui",
   "title": "Image Comparison",
   "description": "A image comparison component that allows users to compare images.",
-  "dependencies": [
-    "..",
-    "motion"
-  ],
+  "dependencies": ["..", "motion"],
   "files": [
     {
       "path": "registry/ui/image-comparison.tsx",

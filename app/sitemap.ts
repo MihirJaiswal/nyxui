@@ -42,11 +42,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: date,
       changeFrequency: "weekly",
       priority: 0.7,
-    }
+    },
   ];
 
   const componentPages: MetadataRoute.Sitemap = (allDocs || [])
-    .filter((doc) => doc.slugAsParams?.startsWith("components/") && doc.published)
+    .filter(
+      (doc) => doc.slugAsParams?.startsWith("components/") && doc.published,
+    )
     .map((doc) => {
       const slug = doc.slugAsParams.replace("components/", "");
       return {
@@ -58,7 +60,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
 
   const templatePages: MetadataRoute.Sitemap = (allDocs || [])
-    .filter((doc) => doc.slugAsParams?.startsWith("templates/") && doc.published)
+    .filter(
+      (doc) => doc.slugAsParams?.startsWith("templates/") && doc.published,
+    )
     .map((doc) => {
       const slug = doc.slugAsParams.replace("templates/", "");
       return {
@@ -71,20 +75,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const allTags = new Set<string>();
   (allDocs || [])
-    .filter((doc) => doc.slugAsParams?.startsWith("components/") && doc.published)
+    .filter(
+      (doc) => doc.slugAsParams?.startsWith("components/") && doc.published,
+    )
     .forEach((doc) => {
-      const tags = (doc).tags as string[] | undefined;
+      const tags = doc.tags as string[] | undefined;
       if (Array.isArray(tags)) {
         tags.forEach((tag) => allTags.add(tag));
       }
     });
 
-  const categoryPages: MetadataRoute.Sitemap = Array.from(allTags).map((tag) => ({
-    url: `${baseUrl}/category/${encodeURIComponent(tag.toLowerCase().replace(/\s+/g, '-'))}`,
-    lastModified: date,
-    changeFrequency: "weekly",
-    priority: 0.6,
-  }));
+  const categoryPages: MetadataRoute.Sitemap = Array.from(allTags).map(
+    (tag) => ({
+      url: `${baseUrl}/category/${encodeURIComponent(tag.toLowerCase().replace(/\s+/g, "-"))}`,
+      lastModified: date,
+      changeFrequency: "weekly",
+      priority: 0.6,
+    }),
+  );
 
   const allPages = [
     ...mainPages,
@@ -93,8 +101,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...categoryPages,
   ];
 
-  const uniquePages = allPages.filter((page, index, self) => 
-    index === self.findIndex((p) => p.url === page.url)
+  const uniquePages = allPages.filter(
+    (page, index, self) => index === self.findIndex((p) => p.url === page.url),
   );
 
   return uniquePages;

@@ -4,13 +4,8 @@
   "type": "registry:example",
   "title": "Apple Glass Effect Demo",
   "description": "Example showing an Apple Glass Effect.",
-  "dependencies": [
-    "..",
-    "lucide-react"
-  ],
-  "registryDependencies": [
-    "https://nyxui.com/r/apple-glass-effect.json"
-  ],
+  "dependencies": ["..", "lucide-react"],
+  "registryDependencies": ["https://nyxui.com/r/apple-glass-effect.json"],
   "files": [
     {
       "path": "registry/example/apple-glass-effect-demo.tsx",

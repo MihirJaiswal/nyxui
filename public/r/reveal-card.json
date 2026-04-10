@@ -4,9 +4,7 @@
   "type": "registry:ui",
   "title": "Reveal Card",
   "description": "A reveal card that that provide several effects.",
-  "dependencies": [
-    "lucide-react"
-  ],
+  "dependencies": ["lucide-react"],
   "files": [
     {
       "path": "registry/ui/reveal-card.tsx",

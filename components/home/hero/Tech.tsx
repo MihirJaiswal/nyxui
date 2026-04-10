@@ -179,7 +179,7 @@ const TechStack = () => {
                           exit={{ opacity: 0 }}
                           style={{
                             background: `radial-gradient(circle, ${getComputedColor(
-                              item.color
+                              item.color,
                             )}, transparent 70%)`,
                           }}
                         />

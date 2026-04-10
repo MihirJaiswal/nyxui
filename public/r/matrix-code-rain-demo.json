@@ -4,12 +4,8 @@
   "type": "registry:example",
   "title": "Matrix Code Rain Demo",
   "description": "Example showing a matrix code rain.",
-  "dependencies": [
-    ".."
-  ],
-  "registryDependencies": [
-    "https://nyxui.com/r/matrix-code-rain.json"
-  ],
+  "dependencies": [".."],
+  "registryDependencies": ["https://nyxui.com/r/matrix-code-rain.json"],
   "files": [
     {
       "path": "registry/example/matrix-code-rain-demo.tsx",

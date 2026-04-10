@@ -19,16 +19,13 @@ interface BlockPageProps {
 async function getBlockFromParams(params: Promise<{ slug: string[] }>) {
   const { slug } = await params;
   const block = slug?.[0];
-  
+
   if (!block) {
     return null;
   }
-  
-  const possibleSlugs = [
-    `blocks/${block}`,
-    block,
-  ];
-  
+
+  const possibleSlugs = [`blocks/${block}`, block];
+
   for (const slugPattern of possibleSlugs) {
     const doc = allDocs?.find((doc) => doc.slugAsParams === slugPattern);
     if (doc) {
@@ -135,24 +132,25 @@ export default async function BlockPage({ params }: BlockPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
       />
-      
+
       <div className="mx-auto w-full max-w-[1200px]">
         <div className="space-y-4 mt-5">
           <div className="flex flex-wrap items-start gap-3 sm:items-center justify-between">
             <h1 className="scroll-m-20 text-3xl font-bold tracking-tight sm:text-4xl break-words">
               {block.title}
             </h1>
-            
+
             {/* Full Screen Button */}
             <Button className="rounded-md" variant="outline">
-              <Link 
-              href={`/preview/${slug[0]}`} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 py-2"
-            >
-              <Scan className="w-4 h-4" />Full Screen
-            </Link>
+              <Link
+                href={`/preview/${slug[0]}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 py-2"
+              >
+                <Scan className="w-4 h-4" />
+                Full Screen
+              </Link>
             </Button>
           </div>
 

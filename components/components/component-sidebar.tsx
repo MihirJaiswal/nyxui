@@ -5,10 +5,10 @@ interface ComponentSidebarProps {
   type?: "components" | "blocks";
 }
 
-export const ComponentSidebar = ({ type = "components" }: ComponentSidebarProps) => {
-  const processedComponents = Object.entries(
-    componentsData.components || {},
-  )
+export const ComponentSidebar = ({
+  type = "components",
+}: ComponentSidebarProps) => {
+  const processedComponents = Object.entries(componentsData.components || {})
     .map(([key, component]) => {
       return {
         name: component.title,
@@ -19,9 +19,7 @@ export const ComponentSidebar = ({ type = "components" }: ComponentSidebarProps)
     .sort((a, b) => a.name.localeCompare(b.name));
 
   // Add processing for templates
-  const processedTemplates = Object.entries(
-    componentsData.templates || {},
-  )
+  const processedTemplates = Object.entries(componentsData.templates || {})
     .map(([key, template]) => {
       return {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -34,9 +32,7 @@ export const ComponentSidebar = ({ type = "components" }: ComponentSidebarProps)
     .sort((a, b) => a.name.localeCompare(b.name));
 
   // Add processing for blocks
-  const processedBlocks = Object.entries(
-    componentsData.blocks || {},
-  )
+  const processedBlocks = Object.entries(componentsData.blocks || {})
     .map(([key, block]) => {
       return {
         name: block.title,
@@ -63,13 +59,13 @@ export const ComponentSidebar = ({ type = "components" }: ComponentSidebarProps)
               Twitter
             </div>
             <div className="space-y-0.5">
-              <a 
+              <a
                 className="group flex items-center w-full text-xs md:text-sm py-1.5 md:py-2 rounded-md transition-all duration-200 hover:text-foreground text-black dark:text-[#A1A1AA] hover:bg-muted/50 ml-2 group-hover:ml-2 transition-all duration-200"
-                target="_blank" 
-                rel="noopener noreferrer" 
+                target="_blank"
+                rel="noopener noreferrer"
                 href="https://x.com/mihir_jaiswal_"
               >
-               @mihir_jaiswal_
+                @mihir_jaiswal_
               </a>
             </div>
             <div className="w-[80%]">

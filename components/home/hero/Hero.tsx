@@ -24,9 +24,7 @@ function Hero() {
       <div className="w-full xl:flex-1 xl:container xl:mx-auto z-10">
         <div className="xl:max-w-5xl mt-6 sm:mt-8 lg:mt-12">
           {/* Announcement Badge */}
-          <div
-            className="z-12 sm:flex items-start justify-center lg:justify-start relative"
-          >
+          <div className="z-12 sm:flex items-start justify-center lg:justify-start relative">
             <Badge className="z-12 mb-4 sm:mb-6 group cursor-pointer inline-flex items-center text-black dark:text-white gap-2 rounded-full border border-gray-300 px-3 py-1 sm:px-4 sm:py-1.5 text-xs font-semibold dark:border-gray-600 bg-background">
               <div className="border-r border-zinc-500 pr-2">
                 <Blocks className="h-3 w-3 sm:h-4 sm:w-4 group-hover:fill-purple-400 dark:group-hover:fill-purple-700 group-hover:rotate-12" />
@@ -51,7 +49,8 @@ function Hero() {
                   backgroundPosition: "center",
                   backgroundRepeat: "repeat",
                   WebkitBackgroundClip: "text",
-                  animation: "bgMove 20s linear infinite, textPulse 3s ease-in-out infinite",
+                  animation:
+                    "bgMove 20s linear infinite, textPulse 3s ease-in-out infinite",
                   backgroundClip: "text",
                   color: "transparent",
                 }}

@@ -1,6 +1,6 @@
-import InteractiveTerminal from "@/registry/ui/terminal"
-import { Code } from "lucide-react"
-import Keyboard from "./keyboard"
+import InteractiveTerminal from "@/registry/ui/terminal";
+import { Code } from "lucide-react";
+import Keyboard from "./keyboard";
 
 export const TerminalKeyboardDemo = () => {
   return (
@@ -14,14 +14,18 @@ export const TerminalKeyboardDemo = () => {
             repeat={true}
             variant="custom"
             customTheme={{
-              container: "bg-transparent dark:bg-black text-emerald-500 dark:text-green-500",
+              container:
+                "bg-transparent dark:bg-black text-emerald-500 dark:text-green-500",
               header:
                 "bg-zinc-800 dark:bg-green-950/40 text-emerald-400 dark:text-green-500",
-              output: "bg-zinc-800 dark:bg-green-950/40 text-emerald-400 dark:text-green-500",
+              output:
+                "bg-zinc-800 dark:bg-green-950/40 text-emerald-400 dark:text-green-500",
               button:
                 "bg-gray-100 dark:bg-gray-950 text-emerald-500 dark:text-green-500 hover:bg-gray-200 dark:hover:bg-gray-800",
             }}
-            icon={<Code className="mr-1 mt-1 text-emerald-500 dark:text-green-500 w-4 h-4" />}
+            icon={
+              <Code className="mr-1 mt-1 text-emerald-500 dark:text-green-500 w-4 h-4" />
+            }
             steps={["Checking registry...", "Installing dependencies..."]}
             finalMessage={`✔  Created 1 file:    - src/components/ui/terminal.tsx      `}
             promptSymbol="#"
@@ -52,5 +56,5 @@ export const TerminalKeyboardDemo = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

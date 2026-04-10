@@ -10,9 +10,7 @@
     "..",
     "lucide-react"
   ],
-  "registryDependencies": [
-    "https://nyxui.com/r/glow-card.json"
-  ],
+  "registryDependencies": ["https://nyxui.com/r/glow-card.json"],
   "files": [
     {
       "path": "registry/example/glow-card-demo1.tsx",

@@ -19,10 +19,7 @@ export const ComponentWrapper = ({
 
   return (
     <div
-      className={cn(
-        "relative rounded-xl border bg-background",
-        className,
-      )}
+      className={cn("relative rounded-xl border bg-background", className)}
       key={key}
     >
       {/* <div

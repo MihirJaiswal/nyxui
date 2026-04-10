@@ -1,20 +1,20 @@
-"use client"
-import { useState, useEffect, useRef, useCallback, useMemo } from "react"
-import { motion, AnimatePresence } from "motion/react"
-import { CheckCircle } from "lucide-react"
-import Image from "next/image"
+"use client";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import { CheckCircle } from "lucide-react";
+import Image from "next/image";
 
 interface ScanResult {
-  id: string
-  type: "object" | "anomaly" | "data" | "threat"
-  confidence: number
-  position: { x: number; y: number }
-  label: string
+  id: string;
+  type: "object" | "anomaly" | "data" | "threat";
+  confidence: number;
+  position: { x: number; y: number };
+  label: string;
 }
 
 const cn = (...classes: (string | undefined | false)[]) => {
-  return classes.filter(Boolean).join(' ')
-}
+  return classes.filter(Boolean).join(" ");
+};
 
 const ScannerSkeleton = () => {
   return (
@@ -39,7 +39,7 @@ const ScannerSkeleton = () => {
             <div className="absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 opacity-30 border-gray-400 dark:border-gray-600" />
             <div className="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 opacity-30 border-gray-400 dark:border-gray-600" />
           </div>
-          
+
           {/* Subtle loading indicator overlay */}
           <div className="absolute inset-0 flex items-center justify-center z-20">
             <div className="text-xs font-mono bg-white/90 dark:bg-black/90 px-3 py-2 rounded backdrop-blur-sm border border-green-600">
@@ -56,97 +56,100 @@ const ScannerSkeleton = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 // Main scanner component
 const ScannerCore = () => {
-  const [isScanning, setIsScanning] = useState(false)
-  const [scanComplete, setScanComplete] = useState(false)
-  const [scanCycle, setScanCycle] = useState(0)
-  const [scanResults, setScanResults] = useState<ScanResult[]>([])
-  const [imageLoaded, setImageLoaded] = useState(false)
-  
-  const scanTimer = useRef<NodeJS.Timeout | null>(null)
-  const completeTimer = useRef<NodeJS.Timeout | null>(null)
-  const loopTimer = useRef<NodeJS.Timeout | null>(null)
+  const [isScanning, setIsScanning] = useState(false);
+  const [scanComplete, setScanComplete] = useState(false);
+  const [scanCycle, setScanCycle] = useState(0);
+  const [scanResults, setScanResults] = useState<ScanResult[]>([]);
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  const scanTimer = useRef<NodeJS.Timeout | null>(null);
+  const completeTimer = useRef<NodeJS.Timeout | null>(null);
+  const loopTimer = useRef<NodeJS.Timeout | null>(null);
 
   const emeraldColor = {
     scan: "bg-emerald-500",
     border: "border-emerald-500",
     cssColor: "#10b981",
-  }
+  };
 
-  const personScanResults = useMemo(() => [
-    {
-      id: "person-1",
-      type: "object" as const,
-      confidence: 95,
-      position: { x: 50, y: 40 },
-      label: "Person"
-    }
-  ], [])
+  const personScanResults = useMemo(
+    () => [
+      {
+        id: "person-1",
+        type: "object" as const,
+        confidence: 95,
+        position: { x: 50, y: 40 },
+        label: "Person",
+      },
+    ],
+    [],
+  );
 
   const clearAllTimers = useCallback(() => {
     if (scanTimer.current) {
-      clearTimeout(scanTimer.current)
-      scanTimer.current = null
+      clearTimeout(scanTimer.current);
+      scanTimer.current = null;
     }
     if (completeTimer.current) {
-      clearTimeout(completeTimer.current) 
-      completeTimer.current = null
+      clearTimeout(completeTimer.current);
+      completeTimer.current = null;
     }
     if (loopTimer.current) {
-      clearTimeout(loopTimer.current)
-      loopTimer.current = null
+      clearTimeout(loopTimer.current);
+      loopTimer.current = null;
     }
-  }, [])
+  }, []);
 
   const runScan = useCallback(() => {
-    if (isScanning) return
+    if (isScanning) return;
 
-    clearAllTimers()
-    setIsScanning(true)
-    setScanComplete(false)
-    setScanCycle((prev) => prev + 1)
-    setScanResults([])
+    clearAllTimers();
+    setIsScanning(true);
+    setScanComplete(false);
+    setScanCycle((prev) => prev + 1);
+    setScanResults([]);
 
     completeTimer.current = setTimeout(() => {
-      setScanComplete(true)
-      setScanResults(personScanResults)
+      setScanComplete(true);
+      setScanResults(personScanResults);
 
       setTimeout(() => {
-        setScanComplete(false)
-        setIsScanning(false)
+        setScanComplete(false);
+        setIsScanning(false);
 
         loopTimer.current = setTimeout(() => {
-          runScan()
-        }, 1000)
-      }, 2000)
-    }, 2000)
-  }, [isScanning, clearAllTimers, personScanResults])
+          runScan();
+        }, 1000);
+      }, 2000);
+    }, 2000);
+  }, [isScanning, clearAllTimers, personScanResults]);
 
   useEffect(() => {
-    if (!imageLoaded) return
-    
+    if (!imageLoaded) return;
+
     const startTimer = setTimeout(() => {
-      runScan()
-    }, 1000)
+      runScan();
+    }, 1000);
 
-    return () => clearTimeout(startTimer)
-  }, [runScan, imageLoaded])
+    return () => clearTimeout(startTimer);
+  }, [runScan, imageLoaded]);
 
   useEffect(() => {
-    return () => clearAllTimers()
-  }, [clearAllTimers])
+    return () => clearAllTimers();
+  }, [clearAllTimers]);
 
   const handleImageLoad = () => {
-    setImageLoaded(true)
-  }
+    setImageLoaded(true);
+  };
 
   const renderMatrixPattern = () => {
-    const patterns = []
-    
+    const patterns = [];
+
     for (let i = 0; i < 12; i++) {
       patterns.push(
         <motion.div
@@ -168,7 +171,7 @@ const ScannerCore = () => {
             ease: "easeInOut",
           }}
         />,
-      )
+      );
     }
 
     for (let col = 0; col < 8; col++) {
@@ -194,8 +197,23 @@ const ScannerCore = () => {
           }}
         >
           {Array.from({ length: 20 }, (_, row) => {
-            const chars = ["0", "1", "ア", "カ", "サ", "タ", "ナ", "ハ", "マ", "ヤ", "ラ", "ワ", "0", "1"]
-            const randomChar = chars[Math.floor(Math.random() * chars.length)]
+            const chars = [
+              "0",
+              "1",
+              "ア",
+              "カ",
+              "サ",
+              "タ",
+              "ナ",
+              "ハ",
+              "マ",
+              "ヤ",
+              "ラ",
+              "ワ",
+              "0",
+              "1",
+            ];
+            const randomChar = chars[Math.floor(Math.random() * chars.length)];
             return (
               <motion.div
                 key={`char-${row}`}
@@ -210,10 +228,10 @@ const ScannerCore = () => {
               >
                 {randomChar}
               </motion.div>
-            )
+            );
           })}
         </motion.div>,
-      )
+      );
     }
 
     patterns.push(
@@ -234,7 +252,7 @@ const ScannerCore = () => {
           ease: "easeInOut",
         }}
       />,
-    )
+    );
 
     patterns.push(
       <motion.div
@@ -254,10 +272,10 @@ const ScannerCore = () => {
           ease: "linear",
         }}
       />,
-    )
-    
-    return patterns
-  }
+    );
+
+    return patterns;
+  };
 
   return (
     <div className="h-[300px] w-[300px]">
@@ -265,7 +283,9 @@ const ScannerCore = () => {
         <div
           className={cn(
             "w-full h-full relative overflow-hidden transition-all duration-500 bg-zinc-900",
-            scanComplete ? `ring-2 ring-offset-2 dark:ring-offset-gray-900 ${emeraldColor.border}` : "",
+            scanComplete
+              ? `ring-2 ring-offset-2 dark:ring-offset-gray-900 ${emeraldColor.border}`
+              : "",
             isScanning ? "backdrop-blur-sm brightness-110 contrast-110" : "",
           )}
         >
@@ -292,7 +312,7 @@ const ScannerCore = () => {
           <AnimatePresence mode="wait">
             {isScanning && renderMatrixPattern()}
           </AnimatePresence>
-          
+
           {/* Scanning glow effect */}
           {isScanning && (
             <motion.div
@@ -330,7 +350,9 @@ const ScannerCore = () => {
                     <div className="w-3 h-3 rounded-full border-2 animate-pulse border-emerald-500 bg-emerald-500/20" />
                     <div className="absolute top-4 left-1/2 transform -translate-x-1/2 text-xs font-mono text-white bg-black/80 px-2 py-1 rounded whitespace-nowrap">
                       {result.label}
-                      <div className="text-xs opacity-70">{result.confidence}%</div>
+                      <div className="text-xs opacity-70">
+                        {result.confidence}%
+                      </div>
                     </div>
                   </div>
                 </motion.div>
@@ -395,7 +417,7 @@ const ScannerCore = () => {
               }}
             />
           )}
-          
+
           {/* Auto scan indicator */}
           <motion.div
             className="absolute top-2 left-2 flex items-center gap-1 text-xs font-mono text-white bg-black/60 px-2 py-1 rounded backdrop-blur-sm"
@@ -414,26 +436,26 @@ const ScannerCore = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export const Scanner = () => {
-  const [showMainComponent, setShowMainComponent] = useState(false)
-  
+  const [showMainComponent, setShowMainComponent] = useState(false);
+
   // Reset states when component mounts/remounts
   useEffect(() => {
-    setShowMainComponent(false)
-    
+    setShowMainComponent(false);
+
     // Load main component after a delay
     const loadTimer = setTimeout(() => {
-      setShowMainComponent(true)
-    }, 1500)
-    
+      setShowMainComponent(true);
+    }, 1500);
+
     return () => {
-      clearTimeout(loadTimer)
-    }
-  }, []) // Empty dependency array ensures this runs on every mount
-  
+      clearTimeout(loadTimer);
+    };
+  }, []); // Empty dependency array ensures this runs on every mount
+
   return (
     <div className="relative h-[300px] w-[300px]">
       {/* Always show skeleton initially - no animation delays */}
@@ -468,7 +490,7 @@ export const Scanner = () => {
         )}
       </AnimatePresence>
     </div>
-  )
-}
+  );
+};
 
-export default Scanner
+export default Scanner;

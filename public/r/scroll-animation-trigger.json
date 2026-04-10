@@ -4,12 +4,7 @@
   "type": "registry:ui",
   "title": "Scroll Animation Trigger",
   "description": "A scroll animation trigger that that provide several effects.",
-  "dependencies": [
-    "lucide-react",
-    "motion",
-    "motion",
-    ".."
-  ],
+  "dependencies": ["lucide-react", "motion", "motion", ".."],
   "files": [
     {
       "path": "registry/ui/scroll-animation-trigger.tsx",

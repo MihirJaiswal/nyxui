@@ -4,10 +4,7 @@
   "type": "registry:ui",
   "title": "Glow Card",
   "description": "A glow card that that provide several effects.",
-  "dependencies": [
-    "clsx",
-    "tailwind-merge"
-  ],
+  "dependencies": ["clsx", "tailwind-merge"],
   "files": [
     {
       "path": "registry/ui/glow-card.tsx",

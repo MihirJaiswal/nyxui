@@ -4,12 +4,8 @@
   "type": "registry:example",
   "title": "Keyboard Demo",
   "description": "Example showing a interactive keyboard.",
-  "dependencies": [
-    ".."
-  ],
-  "registryDependencies": [
-    "https://nyxui.com/r/keyboard.json"
-  ],
+  "dependencies": [".."],
+  "registryDependencies": ["https://nyxui.com/r/keyboard.json"],
   "files": [
     {
       "path": "registry/example/keyboard-demo.tsx",

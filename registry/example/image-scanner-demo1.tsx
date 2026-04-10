@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { ImageScanner } from "../ui/image-scanner"
+import { useState } from "react";
+import { ImageScanner } from "../ui/image-scanner";
 import {
   Activity,
   Clock,
@@ -10,16 +10,17 @@ import {
   Maximize2,
   MoreVertical,
   Signal,
-} from "lucide-react"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-
+} from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export const ImageScannerDemo1 = () => {
-  const [selectedCamera, setSelectedCamera] = useState(0)
-  const [alertLevel, setAlertLevel] = useState<"normal" | "warning" | "critical">("normal")
-  const [scanTrigger, setScanTrigger] = useState(false)
+  const [selectedCamera, setSelectedCamera] = useState(0);
+  const [alertLevel, setAlertLevel] = useState<
+    "normal" | "warning" | "critical"
+  >("normal");
+  const [scanTrigger, setScanTrigger] = useState(false);
 
   const cameras = [
     {
@@ -58,37 +59,48 @@ export const ImageScannerDemo1 = () => {
       alertLevel: "normal" as const,
       fps: 30,
     },
-  ]
+  ];
 
   const triggerManualScan = () => {
-    setScanTrigger(prev => !prev)
-  }
+    setScanTrigger((prev) => !prev);
+  };
 
   const getScanColor = (level: "critical" | "warning" | "normal") => {
     switch (level) {
-      case "critical": return "red"
-      case "warning": return "amber"
-      default: return "emerald"
+      case "critical":
+        return "red";
+      case "warning":
+        return "amber";
+      default:
+        return "emerald";
     }
-  }
+  };
 
   const getScanType = (cameraId: number) => {
     switch (cameraId) {
-      case 1: return "matrix"
-      case 2: return "radar"
-      case 3: return "grid"
-      case 4: return "pulse"
-      default: return "default"
+      case 1:
+        return "matrix";
+      case 2:
+        return "radar";
+      case 3:
+        return "grid";
+      case 4:
+        return "pulse";
+      default:
+        return "default";
     }
-  }
+  };
 
   const getBadgeVariant = (level: "critical" | "warning" | "normal") => {
     switch (level) {
-      case "critical": return "destructive"
-      case "warning": return "secondary"
-      default: return "default"
+      case "critical":
+        return "destructive";
+      case "warning":
+        return "secondary";
+      default:
+        return "default";
     }
-  }
+  };
 
   return (
     <div className="bg-white shadow-xl dark:bg-black/70 border md:scale-90 relative border-neutral-200 dark:border-neutral-700 rounded-sm p-3 sm:px-4 py-6 text-neutral-900 dark:text-white">
@@ -110,7 +122,10 @@ export const ImageScannerDemo1 = () => {
             </div>
           </div>
 
-          <Badge variant={getBadgeVariant(alertLevel)} className="px-3 sm:px-4 py-1 sm:py-2 text-xs sm:text-sm font-semibold">
+          <Badge
+            variant={getBadgeVariant(alertLevel)}
+            className="px-3 sm:px-4 py-1 sm:py-2 text-xs sm:text-sm font-semibold"
+          >
             {alertLevel.toUpperCase()}
           </Badge>
         </div>
@@ -127,18 +142,31 @@ export const ImageScannerDemo1 = () => {
                     </CardTitle>
                     <p className="text-neutral-500 dark:text-neutral-400 text-sm flex items-center gap-2 mt-1">
                       <MapPin className="w-4 h-4 flex-shrink-0" />
-                      <span className="truncate">{cameras[selectedCamera].location}</span>
+                      <span className="truncate">
+                        {cameras[selectedCamera].location}
+                      </span>
                     </p>
                   </div>
                   <div className="flex items-center gap-2 flex-wrap">
-                    <Badge variant="outline" className="border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 text-xs">
+                    <Badge
+                      variant="outline"
+                      className="border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 text-xs"
+                    >
                       {cameras[selectedCamera].fps} FPS
                     </Badge>
-                    <Button onClick={triggerManualScan} className="bg-blue-600 hover:bg-blue-700 text-xs sm:text-sm" size="sm">
+                    <Button
+                      onClick={triggerManualScan}
+                      className="bg-blue-600 hover:bg-blue-700 text-xs sm:text-sm"
+                      size="sm"
+                    >
                       <Activity className="w-4 h-4 sm:mr-2" />
                       <span className="hidden sm:inline">Manual Scan</span>
                     </Button>
-                    <Button variant="outline" size="sm" className="border-neutral-300 dark:border-neutral-600 bg-transparent p-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="border-neutral-300 dark:border-neutral-600 bg-transparent p-2"
+                    >
                       <Maximize2 className="w-4 h-4 text-neutral-700 dark:text-white" />
                     </Button>
                   </div>
@@ -194,7 +222,11 @@ export const ImageScannerDemo1 = () => {
                             {camera.name}
                           </p>
                         </div>
-                        <Button variant="ghost" size="sm" className="h-6 w-6 p-0 flex-shrink-0">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-6 w-6 p-0 flex-shrink-0"
+                        >
                           <MoreVertical className="w-3 h-3" />
                         </Button>
                       </div>
@@ -203,7 +235,10 @@ export const ImageScannerDemo1 = () => {
                           <Clock className="w-3 h-3" />
                           {camera.lastScan}
                         </span>
-                        <Badge variant={getBadgeVariant(camera.alertLevel)} className="text-xs">
+                        <Badge
+                          variant={getBadgeVariant(camera.alertLevel)}
+                          className="text-xs"
+                        >
                           {camera.alertLevel}
                         </Badge>
                       </div>
@@ -216,5 +251,5 @@ export const ImageScannerDemo1 = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

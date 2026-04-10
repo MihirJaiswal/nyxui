@@ -4,9 +4,7 @@
   "type": "registry:ui",
   "title": "Glitch Button",
   "description": "Cyberpunk-inspired button with dynamic glitch effects that can be triggered on hover or click.",
-  "dependencies": [
-    "tailwind-merge"
-  ],
+  "dependencies": ["tailwind-merge"],
   "files": [
     {
       "path": "registry/ui/glitch-button.tsx",

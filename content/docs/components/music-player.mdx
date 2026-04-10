@@ -69,16 +69,11 @@ const sampleTrack: Track = {
   album: "After Hours",
   artwork: "/path/to/artwork.jpg",
   duration: 200,
-  url: "/path/to/audio.mp3"
+  url: "/path/to/audio.mp3",
 };
 
 export default function BasicUsage() {
-  return (
-    <MusicPlayer
-      theme="default"
-      currentTrack={sampleTrack}
-    />
-  );
+  return <MusicPlayer theme="default" currentTrack={sampleTrack} />;
 }
 ```
 
@@ -94,7 +89,7 @@ export function AdvancedPlayer() {
       album: "V",
       artwork: "/path/to/artwork1.jpg",
       duration: 240,
-      url: "/path/to/audio1.mp3"
+      url: "/path/to/audio1.mp3",
     },
     {
       id: "2",
@@ -103,8 +98,8 @@ export function AdvancedPlayer() {
       album: "Overexposed",
       artwork: "/path/to/artwork2.jpg",
       duration: 210,
-      url: "/path/to/audio2.mp3"
-    }
+      url: "/path/to/audio2.mp3",
+    },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -146,20 +141,19 @@ export function AdvancedPlayer() {
 }
 ```
 
-
 ## Types
 
 ### Track Interface
 
 ```tsx
 interface Track {
-  id: string;           
-  title: string;        
-  artist: string;     
-  album: string;     
-  artwork: string; 
-  duration: number;  
-  url?: string;      
+  id: string;
+  title: string;
+  artist: string;
+  album: string;
+  artwork: string;
+  duration: number;
+  url?: string;
 }
 ```
 
@@ -167,19 +161,18 @@ interface Track {
 
 ### MusicPlayer
 
-| Prop              | Type                                               | Default       | Description                                                          |
-| ----------------- | -------------------------------------------------- | ------------- | -------------------------------------------------------------------- |
-| `theme`           | `"default" \| "spotify" \| "cosmic" \| "midnight"` | `"default"`   | Visual theme of the music player                                     |
-| `currentTrack`    | `Track`                                            | Sample track  | Current track object containing metadata                             |
-| `queue`           | `Track[]`                                          | `[]`          | Array of tracks in the playlist queue                                |
-| `currentIndex`    | `number`                                           | `0`           | Index of the current track in the queue                              |
-| `initialTime`     | `number`                                           | `0`           | Initial playback position in seconds                                 |
-| `className`       | `string`                                           | `""`          | Additional CSS classes to apply to the component                     |
-| `autoPlay`        | `boolean`                                          | `false`       | Whether to start playback automatically                              |
-| `showEqualizer`   | `boolean`                                          | `true`        | Whether to show the animated equalizer bars                          |
-| `onPlayPause`     | `(isPlaying: boolean) => void`                     | `undefined`   | Callback triggered when play/pause is toggled                        |
-| `onTimeChange`    | `(time: number) => void`                           | `undefined`   | Callback triggered when playback time changes                        |
-| `onTrackEnd`      | `() => void`                                       | `undefined`   | Callback triggered when track playback ends                          |
-| `onTrackChange`   | `(track: Track, index: number) => void`            | `undefined`   | Callback triggered when track changes (next/previous)                |
-| `onVolumeChange`  | `(volume: number) => void`                         | `undefined`   | Callback triggered when volume changes                               |
-
+| Prop             | Type                                               | Default      | Description                                           |
+| ---------------- | -------------------------------------------------- | ------------ | ----------------------------------------------------- |
+| `theme`          | `"default" \| "spotify" \| "cosmic" \| "midnight"` | `"default"`  | Visual theme of the music player                      |
+| `currentTrack`   | `Track`                                            | Sample track | Current track object containing metadata              |
+| `queue`          | `Track[]`                                          | `[]`         | Array of tracks in the playlist queue                 |
+| `currentIndex`   | `number`                                           | `0`          | Index of the current track in the queue               |
+| `initialTime`    | `number`                                           | `0`          | Initial playback position in seconds                  |
+| `className`      | `string`                                           | `""`         | Additional CSS classes to apply to the component      |
+| `autoPlay`       | `boolean`                                          | `false`      | Whether to start playback automatically               |
+| `showEqualizer`  | `boolean`                                          | `true`       | Whether to show the animated equalizer bars           |
+| `onPlayPause`    | `(isPlaying: boolean) => void`                     | `undefined`  | Callback triggered when play/pause is toggled         |
+| `onTimeChange`   | `(time: number) => void`                           | `undefined`  | Callback triggered when playback time changes         |
+| `onTrackEnd`     | `() => void`                                       | `undefined`  | Callback triggered when track playback ends           |
+| `onTrackChange`  | `(track: Track, index: number) => void`            | `undefined`  | Callback triggered when track changes (next/previous) |
+| `onVolumeChange` | `(volume: number) => void`                         | `undefined`  | Callback triggered when volume changes                |

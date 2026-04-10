@@ -4,13 +4,8 @@
   "type": "registry:example",
   "title": "Morphing Blob Demo",
   "description": "Example showing a morphing blob.",
-  "dependencies": [
-    "..",
-    "@radix-ui/react-icons"
-  ],
-  "registryDependencies": [
-    "https://nyxui.com/r/morphing-blob.json"
-  ],
+  "dependencies": ["..", "@radix-ui/react-icons"],
+  "registryDependencies": ["https://nyxui.com/r/morphing-blob.json"],
   "files": [
     {
       "path": "registry/example/morphing-blob-demo.tsx",

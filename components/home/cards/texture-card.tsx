@@ -1,5 +1,5 @@
-import * as React from "react"
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import { cn } from "@/lib/utils";
 
 const TextureCardStyled = React.forwardRef<
   HTMLDivElement,
@@ -24,15 +24,15 @@ const TextureCardStyled = React.forwardRef<
       </div>
     </div>
   </div>
-))
+));
 
-TextureCardStyled.displayName = "TextureCardStyled"
+TextureCardStyled.displayName = "TextureCardStyled";
 
 const TextureCard = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & {
-    children?: React.ReactNode
-    variant?: "default" | "minimal"
+    children?: React.ReactNode;
+    variant?: "default" | "minimal";
   }
 >(({ className, children, variant = "minimal", ...props }, ref) => {
   if (variant === "minimal") {
@@ -40,7 +40,7 @@ const TextureCard = React.forwardRef<
       <div ref={ref} className={cn("rounded-[24px]", className)} {...props}>
         {children}
       </div>
-    )
+    );
   }
 
   // Original nested structure for "default" variant
@@ -49,7 +49,7 @@ const TextureCard = React.forwardRef<
       ref={ref}
       className={cn(
         "rounded-lg border border-white/60 dark:border-border/30",
-        "rounded-[calc(var(--radius))]", 
+        "rounded-[calc(var(--radius))]",
         className,
       )}
       {...props}
@@ -64,65 +64,86 @@ const TextureCard = React.forwardRef<
         </div>
       </div>
     </div>
-  )
-})
+  );
+});
 
-TextureCard.displayName = "TextureCard"
+TextureCard.displayName = "TextureCard";
 
-const TextureCardHeader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => (
-    <div
-      ref={ref}
-      className={cn(
-        "first:pt-6 last:pb-6 ", 
-        className,
-      )}
-      {...props}
-    />
-  ),
-)
+const TextureCardHeader = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("first:pt-6 last:pb-6 ", className)}
+    {...props}
+  />
+));
 
-TextureCardHeader.displayName = "TextureCardHeader"
+TextureCardHeader.displayName = "TextureCardHeader";
 
-const TextureCardTitle = React.forwardRef<HTMLHeadingElement, React.HTMLAttributes<HTMLHeadingElement>>(
-  ({ className, ...props }, ref) => (
-    <h3
-      ref={ref}
-      className={cn("text-lg font-semibold leading-tight text-neutral-900 dark:text-neutral-100 pl-2", className)}
-      {...props}
-    />
-  ),
-)
+const TextureCardTitle = React.forwardRef<
+  HTMLHeadingElement,
+  React.HTMLAttributes<HTMLHeadingElement>
+>(({ className, ...props }, ref) => (
+  <h3
+    ref={ref}
+    className={cn(
+      "text-lg font-semibold leading-tight text-neutral-900 dark:text-neutral-100 pl-2",
+      className,
+    )}
+    {...props}
+  />
+));
 
-TextureCardTitle.displayName = "TextureCardTitle"
+TextureCardTitle.displayName = "TextureCardTitle";
 
-const TextureCardDescription = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLParagraphElement>>(
-  ({ className, ...props }, ref) => (
-    <p ref={ref} className={cn("text-sm text-neutral-600 dark:text-neutral-400 pl-2", className)} {...props} />
-  ),
-)
+const TextureCardDescription = React.forwardRef<
+  HTMLParagraphElement,
+  React.HTMLAttributes<HTMLParagraphElement>
+>(({ className, ...props }, ref) => (
+  <p
+    ref={ref}
+    className={cn(
+      "text-sm text-neutral-600 dark:text-neutral-400 pl-2",
+      className,
+    )}
+    {...props}
+  />
+));
 
-TextureCardDescription.displayName = "TextureCardDescription"
+TextureCardDescription.displayName = "TextureCardDescription";
 
-const TextureCardContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => <div ref={ref} className={cn("px-6 py-4", className)} {...props} />,
-)
+const TextureCardContent = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div ref={ref} className={cn("px-6 py-4", className)} {...props} />
+));
 
-TextureCardContent.displayName = "TextureCardContent"
+TextureCardContent.displayName = "TextureCardContent";
 
-const TextureCardFooter = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => (
-    <div ref={ref} className={cn("flex items-center justify-between px-6 py-4  gap-2", className)} {...props} />
-  ),
-)
+const TextureCardFooter = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn(
+      "flex items-center justify-between px-6 py-4  gap-2",
+      className,
+    )}
+    {...props}
+  />
+));
 
-TextureCardFooter.displayName = "TextureCardFooter"
+TextureCardFooter.displayName = "TextureCardFooter";
 
 const TextureSeparator = () => {
   return (
     <div className="border border-t-neutral-50 border-b-neutral-300/50 dark:border-t-neutral-950 dark:border-b-neutral-700/50 border-l-transparent border-r-transparent" />
-  )
-}
+  );
+};
 
 export {
   TextureCard,
@@ -133,6 +154,6 @@ export {
   TextureSeparator,
   TextureCardDescription,
   TextureCardContent,
-}
+};
 
-export default TextureCard
+export default TextureCard;

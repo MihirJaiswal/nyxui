@@ -10,9 +10,7 @@
         "class-variance-authority",
         "lucide-react"
       ],
-      "registryDependencies": [
-        "utils"
-      ],
+      "registryDependencies": ["utils"],
       "files": [],
       "cssVars": {}
     },
@@ -21,11 +19,7 @@
       "type": "registry:ui",
       "title": "Animated Code Block",
       "description": "A code display component with real-time typing effects. Supports syntax highlighting and customizable themes.",
-      "dependencies": [
-        "motion",
-        "lucide-react",
-        "prismjs"
-      ],
+      "dependencies": ["motion", "lucide-react", "prismjs"],
       "files": [
         {
           "path": "registry/ui/animated-code-block.tsx",
@@ -39,9 +33,7 @@
       "type": "registry:ui",
       "title": "Animated Grainy Background",
       "description": "A dynamic animated gradient background component that supports various gradient patterns and animations.",
-      "dependencies": [
-        "motion"
-      ],
+      "dependencies": ["motion"],
       "files": [
         {
           "path": "registry/ui/animated-grainy-bg.tsx",
@@ -55,9 +47,7 @@
       "type": "registry:ui",
       "title": "Animated Text",
       "description": "A versatile text animation component that offers multiple animation types. Perfect for adding dynamic text effects to your UI.",
-      "dependencies": [
-        "motion"
-      ],
+      "dependencies": ["motion"],
       "files": [
         {
           "path": "registry/ui/animated-text.tsx",
@@ -143,9 +133,7 @@
       "type": "registry:ui",
       "title": "Github Repo Card",
       "description": "A card component that displays information about a GitHub repository. It includes the repository name, description, stars, forks, and a link to the repository.",
-      "dependencies": [
-        "lucide-react"
-      ],
+      "dependencies": ["lucide-react"],
       "files": [
         {
           "path": "registry/ui/github-repo-card.tsx",
@@ -364,9 +352,7 @@
       "type": "registry:ui",
       "title": "Keyboard",
       "description": "A keyboard component that simulates a physical keyboard.",
-      "dependencies": [
-        "lucide-react"
-      ],
+      "dependencies": ["lucide-react"],
       "files": [
         {
           "path": "registry/ui/keyboard.tsx",
@@ -380,9 +366,7 @@
       "type": "registry:ui",
       "title": "MS Paint",
       "description": "A customizable drawing canvas component with paint-like interface.",
-      "dependencies": [
-        "lucide-react"
-      ],
+      "dependencies": ["lucide-react"],
       "files": [
         {
           "path": "registry/ui/ms-paint.tsx",
@@ -435,9 +419,7 @@
       "type": "registry:ui",
       "title": "Image Scanner",
       "description": "A image scanner component that allows users to scan images.",
-      "dependencies": [
-        "motion"
-      ],
+      "dependencies": ["motion"],
       "files": [
         {
           "path": "registry/ui/image-scanner.tsx",
@@ -464,9 +446,7 @@
       "type": "registry:ui",
       "title": "Marquee",
       "description": "A customizable, interactive scrolling marquee component.",
-      "dependencies": [
-        "motion"
-      ],
+      "dependencies": ["motion"],
       "files": [
         {
           "path": "registry/ui/marquee.tsx",
@@ -512,9 +492,7 @@
       "type": "registry:ui",
       "title": "Music Player",
       "description": "A music player that that provide several effects.",
-      "dependencies": [
-        "lucide-react"
-      ],
+      "dependencies": ["lucide-react"],
       "files": [
         {
           "path": "registry/ui/music-player.tsx",
@@ -528,9 +506,7 @@
       "type": "registry:ui",
       "title": "Reveal Card",
       "description": "A reveal card that that provide several effects.",
-      "dependencies": [
-        "lucide-react"
-      ],
+      "dependencies": ["lucide-react"],
       "files": [
         {
           "path": "registry/ui/reveal-card.tsx",
@@ -544,10 +520,7 @@
       "type": "registry:ui",
       "title": "Scroll Animation Trigger",
       "description": "A scroll animation trigger that that provide several effects.",
-      "dependencies": [
-        "lucide-react",
-        "motion"
-      ],
+      "dependencies": ["lucide-react", "motion"],
       "files": [
         {
           "path": "registry/ui/scroll-animation-trigger.tsx",
@@ -561,9 +534,7 @@
       "type": "registry:ui",
       "title": "Terminal",
       "description": "A terminal that that provide several effects.",
-      "dependencies": [
-        "lucide-react"
-      ],
+      "dependencies": ["lucide-react"],
       "files": [
         {
           "path": "registry/ui/terminal.tsx",
@@ -577,9 +548,7 @@
       "type": "registry:ui",
       "title": "Water Ripple Effect",
       "description": "A water ripple effect that that provide several effects.",
-      "dependencies": [
-        "three"
-      ],
+      "dependencies": ["three"],
       "files": [
         {
           "path": "registry/ui/water-ripple-effect.tsx",
@@ -593,9 +562,7 @@
       "type": "registry:ui",
       "title": "Custom Cursor",
       "description": "A custom cursor that that provide several effects.",
-      "dependencies": [
-        "motion"
-      ],
+      "dependencies": ["motion"],
       "files": [
         {
           "path": "registry/ui/custom-cursor.tsx",
@@ -609,9 +576,7 @@
       "type": "registry:ui",
       "title": "Apple Glass Effect",
       "description": "A apple glass effect that that provide several effects.",
-      "dependencies": [
-        "motion"
-      ],
+      "dependencies": ["motion"],
       "files": [
         {
           "path": "registry/ui/apple-glass-effect.tsx",
@@ -625,9 +590,7 @@
       "type": "registry:ui",
       "title": "3D Layered Card",
       "description": "A 3D layered card that that provide several effects.",
-      "dependencies": [
-        "framer-motion"
-      ],
+      "dependencies": ["framer-motion"],
       "files": [
         {
           "path": "registry/ui/3d-layered-card.tsx",
@@ -641,9 +604,7 @@
       "type": "registry:example",
       "title": "Animated Code Block Demo",
       "description": "Example showing a code block with typing animation effects.",
-      "registryDependencies": [
-        "https://nyxui.com/r/animated-code-block"
-      ],
+      "registryDependencies": ["https://nyxui.com/r/animated-code-block"],
       "files": [
         {
           "path": "registry/example/animated-code-block-demo.tsx",
@@ -657,9 +618,7 @@
       "type": "registry:example",
       "title": "Animated Grainy Background Demo",
       "description": "Example showing an animated grainy background.",
-      "registryDependencies": [
-        "https://nyxui.com/r/animated-grainy-bg"
-      ],
+      "registryDependencies": ["https://nyxui.com/r/animated-grainy-bg"],
       "files": [
         {
           "path": "registry/example/animated-grainy-bg-demo.tsx",
@@ -673,9 +632,7 @@
       "type": "registry:example",
       "title": "Animated Text Demo",
       "description": "Example showing various text animations.",
-      "registryDependencies": [
-        "https://nyxui.com/r/animated-text.json"
-      ],
+      "registryDependencies": ["https://nyxui.com/r/animated-text.json"],
       "files": [
         {
           "path": "registry/example/animated-text-demo.tsx",
@@ -689,9 +646,7 @@
       "type": "registry:example",
       "title": "Bubble Background Demo",
       "description": "Example showing an interactive fluid background.",
-      "registryDependencies": [
-        "https://nyxui.com/r/bubble-background.json"
-      ],
+      "registryDependencies": ["https://nyxui.com/r/bubble-background.json"],
       "files": [
         {
           "path": "registry/example/bubble-background-demo.tsx",
@@ -705,9 +660,7 @@
       "type": "registry:example",
       "title": "Cyberpunk Card Demo",
       "description": "Example showing a cyberpunk card.",
-      "registryDependencies": [
-        "https://nyxui.com/r/cyberpunk-card.json"
-      ],
+      "registryDependencies": ["https://nyxui.com/r/cyberpunk-card.json"],
       "files": [
         {
           "path": "registry/example/cyberpunk-card-demo.tsx",
@@ -721,9 +674,7 @@
       "type": "registry:example",
       "title": "Cyberpunk Card Demo 1",
       "description": "Example showing a cyberpunk card.",
-      "registryDependencies": [
-        "https://nyxui.com/r/cyberpunk-card.json"
-      ],
+      "registryDependencies": ["https://nyxui.com/r/cyberpunk-card.json"],
       "files": [
         {
           "path": "registry/example/cyberpunk-card-demo1.tsx",
@@ -737,9 +688,7 @@
       "type": "registry:example",
       "title": "Dynamic Ripple Demo",
       "description": "Example showing a dynamic ripple effect.",
-      "registryDependencies": [
-        "https://nyxui.com/r/dynamic-ripple.json"
-      ],
+      "registryDependencies": ["https://nyxui.com/r/dynamic-ripple.json"],
       "files": [
         {
           "path": "registry/example/dynamic-ripple-demo.tsx",
@@ -753,9 +702,7 @@
       "type": "registry:example",
       "title": "Github Repo Card Demo",
       "description": "Example showing a GitHub repo card.",
-      "registryDependencies": [
-        "https://nyxui.com/r/github-repo-card.json"
-      ],
+      "registryDependencies": ["https://nyxui.com/r/github-repo-card.json"],
       "files": [
         {
           "path": "registry/example/github-repo-card-demo.tsx",
@@ -769,9 +716,7 @@
       "type": "registry:example",
       "title": "Github Repo Card Demo 1",
       "description": "Example showing a GitHub repo card.",
-      "registryDependencies": [
-        "https://nyxui.com/r/github-repo-card.json"
-      ],
+      "registryDependencies": ["https://nyxui.com/r/github-repo-card.json"],
       "files": [
         {
           "path": "registry/example/github-repo-card-demo1.tsx",
@@ -785,9 +730,7 @@
       "type": "registry:example",
       "title": "Github Repo Card Demo 2",
       "description": "Example showing a GitHub repo card.",
-      "registryDependencies": [
-        "https://nyxui.com/r/github-repo-card.json"
-      ],
+      "registryDependencies": ["https://nyxui.com/r/github-repo-card.json"],
       "files": [
         {
           "path": "registry/example/github-repo-card-demo2.tsx",
@@ -801,9 +744,7 @@
       "type": "registry:example",
       "title": "Glitch Button Demo",
       "description": "Example showing a glitch button.",
-      "registryDependencies": [
-        "https://nyxui.com/r/glitch-button.json"
-      ],
+      "registryDependencies": ["https://nyxui.com/r/glitch-button.json"],
       "files": [
         {
           "path": "registry/example/glitch-button-demo.tsx",
@@ -817,9 +758,7 @@
       "type": "registry:example",
       "title": "Keyboard Demo",
       "description": "Example showing a interactive keyboard.",
-      "registryDependencies": [
-        "https://nyxui.com/r/keyboard.json"
-      ],
+      "registryDependencies": ["https://nyxui.com/r/keyboard.json"],
       "files": [
         {
           "path": "registry/example/keyboard-demo.tsx",
@@ -833,9 +772,7 @@
       "type": "registry:example",
       "title": "Keyboard Demo 1",
       "description": "Example showing a interactive keyboard.",
-      "registryDependencies": [
-        "https://nyxui.com/r/keyboard.json"
-      ],
+      "registryDependencies": ["https://nyxui.com/r/keyboard.json"],
       "files": [
         {
           "path": "registry/example/keyboard-demo1.tsx",
@@ -849,9 +786,7 @@
       "type": "registry:example",
       "title": "MS Paint Demo",
       "description": "Example showing a MS Paint clone.",
-      "registryDependencies": [
-        "https://nyxui.com/r/ms-paint.json"
-      ],
+      "registryDependencies": ["https://nyxui.com/r/ms-paint.json"],
       "files": [
         {
           "path": "registry/example/ms-paint-demo.tsx",
@@ -865,9 +800,7 @@
       "type": "registry:example",
       "title": "Lamp Heading Demo",
       "description": "Example showing a lamp heading.",
-      "registryDependencies": [
-        "https://nyxui.com/r/lamp-heading.json"
-      ],
+      "registryDependencies": ["https://nyxui.com/r/lamp-heading.json"],
       "files": [
         {
           "path": "registry/example/lamp-heading-demo.tsx",
@@ -881,9 +814,7 @@
       "type": "registry:example",
       "title": "Liquid Metal Button Demo",
       "description": "Example showing a liquid metal button.",
-      "registryDependencies": [
-        "https://nyxui.com/r/liquid-metal-button.json"
-      ],
+      "registryDependencies": ["https://nyxui.com/r/liquid-metal-button.json"],
       "files": [
         {
           "path": "registry/example/liquid-metal-button-demo.tsx",
@@ -897,9 +828,7 @@
       "type": "registry:example",
       "title": "Image Comparison Demo",
       "description": "Example showing a image comparison.",
-      "registryDependencies": [
-        "https://nyxui.com/r/image-comparison.json"
-      ],
+      "registryDependencies": ["https://nyxui.com/r/image-comparison.json"],
       "files": [
         {
           "path": "registry/example/image-comparison-demo.tsx",
@@ -913,9 +842,7 @@
       "type": "registry:example",
       "title": "Image Scanner Demo",
       "description": "Example showing a image scanner.",
-      "registryDependencies": [
-        "https://nyxui.com/r/image-scanner.json"
-      ],
+      "registryDependencies": ["https://nyxui.com/r/image-scanner.json"],
       "files": [
         {
           "path": "registry/example/image-scanner-demo.tsx",
@@ -929,9 +856,7 @@
       "type": "registry:example",
       "title": "Image Scanner Demo 1",
       "description": "Example showing a image scanner.",
-      "registryDependencies": [
-        "https://nyxui.com/r/image-scanner.json"
-      ],
+      "registryDependencies": ["https://nyxui.com/r/image-scanner.json"],
       "files": [
         {
           "path": "registry/example/image-scanner-demo1.tsx",
@@ -945,9 +870,7 @@
       "type": "registry:example",
       "title": "Glow Card Demo",
       "description": "Example showing a glow card.",
-      "registryDependencies": [
-        "https://nyxui.com/r/glow-card.json"
-      ],
+      "registryDependencies": ["https://nyxui.com/r/glow-card.json"],
       "files": [
         {
           "path": "registry/example/glow-card-demo.tsx",
@@ -961,9 +884,7 @@
       "type": "registry:example",
       "title": "Glow Card Demo 1",
       "description": "Example showing a glow card.",
-      "registryDependencies": [
-        "https://nyxui.com/r/glow-card.json"
-      ],
+      "registryDependencies": ["https://nyxui.com/r/glow-card.json"],
       "files": [
         {
           "path": "registry/example/glow-card-demo1.tsx",
@@ -977,9 +898,7 @@
       "type": "registry:example",
       "title": "Marquee Demo",
       "description": "Example showing a marquee.",
-      "registryDependencies": [
-        "https://nyxui.com/r/marquee.json"
-      ],
+      "registryDependencies": ["https://nyxui.com/r/marquee.json"],
       "files": [
         {
           "path": "registry/example/marquee-demo.tsx",
@@ -993,9 +912,7 @@
       "type": "registry:example",
       "title": "Marquee Demo 1",
       "description": "Example showing a marquee.",
-      "registryDependencies": [
-        "https://nyxui.com/r/marquee.json"
-      ],
+      "registryDependencies": ["https://nyxui.com/r/marquee.json"],
       "files": [
         {
           "path": "registry/example/marquee-demo1.tsx",
@@ -1009,9 +926,7 @@
       "type": "registry:example",
       "title": "Marquee Demo 2",
       "description": "Example showing a marquee.",
-      "registryDependencies": [
-        "https://nyxui.com/r/marquee.json"
-      ],
+      "registryDependencies": ["https://nyxui.com/r/marquee.json"],
       "files": [
         {
           "path": "registry/example/marquee-demo2.tsx",
@@ -1025,9 +940,7 @@
       "type": "registry:example",
       "title": "Matrix Code Rain Demo",
       "description": "Example showing a matrix code rain.",
-      "registryDependencies": [
-        "https://nyxui.com/r/matrix-code-rain.json"
-      ],
+      "registryDependencies": ["https://nyxui.com/r/matrix-code-rain.json"],
       "files": [
         {
           "path": "registry/example/matrix-code-rain-demo.tsx",
@@ -1041,9 +954,7 @@
       "type": "registry:example",
       "title": "Morphing Blob Demo",
       "description": "Example showing a morphing blob.",
-      "registryDependencies": [
-        "https://nyxui.com/r/morphing-blob.json"
-      ],
+      "registryDependencies": ["https://nyxui.com/r/morphing-blob.json"],
       "files": [
         {
           "path": "registry/example/morphing-blob-demo.tsx",
@@ -1057,9 +968,7 @@
       "type": "registry:example",
       "title": "Music Player Demo",
       "description": "Example showing a music player.",
-      "registryDependencies": [
-        "https://nyxui.com/r/music-player.json"
-      ],
+      "registryDependencies": ["https://nyxui.com/r/music-player.json"],
       "files": [
         {
           "path": "registry/example/music-player-demo.tsx",
@@ -1073,9 +982,7 @@
       "type": "registry:example",
       "title": "Music Player Demo 1",
       "description": "Example showing a music player.",
-      "registryDependencies": [
-        "https://nyxui.com/r/music-player.json"
-      ],
+      "registryDependencies": ["https://nyxui.com/r/music-player.json"],
       "files": [
         {
           "path": "registry/example/music-player-demo1.tsx",
@@ -1089,9 +996,7 @@
       "type": "registry:example",
       "title": "Music Player Demo 2",
       "description": "Example showing a music player.",
-      "registryDependencies": [
-        "https://nyxui.com/r/music-player.json"
-      ],
+      "registryDependencies": ["https://nyxui.com/r/music-player.json"],
       "files": [
         {
           "path": "registry/example/music-player-demo2.tsx",
@@ -1105,9 +1010,7 @@
       "type": "registry:example",
       "title": "Reveal Card Demo",
       "description": "Example showing a reveal card.",
-      "registryDependencies": [
-        "https://nyxui.com/r/reveal-card.json"
-      ],
+      "registryDependencies": ["https://nyxui.com/r/reveal-card.json"],
       "files": [
         {
           "path": "registry/example/reveal-card-demo.tsx",
@@ -1169,9 +1072,7 @@
       "type": "registry:example",
       "title": "Terminal Demo",
       "description": "Example showing a terminal.",
-      "registryDependencies": [
-        "https://nyxui.com/r/terminal.json"
-      ],
+      "registryDependencies": ["https://nyxui.com/r/terminal.json"],
       "files": [
         {
           "path": "registry/example/terminal-demo.tsx",
@@ -1185,9 +1086,7 @@
       "type": "registry:example",
       "title": "Terminal Demo 1",
       "description": "Example showing a terminal.",
-      "registryDependencies": [
-        "https://nyxui.com/r/terminal.json"
-      ],
+      "registryDependencies": ["https://nyxui.com/r/terminal.json"],
       "files": [
         {
           "path": "registry/example/terminal-demo1.tsx",
@@ -1201,9 +1100,7 @@
       "type": "registry:example",
       "title": "Water Ripple Effect Demo",
       "description": "Example showing a water ripple effect.",
-      "registryDependencies": [
-        "https://nyxui.com/r/water-ripple-effect.json"
-      ],
+      "registryDependencies": ["https://nyxui.com/r/water-ripple-effect.json"],
       "files": [
         {
           "path": "registry/example/water-ripple-effect-demo.tsx",
@@ -1217,9 +1114,7 @@
       "type": "registry:example",
       "title": "Custom Cursor Demo",
       "description": "Example showing a custom cursor.",
-      "registryDependencies": [
-        "https://nyxui.com/r/custom-cursor.json"
-      ],
+      "registryDependencies": ["https://nyxui.com/r/custom-cursor.json"],
       "files": [
         {
           "path": "registry/example/custom-cursor-demo.tsx",
@@ -1233,9 +1128,7 @@
       "type": "registry:example",
       "title": "Apple Glass Effect Demo",
       "description": "Example showing an Apple Glass Effect.",
-      "registryDependencies": [
-        "https://nyxui.com/r/apple-glass-effect.json"
-      ],
+      "registryDependencies": ["https://nyxui.com/r/apple-glass-effect.json"],
       "files": [
         {
           "path": "registry/example/apple-glass-effect-demo.tsx",
@@ -1249,9 +1142,7 @@
       "type": "registry:example",
       "title": "3D Layered Card Demo",
       "description": "Example showing a 3D layered card.",
-      "registryDependencies": [
-        "https://nyxui.com/r/3d-layered-card.json"
-      ],
+      "registryDependencies": ["https://nyxui.com/r/3d-layered-card.json"],
       "files": [
         {
           "path": "registry/example/3d-layered-card-demo.tsx",
@@ -1263,10 +1154,7 @@
     {
       "name": "utils",
       "type": "registry:lib",
-      "dependencies": [
-        "clsx",
-        "tailwind-merge"
-      ],
+      "dependencies": ["clsx", "tailwind-merge"],
       "files": [
         {
           "path": "registry/lib/utils.ts",
@@ -1279,9 +1167,7 @@
       "type": "registry:ui",
       "title": "Footer",
       "description": "A simple footer component i will add some more modern components in the future.",
-      "dependencies": [
-        "lucide-react"
-      ],
+      "dependencies": ["lucide-react"],
       "files": [
         {
           "path": "registry/blocks/footer.tsx",

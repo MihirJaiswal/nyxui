@@ -83,7 +83,11 @@ export default function FooterSection() {
       <div className=" px-6 xl:px-22 xl:container mx-auto">
         <div className="grid gap-12 md:grid-cols-5">
           <div className="md:col-span-2">
-            <Link href="/" aria-label="go home" className="size-fit flex items-end justify-center gap-3"> 
+            <Link
+              href="/"
+              aria-label="go home"
+              className="size-fit flex items-end justify-center gap-3"
+            >
               <div className="h-8 w-8 border-4 border-background flex items-center justify-center rounded-full transition-all duration-200">
                 <Logo className="transition-colors duration-200" />
               </div>

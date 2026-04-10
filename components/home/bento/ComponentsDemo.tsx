@@ -13,13 +13,13 @@ export const ComponentsDemo = () => {
   return (
     <div className="container flex flex-col items-center justify-center mx-auto px-6 lg:px-12 xl:px-22 py-20">
       <div className="flex flex-col items-center justify-center">
-      <h2 className="text-3xl sm:text-5xl text-center lg:text-5xl font-extrabold tracking-tight leading-tight">
-        Component Demos
-      </h2>
-      <h3 className="mx-auto mb-8 mt-2 text-balance text-center text-base md:text-lg font-medium tracking-tight text-foreground/80">
-        These are a few components that you can easily plug into your next
-        project.
-      </h3>
+        <h2 className="text-3xl sm:text-5xl text-center lg:text-5xl font-extrabold tracking-tight leading-tight">
+          Component Demos
+        </h2>
+        <h3 className="mx-auto mb-8 mt-2 text-balance text-center text-base md:text-lg font-medium tracking-tight text-foreground/80">
+          These are a few components that you can easily plug into your next
+          project.
+        </h3>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12">
         <BentoGrid
@@ -27,9 +27,7 @@ export const ComponentsDemo = () => {
           enableDescription={false}
           enableTitle={false}
           height="h-full"
-          component={
-            <TerminalKeyboardDemo />
-          }
+          component={<TerminalKeyboardDemo />}
         />
         <BentoGrid
           className="rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.02]  border border-neutral-200 dark:border-neutral-800"
@@ -38,14 +36,12 @@ export const ComponentsDemo = () => {
           enableTitle={false}
           component={
             <>
-              <div
-                className="w-full h-full flex items-center justify-center bg-gradient-to-b from-pink-200/40 via-pink-200/40 to-purple-400/40 dark:from-black dark:via-black dark:to-black relative"
-              >
+              <div className="w-full h-full flex items-center justify-center bg-gradient-to-b from-pink-200/40 via-pink-200/40 to-purple-400/40 dark:from-black dark:via-black dark:to-black relative">
                 <Blob />
               </div>
-              <div className='absolute -bottom-68 h-full w-full max-w-full overflow-hidden [mask-image:radial-gradient(50%_50%,white,transparent)] before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_bottom_center,#DA33FF,transparent_90%)] before:opacity-40 after:absolute after:-left-1/2 after:top-1/2 after:aspect-[1/0.7] after:w-[200%] after:rounded-[10%] after:border-t after:border-[#4e1674] after:bg-[#20082b]'>
+              <div className="absolute -bottom-68 h-full w-full max-w-full overflow-hidden [mask-image:radial-gradient(50%_50%,white,transparent)] before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_bottom_center,#DA33FF,transparent_90%)] before:opacity-40 after:absolute after:-left-1/2 after:top-1/2 after:aspect-[1/0.7] after:w-[200%] after:rounded-[10%] after:border-t after:border-[#4e1674] after:bg-[#20082b]">
                 <div className="absolute inset-0 w-full h-full overflow-hidden">
-                  <LazySparkles/>
+                  <LazySparkles />
                 </div>
               </div>
             </>
@@ -60,13 +56,12 @@ export const ComponentsDemo = () => {
         />
         <BentoGrid
           enableDescription={false}
-          enableTitle={false} 
+          enableTitle={false}
           height="h-110"
           className="rounded-2xl flex items-start justify-end transition-all duration-500  hover:scale-[1.02] border border-neutral-200 dark:border-neutral-800 tracking-wider "
-          component={
-            <AnimatedChatDemo/>
-          }
-        /> <BentoGrid
+          component={<AnimatedChatDemo />}
+        />{" "}
+        <BentoGrid
           enableDescription={false}
           enableTitle={false}
           height="h-full"

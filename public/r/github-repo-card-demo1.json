@@ -4,12 +4,8 @@
   "type": "registry:example",
   "title": "Github Repo Card Demo 1",
   "description": "Example showing a GitHub repo card.",
-  "dependencies": [
-    ".."
-  ],
-  "registryDependencies": [
-    "https://nyxui.com/r/github-repo-card.json"
-  ],
+  "dependencies": [".."],
+  "registryDependencies": ["https://nyxui.com/r/github-repo-card.json"],
   "files": [
     {
       "path": "registry/example/github-repo-card-demo1.tsx",

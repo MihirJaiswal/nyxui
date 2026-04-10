@@ -1,10 +1,11 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState, useEffect } from "react"
-import { cn } from "../../lib/utils"
+import type React from "react";
+import { useState, useEffect } from "react";
+import { cn } from "../../lib/utils";
 
-export interface CyberpunkCardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface CyberpunkCardProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   theme?:
     | "neon-blue"
     | "neon-pink"
@@ -16,90 +17,114 @@ export interface CyberpunkCardProps extends React.HTMLAttributes<HTMLDivElement>
     | "matrix-green"
     | "cyber-red"
     | "hologram"
-    | "custom"
+    | "custom";
   customColors?: {
-    primary: string
-    secondary: string
-    accent: string
-  }
-  borderStyle?: "solid" | "dashed" | "glitch" | "corners" | "animated" | "circuit"
-  colorShift?: boolean
-  lightTrail?: boolean
-  rounded?: "none" | "sm" | "md" | "lg"
-  glow?: boolean
-  glowIntensity?: 1 | 2 | 3 | 4 | 5
-  backgroundEffect?: "none" | "circuit" | "matrix" | "scanlines" | "particles" | "waves"
-  pulseAnimation?: boolean
-  glitchEffect?: boolean
-  hologramFlicker?: boolean
-  dataStream?: boolean
-  loading?: boolean
-  animationSpeed?: "slow" | "normal" | "fast"
-  children: React.ReactNode
+    primary: string;
+    secondary: string;
+    accent: string;
+  };
+  borderStyle?:
+    | "solid"
+    | "dashed"
+    | "glitch"
+    | "corners"
+    | "animated"
+    | "circuit";
+  colorShift?: boolean;
+  lightTrail?: boolean;
+  rounded?: "none" | "sm" | "md" | "lg";
+  glow?: boolean;
+  glowIntensity?: 1 | 2 | 3 | 4 | 5;
+  backgroundEffect?:
+    | "none"
+    | "circuit"
+    | "matrix"
+    | "scanlines"
+    | "particles"
+    | "waves";
+  pulseAnimation?: boolean;
+  glitchEffect?: boolean;
+  hologramFlicker?: boolean;
+  dataStream?: boolean;
+  loading?: boolean;
+  animationSpeed?: "slow" | "normal" | "fast";
+  children: React.ReactNode;
 }
 
 const MatrixRain = () => {
   const [columns, setColumns] = useState<
     Array<{
-      id: number
+      id: number;
       characters: Array<{
-        char: string
-        opacity: number
-        isLeading: boolean
-      }>
-      x: number
-      speed: number
-      height: number
+        char: string;
+        opacity: number;
+        isLeading: boolean;
+      }>;
+      x: number;
+      speed: number;
+      height: number;
     }>
-  >([])
+  >([]);
 
   useEffect(() => {
     const matrixChars =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン"
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン";
 
     const createColumn = (x: number) => ({
       id: Math.random(),
       x,
       speed: Math.random() * 3 + 1,
       height: Math.floor(Math.random() * 15) + 5,
-      characters: Array.from({ length: Math.floor(Math.random() * 15) + 5 }, (_, i) => ({
-        char: matrixChars[Math.floor(Math.random() * matrixChars.length)],
-        opacity: Math.max(0, 1 - i * 0.15),
-        isLeading: i === 0,
-      })),
-    })
+      characters: Array.from(
+        { length: Math.floor(Math.random() * 15) + 5 },
+        (_, i) => ({
+          char: matrixChars[Math.floor(Math.random() * matrixChars.length)],
+          opacity: Math.max(0, 1 - i * 0.15),
+          isLeading: i === 0,
+        }),
+      ),
+    });
 
-    const initialColumns = Array.from({ length: 12 }, (_, i) => createColumn(i * 8.33 + Math.random() * 2))
-    setColumns(initialColumns)
+    const initialColumns = Array.from({ length: 12 }, (_, i) =>
+      createColumn(i * 8.33 + Math.random() * 2),
+    );
+    setColumns(initialColumns);
 
     const interval = setInterval(() => {
       setColumns((prevColumns) =>
         prevColumns.map((column) => {
-          const newY = (column.speed * 2) % 120
+          const newY = (column.speed * 2) % 120;
           const updatedCharacters = column.characters.map((char, i) => ({
             ...char,
-            char: Math.random() < 0.1 ? matrixChars[Math.floor(Math.random() * matrixChars.length)] : char.char,
+            char:
+              Math.random() < 0.1
+                ? matrixChars[Math.floor(Math.random() * matrixChars.length)]
+                : char.char,
             opacity: Math.max(0, 1 - i * 0.12),
-          }))
+          }));
 
           return {
             ...column,
             characters: updatedCharacters,
             speed: column.speed + 0.1,
-          }
+          };
         }),
-      )
-    }, 100)
+      );
+    }, 100);
 
     const resetInterval = setInterval(() => {
-      setColumns((prevColumns) => prevColumns.map((column) => (column.speed > 50 ? createColumn(column.x) : column)))
-    }, 3000)
+      setColumns((prevColumns) =>
+        prevColumns.map((column) =>
+          column.speed > 50 ? createColumn(column.x) : column,
+        ),
+      );
+    }, 3000);
 
     return () => {
-      clearInterval(interval)
-      clearInterval(resetInterval)
-    }
-  }, [])
+      clearInterval(interval);
+      clearInterval(resetInterval);
+    };
+  }, []);
 
   return (
     <div className="absolute inset-0 font-mono text-xs">
@@ -122,7 +147,9 @@ const MatrixRain = () => {
               )}
               style={{
                 opacity: char.opacity,
-                textShadow: char.isLeading ? "0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00" : "0 0 5px #00ff00",
+                textShadow: char.isLeading
+                  ? "0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00"
+                  : "0 0 5px #00ff00",
                 fontSize: char.isLeading ? "0.9rem" : "0.75rem",
               }}
             >
@@ -132,8 +159,8 @@ const MatrixRain = () => {
         </div>
       ))}
     </div>
-  )
-}
+  );
+};
 
 export const CyberpunkCard = ({
   theme = "neon-blue",
@@ -155,33 +182,35 @@ export const CyberpunkCard = ({
   children,
   ...props
 }: CyberpunkCardProps) => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-  const [isHovered, setIsHovered] = useState(false)
-  const [isClicked, setIsClicked] = useState(false)
-  const [colorPhase, setColorPhase] = useState(0)
-  const [glitchPhase, setGlitchPhase] = useState(0)
-  const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; opacity: number }>>([])
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
+  const [colorPhase, setColorPhase] = useState(0);
+  const [glitchPhase, setGlitchPhase] = useState(0);
+  const [particles, setParticles] = useState<
+    Array<{ id: number; x: number; y: number; opacity: number }>
+  >([]);
 
   const speedMultiplier = {
     slow: 0.5,
     normal: 1,
     fast: 2,
-  }[animationSpeed]
+  }[animationSpeed];
 
   useEffect(() => {
-    if (!colorShift && !glitchEffect) return
+    if (!colorShift && !glitchEffect) return;
 
     const interval = setInterval(() => {
       if (colorShift) {
-        setColorPhase((prev) => (prev + 1 * speedMultiplier) % 100)
+        setColorPhase((prev) => (prev + 1 * speedMultiplier) % 100);
       }
       if (glitchEffect && isHovered) {
-        setGlitchPhase((prev) => (prev + 1) % 10)
+        setGlitchPhase((prev) => (prev + 1) % 10);
       }
-    }, 50)
+    }, 50);
 
-    return () => clearInterval(interval)
-  }, [colorShift, glitchEffect, isHovered, speedMultiplier])
+    return () => clearInterval(interval);
+  }, [colorShift, glitchEffect, isHovered, speedMultiplier]);
 
   useEffect(() => {
     if (backgroundEffect === "particles" && isHovered) {
@@ -191,40 +220,40 @@ export const CyberpunkCard = ({
           x: Math.random() * 100,
           y: Math.random() * 100,
           opacity: 1,
-        }
-        setParticles((prev) => [...prev.slice(-20), newParticle])
+        };
+        setParticles((prev) => [...prev.slice(-20), newParticle]);
 
         setTimeout(() => {
-          setParticles((prev) => prev.filter((p) => p.id !== newParticle.id))
-        }, 2000)
-      }, 100)
+          setParticles((prev) => prev.filter((p) => p.id !== newParticle.id));
+        }, 2000);
+      }, 100);
 
-      return () => clearInterval(interval)
+      return () => clearInterval(interval);
     }
-  }, [backgroundEffect, isHovered])
+  }, [backgroundEffect, isHovered]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!lightTrail) return
-    const rect = e.currentTarget.getBoundingClientRect()
+    if (!lightTrail) return;
+    const rect = e.currentTarget.getBoundingClientRect();
     setMousePosition({
       x: e.clientX - rect.left,
       y: e.clientY - rect.top,
-    })
-  }
+    });
+  };
 
   const handleMouseEnter = () => {
-    setIsHovered(true)
-  }
+    setIsHovered(true);
+  };
 
   const handleMouseLeave = () => {
-    setIsHovered(false)
-    setParticles([])
-  }
+    setIsHovered(false);
+    setParticles([]);
+  };
 
   const handleClick = () => {
-    setIsClicked(true)
-    setTimeout(() => setIsClicked(false), 200)
-  }
+    setIsClicked(true);
+    setTimeout(() => setIsClicked(false), 200);
+  };
 
   const themeColors = {
     "neon-blue": {
@@ -315,9 +344,9 @@ export const CyberpunkCard = ({
       glow: "",
       border: "",
     },
-  }
+  };
 
-  const currentTheme = themeColors[theme]
+  const currentTheme = themeColors[theme];
 
   // Fixed: Add proper null checking for customColors
   const customStyles =
@@ -329,7 +358,7 @@ export const CyberpunkCard = ({
             ? `0 20px 25px -5px ${customColors.primary}50, 0 10px 10px -5px ${customColors.primary}40`
             : undefined,
         }
-      : {}
+      : {};
 
   const borderStyles = {
     solid: "border-2",
@@ -341,14 +370,14 @@ export const CyberpunkCard = ({
       "border-2 before:content-[''] before:absolute before:inset-0 before:border-2 before:border-current before:animate-pulse before:rounded-[inherit] before:pointer-events-none",
     circuit:
       "border-2 border-dashed before:content-[''] before:absolute before:inset-0 before:border-2 before:border-dotted before:border-current before:animate-ping before:rounded-[inherit] before:pointer-events-none before:opacity-75",
-  }
+  };
 
   const roundedStyles = {
     none: "rounded-none",
     sm: "rounded-sm",
     md: "rounded-md",
     lg: "rounded-lg",
-  }
+  };
 
   const glowIntensityStyles = {
     1: "shadow-md",
@@ -356,11 +385,12 @@ export const CyberpunkCard = ({
     3: "shadow-xl",
     4: "shadow-2xl",
     5: "shadow-2xl drop-shadow-2xl",
-  }
+  };
 
   const getBackgroundPattern = () => {
     // Fixed: Add proper null checking for customColors
-    const patternColor = theme === "custom" && customColors ? customColors.accent : "currentColor"
+    const patternColor =
+      theme === "custom" && customColors ? customColors.accent : "currentColor";
 
     switch (backgroundEffect) {
       case "circuit":
@@ -368,21 +398,33 @@ export const CyberpunkCard = ({
           <div className="absolute inset-0 opacity-20">
             <svg className="w-full h-full" viewBox="0 0 100 100">
               <defs>
-                <pattern id="circuit" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                  <path d="M 10,0 L 10,10 L 0,10" stroke={patternColor} strokeWidth="0.5" fill="none" />
+                <pattern
+                  id="circuit"
+                  x="0"
+                  y="0"
+                  width="20"
+                  height="20"
+                  patternUnits="userSpaceOnUse"
+                >
+                  <path
+                    d="M 10,0 L 10,10 L 0,10"
+                    stroke={patternColor}
+                    strokeWidth="0.5"
+                    fill="none"
+                  />
                   <circle cx="10" cy="10" r="1" fill={patternColor} />
                 </pattern>
               </defs>
               <rect width="100%" height="100%" fill="url(#circuit)" />
             </svg>
           </div>
-        )
+        );
       case "matrix":
         return (
           <div className="absolute inset-0 overflow-hidden opacity-40">
             <MatrixRain />
           </div>
-        )
+        );
       case "scanlines":
         return (
           <div className="absolute inset-0 opacity-20">
@@ -391,7 +433,7 @@ export const CyberpunkCard = ({
               style={{ color: patternColor }}
             />
           </div>
-        )
+        );
       case "waves":
         return (
           <div className="absolute inset-0 opacity-30 overflow-hidden">
@@ -400,11 +442,11 @@ export const CyberpunkCard = ({
               style={{ color: patternColor }}
             />
           </div>
-        )
+        );
       default:
-        return null
+        return null;
     }
-  }
+  };
 
   return (
     <div
@@ -420,7 +462,10 @@ export const CyberpunkCard = ({
         pulseAnimation && "before:animate-pulse",
         hologramFlicker && isHovered && "animate-pulse",
         isClicked && "scale-95",
-        glitchEffect && isHovered && glitchPhase % 5 === 0 && "transform skew-x-1",
+        glitchEffect &&
+          isHovered &&
+          glitchPhase % 5 === 0 &&
+          "transform skew-x-1",
         "transform-gpu",
         className,
       )}
@@ -432,7 +477,10 @@ export const CyberpunkCard = ({
             : theme === "custom" && customColors
               ? customColors.accent
               : undefined,
-        filter: hologramFlicker && isHovered ? `hue-rotate(${colorPhase * 3.6}deg)` : undefined,
+        filter:
+          hologramFlicker && isHovered
+            ? `hue-rotate(${colorPhase * 3.6}deg)`
+            : undefined,
       }}
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
@@ -452,7 +500,10 @@ export const CyberpunkCard = ({
               left: `${particle.x}%`,
               top: `${particle.y}%`,
               opacity: particle.opacity,
-              backgroundColor: theme === "custom" && customColors ? customColors.accent : "currentColor",
+              backgroundColor:
+                theme === "custom" && customColors
+                  ? customColors.accent
+                  : "currentColor",
             }}
           />
         ))}
@@ -466,7 +517,9 @@ export const CyberpunkCard = ({
             top: mousePosition.y - 64,
             opacity: 0.6,
             background: `radial-gradient(circle, ${
-              theme === "custom" && customColors ? customColors.accent : currentTheme.accent.replace("bg-", "")
+              theme === "custom" && customColors
+                ? customColors.accent
+                : currentTheme.accent.replace("bg-", "")
             } 0%, transparent 70%)`,
           }}
         />
@@ -475,7 +528,12 @@ export const CyberpunkCard = ({
       {dataStream && (
         <div
           className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-current to-transparent animate-pulse"
-          style={{ color: theme === "custom" && customColors ? customColors.accent : "currentColor" }}
+          style={{
+            color:
+              theme === "custom" && customColors
+                ? customColors.accent
+                : "currentColor",
+          }}
         />
       )}
 
@@ -487,7 +545,10 @@ export const CyberpunkCard = ({
                 key={i}
                 className="w-2 h-2 rounded-full animate-bounce"
                 style={{
-                  backgroundColor: theme === "custom" && customColors ? customColors.accent : "currentColor",
+                  backgroundColor:
+                    theme === "custom" && customColors
+                      ? customColors.accent
+                      : "currentColor",
                   animationDelay: `${i * 0.1}s`,
                 }}
               />
@@ -500,7 +561,10 @@ export const CyberpunkCard = ({
       <div
         className={cn(
           "relative z-10 transition-all duration-300",
-          glitchEffect && isHovered && glitchPhase % 7 === 0 && "transform translate-x-1",
+          glitchEffect &&
+            isHovered &&
+            glitchPhase % 7 === 0 &&
+            "transform translate-x-1",
         )}
       >
         {children}
@@ -513,23 +577,36 @@ export const CyberpunkCard = ({
           isHovered && "scale-110 opacity-90",
         )}
         style={{
-          backgroundColor: theme === "custom" && customColors ? customColors.accent : undefined,
+          backgroundColor:
+            theme === "custom" && customColors
+              ? customColors.accent
+              : undefined,
         }}
       />
 
       <div
         className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 opacity-50"
-        style={{ borderColor: theme === "custom" && customColors ? customColors.accent : "currentColor" }}
+        style={{
+          borderColor:
+            theme === "custom" && customColors
+              ? customColors.accent
+              : "currentColor",
+        }}
       />
 
       <div
         className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 opacity-50"
-        style={{ borderColor: theme === "custom" && customColors ? customColors.accent : "currentColor" }}
+        style={{
+          borderColor:
+            theme === "custom" && customColors
+              ? customColors.accent
+              : "currentColor",
+        }}
       />
 
       {isHovered && (
         <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
       )}
     </div>
-  )
-}
+  );
+};

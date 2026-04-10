@@ -39,7 +39,7 @@ const getScrollbarStyles = (theme: string) => {
     scrollbarColors.dark;
   const hoverColor = color.replace(
     /[\d.]+\)$/,
-    (match) => String(Math.min(Number.parseFloat(match) + 0.2, 1)) + ")"
+    (match) => String(Math.min(Number.parseFloat(match) + 0.2, 1)) + ")",
   );
 
   return `
@@ -123,7 +123,7 @@ const getPrismThemeStyles = (theme: string) => {
 
   switch (theme) {
     case "nightowl":
-  return `
+      return `
     ${baseStyles}
     .token.comment,
     .token.prolog,
@@ -332,7 +332,7 @@ export function AnimatedCodeBlock({
       const highlighted = Prism.highlight(
         code,
         Prism.languages[language] || Prism.languages.javascript,
-        language
+        language,
       );
       setHighlightedCode(highlighted);
     } catch (error) {
@@ -371,16 +371,16 @@ export function AnimatedCodeBlock({
         };
       case "terminal":
         return {
-          background: "bg-[#0d1117]", 
-          text: "text-[#00ff88]", 
+          background: "bg-[#0d1117]",
+          text: "text-[#00ff88]",
           lineNumbers: "text-[#009966]",
-          highlight: "bg-[#003b2f]/60", 
+          highlight: "bg-[#003b2f]/60",
           border: "border-[#1f2a30]",
-          header: "bg-[#161b22]", 
+          header: "bg-[#161b22]",
           accent: "bg-[#00c46f]",
           accentText: "text-[#00ff88]",
           shadow: "shadow-md shadow-[#00ff88]/20",
-          scrollbarThumb: "rgba(0, 255, 136, 0.3)", 
+          scrollbarThumb: "rgba(0, 255, 136, 0.3)",
         };
 
       case "cyberpunk":
@@ -554,7 +554,7 @@ export function AnimatedCodeBlock({
   const cursorLineIndex = getCursorLineIndex();
   const progressPercentage = Math.min(
     100,
-    (currentPosition / code.length) * 100
+    (currentPosition / code.length) * 100,
   );
 
   return (
@@ -566,9 +566,9 @@ export function AnimatedCodeBlock({
         themeStyles.text,
         themeStyles.border,
         themeStyles.shadow,
-        "border transition-all duration-300", 
+        "border transition-all duration-300",
         isFullscreen ? "fixed inset-0 z-50 rounded-none h-screen" : "",
-        className
+        className,
       )}
     >
       <style
@@ -580,7 +580,7 @@ export function AnimatedCodeBlock({
       <div
         className={cn(
           "flex items-center justify-between p-3 border-b border-opacity-20",
-          themeStyles.header
+          themeStyles.header,
         )}
       >
         <div className="flex items-center gap-4 min-w-0 flex-1">
@@ -599,7 +599,7 @@ export function AnimatedCodeBlock({
                 onMouseEnter={() => setShowTooltip("restart")}
                 onMouseLeave={() => setShowTooltip("")}
                 className={cn(
-                  "p-1.5 rounded-full hover:bg-white/10 transition-colors relative"
+                  "p-1.5 rounded-full hover:bg-white/10 transition-colors relative",
                 )}
                 aria-label="Repeat animation"
               >
@@ -617,7 +617,7 @@ export function AnimatedCodeBlock({
                 onMouseLeave={() => setShowTooltip("")}
                 className={cn(
                   "p-1.5 rounded-full hover:bg-white/10 transition-colors relative",
-                  isPlaying ? themeStyles.accent : ""
+                  isPlaying ? themeStyles.accent : "",
                 )}
                 aria-label={isPlaying ? "Pause" : "Play"}
               >
@@ -635,7 +635,7 @@ export function AnimatedCodeBlock({
               onMouseLeave={() => setShowTooltip("")}
               className={cn(
                 "p-1.5 rounded-full hover:bg-white/10 transition-colors relative",
-                copied ? themeStyles.accent : ""
+                copied ? themeStyles.accent : "",
               )}
               aria-label="Copy code"
             >
@@ -687,7 +687,7 @@ export function AnimatedCodeBlock({
                 ? "bg-emerald-400"
                 : theme === "cyberpunk"
                   ? "bg-fuchsia-400"
-                  : "bg-blue-400"
+                  : "bg-blue-400",
             )}
           />
         )}
@@ -738,7 +738,7 @@ export function AnimatedCodeBlock({
                     "text-xs py-4 px-3 text-right select-none border-r border-opacity-20 sticky -left-1 h-full flex flex-col z-10",
                     themeStyles.lineNumbers,
                     themeStyles.border,
-                    themeStyles.background
+                    themeStyles.background,
                   )}
                 >
                   <div className="flex flex-col">
@@ -767,7 +767,7 @@ export function AnimatedCodeBlock({
                     key={`highlight-${lineNum}`}
                     className={cn(
                       "absolute left-0 right-0 h-6",
-                      themeStyles.highlight
+                      themeStyles.highlight,
                     )}
                     style={{ top: `${(lineNum - 1) * 24 + 16}px` }}
                   />
@@ -789,7 +789,7 @@ export function AnimatedCodeBlock({
                                   displayedLines[i],
                                   Prism.languages[language] ||
                                     Prism.languages.javascript,
-                                  language
+                                  language,
                                 ),
                               }}
                             />
@@ -798,7 +798,7 @@ export function AnimatedCodeBlock({
                             <motion.span
                               className={cn(
                                 "inline-block w-2 h-5 -mb-0.5",
-                                themeStyles.accentText
+                                themeStyles.accentText,
                               )}
                               animate={{ opacity: [1, 0] }}
                               transition={{
@@ -827,14 +827,14 @@ export function AnimatedCodeBlock({
         className={cn(
           "px-4 py-2 text-xs border-t border-opacity-20 flex justify-between items-center",
           themeStyles.header,
-          themeStyles.border
+          themeStyles.border,
         )}
       >
         <div className="flex items-center gap-2">
           <div
             className={cn(
               "w-2 h-2 rounded-full",
-              isPlaying ? "bg-green-500" : "bg-gray-500"
+              isPlaying ? "bg-green-500" : "bg-gray-500",
             )}
           ></div>
           <span>

@@ -11,9 +11,7 @@
     "lucide-react",
     "@radix-ui/react-icons"
   ],
-  "registryDependencies": [
-    "https://nyxui.com/r/glitch-button.json"
-  ],
+  "registryDependencies": ["https://nyxui.com/r/glitch-button.json"],
   "files": [
     {
       "path": "registry/example/glitch-button-demo.tsx",

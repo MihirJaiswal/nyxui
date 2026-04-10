@@ -13,9 +13,7 @@
     "@radix-ui/react-separator",
     "@radix-ui/react-dialog"
   ],
-  "registryDependencies": [
-    "https://nyxui.com/r/custom-cursor.json"
-  ],
+  "registryDependencies": ["https://nyxui.com/r/custom-cursor.json"],
   "files": [
     {
       "path": "registry/example/custom-cursor-demo.tsx",

@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { useState } from "react";
 import { ExternalLink } from "lucide-react";
 import { FaGithub, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
@@ -8,32 +8,34 @@ import LinkedInPhoneComponent from "./LinkedinPhone";
 import XPhoneComponent from "./XPhone";
 
 // Define the platform type
-type Platform = 'twitter' | 'linkedin' | 'github';
+type Platform = "twitter" | "linkedin" | "github";
 
 export default function SupportSection() {
   const [isSharing, setIsSharing] = useState(false);
 
   const handleShare = (platform: Platform) => {
     setIsSharing(true);
-    
+
     const url = window.location.origin;
-    
+
     // Pre-written posts for each platform
     const posts: Record<Platform, string> = {
-      twitter: "🚀 Say hello to Nyx UI - a sleek collection of modern components!! \n\n✨ Modern Components\n🔧 Playground for Customization\n📱 Fully Responsive \n\nif you value both speed and design when creating web apps, this is something for you.",
-      
-      linkedin: "🚀 Just came across Nyx UI, - a sleek collection of modern components! 🚀 \n\nIt’s a React component library that makes building modern web interfaces so much faster. The components are clean, responsive, and easy to customize\n\nNyx UI brings:\n⚡ A growing collection of pre-built components\n📱 Beautiful, responsive designs\n🔧 Easy customization of components using its playground\n\nDevelopers, if you value both speed and design when creating web apps, this is something you’ll want to explore.\n\n#WebDevelopment #React #UI #Frontend #WebDesign #nyxui",
-      
-      github: "Check out this amazing UI component library!"
-    };
-    
-    const shareUrls: Record<Platform, string> = {
-      twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(posts.twitter)}&url=${encodeURIComponent(url)}&hashtags=design,frontend,webdev`,
-      linkedin: `https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(posts.linkedin + '\n\n' + url)}`,
-      github: 'https://github.com/MihirJaiswal/nyxui'
+      twitter:
+        "🚀 Say hello to Nyx UI - a sleek collection of modern components!! \n\n✨ Modern Components\n🔧 Playground for Customization\n📱 Fully Responsive \n\nif you value both speed and design when creating web apps, this is something for you.",
+
+      linkedin:
+        "🚀 Just came across Nyx UI, - a sleek collection of modern components! 🚀 \n\nIt’s a React component library that makes building modern web interfaces so much faster. The components are clean, responsive, and easy to customize\n\nNyx UI brings:\n⚡ A growing collection of pre-built components\n📱 Beautiful, responsive designs\n🔧 Easy customization of components using its playground\n\nDevelopers, if you value both speed and design when creating web apps, this is something you’ll want to explore.\n\n#WebDevelopment #React #UI #Frontend #WebDesign #nyxui",
+
+      github: "Check out this amazing UI component library!",
     };
 
-    window.open(shareUrls[platform], '_blank', 'noopener,noreferrer');
+    const shareUrls: Record<Platform, string> = {
+      twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(posts.twitter)}&url=${encodeURIComponent(url)}&hashtags=design,frontend,webdev`,
+      linkedin: `https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(posts.linkedin + "\n\n" + url)}`,
+      github: "https://github.com/MihirJaiswal/nyxui",
+    };
+
+    window.open(shareUrls[platform], "_blank", "noopener,noreferrer");
     setTimeout(() => {
       setIsSharing(false);
     }, 1000);
@@ -42,7 +44,6 @@ export default function SupportSection() {
   return (
     <div className="w-full py-20 overflow-hidden px-6 xl:px-22 xl:container mx-auto">
       <div className="relative flex flex-col justify-start z-10 px-4 sm:px-6 md:px-8 lg:px-8 py-2 dark:bg-neutral-950/80 dark:text-white bg-white border border-neutral-200/60 dark:border-neutral-800/60 backdrop-blur-sm">
-        
         {/* Enhanced corner decorations with glow */}
         <div className="absolute -top-0.5 left-0 w-4 z-12 h-0.5 border-t border-neutral-600 dark:border-neutral-400 bg-neutral-600 dark:bg-neutral-400"></div>
         <div className="absolute -top-0.5 -left-0.5 w-0.5 z-12 h-4 border-l border-neutral-600 dark:border-neutral-400 bg-neutral-600 dark:bg-neutral-400"></div>
@@ -55,20 +56,16 @@ export default function SupportSection() {
         <div className="absolute -bottom-0.5 -right-0.5 w-0.5 z-12 h-4 border-r border-neutral-600 dark:border-neutral-400 bg-neutral-600 dark:bg-neutral-400"></div>
 
         {/* LinkedIn Phone - Enhanced */}
-        <motion.div
-          className="absolute bottom-0 left-1/2 -translate-x-4 xl:translate-x-4 hidden lg:block"
-        >
+        <motion.div className="absolute bottom-0 left-1/2 -translate-x-4 xl:translate-x-4 hidden lg:block">
           <div style={{ perspective: 1000 }}>
-            <LinkedInPhoneComponent/>
+            <LinkedInPhoneComponent />
           </div>
         </motion.div>
 
         {/* X Phone - Enhanced */}
-        <motion.div
-          className="absolute bottom-0 right-5 xl:right-15 hidden lg:block"
-        >
+        <motion.div className="absolute bottom-0 right-5 xl:right-15 hidden lg:block">
           <div style={{ perspective: 1200 }}>
-            <XPhoneComponent/>
+            <XPhoneComponent />
           </div>
         </motion.div>
 
@@ -95,8 +92,8 @@ export default function SupportSection() {
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
-              <button 
-                onClick={() => handleShare('linkedin')}
+              <button
+                onClick={() => handleShare("linkedin")}
                 disabled={isSharing}
                 className="flex items-center gap-3 hover:bg-blue-300 dark:hover:bg-blue-700 px-4 py-3 w-full cursor-pointer transition-colors duration-200 border-none bg-transparent"
               >
@@ -108,9 +105,7 @@ export default function SupportSection() {
                   />
                 </div>
                 <div className="flex-1 flex items-center justify-between">
-                  <span className="text-sm font-medium">
-                    Share on LinkedIn
-                  </span>
+                  <span className="text-sm font-medium">Share on LinkedIn</span>
                   <ExternalLink className="h-4 w-4 opacity-80" />
                 </div>
               </button>
@@ -122,8 +117,8 @@ export default function SupportSection() {
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
-              <button 
-                onClick={() => handleShare('twitter')}
+              <button
+                onClick={() => handleShare("twitter")}
                 disabled={isSharing}
                 className="flex items-center gap-3 hover:bg-zinc-300 dark:hover:bg-zinc-700 px-4 py-3 w-full cursor-pointer transition-colors duration-200 border-none"
               >
@@ -135,9 +130,7 @@ export default function SupportSection() {
                   />
                 </div>
                 <div className="flex-1 flex items-center justify-between">
-                  <span className="text-sm font-medium">
-                    Share on X
-                  </span>
+                  <span className="text-sm font-medium">Share on X</span>
                   <ExternalLink className="h-4 w-4 opacity-80" />
                 </div>
               </button>
@@ -148,8 +141,8 @@ export default function SupportSection() {
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
-              <button 
-                onClick={() => handleShare('github')}
+              <button
+                onClick={() => handleShare("github")}
                 disabled={isSharing}
                 className="flex items-center gap-3 hover:bg-gray-300 dark:hover:bg-gray-800 px-4 py-3 w-full cursor-pointer transition-colors duration-200 border-none"
               >
@@ -161,9 +154,7 @@ export default function SupportSection() {
                   />
                 </div>
                 <div className="flex-1 flex items-center justify-between">
-                  <span className="text-sm font-medium">
-                    Star on Github
-                  </span>
+                  <span className="text-sm font-medium">Star on Github</span>
                   <ExternalLink className="h-4 w-4 opacity-80" />
                 </div>
               </button>

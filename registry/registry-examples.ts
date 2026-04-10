@@ -426,9 +426,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Scroll Animation Trigger Demo",
     description: "Example showing a scroll animation trigger.",
-    registryDependencies: [
-      "https://nyxui.com/r/scroll-animation-trigger.json",
-    ],
+    registryDependencies: ["https://nyxui.com/r/scroll-animation-trigger.json"],
     files: [
       {
         path: "registry/example/scroll-animation-trigger-demo.tsx",
@@ -442,9 +440,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Scroll Animation Trigger Demo 1",
     description: "Example showing a scroll animation trigger.",
-    registryDependencies: [
-      "https://nyxui.com/r/scroll-animation-trigger.json",
-    ],
+    registryDependencies: ["https://nyxui.com/r/scroll-animation-trigger.json"],
     files: [
       {
         path: "registry/example/scroll-animation-trigger-demo1.tsx",
@@ -458,9 +454,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Scroll Animation Trigger Demo 2",
     description: "Example showing a scroll animation trigger.",
-    registryDependencies: [
-      "https://nyxui.com/r/scroll-animation-trigger.json",
-    ],
+    registryDependencies: ["https://nyxui.com/r/scroll-animation-trigger.json"],
     files: [
       {
         path: "registry/example/scroll-animation-trigger-demo2.tsx",
@@ -509,7 +503,7 @@ export const examples: Registry["items"] = [
         type: "registry:example",
         target: "components/water-ripple-effect-demo.tsx",
       },
-    ]
+    ],
   },
   {
     name: "custom-cursor-demo",
@@ -523,7 +517,7 @@ export const examples: Registry["items"] = [
         type: "registry:example",
         target: "components/custom-cursor-demo.tsx",
       },
-    ]
+    ],
   },
   {
     name: "apple-glass-effect-demo",
@@ -537,7 +531,7 @@ export const examples: Registry["items"] = [
         type: "registry:example",
         target: "components/apple-glass-effect-demo.tsx",
       },
-    ]
+    ],
   },
   {
     name: "3d-layered-card-demo",
@@ -550,7 +544,7 @@ export const examples: Registry["items"] = [
         path: "registry/example/3d-layered-card-demo.tsx",
         type: "registry:example",
         target: "components/3d-layered-card-demo.tsx",
-    }
-    ]
-  }
+      },
+    ],
+  },
 ];

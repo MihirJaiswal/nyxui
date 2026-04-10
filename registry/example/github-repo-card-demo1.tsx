@@ -6,11 +6,12 @@ export default function GithubRepoCardDemo1() {
     <div className="max-w-md relative">
       <GitHubRepoCard
         theme="neo-brutalist"
-          repo={{
-          owner: "microsoft", 
+        repo={{
+          owner: "microsoft",
           ownerAvatar: "https://avatars.githubusercontent.com/u/6154722?v=4",
           name: "vscode",
-          description:"Visual Studio Code is a code editor redefined and optimized for building and debugging modern web and cloud applications.",
+          description:
+            "Visual Studio Code is a code editor redefined and optimized for building and debugging modern web and cloud applications.",
           stars: 145000,
           forks: 25600,
           watchers: 3100,

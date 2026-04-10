@@ -5,7 +5,9 @@ interface ComponentGridProps {
   type?: "components" | "blocks" | "templates";
 }
 
-export default function ComponentGrid({ type = "components" }: ComponentGridProps) {
+export default function ComponentGrid({
+  type = "components",
+}: ComponentGridProps) {
   const getData = () => {
     switch (type) {
       case "blocks":
@@ -18,8 +20,8 @@ export default function ComponentGrid({ type = "components" }: ComponentGridProp
   };
 
   const data = getData();
-  const sortedItems = Object.entries(data).sort(
-    ([, a], [, b]) => a.title.localeCompare(b.title)
+  const sortedItems = Object.entries(data).sort(([, a], [, b]) =>
+    a.title.localeCompare(b.title),
   );
 
   return (

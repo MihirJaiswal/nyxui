@@ -1,30 +1,30 @@
-"use client"
-import type React from "react"
-import { useRef, useEffect, useState, useCallback, useMemo } from "react"
-import { cn } from "@/lib/utils"
+"use client";
+import type React from "react";
+import { useRef, useEffect, useState, useCallback, useMemo } from "react";
+import { cn } from "@/lib/utils";
 
 interface Particle {
-  id: number
-  x: number
-  y: number
-  vx: number
-  vy: number
-  size: number
-  life: number
-  color: string
+  id: number;
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  size: number;
+  life: number;
+  color: string;
 }
 
 interface GlowCardProps {
-  children: React.ReactNode
-  className?: string
-  variant?: "liquid" | "laser" | "cosmic" | "glitch"
-  intensity?: number
-  liquidColor?: string
-  laserColor?: string
-  glitchColor1?: string
-  glitchColor2?: string
-  disabled?: boolean
-  allowCustomBackground?: boolean
+  children: React.ReactNode;
+  className?: string;
+  variant?: "liquid" | "laser" | "cosmic" | "glitch";
+  intensity?: number;
+  liquidColor?: string;
+  laserColor?: string;
+  glitchColor1?: string;
+  glitchColor2?: string;
+  disabled?: boolean;
+  allowCustomBackground?: boolean;
 }
 
 export function GlowCard({
@@ -39,85 +39,102 @@ export function GlowCard({
   disabled = false,
   allowCustomBackground = false,
 }: GlowCardProps) {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const animationRef = useRef<number>(0)
-  const waveTimeRef = useRef<number>(0)
-  const frameCountRef = useRef<number>(0)
-  const lastMouseMoveRef = useRef<number>(0)
-  const [isHovered, setIsHovered] = useState(false)
-  const [mousePos, setMousePos] = useState({ x: 50, y: 50 })
-  const [particles, setParticles] = useState<Particle[]>([])
-  const [ripples, setRipples] = useState<Array<{ id: number; x: number; y: number; time: number }>>([])
-  const [glitchOffset, setGlitchOffset] = useState({ x: 0, y: 0 })
+  const containerRef = useRef<HTMLDivElement>(null);
+  const animationRef = useRef<number>(0);
+  const waveTimeRef = useRef<number>(0);
+  const frameCountRef = useRef<number>(0);
+  const lastMouseMoveRef = useRef<number>(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
+  const [particles, setParticles] = useState<Particle[]>([]);
+  const [ripples, setRipples] = useState<
+    Array<{ id: number; x: number; y: number; time: number }>
+  >([]);
+  const [glitchOffset, setGlitchOffset] = useState({ x: 0, y: 0 });
   const colorData = useMemo(() => {
     const hexToRgb = (hex: string) => {
-      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
+      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
       return result
         ? {
             r: Number.parseInt(result[1], 16),
             g: Number.parseInt(result[2], 16),
             b: Number.parseInt(result[3], 16),
           }
-        : { r: 59, g: 130, b: 246 }
-    }
+        : { r: 59, g: 130, b: 246 };
+    };
 
     return {
       rgb: hexToRgb(liquidColor),
       laserRgb: hexToRgb(laserColor),
       glitch1Rgb: hexToRgb(glitchColor1),
       glitch2Rgb: hexToRgb(glitchColor2),
-    }
-  }, [liquidColor, laserColor, glitchColor1, glitchColor2])
+    };
+  }, [liquidColor, laserColor, glitchColor1, glitchColor2]);
 
   // Generate cosmic particles
-  const generateCosmicParticles = useCallback((centerX: number, centerY: number) => {
-    const newParticles: Particle[] = []
-    for (let i = 0; i < 10; i++) {
-      const angle = Math.random() * Math.PI * 2
-      const distance = Math.random() * 40
-      const particleType = Math.random()
-      const [color, size, speed] =
-        particleType < 0.3
-          ? [`hsl(${Math.random() * 60 + 40}, 80%, 90%)`, Math.random() * 1.5 + 0.5, 0.3]
-          : particleType < 0.6
-            ? [`hsl(${Math.random() * 120 + 240}, 70%, 60%)`, Math.random() * 4 + 2, 0.8]
-            : [`hsl(${Math.random() * 30 + 300}, 60%, 70%)`, Math.random() * 2 + 1, 0.5]
+  const generateCosmicParticles = useCallback(
+    (centerX: number, centerY: number) => {
+      const newParticles: Particle[] = [];
+      for (let i = 0; i < 10; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const distance = Math.random() * 40;
+        const particleType = Math.random();
+        const [color, size, speed] =
+          particleType < 0.3
+            ? [
+                `hsl(${Math.random() * 60 + 40}, 80%, 90%)`,
+                Math.random() * 1.5 + 0.5,
+                0.3,
+              ]
+            : particleType < 0.6
+              ? [
+                  `hsl(${Math.random() * 120 + 240}, 70%, 60%)`,
+                  Math.random() * 4 + 2,
+                  0.8,
+                ]
+              : [
+                  `hsl(${Math.random() * 30 + 300}, 60%, 70%)`,
+                  Math.random() * 2 + 1,
+                  0.5,
+                ];
 
-      newParticles.push({
-        id: Math.random(),
-        x: centerX + Math.cos(angle) * distance,
-        y: centerY + Math.sin(angle) * distance,
-        vx: (Math.random() - 0.5) * speed,
-        vy: (Math.random() - 0.5) * speed,
-        size,
-        life: 1,
-        color,
-      })
-    }
-    setParticles((prev) => [...prev.slice(-25), ...newParticles])
-  }, [])
+        newParticles.push({
+          id: Math.random(),
+          x: centerX + Math.cos(angle) * distance,
+          y: centerY + Math.sin(angle) * distance,
+          vx: (Math.random() - 0.5) * speed,
+          vy: (Math.random() - 0.5) * speed,
+          size,
+          life: 1,
+          color,
+        });
+      }
+      setParticles((prev) => [...prev.slice(-25), ...newParticles]);
+    },
+    [],
+  );
 
   // Optimized animation loop
   const animate = useCallback(() => {
-    if (!isHovered) return
+    if (!isHovered) return;
 
-    const now = Date.now()
+    const now = Date.now();
     if (now - lastMouseMoveRef.current < 16) {
-      animationRef.current = requestAnimationFrame(animate)
-      return
+      animationRef.current = requestAnimationFrame(animate);
+      return;
     }
 
-    waveTimeRef.current += 0.5
-    frameCountRef.current += 1
-    const currentFrame = frameCountRef.current
+    waveTimeRef.current += 0.5;
+    frameCountRef.current += 1;
+    const currentFrame = frameCountRef.current;
 
     if (variant === "cosmic" && currentFrame % 6 === 0) {
-      generateCosmicParticles(mousePos.x, mousePos.y)
+      generateCosmicParticles(mousePos.x, mousePos.y);
     } else if (variant === "glitch" && currentFrame % 8 === 0) {
       setGlitchOffset({
         x: (Math.random() - 0.5) * 3,
         y: (Math.random() - 0.5) * 3,
-      })
+      });
     }
 
     // Update particles
@@ -134,66 +151,73 @@ export function GlowCard({
           }))
           .filter((p) => p.life > 0)
           .slice(-35),
-      )
+      );
     }
 
-    animationRef.current = requestAnimationFrame(animate)
-  }, [isHovered, mousePos, variant, generateCosmicParticles])
+    animationRef.current = requestAnimationFrame(animate);
+  }, [isHovered, mousePos, variant, generateCosmicParticles]);
 
   const handleMouseMove = useCallback((e: MouseEvent) => {
-    const now = Date.now()
-    if (now - lastMouseMoveRef.current < 16) return
-    lastMouseMoveRef.current = now
+    const now = Date.now();
+    if (now - lastMouseMoveRef.current < 16) return;
+    lastMouseMoveRef.current = now;
 
-    if (!containerRef.current) return
-    const rect = containerRef.current.getBoundingClientRect()
-    const x = ((e.clientX - rect.left) / rect.width) * 100
-    const y = ((e.clientY - rect.top) / rect.height) * 100
-    setMousePos({ x, y })
-  }, [])
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    setMousePos({ x, y });
+  }, []);
 
   const handleMouseEnter = useCallback(() => {
-    setIsHovered(true)
+    setIsHovered(true);
     if (variant === "cosmic") {
-      generateCosmicParticles(mousePos.x, mousePos.y)
+      generateCosmicParticles(mousePos.x, mousePos.y);
     }
-  }, [variant, generateCosmicParticles, mousePos.x, mousePos.y])
+  }, [variant, generateCosmicParticles, mousePos.x, mousePos.y]);
 
   const handleMouseLeave = useCallback(() => {
-    setIsHovered(false)
-    setMousePos({ x: 50, y: 50 })
-    waveTimeRef.current = 0
-    frameCountRef.current = 0
-    setParticles([])
-    setGlitchOffset({ x: 0, y: 0 })
-    if (animationRef.current) cancelAnimationFrame(animationRef.current)
-  }, [])
+    setIsHovered(false);
+    setMousePos({ x: 50, y: 50 });
+    waveTimeRef.current = 0;
+    frameCountRef.current = 0;
+    setParticles([]);
+    setGlitchOffset({ x: 0, y: 0 });
+    if (animationRef.current) cancelAnimationFrame(animationRef.current);
+  }, []);
 
   const createRipple = useCallback(
     (e: MouseEvent) => {
-      if (!containerRef.current || variant !== "liquid") return
-      const rect = containerRef.current.getBoundingClientRect()
-      const x = ((e.clientX - rect.left) / rect.width) * 100
-      const y = ((e.clientY - rect.top) / rect.height) * 100
-      setRipples((prev) => [...prev.slice(-2), { id: Date.now(), x, y, time: Date.now() }])
+      if (!containerRef.current || variant !== "liquid") return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      setRipples((prev) => [
+        ...prev.slice(-2),
+        { id: Date.now(), x, y, time: Date.now() },
+      ]);
     },
     [variant],
-  )
+  );
 
   const backgroundGradient = useMemo(() => {
-    if (allowCustomBackground) return undefined
+    if (allowCustomBackground) return undefined;
 
     const gradients = {
-      laser: "linear-gradient(135deg, rgba(40,10,10,0.9) 0%, rgba(30,5,5,0.95) 50%, rgba(20,0,0,0.9) 100%)",
-      cosmic: "linear-gradient(135deg, rgba(10,5,30,0.95) 0%, rgba(20,10,50,0.98) 50%, rgba(5,0,25,0.95) 100%)",
-      glitch: "linear-gradient(135deg, rgba(40,0,40,0.9) 0%, rgba(60,0,20,0.95) 50%, rgba(20,0,60,0.9) 100%)",
-      liquid: "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, rgba(0,0,0,0.1) 100%)",
-    }
-    return gradients[variant]
-  }, [variant, allowCustomBackground])
+      laser:
+        "linear-gradient(135deg, rgba(40,10,10,0.9) 0%, rgba(30,5,5,0.95) 50%, rgba(20,0,0,0.9) 100%)",
+      cosmic:
+        "linear-gradient(135deg, rgba(10,5,30,0.95) 0%, rgba(20,10,50,0.98) 50%, rgba(5,0,25,0.95) 100%)",
+      glitch:
+        "linear-gradient(135deg, rgba(40,0,40,0.9) 0%, rgba(60,0,20,0.95) 50%, rgba(20,0,60,0.9) 100%)",
+      liquid:
+        "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, rgba(0,0,0,0.1) 100%)",
+    };
+    return gradients[variant];
+  }, [variant, allowCustomBackground]);
 
   const getBorderGradient = () => {
-    const { rgb, laserRgb, glitch1Rgb, glitch2Rgb } = colorData
+    const { rgb, laserRgb, glitch1Rgb, glitch2Rgb } = colorData;
 
     return variant === "laser"
       ? `conic-gradient(from ${waveTimeRef.current * 3}deg at ${mousePos.x}% ${mousePos.y}%, rgba(${laserRgb.r}, ${laserRgb.g}, ${laserRgb.b}, 1) 0deg, rgba(${laserRgb.r + 100}, ${laserRgb.g}, ${laserRgb.b}, 0.8) 60deg, rgba(255, 255, 0, 0.6) 120deg, rgba(0, 255, 100, 0.8) 180deg, rgba(0, 100, 255, 1) 240deg, rgba(100, 0, 255, 0.8) 300deg, rgba(${laserRgb.r}, ${laserRgb.g}, ${laserRgb.b}, 1) 360deg)`
@@ -201,12 +225,12 @@ export function GlowCard({
         ? `conic-gradient(from ${waveTimeRef.current}deg at ${mousePos.x}% ${mousePos.y}%, rgba(255, 20, 147, 0.8) 0deg, rgba(138, 43, 226, 0.6) 120deg, rgba(75, 0, 130, 0.8) 240deg, rgba(255, 20, 147, 0.8) 360deg)`
         : variant === "glitch"
           ? `conic-gradient(from ${waveTimeRef.current * 4}deg at ${mousePos.x}% ${mousePos.y}%, rgba(${glitch1Rgb.r}, ${glitch1Rgb.g}, ${glitch1Rgb.b}, 0.8) 0deg, rgba(${glitch2Rgb.r}, ${glitch2Rgb.g}, ${glitch2Rgb.b}, 0.6) 180deg, rgba(${glitch1Rgb.r}, ${glitch1Rgb.g}, ${glitch1Rgb.b}, 0.8) 360deg)`
-          : `conic-gradient(from ${mousePos.x * 3.6}deg at ${mousePos.x}% ${mousePos.y}%, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.8) 0deg, rgba(${rgb.r + 50}, ${rgb.g + 30}, ${rgb.b + 60}, 0.6) 90deg, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.4) 180deg, rgba(${rgb.r - 30}, ${rgb.g - 20}, ${rgb.b + 40}, 0.6) 270deg, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.8) 360deg)`
-  }
+          : `conic-gradient(from ${mousePos.x * 3.6}deg at ${mousePos.x}% ${mousePos.y}%, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.8) 0deg, rgba(${rgb.r + 50}, ${rgb.g + 30}, ${rgb.b + 60}, 0.6) 90deg, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.4) 180deg, rgba(${rgb.r - 30}, ${rgb.g - 20}, ${rgb.b + 40}, 0.6) 270deg, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.8) 360deg)`;
+  };
 
   // Render effects
   const renderEffects = () => {
-    const { rgb, laserRgb, glitch1Rgb, glitch2Rgb } = colorData
+    const { rgb, laserRgb, glitch1Rgb, glitch2Rgb } = colorData;
 
     switch (variant) {
       case "laser":
@@ -274,11 +298,15 @@ export function GlowCard({
                 >
                   <div
                     className="absolute inset-2 border rounded-full"
-                    style={{ borderColor: `rgba(${laserRgb.r}, ${laserRgb.g}, ${laserRgb.b}, 0.4)` }}
+                    style={{
+                      borderColor: `rgba(${laserRgb.r}, ${laserRgb.g}, ${laserRgb.b}, 0.4)`,
+                    }}
                   >
                     <div
                       className="absolute inset-2 border rounded-full"
-                      style={{ borderColor: `rgba(${laserRgb.r}, ${laserRgb.g}, ${laserRgb.b}, 0.2)` }}
+                      style={{
+                        borderColor: `rgba(${laserRgb.r}, ${laserRgb.g}, ${laserRgb.b}, 0.2)`,
+                      }}
                     />
                   </div>
                 </div>
@@ -294,7 +322,7 @@ export function GlowCard({
               }}
             />
           </>
-        )
+        );
 
       case "cosmic":
         return (
@@ -323,7 +351,10 @@ export function GlowCard({
                       opacity: particle.life,
                       filter: `blur(${particle.size > 3 ? 2 : 0.5}px)`,
                       boxShadow: `0 0 ${particle.size * 4}px ${particle.color}`,
-                      animation: particle.size < 1 ? "twinkle 2s ease-in-out infinite" : undefined,
+                      animation:
+                        particle.size < 1
+                          ? "twinkle 2s ease-in-out infinite"
+                          : undefined,
                     }}
                   />
                 ))}
@@ -339,7 +370,7 @@ export function GlowCard({
               }}
             />
           </>
-        )
+        );
 
       case "glitch":
         return isHovered ? (
@@ -377,7 +408,7 @@ export function GlowCard({
               }}
             />
           </>
-        ) : null
+        ) : null;
 
       case "liquid":
         return (
@@ -399,10 +430,10 @@ export function GlowCard({
               }}
             />
             {ripples.map((ripple) => {
-              const age = Date.now() - ripple.time
-              const progress = Math.min(age / 1000, 1)
-              const scale = 1 + progress * 3
-              const opacity = 1 - progress
+              const age = Date.now() - ripple.time;
+              const progress = Math.min(age / 1000, 1);
+              const scale = 1 + progress * 3;
+              const opacity = 1 - progress;
               return (
                 <div
                   key={ripple.id}
@@ -417,62 +448,78 @@ export function GlowCard({
                     filter: "blur(2px)",
                   }}
                 />
-              )
+              );
             })}
           </>
-        )
+        );
 
       default:
-        return null
+        return null;
     }
-  }
+  };
   const containerStyles = useMemo(
     () => ({
       background: backgroundGradient,
       transformStyle: "preserve-3d" as React.CSSProperties["transformStyle"],
       perspective: "1000px",
-      filter: variant === "glitch" && isHovered ? `hue-rotate(${waveTimeRef.current * 2}deg) saturate(1.5)` : undefined,
+      filter:
+        variant === "glitch" && isHovered
+          ? `hue-rotate(${waveTimeRef.current * 2}deg) saturate(1.5)`
+          : undefined,
     }),
     [backgroundGradient, isHovered, mousePos.x, mousePos.y, variant],
-  )
+  );
 
   useEffect(() => {
-    const container = containerRef.current
-    if (!container || disabled) return
+    const container = containerRef.current;
+    if (!container || disabled) return;
 
-    container.addEventListener("mousemove", handleMouseMove, { passive: true })
-    container.addEventListener("mouseenter", handleMouseEnter, { passive: true })
-    container.addEventListener("mouseleave", handleMouseLeave, { passive: true })
+    container.addEventListener("mousemove", handleMouseMove, { passive: true });
+    container.addEventListener("mouseenter", handleMouseEnter, {
+      passive: true,
+    });
+    container.addEventListener("mouseleave", handleMouseLeave, {
+      passive: true,
+    });
 
     if (variant === "liquid") {
-      container.addEventListener("click", createRipple, { passive: true })
+      container.addEventListener("click", createRipple, { passive: true });
     }
 
     return () => {
-      container.removeEventListener("mousemove", handleMouseMove)
-      container.removeEventListener("mouseenter", handleMouseEnter)
-      container.removeEventListener("mouseleave", handleMouseLeave)
-      container.removeEventListener("click", createRipple)
-      if (animationRef.current) cancelAnimationFrame(animationRef.current)
-    }
-  }, [handleMouseMove, handleMouseEnter, handleMouseLeave, createRipple, variant, disabled])
+      container.removeEventListener("mousemove", handleMouseMove);
+      container.removeEventListener("mouseenter", handleMouseEnter);
+      container.removeEventListener("mouseleave", handleMouseLeave);
+      container.removeEventListener("click", createRipple);
+      if (animationRef.current) cancelAnimationFrame(animationRef.current);
+    };
+  }, [
+    handleMouseMove,
+    handleMouseEnter,
+    handleMouseLeave,
+    createRipple,
+    variant,
+    disabled,
+  ]);
 
   // Animation effect
   useEffect(() => {
-    if (isHovered) animate()
+    if (isHovered) animate();
     return () => {
-      if (animationRef.current) cancelAnimationFrame(animationRef.current)
-    }
-  }, [animate, isHovered])
+      if (animationRef.current) cancelAnimationFrame(animationRef.current);
+    };
+  }, [animate, isHovered]);
 
   // cleanup
   useEffect(() => {
-    if (variant !== "liquid") return
+    if (variant !== "liquid") return;
     const interval = setInterval(() => {
-      setRipples((prev) => prev.filter((ripple) => Date.now() - ripple.time < 1000))
-    }, 100)
-    return () => clearInterval(interval)
-  }, [variant])
+      setRipples((prev) =>
+        prev.filter((ripple) => Date.now() - ripple.time < 1000),
+      );
+    }, 100);
+    return () => clearInterval(interval);
+  }, [variant]);
 
   return (
     <div
@@ -501,7 +548,8 @@ export function GlowCard({
           padding: "2px",
           mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
           maskComposite: "xor",
-          WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+          WebkitMask:
+            "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
           WebkitMaskComposite: "xor",
           opacity: isHovered ? 1 : 0,
           filter: `blur(${isHovered ? 0 : 2}px)`,
@@ -554,11 +602,9 @@ export function GlowCard({
         />
       )}
 
-      <div
-        className="relative z-30 transition-transform duration-200"
-      >
+      <div className="relative z-30 transition-transform duration-200">
         {children}
       </div>
     </div>
-  )
+  );
 }

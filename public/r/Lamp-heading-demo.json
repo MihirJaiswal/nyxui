@@ -10,9 +10,7 @@
     "..",
     "lucide-react"
   ],
-  "registryDependencies": [
-    "https://nyxui.com/r/lamp-heading.json"
-  ],
+  "registryDependencies": ["https://nyxui.com/r/lamp-heading.json"],
   "files": [
     {
       "path": "registry/example/lamp-heading-demo.tsx",

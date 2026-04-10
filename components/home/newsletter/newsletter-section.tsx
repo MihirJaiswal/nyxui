@@ -66,7 +66,7 @@ export function NewsletterSection() {
   };
 
   const validateEmail = (
-    email: string
+    email: string,
   ): { isValid: boolean; errors: string[] } => {
     try {
       emailSchema.parse(email);

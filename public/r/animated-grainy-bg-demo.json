@@ -4,12 +4,8 @@
   "type": "registry:example",
   "title": "Animated Grainy Background Demo",
   "description": "Example showing an animated grainy background.",
-  "dependencies": [
-    ".."
-  ],
-  "registryDependencies": [
-    "https://nyxui.com/r/animated-grainy-bg"
-  ],
+  "dependencies": [".."],
+  "registryDependencies": ["https://nyxui.com/r/animated-grainy-bg"],
   "files": [
     {
       "path": "registry/example/animated-grainy-bg-demo.tsx",

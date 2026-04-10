@@ -124,13 +124,13 @@ export async function generateStaticParams(): Promise<
   Awaited<CategoryPageProps["params"]>[]
 > {
   const categories = new Set<string>();
-  
+
   Object.values(componentsData.components).forEach((component) => {
     component.tags.forEach((tag) => {
       categories.add(tag.toLowerCase());
     });
   });
-  
+
   return Array.from(categories).map((category) => ({
     category,
   }));

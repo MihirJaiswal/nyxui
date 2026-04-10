@@ -58,7 +58,6 @@ export function cn(...inputs: ClassValue[]) {
 
 </Tabs>
 
-
 ## Example
 
 <ComponentPreview name="image-scanner-demo1" />
@@ -90,24 +89,23 @@ export default function MyComponent() {
 
 ### Image Scanner
 
-| Prop                    | Type                                                                           | Default            | Description                                                     |
-| ----------------------- | ------------------------------------------------------------------------------ | ------------------ | --------------------------------------------------------------- |
-| `image`                 | `string`                                                                       | `undefined`        | URL or path to the image to be scanned.                        |
-| `alt`                   | `string`                                                                       | `"Scanning image"` | Alternative text for the image.                                 |
-| `scanSpeed`             | `number`                                                                       | `2`                | Speed of the scanning animation in seconds.                     |
-| `scanColor`             | `string`                                                                       | `"emerald"`        | Color theme of the scanning effect. (emerald, blue, purple,  amber, red, cyan, pink)  |
-| `scanType`              | `string`                                                                       | `"default"`        | Type of scanning visual effect pattern.  (default, grid, radar, pulse, wave, matrix)                      |
-| `className`             | `string`                                                                       | `undefined`        | Additional CSS classes to apply to the container.               |
-| `onScanComplete`        | `(results?: ScanResult[]) => void`                                             | `undefined`        | Callback function triggered when scanning is complete.          |
-| `autoScan`              | `boolean`                                                                      | `false`            | Automatically start scanning when component mounts.             |
-| `scanDelay`             | `number`                                                                       | `0`                | Delay in seconds before starting the auto scan.                 |
-| `scanAtScroll`          | `boolean`                                                                      | `false`            | Trigger scan when component is scrolled into view.              |
-| `showDataOverlay`       | `boolean`                                                                      | `true`             | Display scanning data overlay with phase information.           |
-| `showProgress`          | `boolean`                                                                      | `true`             | Show progress bar during scanning.                              |
-| `scanIntensity`         | `string`                                                                       | `"medium"`         | Intensity level of the scanning effect. (low, medium, high, extreme)                        |
-| `showScanResults`       | `boolean`                                                                      | `true`             | Display scan result indicators on the image.                   |
-| `loop`                  | `boolean`                                                                      | `false`            | Enable continuous looping of the scanning effect.              |
-| `scanResults`           | `ScanResult[]`                                                                 | `undefined`        | Custom scan results to display (auto-generated if not provided). |
-| `triggerScan`           | `boolean`                                                                      | `false`            | Externally trigger the scanning effect.                        |
-| `disableClickToScan`    | `boolean`                                                                      | `false`            | Disable click-to-scan functionality.                           |
-
+| Prop                 | Type                               | Default            | Description                                                                         |
+| -------------------- | ---------------------------------- | ------------------ | ----------------------------------------------------------------------------------- |
+| `image`              | `string`                           | `undefined`        | URL or path to the image to be scanned.                                             |
+| `alt`                | `string`                           | `"Scanning image"` | Alternative text for the image.                                                     |
+| `scanSpeed`          | `number`                           | `2`                | Speed of the scanning animation in seconds.                                         |
+| `scanColor`          | `string`                           | `"emerald"`        | Color theme of the scanning effect. (emerald, blue, purple, amber, red, cyan, pink) |
+| `scanType`           | `string`                           | `"default"`        | Type of scanning visual effect pattern. (default, grid, radar, pulse, wave, matrix) |
+| `className`          | `string`                           | `undefined`        | Additional CSS classes to apply to the container.                                   |
+| `onScanComplete`     | `(results?: ScanResult[]) => void` | `undefined`        | Callback function triggered when scanning is complete.                              |
+| `autoScan`           | `boolean`                          | `false`            | Automatically start scanning when component mounts.                                 |
+| `scanDelay`          | `number`                           | `0`                | Delay in seconds before starting the auto scan.                                     |
+| `scanAtScroll`       | `boolean`                          | `false`            | Trigger scan when component is scrolled into view.                                  |
+| `showDataOverlay`    | `boolean`                          | `true`             | Display scanning data overlay with phase information.                               |
+| `showProgress`       | `boolean`                          | `true`             | Show progress bar during scanning.                                                  |
+| `scanIntensity`      | `string`                           | `"medium"`         | Intensity level of the scanning effect. (low, medium, high, extreme)                |
+| `showScanResults`    | `boolean`                          | `true`             | Display scan result indicators on the image.                                        |
+| `loop`               | `boolean`                          | `false`            | Enable continuous looping of the scanning effect.                                   |
+| `scanResults`        | `ScanResult[]`                     | `undefined`        | Custom scan results to display (auto-generated if not provided).                    |
+| `triggerScan`        | `boolean`                          | `false`            | Externally trigger the scanning effect.                                             |
+| `disableClickToScan` | `boolean`                          | `false`            | Disable click-to-scan functionality.                                                |

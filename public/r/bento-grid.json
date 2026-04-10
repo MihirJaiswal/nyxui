@@ -4,11 +4,7 @@
   "type": "registry:ui",
   "title": "Bento Grid",
   "description": "A versatile container component inspired by bento box designs, perfect for creating modern, visually appealing grid layouts.",
-  "dependencies": [
-    "motion",
-    "clsx",
-    "framer-motion"
-  ],
+  "dependencies": ["motion", "clsx", "framer-motion"],
   "files": [
     {
       "path": "registry/ui/bento-grid.tsx",

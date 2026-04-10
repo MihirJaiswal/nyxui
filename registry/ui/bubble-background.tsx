@@ -81,11 +81,7 @@ const BubbleBackground: React.FC<BubblesProps> = ({
     >
       <svg className="absolute w-0 h-0">
         <filter id="goo">
-          <feGaussianBlur
-            in="SourceGraphic"
-            stdDeviation="10"
-            result="blur"
-          />
+          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
           <feColorMatrix
             in="blur"
             mode="matrix"

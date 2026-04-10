@@ -4,9 +4,7 @@
   "type": "registry:ui",
   "title": "Liquid Metal Button",
   "description": "A button component with a liquid metal effect.",
-  "dependencies": [
-    ".."
-  ],
+  "dependencies": [".."],
   "files": [
     {
       "path": "registry/ui/liquid-metal-button.tsx",

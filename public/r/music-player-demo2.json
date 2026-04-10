@@ -4,12 +4,8 @@
   "type": "registry:example",
   "title": "Music Player Demo 2",
   "description": "Example showing a music player.",
-  "dependencies": [
-    ".."
-  ],
-  "registryDependencies": [
-    "https://nyxui.com/r/music-player.json"
-  ],
+  "dependencies": [".."],
+  "registryDependencies": ["https://nyxui.com/r/music-player.json"],
   "files": [
     {
       "path": "registry/example/music-player-demo2.tsx",

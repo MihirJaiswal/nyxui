@@ -1,46 +1,54 @@
 export interface ComponentDefinition {
-  name: string
-  component: string
-  props: Record<string, ComponentProp>
+  name: string;
+  component: string;
+  props: Record<string, ComponentProp>;
 }
 
 export interface ComponentRegistry {
-  [key: string]: ComponentDefinition
+  [key: string]: ComponentDefinition;
 }
 
 export interface ComponentConfig {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [key: string]: any
+  [key: string]: any;
 }
 
 export interface PlaygroundProps {
-  componentKey: string
-  config: ComponentConfig
-  component: ComponentDefinition
+  componentKey: string;
+  config: ComponentConfig;
+  component: ComponentDefinition;
 }
 
 export interface ComponentProp {
-  type: "string" | "number" | "boolean" | "select" | "color" | "object" | "textarea" | "multiselect"
+  type:
+    | "string"
+    | "number"
+    | "boolean"
+    | "select"
+    | "color"
+    | "object"
+    | "textarea"
+    | "multiselect";
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  default: any
-  label: string
-  description?: string
-  category?: string
-  min?: number
-  max?: number
-  step?: number
-  options?: Array<string | number | boolean>
+  default: any;
+  label: string;
+  description?: string;
+  category?: string;
+  min?: number;
+  max?: number;
+  step?: number;
+  options?: Array<string | number | boolean>;
   conditional?: {
-    property: string
+    property: string;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    value: any
-  }
+    value: any;
+  };
   validation?: {
-    required?: boolean
-    pattern?: RegExp
-    minLength?: number
-    maxLength?: number
-  }
-  placeholder?: string
-  helpText?: string
+    required?: boolean;
+    pattern?: RegExp;
+    minLength?: number;
+    maxLength?: number;
+  };
+  placeholder?: string;
+  helpText?: string;
 }

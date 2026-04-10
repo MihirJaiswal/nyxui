@@ -18,7 +18,7 @@ import {
   Flashlight,
   Calculator,
   MessagesSquareIcon as Messages,
-  Bell
+  Bell,
 } from "lucide-react";
 import Image from "next/image";
 
@@ -31,14 +31,14 @@ export const GlassExamples = () => {
     <div className="min-h-screen py-8 px-2 2xl:p-8">
       {/* Background */}
       <div className="absolute inset-0">
-      <Image
-            src="/assets/images/apple-glass-effect/img.jpg"
-            alt="background image"
-            fill
-            priority
-            className="h-full w-full object-cover absolute inset-0"
-          />
-     {/*    <motion.div
+        <Image
+          src="/assets/images/apple-glass-effect/img.jpg"
+          alt="background image"
+          fill
+          priority
+          className="h-full w-full object-cover absolute inset-0"
+        />
+        {/*    <motion.div
           className="h-full w-full"
           animate={{
             y: [-120, 30, -120],
@@ -59,7 +59,6 @@ export const GlassExamples = () => {
         </motion.div> */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/30 to-pink-900/20" />
       </div>
-      
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Top Row - Control Center Style */}
@@ -87,7 +86,9 @@ export const GlassExamples = () => {
                   <h3 className="text-md sm:text-lg font-semibold text-white">
                     Now Playing
                   </h3>
-                  <p className="text-white/80 text-sm sm:text-base">Until I Found You</p>
+                  <p className="text-white/80 text-sm sm:text-base">
+                    Until I Found You
+                  </p>
                   <p className="text-white/60 text-sm">Stephen Sanchez</p>
                 </div>
                 <Heart className="w-6 h-6 text-white/60 hover:text-red-400 cursor-pointer transition-colors hidden sm:block" />
