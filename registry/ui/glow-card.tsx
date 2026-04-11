@@ -12,9 +12,27 @@ interface Particle {
   size: number;
   life: number;
   color: string;
+  id: number;
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  size: number;
+  life: number;
+  color: string;
 }
 
 interface GlowCardProps {
+  children: React.ReactNode;
+  className?: string;
+  variant?: "liquid" | "laser" | "cosmic" | "glitch";
+  intensity?: number;
+  liquidColor?: string;
+  laserColor?: string;
+  glitchColor1?: string;
+  glitchColor2?: string;
+  disabled?: boolean;
+  allowCustomBackground?: boolean;
   children: React.ReactNode;
   className?: string;
   variant?: "liquid" | "laser" | "cosmic" | "glitch";
@@ -38,13 +56,16 @@ export function GlowCard({
   glitchColor2 = "#00ff64",
   disabled = false,
   allowCustomBackground = false,
-}: GlowCardProps) {
+  ...props
+}: GlowCardProps & React.HTMLAttributes<HTMLDivElement>) {
   const containerRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<number>(0);
   const waveTimeRef = useRef<number>(0);
   const frameCountRef = useRef<number>(0);
   const lastMouseMoveRef = useRef<number>(0);
+  const intersectionRef = useRef<IntersectionObserver | null>(null);
   const [isHovered, setIsHovered] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
   const [particles, setParticles] = useState<Particle[]>([]);
   const [ripples, setRipples] = useState<
@@ -502,37 +523,64 @@ export function GlowCard({
     disabled,
   ]);
 
-  // Animation effect
+  // Intersection Observer for visibility detection
   useEffect(() => {
-    if (isHovered) animate();
+    const container = containerRef.current;
+    if (!container) return;
+
+    intersectionRef.current = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 },
+    );
+
+    intersectionRef.current.observe(container);
+
+    return () => {
+      if (intersectionRef.current) {
+        intersectionRef.current.disconnect();
+      }
+    };
+  }, []);
+
+  // Animation effect - only run when visible and hovered
+  useEffect(() => {
+    if (isHovered && isVisible) animate();
     return () => {
       if (animationRef.current) cancelAnimationFrame(animationRef.current);
     };
-  }, [animate, isHovered]);
+  }, [animate, isHovered, isVisible]);
 
-  // cleanup
+  // cleanup - only run when visible and has ripples
   useEffect(() => {
-    if (variant !== "liquid") return;
+    if (variant !== "liquid" || !isVisible) return;
     const interval = setInterval(() => {
       setRipples((prev) =>
         prev.filter((ripple) => Date.now() - ripple.time < 1000),
       );
     }, 100);
     return () => clearInterval(interval);
-  }, [variant]);
+  }, [variant, isVisible]);
 
   return (
     <div
       ref={containerRef}
+      role="article"
+      aria-label={`${variant} glow card${disabled ? ", disabled" : ""}`}
+      tabIndex={disabled ? -1 : 0}
       className={cn(
         "relative overflow-hidden backdrop-blur-sm cursor-pointer rounded-2xl p-6",
         "border border-white/10 transition-all duration-300 ease-out",
+        "focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-400",
         !allowCustomBackground && "bg-black/20",
         isHovered && !disabled && "shadow-2xl",
         disabled && "opacity-50 cursor-not-allowed",
         className,
       )}
       style={containerStyles}
+      {...props}
     >
       {/* variant-specific effects */}
       {renderEffects()}

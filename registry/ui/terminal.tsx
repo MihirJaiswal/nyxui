@@ -2,7 +2,7 @@
 import type React from "react";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Send, Copy, RotateCcw, TerminalIcon } from "lucide-react";
-import { cn } from "../../lib/utils";
+import { cn } from "@/lib/utils";
 
 export type TerminalProps = {
   command?: string;
@@ -241,7 +241,7 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({
       <div
         ref={outputRef}
         className={cn(
-          "h-80 mb-4 p-3 rounded-md overflow-y-auto scrollbar-none",
+          "h-80 mb-4 p-3 rounded-md overflow-y-auto scrollbar-no",
           theme.output,
         )}
       >
@@ -251,7 +251,7 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({
           </pre>
         ))}
         {typing && (
-          <pre className="whitespace-pre-wrap cursor-typing">
+          <pre className="whitespace-pre-wrap terminal-cursor">
             {promptSymbol} {input}
           </pre>
         )}
@@ -264,7 +264,7 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            className="flex-grow bg-transparent focus:outline-none cursor-typing"
+            className="flex-grow bg-transparent focus:outline-none terminal-cursor"
             placeholder={inputPlaceholder}
             autoFocus
           />
@@ -280,43 +280,6 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({
           </button>
         </form>
       )}
-
-      <style jsx>{`
-        @keyframes blink {
-          0%,
-          100% {
-            opacity: 0;
-          }
-          50% {
-            opacity: 1;
-          }
-        }
-        .cursor-typing::after {
-          content: "|";
-          margin-left: 2px;
-          animation: blink 1s infinite;
-        }
-        .terminal-line {
-          animation: fadeIn 0.3s ease-in-out;
-        }
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(2px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .scrollbar-none::-webkit-scrollbar {
-          display: none;
-        }
-        .scrollbar-none {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
     </div>
   );
 };

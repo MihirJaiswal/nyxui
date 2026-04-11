@@ -1,6 +1,6 @@
 "use client";
 import { useRef, useState, useCallback, useMemo, type ReactNode } from "react";
-import { cn } from "../../lib/utils";
+import { cn } from "@/lib/utils";
 
 export interface LiquidMetalButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {

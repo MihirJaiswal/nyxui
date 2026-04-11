@@ -8,11 +8,7 @@
     "three",
     "@react-three/fiber",
     "@react-three/drei",
-    "@react-three/postprocessing",
-    "@react-three/fiber",
-    "@react-three/postprocessing",
-    "@react-three/drei",
-    "three"
+    "@react-three/postprocessing"
   ],
   "files": [
     {

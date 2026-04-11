@@ -377,6 +377,8 @@ export default function MSpaint({
   return (
     <div
       ref={containerRef}
+      role="application"
+      aria-label="MS Paint drawing application"
       className={`absolute md:px-0 bg-gray-200 border-2 border-white shadow-md ${className}`}
       style={{
         width: `${dimensions.width}px`,
@@ -386,32 +388,53 @@ export default function MSpaint({
         maxWidth: "100vw",
         ...style,
       }}
+      onKeyDown={(e) => {
+        // Keyboard shortcuts for tools
+        if (e.key === "b" || e.key === "B") {
+          setTool("brush");
+          updateStatus("Brush tool selected (B)");
+        } else if (e.key === "e" || e.key === "E") {
+          setTool("eraser");
+          updateStatus("Eraser tool selected (E)");
+        } else if ((e.ctrlKey || e.metaKey) && e.key === "s") {
+          e.preventDefault();
+          handleSave();
+        }
+      }}
     >
-      <a ref={downloadLinkRef} style={{ display: "none" }} />
+      <a ref={downloadLinkRef} style={{ display: "none" }} aria-hidden="true" />
       <div
         className="bg-blue-900 text-white px-2 py-1 flex justify-between items-center"
         style={{ cursor: draggable ? "move" : "default" }}
         onMouseDown={startDragging}
         onTouchStart={startDragging}
+        role="banner"
       >
         <span className="truncate">{title}</span>
         {showWindowControls && (
-          <div className="flex gap-1">
+          <div
+            className="flex gap-1"
+            role="toolbar"
+            aria-label="Window controls"
+          >
             <CustomButton
               variant="ghost"
               className="h-5 w-5 p-0 min-w-0 text-white hover:bg-blue-700"
+              aria-label="Minimize"
             >
               _
             </CustomButton>
             <CustomButton
               variant="ghost"
               className="h-5 w-5 p-0 min-w-0 text-white hover:bg-blue-700"
+              aria-label="Maximize"
             >
               □
             </CustomButton>
             <CustomButton
               variant="ghost"
               className="h-5 w-5 p-0 min-w-0 text-white hover:bg-blue-700"
+              aria-label="Close"
             >
               ×
             </CustomButton>
@@ -460,25 +483,40 @@ export default function MSpaint({
       <div className="flex">
         <div
           className={`${isMobile ? "w-10" : "w-12"} bg-gray-300 p-1 border-r border-gray-400 flex flex-col items-center`}
+          role="toolbar"
+          aria-label="Drawing tools"
         >
           <CustomButton
             variant="ghost"
+            role="radio"
+            aria-checked={tool === "brush"}
+            aria-label="Brush tool (B)"
             className={`w-8 h-8 p-0 min-w-0 mb-1 ${tool === "brush" ? "bg-blue-200 border-2 border-blue-600 shadow-lg" : "hover:bg-gray-200"}`}
-            onClick={() => setTool("brush")}
-            title="Brush Tool"
+            onClick={() => {
+              setTool("brush");
+              updateStatus("Brush tool selected");
+            }}
+            title="Brush Tool (B)"
           >
             <Pencil size={20} className="text-black" />
           </CustomButton>
           <CustomButton
             variant="ghost"
+            role="radio"
+            aria-checked={tool === "eraser"}
+            aria-label="Eraser tool (E)"
             className={`w-8 h-8 p-0 min-w-0 mb-1 ${tool === "eraser" ? "bg-blue-200 border-2 border-blue-600 shadow-lg" : "hover:bg-gray-200"}`}
-            onClick={() => setTool("eraser")}
-            title="Eraser Tool"
+            onClick={() => {
+              setTool("eraser");
+              updateStatus("Eraser tool selected");
+            }}
+            title="Eraser Tool (E)"
           >
             <Eraser size={20} className="text-black" />
           </CustomButton>
           <CustomButton
             variant="ghost"
+            aria-label="Clear canvas"
             className="w-8 h-8 p-0 min-w-0 mb-1 hover:bg-gray-200"
             onClick={clearCanvas}
             title="Clear Canvas"
@@ -487,9 +525,10 @@ export default function MSpaint({
           </CustomButton>
           <CustomButton
             variant="ghost"
+            aria-label="Save image (Ctrl+S)"
             className="w-8 h-8 p-0 min-w-0 mb-1 bg-green-100 hover:bg-green-200"
             onClick={handleSave}
-            title="Save Image"
+            title="Save Image (Ctrl+S)"
           >
             <Save size={20} className="text-green-700" />
           </CustomButton>
@@ -519,6 +558,19 @@ export default function MSpaint({
               cursor: cursorStyle(),
               width: "100%",
               height: "100%",
+            }}
+            role="img"
+            aria-label={`Drawing canvas. Current tool: ${tool}. Click and drag to draw.`}
+            tabIndex={0}
+            onKeyDown={(e) => {
+              // Prevent scrolling with arrow keys when focused
+              if (
+                ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(
+                  e.key,
+                )
+              ) {
+                e.preventDefault();
+              }
             }}
           />
         </div>

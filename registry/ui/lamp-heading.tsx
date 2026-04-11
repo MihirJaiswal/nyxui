@@ -1,9 +1,18 @@
 "use client";
 import { useRef, useEffect, useState, useCallback, useMemo } from "react";
 import { motion } from "motion/react";
-import { cn } from "../../lib/utils";
+import { cn } from "@/lib/utils";
 
 interface Particle {
+  id: number;
+  x: number;
+  y: number;
+  size: number;
+  opacity: number;
+  baseOpacity: number;
+  phase: number;
+  phaseMultiplier: number;
+  speedMultiplier: number;
   id: number;
   x: number;
   y: number;
@@ -18,7 +27,25 @@ interface Particle {
 interface LampHeadingProps {
   text: string;
   className?: string;
+  text: string;
+  className?: string;
   gradientColors?: {
+    from: string;
+    via?: string;
+    to: string;
+  };
+  lineHeight?: number;
+  lampHeight?: number;
+  glowIntensity?: number;
+  glowSize?: number;
+  animationSpeed?: number;
+  direction?: "above" | "below";
+  showParticles?: boolean;
+  showLightRays?: boolean;
+  interactive?: boolean;
+  textSize?: "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl";
+  pulseEffect?: boolean;
+  particleCount?: number;
     from: string;
     via?: string;
     to: string;
@@ -40,11 +67,13 @@ interface LampHeadingProps {
 const TEXT_SIZE_CLASSES = {
   sm: "text-sm",
   md: "text-base",
+  md: "text-base",
   lg: "text-lg",
   xl: "text-xl",
   "2xl": "text-2xl",
   "3xl": "text-3xl",
   "4xl": "text-4xl",
+} as const;
 } as const;
 
 const TEXT_SIZE_OFFSETS = {
