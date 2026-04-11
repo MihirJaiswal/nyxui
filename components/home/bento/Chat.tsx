@@ -10,33 +10,36 @@ interface Message {
   reactions?: string[];
 }
 
+// Static base time for consistent SSR/client hydration
+const BASE_TIME = new Date("2024-01-01T12:00:00.000Z");
+
 const initialMessages: Message[] = [
   {
     id: "1",
     text: "Hey! Just curious — do you ever get bored answering people all day?",
     sender: "user2",
-    timestamp: new Date(Date.now() - 3600000),
+    timestamp: new Date(BASE_TIME.getTime() - 3600000),
     status: "read",
   },
   {
     id: "2",
     text: "Not at all! I actually enjoy it. Every message is a new mystery to solve 😄",
     sender: "user1",
-    timestamp: new Date(Date.now() - 3500000),
+    timestamp: new Date(BASE_TIME.getTime() - 3500000),
     status: "read",
   },
   {
     id: "3",
     text: "That's kinda cool. Do you remember everything we talk about?",
     sender: "user2",
-    timestamp: new Date(Date.now() - 3400000),
+    timestamp: new Date(BASE_TIME.getTime() - 3400000),
     status: "read",
   },
   {
     id: "4",
     text: "In this chat? Yup — but only while we're talking. I don't keep anything after unless you want me to.",
     sender: "user1",
-    timestamp: new Date(Date.now() - 3300000),
+    timestamp: new Date(BASE_TIME.getTime() - 3300000),
     status: "read",
   },
 ];
@@ -91,8 +94,13 @@ export default function AnimatedChatDemo() {
   const [demoIndex, setDemoIndex] = useState(0);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isAutoDemo, setIsAutoDemo] = useState(true);
+  const [mounted, setMounted] = useState(false);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const scrollToBottom = () => {
     if (messagesContainerRef.current) {
@@ -183,6 +191,10 @@ export default function AnimatedChatDemo() {
   };
 
   const formatTime = (date: Date) => {
+    // Return empty string during SSR to prevent hydration mismatch
+    if (!mounted) {
+      return "";
+    }
     return date.toLocaleTimeString("en-US", {
       hour: "numeric",
       minute: "2-digit",
