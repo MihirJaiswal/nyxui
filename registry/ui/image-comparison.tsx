@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "../../lib/utils";
+import { cn } from "@/lib/utils";
 import {
   useState,
   createContext,
@@ -211,6 +211,10 @@ function ImageSlider({
     >
       <div
         ref={containerRef}
+        role="slider"
+        aria-label="Image comparison slider"
+        aria-valuemin={0}
+        aria-valuemax={100}
         className={cn(
           "relative select-none overflow-hidden rounded-lg",
           constrainToContent ? "inline-block" : "w-full h-full",

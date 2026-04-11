@@ -8,11 +8,8 @@
     "motion",
     "lucide-react",
     "prismjs",
-    "motion",
     "clsx",
-    "tailwind-merge",
-    "lucide-react",
-    "prismjs"
+    "tailwind-merge"
   ],
   "files": [
     {

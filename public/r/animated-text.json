@@ -4,7 +4,7 @@
   "type": "registry:ui",
   "title": "Animated Text",
   "description": "A versatile text animation component that offers multiple animation types. Perfect for adding dynamic text effects to your UI.",
-  "dependencies": ["motion", "motion"],
+  "dependencies": ["motion"],
   "files": [
     {
       "path": "registry/ui/animated-text.tsx",

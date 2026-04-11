@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { cn } from "@/lib/utils";
 import {
@@ -341,7 +341,7 @@ export function AnimatedCodeBlock({
     }
   }, [code, language]);
 
-  const getThemeStyles = (): ThemeStyles => {
+  const themeStyles = useMemo((): ThemeStyles => {
     switch (theme) {
       case "dark":
         return {
@@ -412,9 +412,7 @@ export function AnimatedCodeBlock({
           scrollbarThumb: "rgba(255, 255, 255, 0.2)",
         };
     }
-  };
-
-  const themeStyles = getThemeStyles();
+  }, [theme]);
   useEffect(() => {
     if (isFullscreen) {
       const updateExtraLines = () => {
@@ -468,7 +466,14 @@ export function AnimatedCodeBlock({
     };
   }, []);
 
-  const togglePlay = () => {
+  const restartAnimation = useCallback(() => {
+    setCurrentPosition(0);
+    setIsPlaying(true);
+    setCompleted(false);
+    setIsPaused(false);
+  }, []);
+
+  const togglePlay = useCallback(() => {
     if (isPlaying) {
       setIsPaused(true);
     } else if (completed) {
@@ -477,23 +482,16 @@ export function AnimatedCodeBlock({
       setIsPaused(false);
     }
     setIsPlaying(!isPlaying);
-  };
+  }, [isPlaying, completed, restartAnimation]);
 
-  const restartAnimation = () => {
-    setCurrentPosition(0);
-    setIsPlaying(true);
-    setCompleted(false);
-    setIsPaused(false);
-  };
-
-  const copyCode = () => {
+  const copyCode = useCallback(() => {
     navigator.clipboard.writeText(code);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
     if (onCopy) onCopy();
-  };
+  }, [code, onCopy]);
 
-  const toggleFullscreen = () => {
+  const toggleFullscreen = useCallback(() => {
     if (!document.fullscreenElement && containerRef.current) {
       containerRef.current.requestFullscreen().catch((err) => {
         console.error(`Error attempting to enable fullscreen: ${err.message}`);
@@ -503,9 +501,9 @@ export function AnimatedCodeBlock({
         document.exitFullscreen();
       }
     }
-  };
+  }, []);
 
-  const downloadCode = () => {
+  const downloadCode = useCallback(() => {
     const element = document.createElement("a");
     const file = new Blob([code], { type: "text/plain" });
     element.href = URL.createObjectURL(file);
@@ -513,11 +511,11 @@ export function AnimatedCodeBlock({
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
-  };
+  }, [code, language]);
 
-  const codeLines = code.split("\n");
+  const codeLines = useMemo(() => code.split("\n"), [code]);
 
-  const renderLines = () => {
+  const renderLines = useCallback(() => {
     let remainingChars = currentPosition;
     const result = [];
     for (let i = 0; i < codeLines.length; i++) {
@@ -534,11 +532,14 @@ export function AnimatedCodeBlock({
       }
     }
     return result;
-  };
+  }, [currentPosition, codeLines]);
 
-  const displayedLines = completed ? code.split("\n") : renderLines();
+  const displayedLines = useMemo(
+    () => (completed ? code.split("\n") : renderLines()),
+    [completed, code, renderLines],
+  );
 
-  const getCursorLineIndex = () => {
+  const getCursorLineIndex = useCallback(() => {
     if (!isPlaying && !isPaused) return -1;
     let charsProcessed = 0;
     for (let i = 0; i < codeLines.length; i++) {
@@ -549,12 +550,15 @@ export function AnimatedCodeBlock({
       }
     }
     return codeLines.length - 1;
-  };
+  }, [isPlaying, isPaused, currentPosition, codeLines]);
 
-  const cursorLineIndex = getCursorLineIndex();
-  const progressPercentage = Math.min(
-    100,
-    (currentPosition / code.length) * 100,
+  const cursorLineIndex = useMemo(
+    () => getCursorLineIndex(),
+    [getCursorLineIndex],
+  );
+  const progressPercentage = useMemo(
+    () => Math.min(100, (currentPosition / code.length) * 100),
+    [currentPosition, code.length],
   );
 
   return (

@@ -27,13 +27,13 @@ const defaultBubbleColors = {
   interactive: "148, 100, 255",
 };
 
-const BubbleBackground: React.FC<BubblesProps> = ({
+export function BubbleBackground({
   bgColorA = "rgb(108, 0, 162)",
   bgColorB = "rgb(0, 17, 82)",
   bubbleColors = defaultBubbleColors,
   blendMode = "hard-light",
   bubbleSize = "80%",
-}) => {
+}: BubblesProps) {
   const interactiveRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -81,6 +81,7 @@ const BubbleBackground: React.FC<BubblesProps> = ({
     >
       <svg className="absolute w-0 h-0">
         <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
           <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
           <feColorMatrix
             in="blur"
@@ -181,6 +182,4 @@ const BubbleBackground: React.FC<BubblesProps> = ({
       </div>
     </div>
   );
-};
-
-export default BubbleBackground;
+}

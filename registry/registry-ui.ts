@@ -428,6 +428,31 @@ export const ui: Registry["items"] = [
         target: "components/ui/terminal.tsx",
       },
     ],
+    cssVars: {},
+    css: {
+      "@keyframes terminal-blink": {
+        "0%, 100%": { opacity: "0" },
+        "50%": { opacity: "1" },
+      },
+      "@keyframes terminal-fade-in": {
+        from: {
+          opacity: "0",
+          transform: "translateY(2px)",
+        },
+        to: {
+          opacity: "1",
+          transform: "translateY(0)",
+        },
+      },
+      ".terminal-cursor::after": {
+        content: '"|"',
+        "margin-left": "2px",
+        animation: "terminal-blink 1s infinite",
+      },
+      ".terminal-line": {
+        animation: "terminal-fade-in 0.3s ease-in-out",
+      },
+    },
   },
   {
     name: "water-ripple-effect",
@@ -476,7 +501,7 @@ export const ui: Registry["items"] = [
     type: "registry:ui",
     title: "3D Layered Card",
     description: "A 3D layered card that that provide several effects.",
-    dependencies: ["framer-motion"],
+    dependencies: ["motion"],
     files: [
       {
         path: "registry/ui/3d-layered-card.tsx",

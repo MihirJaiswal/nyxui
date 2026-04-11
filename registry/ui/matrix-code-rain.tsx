@@ -1,5 +1,5 @@
 "use client";
-import { cn } from "../../lib/utils";
+import { cn } from "@/lib/utils";
 import React, { useEffect, useRef } from "react";
 
 type MatrixCodeRainProps = {

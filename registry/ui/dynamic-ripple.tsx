@@ -1,7 +1,7 @@
 "use client";
 import type React from "react";
-import { useRef, useEffect, useState, useMemo } from "react";
-import { cn } from "../../lib/utils";
+import { useRef, useEffect, useState, useMemo, useCallback } from "react";
+import { cn } from "@/lib/utils";
 
 interface Drop {
   x: number;
@@ -147,13 +147,10 @@ export function DynamicRipple({
     };
   }, []);
 
-  useEffect(() => {
-    if (!canvasRef.current || !dimensions.width || !dimensions.height) return;
-
-    const currentIntensityFactors = intensityFactors[intensity];
-    const currentSpeedFactor = speedFactors[speed];
-
-    const createDrop = (x: number, y: number, userInitiated = false) => {
+  const createDrop = useCallback(
+    (x: number, y: number, userInitiated = false): Drop => {
+      const currentIntensityFactors = intensityFactors[intensity];
+      const currentSpeedFactor = speedFactors[speed];
       const maxRadius =
         Math.min(dimensions.width, dimensions.height) *
         0.3 *
@@ -169,9 +166,24 @@ export function DynamicRipple({
         color:
           Math.random() > 0.5 ? currentTheme.primary : currentTheme.secondary,
       };
-    };
+    },
+    [
+      dimensions.width,
+      dimensions.height,
+      intensity,
+      speed,
+      intensityFactors,
+      speedFactors,
+      currentTheme.primary,
+      currentTheme.secondary,
+    ],
+  );
+
+  useEffect(() => {
+    if (!canvasRef.current || !dimensions.width || !dimensions.height) return;
 
     if (autoAnimate) {
+      const currentIntensityFactors = intensityFactors[intensity];
       const initialDrops = Array.from({
         length: currentIntensityFactors.count,
       }).map(() => {
@@ -221,14 +233,11 @@ export function DynamicRipple({
     };
   }, [
     dimensions,
-    intensity,
-    speed,
     reactToCursor,
     autoAnimate,
-    currentTheme.primary,
-    currentTheme.secondary,
+    createDrop,
+    intensity,
     intensityFactors,
-    speedFactors,
   ]);
 
   useEffect(() => {
@@ -283,16 +292,8 @@ export function DynamicRipple({
     return () => {
       cancelAnimationFrame(animationRef.current);
     };
-  }, [
-    dimensions,
-    intensity,
-    speed,
-    autoAnimate,
-    currentTheme.primary,
-    currentTheme.secondary,
-    intensityFactors,
-    speedFactors,
-  ]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dimensions, intensity, speed, autoAnimate]);
 
   return (
     <div

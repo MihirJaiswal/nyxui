@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useEffect, useState, useCallback, useMemo } from "react";
 import { motion } from "motion/react";
-import { cn } from "../../lib/utils";
+import { cn } from "@/lib/utils";
 
 interface Particle {
   id: number;
