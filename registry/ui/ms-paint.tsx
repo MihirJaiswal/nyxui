@@ -488,7 +488,6 @@ export default function MSpaint({
         >
           <CustomButton
             variant="ghost"
-            role="radio"
             aria-checked={tool === "brush"}
             aria-label="Brush tool (B)"
             className={`w-8 h-8 p-0 min-w-0 mb-1 ${tool === "brush" ? "bg-blue-200 border-2 border-blue-600 shadow-lg" : "hover:bg-gray-200"}`}
@@ -502,7 +501,6 @@ export default function MSpaint({
           </CustomButton>
           <CustomButton
             variant="ghost"
-            role="radio"
             aria-checked={tool === "eraser"}
             aria-label="Eraser tool (E)"
             className={`w-8 h-8 p-0 min-w-0 mb-1 ${tool === "eraser" ? "bg-blue-200 border-2 border-blue-600 shadow-lg" : "hover:bg-gray-200"}`}
@@ -620,9 +618,7 @@ export default function MSpaint({
         </div>
       </div>
       <div className="bg-gray-300 px-2 py-1.5 text-sm border-t border-gray-400 flex flex-wrap items-center">
-        <div
-          className={`${isMobile ? "w-full" : "flex-grow"} truncate text-black`}
-        >
+        <div className={`${isMobile ? "w-full" : "grow"} truncate text-black`}>
           {statusText}
         </div>
       </div>

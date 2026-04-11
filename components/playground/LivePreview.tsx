@@ -33,7 +33,7 @@ import WaterRippleEffect from "@/registry/ui/water-ripple-effect";
 import { Cursor } from "@/registry/ui/custom-cursor";
 import { GlassContainer } from "@/registry/ui/apple-glass-effect";
 import { GlitchButton } from "@/registry/ui/glitch-button";
-import BubbleBackground from "@/registry/ui/bubble-background";
+import { BubbleBackground } from "@/registry/ui/bubble-background";
 import { AnimateText } from "@/registry/ui/animated-text";
 import { DynamicRipple } from "@/registry/ui/dynamic-ripple";
 import { LiquidMetalButton } from "@/registry/ui/liquid-metal-button";

@@ -590,9 +590,7 @@
       "type": "registry:ui",
       "title": "3D Layered Card",
       "description": "A 3D layered card that that provide several effects.",
-      "dependencies": [
-        "motion"
-      ],
+      "dependencies": ["motion"],
       "files": [
         {
           "path": "registry/ui/3d-layered-card.tsx",

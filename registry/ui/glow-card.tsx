@@ -12,27 +12,9 @@ interface Particle {
   size: number;
   life: number;
   color: string;
-  id: number;
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
-  size: number;
-  life: number;
-  color: string;
 }
 
 interface GlowCardProps {
-  children: React.ReactNode;
-  className?: string;
-  variant?: "liquid" | "laser" | "cosmic" | "glitch";
-  intensity?: number;
-  liquidColor?: string;
-  laserColor?: string;
-  glitchColor1?: string;
-  glitchColor2?: string;
-  disabled?: boolean;
-  allowCustomBackground?: boolean;
   children: React.ReactNode;
   className?: string;
   variant?: "liquid" | "laser" | "cosmic" | "glitch";

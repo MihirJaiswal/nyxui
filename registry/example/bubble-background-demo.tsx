@@ -1,4 +1,4 @@
-import BubbleBackground from "../ui/bubble-background";
+import { BubbleBackground } from "../ui/bubble-background";
 
 export const BubblesBackgroundDemo = () => {
   return (

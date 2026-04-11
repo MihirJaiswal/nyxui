@@ -4,9 +4,7 @@
   "type": "registry:ui",
   "title": "Animated Gradient Background",
   "description": "A dynamic animated gradient background component that supports various gradient patterns and animations.",
-  "dependencies": [
-    "motion"
-  ],
+  "dependencies": ["motion"],
   "files": [
     {
       "path": "registry/ui/animated-gradient-bg.tsx",

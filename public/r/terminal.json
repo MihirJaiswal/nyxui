@@ -4,9 +4,7 @@
   "type": "registry:ui",
   "title": "Terminal",
   "description": "A terminal that that provide several effects.",
-  "dependencies": [
-    "lucide-react"
-  ],
+  "dependencies": ["lucide-react"],
   "files": [
     {
       "path": "registry/ui/terminal.tsx",
