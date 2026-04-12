@@ -24,20 +24,6 @@ Built with [Tailwind CSS](https://tailwindcss.com/), [Motion](https://www.motion
 - Node.js 18+
 - pnpm (recommended)
 
-### Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/MihirJaiswal/nyxui.git
-cd nyxui
-
-# Install dependencies
-pnpm install
-
-# Start development server
-pnpm dev
-```
-
 ## Usage
 
 Browse components at [nyxui.com](https://nyxui.com) and copy the code directly into your project. Each component is designed to be self-contained and easily customizable.
