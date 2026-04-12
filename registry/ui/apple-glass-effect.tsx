@@ -1,4 +1,5 @@
 import React, { useId, memo } from "react";
+import { cn } from "@/lib/utils";
 
 interface GlassContainerProps {
   children: React.ReactNode;
@@ -75,14 +76,16 @@ export const GlassContainer: React.FC<
 
     return (
       <div
-        className={`relative font-semibold text-white cursor-pointer bg-transparent overflow-hidden transition-all duration-[400ms] rounded-[2rem] p-4 shadow-lg ${
-          hover ? "hover:scale-[1.02] hover:shadow-2xl" : ""
-        } ${className}`}
+        className={cn(
+          "relative font-semibold text-white cursor-pointer bg-transparent overflow-hidden transition-all duration-400 rounded-4xl p-4 shadow-lg",
+          hover && "hover:scale-[1.02] hover:shadow-2xl",
+          border && "border border-white/25",
+          className,
+        )}
         aria-label="Glass Container"
         role="presentation"
         style={{
           transitionTimingFunction: "cubic-bezier(0.175, 0.885, 0.32, 2.2)",
-          borderRadius: "2rem",
           ...props.style,
         }}
         {...props}
@@ -113,21 +116,6 @@ export const GlassContainer: React.FC<
             background: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crest width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
           }}
         />
-
-        {/* Border highlight */}
-        {border && (
-          <div
-            className="absolute inset-0 z-20 pointer-events-none"
-            style={{
-              border: "1px solid rgba(255, 255, 255, 0.2)",
-              boxShadow: `
-              inset 0 1px 0 rgba(255, 255, 255, 0.6),
-              inset 0 0 20px ${innerGlowColor},
-              0 1px 2px rgba(0, 0, 0, 0.1)
-            `,
-            }}
-          />
-        )}
 
         {/* Specular highlights */}
         <div

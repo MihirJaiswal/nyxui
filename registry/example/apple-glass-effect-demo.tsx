@@ -38,25 +38,6 @@ export const GlassExamples = () => {
           priority
           className="h-full w-full object-cover absolute inset-0"
         />
-        {/*    <motion.div
-          className="h-full w-full"
-          animate={{
-            y: [-120, 30, -120],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        >
-          <Image
-            src="/assets/images/apple-glass-effect/img.jpg"
-            alt="background image"
-            fill
-            priority
-            className="h-full w-full object-cover"
-          />
-        </motion.div> */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/30 to-pink-900/20" />
       </div>
 

@@ -78,14 +78,14 @@ Nyx UI is a modern React component library for Next.js, featuring animated UI co
 
 ## Common Tasks
 
-| Command | Purpose |
-|---------|---------|
-| `pnpm dev` | Start Next.js dev server on localhost:3000 |
-| `pnpm registry:build` | Build component registry from source files |
-| `pnpm typecheck` | Run TypeScript compiler — **required before commits** |
-| `pnpm lint` | Run ESLint on source files |
-| `pnpm format` | Run Prettier on all files |
-| `pnpm build:docs` | Build content collections for documentation |
+| Command               | Purpose                                               |
+| --------------------- | ----------------------------------------------------- |
+| `pnpm dev`            | Start Next.js dev server on localhost:3000            |
+| `pnpm registry:build` | Build component registry from source files            |
+| `pnpm typecheck`      | Run TypeScript compiler — **required before commits** |
+| `pnpm lint`           | Run ESLint on source files                            |
+| `pnpm format`         | Run Prettier on all files                             |
+| `pnpm build:docs`     | Build content collections for documentation           |
 
 ## Examples
 

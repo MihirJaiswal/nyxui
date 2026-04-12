@@ -12,6 +12,7 @@ Use this skill when creating animated UI components, 3D scenes, or motion effect
 ## When To Apply
 
 Apply this skill when users ask to:
+
 - Create animated entrance/exit components
 - Add hover/gesture interactions
 - Build 3D scenes or particle effects
@@ -21,24 +22,28 @@ Apply this skill when users ask to:
 ## Core Workflow
 
 1. **Choose Animation Library**
+
    - **Framer Motion**: Layout animations, gestures, AnimatePresence — most common
    - **GSAP**: Complex timelines, ScrollTrigger, precise control
    - **Three.js/R3F**: 3D scenes, WebGL effects, particle systems
    - **CSS**: Simple transitions, prefers-reduced-motion baseline
 
 2. **Implement Animation Pattern**
+
    - Wrap component in `motion` element or `AnimatePresence`
    - Define `initial`, `animate`, `exit` states
    - Add `transition` with easing and duration
    - Include `useReducedMotion` check
 
 3. **Optimize Performance**
+
    - Use `layout` prop sparingly — it's expensive
    - Prefer `transform` and `opacity` animations
    - Lazy load heavy 3D components
    - Use `will-change` hint when appropriate
 
 4. **Test Accessibility**
+
    - Verify reduced motion fallback
    - Check focus states work during animations
    - Ensure animations don't trap keyboard users
@@ -50,13 +55,13 @@ Apply this skill when users ask to:
 
 ## Animation Libraries
 
-| Library | Use Case | Import Pattern |
-|---------|----------|----------------|
-| Framer Motion | Most animations | `import { motion, AnimatePresence } from "framer-motion"` |
-| Motion (new) | Modern Framer Motion | `import * as motion from "motion/react-client"` |
-| GSAP | Complex timelines | `import gsap from "gsap"`; use `useGSAP` hook |
-| R3F | 3D scenes | `import { Canvas } from "@react-three/fiber"` |
-| Drei | R3F helpers | `import { OrbitControls } from "@react-three/drei"` |
+| Library       | Use Case             | Import Pattern                                            |
+| ------------- | -------------------- | --------------------------------------------------------- |
+| Framer Motion | Most animations      | `import { motion, AnimatePresence } from "framer-motion"` |
+| Motion (new)  | Modern Framer Motion | `import * as motion from "motion/react-client"`           |
+| GSAP          | Complex timelines    | `import gsap from "gsap"`; use `useGSAP` hook             |
+| R3F           | 3D scenes            | `import { Canvas } from "@react-three/fiber"`             |
+| Drei          | R3F helpers          | `import { OrbitControls } from "@react-three/drei"`       |
 
 ## References To Load On Demand
 
@@ -75,13 +80,13 @@ Apply this skill when users ask to:
 
 ## Troubleshooting
 
-| Error | Solution |
-|-------|----------|
-| Animation not firing | Check `AnimatePresence` wraps conditional renders |
-| Janky animation | Reduce to `transform`/`opacity` only; check layout thrashing |
-| 3D scene blank | Verify `<Canvas>` has defined `style={{ width, height }}` |
-| SSR mismatch | Add `'use client'` directive; lazy load with `dynamic()` |
-| Exit animation skipped | Use `mode="wait"` on `AnimatePresence` |
+| Error                  | Solution                                                     |
+| ---------------------- | ------------------------------------------------------------ |
+| Animation not firing   | Check `AnimatePresence` wraps conditional renders            |
+| Janky animation        | Reduce to `transform`/`opacity` only; check layout thrashing |
+| 3D scene blank         | Verify `<Canvas>` has defined `style={{ width, height }}`    |
+| SSR mismatch           | Add `'use client'` directive; lazy load with `dynamic()`     |
+| Exit animation skipped | Use `mode="wait"` on `AnimatePresence`                       |
 
 ## Examples
 
