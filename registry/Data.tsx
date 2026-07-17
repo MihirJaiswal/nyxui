@@ -46,8 +46,8 @@ export const componentsData: ComponentsData = {
   components: {
     "water-ripple-effect": {
       title: "Water Ripple Effect",
-      tags: ["Interactive", "Visual Effects", "image"],
-      description: "A mesmerizing water ripple effect for Images.",
+      tags: ["Interactive", "Visual Effects", "Image"],
+      description: "A mesmerizing water ripple effect for interactive images.",
       image: "/assets/images/showcase/components/water-ripple-effect.png",
       isNew: true,
     },
@@ -61,14 +61,14 @@ export const componentsData: ComponentsData = {
     "animated-code-block": {
       title: "Animated Code Block",
       tags: ["Animation", "Interactive"],
-      description: "Code snippets with typing and highlishting effects.",
+      description: "Code snippets with typing and highlighting effects.",
       image: "/assets/images/showcase/components/animated-code-block.png",
     },
     "cyberpunk-card": {
       title: "Cyberpunk Card",
       tags: ["Cards", "Futuristic"],
       description:
-        "A futuristic card design with neon glow and tech aeshetics.",
+        "A futuristic card design with neon glow and tech aesthetics.",
       image: "/assets/images/showcase/components/cyberpunkcard.png",
     },
     "animated-grainy-bg": {
@@ -86,7 +86,7 @@ export const componentsData: ComponentsData = {
     "bubble-background": {
       title: "Bubble Background",
       tags: ["Background", "Interactive", "Animation"],
-      description: "Floating bubbles interactive animation for bg.",
+      description: "An interactive floating bubble animation for backgrounds.",
       image: "/assets/images/showcase/components/bubbles-background.png",
     },
     "dynamic-ripple": {
@@ -130,18 +130,18 @@ export const componentsData: ComponentsData = {
     "liquid-metal-button": {
       title: "Liquid Metal Button",
       tags: ["Buttons", "Effects", "Interactive"],
-      description: "A button with fluid mettallic animation effects.",
+      description: "A button with fluid metallic animation effects.",
       image: "/assets/images/showcase/components/liquid-metal-button.png",
     },
     "image-comparison": {
       title: "Image Comparison",
-      tags: ["Interactive", "image", "Media"],
+      tags: ["Interactive", "Image", "Media"],
       description: "A component for comparing two images side-by-side.",
       image: "/assets/images/showcase/components/image-comparison.png",
     },
     "image-scanner": {
       title: "Image Scanner",
-      tags: ["Interactive", "image", "Media"],
+      tags: ["Interactive", "Image", "Media"],
       description: "A component for scanning images with a futuristic effect.",
       image: "/assets/images/showcase/components/image-scanner.png",
     },
@@ -153,7 +153,7 @@ export const componentsData: ComponentsData = {
     },
     marquee: {
       title: "Marquee",
-      tags: ["Interactive", "Interactive", "Animation"],
+      tags: ["Interactive", "Animation"],
       description: "A customizable, interactive scrolling marquee component.",
       image: "/assets/images/showcase/components/marquee.png",
     },
@@ -166,7 +166,7 @@ export const componentsData: ComponentsData = {
     "morphing-blob": {
       title: "Morphing Blob",
       tags: ["Background", "Effects", "Animation"],
-      description: "A dynamic blob that powered by Three.js and shaders.",
+      description: "A dynamic blob powered by Three.js and shaders.",
       image: "/assets/images/showcase/components/morphing-blob.png",
     },
     "music-player": {
@@ -179,7 +179,7 @@ export const componentsData: ComponentsData = {
     "reveal-card": {
       title: "Reveal Card",
       tags: ["Cards", "Effects", "3D", "Interactive"],
-      description: "Card with reveal animations that shows content on hover.",
+      description: "A card with reveal animations that show content on hover.",
       image: "/assets/images/showcase/components/reveal-card.png",
     },
     "scroll-animation-trigger": {
@@ -192,7 +192,7 @@ export const componentsData: ComponentsData = {
       title: "Terminal",
       tags: ["Interactive", "Mock", "Tools"],
       description:
-        "Command line interface with typing animations and responses",
+        "A command-line interface with typing animations and responses.",
       image: "/assets/images/showcase/components/interactive-terminal.png",
     },
     "apple-glass-effect": {

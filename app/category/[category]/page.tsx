@@ -1,7 +1,7 @@
-import { componentsData } from "../../../registry/Data";
-import { ComponentCard } from "../../../components/components/ComponentCard";
+import { componentsData } from "@/registry/Data";
+import { ComponentCard } from "@/components/components/ComponentCard";
 import type { Metadata } from "next";
-import { absoluteUrl } from "../../../lib/utils";
+import { absoluteUrl } from "@/lib/utils";
 
 interface CategoryPageProps {
   params: Promise<{

@@ -1,5 +1,5 @@
-import IntroductionPage from "../../components/docs/Introduction";
-import DocsSidebar from "../../components/docs/DocSidebar";
+import IntroductionPage from "@/components/docs/Introduction";
+import DocsSidebar from "@/components/docs/DocSidebar";
 
 const DocsPage = () => {
   return (

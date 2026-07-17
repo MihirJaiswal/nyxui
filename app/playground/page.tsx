@@ -1,7 +1,7 @@
 import { Metadata } from "next";
-import { absoluteUrl } from "../../lib/utils";
-import PlaygroundClient from "../../components/playground/PlaygroundClient";
-import Header from "../../components/global/Header";
+import { absoluteUrl } from "@/lib/utils";
+import PlaygroundClient from "@/components/playground/PlaygroundClient";
+import Header from "@/components/global/Header";
 
 export const metadata: Metadata = {
   title: "Nyx UI | Component Playground",

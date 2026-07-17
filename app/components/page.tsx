@@ -1,6 +1,6 @@
-import ComponentGrid from "../../components/components/ComponentGrid";
+import ComponentGrid from "@/components/components/ComponentGrid";
 import { allDocs } from "content-collections";
-import { absoluteUrl } from "../../lib/utils";
+import { absoluteUrl } from "@/lib/utils";
 import type { Metadata } from "next";
 
 function getComponentCount() {
