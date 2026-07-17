@@ -1,7 +1,7 @@
-import { componentsData } from "../../registry/Data";
-import { absoluteUrl } from "../../lib/utils";
+import { componentsData } from "@/registry/Data";
+import { absoluteUrl } from "@/lib/utils";
 import type { Metadata } from "next";
-import ComponentGrid from "../../components/components/ComponentGrid";
+import ComponentGrid from "@/components/components/ComponentGrid";
 
 function getBlockCount() {
   return Object.keys(componentsData.blocks).length;

@@ -1,12 +1,12 @@
-import { Mdx } from "../../../components/components/mdx-components";
-import { badgeVariants } from "../../../components/ui/badge";
-import { absoluteUrl, cn } from "../../../lib/utils";
+import { Mdx } from "@/components/components/mdx-components";
+import { badgeVariants } from "@/components/ui/badge";
+import { absoluteUrl, cn } from "@/lib/utils";
 import { ExternalLinkIcon } from "@radix-ui/react-icons";
 import { allDocs } from "content-collections";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Button } from "../../../components/ui/button";
+import { Button } from "@/components/ui/button";
 import { Play } from "lucide-react";
 
 interface ComponentPageProps {
@@ -28,7 +28,6 @@ async function getComponentFromParams(params: Promise<{ slug: string[] }>) {
   for (const slugPattern of possibleSlugs) {
     const doc = allDocs?.find((doc) => doc.slugAsParams === slugPattern);
     if (doc) {
-      console.log("Found doc with slug:", slugPattern);
       return doc;
     }
   }
@@ -166,21 +165,14 @@ export async function generateStaticParams(): Promise<
     }
 
     const componentParams = allDocs
-      .filter((doc) => {
-        const isComponent =
-          doc.slugAsParams.startsWith("components/") && doc.published;
-        console.log(
-          `Doc: ${doc.slugAsParams}, isComponent: ${isComponent}, published: ${doc.published}`,
-        );
-        return isComponent;
-      })
+      .filter(
+        (doc) => doc.slugAsParams.startsWith("components/") && doc.published,
+      )
       .map((doc) => {
         const component = doc.slugAsParams.replace("components/", "");
-        console.log(`Generating param for component: ${component}`);
         return { slug: [component] };
       });
 
-    console.log("Generated static params:", componentParams);
     return componentParams;
   } catch (error) {
     console.error("Error in generateStaticParams:", error);
@@ -194,7 +186,6 @@ export default async function ComponentPage({ params }: ComponentPageProps) {
   const componentName = slug?.[0];
 
   if (!doc || !doc.published) {
-    console.log("Component not found or not published:", componentName);
     notFound();
   }
 

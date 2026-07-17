@@ -1,10 +1,10 @@
 import { notFound } from "next/navigation";
-import { componentsData } from "../../../registry/Data";
-import { absoluteUrl } from "../../../lib/utils";
+import { componentsData } from "@/registry/Data";
+import { absoluteUrl } from "@/lib/utils";
 import type { Metadata } from "next";
-import { Mdx } from "../../../components/components/mdx-components";
-import { badgeVariants } from "../../../components/ui/badge";
-import { cn } from "../../../lib/utils";
+import { Mdx } from "@/components/components/mdx-components";
+import { badgeVariants } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { allDocs } from "content-collections";
 import { Scan } from "lucide-react";
@@ -29,7 +29,6 @@ async function getBlockFromParams(params: Promise<{ slug: string[] }>) {
   for (const slugPattern of possibleSlugs) {
     const doc = allDocs?.find((doc) => doc.slugAsParams === slugPattern);
     if (doc) {
-      console.log("Found block doc with slug:", slugPattern);
       return doc;
     }
   }

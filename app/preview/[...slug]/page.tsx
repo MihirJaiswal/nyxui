@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
-import { componentsData } from "../../../registry/Data";
-import { Index } from "../../../__registry__";
+import { componentsData } from "@/registry/Data";
+import { Index } from "@/__registry__";
 
 interface PreviewPageProps {
   params: Promise<{

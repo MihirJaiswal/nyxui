@@ -1,7 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
-import { ComponentSidebar } from "../../components/components/component-sidebar";
-import Header from "../../components/global/Header";
+import { ComponentSidebar } from "@/components/components/component-sidebar";
+import Header from "@/components/global/Header";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://nyxui.com/"),

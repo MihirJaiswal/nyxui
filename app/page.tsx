@@ -1,4 +1,4 @@
-import { ComponentsDemo } from "../components/home/bento/ComponentsDemo";
+import { ComponentsDemo } from "@/components/home/bento/ComponentsDemo";
 import Hero from "@/components/home/hero/Hero";
 import ContainCard from "@/components/home/cards/contain-card";
 import AnimatedComponentsShowcase from "@/components/home/feature/Feature";

@@ -1,8 +1,8 @@
-import { componentsData } from "../../registry/Data";
+import { componentsData } from "@/registry/Data";
 import Link from "next/link";
 import Image from "next/image";
-import { GlowCard } from "../../registry/ui/glow-card";
-import { cn } from "../../lib/utils";
+import { GlowCard } from "@/registry/ui/glow-card";
+import { cn } from "@/lib/utils";
 
 export default function CategoriesPage() {
   const allTags = new Set<string>();

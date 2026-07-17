@@ -1,6 +1,6 @@
-import { Mdx } from "../../../components/components/mdx-components";
-import { badgeVariants } from "../../../components/ui/badge";
-import { absoluteUrl, cn } from "../../../lib/utils";
+import { Mdx } from "@/components/components/mdx-components";
+import { badgeVariants } from "@/components/ui/badge";
+import { absoluteUrl, cn } from "@/lib/utils";
 import { ExternalLinkIcon } from "@radix-ui/react-icons";
 import { allDocs } from "content-collections";
 import type { Metadata } from "next";
@@ -26,12 +26,10 @@ async function getTemplateFromParams(params: Promise<{ slug: string[] }>) {
   for (const slugPattern of possibleSlugs) {
     const doc = allDocs?.find((doc) => doc.slugAsParams === slugPattern);
     if (doc) {
-      console.log("Found template with slug:", slugPattern);
       return doc;
     }
   }
 
-  console.log("No template found for:", template);
   return null;
 }
 
@@ -171,21 +169,14 @@ export async function generateStaticParams(): Promise<
     }
 
     const templateParams = allDocs
-      .filter((doc) => {
-        const isTemplate =
-          doc.slugAsParams.startsWith("templates/") && doc.published;
-        console.log(
-          `Template: ${doc.slugAsParams}, isTemplate: ${isTemplate}, published: ${doc.published}`,
-        );
-        return isTemplate;
-      })
+      .filter(
+        (doc) => doc.slugAsParams.startsWith("templates/") && doc.published,
+      )
       .map((doc) => {
         const template = doc.slugAsParams.replace("templates/", "");
-        console.log(`Generating param for template: ${template}`);
         return { slug: [template] };
       });
 
-    console.log("Generated static params for templates:", templateParams);
     return templateParams;
   } catch (error) {
     console.error("Error in generateStaticParams for templates:", error);
@@ -199,7 +190,6 @@ export default async function TemplatePage({ params }: TemplatePageProps) {
   const templateName = slug?.[0];
 
   if (!template || !template.published) {
-    console.log("Template not found or not published:", templateName);
     notFound();
   }
 
