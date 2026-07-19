@@ -1,6 +1,22 @@
+import type React from "react";
+
+export type ComponentPropValue =
+  | string
+  | number
+  | boolean
+  | null
+  | ComponentPropValue[]
+  | { [key: string]: ComponentPropValue };
+
 export interface ComponentDefinition {
   name: string;
+  slug?: string;
   component: string;
+  importPath?: string;
+  importType?: "named" | "default";
+  dependencies?: string[];
+  registryDependencies?: string[];
+  loadComponent?: () => Promise<{ default: PlaygroundComponent }>;
   props: Record<string, ComponentProp>;
 }
 
@@ -9,9 +25,14 @@ export interface ComponentRegistry {
 }
 
 export interface ComponentConfig {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [key: string]: any;
+  [key: string]: ComponentPropValue;
 }
+
+export type PlaygroundComponent = React.ComponentType<
+  Record<string, unknown> & {
+    children?: React.ReactNode;
+  }
+>;
 
 export interface PlaygroundProps {
   componentKey: string;
@@ -29,8 +50,7 @@ export interface ComponentProp {
     | "object"
     | "textarea"
     | "multiselect";
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  default: any;
+  default: ComponentPropValue;
   label: string;
   description?: string;
   category?: string;
@@ -38,10 +58,10 @@ export interface ComponentProp {
   max?: number;
   step?: number;
   options?: Array<string | number | boolean>;
+  colorFormat?: "css" | "rgb-triplet";
   conditional?: {
     property: string;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    value: any;
+    value: ComponentPropValue;
   };
   validation?: {
     required?: boolean;

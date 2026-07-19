@@ -1,4 +1,90 @@
-import type { ComponentRegistry } from "./types";
+import type {
+  ComponentDefinition,
+  ComponentRegistry,
+  PlaygroundComponent,
+} from "./types";
+
+type ComponentModule = Record<string, unknown>;
+
+interface PlaygroundComponentMeta {
+  dependencies?: string[];
+  importType?: "named" | "default";
+  exportName?: string;
+}
+
+const componentMeta: Record<string, PlaygroundComponentMeta> = {
+  "cyberpunk-card": { dependencies: ["motion"] },
+  "animated-code-block": {
+    dependencies: ["motion", "lucide-react", "prismjs"],
+  },
+  keyboard: { dependencies: ["lucide-react"], importType: "default" },
+  "3d-layered-card": { dependencies: ["motion"], importType: "default" },
+  "lamp-heading": { dependencies: ["motion"] },
+  "morphing-blob": {
+    dependencies: [
+      "three",
+      "@react-three/fiber",
+      "@react-three/drei",
+      "@react-three/postprocessing",
+    ],
+    exportName: "MorphingBlob",
+  },
+  "github-repo-card": { dependencies: ["lucide-react"] },
+  "glow-card": {},
+  "music-player": { dependencies: ["lucide-react"] },
+  "animated-grainy-bg": { dependencies: ["motion"] },
+  "water-ripple-effect": { dependencies: ["three"], importType: "default" },
+  "custom-cursor": { dependencies: ["motion"], exportName: "Cursor" },
+  "apple-glass-effect": {
+    dependencies: ["motion"],
+    exportName: "GlassContainer",
+  },
+  "bubble-background": {},
+  "animated-text": { dependencies: ["motion"], exportName: "AnimateText" },
+  "glitch-button": {},
+  "dynamic-ripple": {},
+  terminal: { dependencies: ["lucide-react"], importType: "default" },
+  "matrix-code-rain": { exportName: "MatrixCodeRain" },
+  "liquid-metal-button": { exportName: "LiquidMetalButton" },
+  "image-scanner": { dependencies: ["motion"], exportName: "ImageScanner" },
+};
+
+const componentLoaders: Record<string, () => Promise<ComponentModule>> = {
+  "cyberpunk-card": () => import("@/registry/ui/cyberpunk-card"),
+  "animated-code-block": () => import("@/registry/ui/animated-code-block"),
+  keyboard: () => import("@/registry/ui/keyboard"),
+  "3d-layered-card": () => import("@/registry/ui/3d-layered-card"),
+  "lamp-heading": () => import("@/registry/ui/lamp-heading"),
+  "morphing-blob": () => import("@/registry/ui/morphing-blob"),
+  "github-repo-card": () => import("@/registry/ui/github-repo-card"),
+  "glow-card": () => import("@/registry/ui/glow-card"),
+  "music-player": () => import("@/registry/ui/music-player"),
+  "animated-grainy-bg": () => import("@/registry/ui/animated-grainy-bg"),
+  "water-ripple-effect": () => import("@/registry/ui/water-ripple-effect"),
+  "custom-cursor": () => import("@/registry/ui/custom-cursor"),
+  "apple-glass-effect": () => import("@/registry/ui/apple-glass-effect"),
+  "bubble-background": () => import("@/registry/ui/bubble-background"),
+  "animated-text": () => import("@/registry/ui/animated-text"),
+  "glitch-button": () => import("@/registry/ui/glitch-button"),
+  "dynamic-ripple": () => import("@/registry/ui/dynamic-ripple"),
+  terminal: () => import("@/registry/ui/terminal"),
+  "matrix-code-rain": () => import("@/registry/ui/matrix-code-rain"),
+  "liquid-metal-button": () => import("@/registry/ui/liquid-metal-button"),
+  "image-scanner": () => import("@/registry/ui/image-scanner"),
+};
+
+function pickComponent(
+  mod: ComponentModule,
+  component: ComponentDefinition,
+): PlaygroundComponent {
+  const meta = componentMeta[component.slug ?? ""];
+  const candidate =
+    meta?.importType === "default"
+      ? mod.default
+      : (mod[meta?.exportName ?? component.component] ?? mod.default);
+
+  return candidate as PlaygroundComponent;
+}
 
 export const componentRegistry: ComponentRegistry = {
   "cyberpunk-card": {
@@ -593,7 +679,7 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
         category: "Effects",
       },
       glowColor: {
-        type: "string",
+        type: "color",
         default: "rgba(255, 165, 0, 0.1)",
         label: "Glow Color",
         description: "Color of the glow effect",
@@ -1518,7 +1604,7 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
 
       // Advanced Customization
       highlightColor: {
-        type: "string",
+        type: "color",
         default: "rgba(255, 255, 255, 0.4)",
         label: "Highlight Color",
         description: "Color for specular highlights",
@@ -1535,7 +1621,7 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
         category: "Advanced",
       },
       innerGlowColor: {
-        type: "string",
+        type: "color",
         default: "rgba(255, 255, 255, 0.1)",
         label: "Inner Glow Color",
         description: "Color for inner glow effect",
@@ -1569,57 +1655,63 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
     component: "BubbleBackground",
     props: {
       bgColorA: {
-        type: "string",
+        type: "color",
         default: "rgb(108, 0, 162)",
         label: "Background Color A",
         description: "First gradient color for background",
         category: "Colors",
       },
       bgColorB: {
-        type: "string",
+        type: "color",
         default: "rgb(0, 17, 82)",
         label: "Background Color B",
         description: "Second gradient color for background",
         category: "Colors",
       },
       "bubbleColors.colorA": {
-        type: "string",
+        type: "color",
         default: "18, 113, 255",
+        colorFormat: "rgb-triplet",
         label: "Bubble Color A",
         description: "First bubble color (RGB values)",
         category: "Colors",
       },
       "bubbleColors.colorB": {
-        type: "string",
+        type: "color",
         default: "221, 74, 255",
+        colorFormat: "rgb-triplet",
         label: "Bubble Color B",
         description: "Second bubble color (RGB values)",
         category: "Colors",
       },
       "bubbleColors.colorC": {
-        type: "string",
+        type: "color",
         default: "100, 220, 255",
+        colorFormat: "rgb-triplet",
         label: "Bubble Color C",
         description: "Third bubble color (RGB values)",
         category: "Colors",
       },
       "bubbleColors.colorD": {
-        type: "string",
+        type: "color",
         default: "200, 50, 50",
+        colorFormat: "rgb-triplet",
         label: "Bubble Color D",
         description: "Fourth bubble color (RGB values)",
         category: "Colors",
       },
       "bubbleColors.colorE": {
-        type: "string",
+        type: "color",
         default: "180, 180, 50",
+        colorFormat: "rgb-triplet",
         label: "Bubble Color E",
         description: "Fifth bubble color (RGB values)",
         category: "Colors",
       },
       "bubbleColors.interactive": {
-        type: "string",
+        type: "color",
         default: "148, 100, 255",
+        colorFormat: "rgb-triplet",
         label: "Interactive Bubble Color",
         description: "Mouse-following bubble color (RGB values)",
         category: "Colors",
@@ -1753,8 +1845,8 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
         category: "Colors",
       },
       borderColor: {
-        type: "string",
-        default: "white",
+        type: "color",
+        default: "#ffffff",
         label: "Border Color",
         description: "Color of the button border",
         category: "Colors",
@@ -2187,3 +2279,21 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
     },
   },
 };
+
+for (const [slug, component] of Object.entries(componentRegistry)) {
+  const meta = componentMeta[slug] ?? {};
+  const loader = componentLoaders[slug];
+
+  component.slug = slug;
+  component.importPath = `@/components/ui/${slug}`;
+  component.importType = meta.importType ?? "named";
+  component.dependencies = meta.dependencies ?? [];
+  component.registryDependencies = [`https://nyxui.com/r/${slug}`];
+
+  if (loader) {
+    component.loadComponent = async () => {
+      const mod = await loader();
+      return { default: pickComponent(mod, component) };
+    };
+  }
+}
