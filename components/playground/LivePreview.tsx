@@ -20,7 +20,6 @@ import { getHighlighter } from "shiki";
 import {
   expandDottedConfig,
   generatePlaygroundCode,
-  generateJsxCode,
   type CodeVariant,
 } from "./codegen";
 import type { ComponentConfig, ComponentDefinition } from "./types";
