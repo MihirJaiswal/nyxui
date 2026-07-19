@@ -1,5 +1,17 @@
-import { useState, useEffect } from "react";
+"use client";
+
+import { useEffect, useMemo, useState } from "react";
+import type { ComponentType } from "react";
 import { useRouter } from "next/navigation";
+import {
+  Blocks,
+  Box,
+  FileText,
+  Home,
+  LayoutTemplate,
+  Play,
+  Search,
+} from "lucide-react";
 import {
   CommandDialog,
   CommandEmpty,
@@ -7,146 +19,246 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
+  CommandSeparator,
 } from "./Command";
-import { Search } from "lucide-react";
 import { Button } from "../ui/button";
-import { TooltipProvider } from "../ui/tooltip";
-import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
-import { componentsData, Component } from "../../registry/Data";
+import {
+  componentsData,
+  type Block,
+  type Component,
+} from "../../registry/Data";
+
+type CommandSection = "Pages" | "Components" | "Blocks" | "Templates";
+
+interface CommandEntry {
+  id: string;
+  section: CommandSection;
+  title: string;
+  description?: string;
+  href: string;
+  keywords: string;
+  icon: ComponentType<{ className?: string }>;
+}
+
+const staticCommands: CommandEntry[] = [
+  {
+    id: "home",
+    section: "Pages",
+    title: "Home",
+    description: "Go to the landing page",
+    href: "/",
+    keywords: "home landing index",
+    icon: Home,
+  },
+  {
+    id: "components",
+    section: "Pages",
+    title: "Components",
+    description: "Browse all components",
+    href: "/components",
+    keywords: "ui components library",
+    icon: Box,
+  },
+  {
+    id: "blocks",
+    section: "Pages",
+    title: "Blocks",
+    description: "Browse page sections and blocks",
+    href: "/blocks",
+    keywords: "blocks sections layout",
+    icon: Blocks,
+  },
+  {
+    id: "templates",
+    section: "Pages",
+    title: "Templates",
+    description: "Browse templates",
+    href: "/templates",
+    keywords: "templates starters pages",
+    icon: LayoutTemplate,
+  },
+  {
+    id: "playground",
+    section: "Pages",
+    title: "Playground",
+    description: "Customize components and copy code",
+    href: "/playground",
+    keywords: "playground editor preview code customize",
+    icon: Play,
+  },
+  {
+    id: "docs",
+    section: "Pages",
+    title: "Docs",
+    description: "Read the documentation",
+    href: "/docs",
+    keywords: "documentation guide install usage",
+    icon: FileText,
+  },
+];
+
+function normalize(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+function itemKeywords(
+  slug: string,
+  item: Component | Block,
+  section: string,
+): string {
+  return normalize(
+    [slug, item.title, item.description, section, ...item.tags].join(" "),
+  );
+}
 
 export function CommandPalette() {
   const [open, setOpen] = useState(false);
-  const [search, setSearch] = useState("");
-  const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const router = useRouter();
 
   useEffect(() => {
-    const down = (e: KeyboardEvent) => {
-      if ((e.key === "k" && (e.metaKey || e.ctrlKey)) || e.key === "/") {
-        e.preventDefault();
-        setOpen((o) => !o);
+    const down = (event: KeyboardEvent) => {
+      const isSearchShortcut =
+        (event.key.toLowerCase() === "k" && (event.metaKey || event.ctrlKey)) ||
+        event.key === "/";
+
+      if (!isSearchShortcut) {
+        return;
       }
+
+      const target = event.target as HTMLElement | null;
+      const isTyping =
+        target?.tagName === "INPUT" ||
+        target?.tagName === "TEXTAREA" ||
+        target?.isContentEditable;
+
+      if (event.key === "/" && isTyping) {
+        return;
+      }
+
+      event.preventDefault();
+      setOpen((currentOpen) => !currentOpen);
     };
+
     document.addEventListener("keydown", down);
     return () => document.removeEventListener("keydown", down);
   }, []);
 
-  const handleSelect = (value: string) => {
-    setSelectedItem(value);
-  };
+  const commandSections = useMemo(() => {
+    const componentCommands: CommandEntry[] = Object.entries(
+      componentsData.components,
+    ).map(([slug, component]) => ({
+      id: `component-${slug}`,
+      section: "Components",
+      title: component.title,
+      description: component.description,
+      href: `/components/${slug}`,
+      keywords: itemKeywords(slug, component, "components"),
+      icon: Box,
+    }));
 
-  const handleItemClick = (value: string) => {
-    const [section, id] = value.split(":");
-    const path =
-      section === "components"
-        ? `/components/${id}`
-        : section === "templates"
-          ? `/templates/${id}`
-          : section === "links"
-            ? `/${id}`
-            : `/${section}/${id}`;
-    router.push(path);
+    const blockCommands: CommandEntry[] = Object.entries(
+      componentsData.blocks,
+    ).map(([slug, block]) => ({
+      id: `block-${slug}`,
+      section: "Blocks",
+      title: block.title,
+      description: block.description,
+      href: `/blocks/${slug}`,
+      keywords: itemKeywords(slug, block, "blocks"),
+      icon: Blocks,
+    }));
+
+    const templateCommands: CommandEntry[] = Object.entries(
+      componentsData.templates,
+    ).map(([slug, template]) => ({
+      id: `template-${slug}`,
+      section: "Templates",
+      title: template.title,
+      description: template.description,
+      href: `/templates/${slug}`,
+      keywords: itemKeywords(slug, template, "templates"),
+      icon: LayoutTemplate,
+    }));
+
+    return [
+      { heading: "Pages", items: staticCommands },
+      { heading: "Components", items: componentCommands },
+      { heading: "Blocks", items: blockCommands },
+      { heading: "Templates", items: templateCommands },
+    ];
+  }, []);
+
+  const runCommand = (href: string) => {
     setOpen(false);
+    router.push(href);
   };
-
-  const sections = Object.entries(componentsData).map(
-    ([sectionKey, itemsObj]) => ({
-      key: sectionKey,
-      items: Object.entries(itemsObj).map(([id, item]) => ({
-        value: `${sectionKey}:${id}`,
-        name:
-          sectionKey === "components"
-            ? (item as Component).title
-            : typeof item === "string"
-              ? item
-              : id,
-      })),
-    }),
-  );
-
-  const filteredSections = sections.map(({ key, items }) => ({
-    key,
-    items: items.filter((item) =>
-      item.name.toLowerCase().includes(search.toLowerCase()),
-    ),
-  }));
-  const nothingFound = filteredSections.every((s) => s.items.length === 0);
 
   return (
-    <TooltipProvider>
+    <>
       <Button
         variant="outline"
-        className="relative flex items-center gap-2 group shadow-sm hover:shadow-md transition-all duration-200 h-8 w-full justify-start bg-white/80 dark:bg-neutral-950/80 backdrop-blur-xl text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 rounded-lg border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 px-0.5"
+        className="relative flex h-9 w-54 items-center justify-start gap-2 rounded-md border-border bg-background px-3 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
         onClick={() => setOpen(true)}
       >
-        <Search className="ml-1 h-4 w-4 text-neutral-400 dark:text-neutral-600 group-hover:text-neutral-600 dark:group-hover:text-neutral-400 transition-colors" />
-        <span className="hidden md:inline-flex font-normal text-xs">
-          Search components
-        </span>
-        <span className="inline-flex md:hidden">Search...</span>
-        <kbd className="pointer-events-none hidden h-6 select-none items-center gap-1 rounded-md bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 px-2 font-mono text-[10px] font-medium text-neutral-600 dark:text-neutral-400 opacity-100 sm:flex transition-all group-hover:bg-neutral-200 dark:group-hover:bg-neutral-800">
-          <span className="text-xs">⌘</span>K
+        <Search className="h-4 w-4 shrink-0" />
+        <span className="hidden font-normal md:inline-flex">Search Nyx UI</span>
+        <kbd className="pointer-events-none ml-auto hidden h-5 select-none items-center gap-1 rounded border border-border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground sm:flex">
+          <span>⌘</span>K
         </kbd>
       </Button>
 
-      <CommandDialog open={open} onOpenChange={setOpen}>
-        <CommandInput
-          placeholder="Search nyx UI..."
-          value={search}
-          onValueChange={setSearch}
-        />
+      <CommandDialog open={open} onOpenChange={setOpen} title="Search Nyx UI">
+        <CommandInput placeholder="Search pages, components, blocks..." />
         <CommandList>
-          {nothingFound && <CommandEmpty>No items found.</CommandEmpty>}
+          <CommandEmpty>
+            <div className="py-6 text-center">
+              <p className="text-sm font-medium text-foreground">
+                No results found
+              </p>
+              <p className="mt-1 text-xs text-muted-foreground">
+                Try a component name, tag, or page.
+              </p>
+            </div>
+          </CommandEmpty>
 
-          {filteredSections.map((section) => {
-            const heading =
-              section.key.charAt(0).toUpperCase() + section.key.slice(1);
+          {commandSections.map((section, sectionIndex) => (
+            <div key={section.heading}>
+              {sectionIndex > 0 && <CommandSeparator />}
+              <CommandGroup heading={section.heading}>
+                {section.items.map((item) => {
+                  const Icon = item.icon;
 
-            return (
-              <CommandGroup key={section.key} heading={heading}>
-                {section.items.length > 0 ? (
-                  <RadioGroup
-                    value={selectedItem || ""}
-                    onValueChange={handleSelect}
-                  >
-                    {section.items.map((item) => (
-                      <div
-                        key={item.value}
-                        className="flex cursor-pointer"
-                        onClick={() => handleItemClick(item.value)}
-                      >
-                        <CommandItem
-                          onSelect={() => handleItemClick(item.value)}
-                          className="flex items-center justify-between w-full"
-                        >
-                          <div className="flex items-center">
-                            <RadioGroupItem
-                              value={item.value}
-                              id={`radio-${item.value}`}
-                              className="mr-2"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                handleSelect(item.value);
-                              }}
-                            />
-                            <span className="text-gray-800 dark:text-white">
-                              {item.name}
-                            </span>
-                          </div>
-                        </CommandItem>
+                  return (
+                    <CommandItem
+                      key={item.id}
+                      value={`${item.title} ${item.href} ${item.keywords}`}
+                      onSelect={() => runCommand(item.href)}
+                      className="group gap-3"
+                    >
+                      <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors group-data-[selected=true]:text-foreground">
+                        <Icon className="h-4 w-4" />
                       </div>
-                    ))}
-                  </RadioGroup>
-                ) : (
-                  <CommandItem disabled className="text-muted-foreground">
-                    No {heading.toLowerCase()} found.
-                  </CommandItem>
-                )}
+                      <div className="min-w-0 flex-1 truncate">
+                        <span className="text-sm font-medium">
+                          {item.title}
+                        </span>
+                        {item.description && (
+                          <span className="ml-2 hidden truncate text-xs text-muted-foreground md:inline">
+                            {item.description}
+                          </span>
+                        )}
+                      </div>
+                    </CommandItem>
+                  );
+                })}
               </CommandGroup>
-            );
-          })}
+            </div>
+          ))}
         </CommandList>
       </CommandDialog>
-    </TooltipProvider>
+    </>
   );
 }
