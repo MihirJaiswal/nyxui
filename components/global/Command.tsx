@@ -14,7 +14,7 @@ const Command = React.forwardRef<HTMLDivElement, CommandProps>(
     <CommandPrimitive
       ref={ref}
       className={cn(
-        "flex h-full w-full flex-col overflow-hidden rounded-md bg-white dark:bg-black text-black dark:text-white",
+        "flex h-full w-full flex-col overflow-hidden rounded-lg bg-background text-foreground",
         className,
       )}
       {...props}
@@ -36,10 +36,8 @@ const CommandDialog: React.FC<CommandDialogProps> = ({
 }) => {
   return (
     <Dialog {...props}>
-      <DialogContent className="overflow-hidden p-0 shadow-lg border border-zinc-300 dark:border-zinc-700">
-        <DialogTitle className="sr-only text-black dark:text-white">
-          {title}
-        </DialogTitle>
+      <DialogContent className="overflow-hidden border-border/70 bg-background/95 p-0 shadow-2xl backdrop-blur-xl sm:max-w-2xl">
+        <DialogTitle className="sr-only">{title}</DialogTitle>
         <Command>{children}</Command>
       </DialogContent>
     </Dialog>
@@ -54,14 +52,14 @@ interface CommandInputProps
 const CommandInput = React.forwardRef<HTMLInputElement, CommandInputProps>(
   ({ className, ...props }, ref) => (
     <div
-      className="flex items-center border-b border-zinc-300 dark:border-zinc-700 px-4"
+      className="flex items-center border-b border-border/70 px-4 pr-12"
       cmdk-input-wrapper=""
     >
-      <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
+      <Search className="mr-2 h-4 w-4 shrink-0 text-muted-foreground" />
       <CommandPrimitive.Input
         ref={ref}
         className={cn(
-          "flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
+          "flex h-14 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
           className,
         )}
         {...props}
@@ -81,7 +79,7 @@ const CommandList = React.forwardRef<HTMLDivElement, CommandListProps>(
     <CommandPrimitive.List
       ref={ref}
       className={cn(
-        "max-h-[300px] overflow-y-auto overflow-x-hidden",
+        "max-h-96 overflow-y-auto overflow-x-hidden p-2",
         className,
       )}
       {...props}
@@ -98,7 +96,7 @@ const CommandEmpty = React.forwardRef<HTMLDivElement, CommandEmptyProps>(
   (props, ref) => (
     <CommandPrimitive.Empty
       ref={ref}
-      className="py-6 text-center text-sm"
+      className="py-6 text-center text-sm text-muted-foreground"
       {...props}
     />
   ),
@@ -115,7 +113,7 @@ const CommandGroup = React.forwardRef<HTMLDivElement, CommandGroupProps>(
     <CommandPrimitive.Group
       ref={ref}
       className={cn(
-        "overflow-hidden p-1 text-black dark:text-white [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground",
+        "overflow-hidden p-1 text-foreground [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-2 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground",
         className,
       )}
       {...props}
@@ -149,7 +147,7 @@ const CommandItem = React.forwardRef<HTMLDivElement, CommandItemProps>(
     <CommandPrimitive.Item
       ref={ref}
       className={cn(
-        "relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none ",
+        "relative flex cursor-pointer select-none items-center rounded-md px-3 py-2.5 text-sm outline-none transition-colors data-[disabled=true]:pointer-events-none data-[selected=true]:bg-muted data-[selected=true]:text-foreground data-[disabled=true]:opacity-50",
         className,
       )}
       {...props}
@@ -168,7 +166,7 @@ const CommandShortcut: React.FC<CommandShortcutProps> = ({
   return (
     <span
       className={cn(
-        "ml-auto text-xs tracking-widest text-black dark:text-white",
+        "ml-auto text-xs tracking-widest text-muted-foreground",
         className,
       )}
       {...props}
