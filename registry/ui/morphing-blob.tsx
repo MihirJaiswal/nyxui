@@ -1,12 +1,5 @@
 "use client";
-import React, {
-  useMemo,
-  useRef,
-  Suspense,
-  useState,
-  useEffect,
-  useCallback,
-} from "react";
+import React, { useMemo, useRef, Suspense, useState, useEffect } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import {
   EffectComposer,
@@ -395,9 +388,10 @@ export function MorphingBlob({
   enableEffects = true,
   children,
   className,
+  style,
   ...rest
 }: {
-  size?: number;
+  size?: number | string;
   theme?: "primary" | "aurora" | "cosmic" | "liquid" | "danger";
   complexity?: number;
   speed?: number;
@@ -407,41 +401,29 @@ export function MorphingBlob({
   className?: string;
 } & React.HTMLAttributes<HTMLDivElement>) {
   const [isClient, setIsClient] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const resolvedSize = typeof size === "number" ? `${size}px` : size;
+  const containerStyle: React.CSSProperties = {
+    width: resolvedSize,
+    maxWidth: "100%",
+    height: "auto",
+    aspectRatio: "1 / 1",
+    position: "relative",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    minWidth: 0,
+    ...style,
+  };
 
   useEffect(() => {
     setIsClient(true);
   }, []);
 
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
-        setIsVisible(entry.isIntersecting);
-      },
-      { threshold: 0.1 },
-    );
-
-    observer.observe(container);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
   const FallbackComponent = () => (
     <div
       className={className}
       style={{
-        width: size,
-        height: size,
-        position: "relative",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
+        ...containerStyle,
         background: `radial-gradient(circle at 30% 30%, ${
           theme === "aurora"
             ? "rgba(74, 0, 255, 0.2)"
@@ -468,65 +450,55 @@ export function MorphingBlob({
 
   return (
     <div
-      ref={containerRef}
       role="img"
       aria-label={`Animated ${theme} morphing blob`}
       className={className}
-      style={{
-        width: size,
-        height: size,
-        position: "relative",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
+      style={containerStyle}
       {...rest}
     >
-      {isVisible && (
-        <div
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          zIndex: 1,
+        }}
+      >
+        <Canvas
+          camera={{ position: [0, 0, 8], fov: 45 }}
+          gl={{
+            antialias: true,
+            alpha: true,
+            powerPreference: "high-performance",
+            premultipliedAlpha: false,
+            preserveDrawingBuffer: false,
+            failIfMajorPerformanceCaveat: false,
+            stencil: false,
+            depth: true,
+          }}
+          dpr={[1, 2]}
           style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
             width: "100%",
             height: "100%",
-            zIndex: 1,
+            background: "transparent",
+          }}
+          onCreated={({ gl }) => {
+            gl.toneMapping = THREE.ACESFilmicToneMapping;
+            gl.toneMappingExposure = 1.5;
+            gl.setClearColor(0x000000, 0);
           }}
         >
-          <Canvas
-            camera={{ position: [0, 0, 8], fov: 45 }}
-            gl={{
-              antialias: true,
-              alpha: true,
-              powerPreference: "high-performance",
-              premultipliedAlpha: false,
-              preserveDrawingBuffer: false,
-              failIfMajorPerformanceCaveat: false,
-              stencil: false,
-              depth: true,
-            }}
-            dpr={[1, 2]}
-            style={{
-              background: "transparent",
-              width: "100%",
-              height: "100%",
-            }}
-            onCreated={({ gl }) => {
-              gl.toneMapping = THREE.ACESFilmicToneMapping;
-              gl.toneMappingExposure = 1.5;
-              gl.setClearColor(0x000000, 0);
-            }}
-          >
-            <Scene
-              theme={theme}
-              complexity={complexity}
-              speed={speed}
-              particleCount={particleCount}
-              enableEffects={enableEffects}
-            />
-          </Canvas>
-        </div>
-      )}
+          <Scene
+            theme={theme}
+            complexity={complexity}
+            speed={speed}
+            particleCount={particleCount}
+            enableEffects={enableEffects}
+          />
+        </Canvas>
+      </div>
 
       {children && (
         <div style={{ position: "relative", zIndex: 2 }}>{children}</div>

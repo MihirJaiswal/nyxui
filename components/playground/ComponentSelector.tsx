@@ -3,7 +3,7 @@
 import type React from "react";
 
 import { motion } from "motion/react";
-import { ChevronDown, Grid3X3, Check, Search } from "lucide-react";
+import { ChevronDown, Check, Search } from "lucide-react";
 import type { ComponentRegistry } from "./types";
 import { useState, useEffect, useRef } from "react";
 
@@ -110,25 +110,23 @@ const ComponentSelector = ({
 
   return (
     <div className="relative w-full" ref={dropdownRef}>
-      <div className="border border-border/60 shadow-sm">
+      <div className="border-b border-border/60 bg-background p-3">
         <button
           onClick={handleToggleDropdown}
-          className="w-full flex items-center justify-between p-4 text-left hover:bg-muted/50 transition-colors rounded-sm"
+          className="flex w-full items-center justify-between rounded-md border border-border/70 bg-background px-3 py-2.5 text-left transition-colors hover:bg-muted/50"
         >
-          <div className="flex items-center gap-3">
-            <div className="p-2 rounded-md">
-              <Grid3X3 className="w-4 h-4 text-primary" />
-            </div>
-            <div className="min-w-0 flex-1">
-              <span className="font-medium text-sm block truncate">
-                {selectedComponentData
-                  ? selectedComponentData.name
-                  : "Select a Component"}
-              </span>
-            </div>
+          <div className="min-w-0 flex-1">
+            <span className="mb-0.5 block text-[11px] font-medium uppercase text-muted-foreground">
+              Component
+            </span>
+            <span className="block truncate text-sm font-medium">
+              {selectedComponentData
+                ? selectedComponentData.name
+                : "Select a Component"}
+            </span>
           </div>
           <ChevronDown
-            className={`w-4 h-4 text-muted-foreground transition-transform duration-200 flex-shrink-0 ml-2 ${
+            className={`ml-2 h-4 w-4 flex-shrink-0 text-muted-foreground transition-transform duration-200 ${
               isOpen ? "rotate-180" : ""
             }`}
           />
@@ -140,11 +138,11 @@ const ComponentSelector = ({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-full left-0 right-0 mt-2 bg-background border border-border rounded-sm shadow-lg z-50 max-h-80 overflow-hidden"
+            className="absolute left-3 right-3 top-full z-50 mt-2 max-h-80 overflow-hidden rounded-md border border-border/70 bg-background shadow-lg"
           >
-            <div className="p-3 border-b border-border">
+            <div className="border-b border-border/60 p-3">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                 <input
                   ref={searchInputRef}
                   type="text"
@@ -152,12 +150,12 @@ const ComponentSelector = ({
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  className="w-full pl-10 pr-4 py-2 text-sm bg-background border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                  className="w-full rounded-md border border-border/70 bg-background py-2 pl-10 pr-4 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
                 />
               </div>
             </div>
 
-            <div className="overflow-y-auto max-h-64">
+            <div className="max-h-64 overflow-y-auto">
               <div className="p-2">
                 {filteredComponents.length > 0 ? (
                   filteredComponents.map(([key, component], index) => (
@@ -168,34 +166,35 @@ const ComponentSelector = ({
                         setIsOpen(false);
                         setSearchQuery("");
                       }}
-                      className={`w-full text-left p-3 rounded-md transition-all duration-200 ${
+                      className={`w-full rounded-md px-3 py-2.5 text-left transition-colors ${
                         selectedComponent === key
-                          ? "bg-primary/10 border border-primary/30 text-primary"
+                          ? "bg-muted text-foreground"
                           : highlightedIndex === index
-                            ? "bg-muted border border-border text-foreground"
-                            : "hover:bg-muted/50 border border-transparent hover:border-border text-muted-foreground hover:text-foreground"
+                            ? "bg-muted/70 text-foreground"
+                            : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
                       }`}
-                      whileHover={{ scale: 1.01 }}
-                      whileTap={{ scale: 0.99 }}
                       onMouseEnter={() => setHighlightedIndex(index)}
                     >
                       <div className="flex items-center justify-between">
                         <div className="min-w-0 flex-1">
-                          <h4 className="font-medium text-sm truncate">
+                          <h4 className="truncate text-sm font-medium">
                             {component.name}
                           </h4>
+                          <p className="mt-0.5 truncate font-mono text-[11px] text-muted-foreground">
+                            {key}
+                          </p>
                         </div>
                         {selectedComponent === key && (
-                          <Check className="w-4 h-4 text-primary flex-shrink-0 ml-2" />
+                          <Check className="ml-2 h-4 w-4 flex-shrink-0 text-primary" />
                         )}
                       </div>
                     </motion.button>
                   ))
                 ) : (
-                  <div className="text-center py-8 text-muted-foreground">
-                    <Search className="w-8 h-8 mx-auto mb-3 opacity-50" />
+                  <div className="py-8 text-center text-muted-foreground">
+                    <Search className="mx-auto mb-3 h-8 w-8 opacity-50" />
                     <p className="text-sm">No components found</p>
-                    <p className="text-xs mt-1">Try a different search term</p>
+                    <p className="mt-1 text-xs">Try a different search term</p>
                   </div>
                 )}
               </div>
@@ -205,8 +204,7 @@ const ComponentSelector = ({
       </div>
 
       {componentEntries.length === 0 && (
-        <div className="text-center py-8 text-muted-foreground">
-          <Grid3X3 className="w-8 h-8 mx-auto mb-3 opacity-50" />
+        <div className="py-8 text-center text-muted-foreground">
           <p className="text-sm">No components available</p>
         </div>
       )}

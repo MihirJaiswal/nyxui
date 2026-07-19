@@ -12,10 +12,11 @@ import { Play, AlertCircle } from "lucide-react";
 import ComponentSelector from "./ComponentSelector";
 import PropertyEditor from "./PropertyEditor";
 import LivePreview from "./LivePreview";
-import type { ComponentConfig } from "./types";
+import type { ComponentConfig, ComponentPropValue } from "./types";
 import { useSearchParams, useRouter } from "next/navigation";
 import { componentRegistry } from "./registry";
 import { Grid } from "./Grid";
+import { generatePlaygroundCode, type CodeVariant } from "./codegen";
 
 // Extract shared config generation logic
 const generateDefaultConfig = (componentKey: string): ComponentConfig => {
@@ -26,6 +27,21 @@ const generateDefaultConfig = (componentKey: string): ComponentConfig => {
     config[key] = prop.default;
     return config;
   }, {} as ComponentConfig);
+};
+
+const encodeConfig = (config: ComponentConfig): string =>
+  encodeURIComponent(JSON.stringify(config));
+
+const decodeConfig = (configParam: string | null): ComponentConfig | null => {
+  if (!configParam) {
+    return null;
+  }
+
+  try {
+    return JSON.parse(decodeURIComponent(configParam)) as ComponentConfig;
+  } catch {
+    return null;
+  }
 };
 
 // Error Boundary Component
@@ -80,7 +96,7 @@ const PlaygroundErrorBoundary = ({
 const PlaygroundEmptyState = () => {
   return (
     <div className="flex-1 flex flex-col overflow-hidden min-w-0">
-      <div className="flex-1 p-4 lg:p-6 overflow-auto">
+      <div className="flex-1 py-6 lg:p-6 overflow-auto">
         <div className="h-full flex items-center justify-center">
           <Grid />
         </div>
@@ -113,34 +129,6 @@ const useToast = () => {
   return { showToast, Toast };
 };
 
-// Generate component code - memoized for performance
-const generateComponentCode = (
-  componentKey: string,
-  config: ComponentConfig,
-): string => {
-  const component = componentRegistry[componentKey];
-  if (!component) return "";
-
-  const propsString = Object.entries(config)
-    .filter(([key]) => key !== "children")
-    .map(([key, value]) => {
-      if (typeof value === "string") {
-        return `  ${key}="${value}"`;
-      } else {
-        return `  ${key}={${JSON.stringify(value)}}`;
-      }
-    })
-    .join("\n");
-
-  const children = config.children || "";
-
-  if (children) {
-    return `<${component.component}${propsString ? `\n${propsString}` : ""}>\n  ${children}\n</${component.component}>`;
-  } else {
-    return `<${component.component}${propsString ? `\n${propsString}\n` : " "}/>`;
-  }
-};
-
 // Extract the component that uses useSearchParams into a separate component
 const PlaygroundContent = ({
   initialComponent,
@@ -161,6 +149,10 @@ const PlaygroundContent = ({
 
   // Persist config to localStorage
   useEffect(() => {
+    if (searchParams.get("component")) {
+      return;
+    }
+
     const saved = localStorage.getItem("playground-config");
     if (saved) {
       try {
@@ -173,7 +165,7 @@ const PlaygroundContent = ({
         // Invalid saved state, ignore
       }
     }
-  }, []);
+  }, [searchParams]);
 
   useEffect(() => {
     if (selectedComponent) {
@@ -195,13 +187,18 @@ const PlaygroundContent = ({
     }
 
     const componentFromUrl = searchParams.get("component") || initialComponent;
+    const configFromUrl = decodeConfig(searchParams.get("config"));
     if (
       componentFromUrl &&
       componentRegistry[componentFromUrl] &&
       componentFromUrl !== selectedComponent
     ) {
-      setComponentConfig(generateDefaultConfig(componentFromUrl));
+      setComponentConfig(
+        configFromUrl ?? generateDefaultConfig(componentFromUrl),
+      );
       setSelectedComponent(componentFromUrl);
+    } else if (configFromUrl && componentFromUrl === selectedComponent) {
+      setComponentConfig(configFromUrl);
     }
   }, [searchParams, initialComponent, selectedComponent]);
 
@@ -226,13 +223,38 @@ const PlaygroundContent = ({
   );
 
   const handlePropertyChange = useCallback(
-    (property: string, value: string | number | boolean | object) => {
+    (property: string, value: ComponentPropValue) => {
       setComponentConfig((prev) => ({
         ...prev,
         [property]: value,
       }));
     },
     [],
+  );
+
+  const handleResetCurrent = useCallback(() => {
+    if (!selectedComponent) {
+      return;
+    }
+
+    setComponentConfig(generateDefaultConfig(selectedComponent));
+    showToast("Component props reset");
+  }, [selectedComponent, showToast]);
+
+  const handleResetProperty = useCallback(
+    (property: string) => {
+      const prop = componentRegistry[selectedComponent]?.props[property];
+
+      if (!prop) {
+        return;
+      }
+
+      setComponentConfig((prev) => ({
+        ...prev,
+        [property]: prop.default,
+      }));
+    },
+    [selectedComponent],
   );
 
   const handleReset = useCallback(() => {
@@ -242,13 +264,45 @@ const PlaygroundContent = ({
     router.replace("/playground", { scroll: false });
   }, [router]);
 
-  const handleCopyCode = useCallback(async () => {
-    const code = generateComponentCode(selectedComponent, componentConfig);
+  const handleCopyCode = useCallback(
+    async (variant: CodeVariant = "jsx") => {
+      const component = componentRegistry[selectedComponent];
+      const code = component
+        ? generatePlaygroundCode(component, componentConfig, variant)
+        : "";
+
+      try {
+        await navigator.clipboard.writeText(code);
+        showToast(
+          variant === "install"
+            ? "Install command copied"
+            : variant === "full"
+              ? "Full example copied"
+              : "JSX copied",
+        );
+      } catch (err) {
+        showToast("Failed to copy code");
+        console.error("Clipboard error:", err);
+      }
+    },
+    [selectedComponent, componentConfig, showToast],
+  );
+
+  const handleCopyLink = useCallback(async () => {
+    if (!selectedComponent) {
+      return;
+    }
+
+    const url = new URL(window.location.href);
+    url.pathname = "/playground";
+    url.searchParams.set("component", selectedComponent);
+    url.searchParams.set("config", encodeConfig(componentConfig));
+
     try {
-      await navigator.clipboard.writeText(code);
-      showToast("Code copied to clipboard!");
+      await navigator.clipboard.writeText(url.toString());
+      showToast("Playground link copied");
     } catch (err) {
-      showToast("Failed to copy code");
+      showToast("Failed to copy link");
       console.error("Clipboard error:", err);
     }
   }, [selectedComponent, componentConfig, showToast]);
@@ -275,7 +329,7 @@ const PlaygroundContent = ({
         {/* Main Content */}
         <div className="flex-1 flex flex-col lg:flex-row">
           {/* Left Sidebar - Controls */}
-          <div className="w-full lg:w-80 xl:w-96 flex-shrink-0 border-b lg:border-b-0 lg:border-x border-border/60 flex flex-col max-h-[40vh] lg:max-h-screen lg:sticky lg:top-0 overflow-hidden">
+          <div className="flex max-h-96 w-full flex-shrink-0 flex-col overflow-hidden border-b border-border/60 bg-background lg:sticky lg:top-0 lg:max-h-screen lg:w-80 lg:border-b-0 lg:border-r xl:w-96 border-x">
             {/* Component Selector */}
             <div className="flex-shrink-0">
               <ComponentSelector
@@ -293,6 +347,9 @@ const PlaygroundContent = ({
                     component={componentRegistry[selectedComponent]}
                     config={componentConfig}
                     onChange={handlePropertyChange}
+                    onResetAll={handleResetCurrent}
+                    onResetProperty={handleResetProperty}
+                    onCopyLink={handleCopyLink}
                   />
                 </div>
               </>
@@ -317,7 +374,7 @@ const PlaygroundContent = ({
           {/* Right Side - Live Preview or Empty State */}
           {selectedComponent ? (
             <div className="flex-1 flex flex-col min-w-0">
-              <div className="flex-1 p-4 lg:p-6">
+              <div className="flex-1 md:p-4 lg:p-6">
                 <LivePreview
                   componentKey={selectedComponent}
                   config={componentConfig}
