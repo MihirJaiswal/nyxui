@@ -1,0 +1,9 @@
+allowBuilds:
+  "@firebase/util": false
+  "@parcel/watcher": true
+  "@tsparticles/engine": false
+  core-js: false
+  esbuild: true
+  msw: false
+  protobufjs: false
+  sharp: true
