@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { GlowCard } from "@/registry/ui/glow-card";
 import { cn } from "@/lib/utils";
+import { categoryHref } from "@/lib/links";
 
 export default function CategoriesPage() {
   const allTags = new Set<string>();
@@ -42,7 +43,7 @@ export default function CategoriesPage() {
             />
             <Link
               key={tag}
-              href={`/category/${encodeURIComponent(tag.toLowerCase())}`}
+              href={categoryHref(tag)}
               className="group relative h-full"
             >
               <div className="absolute inset-0 rounded-lg transition-all duration-500 ease-out group-hover:border-transparent group-hover:scale-[1.02] group-hover:shadow-[0_0_0_1px_rgba(0,0,0,0.05),0_1px_3px_0_rgba(0,0,0,0.1),0_10px_30px_-5px_rgba(0,0,0,0.08)] dark:group-hover:shadow-[0_0_0_1px_rgba(255,255,255,0.05),0_1px_3px_0_rgba(0,0,0,0.1),0_10px_30px_-5px_rgba(0,0,0,0.25)]"></div>

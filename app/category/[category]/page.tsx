@@ -2,6 +2,7 @@ import { componentsData } from "@/registry/Data";
 import { ComponentCard } from "@/components/components/ComponentCard";
 import type { Metadata } from "next";
 import { absoluteUrl } from "@/lib/utils";
+import { categoryHref, tagToSlug } from "@/lib/links";
 
 interface CategoryPageProps {
   params: Promise<{
@@ -91,13 +92,13 @@ export async function generateMetadata({
       "tailwind css",
     ],
     alternates: {
-      canonical: absoluteUrl(`/category/${encodeURIComponent(normalized)}`),
+      canonical: absoluteUrl(categoryHref(normalized)),
     },
     robots: { index: true, follow: true },
     openGraph: {
       title: `${titleCategory} Components | Nyx UI`,
       description,
-      url: absoluteUrl(`/category/${encodeURIComponent(normalized)}`),
+      url: absoluteUrl(categoryHref(normalized)),
       siteName: "Nyx UI",
       type: "website",
       images: [
@@ -127,7 +128,7 @@ export async function generateStaticParams(): Promise<
 
   Object.values(componentsData.components).forEach((component) => {
     component.tags.forEach((tag) => {
-      categories.add(tag.toLowerCase());
+      categories.add(tagToSlug(tag));
     });
   });
 

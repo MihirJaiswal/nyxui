@@ -1,79 +1,24 @@
 import { Mdx } from "@/components/components/mdx-components";
-import { badgeVariants } from "@/components/ui/badge";
-import { absoluteUrl, cn } from "@/lib/utils";
-import { ExternalLinkIcon } from "@radix-ui/react-icons";
-import { allDocs } from "content-collections";
+import { DocPageHeader } from "@/components/components/doc-page-header";
+import { absoluteUrl } from "@/lib/utils";
+import {
+  createComponentSchema,
+  generateDocKeywords,
+  generateDocStaticParams,
+  getDocFromParams,
+  type SlugPageProps,
+} from "@/lib/docs";
+import { externalLinks, itemHref, playgroundComponentHref } from "@/lib/links";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Play } from "lucide-react";
 
-interface ComponentPageProps {
-  params: Promise<{
-    slug: string[];
-  }>;
-}
-
-async function getComponentFromParams(params: Promise<{ slug: string[] }>) {
-  const { slug } = await params;
-  const component = slug?.[0];
-
-  if (!component) {
-    return null;
-  }
-
-  const possibleSlugs = [`components/${component}`, component];
-
-  for (const slugPattern of possibleSlugs) {
-    const doc = allDocs?.find((doc) => doc.slugAsParams === slugPattern);
-    if (doc) {
-      return doc;
-    }
-  }
-  return null;
-}
-
-// Function to generate component-specific keywords
-function generateComponentKeywords(
-  title: string,
-  description: string,
-): string[] {
-  const componentName = title.toLowerCase();
-  const baseKeywords = [
-    `${componentName} nyx ui`,
-    `nyx ui ${componentName}`,
-    `${componentName} nyxui`,
-    `nyxui ${componentName}`,
-    `${componentName} component`,
-    `react ${componentName} component`,
-    `next.js ${componentName} component`,
-    `${componentName} react component`,
-    `tailwind ${componentName} component`,
-    `${componentName} ui component`,
-    `${componentName} typescript component`,
-    `${componentName} framer motion`,
-    `ui library`,
-    `${componentName} ui library`,
-    `${componentName} component library`,
-  ];
-
-  if (description) {
-    const descWords = description.toLowerCase().match(/\b\w{4,}\b/g) || [];
-    descWords.forEach((word) => {
-      if (!word.includes("component") && !word.includes("react")) {
-        baseKeywords.push(`${word} ${componentName} component`);
-      }
-    });
-  }
-
-  return baseKeywords;
-}
-
 export async function generateMetadata({
   params,
-}: ComponentPageProps): Promise<Metadata> {
-  const doc = await getComponentFromParams(params);
+}: SlugPageProps): Promise<Metadata> {
+  const doc = await getDocFromParams(params, "components");
 
   if (!doc) {
     return {
@@ -84,10 +29,16 @@ export async function generateMetadata({
 
   const { slug } = await params;
   const componentName = slug?.[0];
-  const componentKeywords = generateComponentKeywords(
-    doc.title,
-    doc.description || "",
-  );
+  const componentKeywords = generateDocKeywords({
+    title: doc.title,
+    description: doc.description || "",
+    noun: "component",
+    extraKeywords: [
+      "ui library",
+      `${doc.title.toLowerCase()} ui library`,
+      `${doc.title.toLowerCase()} component library`,
+    ],
+  });
   const enhancedTitle = `${doc.title} Component - React & Next.js | Nyx UI Library`;
   const enhancedDescription = `${doc.description || `${doc.title} component for React and Next.js applications.`} Built with Tailwind CSS, TypeScript, and Framer Motion. Part of Nyx UI component library. Free to use, customizable, and accessible.`;
 
@@ -95,7 +46,7 @@ export async function generateMetadata({
     title: enhancedTitle,
     description: enhancedDescription,
     keywords: componentKeywords,
-    authors: [{ name: "Mihir Jaiswal", url: "https://x.com/mihir_jaiswal_" }],
+    authors: [{ name: "Mihir Jaiswal", url: externalLinks.twitter }],
     creator: "Nyx UI",
     publisher: "Nyx UI",
 
@@ -103,7 +54,7 @@ export async function generateMetadata({
       title: `${doc.title} - React Component | Nyx UI`,
       description: enhancedDescription,
       type: "article",
-      url: absoluteUrl(`/components/${componentName}`),
+      url: absoluteUrl(itemHref("components", componentName)),
       siteName: "Nyx UI",
       locale: "en_US",
       images: [
@@ -125,7 +76,7 @@ export async function generateMetadata({
     },
 
     alternates: {
-      canonical: absoluteUrl(`/components/${componentName}`),
+      canonical: absoluteUrl(itemHref("components", componentName)),
     },
 
     robots: {
@@ -149,39 +100,13 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams(): Promise<
-  Awaited<ComponentPageProps["params"]>[]
+  Awaited<SlugPageProps["params"]>[]
 > {
-  try {
-    if (!allDocs) {
-      return [];
-    }
-
-    if (!Array.isArray(allDocs)) {
-      return [];
-    }
-
-    if (allDocs.length === 0) {
-      return [];
-    }
-
-    const componentParams = allDocs
-      .filter(
-        (doc) => doc.slugAsParams.startsWith("components/") && doc.published,
-      )
-      .map((doc) => {
-        const component = doc.slugAsParams.replace("components/", "");
-        return { slug: [component] };
-      });
-
-    return componentParams;
-  } catch (error) {
-    console.error("Error in generateStaticParams:", error);
-    return [];
-  }
+  return generateDocStaticParams("components");
 }
 
-export default async function ComponentPage({ params }: ComponentPageProps) {
-  const doc = await getComponentFromParams(params);
+export default async function ComponentPage({ params }: SlugPageProps) {
+  const doc = await getDocFromParams(params, "components");
   const { slug } = await params;
   const componentName = slug?.[0];
 
@@ -200,62 +125,7 @@ export default async function ComponentPage({ params }: ComponentPageProps) {
   const shouldShowPlaygroundButton =
     componentName && !excludedComponents.includes(componentName.toLowerCase());
 
-  const schemaData = {
-    "@context": "https://schema.org",
-    "@type": ["TechArticle", "SoftwareSourceCode"],
-    headline: `${doc.title} React Component - Nyx UI Documentation`,
-    description:
-      doc.description ||
-      `${doc.title} component for React and Next.js applications built with Tailwind CSS and TypeScript.`,
-    author: {
-      "@type": "Person",
-      name: "Mihir Jaiswal",
-      url: "https://x.com/mihir_jaiswal_",
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "Nyx UI",
-      url: "https://nyxui.com/",
-      logo: {
-        "@type": "ImageObject",
-        url: "https://nyxui.com/logo.png",
-      },
-    },
-    mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": absoluteUrl(`/components/${componentName}`),
-    },
-    datePublished: doc.date || new Date().toISOString().split("T")[0],
-    dateModified: new Date().toISOString(),
-    programmingLanguage: ["TypeScript", "React", "Next.js"],
-    runtimePlatform: "Web Browser",
-    operatingSystem: "Cross-platform",
-    applicationCategory: "DeveloperApplication",
-
-    keywords: [
-      doc.title.toLowerCase(),
-      "react component",
-      "next.js component",
-      "nyx ui",
-      "nyxui",
-      "tailwind css",
-      "typescript",
-      ...(doc.tags || []),
-    ].join(", "),
-
-    about: {
-      "@type": "Thing",
-      name: `${doc.title} Component`,
-      description: `A ${doc.title.toLowerCase()} component built for React and Next.js applications using Tailwind CSS and TypeScript.`,
-    },
-
-    isPartOf: {
-      "@type": "SoftwareApplication",
-      name: "Nyx UI",
-      url: "https://nyxui.com/",
-      description: "Modern React UI component library for Next.js applications",
-    },
-  };
+  const schemaData = createComponentSchema(doc, componentName);
 
   return (
     <>
@@ -271,90 +141,22 @@ export default async function ComponentPage({ params }: ComponentPageProps) {
       <meta name="styling" content="Tailwind CSS" />
 
       <div className="mx-auto w-full max-w-[1200px]">
-        <div className="space-y-4 mt-5">
-          <div className="flex flex-wrap items-start gap-3 sm:items-center">
-            <h1 className="scroll-m-20 text-3xl font-bold tracking-tight sm:text-4xl break-words">
-              {doc.title}
-            </h1>
-          </div>
-
-          {doc.description && (
-            <div>
-              <p className="text-muted-foreground dark:text-[#A1A1AA] text-lg">
-                <span className="md:inline-block align-top no-underline md:[text-wrap:balance]">
-                  {doc.description}
-                </span>
-              </p>
-            </div>
-          )}
-
-          {doc.tags && doc.tags.length > 0 && (
-            <div className="flex flex-col sm:flex-row flex-wrap justify-between gap-2 pt-2">
-              <div className="flex flex-wrap gap-2">
-                {doc.tags.map((tag: string) => (
-                  <Link
-                    key={tag}
-                    href={`/category/${tag.toLowerCase().replace(/\s+/g, "-")}`}
-                    className={cn(
-                      badgeVariants({ variant: "outline" }),
-                      "bg-gray-100 dark:bg-zinc-900 transition-colors hover:bg-gray-200 dark:hover:bg-zinc-800",
-                    )}
-                  >
-                    {tag}
-                  </Link>
-                ))}
-              </div>
-              {/* Open in Playground Button - Only show for non-excluded components */}
-              {shouldShowPlaygroundButton && (
-                <Link href={`/playground?component=${componentName}`}>
-                  <Button
-                    variant="default"
-                    size="sm"
-                    className="gap-2 w-full mt-4 sm:mt-0"
-                  >
-                    <Play className="w-4 h-4" />
-                    Open in Playground
-                  </Button>
-                </Link>
-              )}
-            </div>
-          )}
-
-          <div className="flex items-center space-x-2 pt-2">
-            {doc.links ? (
-              <>
-                {doc.links?.doc && (
-                  <Link
-                    href={doc.links.doc}
-                    target="_blank"
-                    rel="noreferrer"
-                    className={cn(
-                      badgeVariants({ variant: "secondary" }),
-                      "gap-1 hover:bg-gray-200 dark:hover:bg-zinc-700",
-                    )}
-                  >
-                    Docs
-                    <ExternalLinkIcon className="size-3" />
-                  </Link>
-                )}
-                {doc.links?.api && (
-                  <Link
-                    href={doc.links.api}
-                    target="_blank"
-                    rel="noreferrer"
-                    className={cn(
-                      badgeVariants({ variant: "secondary" }),
-                      "gap-1 hover:bg-gray-200 dark:hover:bg-zinc-700",
-                    )}
-                  >
-                    API Reference
-                    <ExternalLinkIcon className="size-3" />
-                  </Link>
-                )}
-              </>
-            ) : null}
-          </div>
-        </div>
+        <DocPageHeader
+          title={doc.title}
+          description={doc.description}
+          tags={doc.tags}
+          links={doc.links}
+          action={
+            shouldShowPlaygroundButton ? (
+              <Link href={playgroundComponentHref(componentName)}>
+                <Button variant="default" size="sm" className="gap-2 w-full">
+                  <Play className="w-4 h-4" />
+                  Open in Playground
+                </Button>
+              </Link>
+            ) : null
+          }
+        />
 
         <div className="space-y-8">
           <div className="mdx-content">

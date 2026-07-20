@@ -5,9 +5,10 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Banner } from "@/components/global/Banner";
 import Footer from "@/components/global/Footer";
+import { externalLinks } from "@/lib/links";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://nyxui.com/"),
+  metadataBase: new URL(`${externalLinks.site}/`),
   title: {
     default: "Nyx UI",
     template: "%s | Nyx UI",
@@ -48,7 +49,7 @@ export const metadata: Metadata = {
   creator: "Mihir Jaiswal",
   publisher: "Mihir Jaiswal",
   alternates: {
-    canonical: "https://nyxui.com",
+    canonical: externalLinks.site,
   },
   openGraph: {
     title: "Nyx UI",
@@ -117,11 +118,11 @@ export default function RootLayout({
               name: "Nyx UI",
               description:
                 "Nyx UI is a collection of modern React components and templates for developers.",
-              url: "https://nyxui.com/",
+              url: `${externalLinks.site}/`,
               author: {
                 "@type": "Person",
                 name: "Mihir Jaiswal",
-                url: "https://x.com/mihir_jaiswal_",
+                url: externalLinks.twitter,
               },
               applicationCategory: "DeveloperApplication",
               operatingSystem: "Web Browser",

@@ -3,6 +3,7 @@ import type {
   ComponentDefinition,
   ComponentPropValue,
 } from "./types";
+import { registryItemUrl } from "@/lib/links";
 
 export type CodeVariant = "jsx" | "full" | "install";
 
@@ -84,7 +85,7 @@ export function generateImportCode(component: ComponentDefinition): string {
 }
 
 export function generateInstallCode(component: ComponentDefinition): string {
-  const registryCommand = `npx shadcn@latest add https://nyxui.com/r/${component.slug ?? component.name}`;
+  const registryCommand = `npx shadcn@latest add ${registryItemUrl(component.slug ?? component.name)}`;
   const dependencies = component.dependencies ?? [];
 
   if (dependencies.length === 0) {

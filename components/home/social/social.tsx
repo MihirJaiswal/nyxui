@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import ThreeDLayeredCard from "@/registry/ui/3d-layered-card";
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
+import { externalLinks } from "@/lib/links";
 
 export default function Social() {
   return (
@@ -33,7 +34,7 @@ export default function Social() {
                 Follow for new updates
               </p>
               <Link
-                href="https://x.com/mihir_jaiswal_"
+                href={externalLinks.twitter}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -64,7 +65,7 @@ export default function Social() {
                 Follow me on LinkedIn.
               </p>
               <Link
-                href={"https://www.linkedin.com/in/mihir-jaiswal-322898287/s"}
+                href={externalLinks.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -94,7 +95,7 @@ export default function Social() {
                 Star the repo and follow us.
               </p>
               <Link
-                href={"https://github.com/MihirJaiswal/nyxui"}
+                href={externalLinks.githubRepo}
                 target="_blank"
                 rel="noopener noreferrer"
               >

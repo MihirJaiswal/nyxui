@@ -27,6 +27,7 @@ import {
   type Block,
   type Component,
 } from "../../registry/Data";
+import { itemHref, siteLinks } from "@/lib/links";
 
 type CommandSection = "Pages" | "Components" | "Blocks" | "Templates";
 
@@ -46,7 +47,7 @@ const staticCommands: CommandEntry[] = [
     section: "Pages",
     title: "Home",
     description: "Go to the landing page",
-    href: "/",
+    href: siteLinks.home,
     keywords: "home landing index",
     icon: Home,
   },
@@ -55,7 +56,7 @@ const staticCommands: CommandEntry[] = [
     section: "Pages",
     title: "Components",
     description: "Browse all components",
-    href: "/components",
+    href: siteLinks.components,
     keywords: "ui components library",
     icon: Box,
   },
@@ -64,7 +65,7 @@ const staticCommands: CommandEntry[] = [
     section: "Pages",
     title: "Blocks",
     description: "Browse page sections and blocks",
-    href: "/blocks",
+    href: siteLinks.blocks,
     keywords: "blocks sections layout",
     icon: Blocks,
   },
@@ -73,7 +74,7 @@ const staticCommands: CommandEntry[] = [
     section: "Pages",
     title: "Templates",
     description: "Browse templates",
-    href: "/templates",
+    href: siteLinks.templates,
     keywords: "templates starters pages",
     icon: LayoutTemplate,
   },
@@ -82,7 +83,7 @@ const staticCommands: CommandEntry[] = [
     section: "Pages",
     title: "Playground",
     description: "Customize components and copy code",
-    href: "/playground",
+    href: siteLinks.playground,
     keywords: "playground editor preview code customize",
     icon: Play,
   },
@@ -91,7 +92,7 @@ const staticCommands: CommandEntry[] = [
     section: "Pages",
     title: "Docs",
     description: "Read the documentation",
-    href: "/docs",
+    href: siteLinks.docs,
     keywords: "documentation guide install usage",
     icon: FileText,
   },
@@ -154,7 +155,7 @@ export function CommandPalette() {
       section: "Components",
       title: component.title,
       description: component.description,
-      href: `/components/${slug}`,
+      href: itemHref("components", slug),
       keywords: itemKeywords(slug, component, "components"),
       icon: Box,
     }));
@@ -166,7 +167,7 @@ export function CommandPalette() {
       section: "Blocks",
       title: block.title,
       description: block.description,
-      href: `/blocks/${slug}`,
+      href: itemHref("blocks", slug),
       keywords: itemKeywords(slug, block, "blocks"),
       icon: Blocks,
     }));
@@ -178,7 +179,7 @@ export function CommandPalette() {
       section: "Templates",
       title: template.title,
       description: template.description,
-      href: `/templates/${slug}`,
+      href: itemHref("templates", slug),
       keywords: itemKeywords(slug, template, "templates"),
       icon: LayoutTemplate,
     }));

@@ -17,6 +17,7 @@ import { componentsData } from "../../registry/Data";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { useMounted } from "../../hooks/use-mounted";
 import Logo from "./Logo";
+import { externalLinks, itemHref, siteLinks } from "@/lib/links";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -36,10 +37,10 @@ export default function Header() {
   }, []);
 
   const navLinks = [
-    { href: "/components", label: "Components" },
-    { href: "/blocks", label: "Blocks" },
-    { href: "/templates", label: "Templates" },
-    { href: "/playground", label: "Playground" },
+    { href: siteLinks.components, label: "Components" },
+    { href: siteLinks.blocks, label: "Blocks" },
+    { href: siteLinks.templates, label: "Templates" },
+    { href: siteLinks.playground, label: "Playground" },
   ];
 
   const { components } = componentsData;
@@ -153,7 +154,7 @@ export default function Header() {
             <CommandPalette />
             <Link
               aria-label="GitHub"
-              href="https://github.com/MihirJaiswal/nyxui"
+              href={externalLinks.githubRepo}
               target="_blank"
               rel="noreferrer"
             >
@@ -169,7 +170,7 @@ export default function Header() {
             </Link>
             <Link
               aria-label="Twitter"
-              href="https://x.com/mihir_jaiswal_"
+              href={externalLinks.twitter}
               target="_blank"
               rel="noreferrer"
             >
@@ -197,7 +198,7 @@ export default function Header() {
           <div className="flex lg:hidden items-center space-x-1">
             <Link
               aria-label="GitHub"
-              href="https://github.com/MihirJaiswal/nyxui"
+              href={externalLinks.githubRepo}
               target="_blank"
               rel="noreferrer"
             >
@@ -213,7 +214,7 @@ export default function Header() {
             </Link>
             <Link
               aria-label="Twitter"
-              href="https://x.com/mihir_jaiswal_"
+              href={externalLinks.twitter}
               target="_blank"
               rel="noreferrer"
             >
@@ -300,11 +301,11 @@ export default function Header() {
                       {Object.entries(components).map(([slug, comp]) => (
                         <Link
                           key={slug}
-                          href={`/components/${slug}`}
+                          href={itemHref("components", slug)}
                           aria-label={comp.title}
                           className={cn(
                             "flex items-center text-sm p-2 rounded-md transition-colors duration-200 pl-2.5",
-                            activeLink === `/components/${slug}`
+                            activeLink === itemHref("components", slug)
                               ? "text-foreground bg-muted/30 border-l-2 border-primary pl-1.5"
                               : "text-muted-foreground hover:text-foreground hover:bg-muted/20",
                           )}
@@ -320,7 +321,7 @@ export default function Header() {
                     <div className="flex gap-2">
                       <Link
                         aria-label="GitHub"
-                        href="https://github.com/MihirJaiswal/nyxui"
+                        href={externalLinks.githubRepo}
                         target="_blank"
                         rel="noreferrer"
                         className="h-7 w-7 rounded-full p-0 transition-colors duration-200"
@@ -329,7 +330,7 @@ export default function Header() {
                       </Link>
                       <Link
                         aria-label="Twitter"
-                        href="https://x.com/mihir_jaiswal_"
+                        href={externalLinks.twitter}
                         target="_blank"
                         rel="noreferrer"
                         className="h-7 w-7 rounded-full p-0 transition-colors duration-200"

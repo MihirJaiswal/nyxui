@@ -1,10 +1,11 @@
 "use client";
 
-import { copyToClipboardWithMeta } from "./copy-button";
 import { Button } from "../ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { useConfig } from "../../hooks/use-config";
+import { useCopyToClipboard } from "../../hooks/use-copy-to-clipboard";
 import { useMounted } from "../../hooks/use-mounted";
+import { trackEvent } from "../../lib/event";
 import { NpmCommands } from "../../types/unist";
 import { CheckIcon, ClipboardIcon, Terminal } from "lucide-react";
 import * as React from "react";
@@ -16,15 +17,8 @@ export function CodeBlockCommand({
   __bunCommand__,
 }: React.ComponentProps<"pre"> & NpmCommands) {
   const [config, setConfig] = useConfig();
-  const [hasCopied, setHasCopied] = React.useState(false);
+  const { copy, hasCopied } = useCopyToClipboard();
   const mounted = useMounted();
-
-  React.useEffect(() => {
-    if (hasCopied) {
-      const timer = setTimeout(() => setHasCopied(false), 2000);
-      return () => clearTimeout(timer);
-    }
-  }, [hasCopied]);
 
   const packageManager = config.packageManager || "pnpm";
   const tabs = React.useMemo(() => {
@@ -43,15 +37,16 @@ export function CodeBlockCommand({
       return;
     }
 
-    copyToClipboardWithMeta(command, {
-      name: "copy_npm_command",
-      properties: {
-        command,
-        pm: packageManager,
-      },
+    copy(command).then(() => {
+      trackEvent({
+        name: "copy_npm_command",
+        properties: {
+          command,
+          pm: packageManager,
+        },
+      });
     });
-    setHasCopied(true);
-  }, [packageManager, tabs]);
+  }, [copy, packageManager, tabs]);
 
   if (!mounted) {
     return null;
