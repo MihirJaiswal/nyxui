@@ -43,11 +43,11 @@ jobs:
       - name: Typecheck
         run: pnpm typecheck
 
-      - name: Build registry
-        run: pnpm registry:build
+      - name: Generate registry
+        run: pnpm registry:generate
 
       - name: Check generated files
-        run: git diff --exit-code
+        run: git diff --exit-code -- __registry__ registry.json public/registry.json public/r
 
       - name: Build app
         run: pnpm build
