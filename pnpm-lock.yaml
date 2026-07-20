@@ -190,6 +190,9 @@ importers:
       shadcn:
         specifier: 2.6.0-canary.2
         version: 2.6.0-canary.2(@types/node@20.17.30)(typescript@5.8.3)
+      sharp:
+        specifier: 0.34.5
+        version: 0.34.5
       shiki:
         specifier: ^2.3.2
         version: 2.5.0
