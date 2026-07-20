@@ -7,16 +7,16 @@ import GlassMusicPlayer from "./GlassMusicPlayer";
 import { Scanner } from "./Scanner";
 import { Matrix } from "./Matrix";
 import AnimatedCodeBlockDemo from "./CodeBlock";
-import { componentsData } from "@/registry/Data";
+import { getRegistryCounts } from "@/lib/registry";
 import { AnimatedBackground } from "./AnimatedBackground";
 import { Badge } from "@/components/ui/badge";
 
 function Hero() {
-  const componentCount = Object.keys(componentsData.components || {}).length;
-  const templateCount = Object.keys(componentsData.templates || {}).length;
-  const blockCount = componentsData.blocks
-    ? Object.keys(componentsData.blocks).length
-    : 0;
+  const {
+    components: componentCount,
+    templates: templateCount,
+    blocks: blockCount,
+  } = getRegistryCounts();
   const hasBlocks = blockCount > 0;
 
   return (

@@ -1,6 +1,7 @@
 import { Github } from "lucide-react";
 import Link from "next/link";
 import Logo from "./Logo";
+import { externalLinks, itemHref, siteLinks } from "@/lib/links";
 
 const links = [
   {
@@ -8,27 +9,27 @@ const links = [
     items: [
       {
         title: "Home",
-        href: "/",
+        href: siteLinks.home,
       },
       {
         title: "All Components",
-        href: "/components",
+        href: siteLinks.components,
       },
       {
         title: "Documentation",
-        href: "/docs",
+        href: siteLinks.docs,
       },
       {
         title: "Categories",
-        href: "/category",
+        href: siteLinks.category,
       },
       {
         title: "Templates",
-        href: "/templates",
+        href: siteLinks.templates,
       },
       {
         title: "Playground",
-        href: "/playground",
+        href: siteLinks.playground,
       },
     ],
   },
@@ -37,11 +38,11 @@ const links = [
     items: [
       {
         title: "Single Page Portfolio",
-        href: "/templates/singlepage-portfolio",
+        href: itemHref("templates", "singlepage-portfolio"),
       },
       {
         title: "Minimalist Portfolio",
-        href: "/templates/minimalist-portfolio",
+        href: itemHref("templates", "minimalist-portfolio"),
       },
     ],
   },
@@ -50,19 +51,19 @@ const links = [
     items: [
       {
         title: "3D layered Card",
-        href: "/components/3d-layered-card",
+        href: itemHref("components", "3d-layered-card"),
       },
       {
         title: "Animated Code Block",
-        href: "/components/animated-code-block",
+        href: itemHref("components", "animated-code-block"),
       },
       {
         title: "Apple Glass Effect",
-        href: "/components/apple-glass-effect",
+        href: itemHref("components", "apple-glass-effect"),
       },
       {
         title: "More",
-        href: "/components",
+        href: siteLinks.components,
       },
     ],
   },
@@ -71,7 +72,7 @@ const links = [
     items: [
       {
         title: "Footer",
-        href: "/blocks/footer",
+        href: itemHref("blocks", "footer"),
       },
     ],
   },
@@ -84,7 +85,7 @@ export default function FooterSection() {
         <div className="grid gap-12 md:grid-cols-5">
           <div className="md:col-span-2">
             <Link
-              href="/"
+              href={siteLinks.home}
               aria-label="go home"
               className="size-fit flex items-end justify-center gap-3"
             >
@@ -118,7 +119,7 @@ export default function FooterSection() {
           </span>
           <div className="order-first flex flex-wrap justify-center gap-6 text-sm md:order-last">
             <Link
-              href="https://x.com/mihir_jaiswal_"
+              href={externalLinks.twitter}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="X/Twitter"
@@ -138,7 +139,7 @@ export default function FooterSection() {
               </svg>
             </Link>
             <Link
-              href="https://www.linkedin.com/in/mihir-jaiswal-322898287/"
+              href={externalLinks.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
@@ -158,7 +159,7 @@ export default function FooterSection() {
               </svg>
             </Link>
             <Link
-              href="https://github.com/MihirJaiswal/nyxui"
+              href={externalLinks.githubRepo}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"

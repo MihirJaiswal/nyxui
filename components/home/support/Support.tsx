@@ -6,6 +6,7 @@ import { BsChatSquareHeartFill } from "react-icons/bs";
 import { motion } from "motion/react";
 import LinkedInPhoneComponent from "./LinkedinPhone";
 import XPhoneComponent from "./XPhone";
+import { externalLinks } from "@/lib/links";
 
 // Define the platform type
 type Platform = "twitter" | "linkedin" | "github";
@@ -32,7 +33,7 @@ export default function SupportSection() {
     const shareUrls: Record<Platform, string> = {
       twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(posts.twitter)}&url=${encodeURIComponent(url)}&hashtags=design,frontend,webdev`,
       linkedin: `https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(posts.linkedin + "\n\n" + url)}`,
-      github: "https://github.com/MihirJaiswal/nyxui",
+      github: externalLinks.githubRepo,
     };
 
     window.open(shareUrls[platform], "_blank", "noopener,noreferrer");

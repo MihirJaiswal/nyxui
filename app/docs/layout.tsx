@@ -2,9 +2,11 @@ import React from "react";
 import type { Metadata } from "next";
 import { ComponentSidebar } from "@/components/components/component-sidebar";
 import Header from "@/components/global/Header";
+import { absoluteUrl } from "@/lib/utils";
+import { externalLinks, siteLinks } from "@/lib/links";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://nyxui.com/"),
+  metadataBase: new URL(`${externalLinks.site}/`),
   title: "Docs | Nyx UI",
   description:
     "Comprehensive documentation for Nyx UI - a premium collection of responsive, accessible React components built with Tailwind CSS, Framer Motion, and TypeScript for modern Next.js applications.",
@@ -21,7 +23,7 @@ export const metadata: Metadata = {
     "web development",
     "frontend framework",
   ],
-  authors: [{ name: "Mihir Jaiswal", url: "https://x.com/mihir_jaiswal_" }],
+  authors: [{ name: "Mihir Jaiswal", url: externalLinks.twitter }],
   creator: "Mihir Jaiswal",
   publisher: "Mihir Jaiswal",
   robots: {
@@ -35,12 +37,12 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://nyxui.com/components",
+    canonical: absoluteUrl(siteLinks.components),
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://nyxui.com/components",
+    url: absoluteUrl(siteLinks.components),
     siteName: "Nyx UI Documentation",
     title: "Nyx UI - Beautiful React Components for Next.js",
     description:

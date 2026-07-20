@@ -4,6 +4,7 @@ import { GlowCard } from "@/registry/ui/glow-card";
 import Image from "next/image";
 import Link from "next/link";
 import { lazy, Suspense, useState, useEffect } from "react";
+import { externalLinks } from "@/lib/links";
 import img from "../../../public/assets/images/landing-page/mihir.webp";
 
 // Lazy load the ImageRipple component
@@ -198,7 +199,7 @@ export const TwitterCard = () => {
           1:24 PM · Apr 7, 2025
         </span>
         <Link
-          href="https://x.com/mihir_jaiswal_"
+          href={externalLinks.twitter}
           target="_blank"
           rel="noopener noreferrer"
         >

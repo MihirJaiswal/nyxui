@@ -6,6 +6,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { Button, buttonVariants } from "../ui/button";
 import { cn } from "../../lib/utils";
+import { externalLinks } from "@/lib/links";
 
 interface RepoDownloadProps {
   url: string;
@@ -44,7 +45,7 @@ export default function RepoDownload({ url, free = false }: RepoDownloadProps) {
 
   return (
     <Link
-      href="https://github.com/nyxui/nyxui"
+      href={externalLinks.githubRepo}
       target="_blank"
       className={cn(
         buttonVariants({

@@ -17,6 +17,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { componentRegistry } from "./registry";
 import { Grid } from "./Grid";
 import { generatePlaygroundCode, type CodeVariant } from "./codegen";
+import { playgroundComponentHref } from "@/lib/links";
 
 // Extract shared config generation logic
 const generateDefaultConfig = (componentKey: string): ComponentConfig => {
@@ -213,7 +214,7 @@ const PlaygroundContent = ({
         setSelectedComponent(componentKey);
 
         startTransition(() => {
-          router.replace(`/playground?component=${componentKey}`, {
+          router.replace(playgroundComponentHref(componentKey), {
             scroll: false,
           });
         });

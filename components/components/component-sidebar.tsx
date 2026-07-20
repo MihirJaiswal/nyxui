@@ -1,5 +1,6 @@
 import { componentsData } from "../../registry/Data";
 import { ComponentSidebarClient } from "./ComponentSidebarClient";
+import { externalLinks, itemHref } from "@/lib/links";
 
 interface ComponentSidebarProps {
   type?: "components" | "blocks";
@@ -12,7 +13,7 @@ export const ComponentSidebar = ({
     .map(([key, component]) => {
       return {
         name: component.title,
-        href: `/components/${key}`,
+        href: itemHref("components", key),
         isNew: Boolean(component.isNew),
       };
     })
@@ -24,7 +25,7 @@ export const ComponentSidebar = ({
       return {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         name: (template as any).title,
-        href: `/templates/${key}`,
+        href: itemHref("templates", key),
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         isNew: Boolean((template as any).isNew),
       };
@@ -36,7 +37,7 @@ export const ComponentSidebar = ({
     .map(([key, block]) => {
       return {
         name: block.title,
-        href: `/blocks/${key}`,
+        href: itemHref("blocks", key),
         isNew: Boolean(block.isNew),
       };
     })
@@ -63,7 +64,7 @@ export const ComponentSidebar = ({
                 className="group flex items-center w-full text-xs md:text-sm py-1.5 md:py-2 rounded-md transition-all duration-200 hover:text-foreground text-black dark:text-[#A1A1AA] hover:bg-muted/50 ml-2 group-hover:ml-2 transition-all duration-200"
                 target="_blank"
                 rel="noopener noreferrer"
-                href="https://x.com/mihir_jaiswal_"
+                href={externalLinks.twitter}
               >
                 @mihir_jaiswal_
               </a>

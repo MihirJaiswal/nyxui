@@ -1,13 +1,11 @@
 import ComponentGrid from "@/components/components/ComponentGrid";
-import { allDocs } from "content-collections";
+import { getPublishedDocCount } from "@/lib/registry";
 import { absoluteUrl } from "@/lib/utils";
 import type { Metadata } from "next";
+import { externalLinks } from "@/lib/links";
 
 function getComponentCount() {
-  if (!allDocs || !Array.isArray(allDocs)) return 0;
-  return allDocs.filter(
-    (doc) => doc.slugAsParams.startsWith("components/") && doc.published,
-  ).length;
+  return getPublishedDocCount("components");
 }
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -80,7 +78,7 @@ const ComponentsPage = () => {
     publisher: {
       "@type": "Organization",
       name: "Nyx UI",
-      url: "https://nyxui.com/",
+      url: `${externalLinks.site}/`,
     },
   };
 

@@ -1,10 +1,11 @@
-import { componentsData } from "@/registry/Data";
+import { getRegistryCounts } from "@/lib/registry";
 import { absoluteUrl } from "@/lib/utils";
 import type { Metadata } from "next";
 import ComponentGrid from "@/components/components/ComponentGrid";
+import { externalLinks } from "@/lib/links";
 
 function getBlockCount() {
-  return Object.keys(componentsData.blocks).length;
+  return getRegistryCounts().blocks;
 }
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -80,7 +81,7 @@ const BlocksPage = () => {
     publisher: {
       "@type": "Organization",
       name: "Nyx UI",
-      url: "https://nyxui.com/",
+      url: `${externalLinks.site}/`,
     },
   };
 

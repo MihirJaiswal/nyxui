@@ -1,44 +1,45 @@
 import { MetadataRoute } from "next";
 import { allDocs } from "content-collections";
+import { absoluteUrl } from "@/lib/utils";
+import { categoryHref, itemHref, siteLinks } from "@/lib/links";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://nyxui.com";
   const date = new Date();
 
   // Main pages
   const mainPages: MetadataRoute.Sitemap = [
     {
-      url: baseUrl,
+      url: absoluteUrl(siteLinks.home),
       lastModified: date,
       changeFrequency: "weekly",
       priority: 1.0,
     },
     {
-      url: `${baseUrl}/docs`,
+      url: absoluteUrl(siteLinks.docs),
       lastModified: date,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/components`,
+      url: absoluteUrl(siteLinks.components),
       lastModified: date,
       changeFrequency: "daily",
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/templates`,
+      url: absoluteUrl(siteLinks.templates),
       lastModified: date,
       changeFrequency: "weekly",
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/category`,
+      url: absoluteUrl(siteLinks.category),
       lastModified: date,
       changeFrequency: "weekly",
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/playground`,
+      url: absoluteUrl(siteLinks.playground),
       lastModified: date,
       changeFrequency: "weekly",
       priority: 0.7,
@@ -52,7 +53,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     .map((doc) => {
       const slug = doc.slugAsParams.replace("components/", "");
       return {
-        url: `${baseUrl}/components/${slug}`,
+        url: absoluteUrl(itemHref("components", slug)),
         lastModified: date,
         changeFrequency: "monthly",
         priority: 0.7,
@@ -66,7 +67,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     .map((doc) => {
       const slug = doc.slugAsParams.replace("templates/", "");
       return {
-        url: `${baseUrl}/templates/${slug}`,
+        url: absoluteUrl(itemHref("templates", slug)),
         lastModified: date,
         changeFrequency: "monthly",
         priority: 0.6,
@@ -87,7 +88,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const categoryPages: MetadataRoute.Sitemap = Array.from(allTags).map(
     (tag) => ({
-      url: `${baseUrl}/category/${encodeURIComponent(tag.toLowerCase().replace(/\s+/g, "-"))}`,
+      url: absoluteUrl(categoryHref(tag)),
       lastModified: date,
       changeFrequency: "weekly",
       priority: 0.6,

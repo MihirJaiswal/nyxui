@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { componentsData } from "@/registry/Data";
+import { getRegistryCounts } from "@/lib/registry";
 import TextureCard, {
   TextureCardContent,
   TextureCardDescription,
@@ -12,9 +12,11 @@ import temlplates from "../../../public/assets/images/landing-page/templates.png
 import components from "../../../public/assets/images/landing-page/components.png";
 
 export default function ContainCard() {
-  const componentCount = Object.keys(componentsData.components).length;
-  const templateCount = Object.keys(componentsData.templates).length;
-  const blocksCount = Object.keys(componentsData.blocks).length;
+  const {
+    components: componentCount,
+    templates: templateCount,
+    blocks: blocksCount,
+  } = getRegistryCounts();
 
   const projects = [
     {
