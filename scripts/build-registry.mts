@@ -2,6 +2,7 @@ import { execFile } from "child_process";
 import { promises as fs } from "fs";
 import path from "path";
 import { promisify } from "util";
+import { format } from "prettier";
 import { rimraf } from "rimraf";
 import {
   registryItemSchema,
@@ -138,8 +139,16 @@ function createRegistry(): Registry {
 
 const registry = createRegistry();
 
+async function formatGeneratedFile(
+  filePath: string,
+  content: string,
+): Promise<string> {
+  return format(content, { filepath: filePath });
+}
+
 async function writeJson(filePath: string, data: unknown): Promise<void> {
-  await fs.writeFile(filePath, `${JSON.stringify(data, null, 2)}\n`);
+  const json = `${JSON.stringify(data, null, 2)}\n`;
+  await fs.writeFile(filePath, await formatGeneratedFile(filePath, json));
 }
 
 function getRegistryComponentImport(item: RegistryItem): string | null {
@@ -227,7 +236,7 @@ export const Index: Record<string, RegistryEntry> = {`;
 
   const outPath = path.join(process.cwd(), "__registry__/index.tsx");
   await rimraf(outPath);
-  await fs.writeFile(outPath, index);
+  await fs.writeFile(outPath, await formatGeneratedFile(outPath, index));
 }
 
 async function buildRegistryJsonFile(): Promise<void> {
