@@ -15,7 +15,6 @@ interface ComponentCardProps {
 export const ComponentCard = ({
   slug,
   title,
-  description,
   imageSrc,
   type = "components",
   className,
