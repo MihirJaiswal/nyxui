@@ -13,7 +13,7 @@ export const siteLinks = {
 
 export const externalLinks = {
   site: "https://nyxui.com",
-  logo: "https://nyxui.com/logo.png",
+  logo: "https://nyxui.com/nyx-logo.webp",
   githubRepo: "https://github.com/MihirJaiswal/nyxui",
   githubProfile: "https://github.com/MihirJaiswal",
   twitter: "https://x.com/mihir_jaiswal_",
