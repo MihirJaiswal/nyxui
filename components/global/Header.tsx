@@ -109,7 +109,7 @@ export default function Header() {
             className="group flex items-center transition-all duration-200"
           >
             <div className="relative flex items-center justify-center overflow-hidden">
-              <div className="h-8 w-8 md:h-9 md:w-9 border-4 border-background flex items-center justify-center rounded-full transition-all duration-200">
+              <div className="h-8 w-8 md:h-11 md:w-11 flex items-center justify-center transition-all duration-200">
                 <Logo className="transition-colors duration-200" />
               </div>
             </div>
