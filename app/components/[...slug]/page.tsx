@@ -148,12 +148,17 @@ export default async function ComponentPage({ params }: SlugPageProps) {
           links={doc.links}
           action={
             shouldShowPlaygroundButton ? (
-              <Link href={playgroundComponentHref(componentName)}>
-                <Button variant="default" size="sm" className="gap-2 w-full">
-                  <Play className="w-4 h-4" />
+              <Button
+                asChild
+                variant="outline"
+                size="sm"
+                className="h-8 gap-2 rounded-lg border-border/70 bg-background px-3 text-xs text-muted-foreground shadow-none hover:bg-muted hover:text-foreground dark:border-white/10 dark:bg-[#111111] dark:hover:bg-[#1A1A1A]"
+              >
+                <Link href={playgroundComponentHref(componentName)}>
+                  <Play className="size-3.5" />
                   Open in Playground
-                </Button>
-              </Link>
+                </Link>
+              </Button>
             ) : null
           }
         />

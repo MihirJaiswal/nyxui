@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import { motion, type Variants } from "motion/react";
 import { cn } from "@/lib/utils";
 
-export interface GrainyAnimatedBgProps {
+export interface GrainyBackgroundProps {
   children?: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
@@ -31,7 +31,7 @@ export interface GrainyAnimatedBgProps {
 }
 
 const getSizeStyles = (
-  size: GrainyAnimatedBgProps["size"],
+  size: GrainyBackgroundProps["size"],
 ): React.CSSProperties => {
   if (typeof size === "number") {
     return { width: `${size}px`, height: `${size}px` };
@@ -46,7 +46,7 @@ const getSizeStyles = (
 };
 
 const getGrainSVG = (
-  type: NonNullable<GrainyAnimatedBgProps["grainType"]>,
+  type: NonNullable<GrainyBackgroundProps["grainType"]>,
   intensity: number,
   size: number,
   darkMode: boolean,
@@ -107,7 +107,7 @@ const getGrainSVG = (
 };
 
 const getGradientPattern = (
-  pattern: NonNullable<GrainyAnimatedBgProps["animationType"]>,
+  pattern: NonNullable<GrainyBackgroundProps["animationType"]>,
   colors: string[],
   darkMode = false,
 ): string => {
@@ -301,7 +301,7 @@ const defaultColors = {
   dark: ["#1a1a2e", "#16213e", "#0f3460", "#533483"],
 };
 
-export const AnimatedGrainyBg: React.FC<GrainyAnimatedBgProps> = ({
+export const GrainyBackground: React.FC<GrainyBackgroundProps> = ({
   children,
   className,
   style,

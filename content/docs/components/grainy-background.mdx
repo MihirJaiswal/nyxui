@@ -1,5 +1,5 @@
 ---
-title: Animated Grainy Background
+title: Grainy Background
 date: 2025-05-08
 description: A dynamic animated gradient background component that supports various grainy effects and patterns.
 author: MihirJaiswal
@@ -7,7 +7,7 @@ published: true
 tags: ["Background", "Animation"]
 ---
 
-<ComponentPreview name="animated-grainy-bg-demo" />
+<ComponentPreview name="grainy-background-demo" />
 
 ## Installation
 
@@ -20,7 +20,7 @@ tags: ["Background", "Animation"]
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add "https://nyxui.com/r/animated-grainy-bg.json"
+npx shadcn@latest add "https://nyxui.com/r/grainy-background.json"
 ```
 
 </TabsContent>
@@ -48,7 +48,7 @@ export function cn(...inputs: ClassValue[]) {
 
 <Step>Copy and paste the following code into your project.</Step>
 
-<ComponentSource name="animated-grainy-bg" />
+<ComponentSource name="grainy-background" />
 
 <Step>Update the import paths to match your project setup.</Step>
 
@@ -61,13 +61,13 @@ export function cn(...inputs: ClassValue[]) {
 ## Usage
 
 ```tsx
-import { AnimatedGrainyBg } from "@/components/ui/animated-grainy-bg";
+import { GrainyBackground } from "@/components/ui/grainy-background";
 ```
 
 ```tsx
 <div className="relative h-[500px] w-full overflow-hidden bg-transparent">
   <div className="absolute inset-0">
-    <AnimatedGrainyBg
+    <GrainyBackground
       position="absolute"
       colors={["#3b82f6", "#2563eb", "#1d4ed8", "#1e40af"]}
     />

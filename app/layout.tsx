@@ -1,9 +1,42 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+
+const Satoshi = localFont({
+  src: [
+    {
+      path: "../public/fonts/Satoshi-Light.woff2",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Satoshi-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Satoshi-Medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Satoshi-Bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Satoshi-Black.woff2",
+      weight: "900",
+      style: "normal",
+    },
+  ],
+  variable: "--font-satoshi",
+  display: "swap",
+});
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Banner } from "@/components/global/Banner";
+// import { Banner } from "@/components/global/Banner";
 import Footer from "@/components/global/Footer";
 import { externalLinks } from "@/lib/links";
 
@@ -104,7 +137,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${GeistSans.variable} ${GeistMono.variable} dark`}
+      className={`${Satoshi.variable} ${GeistSans.variable} ${GeistMono.variable} dark`}
       suppressHydrationWarning
     >
       <head>
@@ -138,7 +171,7 @@ export default function RootLayout({
           defaultTheme="dark"
           enableSystem={false}
         >
-          <Banner />
+          {/* <Banner /> */}
           <main>{children}</main>
           <Footer />
         </ThemeProvider>

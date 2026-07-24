@@ -16,16 +16,16 @@ export const examples: Registry["items"] = [
     ],
   },
   {
-    name: "animated-grainy-bg-demo",
+    name: "grainy-background-demo",
     type: "registry:example",
-    title: "Animated Grainy Background Demo",
+    title: "Grainy Background Demo",
     description: "Example showing an animated grainy background.",
-    registryDependencies: ["https://nyxui.com/r/animated-grainy-bg"],
+    registryDependencies: ["https://nyxui.com/r/grainy-background"],
     files: [
       {
-        path: "registry/example/animated-grainy-bg-demo.tsx",
+        path: "registry/example/grainy-background-demo.tsx",
         type: "registry:example",
-        target: "components/animated-grainy-bg-demo.tsx",
+        target: "components/grainy-background-demo.tsx",
       },
     ],
   },

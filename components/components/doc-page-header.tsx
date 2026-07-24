@@ -38,16 +38,15 @@ export function DocPageHeader({
 
   return (
     <div className="space-y-4 mt-5">
-      <div className="flex flex-wrap items-start gap-3 sm:items-center justify-between">
+      <div>
         <h1 className="scroll-m-20 text-3xl font-bold tracking-tight sm:text-4xl break-words">
           {title}
         </h1>
-        {action}
       </div>
 
       {description && (
         <div>
-          <p className="text-muted-foreground dark:text-[#A1A1AA] text-lg">
+          <p className="text-muted-foreground dark:text-[#A1A1AA] ">
             <span className="md:inline-block align-top no-underline md:[text-wrap:balance]">
               {description}
             </span>
@@ -55,20 +54,27 @@ export function DocPageHeader({
         </div>
       )}
 
-      {hasTags && (
-        <div className="flex flex-wrap gap-2 pt-2">
-          {tags?.map((tag) => (
-            <Link
-              key={tag}
-              href={categoryHref(tag, tagBasePath)}
-              className={cn(
-                badgeVariants({ variant: "outline" }),
-                "bg-gray-100 dark:bg-zinc-900 transition-colors hover:bg-gray-200 dark:hover:bg-zinc-800",
-              )}
-            >
-              {tag}
-            </Link>
-          ))}
+      {(hasTags || action) && (
+        <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
+          {hasTags ? (
+            <div className="flex flex-wrap gap-2">
+              {tags?.map((tag) => (
+                <Link
+                  key={tag}
+                  href={categoryHref(tag, tagBasePath)}
+                  className={cn(
+                    badgeVariants({ variant: "outline" }),
+                    "h-7 rounded-lg border-border/70 bg-background px-2.5 text-xs font-medium text-muted-foreground shadow-none transition-colors hover:bg-muted hover:text-foreground dark:border-white/10 dark:bg-[#111111] dark:hover:bg-[#1A1A1A]",
+                  )}
+                >
+                  {tag}
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <span aria-hidden="true" />
+          )}
+          {action}
         </div>
       )}
 

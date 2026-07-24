@@ -1,72 +1,89 @@
-import Image from "next/image";
+import React from "react";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { getPlaiceholder } from "plaiceholder";
-import { readFile } from "fs/promises";
-import path from "path";
-import { itemHref } from "@/lib/links";
-import type { DocSection } from "@/lib/docs";
+import Image from "next/image";
+import { cn } from "@/lib/utils";
 
-export async function ComponentCard({
-  slug,
-  title,
-  description,
-  imageSrc,
-  type = "components",
-}: {
+interface ComponentCardProps {
   slug: string;
   title: string;
-  description: string;
-  imageSrc: string;
-  type?: DocSection;
-}) {
-  let base64 =
-    "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q==";
+  description?: string;
+  imageSrc?: string;
+  type?: "components" | "blocks" | "templates";
+  className?: string;
+}
 
-  try {
-    const imagePath = path.join(process.cwd(), "public", imageSrc);
-    const imageBuffer = await readFile(imagePath);
-    const placeholder = await getPlaiceholder(imageBuffer);
-    base64 = placeholder.base64;
-  } catch (error) {
-    console.warn(`Could not generate placeholder for ${imageSrc}:`, error);
-  }
-
-  // Set image dimensions based on type (templates use different dimensions)
-  const imageHeight = type === "templates" ? 650 : 720;
+export const ComponentCard = ({
+  slug,
+  title,
+  imageSrc,
+  type = "components",
+  className,
+}: ComponentCardProps) => {
+  const href = `/${type}/${slug}`;
 
   return (
-    <Link href={itemHref(type, slug)} className="block">
-      <div className="rounded-lg overflow-hidden max-w-4xl transition-all duration-300 cursor-pointer h-full">
-        <div className="relative dark:border bg-black flex items-center justify-center rounded-lg dark:border-white/[0.1] overflow-hidden transition duration-200 hover:scale-105">
-          <Image
-            src={imageSrc}
-            alt={title}
-            width={1024}
-            height={imageHeight}
-            quality={100}
-            decoding="async"
-            placeholder="blur"
-            blurDataURL={base64}
-            className="transition duration-300 blur-0 rounded-md group-hover:scale-102"
-            loading="lazy"
-          />
-        </div>
-        <div className="p-4">
-          <div className="flex justify-between items-center">
-            <h2 className="text-xl font-bold mb-2 text-gray-800 dark:text-gray-100">
-              {title}
-            </h2>
-            <ArrowRight
-              className="text-gray-500 dark:text-gray-400"
-              size={20}
+    <Link
+      href={href}
+      className={cn(
+        "group relative flex h-full cursor-pointer flex-col overflow-hidden",
+        "rounded-[20px] border border-[#121212] bg-[#121212] p-3",
+        "shadow-glass transition-colors duration-200",
+        "hover:bg-[#161616]",
+        className,
+      )}
+    >
+      {/* Title Area */}
+      <div className="flex flex-col items-start justify-between gap-1.5 px-2 pb-2">
+        <h3 className="text-white font-medium">{title}</h3>
+        {/* {description && (
+          <div className="flex items-center justify-center gap-2 text-sm font-medium text-white/50 whitespace-nowrap">
+            {description}
+          </div>
+        )} */}
+      </div>
+
+      {/* Preview Area */}
+      <div
+        className="
+    relative w-full flex-1 min-h-84
+    overflow-hidden rounded-2xl border border-black bg-background
+
+    after:pointer-events-none
+    after:absolute after:inset-0 after:z-10
+    after:rounded-2xl
+    after:shadow-[inset_0_0_0.1px_rgba(255,255,255,0.1),inset_0_1px_1px_rgba(255,255,255,0.11)]
+  "
+        style={{
+          boxShadow: "rgba(0, 0, 0, 0.31) 0px 4px 8px 0px",
+        }}
+      >
+        {imageSrc ? (
+          <div className="relative w-full h-full bg-[oklch(0.1448_0_0)] isolate overflow-hidden ">
+            <Image
+              src={imageSrc}
+              alt={title}
+              fill
+              className="object-contain mix-blend-screen"
+              quality={100}
+              loading="lazy"
             />
           </div>
-          <p className="text-gray-600 dark:text-gray-300 text-sm">
-            {description}
-          </p>
-        </div>
+        ) : (
+          <div className="w-14 h-14 rounded-full flex-shrink-0 bg-[oklch(0.1448_0_0)]">
+            <Image
+              src="/nyx-logo.webp"
+              alt={title}
+              width={150}
+              height={150}
+              className="inline-block rounded-lg w-full h-full object-contain"
+              quality={100}
+              loading="lazy"
+            />
+          </div>
+        )}
       </div>
     </Link>
   );
-}
+};
+
+export default ComponentCard;
