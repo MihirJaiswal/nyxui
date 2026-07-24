@@ -114,6 +114,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
 
   return (
     <motion.div
+      initial={false}
       animate={{
         width: isCollapsed ? 48 : 288,
         height: isCollapsed ? 40 : "calc(100% - 1.5rem)",
