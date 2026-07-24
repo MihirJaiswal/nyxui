@@ -2,7 +2,9 @@ import { Index } from "../../__registry__";
 import { ComponentWrapper } from "./component-wrapper";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { cn } from "../../lib/utils";
-import { Loader } from "lucide-react";
+import { Loader, Maximize } from "lucide-react";
+import { previewHref } from "@/lib/links";
+import Link from "next/link";
 import * as React from "react";
 
 interface ComponentPreviewProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -52,7 +54,7 @@ export function ComponentPreview({
     >
       <Tabs defaultValue="preview" className="relative w-full gap-0">
         {!preview && (
-          <div className="z-10 px-4">
+          <div className="z-10 flex items-center justify-between px-4">
             <TabsList className="relative z-0 flex h-10 w-fit items-center justify-center rounded-none border-0 bg-transparent p-0 text-muted-foreground">
               <TabsTrigger
                 value="preview"
@@ -67,6 +69,15 @@ export function ComponentPreview({
                 <span>Code</span>
               </TabsTrigger>
             </TabsList>
+            <Link
+              href={previewHref(name)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex size-7 items-center justify-center rounded-[5px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground dark:hover:bg-muted/50"
+              aria-label="Open in full screen"
+            >
+              <Maximize size={16} />
+            </Link>
           </div>
         )}
         <TabsContent value="preview" className="px-1 pb-1">

@@ -5,10 +5,10 @@ import type { Metadata } from "next";
 import { Mdx } from "@/components/components/mdx-components";
 import { DocPageHeader } from "@/components/components/doc-page-header";
 import { getDocFromParams, type SlugPageProps } from "@/lib/docs";
-import { externalLinks, itemHref, previewHref } from "@/lib/links";
-import Link from "next/link";
-import { Scan } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { externalLinks, itemHref } from "@/lib/links";
+// import Link from "next/link";
+// import { Scan } from "lucide-react";
+// import { Button } from "@/components/ui/button";
 
 export async function generateStaticParams() {
   return Object.keys(componentsData.blocks).map((slug) => ({
@@ -112,19 +112,6 @@ export default async function BlockPage({ params }: SlugPageProps) {
           title={block.title}
           description={block.description}
           tags={block.tags}
-          action={
-            <Button className="rounded-md" variant="outline">
-              <Link
-                href={previewHref(slug[0])}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 py-2"
-              >
-                <Scan className="w-4 h-4" />
-                Full Screen
-              </Link>
-            </Button>
-          }
         />
 
         <div className="mt-6 space-y-8">
