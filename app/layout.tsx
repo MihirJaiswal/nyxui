@@ -36,7 +36,7 @@ const Satoshi = localFont({
 });
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Banner } from "@/components/global/Banner";
+// import { Banner } from "@/components/global/Banner";
 import Footer from "@/components/global/Footer";
 import { externalLinks } from "@/lib/links";
 
@@ -171,7 +171,7 @@ export default function RootLayout({
           defaultTheme="dark"
           enableSystem={false}
         >
-          <Banner />
+          {/* <Banner /> */}
           <main>{children}</main>
           <Footer />
         </ThemeProvider>

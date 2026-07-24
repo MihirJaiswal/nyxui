@@ -7,8 +7,10 @@ import { useCopyToClipboard } from "../../hooks/use-copy-to-clipboard";
 import { useMounted } from "../../hooks/use-mounted";
 import { trackEvent } from "../../lib/event";
 import { NpmCommands } from "../../types/unist";
-import { CheckIcon, ClipboardIcon, Terminal } from "lucide-react";
+import { CheckIcon, CopyIcon } from "lucide-react";
 import * as React from "react";
+
+const packageManagers = ["npm", "pnpm", "yarn", "bun"] as const;
 
 export function CodeBlockCommand({
   __npmCommand__,
@@ -53,58 +55,54 @@ export function CodeBlockCommand({
   }
 
   return (
-    <div className="relative w-full max-w-full mt-6 rounded-md overflow-hidden border border-zinc-800 bg-zinc-950 shadow-lg transition-all duration-200 hover:shadow-xl">
+    <div className="relative">
       <Tabs
-        className="w-full max-w-full"
+        className="w-full max-w-full gap-0"
         defaultValue={packageManager}
         onValueChange={(value) => {
-          console.log("value", value, packageManager);
           setConfig({
             ...config,
             packageManager: value as "pnpm" | "npm" | "yarn" | "bun",
           });
         }}
       >
-        <div className="flex items-center justify-between bg-black px-4 py-2 w-full sticky top-0 z-10">
-          <TabsList className="flex h-8 gap-3 bg-zinc-950 p-1 rounded-md">
-            {Object.entries(tabs).map(([key]) => (
-              <TabsTrigger
-                key={key}
-                value={key}
-                className="relative font-mono text-xs text-zinc-400 bg-transparent border-0 rounded-md px-3 py-1 transition-all duration-150 hover:text-zinc-200 data-[state=active]:bg-zinc-800 data-[state=active]:text-zinc-50"
-              >
-                {key}
-              </TabsTrigger>
-            ))}
-          </TabsList>
-          <div className="flex items-center">
-            <Terminal className="h-4 w-4 text-zinc-500" />
-          </div>
-        </div>
-        {Object.entries(tabs).map(([key, value]) => {
+        <TabsList className="mb-4 flex h-auto w-fit items-center gap-1 rounded-xl border border-border/70 bg-zinc-50 p-1 dark:border-white/5 dark:bg-[#111111]">
+          {packageManagers.map((manager) => (
+            <TabsTrigger
+              key={manager}
+              value={manager}
+              className="relative h-auto rounded-lg border-0 bg-transparent px-4 py-1.5 text-sm font-medium text-muted-foreground shadow-none transition-colors duration-200 hover:text-foreground data-[state=active]:bg-[#FF4F11] data-[state=active]:text-white data-[state=active]:shadow-none dark:text-neutral-500 dark:hover:text-neutral-300"
+            >
+              <span className="relative z-10">{manager}</span>
+            </TabsTrigger>
+          ))}
+        </TabsList>
+        {packageManagers.map((manager) => {
+          const value = tabs[manager];
+
           return (
             <TabsContent
-              key={key}
-              value={key}
-              className="mt-0 group bg-zinc-950"
+              key={manager}
+              value={manager}
+              className="relative mt-0 group"
             >
-              <pre className="px-5 overflow-x-auto max-w-full">
+              <pre className="overflow-x-auto whitespace-nowrap rounded-xl border border-border/70 bg-white p-4 pr-14 font-mono text-[13px] text-muted-foreground dark:border-white/5 dark:bg-[#0F0F0F] dark:text-neutral-400">
                 <code
-                  className="relative font-mono text-sm leading-relaxed text-zinc-200 break-words whitespace-pre-wrap"
+                  className="relative font-mono text-[13px] leading-relaxed text-muted-foreground dark:text-neutral-400"
                   data-language="bash"
                 >
                   {value?.split(" ").map((part, index) =>
                     index === 0 ? (
                       <span
                         key={index}
-                        className="text-[#69C3FF] font-semibold tracking-wide"
+                        className="font-semibold tracking-wide text-[#FF4F11]"
                       >
                         {part}{" "}
                       </span>
                     ) : (
                       <span
                         key={index}
-                        className="text-[#3CEC85] font-semibold tracking-wide"
+                        className="text-muted-foreground dark:text-neutral-400"
                       >
                         {part}{" "}
                       </span>
@@ -119,15 +117,11 @@ export function CodeBlockCommand({
       <Button
         size="icon"
         variant="ghost"
-        className="absolute right-3 top-3 z-10 h-7 w-7 rounded-md bg-zinc-800/70 text-zinc-400 backdrop-blur-sm transition-all duration-150 hover:bg-zinc-700 hover:text-zinc-50 [&_svg]:h-3.5 [&_svg]:w-3.5"
+        className="absolute right-3 bottom-3 z-10 h-8 w-8 rounded-md border border-border/70 bg-white text-muted-foreground transition-all hover:bg-muted hover:text-foreground active:scale-95 dark:border-white/5 dark:bg-[#1A1A1A] dark:text-neutral-400 dark:hover:bg-[#252525] dark:hover:text-neutral-200 [&_svg]:h-4 [&_svg]:w-4"
         onClick={copyCommand}
       >
         <span className="sr-only">{hasCopied ? "Copied" : "Copy"}</span>
-        {hasCopied ? (
-          <CheckIcon className="text-emerald-400" />
-        ) : (
-          <ClipboardIcon />
-        )}
+        {hasCopied ? <CheckIcon className="text-emerald-400" /> : <CopyIcon />}
       </Button>
     </div>
   );

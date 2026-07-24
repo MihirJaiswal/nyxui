@@ -25,7 +25,7 @@ export default function ComponentGrid({
   );
 
   return (
-    <div className="xl:container mx-auto md:px-2 py-8">
+    <div className="xl:container mx-auto md:px-1.5 py-6">
       <div className="relative z-40 grid grid-cols-1 gap-4 pb-8 md:grid-cols-2 lg:gap-10 xl:grid-cols-2">
         {sortedItems.map(([slug, item]) => (
           <ComponentCard

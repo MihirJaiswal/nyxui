@@ -821,6 +821,16 @@ body {
 }
 
 /* Code highlighting */
+[data-rehype-pretty-code-figure] code[data-theme*=" "],
+[data-rehype-pretty-code-figure] code[data-theme*=" "] span {
+  color: var(--shiki-light);
+}
+
+.dark [data-rehype-pretty-code-figure] code[data-theme*=" "],
+.dark [data-rehype-pretty-code-figure] code[data-theme*=" "] span {
+  color: var(--shiki-dark);
+}
+
 [data-rehype-pretty-code-figure] .line--highlighted {
   @apply bg-zinc-700/50;
 }

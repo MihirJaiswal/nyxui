@@ -29,16 +29,16 @@
       ]
     },
     {
-      "name": "animated-grainy-bg",
+      "name": "grainy-background",
       "type": "registry:ui",
-      "title": "Animated Grainy Background",
+      "title": "Grainy Background",
       "description": "A dynamic animated gradient background component that supports various gradient patterns and animations.",
       "dependencies": ["motion"],
       "files": [
         {
-          "path": "registry/ui/animated-grainy-bg.tsx",
+          "path": "registry/ui/grainy-background.tsx",
           "type": "registry:ui",
-          "target": "components/ui/animated-grainy-bg.tsx"
+          "target": "components/ui/grainy-background.tsx"
         }
       ]
     },
@@ -643,16 +643,16 @@
       ]
     },
     {
-      "name": "animated-grainy-bg-demo",
+      "name": "grainy-background-demo",
       "type": "registry:example",
-      "title": "Animated Grainy Background Demo",
+      "title": "Grainy Background Demo",
       "description": "Example showing an animated grainy background.",
-      "registryDependencies": ["https://nyxui.com/r/animated-grainy-bg"],
+      "registryDependencies": ["https://nyxui.com/r/grainy-background"],
       "files": [
         {
-          "path": "registry/example/animated-grainy-bg-demo.tsx",
+          "path": "registry/example/grainy-background-demo.tsx",
           "type": "registry:example",
-          "target": "components/animated-grainy-bg-demo.tsx"
+          "target": "components/grainy-background-demo.tsx"
         }
       ]
     },
