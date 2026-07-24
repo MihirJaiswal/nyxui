@@ -1,6 +1,6 @@
 import { componentsData } from "../../registry/Data";
 import { ComponentSidebarClient } from "./ComponentSidebarClient";
-import { externalLinks, itemHref } from "@/lib/links";
+import { itemHref, getComponentCategory } from "@/lib/links";
 
 interface ComponentSidebarProps {
   type?: "components" | "blocks";
@@ -15,6 +15,7 @@ export const ComponentSidebar = ({
         name: component.title,
         href: itemHref("components", key),
         isNew: Boolean(component.isNew),
+        category: getComponentCategory(component.title, component.tags),
       };
     })
     .sort((a, b) => a.name.localeCompare(b.name));
@@ -28,6 +29,7 @@ export const ComponentSidebar = ({
         href: itemHref("templates", key),
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         isNew: Boolean((template as any).isNew),
+        category: "Portfolio",
       };
     })
     .sort((a, b) => a.name.localeCompare(b.name));
@@ -39,6 +41,7 @@ export const ComponentSidebar = ({
         name: block.title,
         href: itemHref("blocks", key),
         isNew: Boolean(block.isNew),
+        category: "Blocks",
       };
     })
     .sort((a, b) => a.name.localeCompare(b.name));
@@ -52,27 +55,9 @@ export const ComponentSidebar = ({
     : [{ name: "Introduction", href: "/docs", isNew: false }];
 
   return (
-    <aside className="fixed top-16 z-30 lg:sticky hidden h-[calc(100vh-4rem)] w-60 shrink-0 lg:block backdrop-blur-md pt-[22px]">
+    <aside className="fixed top-16 z-30 hidden h-[calc(100vh-4rem)] w-auto shrink-0 pt-[22px] backdrop-blur-md lg:sticky lg:block">
       <div className="h-full py-4">
         <div className="flex h-full flex-col">
-          <div className="space-y-2 md:space-y-3 mb-2">
-            <div className="font-bold tracking-wider text-black dark:text-white px-1 md:px-2 text-sm md:text-base">
-              Twitter
-            </div>
-            <div className="space-y-0.5">
-              <a
-                className="group flex items-center w-full text-xs md:text-sm py-1.5 md:py-2 rounded-md transition-all duration-200 hover:text-foreground text-black dark:text-[#A1A1AA] hover:bg-muted/50 ml-2 group-hover:ml-2 transition-all duration-200"
-                target="_blank"
-                rel="noopener noreferrer"
-                href={externalLinks.twitter}
-              >
-                @mihir_jaiswal_
-              </a>
-            </div>
-            <div className="w-[80%]">
-              <div className="shrink-0 bg-border h-[1px] w-full" />
-            </div>
-          </div>
           <ComponentSidebarClient
             gettingStartedSection={{
               title: "Getting Started",

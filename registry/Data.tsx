@@ -71,11 +71,11 @@ export const componentsData: ComponentsData = {
         "A futuristic card design with neon glow and tech aesthetics.",
       image: "/assets/images/showcase/components/cyberpunkcard.png",
     },
-    "animated-grainy-bg": {
-      title: "Animated Grainy Background",
+    "grainy-background": {
+      title: "Grainy Background",
       tags: ["Background", "Animation"],
       description: "Smooth shifting grainy background for modern UIs.",
-      image: "/assets/images/showcase/components/animated-grainy-bg.png",
+      image: "/assets/images/showcase/components/grainy-background.png",
     },
     "animated-text": {
       title: "Animated Text",
