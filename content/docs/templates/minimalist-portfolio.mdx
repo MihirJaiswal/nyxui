@@ -6,24 +6,15 @@ author: mihirJaiswal
 published: true
 ---
 
-<div className="flex flex-col gap-4">
-  <video
-    autoPlay
-    loop
-    muted
-    src="/assets/videos/minimalist-portfolio.mp4"
-    className="w-full aspect-4/3 md:aspect-video object-cover rounded-xl border mb-3"
+<TemplateShowcase videoSrc="/assets/videos/minimalist-portfolio.mp4">
+  <RepoDownload
+    url="https://github.com/MihirJaiswal/minimal-portfolio/archive/refs/tags/v1.0.0.zip"
+    free
   />
-  <div className="flex flex-col justify-start items-start gap-3 sm:flex-row">
-    <RepoDownload
-      url="https://github.com/MihirJaiswal/minimal-portfolio/archive/refs/tags/v1.0.0.zip"
-      free
-    />
-    <TemplatePreview href="https://minimal-portfolio-three-azure.vercel.app/">
-      Live Preview{" "}
-    </TemplatePreview>
-  </div>
-</div>
+  <TemplatePreview href="https://minimal-portfolio-three-azure.vercel.app/">
+    Live Preview
+  </TemplatePreview>
+</TemplateShowcase>
 
 ## What is this?
 

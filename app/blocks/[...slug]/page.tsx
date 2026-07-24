@@ -107,7 +107,7 @@ export default async function BlockPage({ params }: SlugPageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
       />
 
-      <div className="mx-auto w-full max-w-[1200px]">
+      <div className="w-full">
         <DocPageHeader
           title={block.title}
           description={block.description}
