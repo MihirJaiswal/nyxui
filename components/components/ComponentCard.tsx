@@ -42,12 +42,12 @@ export const ComponentCard = ({
       {/* Preview */}
       <div className="relative flex-1 min-h-72 overflow-hidden rounded-lg border border-border/40 bg-background">
         {imageSrc ? (
-          <div className="relative h-full w-full overflow-hidden">
+          <div className="relative h-full w-full bg-[oklch(0.1448_0_0)]">
             <Image
               src={imageSrc}
               alt={title}
               fill
-              className="object-contain"
+              className="z-0 object-cover mix-blend-screen"
               quality={100}
               loading="lazy"
             />

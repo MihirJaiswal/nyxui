@@ -1,10 +1,10 @@
 "use client";
 
-import { ArrowRightIcon, Download, Loader } from "lucide-react";
+import { ArrowRightIcon, Download, Github, Loader } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { toast } from "sonner";
-import { Button, buttonVariants } from "../ui/button";
+import { buttonVariants } from "../ui/button";
 import { cn } from "../../lib/utils";
 import { externalLinks } from "@/lib/links";
 
@@ -31,15 +31,18 @@ export default function RepoDownload({ url, free = false }: RepoDownloadProps) {
 
   if (free) {
     return (
-      <Button
+      <button
         onClick={handleDownload}
         disabled={loading}
-        className="not-prose group relative w-full gap-2 rounded-lg sm:w-auto"
+        className={cn(
+          buttonVariants({ variant: "outline" }),
+          "not-prose group relative gap-2 rounded-lg",
+        )}
       >
         {loading ? "Downloading" : "Free Download"}
         {!loading && <Download className="size-4" />}
         {loading && <Loader className="size-4 animate-spin" />}
-      </Button>
+      </button>
     );
   }
 
@@ -49,11 +52,12 @@ export default function RepoDownload({ url, free = false }: RepoDownloadProps) {
       target="_blank"
       className={cn(
         buttonVariants({
-          variant: "default",
+          variant: "outline",
         }),
-        "not-prose group relative w-full gap-1 rounded-lg sm:w-auto",
+        "not-prose group relative gap-2 rounded-lg",
       )}
     >
+      <Github className="size-4" />
       Buy Now
       <ArrowRightIcon className="size-4 transition-all duration-300 ease-out group-hover:translate-x-1" />
     </Link>

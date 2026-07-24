@@ -2,8 +2,12 @@ import { Callout } from "./callout";
 import { CodeBlockCommand } from "./code-block-command";
 import RepoDownload from "./repo-download";
 import TechStack from "./tech-stack";
+import TemplateActions from "./template-actions";
+import TemplateFeatures from "./template-features";
+import TemplateIntro from "./template-intro";
 import TemplatePreview from "./template-preview";
 import TemplateShowcase from "./template-showcase";
+import TemplateSteps from "./template-steps";
 import {
   Accordion,
   AccordionContent,
@@ -52,8 +56,12 @@ const components = {
   Callout,
   TechStack,
   RepoDownload,
+  TemplateActions,
+  TemplateFeatures,
+  TemplateIntro,
   TemplatePreview,
   TemplateShowcase,
+  TemplateSteps,
   Image,
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -6,7 +6,12 @@ author: mihirJaiswal
 published: true
 ---
 
-<TemplateShowcase videoSrc="/assets/videos/minimalist-portfolio.mp4">
+<TemplateShowcase
+  videoSrc="/assets/videos/minimalist-portfolio.mp4"
+  fullscreenHref="https://minimal-portfolio-three-azure.vercel.app/"
+/>
+
+<TemplateActions>
   <RepoDownload
     url="https://github.com/MihirJaiswal/minimal-portfolio/archive/refs/tags/v1.0.0.zip"
     free
@@ -14,27 +19,23 @@ published: true
   <TemplatePreview href="https://minimal-portfolio-three-azure.vercel.app/">
     Live Preview
   </TemplatePreview>
-</TemplateShowcase>
+</TemplateActions>
 
-## What is this?
+## Pages
 
-A complete template to market yourself and your portfolio to the world as a developer
+<TemplateFeatures items={["Home Page", "Blogs Page", "Projects Page"]} />
 
-## How can I customize this?
+## Setup
 
-- Edit the project.ts and constants.ts file inside the lib folder.
-- Edit the images in the template to your own
-- You can also write your own blogs in the content folder in mdx format.
-- Deploy the template to vercel
-- Share the link to your portfolio
-
-## How many pages are there?
-
-This template includes the following sections:
-
-- Home Page
-- Blogs Page
-- Projects Page
+<TemplateSteps
+  items={[
+    "Download the template above.",
+    "Update `project.ts` and `constants.ts` in `lib/`.",
+    "Replace the placeholder images.",
+    "Add blog posts as MDX files in `content/`.",
+    "Deploy to Vercel.",
+  ]}
+/>
 
 ## Tech Stack
 
