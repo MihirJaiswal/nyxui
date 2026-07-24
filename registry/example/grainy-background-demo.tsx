@@ -1,10 +1,10 @@
 import {
-  AnimatedGrainyBg,
-  GrainyAnimatedBgProps,
-} from "../ui/animated-grainy-bg";
+  GrainyBackground,
+  GrainyBackgroundProps,
+} from "../ui/grainy-background";
 
 export default function GrainyBgDemo() {
-  const animationTypes: Array<GrainyAnimatedBgProps["animationType"]> = [
+  const animationTypes: Array<GrainyBackgroundProps["animationType"]> = [
     "flow",
     "mesh",
     "waves",
@@ -13,7 +13,7 @@ export default function GrainyBgDemo() {
     "pulse",
   ];
 
-  const grainTypes: Array<GrainyAnimatedBgProps["grainType"]> = [
+  const grainTypes: Array<GrainyBackgroundProps["grainType"]> = [
     "digital",
     "plasma",
     "scratches",
@@ -33,7 +33,7 @@ export default function GrainyBgDemo() {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
               {animationTypes.map((animationType) => (
                 <div key={animationType} className="relative">
-                  <AnimatedGrainyBg
+                  <GrainyBackground
                     animationType={animationType}
                     grainType="paper"
                     grainIntensity={40}
@@ -54,7 +54,7 @@ export default function GrainyBgDemo() {
                         </p>
                       </div>
                     </div>
-                  </AnimatedGrainyBg>
+                  </GrainyBackground>
                 </div>
               ))}
             </div>
@@ -66,7 +66,7 @@ export default function GrainyBgDemo() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
             {grainTypes.map((grainType) => (
               <div key={grainType} className="relative">
-                <AnimatedGrainyBg
+                <GrainyBackground
                   animationType="mesh"
                   grainType={grainType}
                   grainIntensity={60}
@@ -87,7 +87,7 @@ export default function GrainyBgDemo() {
                       </p>
                     </div>
                   </div>
-                </AnimatedGrainyBg>
+                </GrainyBackground>
               </div>
             ))}
           </div>

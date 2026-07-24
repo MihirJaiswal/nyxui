@@ -18,6 +18,11 @@ import Link from "next/link";
 import { ComponentPreview } from "./component-preview";
 import { ComponentSource } from "./component-source";
 import { CopyButton } from "./copy-button";
+import * as React from "react";
+
+type CodeElementProps = React.HTMLAttributes<HTMLElement> & {
+  "data-slot"?: string;
+};
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const CustomLink = (props: any) => {
@@ -67,7 +72,7 @@ const components = {
   h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h2
       className={cn(
-        "font-heading mt-12 scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0",
+        "font-heading mt-6 scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0",
         className,
       )}
       {...props}
@@ -154,8 +159,23 @@ const components = {
       {...props}
     />
   ),
+  figure: ({
+    className,
+    ...props
+  }: React.HTMLAttributes<HTMLElement> & {
+    "data-rehype-pretty-code-figure"?: string;
+  }) => (
+    <figure
+      className={cn(
+        props["data-rehype-pretty-code-figure"] !== undefined &&
+          "not-prose my-5 w-full max-w-full",
+        className,
+      )}
+      {...props}
+    />
+  ),
   table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
-    <div className="my-6 w-full max-w-full overflow-x-auto border shadow rounded-none dark:border-zinc-800 dark:bg-black dark:text-zinc-200">
+    <div className="my-6 w-full max-w-full overflow-hidden rounded-xl border border-border/70 bg-card text-card-foreground shadow-sm dark:border-white/5 dark:bg-[#0F0F0F]">
       <table
         className={cn("w-full max-w-full border-collapse text-sm", className)}
         {...props}
@@ -167,15 +187,17 @@ const components = {
     ...props
   }: React.HTMLAttributes<HTMLTableSectionElement>) => (
     <thead
-      className={cn("bg-zinc-50 dark:bg-black border-b", className)}
+      className={cn(
+        "border-b border-border/70 bg-muted/50 text-muted-foreground dark:border-white/5 dark:bg-[#151515]",
+        className,
+      )}
       {...props}
     />
   ),
   tr: ({ className, ...props }: React.HTMLAttributes<HTMLTableRowElement>) => (
     <tr
       className={cn(
-        "transition-colors border-b last:border-b-0",
-        "even:bg-zinc-50 even:dark:bg-zinc-900 odd:bg-white odd:dark:bg-black",
+        "border-b border-border/60 transition-colors last:border-b-0 hover:bg-muted/30 dark:border-white/5 dark:hover:bg-[#151515]",
         className,
       )}
       {...props}
@@ -184,7 +206,7 @@ const components = {
   th: ({ className, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
     <th
       className={cn(
-        "px-3 py-3 sm:px-6 sm:py-4 text-left font-medium border-r last:border-r-0 whitespace-normal break-words",
+        "border-r border-border/60 px-3 py-3 text-left text-xs font-medium uppercase tracking-wide last:border-r-0 dark:border-white/5 sm:px-4",
         className,
       )}
       {...props}
@@ -193,7 +215,7 @@ const components = {
   td: ({ className, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
     <td
       className={cn(
-        "px-3 py-3 sm:py-4 text-xs sm:text-sm border-r last:border-r-0 break-words whitespace-normal [&[align=center]]:text-center [&[align=right]]:text-right",
+        "border-r border-border/60 px-3 py-3 text-xs leading-6 text-muted-foreground last:border-r-0 dark:border-white/5 dark:text-neutral-400 sm:px-4 sm:text-sm [&[align=center]]:text-center [&[align=right]]:text-right",
         className,
       )}
       {...props}
@@ -225,21 +247,27 @@ const components = {
     ...props
   }: React.ComponentProps<typeof TabsList>) => (
     <TabsList
-      className={cn("rounded-none border-none bg-transparent p-0", className)}
+      className={cn(
+        "relative z-0 flex h-8 w-fit items-center justify-center rounded-lg bg-zinc-50 p-0.5 text-muted-foreground shadow-none inset-ring-1 inset-ring-border/64 dark:bg-zinc-900",
+        className,
+      )}
       {...props}
     />
   ),
   TabsTrigger: ({
     className,
+    children,
     ...props
   }: React.ComponentProps<typeof TabsTrigger>) => (
     <TabsTrigger
       className={cn(
-        "relative h-9 rounded-none border-0 border-b-3 px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-black dark:data-[state=active]:border-b-white data-[state=active]:text-foreground data-[state=active]:shadow-none",
+        "relative z-10 flex h-7 flex-1 shrink-0 items-center justify-center gap-2 rounded-md border-0 bg-transparent px-4 py-1 font-sans text-sm font-medium whitespace-nowrap text-muted-foreground shadow-none outline-none transition-[color,background-color] hover:text-foreground focus-visible:inset-ring-1 focus-visible:inset-ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-white data-[state=active]:text-foreground data-[state=active]:shadow-none data-[state=active]:inset-ring-1 data-[state=active]:inset-ring-foreground/10 dark:data-[state=active]:bg-muted dark:data-[state=active]:inset-ring-foreground/6 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className,
       )}
       {...props}
-    />
+    >
+      {children === "CLI" ? "Command" : children}
+    </TabsTrigger>
   ),
   TabsContent: ({
     className,
@@ -255,6 +283,8 @@ const components = {
   ),
   pre: ({
     className,
+    children,
+    style,
     __rawString__,
     __npmCommand__,
     __pnpmCommand__,
@@ -277,6 +307,19 @@ const components = {
   }) => {
     const isNpmCommand =
       __npmCommand__ && __yarnCommand__ && __pnpmCommand__ && __bunCommand__;
+    const codeBlockChildren = React.Children.map(children, (child) => {
+      if (!React.isValidElement<CodeElementProps>(child)) {
+        return child;
+      }
+
+      return React.cloneElement(child, {
+        "data-slot": "code-block",
+        style: {
+          ...child.props.style,
+          display: "grid",
+        },
+      });
+    });
 
     if (isNpmCommand) {
       return (
@@ -292,21 +335,45 @@ const components = {
     }
 
     return (
-      <div className="w-full max-w-full overflow-hidden relative">
+      <div className="group/pre relative overflow-hidden rounded-xl border border-border/70 bg-white shadow-sm dark:border-white/5 dark:bg-[#0F0F0F]">
         <pre
           className={cn(
-            "mb-4 mt-6 max-h-[650px] overflow-x-auto !rounded-sm border !border-zinc-800 !bg-zinc-950 !pl-4 w-full max-w-full",
+            "m-0 max-h-[650px] w-full max-w-full overflow-x-auto bg-transparent p-4 pr-24 text-[13px] leading-6 [--code-padding-right:6rem] [&_code]:min-w-full [&_code]:bg-transparent [&_code]:p-0 [&_code]:leading-6 [&_code]:whitespace-pre [&_[data-line]]:min-h-6 [&_[data-line]]:pr-[var(--code-padding-right)] [&_[data-line]]:leading-6",
             className,
           )}
+          style={{
+            ...style,
+            backgroundColor: "transparent",
+          }}
+          tabIndex={0}
           {...props}
-        />
-        {__rawString__ && __src__ && __event__ && (
-          <CopyButton
-            value={__rawString__}
-            src={__src__}
-            event={__event__}
-            className={cn("absolute right-4 top-4", __withMeta__ && "top-16")}
-          />
+        >
+          {codeBlockChildren}
+        </pre>
+        {__rawString__ && (
+          <>
+            <CopyButton
+              value={__rawString__}
+              src={__src__ ?? "code-block"}
+              event={__event__}
+              aria-label="Copy"
+              data-slot="copy-button"
+              data-variant="ghost"
+              data-size="icon-xs"
+              className={cn(
+                "group/button absolute right-3 top-3 z-10 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-border/70 bg-white text-sm font-medium whitespace-nowrap text-muted-foreground opacity-100 outline-none transition-all select-none hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:scale-95 disabled:pointer-events-none disabled:opacity-50 dark:border-white/5 dark:bg-[#1A1A1A] dark:text-neutral-400 dark:hover:bg-[#252525] dark:hover:text-neutral-200 [&_svg]:pointer-events-none [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0",
+                __withMeta__ && "top-12",
+              )}
+            />
+            <div
+              aria-hidden="true"
+              data-fade-overlay="true"
+              className={cn(
+                "pointer-events-none absolute right-1.5 top-1.5 h-12 w-24 bg-gradient-to-l from-white to-transparent opacity-100 dark:from-[#0F0F0F]",
+                __withMeta__ && "top-11",
+              )}
+            />
+          </>
         )}
       </div>
     );
@@ -314,7 +381,7 @@ const components = {
   code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
     <code
       className={cn(
-        "relative !rounded-sm font-mono text-sm bg-transparent py-4 font-semibold tracking-wide leading-snug break-words whitespace-pre-wrap",
+        "relative rounded-md bg-muted px-1.5 py-0.5 font-mono text-[0.9em] font-medium leading-snug text-foreground",
         className,
       )}
       {...props}
