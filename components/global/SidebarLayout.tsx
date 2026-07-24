@@ -20,7 +20,7 @@ export default function SidebarLayout({
             <ComponentSidebar type={sidebarType} />
           </div>
         </aside>
-        <main className="flex-1">
+        <main className="min-w-0 flex-1">
           <div className="mx-auto w-full max-w-[1200px] py-4">{children}</div>
         </main>
       </div>
