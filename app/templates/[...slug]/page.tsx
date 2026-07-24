@@ -150,18 +150,6 @@ export default async function TemplatePage({ params }: SlugPageProps) {
             <Mdx code={template.body.code} />
           </div>
         </div>
-
-        <div className="mt-12 flex items-center justify-between border-t border-border pt-6">
-          <p className="text-sm text-muted-foreground">
-            Need help? Check out our documentation or reach out to support.
-          </p>
-          <Link
-            href={siteLinks.templates}
-            className={cn(badgeVariants({ variant: "outline" }), "gap-1")}
-          >
-            ← All Templates
-          </Link>
-        </div>
       </div>
     </>
   );

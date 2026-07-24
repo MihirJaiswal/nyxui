@@ -95,10 +95,7 @@ export function DocPageHeader({
               href={links.api}
               target="_blank"
               rel="noreferrer"
-              className={cn(
-                badgeVariants({ variant: "secondary" }),
-                "gap-1",
-              )}
+              className={cn(badgeVariants({ variant: "secondary" }), "gap-1")}
             >
               {linkLabels.api}
               <ExternalLinkIcon className="size-3" />
