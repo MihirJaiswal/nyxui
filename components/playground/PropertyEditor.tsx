@@ -452,7 +452,7 @@ const PropertyEditor = ({
               />
             </button>
             {isComponentDropdownOpen && (
-              <div className="absolute left-0 right-0 top-full z-50 mt-1 rounded-lg border border-border/60 bg-popover shadow-md">
+              <div className="absolute left-0 right-0 top-full z-50 mt-1 rounded-lg border border-border/60 shadow-md bg-background">
                 <div className="relative border-b border-border/60 p-2">
                   <Search className="absolute left-4 top-1/2 size-3.5 -translate-y-1/2 text-muted-foreground" />
                   <input
