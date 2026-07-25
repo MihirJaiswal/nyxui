@@ -8,7 +8,7 @@ import {
   startTransition,
   useCallback,
 } from "react";
-import { Play, AlertCircle } from "lucide-react";
+import { AlertCircle } from "lucide-react";
 import ComponentSelector from "./ComponentSelector";
 import PropertyEditor from "./PropertyEditor";
 import LivePreview from "./LivePreview";
@@ -67,7 +67,7 @@ const PlaygroundErrorBoundary = ({
 
   if (hasError) {
     return (
-      <div className="h-full flex flex-col items-center justify-center p-6">
+      <div className="h-full flex flex-col">
         <div className="text-center max-w-md">
           <AlertCircle className="w-12 h-12 text-destructive mx-auto mb-4" />
           <h3 className="text-lg font-semibold mb-2">Something went wrong</h3>
@@ -97,8 +97,8 @@ const PlaygroundErrorBoundary = ({
 const PlaygroundEmptyState = () => {
   return (
     <div className="flex-1 flex flex-col overflow-hidden min-w-0">
-      <div className="flex-1 py-6 lg:p-6 overflow-auto">
-        <div className="h-full flex items-center justify-center">
+      <div className="flex-1 py-6 lg:py-10 overflow-auto">
+        <div className="h-full flex">
           <Grid />
         </div>
       </div>
@@ -215,6 +215,15 @@ const PlaygroundContent = ({
     [selectedComponent, router],
   );
 
+  const handleBack = useCallback(() => {
+    isManualSelectionRef.current = true;
+    setSelectedComponent("");
+    setComponentConfig({});
+    startTransition(() => {
+      router.replace("/playground", { scroll: false });
+    });
+  }, [router]);
+
   const handlePropertyChange = useCallback(
     (property: string, value: ComponentPropValue) => {
       setComponentConfig((prev) => ({
@@ -320,54 +329,44 @@ const PlaygroundContent = ({
     <PlaygroundErrorBoundary onReset={handleReset}>
       <div className="h-full flex flex-col bg-background">
         {/* Main Content */}
-        <div className="flex-1 flex flex-col lg:flex-row lg:gap-8 xl:gap-20">
+        <div className="flex w-full flex-1 flex-col lg:flex-row lg:gap-8 xl:gap-24">
           {/* Left Sidebar - Controls */}
-          <div className="flex max-h-96 w-full flex-shrink-0 flex-col overflow-hidden border-b border-border/60 bg-background lg:sticky lg:top-0 lg:max-h-screen lg:w-80 lg:border-b-0 lg:border-r xl:w-96 border-x">
-            {/* Component Selector */}
-            <div className="flex-shrink-0">
-              <ComponentSelector
-                components={componentRegistry}
-                selectedComponent={selectedComponent}
-                onSelect={handleComponentSelect}
-              />
-            </div>
-
-            {selectedComponent ? (
-              <>
-                {/* Scrollable Property Editor */}
-                <div className="flex-1 overflow-auto">
-                  <PropertyEditor
-                    component={componentRegistry[selectedComponent]}
-                    config={componentConfig}
-                    onChange={handlePropertyChange}
-                    onResetAll={handleResetCurrent}
-                    onResetProperty={handleResetProperty}
-                    onCopyLink={handleCopyLink}
-                  />
-                </div>
-              </>
-            ) : (
-              <div className="flex-1 flex items-center justify-center p-6 lg:p-8">
-                <div className="text-center max-w-sm">
-                  <div className="w-16 h-16 lg:w-20 lg:h-20 mx-auto rounded-full flex items-center justify-center">
-                    <Play className="w-8 h-8 lg:w-10 lg:h-10 text-muted-foreground" />
+          <div className="flex w-full flex-shrink-0 flex-col lg:sticky lg:top-16 lg:h-[calc(100vh-4rem)] lg:py-10 lg:w-72">
+            <div className="flex h-full flex-col overflow-hidden rounded-xl border border-border/70 bg-card/70 shadow-sm dark:border-white/5 dark:bg-[#0F0F0F]">
+              {selectedComponent ? (
+                <>
+                  {/* Scrollable Property Editor */}
+                  <div className="min-h-0 flex-1 overflow-y-auto px-3 pb-3 scrollbar-no">
+                    <PropertyEditor
+                      component={componentRegistry[selectedComponent]}
+                      config={componentConfig}
+                      onChange={handlePropertyChange}
+                      onResetAll={handleResetCurrent}
+                      onResetProperty={handleResetProperty}
+                      onCopyLink={handleCopyLink}
+                      onBack={handleBack}
+                    />
                   </div>
-                  <h3 className="text-lg lg:text-xl font-semibold mb-2">
-                    Select a Component
-                  </h3>
-                  <p className="text-sm lg:text-md text-muted-foreground">
-                    Select a component from the sidebar to start experimenting
-                    with components
-                  </p>
-                </div>
-              </div>
-            )}
+                </>
+              ) : (
+                <>
+                  {/* Component Selector */}
+                  <div className="min-h-0 flex-1 overflow-y-auto scrollbar-no">
+                    <ComponentSelector
+                      components={componentRegistry}
+                      selectedComponent={selectedComponent}
+                      onSelect={handleComponentSelect}
+                    />
+                  </div>
+                </>
+              )}
+            </div>
           </div>
 
           {/* Right Side - Live Preview or Empty State */}
           {selectedComponent ? (
             <div className="flex-1 flex flex-col min-w-0">
-              <div className="flex-1 md:py-4 lg:py-6">
+              <div className="flex-1 md:py-4 lg:py-10">
                 <LivePreview
                   componentKey={selectedComponent}
                   config={componentConfig}
