@@ -1,13 +1,6 @@
 "use client";
 
-import {
-  ChevronDown,
-  Link2,
-  RotateCcw,
-  Search,
-  SlidersHorizontal,
-  X,
-} from "lucide-react";
+import { ArrowLeft, Link2, RotateCcw, Search, X } from "lucide-react";
 import { useMemo, useState } from "react";
 import type {
   ComponentDefinition,
@@ -28,6 +21,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { Slider } from "@/components/ui/slider";
 import CodeEditor from "./CodeEditor";
+import { cn } from "@/lib/utils";
 
 interface PropertyEditorProps {
   component: ComponentDefinition;
@@ -36,6 +30,7 @@ interface PropertyEditorProps {
   onResetAll: () => void;
   onResetProperty: (property: string) => void;
   onCopyLink: () => void;
+  onBack: () => void;
 }
 
 const namedColorHex: Record<string, string> = {
@@ -81,11 +76,7 @@ function getColorPickerValue(value: string): string {
   );
 
   if (rgbMatch) {
-    return rgbToHex(
-      Number(rgbMatch[1]),
-      Number(rgbMatch[2]),
-      Number(rgbMatch[3]),
-    );
+    return rgbToHex(Number(rgbMatch[1]), Number(rgbMatch[2]), Number(rgbMatch[3]));
   }
 
   const tripletMatch = trimmedValue.match(
@@ -93,11 +84,7 @@ function getColorPickerValue(value: string): string {
   );
 
   if (tripletMatch) {
-    return rgbToHex(
-      Number(tripletMatch[1]),
-      Number(tripletMatch[2]),
-      Number(tripletMatch[3]),
-    );
+    return rgbToHex(Number(tripletMatch[1]), Number(tripletMatch[2]), Number(tripletMatch[3]));
   }
 
   return namedColorHex[trimmedValue.toLowerCase()] ?? "#000000";
@@ -138,11 +125,9 @@ const PropertyEditor = ({
   onResetAll,
   onResetProperty,
   onCopyLink,
+  onBack,
 }: PropertyEditorProps) => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [collapsedCategories, setCollapsedCategories] = useState<
-    Record<string, boolean>
-  >({});
 
   const isDefaultValue = (property: string, prop: ComponentProp): boolean =>
     JSON.stringify(config[property] ?? prop.default) ===
@@ -171,7 +156,7 @@ const PropertyEditor = ({
                   : event.target.value,
               )
             }
-            className="h-9 w-9 shrink-0 cursor-pointer rounded-md border border-border bg-transparent p-0.5"
+            className="h-8 w-8 shrink-0 cursor-pointer rounded-md border border-border bg-transparent p-0.5"
           />
           <div className="min-w-0 flex-1 space-y-1">
             <div className="text-[11px] font-medium text-muted-foreground">
@@ -181,7 +166,7 @@ const PropertyEditor = ({
               type="text"
               value={colorValue}
               onChange={(event) => onValueChange(event.target.value)}
-              className="h-8 border-border/70 bg-background font-mono text-xs"
+              className="h-8 border-border/60 bg-background font-mono text-xs"
             />
           </div>
         </div>
@@ -196,18 +181,12 @@ const PropertyEditor = ({
             value={String(value || "")}
             onChange={(e) => onChange(property, e.target.value)}
             placeholder={prop.placeholder || prop.label}
-            className="h-9 border-border/70 bg-background text-sm"
-            style={{
-              scrollBehavior: "smooth",
-              scrollbarWidth: "none",
-              msOverflowStyle: "none",
-            }}
+            className="h-9 border-border/60 bg-background text-sm"
           />
         );
       }
 
       case "textarea": {
-        // Use CodeEditor for code/children props, regular textarea for others
         const isCodeField = property === "children" || property === "code";
         if (isCodeField) {
           return (
@@ -219,11 +198,6 @@ const PropertyEditor = ({
                 prop.placeholder || `Enter ${prop.label.toLowerCase()}...`
               }
               className="min-h-[200px] w-full"
-              style={{
-                scrollBehavior: "smooth",
-                scrollbarWidth: "none",
-                msOverflowStyle: "none",
-              }}
             />
           );
         } else {
@@ -234,13 +208,8 @@ const PropertyEditor = ({
               placeholder={
                 prop.placeholder || `Enter ${prop.label.toLowerCase()}...`
               }
-              className="min-h-[96px] resize-none border-border/70 bg-background text-sm"
+              className="min-h-[96px] resize-none border-border/60 bg-background text-sm"
               rows={4}
-              style={{
-                overflowY: "auto",
-                scrollbarWidth: "thin",
-                scrollbarColor: "var(--border) transparent",
-              }}
             />
           );
         }
@@ -261,7 +230,7 @@ const PropertyEditor = ({
                   e.target.value === "" ? 0 : Number(e.target.value);
                 onChange(property, newValue);
               }}
-              className="h-9 border-border/70 bg-background text-sm"
+              className="h-9 border-border/60 bg-background text-sm"
             />
             {prop.min !== undefined && prop.max !== undefined && (
               <div className="space-y-2">
@@ -308,7 +277,7 @@ const PropertyEditor = ({
             value={selectValue}
             onValueChange={(newValue) => onChange(property, newValue)}
           >
-            <SelectTrigger className="h-9 border-border/70 bg-background text-sm">
+            <SelectTrigger className="h-9 border-border/60 bg-background text-sm">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -325,7 +294,7 @@ const PropertyEditor = ({
       case "color": {
         const colorValue = String(value || "#000000");
         return (
-          <div className="rounded-md border border-border/70 bg-background p-2">
+          <div className="rounded-lg border border-border/60 bg-background p-2">
             {renderColorValueControl(
               prop.label,
               colorValue,
@@ -395,211 +364,127 @@ const PropertyEditor = ({
             type="text"
             value={String(value || "")}
             onChange={(e) => onChange(property, e.target.value)}
-            className="h-9 border-border/70 bg-background text-sm"
+            className="h-9 border-border/60 bg-background text-sm"
           />
         );
       }
     }
   };
 
-  const groupedProps = useMemo(() => {
+  const filteredProps = useMemo(() => {
     const query = searchQuery.trim().toLowerCase();
 
-    return Object.entries(component.props).reduce(
-      (acc, [key, prop]) => {
-        if (
-          prop.conditional &&
-          config[prop.conditional.property] !== prop.conditional.value
-        ) {
-          return acc;
-        }
+    return Object.entries(component.props).filter(([key, prop]) => {
+      if (
+        prop.conditional &&
+        config[prop.conditional.property] !== prop.conditional.value
+      ) {
+        return false;
+      }
 
-        const searchableText = [
-          key,
-          prop.label,
-          prop.description,
-          prop.category,
-        ]
-          .filter(Boolean)
-          .join(" ")
-          .toLowerCase();
+      const searchableText = [
+        key,
+        prop.label,
+        prop.description,
+        prop.category,
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
 
-        if (query && !searchableText.includes(query)) {
-          return acc;
-        }
-
-        const category = prop.category || "General";
-        if (!acc[category]) {
-          acc[category] = [];
-        }
-        acc[category].push([key, prop]);
-        return acc;
-      },
-      {} as Record<string, Array<[string, ComponentProp]>>,
-    );
+      return !query || searchableText.includes(query);
+    });
   }, [component.props, config, searchQuery]);
 
-  const totalProps = Object.values(groupedProps).reduce(
-    (count, props) => count + props.length,
-    0,
-  );
-  const changedProps = Object.entries(component.props).filter(
-    ([property, prop]) => !isDefaultValue(property, prop),
-  ).length;
+  const totalProps = filteredProps.length;
 
   return (
-    <div className="flex h-full flex-col overflow-hidden bg-background">
-      <div className="border-b border-border/60 bg-background">
-        <div className="flex items-start justify-between gap-3 px-3 py-3">
+    <div className="flex h-full flex-col">
+      <div className="border-b border-border/60 px-1.5 py-4">
+        <div className="flex items-center justify-between gap-3">
           <div className="min-w-0">
-            <div className="flex items-center gap-2">
-              <SlidersHorizontal className="h-4 w-4 text-muted-foreground" />
-              <h3 className="truncate text-sm font-medium leading-tight">
-                {component.name}
-              </h3>
-            </div>
-            <p className="mt-1 text-xs text-muted-foreground">
-              {totalProps} props
-              {changedProps > 0 ? ` · ${changedProps} changed` : ""}
-            </p>
+            <h3 className="truncate text-sm font-medium">{component.name}</h3>
           </div>
           <div className="flex shrink-0 items-center gap-1">
             <button
+              onClick={onBack}
+              className="rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+              title="Back to components"
+            >
+              <ArrowLeft className="size-3.5" />
+            </button>
+            <button
               onClick={onCopyLink}
-              className="rounded-md border border-border/70 p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+              className="rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
               title="Copy playground link"
             >
-              <Link2 className="h-3.5 w-3.5" />
+              <Link2 className="size-3.5" />
             </button>
             <button
               onClick={onResetAll}
-              className="rounded-md border border-border/70 p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+              className="rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
               title="Reset all props"
             >
-              <RotateCcw className="h-3.5 w-3.5" />
+              <RotateCcw className="size-3.5" />
             </button>
           </div>
         </div>
 
-        <div className="border-t border-border/50 px-3 py-2">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-            <Input
-              value={searchQuery}
-              onChange={(event) => setSearchQuery(event.target.value)}
-              placeholder="Search props..."
-              className="h-9 border-border/70 bg-background pl-9 pr-9 text-sm"
-            />
-            {searchQuery && (
-              <button
-                onClick={() => setSearchQuery("")}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-foreground"
-                title="Clear search"
-              >
-                <X className="h-4 w-4" />
-              </button>
-            )}
-          </div>
+        <div className="relative mt-3">
+          <Search className="absolute left-3 top-1/2 size-3.5 -translate-y-1/2 text-muted-foreground" />
+          <Input
+            value={searchQuery}
+            onChange={(event) => setSearchQuery(event.target.value)}
+            placeholder="Search props..."
+            className="h-8 border-border/60 bg-muted/50 pl-9 pr-8 text-sm focus-visible:bg-background"
+          />
+          {searchQuery && (
+            <button
+              onClick={() => setSearchQuery("")}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <X className="size-3.5" />
+            </button>
+          )}
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto">
-        <div>
-          {Object.entries(groupedProps).map(([category, props]) => {
-            const isCollapsed = collapsedCategories[category] ?? false;
-            const changedInCategory = props.filter(
-              ([property, prop]) => !isDefaultValue(property, prop),
-            ).length;
+      <div className="min-h-0 flex-1 overflow-y-auto pt-4 scrollbar-no">
+        <div className="space-y-6">
+          {filteredProps.map(([property, prop], index) => {
+            const changed = !isDefaultValue(property, prop);
 
             return (
-              <section
-                key={category}
-                className="border-b border-border/60 last:border-b-0"
+              <div
+                key={`${property}-${index}`}
+                className="space-y-2 px-1.5"
               >
-                <button
-                  onClick={() =>
-                    setCollapsedCategories((prev) => ({
-                      ...prev,
-                      [category]: !isCollapsed,
-                    }))
-                  }
-                  className="sticky top-0 z-10 flex w-full items-center justify-between border-b border-border/50 bg-background px-3 py-2 text-left transition-colors hover:bg-muted/40"
-                >
-                  <span className="min-w-0">
-                    <span className="block truncate text-xs font-medium text-foreground">
-                      {category}
-                    </span>
-                    <span className="text-[11px] text-muted-foreground">
-                      {props.length} props
-                      {changedInCategory > 0
-                        ? ` · ${changedInCategory} changed`
-                        : ""}
-                    </span>
-                  </span>
-                  <ChevronDown
-                    className={`h-4 w-4 text-muted-foreground transition-transform ${
-                      isCollapsed ? "-rotate-90" : ""
-                    }`}
-                  />
-                </button>
-
-                {!isCollapsed && (
-                  <div>
-                    {props.map(([property, prop], index) => {
-                      const changed = !isDefaultValue(property, prop);
-
-                      return (
-                        <div
-                          key={`${category}-${property}-${index}`}
-                          className={`space-y-2 border-b border-l-2 border-b-border/40 px-3 py-3 last:border-b-0 ${
-                            changed
-                              ? "border-l-primary bg-muted/20"
-                              : "border-l-transparent bg-transparent"
-                          }`}
-                        >
-                          <div className="flex items-center justify-between gap-3">
-                            <div className="min-w-0 space-y-1">
-                              <Label className="block truncate text-sm font-medium text-foreground">
-                                {prop.label}
-                              </Label>
-                              <div className="flex min-w-0 items-center gap-1.5">
-                                <span className="truncate font-mono text-[11px] text-muted-foreground">
-                                  {property}
-                                </span>
-                                {changed && (
-                                  <>
-                                    <span className="text-[11px] text-muted-foreground">
-                                      ·
-                                    </span>
-                                    <span className="text-[11px] text-primary">
-                                      changed
-                                    </span>
-                                  </>
-                                )}
-                              </div>
-                            </div>
-                            {changed && (
-                              <button
-                                onClick={() => onResetProperty(property)}
-                                className="shrink-0 rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-                                title={`Reset ${prop.label}`}
-                              >
-                                <RotateCcw className="h-3.5 w-3.5" />
-                              </button>
-                            )}
-                          </div>
-                          {renderInput(property, prop)}
-                        </div>
-                      );
-                    })}
-                  </div>
-                )}
-              </section>
+                <div className="flex items-center justify-between gap-3">
+                  <Label
+                    className={cn(
+                      "block truncate text-sm font-medium",
+                      changed ? "text-[#FF4F11]" : "text-foreground",
+                    )}
+                  >
+                    {prop.label}
+                  </Label>
+                  {changed && (
+                    <button
+                      onClick={() => onResetProperty(property)}
+                      className="shrink-0 rounded-md p-1 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                      title={`Reset ${prop.label}`}
+                    >
+                      <RotateCcw className="size-3" />
+                    </button>
+                  )}
+                </div>
+                {renderInput(property, prop)}
+              </div>
             );
           })}
 
           {totalProps === 0 && (
-            <div className="rounded-md border border-dashed border-border bg-background/70 p-6 text-center text-sm text-muted-foreground">
+            <div className="py-6 text-center text-sm text-muted-foreground">
               No props match your search.
             </div>
           )}
