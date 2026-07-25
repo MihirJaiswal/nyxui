@@ -189,7 +189,7 @@ const PropertyEditor = ({
                   : event.target.value,
               )
             }
-            className="h-8 w-8 shrink-0 cursor-pointer rounded-md border border-border bg-transparent p-0.5"
+            className="h-10 w-10 shrink-0 cursor-pointer rounded-md  bg-transparent p-0.5"
           />
           <div className="min-w-0 flex-1 space-y-1">
           
