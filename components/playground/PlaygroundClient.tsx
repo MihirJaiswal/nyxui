@@ -215,15 +215,6 @@ const PlaygroundContent = ({
     [selectedComponent, router],
   );
 
-  const handleBack = useCallback(() => {
-    isManualSelectionRef.current = true;
-    setSelectedComponent("");
-    setComponentConfig({});
-    startTransition(() => {
-      router.replace("/playground", { scroll: false });
-    });
-  }, [router]);
-
   const handlePropertyChange = useCallback(
     (property: string, value: ComponentPropValue) => {
       setComponentConfig((prev) => ({
@@ -339,12 +330,14 @@ const PlaygroundContent = ({
                   <div className="min-h-0 flex-1 overflow-y-auto px-3 pb-3 scrollbar-no">
                     <PropertyEditor
                       component={componentRegistry[selectedComponent]}
+                      components={componentRegistry}
+                      selectedComponent={selectedComponent}
                       config={componentConfig}
                       onChange={handlePropertyChange}
                       onResetAll={handleResetCurrent}
                       onResetProperty={handleResetProperty}
                       onCopyLink={handleCopyLink}
-                      onBack={handleBack}
+                      onSelectComponent={handleComponentSelect}
                     />
                   </div>
                 </>

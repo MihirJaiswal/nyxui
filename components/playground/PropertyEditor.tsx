@@ -1,12 +1,13 @@
 "use client";
 
-import { ArrowLeft, Link2, RotateCcw, Search, X } from "lucide-react";
-import { useMemo, useState } from "react";
+import { ChevronDown, Link2, RotateCcw, Search, X } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type {
   ComponentDefinition,
   ComponentConfig,
   ComponentProp,
   ComponentPropValue,
+  ComponentRegistry,
 } from "./types";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -25,12 +26,14 @@ import { cn } from "@/lib/utils";
 
 interface PropertyEditorProps {
   component: ComponentDefinition;
+  components: ComponentRegistry;
+  selectedComponent: string;
   config: ComponentConfig;
   onChange: (property: string, value: ComponentPropValue) => void;
   onResetAll: () => void;
   onResetProperty: (property: string) => void;
   onCopyLink: () => void;
-  onBack: () => void;
+  onSelectComponent: (key: string) => void;
 }
 
 const namedColorHex: Record<string, string> = {
@@ -120,14 +123,44 @@ function isColorMapValue(
 
 const PropertyEditor = ({
   component,
+  components,
+  selectedComponent,
   config,
   onChange,
   onResetAll,
   onResetProperty,
   onCopyLink,
-  onBack,
+  onSelectComponent,
 }: PropertyEditorProps) => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [componentSearch, setComponentSearch] = useState("");
+  const [isComponentDropdownOpen, setIsComponentDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!isComponentDropdownOpen) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target as Node)
+      ) {
+        setIsComponentDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isComponentDropdownOpen]);
+
+  const filteredComponents = useMemo(() => {
+    const query = componentSearch.trim().toLowerCase();
+    return Object.entries(components)
+      .filter(
+        ([key, comp]) =>
+          comp.name.toLowerCase().includes(query) ||
+          key.toLowerCase().includes(query),
+      )
+      .sort(([, a], [, b]) => a.name.localeCompare(b.name));
+  }, [components, componentSearch]);
 
   const isDefaultValue = (property: string, prop: ComponentProp): boolean =>
     JSON.stringify(config[property] ?? prop.default) ===
@@ -159,9 +192,7 @@ const PropertyEditor = ({
             className="h-8 w-8 shrink-0 cursor-pointer rounded-md border border-border bg-transparent p-0.5"
           />
           <div className="min-w-0 flex-1 space-y-1">
-            <div className="text-[11px] font-medium text-muted-foreground">
-              {label}
-            </div>
+          
             <Input
               type="text"
               value={colorValue}
@@ -197,7 +228,7 @@ const PropertyEditor = ({
               placeholder={
                 prop.placeholder || `Enter ${prop.label.toLowerCase()}...`
               }
-              className="min-h-[200px] w-full"
+              className="h-[200px] w-full"
             />
           );
         } else {
@@ -353,7 +384,7 @@ const PropertyEditor = ({
               }
             }}
             language="json"
-            className="min-h-[140px] w-full rounded-md"
+            className="h-[140px] w-full"
           />
         );
       }
@@ -402,17 +433,67 @@ const PropertyEditor = ({
     <div className="flex h-full flex-col">
       <div className="border-b border-border/60 px-1.5 py-4">
         <div className="flex items-center justify-between gap-3">
-          <div className="min-w-0">
-            <h3 className="truncate text-sm font-medium">{component.name}</h3>
+          <div className="relative min-w-0 flex-1" ref={dropdownRef}>
+            <button
+              onClick={() => {
+                setIsComponentDropdownOpen((prev) => !prev);
+                setComponentSearch("");
+              }}
+              className="flex w-full items-center gap-1.5 text-left"
+            >
+              <h3 className="min-w-0 truncate text-sm font-medium">
+                {component.name}
+              </h3>
+              <ChevronDown
+                className={cn(
+                  "size-3.5 shrink-0 text-muted-foreground transition-transform",
+                  isComponentDropdownOpen && "rotate-180",
+                )}
+              />
+            </button>
+            {isComponentDropdownOpen && (
+              <div className="absolute left-0 right-0 top-full z-50 mt-1 rounded-lg border border-border/60 bg-popover shadow-md">
+                <div className="relative border-b border-border/60 p-2">
+                  <Search className="absolute left-4 top-1/2 size-3.5 -translate-y-1/2 text-muted-foreground" />
+                  <input
+                    type="text"
+                    placeholder="Search components..."
+                    value={componentSearch}
+                    onChange={(e) => setComponentSearch(e.target.value)}
+                    autoFocus
+                    className="h-8 w-full rounded-md bg-muted/50 pl-8 pr-2 text-sm placeholder:text-muted-foreground focus:bg-background focus:outline-none"
+                  />
+                </div>
+                <div className="max-h-64 overflow-y-auto p-1 scrollbar-no">
+                  {filteredComponents.length > 0 ? (
+                    filteredComponents.map(([key, comp]) => (
+                      <button
+                        key={key}
+                        onClick={() => {
+                          onSelectComponent(key);
+                          setIsComponentDropdownOpen(false);
+                          setComponentSearch("");
+                        }}
+                        className={cn(
+                          "flex w-full items-center rounded-md px-2 py-1.5 text-left text-sm transition-colors",
+                          key === selectedComponent
+                            ? "bg-muted font-medium text-foreground"
+                            : "text-muted-foreground hover:bg-muted hover:text-foreground",
+                        )}
+                      >
+                        {comp.name}
+                      </button>
+                    ))
+                  ) : (
+                    <p className="py-3 text-center text-sm text-muted-foreground">
+                      No components found
+                    </p>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
           <div className="flex shrink-0 items-center gap-1">
-            <button
-              onClick={onBack}
-              className="rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-              title="Back to components"
-            >
-              <ArrowLeft className="size-3.5" />
-            </button>
             <button
               onClick={onCopyLink}
               className="rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
