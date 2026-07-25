@@ -224,7 +224,7 @@ const LivePreview = ({
         <TabsContent value="preview" className="m-0">
           <div className="relative overflow-auto px-2 pb-2">
             <div className="rounded-[9px] border bg-background p-2">
-              <div className="flex min-h-[calc(80vh-5rem)] w-full items-center justify-center overflow-hidden p-2 sm:p-4 md:p-6 lg:p-8">
+              <div className="flex min-h-[calc(80vh-5rem)] max-h-[calc(80vh-5rem)] w-full items-center justify-center overflow-hidden p-4">
                 <div className="mx-auto flex w-full max-w-full items-center justify-center">
                   <div
                     className="component-preview-wrapper relative flex w-full items-center justify-center"
@@ -243,10 +243,12 @@ const LivePreview = ({
 
         <TabsContent value="code" className="m-0">
           <div className="relative overflow-auto px-2 pb-2">
-            <div
-              className="min-h-[calc(80vh-5rem)] overflow-auto rounded-[9px] border bg-background p-4 [&_pre]:!m-0 [&_pre]:min-h-[inherit] [&_pre]:!bg-transparent [&_pre]:!p-4 [&_pre]:text-sm [&_pre]:leading-relaxed scrollbar-no"
-              dangerouslySetInnerHTML={{ __html: highlightedCode }}
-            />
+            <div className="rounded-[9px] border bg-background p-2">
+              <div
+                className="min-h-[calc(80vh-5rem)] max-h-[calc(80vh-5rem)] overflow-auto rounded-[9px] bg-background p-4 [&_pre]:!m-0 [&_pre]:min-h-[inherit] [&_pre]:!bg-transparent [&_pre]:!p-4 [&_pre]:text-sm [&_pre]:leading-relaxed scrollbar-no" 
+                dangerouslySetInnerHTML={{ __html: highlightedCode }}
+              />
+            </div>
           </div>
         </TabsContent>
       </div>
