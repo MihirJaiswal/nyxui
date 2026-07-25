@@ -36,7 +36,7 @@ const CommandDialog: React.FC<CommandDialogProps> = ({
 }) => {
   return (
     <Dialog {...props}>
-      <DialogContent className="overflow-hidden border-border/70 bg-background/95 p-0 shadow-2xl backdrop-blur-xl sm:max-w-2xl">
+      <DialogContent className="overflow-hidden border-border/60 bg-card/95 p-0 shadow-xl backdrop-blur-xl sm:max-w-xl">
         <DialogTitle className="sr-only">{title}</DialogTitle>
         <Command>{children}</Command>
       </DialogContent>
@@ -52,14 +52,14 @@ interface CommandInputProps
 const CommandInput = React.forwardRef<HTMLInputElement, CommandInputProps>(
   ({ className, ...props }, ref) => (
     <div
-      className="flex items-center border-b border-border/70 px-4 pr-12"
+      className="flex items-center border-b border-border/60 px-4"
       cmdk-input-wrapper=""
     >
       <Search className="mr-2 h-4 w-4 shrink-0 text-muted-foreground" />
       <CommandPrimitive.Input
         ref={ref}
         className={cn(
-          "flex h-14 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
+          "flex h-12 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
           className,
         )}
         {...props}
@@ -79,7 +79,7 @@ const CommandList = React.forwardRef<HTMLDivElement, CommandListProps>(
     <CommandPrimitive.List
       ref={ref}
       className={cn(
-        "max-h-96 overflow-y-auto overflow-x-hidden p-2",
+        "max-h-80 overflow-y-auto overflow-x-hidden p-2 scrollbar-no",
         className,
       )}
       {...props}
@@ -96,7 +96,7 @@ const CommandEmpty = React.forwardRef<HTMLDivElement, CommandEmptyProps>(
   (props, ref) => (
     <CommandPrimitive.Empty
       ref={ref}
-      className="py-6 text-center text-sm text-muted-foreground"
+      className="py-8 text-center text-sm text-muted-foreground"
       {...props}
     />
   ),
@@ -113,7 +113,7 @@ const CommandGroup = React.forwardRef<HTMLDivElement, CommandGroupProps>(
     <CommandPrimitive.Group
       ref={ref}
       className={cn(
-        "overflow-hidden p-1 text-foreground [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-2 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground",
+        "overflow-hidden p-1 text-foreground [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-[11px] [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-wider [&_[cmdk-group-heading]]:text-muted-foreground/70",
         className,
       )}
       {...props}
@@ -147,7 +147,7 @@ const CommandItem = React.forwardRef<HTMLDivElement, CommandItemProps>(
     <CommandPrimitive.Item
       ref={ref}
       className={cn(
-        "relative flex cursor-pointer select-none items-center rounded-md px-3 py-2.5 text-sm outline-none transition-colors data-[disabled=true]:pointer-events-none data-[selected=true]:bg-muted data-[selected=true]:text-foreground data-[disabled=true]:opacity-50",
+        "relative flex cursor-pointer select-none items-center rounded-md px-3 py-2.5 text-sm outline-none transition-colors data-[disabled=true]:pointer-events-none data-[selected=true]:bg-muted/80 data-[selected=true]:text-[#FF4F11] data-[disabled=true]:opacity-50",
         className,
       )}
       {...props}

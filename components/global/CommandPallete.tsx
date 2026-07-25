@@ -201,12 +201,12 @@ export function CommandPalette() {
     <>
       <Button
         variant="outline"
-        className="relative h-8 max-h-8 justify-start gap-2 rounded-lg border-border bg-[hsl(var(--surface-alt))] px-3 text-sm font-normal text-muted-foreground shadow-none transition-colors hover:bg-[hsl(var(--surface-alt))] hover:text-foreground sm:w-48 sm:px-4"
+        className="relative h-8 justify-start gap-2 rounded-lg border-border/60 bg-muted/50 px-3 text-sm font-normal text-muted-foreground shadow-none transition-colors hover:bg-muted hover:text-foreground sm:w-44"
         onClick={() => setOpen(true)}
       >
         <Search className="h-4 w-4 shrink-0" />
         <span className="inline-flex flex-1">Search...</span>
-        <kbd className="pointer-events-none hidden shrink-0 select-none items-center gap-1 rounded border border-border bg-background px-1.5 font-mono text-[10px] font-medium text-muted-foreground sm:flex">
+        <kbd className="pointer-events-none hidden shrink-0 select-none items-center gap-1 rounded border border-border/60 bg-background px-1.5 font-mono text-[10px] font-medium text-muted-foreground sm:flex">
           <span className="text-xs">⌘</span>K
         </kbd>
       </Button>
@@ -237,17 +237,13 @@ export function CommandPalette() {
                       key={item.id}
                       value={`${item.title} ${item.href} ${item.keywords}`}
                       onSelect={() => runCommand(item.href)}
-                      className="group gap-3"
+                      className="group gap-2.5"
                     >
-                      <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors group-data-[selected=true]:text-foreground">
-                        <Icon className="h-4 w-4" />
-                      </div>
+                      <Icon className="h-4 w-4 shrink-0 text-muted-foreground transition-colors group-data-[selected=true]:text-[#FF4F11]" />
                       <div className="min-w-0 flex-1 truncate">
-                        <span className="text-sm font-medium">
-                          {item.title}
-                        </span>
+                        <span className="text-sm font-medium">{item.title}</span>
                         {item.description && (
-                          <span className="ml-2 hidden truncate text-xs text-muted-foreground md:inline">
+                          <span className="ml-2 truncate text-xs text-muted-foreground/70">
                             {item.description}
                           </span>
                         )}
