@@ -77,24 +77,22 @@ const CodeEditor = ({
   return (
     <div
       ref={containerRef}
-      className={`relative rounded-md overflow-hidden border border-border bg-gray-900 dark:bg-zinc-950 ${className}`}
+      className={`relative overflow-hidden rounded-lg border border-border/60 bg-[#0d1117] ${className}`}
       style={style}
     >
       {/* Syntax highlighted background */}
       {isLoaded && (
         <pre
           ref={preRef}
-          className="absolute inset-0 pointer-events-none overflow-auto whitespace-pre-wrap break-words"
+          className="absolute inset-0 pointer-events-none overflow-auto"
           style={{
             zIndex: 1,
             padding: "16px",
             fontFamily:
               "ui-monospace, SFMono-Regular, 'SF Mono', Monaco, Consolas, 'Liberation Mono', 'Menlo', monospace",
-            fontSize: "14px",
-            lineHeight: "1.5",
-            wordWrap: "break-word",
-            overflowWrap: "break-word",
-            whiteSpace: "pre-wrap",
+            fontSize: "13px",
+            lineHeight: "1.6",
+            whiteSpace: "pre",
             scrollbarWidth: "none",
           }}
           dangerouslySetInnerHTML={{
@@ -114,7 +112,7 @@ const CodeEditor = ({
         placeholder={placeholder}
         className={`
           relative w-full h-full resize-none outline-none border-0 focus:ring-0 focus:outline-none
-          ${value ? "text-transparent caret-white" : "text-gray-400"}
+          ${value ? "text-transparent caret-white" : "text-gray-500"}
           selection:bg-blue-500/25
         `}
         style={{
@@ -124,13 +122,11 @@ const CodeEditor = ({
           minHeight: "inherit",
           fontFamily:
             "ui-monospace, SFMono-Regular, 'SF Mono', Monaco, Consolas, 'Liberation Mono', 'Menlo', monospace",
-          fontSize: "14px",
-          lineHeight: "1.5",
-          wordWrap: "break-word",
-          overflowWrap: "break-word",
-          whiteSpace: "pre-wrap",
+          fontSize: "13px",
+          lineHeight: "1.6",
+          whiteSpace: "pre",
+          overflow: "auto",
           caretColor: "#c9d1d9",
-          scrollBehavior: "smooth",
           scrollbarWidth: "none",
           msOverflowStyle: "none",
         }}
