@@ -98,7 +98,7 @@ const CodeEditor = ({
   return (
     <div
       ref={containerRef}
-      className={`relative overflow-hidden rounded-xl border border-border/70 bg-white dark:bg-[#0F0F0F] ${className}`}
+      className={`relative overflow-hidden rounded-xl border border-border/70 bg-card ${className}`}
       style={style}
     >
       {/* Syntax highlighted background */}
@@ -134,8 +134,8 @@ const CodeEditor = ({
         placeholder={placeholder}
         className={`
           relative w-full resize-none outline-none border-0 focus:ring-0 focus:outline-none
-          ${value ? "text-transparent caret-foreground" : "text-zinc-400 dark:text-neutral-500"}
-          selection:bg-[#FF4F11]/25
+          ${value ? "text-transparent caret-foreground" : "text-muted-foreground"}
+          selection:bg-primary/25
         `}
         style={{
           zIndex: 2,
@@ -160,10 +160,18 @@ const CodeEditor = ({
       {/* Custom styles for better selection visibility and theme-aware Shiki tokens */}
       <style jsx>{`
         textarea::selection {
-          background-color: rgba(255, 79, 17, 0.25) !important;
+          background-color: color-mix(
+            in srgb,
+            var(--primary) 25%,
+            transparent
+          ) !important;
         }
         textarea::-moz-selection {
-          background-color: rgba(255, 79, 17, 0.25) !important;
+          background-color: color-mix(
+            in srgb,
+            var(--primary) 25%,
+            transparent
+          ) !important;
         }
         :global(.shiki) {
           background-color: transparent !important;

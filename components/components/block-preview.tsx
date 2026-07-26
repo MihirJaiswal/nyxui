@@ -13,7 +13,7 @@ export function BlockPreview({ name }: BlockPreviewProps) {
   if (!Component) {
     return (
       <div className="flex items-center justify-center h-screen">
-        <p className="text-red-500">Component not found: {name}</p>
+        <p className="text-destructive">Component not found: {name}</p>
       </div>
     );
   }

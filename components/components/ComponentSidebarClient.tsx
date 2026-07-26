@@ -88,7 +88,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
   const renderGuide = () => (
     <span className="flex w-11 shrink-0 items-center" aria-hidden="true">
       <motion.span
-        className="block h-px shrink-0 origin-left bg-border dark:bg-white/30"
+        className="block h-px shrink-0 origin-left bg-foreground/30"
         variants={itemLineVariants}
         transition={{
           width: { type: "spring", stiffness: 600, damping: 32 },
@@ -109,7 +109,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
       aria-hidden="true"
     >
       <span className="flex w-11 shrink-0 items-center">
-        <span className="block h-px w-8 shrink-0 bg-border dark:bg-white/30" />
+        <span className="block h-px w-8 shrink-0 bg-foreground/30" />
       </span>
     </span>
   );
@@ -117,7 +117,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
   const renderCategoryHeading = (title: string) => (
     <h4 className="mb-2 flex items-center gap-3 text-sm font-medium text-foreground">
       <span className="flex w-11 shrink-0 items-center" aria-hidden="true">
-        <span className="block h-px w-8 shrink-0 bg-border dark:bg-white/60" />
+        <span className="block h-px w-8 shrink-0 bg-foreground/80" />
       </span>
       <span className="min-w-0 truncate">{title}</span>
     </h4>
@@ -139,8 +139,8 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
           className={cn(
             "group relative flex min-h-7 w-full items-center gap-3 rounded-md py-1 text-sm transition-colors hide-scrollbar",
             isActive
-              ? "text-[#FF4F11]"
-              : "text-muted-foreground hover:text-[#FF4F11]",
+              ? "text-primary"
+              : "text-muted-foreground hover:text-primary",
           )}
           initial={false}
           animate={isActive ? "active" : "normal"}
@@ -179,7 +179,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
         mass: 0.8,
       }}
       className={cn(
-        "overflow-hidden rounded-xl border border-border/70 bg-card/70 shadow-sm dark:border-white/5 dark:bg-[#0F0F0F]",
+        "overflow-hidden rounded-xl border border-border/70 bg-card shadow-sm",
       )}
     >
       <div className="flex h-full flex-col">
@@ -188,7 +188,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
           onClick={() => setIsCollapsed(!isCollapsed)}
           aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
           className={cn(
-            "flex h-10 shrink-0 items-center text-muted-foreground transition-colors hover:text-[#FF4F11]",
+            "flex h-10 shrink-0 items-center text-muted-foreground transition-colors hover:text-primary",
             isCollapsed ? "justify-center px-0" : "gap-2 px-3",
           )}
         >
@@ -251,8 +251,8 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
                           className={cn(
                             "group relative flex min-h-7 w-full items-center gap-3 rounded-md py-1 transition-colors",
                             isActive
-                              ? "text-[#FF4F11]"
-                              : "text-muted-foreground hover:text-[#FF4F11]",
+                              ? "text-primary"
+                              : "text-muted-foreground hover:text-primary",
                           )}
                           initial={false}
                           animate={isActive ? "active" : "normal"}
@@ -366,8 +366,8 @@ const MotionLink = motion.create(Link);
 
 const itemLineVariants = {
   normal: { width: 32 },
-  active: { width: 44, backgroundColor: "#FF4F11" },
-  hover: { width: 44, backgroundColor: "#FF4F11" },
+  active: { width: 44, backgroundColor: "var(--primary)" },
+  hover: { width: 44, backgroundColor: "var(--primary)" },
 };
 
 const itemLabelVariants = {
