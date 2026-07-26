@@ -105,10 +105,9 @@ const CodeEditor = ({
       {isLoaded && (
         <pre
           ref={preRef}
-          className="absolute inset-0 pointer-events-none overflow-auto"
+          className="absolute inset-0 pointer-events-none overflow-auto py-3"
           style={{
             zIndex: 1,
-            padding: "16px",
             fontFamily: '"Geist Mono", monospace',
             fontSize: "13px",
             lineHeight: "1.5",
