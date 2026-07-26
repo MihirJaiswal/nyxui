@@ -162,11 +162,36 @@ const ComponentSelector = ({
   const [searchQuery, setSearchQuery] = useState("");
   const [hoveredKey, setHoveredKey] = useState<string | null>(null);
   const [focusedIndex, setFocusedIndex] = useState(-1);
+  const [isInputFocused, setIsInputFocused] = useState(false);
   const mouseY = useMotionValue(HOVER_NONE);
   const listRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     preloadTick();
+  }, []);
+
+  // Global "f" shortcut to focus the search input.
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== "f" && e.key !== "F") return;
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
+
+      const target = e.target as HTMLElement;
+      const tag = target.tagName.toLowerCase();
+      const isEditable =
+        tag === "input" ||
+        tag === "textarea" ||
+        target.isContentEditable ||
+        target.closest("[contenteditable]");
+      if (isEditable) return;
+
+      e.preventDefault();
+      inputRef.current?.focus();
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
   const componentEntries = useMemo(
@@ -201,6 +226,12 @@ const ComponentSelector = ({
   }, [focusedIndex]);
 
   const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Escape") {
+      e.preventDefault();
+      inputRef.current?.blur();
+      return;
+    }
+
     if (filteredComponents.length === 0) return;
 
     if (e.key === "ArrowDown") {
@@ -240,20 +271,27 @@ const ComponentSelector = ({
         <div className="relative">
           <Search className="absolute left-3 top-1/2 size-3.5 -translate-y-1/2 text-muted-foreground" />
           <input
+            ref={inputRef}
             type="text"
             placeholder="Search components..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onKeyDown={handleSearchKeyDown}
-            className="h-9 w-full rounded-lg bg-muted/50 py-2 pl-9 pr-8 text-sm text-foreground placeholder:text-muted-foreground focus:bg-background focus:outline-none"
+            onFocus={() => setIsInputFocused(true)}
+            onBlur={() => setIsInputFocused(false)}
+            className="h-9 w-full rounded-lg bg-muted/50 py-2 pl-9 pr-14 text-sm text-foreground placeholder:text-muted-foreground focus:bg-background focus:outline-none"
           />
-          {searchQuery && (
+          {searchQuery ? (
             <button
               onClick={() => setSearchQuery("")}
               className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-foreground"
             >
               <X className="size-3.5" />
             </button>
+          ) : (
+            <kbd className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 rounded border border-border/60 bg-background px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground">
+              {isInputFocused ? "esc" : "f"}
+            </kbd>
           )}
         </div>
       </div>
