@@ -2,10 +2,11 @@
 
 import type React from "react";
 import {
+  animate,
   motion,
   useMotionValue,
+  useMotionValueEvent,
   useSpring,
-  useTransform,
   type MotionValue,
 } from "motion/react";
 import { Search, X } from "lucide-react";
@@ -37,6 +38,7 @@ interface TickerItemProps {
   index: number;
   isActive: boolean;
   isHovered: boolean;
+  isFocused: boolean;
   isFirst: boolean;
   isLast: boolean;
   name: string;
@@ -49,6 +51,7 @@ const TickerItem = ({
   index,
   isActive,
   isHovered,
+  isFocused,
   isFirst,
   isLast,
   name,
@@ -56,21 +59,32 @@ const TickerItem = ({
   onMouseEnter,
 }: TickerItemProps) => {
   const ref = useRef<HTMLButtonElement>(null);
+  const widthMv = useMotionValue(
+    isActive || isFocused ? MAX_WIDTH : BASE_WIDTH,
+  );
 
-  const rawWidth = useTransform(mouseY, (y) => {
-    if (isActive) return MAX_WIDTH;
-    if (!ref.current) return BASE_WIDTH;
+  // Snap/expand when the item is active or keyboard-focused.
+  useEffect(() => {
+    if (isActive || isFocused) {
+      animate(widthMv, MAX_WIDTH, SPRING_CONFIG);
+    } else {
+      animate(widthMv, BASE_WIDTH, SPRING_CONFIG);
+    }
+  }, [isActive, isFocused, widthMv]);
+
+  // Follow the mouse vertically when not active/focused.
+  useMotionValueEvent(mouseY, "change", (y) => {
+    if (isActive || isFocused || !ref.current) return;
 
     const rect = ref.current.getBoundingClientRect();
     const centerY = rect.top + rect.height / 2;
     const distance = Math.abs(y - centerY);
-
     const influence = Math.exp(-(distance * distance) / (2 * SIGMA * SIGMA));
-    return BASE_WIDTH + influence * (MAX_WIDTH - BASE_WIDTH);
+    widthMv.set(BASE_WIDTH + influence * (MAX_WIDTH - BASE_WIDTH));
   });
 
-  const width = useSpring(rawWidth, SPRING_CONFIG);
-  const isHighlighted = isActive || isHovered;
+  const width = useSpring(widthMv, SPRING_CONFIG);
+  const isHighlighted = isActive || isHovered || isFocused;
 
   const handleMouseEnter = () => {
     onMouseEnter();
@@ -82,13 +96,15 @@ const TickerItem = ({
   return (
     <motion.button
       ref={ref}
+      data-index={index}
       onClick={onSelect}
       onMouseEnter={handleMouseEnter}
       className={cn(
-        "group relative flex min-h-7 w-full items-center gap-3 rounded-md py-1 text-sm transition-colors",
+        "group relative flex min-h-7 w-full items-center gap-3 rounded-md py-1 text-sm transition-colors outline-none",
         isActive
           ? "text-[#FF4F11]"
           : "text-muted-foreground hover:text-[#FF4F11]",
+        isFocused && !isActive && "bg-muted/50 text-[#FF4F11]",
         isLast && "mb-px",
       )}
     >
@@ -145,13 +161,18 @@ const ComponentSelector = ({
 }: ComponentSelectorProps) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [hoveredKey, setHoveredKey] = useState<string | null>(null);
+  const [focusedIndex, setFocusedIndex] = useState(-1);
   const mouseY = useMotionValue(HOVER_NONE);
+  const listRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     preloadTick();
   }, []);
 
-  const componentEntries = Object.entries(components);
+  const componentEntries = useMemo(
+    () => Object.entries(components),
+    [components],
+  );
 
   const filteredComponents = useMemo(
     () =>
@@ -164,6 +185,45 @@ const ComponentSelector = ({
         .sort(([, a], [, b]) => a.name.localeCompare(b.name)),
     [componentEntries, searchQuery],
   );
+
+  // Reset keyboard focus when the filtered list changes.
+  useEffect(() => {
+    setFocusedIndex(-1);
+  }, [filteredComponents]);
+
+  // Keep the keyboard-focused item in view.
+  useEffect(() => {
+    if (focusedIndex < 0) return;
+    const item = listRef.current?.querySelector(
+      `[data-index="${focusedIndex}"]`,
+    );
+    item?.scrollIntoView({ block: "nearest" });
+  }, [focusedIndex]);
+
+  const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (filteredComponents.length === 0) return;
+
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setFocusedIndex((prev) =>
+        prev >= filteredComponents.length - 1 ? 0 : prev + 1,
+      );
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setFocusedIndex((prev) =>
+        prev <= 0 ? filteredComponents.length - 1 : prev - 1,
+      );
+    } else if (e.key === "Enter") {
+      e.preventDefault();
+      if (focusedIndex >= 0) {
+        const [key] = filteredComponents[focusedIndex];
+        onSelect(key);
+      } else if (filteredComponents.length > 0) {
+        const [key] = filteredComponents[0];
+        onSelect(key);
+      }
+    }
+  };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     mouseY.set(e.clientY);
@@ -184,6 +244,7 @@ const ComponentSelector = ({
             placeholder="Search components..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
+            onKeyDown={handleSearchKeyDown}
             className="h-9 w-full rounded-lg bg-muted/50 py-2 pl-9 pr-8 text-sm text-foreground placeholder:text-muted-foreground focus:bg-background focus:outline-none"
           />
           {searchQuery && (
@@ -211,6 +272,7 @@ const ComponentSelector = ({
             </h4>
 
             <div
+              ref={listRef}
               className="grid grid-flow-row auto-rows-max text-sm"
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
@@ -223,10 +285,14 @@ const ComponentSelector = ({
                     index={index}
                     isActive={selectedComponent === key}
                     isHovered={hoveredKey === key}
+                    isFocused={focusedIndex === index}
                     isFirst={index === 0}
                     isLast={index === filteredComponents.length - 1}
                     name={component.name}
-                    onSelect={() => onSelect(key)}
+                    onSelect={() => {
+                      setFocusedIndex(index);
+                      onSelect(key);
+                    }}
                     onMouseEnter={() => setHoveredKey(key)}
                   />
                 ))
