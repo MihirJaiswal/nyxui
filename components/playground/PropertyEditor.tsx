@@ -79,7 +79,11 @@ function getColorPickerValue(value: string): string {
   );
 
   if (rgbMatch) {
-    return rgbToHex(Number(rgbMatch[1]), Number(rgbMatch[2]), Number(rgbMatch[3]));
+    return rgbToHex(
+      Number(rgbMatch[1]),
+      Number(rgbMatch[2]),
+      Number(rgbMatch[3]),
+    );
   }
 
   const tripletMatch = trimmedValue.match(
@@ -87,7 +91,11 @@ function getColorPickerValue(value: string): string {
   );
 
   if (tripletMatch) {
-    return rgbToHex(Number(tripletMatch[1]), Number(tripletMatch[2]), Number(tripletMatch[3]));
+    return rgbToHex(
+      Number(tripletMatch[1]),
+      Number(tripletMatch[2]),
+      Number(tripletMatch[3]),
+    );
   }
 
   return namedColorHex[trimmedValue.toLowerCase()] ?? "#000000";
@@ -192,7 +200,6 @@ const PropertyEditor = ({
             className="h-10 w-10 shrink-0 cursor-pointer rounded-md  bg-transparent p-0.5"
           />
           <div className="min-w-0 flex-1 space-y-1">
-          
             <Input
               type="text"
               value={colorValue}
@@ -228,7 +235,8 @@ const PropertyEditor = ({
               placeholder={
                 prop.placeholder || `Enter ${prop.label.toLowerCase()}...`
               }
-              className="h-[200px] w-full"
+              className="w-full"
+              maxHeight={300}
             />
           );
         } else {
@@ -271,7 +279,7 @@ const PropertyEditor = ({
                   min={prop.min}
                   max={prop.max}
                   step={prop.step || 1}
-                  className="w-full"
+                  className="w-full pt-1"
                 />
                 <div className="mt-2 flex items-center justify-between text-[11px] text-muted-foreground">
                   <span className="font-mono">{prop.min}</span>
@@ -325,7 +333,7 @@ const PropertyEditor = ({
       case "color": {
         const colorValue = String(value || "#000000");
         return (
-          <div className="rounded-lg border border-border/60 bg-background p-2">
+          <div>
             {renderColorValueControl(
               prop.label,
               colorValue,
@@ -384,7 +392,8 @@ const PropertyEditor = ({
               }
             }}
             language="json"
-            className="h-[140px] w-full"
+            className="w-full"
+            maxHeight={200}
           />
         );
       }
@@ -413,12 +422,7 @@ const PropertyEditor = ({
         return false;
       }
 
-      const searchableText = [
-        key,
-        prop.label,
-        prop.description,
-        prop.category,
-      ]
+      const searchableText = [key, prop.label, prop.description, prop.category]
         .filter(Boolean)
         .join(" ")
         .toLowerCase();
@@ -536,10 +540,7 @@ const PropertyEditor = ({
             const changed = !isDefaultValue(property, prop);
 
             return (
-              <div
-                key={`${property}-${index}`}
-                className="space-y-2 px-1.5"
-              >
+              <div key={`${property}-${index}`} className="space-y-2 px-1.5">
                 <div className="flex items-center justify-between gap-3">
                   <Label
                     className={cn(

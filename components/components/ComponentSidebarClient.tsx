@@ -57,7 +57,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
   const renderGuide = () => (
     <span className="flex w-11 shrink-0 items-center" aria-hidden="true">
       <motion.span
-        className="block h-px shrink-0 origin-left bg-border dark:bg-white/18"
+        className="block h-px shrink-0 origin-left bg-border dark:bg-white/30"
         variants={itemLineVariants}
         transition={{
           width: { type: "spring", stiffness: 600, damping: 32 },

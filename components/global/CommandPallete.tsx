@@ -241,7 +241,9 @@ export function CommandPalette() {
                     >
                       <Icon className="h-4 w-4 shrink-0 text-muted-foreground transition-colors group-data-[selected=true]:text-[#FF4F11]" />
                       <div className="min-w-0 flex-1 truncate">
-                        <span className="text-sm font-medium">{item.title}</span>
+                        <span className="text-sm font-medium">
+                          {item.title}
+                        </span>
                         {item.description && (
                           <span className="ml-2 truncate text-xs text-muted-foreground/70">
                             {item.description}

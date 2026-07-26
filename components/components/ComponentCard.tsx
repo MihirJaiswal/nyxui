@@ -63,7 +63,7 @@ export const ComponentCard = ({
               src={imageSrc}
               alt={title}
               fill
-              className="object-contain mix-blend-screen"
+              className="object-cover mix-blend-screen"
               quality={100}
               loading="lazy"
             />

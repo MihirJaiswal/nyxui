@@ -18,16 +18,31 @@ const links = [
   {
     group: "Templates",
     items: [
-      { title: "Single Page Portfolio", href: itemHref("templates", "singlepage-portfolio") },
-      { title: "Minimalist Portfolio", href: itemHref("templates", "minimalist-portfolio") },
+      {
+        title: "Single Page Portfolio",
+        href: itemHref("templates", "singlepage-portfolio"),
+      },
+      {
+        title: "Minimalist Portfolio",
+        href: itemHref("templates", "minimalist-portfolio"),
+      },
     ],
   },
   {
     group: "Components",
     items: [
-      { title: "3D layered Card", href: itemHref("components", "3d-layered-card") },
-      { title: "Animated Code Block", href: itemHref("components", "animated-code-block") },
-      { title: "Apple Glass Effect", href: itemHref("components", "apple-glass-effect") },
+      {
+        title: "3D layered Card",
+        href: itemHref("components", "3d-layered-card"),
+      },
+      {
+        title: "Animated Code Block",
+        href: itemHref("components", "animated-code-block"),
+      },
+      {
+        title: "Apple Glass Effect",
+        href: itemHref("components", "apple-glass-effect"),
+      },
       { title: "More", href: siteLinks.components },
     ],
   },
