@@ -181,49 +181,51 @@ export default function Header() {
         </div>
 
         <div className="flex items-center gap-1">
-          <div className="hidden items-center gap-1 lg:flex">
+          <div className="hidden items-center gap-2 lg:flex">
             <CommandPalette />
-            <Link
-              aria-label="GitHub"
-              href={externalLinks.githubRepo}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <Button
+            <div>
+              <Link
                 aria-label="GitHub"
-                variant="ghost"
-                size="icon"
-                className="rounded-full text-muted-foreground hover:bg-muted/80 hover:text-foreground"
+                href={externalLinks.githubRepo}
+                target="_blank"
+                rel="noreferrer"
               >
-                <GitHubLogoIcon className="h-5 w-5" />
-                <span className="sr-only">GitHub</span>
-              </Button>
-            </Link>
-            <Link
-              aria-label="Twitter"
-              href={externalLinks.twitter}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <Button
-                aria-label="Twitter"
-                variant="ghost"
-                size="icon"
-                className="rounded-full text-muted-foreground hover:bg-muted/80 hover:text-foreground"
-              >
-                <svg
-                  height="18"
-                  width="18"
-                  fill="currentColor"
-                  viewBox="0 0 1200 1227"
-                  xmlns="http://www.w3.org/2000/svg"
+                <Button
+                  aria-label="GitHub"
+                  variant="ghost"
+                  size="icon"
+                  className="rounded-full text-muted-foreground hover:bg-muted/80 hover:text-foreground"
                 >
-                  <path d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z" />
-                </svg>
-                <span className="sr-only">Twitter</span>
-              </Button>
-            </Link>
-            <ModeToggle />
+                  <GitHubLogoIcon className="h-4.5 w-4.5" />
+                  <span className="sr-only">GitHub</span>
+                </Button>
+              </Link>
+              <Link
+                aria-label="Twitter"
+                href={externalLinks.twitter}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Button
+                  aria-label="Twitter"
+                  variant="ghost"
+                  size="icon"
+                  className="rounded-full text-muted-foreground hover:bg-muted/80 hover:text-foreground"
+                >
+                  <svg
+                    height="14"
+                    width="14"
+                    fill="currentColor"
+                    viewBox="0 0 1200 1227"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z" />
+                  </svg>
+                  <span className="sr-only">Twitter</span>
+                </Button>
+              </Link>
+              <ModeToggle />
+            </div>
           </div>
 
           <div className="flex items-center gap-1 lg:hidden">
