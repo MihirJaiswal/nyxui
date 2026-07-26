@@ -6,7 +6,7 @@ import { AnimateText } from "@/registry/ui/animated-text";
 
 export function Grid() {
   return (
-    <div className="relative flex h-[85vh] w-full flex-col items-center justify-center overflow-hidden rounded-xl border bg-white dark:bg-[#111010]">
+    <div className="relative flex h-[85vh] w-full flex-col items-center justify-center overflow-hidden rounded-xl border bg-muted">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -19,9 +19,9 @@ export function Grid() {
           whileHover={{ scale: 1.05 }}
           transition={{ type: "spring", stiffness: 300 }}
         >
-          <div className="w-32 h-32 mx-auto bg-gradient-to-br from-primary/20 to-primary/5 rounded-3xl flex items-center justify-center relative overflow-hidden">
+          <div className="w-32 h-32 mx-auto bg-gradient-to-br from-foreground/20 to-foreground/5 rounded-3xl flex items-center justify-center relative overflow-hidden">
             <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent"
+              className="absolute inset-0 bg-gradient-to-r from-foreground/10 to-transparent"
               animate={{ y: [-100, 100] }}
               transition={{
                 duration: 3,
@@ -30,14 +30,14 @@ export function Grid() {
               }}
             />
             <div className="relative z-10 flex items-center gap-2">
-              <Code2 className="w-12 h-12 text-primary" />
+              <Code2 className="w-12 h-12 text-foreground" />
             </div>
           </div>
         </motion.div>
 
         {/* Main Heading */}
         <motion.div
-          className="text-4xl lg:text-5xl uppercase font-black mb-4 text-black dark:text-white"
+          className="text-4xl lg:text-5xl uppercase font-black mb-4 text-foreground"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}

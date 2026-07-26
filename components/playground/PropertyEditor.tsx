@@ -505,7 +505,7 @@ const PropertyEditor = ({
               className={cn(
                 "rounded-md p-1.5 transition-colors hover:bg-muted",
                 linkCopied
-                  ? "text-green-600 hover:text-green-700"
+                  ? "text-primary hover:text-primary"
                   : "text-muted-foreground hover:text-foreground",
               )}
               title="Copy playground link"
@@ -556,7 +556,7 @@ const PropertyEditor = ({
                   <Label
                     className={cn(
                       "block truncate text-sm font-medium",
-                      changed ? "text-[#FF4F11]" : "text-foreground",
+                      changed ? "text-primary" : "text-foreground",
                     )}
                   >
                     {prop.label}

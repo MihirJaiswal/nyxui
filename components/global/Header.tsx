@@ -97,7 +97,7 @@ export default function Header() {
       )}
     >
       <div className="pointer-events-none absolute left-0 top-full h-px w-full">
-        <div className="h-full w-full bg-gradient-to-r from-transparent via-zinc-300 to-transparent dark:via-zinc-600" />
+        <div className="h-full w-full bg-gradient-to-r from-transparent via-border to-transparent" />
       </div>
       <div className="flex h-16 items-center justify-between px-4 md:px-6 xl:container xl:px-20 mx-auto">
         <div className="flex items-center">
@@ -121,7 +121,7 @@ export default function Header() {
                 className={cn(
                   "px-3 py-2 text-sm font-medium transition-colors hover:text-foreground",
                   activeLink === link.href
-                    ? "text-[#FF4F11]"
+                    ? "text-primary"
                     : "text-muted-foreground",
                 )}
               >
@@ -134,7 +134,7 @@ export default function Header() {
                 onClick={() => setMoreOpen((prev) => !prev)}
                 className={cn(
                   "flex items-center gap-0.5 px-3 py-2 text-sm font-medium transition-colors hover:text-foreground",
-                  isMoreActive ? "text-[#FF4F11]" : "text-muted-foreground",
+                  isMoreActive ? "text-primary" : "text-muted-foreground",
                 )}
               >
                 More
@@ -309,7 +309,7 @@ export default function Header() {
                         className={cn(
                           "flex items-center rounded-md p-2.5 text-sm font-medium transition-colors",
                           activeLink === link.href
-                            ? "text-[#FF4F11]"
+                            ? "text-primary"
                             : "text-muted-foreground hover:bg-muted/30 hover:text-foreground",
                         )}
                       >
@@ -325,7 +325,7 @@ export default function Header() {
                         className={cn(
                           "flex items-center rounded-md p-2.5 text-sm font-medium transition-colors",
                           activeLink === link.href
-                            ? "text-[#FF4F11]"
+                            ? "text-primary"
                             : "text-muted-foreground hover:bg-muted/30 hover:text-foreground",
                         )}
                       >
@@ -350,7 +350,7 @@ export default function Header() {
                           className={cn(
                             "flex items-center rounded-md p-2 text-sm transition-colors",
                             activeLink === itemHref("components", slug)
-                              ? "text-[#FF4F11]"
+                              ? "text-primary"
                               : "text-muted-foreground hover:bg-muted/20 hover:text-foreground",
                           )}
                         >
