@@ -38,6 +38,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 // import { Banner } from "@/components/global/Banner";
 import Footer from "@/components/global/Footer";
+import { JsonLd } from "@/components/global/JsonLd";
 import { externalLinks } from "@/lib/links";
 
 export const metadata: Metadata = {
@@ -142,26 +143,23 @@ export default function RootLayout({
     >
       <head>
         {/* Add JSON-LD structured data */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "SoftwareApplication",
-              name: "Nyx UI",
-              description:
-                "Nyx UI is a collection of modern React components and templates for developers.",
-              url: `${externalLinks.site}/`,
-              author: {
-                "@type": "Person",
-                name: "Mihir Jaiswal",
-                url: externalLinks.twitter,
-              },
-              applicationCategory: "DeveloperApplication",
-              operatingSystem: "Web Browser",
-              keywords:
-                "UI library, React components, Next.js, Tailwind CSS, TypeScript",
-            }),
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            name: "Nyx UI",
+            description:
+              "Nyx UI is a collection of modern React components and templates for developers.",
+            url: `${externalLinks.site}/`,
+            author: {
+              "@type": "Person",
+              name: "Mihir Jaiswal",
+              url: externalLinks.twitter,
+            },
+            applicationCategory: "DeveloperApplication",
+            operatingSystem: "Web Browser",
+            keywords:
+              "UI library, React components, Next.js, Tailwind CSS, TypeScript",
           }}
         />
       </head>

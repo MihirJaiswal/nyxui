@@ -1,8 +1,9 @@
 import ComponentGrid from "@/components/components/ComponentGrid";
 import { getPublishedDocCount } from "@/lib/registry";
-import { absoluteUrl } from "@/lib/utils";
+import { absoluteUrl, getCurrentYear } from "@/lib/utils";
 import type { Metadata } from "next";
-import { externalLinks } from "@/lib/links";
+import { createBaseMetadata, publisher } from "@/lib/docs";
+import { JsonLd } from "@/components/global/JsonLd";
 
 function getComponentCount() {
   return getPublishedDocCount("components");
@@ -10,9 +11,10 @@ function getComponentCount() {
 
 export async function generateMetadata(): Promise<Metadata> {
   const componentCount = getComponentCount();
-  const currentYear = new Date().getFullYear();
+  const currentYear = getCurrentYear();
+  const canonical = absoluteUrl("/components");
 
-  return {
+  return createBaseMetadata({
     title: ` Nyx UI | Components`,
     description: `Browse ${componentCount}+ premium React UI components. Built with TypeScript, Tailwind CSS & Framer Motion. Copy, paste, and ship faster with NyxUI component library.`,
     keywords: [
@@ -27,39 +29,9 @@ export async function generateMetadata(): Promise<Metadata> {
       "typescript components",
       "component collection",
     ],
-
-    openGraph: {
-      title: `NyxUI Components - ${componentCount}+ React Components`,
-      description: `Browse and copy ${componentCount}+ premium React components for your next project.`,
-      url: absoluteUrl("/components"),
-      siteName: "Nyx UI",
-      images: [
-        {
-          url: "/api/og/components",
-          width: 1200,
-          height: 630,
-          alt: `NyxUI Components Library - ${componentCount}+ Components`,
-        },
-      ],
-    },
-
-    twitter: {
-      card: "summary_large_image",
-      title: `NyxUI - ${componentCount}+ React Components`,
-      description: `Modern React components for Next.js. Built with TypeScript & Tailwind CSS.`,
-      images: ["/nyx.webp"],
-      creator: "@mihir_jaiswal_",
-    },
-
-    robots: {
-      index: true,
-      follow: true,
-    },
-
-    alternates: {
-      canonical: absoluteUrl("/components"),
-    },
-  };
+    canonical,
+    image: "/api/og/components",
+  });
 }
 
 const ComponentsPage = () => {
@@ -75,19 +47,12 @@ const ComponentsPage = () => {
       name: "React Components",
       numberOfItems: componentCount,
     },
-    publisher: {
-      "@type": "Organization",
-      name: "Nyx UI",
-      url: `${externalLinks.site}/`,
-    },
+    publisher,
   };
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
-      />
+      <JsonLd data={schemaData} />
       <div className="flex flex-col lg:flex-row gap-6 lg:gap-10">
         <div className="flex-1 order-2 lg:order-1 min-w-0">
           <ComponentGrid />

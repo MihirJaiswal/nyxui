@@ -14,6 +14,8 @@ import type { ComponentRegistry } from "./types";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { preloadTick, playHoverTick } from "@/lib/hover-tick";
+import { useKeyboardShortcut } from "@/hooks/use-keyboard-shortcut";
+import { EmptyState } from "@/components/ui/empty-state";
 
 interface ComponentSelectorProps {
   components: ComponentRegistry;
@@ -170,27 +172,9 @@ const ComponentSelector = ({
   }, []);
 
   // Global "f" shortcut to focus the search input.
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key !== "f" && e.key !== "F") return;
-      if (e.ctrlKey || e.metaKey || e.altKey) return;
-
-      const target = e.target as HTMLElement;
-      const tag = target.tagName.toLowerCase();
-      const isEditable =
-        tag === "input" ||
-        tag === "textarea" ||
-        target.isContentEditable ||
-        target.closest("[contenteditable]");
-      if (isEditable) return;
-
-      e.preventDefault();
-      inputRef.current?.focus();
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  useKeyboardShortcut("f", () => {
+    inputRef.current?.focus();
+  });
 
   const componentEntries = useMemo(
     () => Object.entries(components),
@@ -333,9 +317,7 @@ const ComponentSelector = ({
                   />
                 ))
               ) : (
-                <p className="py-4 text-center text-sm text-muted-foreground">
-                  No components found
-                </p>
+                <EmptyState message="No components found" className="py-4" />
               )}
             </div>
           </div>

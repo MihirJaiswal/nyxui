@@ -17,6 +17,11 @@ import { CommandPalette } from "./CommandPallete";
 import { componentsData } from "../../registry/Data";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { useMounted } from "../../hooks/use-mounted";
+import { useEventListener } from "../../hooks/use-event-listener";
+import { useClickOutside } from "../../hooks/use-click-outside";
+import { XTwitterIcon } from "./icons/XTwitterIcon";
+import { SocialLinkButton } from "./SocialLinkButton";
+import { GradientDivider } from "./GradientDivider";
 import Logo from "./Logo";
 import { externalLinks, itemHref, siteLinks } from "@/lib/links";
 
@@ -27,11 +32,7 @@ export default function Header() {
   const moreRef = useRef<HTMLDivElement>(null);
   const mounted = useMounted();
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  useEventListener("scroll", () => setScrolled(window.scrollY > 20));
 
   useEffect(() => {
     setActiveLink(window.location.pathname);
@@ -50,16 +51,7 @@ export default function Header() {
 
   const isMoreActive = moreLinks.some((link) => activeLink === link.href);
 
-  useEffect(() => {
-    if (!moreOpen) return;
-    const handleClickOutside = (e: MouseEvent) => {
-      if (moreRef.current && !moreRef.current.contains(e.target as Node)) {
-        setMoreOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [moreOpen]);
+  useClickOutside(moreRef, () => setMoreOpen(false), moreOpen);
 
   const { components } = componentsData;
 
@@ -96,9 +88,7 @@ export default function Header() {
           : "border-b border-transparent bg-background/80 backdrop-blur-md",
       )}
     >
-      <div className="pointer-events-none absolute left-0 top-full h-px w-full">
-        <div className="h-full w-full bg-gradient-to-r from-transparent via-border to-transparent" />
-      </div>
+      <GradientDivider position="bottom" />
       <div className="flex h-16 items-center justify-between px-4 md:px-6 xl:container xl:px-20 mx-auto">
         <div className="flex items-center">
           <Link
@@ -212,15 +202,7 @@ export default function Header() {
                   size="icon"
                   className="rounded-full text-muted-foreground hover:bg-muted/80 hover:text-foreground"
                 >
-                  <svg
-                    height="14"
-                    width="14"
-                    fill="currentColor"
-                    viewBox="0 0 1200 1227"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z" />
-                  </svg>
+                  <XTwitterIcon size={14} />
                   <span className="sr-only">Twitter</span>
                 </Button>
               </Link>
@@ -257,15 +239,7 @@ export default function Header() {
                 size="icon"
                 className="h-8 w-8 rounded-full p-0 text-muted-foreground hover:bg-muted/80 hover:text-foreground"
               >
-                <svg
-                  height="16"
-                  width="16"
-                  fill="currentColor"
-                  viewBox="0 0 1200 1227"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z" />
-                </svg>
+                <XTwitterIcon size={16} />
                 <span className="sr-only">Twitter</span>
               </Button>
             </Link>
@@ -363,32 +337,20 @@ export default function Header() {
                 <div className="border-t border-border/60 p-3">
                   <div className="flex items-center justify-between">
                     <div className="flex gap-2">
-                      <Link
-                        aria-label="GitHub"
+                      <SocialLinkButton
                         href={externalLinks.githubRepo}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex h-7 w-7 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted/80 hover:text-foreground"
+                        label="GitHub"
+                        className="h-7 w-7"
                       >
                         <GitHubLogoIcon className="h-3.5 w-3.5" />
-                      </Link>
-                      <Link
-                        aria-label="Twitter"
+                      </SocialLinkButton>
+                      <SocialLinkButton
                         href={externalLinks.twitter}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex h-7 w-7 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted/80 hover:text-foreground"
+                        label="Twitter"
+                        className="h-7 w-7"
                       >
-                        <svg
-                          height="12"
-                          width="12"
-                          fill="currentColor"
-                          viewBox="0 0 1200 1227"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z" />
-                        </svg>
-                      </Link>
+                        <XTwitterIcon size={12} />
+                      </SocialLinkButton>
                     </div>
                     <div className="text-xs text-muted-foreground">v1.2.0</div>
                   </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { Check, ChevronDown, Link2, RotateCcw, Search, X } from "lucide-react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import type {
   ComponentDefinition,
   ComponentConfig,
@@ -23,6 +23,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Slider } from "@/components/ui/slider";
 import CodeEditor from "./CodeEditor";
 import { cn } from "@/lib/utils";
+import { componentToHex, rgbToHex, hexToRgbString } from "@/lib/colors";
+import { useClickOutside } from "@/hooks/use-click-outside";
+import { EmptyState } from "@/components/ui/empty-state";
 
 interface PropertyEditorProps {
   component: ComponentDefinition;
@@ -45,23 +48,6 @@ const namedColorHex: Record<string, string> = {
 
 const colorValuePattern =
   /^(#[0-9a-f]{3,8}|rgba?\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}|(\d{1,3}\s*,\s*){2}\d{1,3})/i;
-
-function componentToHex(component: number): string {
-  return Math.max(0, Math.min(255, component)).toString(16).padStart(2, "0");
-}
-
-function rgbToHex(red: number, green: number, blue: number): string {
-  return `#${componentToHex(red)}${componentToHex(green)}${componentToHex(blue)}`;
-}
-
-function hexToRgbTriplet(hex: string): string {
-  const normalizedHex = hex.replace("#", "");
-  const red = Number.parseInt(normalizedHex.slice(0, 2), 16);
-  const green = Number.parseInt(normalizedHex.slice(2, 4), 16);
-  const blue = Number.parseInt(normalizedHex.slice(4, 6), 16);
-
-  return `${red}, ${green}, ${blue}`;
-}
 
 function getColorPickerValue(value: string): string {
   const trimmedValue = value.trim();
@@ -147,19 +133,11 @@ const PropertyEditor = ({
   const [isComponentDropdownOpen, setIsComponentDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (!isComponentDropdownOpen) return;
-    const handleClickOutside = (e: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(e.target as Node)
-      ) {
-        setIsComponentDropdownOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isComponentDropdownOpen]);
+  useClickOutside(
+    dropdownRef,
+    () => setIsComponentDropdownOpen(false),
+    isComponentDropdownOpen,
+  );
 
   const filteredComponents = useMemo(() => {
     const query = componentSearch.trim().toLowerCase();
@@ -195,7 +173,7 @@ const PropertyEditor = ({
             onChange={(event) =>
               onValueChange(
                 colorFormat === "rgb-triplet"
-                  ? hexToRgbTriplet(event.target.value)
+                  ? hexToRgbString(event.target.value)
                   : event.target.value,
               )
             }
@@ -491,9 +469,10 @@ const PropertyEditor = ({
                       </button>
                     ))
                   ) : (
-                    <p className="py-3 text-center text-sm text-muted-foreground">
-                      No components found
-                    </p>
+                    <EmptyState
+                      message="No components found"
+                      className="py-3"
+                    />
                   )}
                 </div>
               </div>
@@ -577,9 +556,7 @@ const PropertyEditor = ({
           })}
 
           {totalProps === 0 && (
-            <div className="py-6 text-center text-sm text-muted-foreground">
-              No props match your search.
-            </div>
+            <EmptyState message="No props match your search." />
           )}
         </div>
       </div>
