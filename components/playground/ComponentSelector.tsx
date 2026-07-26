@@ -73,7 +73,10 @@ const ComponentSelector = ({
         <div className="space-y-4">
           <div>
             <h4 className="mb-2 flex items-center gap-3 text-sm font-medium text-foreground">
-              <span className="flex w-11 shrink-0 items-center" aria-hidden="true">
+              <span
+                className="flex w-11 shrink-0 items-center"
+                aria-hidden="true"
+              >
                 <span className="block h-px w-8 shrink-0 bg-border dark:bg-white/60" />
               </span>
               <span className="min-w-0 truncate">Components</span>
@@ -97,12 +100,19 @@ const ComponentSelector = ({
                       animate={isActive ? "active" : "normal"}
                       whileHover="hover"
                     >
-                      <span className="flex w-11 shrink-0 items-center" aria-hidden="true">
+                      <span
+                        className="flex w-11 shrink-0 items-center"
+                        aria-hidden="true"
+                      >
                         <motion.span
-                          className="block h-px shrink-0 origin-left bg-border dark:bg-white/18"
+                          className="block h-px shrink-0 origin-left bg-border dark:bg-white/30"
                           variants={itemLineVariants}
                           transition={{
-                            width: { type: "spring", stiffness: 600, damping: 32 },
+                            width: {
+                              type: "spring",
+                              stiffness: 600,
+                              damping: 32,
+                            },
                             backgroundColor: { duration: 0 },
                           }}
                         />
@@ -114,7 +124,11 @@ const ComponentSelector = ({
                         )}
                         title={component.name}
                         variants={itemLabelVariants}
-                        transition={{ type: "spring", stiffness: 600, damping: 32 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 600,
+                          damping: 32,
+                        }}
                       >
                         {component.name}
                       </motion.span>

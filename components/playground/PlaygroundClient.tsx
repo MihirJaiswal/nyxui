@@ -30,7 +30,7 @@ const SIDEBAR_PX = 310;
 const SIDEBAR_INNER_CLASSNAME =
   "flex h-full flex-col overflow-hidden rounded-xl border border-border/70 bg-card/70 shadow-sm dark:border-white/5 dark:bg-[#0F0F0F]";
 const SIDEBAR_OUTER_CLASSNAME =
-  "flex flex-col lg:sticky lg:top-16 lg:h-[calc(100vh-4rem)] lg:py-10";
+  "flex flex-col lg:sticky lg:top-16 lg:h-[calc(85vh+5rem)] lg:py-10";
 const MAIN_OUTER_CLASSNAME = "flex flex-col min-w-0 pl-8 xl:pl-24";
 
 // Extract shared config generation logic
@@ -489,18 +489,44 @@ const PlaygroundContent = ({
   );
 };
 
-// Loading fallback component
+// Loading fallback component — mirrors the "not measured yet" fallback
+// in PlaygroundContent so the SSR → client swap is pixel-identical.
 const PlaygroundLoading = () => {
   return (
     <div className="h-full flex flex-col bg-background">
-      <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
-        <div className="w-full lg:w-80 xl:w-96 flex-shrink-0 border-b lg:border-b-0 lg:border-r border-border flex flex-col max-h-[40vh] lg:max-h-none">
-          <div className="flex-1 flex items-center justify-center p-6 lg:p-8">
-            <div className="text-center">
-              <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-              <p className="text-sm lg:text-base text-muted-foreground">
-                Loading playground...
-              </p>
+      {/* Desktop layout */}
+      <div className="hidden w-full flex-1 lg:flex lg:flex-row">
+        <div
+          style={{ width: SIDEBAR_PX, flexShrink: 0 }}
+          className={SIDEBAR_OUTER_CLASSNAME}
+        >
+          <div className={SIDEBAR_INNER_CLASSNAME}>
+            <div className="flex-1 flex items-center justify-center p-6 lg:p-8">
+              <div className="text-center">
+                <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+                <p className="text-sm lg:text-base text-muted-foreground">
+                  Loading playground...
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className={`${MAIN_OUTER_CLASSNAME} flex-1`}>
+          <PlaygroundEmptyState />
+        </div>
+      </div>
+
+      {/* Mobile layout */}
+      <div className="flex w-full flex-1 flex-col lg:hidden">
+        <div className="flex w-full flex-shrink-0 flex-col">
+          <div className={SIDEBAR_INNER_CLASSNAME}>
+            <div className="flex-1 flex items-center justify-center p-6">
+              <div className="text-center">
+                <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+                <p className="text-sm text-muted-foreground">
+                  Loading playground...
+                </p>
+              </div>
             </div>
           </div>
         </div>

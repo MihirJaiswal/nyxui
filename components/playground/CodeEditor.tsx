@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import { getHighlighter, type BundledLanguage } from "shiki";
+import { getNyxuiTheme } from "@/lib/shiki-themes";
 
 interface CodeEditorProps {
   value: string;
@@ -10,6 +11,7 @@ interface CodeEditorProps {
   placeholder?: string;
   className?: string;
   style?: React.CSSProperties;
+  maxHeight?: number;
 }
 
 const CodeEditor = ({
@@ -19,6 +21,7 @@ const CodeEditor = ({
   placeholder,
   className = "",
   style,
+  maxHeight = 300,
 }: CodeEditorProps) => {
   const [highlightedCode, setHighlightedCode] = useState<string>("");
   const [isLoaded, setIsLoaded] = useState(false);
@@ -26,18 +29,36 @@ const CodeEditor = ({
   const preRef = useRef<HTMLPreElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // Auto-resize the textarea to fit its content, capped at maxHeight.
+  // The container height follows the textarea (the only in-flow child),
+  // and the absolutely-positioned <pre> fills the container so the
+  // highlighted background stays in sync. Past maxHeight the textarea
+  // scrolls and handleScroll keeps the <pre> aligned.
+  const resizeTextarea = () => {
+    const ta = textareaRef.current;
+    if (!ta) return;
+    ta.style.height = "auto";
+    const next = Math.min(ta.scrollHeight, maxHeight);
+    ta.style.height = `${next}px`;
+  };
+
+  useLayoutEffect(() => {
+    resizeTextarea();
+  }, [value, maxHeight]);
+
   useEffect(() => {
     const highlightCode = async () => {
       try {
+        const theme = await getNyxuiTheme();
         const highlighter = await getHighlighter({
-          themes: ["github-dark"],
+          themes: [theme],
           langs: [language as BundledLanguage],
         });
 
         const codeToHighlight = value || "";
         const highlighted = highlighter.codeToHtml(codeToHighlight, {
           lang: language as BundledLanguage,
-          theme: "github-dark",
+          theme: "nyxui-dark",
         });
 
         setHighlightedCode(highlighted);
@@ -54,7 +75,7 @@ const CodeEditor = ({
           .replace(/'/g, "&#39;");
 
         setHighlightedCode(
-          `<pre style="background: rgb(13, 17, 23); color: rgb(201, 209, 217); padding: 0; margin: 0; font-family: ui-monospace, SFMono-Regular, 'SF Mono', Monaco, Consolas, 'Liberation Mono', 'Menlo', monospace; font-size: 14px; line-height: 1.5; white-space: pre-wrap; word-wrap: break-word; overflow-wrap: break-word;"><code>${escaped}</code></pre>`,
+          `<pre style="background: transparent; color: rgb(201, 209, 217); padding: 0; margin: 0; font-family: ui-monospace, SFMono-Regular, 'SF Mono', Monaco, Consolas, 'Liberation Mono', 'Menlo', monospace; font-size: 14px; line-height: 1.5; white-space: pre-wrap; word-wrap: break-word; overflow-wrap: break-word;"><code>${escaped}</code></pre>`,
         );
         setIsLoaded(true);
       }
@@ -77,7 +98,7 @@ const CodeEditor = ({
   return (
     <div
       ref={containerRef}
-      className={`relative overflow-hidden rounded-lg border border-border/60 bg-[#0d1117] ${className}`}
+      className={`relative overflow-hidden rounded-xl border border-border/70 bg-white dark:bg-[#0F0F0F] ${className}`}
       style={style}
     >
       {/* Syntax highlighted background */}
@@ -88,16 +109,18 @@ const CodeEditor = ({
           style={{
             zIndex: 1,
             padding: "16px",
-            fontFamily:
-              "ui-monospace, SFMono-Regular, 'SF Mono', Monaco, Consolas, 'Liberation Mono', 'Menlo', monospace",
+            fontFamily: '"Geist Mono", monospace',
             fontSize: "13px",
-            lineHeight: "1.6",
+            lineHeight: "1.5",
             whiteSpace: "pre",
             scrollbarWidth: "none",
           }}
           dangerouslySetInnerHTML={{
             __html: highlightedCode
-              .replace(/<pre[^>]*>|<\/pre>/g, "")
+              .replace(
+                /<pre([^>]*)style="[^"]*"/g,
+                '<pre$1style="background: transparent !important;"',
+              )
               .replace(/<code[^>]*>|<\/code>/g, ""),
           }}
         />
@@ -111,22 +134,21 @@ const CodeEditor = ({
         onScroll={handleScroll}
         placeholder={placeholder}
         className={`
-          relative w-full h-full resize-none outline-none border-0 focus:ring-0 focus:outline-none
-          ${value ? "text-transparent caret-white" : "text-gray-500"}
-          selection:bg-blue-500/25
+          relative w-full resize-none outline-none border-0 focus:ring-0 focus:outline-none
+          ${value ? "text-transparent caret-foreground" : "text-zinc-400 dark:text-neutral-500"}
+          selection:bg-[#FF4F11]/25
         `}
         style={{
           zIndex: 2,
           background: "transparent",
           padding: "16px",
-          minHeight: "inherit",
-          fontFamily:
-            "ui-monospace, SFMono-Regular, 'SF Mono', Monaco, Consolas, 'Liberation Mono', 'Menlo', monospace",
+          maxHeight: `${maxHeight}px`,
+          fontFamily: '"Geist Mono", monospace',
           fontSize: "13px",
-          lineHeight: "1.6",
+          lineHeight: "1.5",
           whiteSpace: "pre",
           overflow: "auto",
-          caretColor: "#c9d1d9",
+          caretColor: "hsl(var(--foreground))",
           scrollbarWidth: "none",
           msOverflowStyle: "none",
         }}
@@ -136,13 +158,16 @@ const CodeEditor = ({
         autoCapitalize="off"
       />
 
-      {/* Custom styles for better selection visibility */}
+      {/* Custom styles for better selection visibility and theme-aware Shiki tokens */}
       <style jsx>{`
         textarea::selection {
-          background-color: rgba(56, 139, 253, 0.3) !important;
+          background-color: rgba(255, 79, 17, 0.25) !important;
         }
         textarea::-moz-selection {
-          background-color: rgba(56, 139, 253, 0.3) !important;
+          background-color: rgba(255, 79, 17, 0.25) !important;
+        }
+        :global(.shiki) {
+          background-color: transparent !important;
         }
       `}</style>
     </div>

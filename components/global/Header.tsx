@@ -140,7 +140,7 @@ export default function Header() {
                 More
                 <ChevronDown
                   className={cn(
-                    "size-3.5 transition-transform",
+                    "size-3.5 transition-transform mt-0.5 ml-0.5",
                     moreOpen && "rotate-180",
                   )}
                 />
