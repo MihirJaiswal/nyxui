@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { Play, Pause, Copy, Check, RotateCcw } from "lucide-react";
+import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
 
 const AnimatedCodeBlockDemo = () => {
   const COLORS = {
@@ -75,7 +76,7 @@ const AnimatedCodeBlockDemo = () => {
 
   const [isPlaying, setIsPlaying] = useState(true);
   const [currentPosition, setCurrentPosition] = useState(0);
-  const [copied, setCopied] = useState(false);
+  const { copy: copyToClipboard, hasCopied: copied } = useCopyToClipboard();
   const [completed, setCompleted] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const totalChars = codeTokens.reduce(
@@ -108,9 +109,7 @@ const AnimatedCodeBlockDemo = () => {
   };
 
   const copyCode = () => {
-    navigator.clipboard.writeText(plainCode);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    copyToClipboard(plainCode);
   };
   const renderVisibleCode = () => {
     if (completed) {

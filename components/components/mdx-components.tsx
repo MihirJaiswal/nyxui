@@ -371,7 +371,7 @@ const components = {
               data-variant="ghost"
               data-size="icon-xs"
               className={cn(
-                "group/button absolute right-3 top-3 z-10 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-border/70 bg-white text-sm font-medium whitespace-nowrap text-muted-foreground opacity-100 outline-none transition-all select-none hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:scale-95 disabled:pointer-events-none disabled:opacity-50 dark:border-white/5 dark:bg-[#1A1A1A] dark:text-neutral-400 dark:hover:bg-[#252525] dark:hover:text-neutral-200 [&_svg]:pointer-events-none [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0",
+                "group/button absolute right-3 top-3 z-10 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-border/70 bg-white text-sm font-medium whitespace-nowrap text-muted-foreground opacity-0 outline-none transition-all select-none hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:scale-95 disabled:pointer-events-none disabled:opacity-50 group-hover/pre:opacity-100 dark:border-white/5 dark:bg-[#1A1A1A] dark:text-neutral-400 dark:hover:bg-[#252525] dark:hover:text-neutral-200 [&_svg]:pointer-events-none [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0",
                 __withMeta__ && "top-12",
               )}
             />
@@ -379,7 +379,7 @@ const components = {
               aria-hidden="true"
               data-fade-overlay="true"
               className={cn(
-                "pointer-events-none absolute right-1.5 top-1.5 h-12 w-24 bg-gradient-to-l from-white to-transparent opacity-100 dark:from-[#0F0F0F]",
+                "pointer-events-none absolute right-1.5 top-1.5 h-12 w-24 bg-gradient-to-l from-white to-transparent opacity-0 transition-opacity group-hover/pre:opacity-100 dark:from-[#0F0F0F]",
                 __withMeta__ && "top-11",
               )}
             />

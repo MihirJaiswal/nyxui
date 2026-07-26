@@ -46,7 +46,10 @@ export const ModeToggle = React.forwardRef<
       {...props}
     >
       <SunIcon className="size-[1rem] text-neutral-800 dark:hidden dark:text-neutral-200 transition-all duration-150" />
-      <MoonIcon className="hidden size-[1rem] text-neutral-800 dark:block dark:text-neutral-200 transition-all duration-150" />
+      <MoonIcon
+        className="hidden size-[1
+      rem] text-neutral-800 dark:block dark:text-neutral-200 transition-all duration-150"
+      />
     </Button>
   );
 });
