@@ -1,6 +1,7 @@
 import { absoluteUrl } from "@/lib/utils";
 import { externalLinks, itemHref } from "@/lib/links";
 import { allDocs, type Doc } from "content-collections";
+import type { Metadata } from "next";
 
 export interface SlugPageProps {
   params: Promise<{
@@ -85,7 +86,7 @@ export function generateDocKeywords({
   return keywords;
 }
 
-const publisher = {
+export const publisher = {
   "@type": "Organization",
   name: "Nyx UI",
   url: `${externalLinks.site}/`,
@@ -206,5 +207,64 @@ export function createTemplateSchema(
       "Production Ready",
       "Customizable Components",
     ],
+  };
+}
+
+interface CreateBaseMetadataOptions {
+  title: string;
+  description: string;
+  keywords: string[];
+  canonical: string;
+  image?: string;
+  twitterCreator?: string;
+  type?: "website" | "article";
+}
+
+/**
+ * Returns the shared metadata fields (openGraph, twitter, robots,
+ * alternates.canonical, title, description, keywords) used by all
+ * listing/detail pages. Each page merges its unique fields on top.
+ */
+export function createBaseMetadata({
+  title,
+  description,
+  keywords,
+  canonical,
+  image = "/nyx.webp",
+  twitterCreator = "@mihir_jaiswal_",
+  type = "website",
+}: CreateBaseMetadataOptions): Metadata {
+  return {
+    title,
+    description,
+    keywords,
+    openGraph: {
+      title,
+      description,
+      type,
+      url: canonical,
+      siteName: "Nyx UI",
+      images: [
+        {
+          url: image,
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [image],
+      creator: twitterCreator,
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+    alternates: {
+      canonical,
+    },
   };
 }

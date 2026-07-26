@@ -3,6 +3,7 @@ import { badgeVariants } from "@/components/ui/badge";
 import { DocPageHeader } from "@/components/components/doc-page-header";
 import { absoluteUrl, cn } from "@/lib/utils";
 import {
+  createBaseMetadata,
   createTemplateSchema,
   generateDocKeywords,
   generateDocStaticParams,
@@ -13,6 +14,7 @@ import { externalLinks, itemHref, siteLinks } from "@/lib/links";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { JsonLd } from "@/components/global/JsonLd";
 
 export async function generateMetadata({
   params,
@@ -44,56 +46,26 @@ export async function generateMetadata({
   });
   const enhancedTitle = `${template.title} Template - React & Next.js | Nyx UI Templates`;
   const enhancedDescription = `${template.description || `${template.title} template for React and Next.js applications.`} Built with Tailwind CSS, TypeScript, and Framer Motion. Professional template from Nyx UI library. Free to use, customizable, and production-ready.`;
+  const canonical = absoluteUrl(itemHref("templates", templateName));
 
   return {
-    title: enhancedTitle,
-    description: enhancedDescription,
-    keywords: templateKeywords,
+    ...createBaseMetadata({
+      title: enhancedTitle,
+      description: enhancedDescription,
+      keywords: templateKeywords,
+      canonical,
+      image: template.image || "/nyx.webp",
+      twitterCreator: "@nuvyx_ui",
+      type: "article",
+    }),
     authors: [{ name: "Mihir Jaiswal", url: externalLinks.twitter }],
     creator: "Nyx UI",
     publisher: "Nyx UI",
-
     openGraph: {
       title: `${template.title} - React Template | Nyx UI`,
-      description: enhancedDescription,
-      type: "article",
-      url: absoluteUrl(itemHref("templates", templateName)),
       siteName: "Nyx UI Templates",
       locale: "en_US",
-      images: [
-        {
-          url: template.image || "/nyx.webp",
-          width: 1200,
-          height: 630,
-          alt: `${template.title} React Template - Nyx UI`,
-        },
-      ],
     },
-    twitter: {
-      card: "summary_large_image",
-      title: `${template.title} React Template | Nyx UI`,
-      description: enhancedDescription,
-      images: [template.image || "/nyx.webp"],
-      creator: "@nuvyx_ui",
-      site: "@nuvyx_ui",
-    },
-
-    alternates: {
-      canonical: absoluteUrl(itemHref("templates", templateName)),
-    },
-
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        "max-video-preview": -1,
-        "max-image-preview": "large",
-        "max-snippet": -1,
-      },
-    },
-
     category: "Web Development",
     other: {
       "article:section": "UI Templates",
@@ -122,10 +94,7 @@ export default async function TemplatePage({ params }: SlugPageProps) {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
-      />
+      <JsonLd data={schemaData} />
 
       {/* Additional meta tags in head */}
       <meta name="template-name" content={template.title} />

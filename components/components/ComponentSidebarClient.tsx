@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { cn } from "../../lib/utils";
 import { PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { preloadTick, playHoverTick } from "../../lib/hover-tick";
+import { useToggle } from "../../hooks/use-toggle";
 
 interface CategoryItem {
   name: string;
@@ -36,7 +37,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
   type = "components",
 }) => {
   const currentPath = usePathname();
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, , setIsCollapsed] = useToggle(false);
   const activeItemRef = React.useRef<HTMLAnchorElement | null>(null);
   const groupedComponents = React.useMemo(
     () => groupItems(componentItems),

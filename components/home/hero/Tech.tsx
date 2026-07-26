@@ -1,14 +1,16 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { useEventListener } from "@/hooks/use-event-listener";
 
 const TechStack = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
+  useEventListener(
+    "mousemove",
+    (e: MouseEvent) => {
       if (containerRef.current) {
         const rect = containerRef.current.getBoundingClientRect();
         setMousePosition({
@@ -16,14 +18,9 @@ const TechStack = () => {
           y: e.clientY - rect.top,
         });
       }
-    };
-
-    const container = containerRef.current;
-    if (container) {
-      container.addEventListener("mousemove", handleMouseMove);
-      return () => container.removeEventListener("mousemove", handleMouseMove);
-    }
-  }, []);
+    },
+    containerRef,
+  );
 
   const techItems = [
     {

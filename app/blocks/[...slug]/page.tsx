@@ -4,8 +4,14 @@ import { absoluteUrl } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Mdx } from "@/components/components/mdx-components";
 import { DocPageHeader } from "@/components/components/doc-page-header";
-import { getDocFromParams, type SlugPageProps } from "@/lib/docs";
-import { externalLinks, itemHref } from "@/lib/links";
+import {
+  createBaseMetadata,
+  getDocFromParams,
+  publisher,
+  type SlugPageProps,
+} from "@/lib/docs";
+import { itemHref } from "@/lib/links";
+import { JsonLd } from "@/components/global/JsonLd";
 // import Link from "next/link";
 // import { Scan } from "lucide-react";
 // import { Button } from "@/components/ui/button";
@@ -29,7 +35,9 @@ export async function generateMetadata({
     };
   }
 
-  return {
+  const canonical = absoluteUrl(itemHref("blocks", slug[0]));
+
+  return createBaseMetadata({
     title: `${block.title} - Nyx UI Blocks`,
     description: block.description,
     keywords: [
@@ -40,35 +48,9 @@ export async function generateMetadata({
       ...block.tags,
       block.title.toLowerCase(),
     ],
-    openGraph: {
-      title: `${block.title} - Nyx UI Blocks`,
-      description: block.description,
-      url: absoluteUrl(itemHref("blocks", slug[0])),
-      siteName: "Nyx UI",
-      images: [
-        {
-          url: block.image,
-          width: 1200,
-          height: 630,
-          alt: `${block.title} - Nyx UI Block`,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${block.title} - Nyx UI Blocks`,
-      description: block.description,
-      images: [block.image],
-      creator: "@mihir_jaiswal_",
-    },
-    robots: {
-      index: true,
-      follow: true,
-    },
-    alternates: {
-      canonical: absoluteUrl(itemHref("blocks", slug[0])),
-    },
-  };
+    canonical,
+    image: block.image,
+  });
 }
 
 export default async function BlockPage({ params }: SlugPageProps) {
@@ -93,19 +75,12 @@ export default async function BlockPage({ params }: SlugPageProps) {
       price: "0",
       priceCurrency: "USD",
     },
-    publisher: {
-      "@type": "Organization",
-      name: "Nyx UI",
-      url: `${externalLinks.site}/`,
-    },
+    publisher,
   };
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
-      />
+      <JsonLd data={schemaData} />
 
       <div className="w-full">
         <DocPageHeader

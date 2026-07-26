@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Play, Pause, Copy, Check, RotateCcw } from "lucide-react";
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
+import { useToggle } from "@/hooks/use-toggle";
 
 const AnimatedCodeBlockDemo = () => {
   const COLORS = {
@@ -74,7 +75,7 @@ const AnimatedCodeBlockDemo = () => {
     color: COLORS[colorKey as keyof typeof COLORS],
   }));
 
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, togglePlaying, setIsPlaying] = useToggle(true);
   const [currentPosition, setCurrentPosition] = useState(0);
   const { copy: copyToClipboard, hasCopied: copied } = useCopyToClipboard();
   const [completed, setCompleted] = useState(false);
@@ -105,7 +106,7 @@ const AnimatedCodeBlockDemo = () => {
       setCurrentPosition(0);
       setCompleted(false);
     }
-    setIsPlaying(!isPlaying);
+    togglePlaying();
   };
 
   const copyCode = () => {
