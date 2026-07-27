@@ -23,13 +23,6 @@ function resolveTarget(element: Element | undefined): EventTarget | null {
   return element as EventTarget;
 }
 
-/**
- * Attach an event listener with automatic cleanup.
- *
- * `element` may be `window` (default), `document`, an `HTMLElement`,
- * or a `RefObject<HTMLElement>` (read at effect time, so refs that are
- * `null` on first render work correctly).
- */
 export function useEventListener(
   eventName: string,
   handler: (event: any) => void,
@@ -53,9 +46,13 @@ export function useEventListener(
     return () => {
       target.removeEventListener(eventName, listener, options);
     };
-    // For ref targets, we intentionally don't depend on the ref value —
-    // refs are mutable and don't trigger re-renders, so we read .current
-    // at effect time (which runs after mount when the ref is populated).
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [eventName, usingRef ? null : element, options]);
+  }, [
+    eventName,
+    usingRef ? null : element,
+    options?.capture,
+    options?.passive,
+    options?.once,
+    options?.signal,
+  ]);
 }
