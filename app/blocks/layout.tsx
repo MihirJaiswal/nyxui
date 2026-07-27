@@ -1,11 +1,9 @@
-import SharedSidebarLayout from "@/components/global/SharedLayout";
+import SidebarLayout from "@/components/global/SidebarLayout";
 
 export default function BlocksLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <SharedSidebarLayout sidebarType="blocks">{children}</SharedSidebarLayout>
-  );
+  return <SidebarLayout sidebarType="blocks">{children}</SidebarLayout>;
 }

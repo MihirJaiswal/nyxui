@@ -35,11 +35,6 @@ export const ComponentCard = ({
       {/* Title Area */}
       <div className="flex flex-col items-start justify-between gap-1.5 px-2 pb-2">
         <h3 className="text-card-foreground font-medium">{title}</h3>
-        {/* {description && (
-          <div className="flex items-center justify-center gap-2 text-sm font-medium text-white/50 whitespace-nowrap">
-            {description}
-          </div>
-        )} */}
       </div>
 
       {/* Preview Area */}
@@ -47,7 +42,6 @@ export const ComponentCard = ({
         className="
     relative w-full flex-1 min-h-72
     overflow-hidden rounded-2xl border border-background bg-background
-
     after:pointer-events-none
     after:absolute after:inset-0 after:z-10
     after:rounded-2xl

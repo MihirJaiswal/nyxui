@@ -1,6 +1,3 @@
-/**
- * X (formerly Twitter) logo SVG.
- */
 export function XTwitterIcon({
   className,
   size,

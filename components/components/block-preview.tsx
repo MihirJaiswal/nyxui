@@ -1,5 +1,3 @@
-"use client";
-
 import { Index } from "../../__registry__";
 import React from "react";
 
