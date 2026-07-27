@@ -40,7 +40,7 @@ export const ComponentCard = ({
       {/* Preview Area */}
       <div
         className="
-    relative w-full flex-1 min-h-72
+    relative w-full flex-1 min-h-80
     overflow-hidden rounded-2xl border border-background bg-background
     after:pointer-events-none
     after:absolute after:inset-0 after:z-10
@@ -57,7 +57,7 @@ export const ComponentCard = ({
               src={imageSrc}
               alt={title}
               fill
-              className="object-cover mix-blend-screen"
+              className="object-contain mix-blend-screen"
               quality={100}
               loading="lazy"
             />
