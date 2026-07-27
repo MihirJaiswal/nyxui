@@ -38,7 +38,7 @@ const CodeEditor = ({
 
   useLayoutEffect(() => {
     resizeTextarea();
-  }, [value, maxHeight]);
+  }, [value, maxHeight, resizeTextarea]);
 
   useEffect(() => {
     const highlightCode = async () => {
