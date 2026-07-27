@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentSidebar } from "@/components/components/component-sidebar";
-import Header from "@/components/global/Header";
+import Navbar from "@/components/global/header/Navbar";
 
 interface SidebarLayoutProps {
   children: React.ReactNode;
@@ -13,7 +13,7 @@ export default function SidebarLayout({
 }: SidebarLayoutProps) {
   return (
     <div className="flex min-h-screen flex-col">
-      <Header />
+      <Navbar />
       <div className="flex w-full flex-1 flex-col lg:flex-row lg:gap-8 xl:gap-24 px-6 lg:px-6 xl:px-22 xl:container mx-auto">
         <aside className="hidden lg:block w-full shrink-0 lg:w-auto">
           <div className="sticky top-16 h-[calc(100vh-4rem)] overflow-x-hidden overflow-y-auto hide-scrollbar">
