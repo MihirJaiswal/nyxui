@@ -12,12 +12,12 @@ import {
 import { Menu } from "lucide-react";
 import { externalLinks, itemHref } from "@/lib/links";
 import { componentsData } from "@/registry/Data";
-import Logo from "../Logo";
+import Logo from "@/components/global/Logo";
 import { Button } from "@/components/ui/button";
-import { SocialLinkButton } from "../SocialLinkButton";
-import { XTwitterIcon } from "../icons/XTwitterIcon";
+import { SocialLinkButton } from "@/components/global/SocialLinkButton";
+import { XTwitterIcon } from "@/components/global/icons/XTwitterIcon";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
-import { ModeToggle } from "../ThemeToggle";
+import { ModeToggle } from "@/components/global/ThemeToggle";
 import { cn } from "@/lib/utils";
 
 interface NavLink {

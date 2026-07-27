@@ -1,6 +1,6 @@
-import { CyberpunkCard } from "../ui/cyberpunk-card";
-import { Badge } from "../../components/ui/badge";
-import { Button } from "../../components/ui/button";
+import { CyberpunkCard } from "@/registry/ui/cyberpunk-card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { ChevronRight, Cpu, Zap, Shield } from "lucide-react";
 
 export const CyberpunkCardDemo = () => {

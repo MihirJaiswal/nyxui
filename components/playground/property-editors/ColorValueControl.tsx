@@ -2,7 +2,7 @@
 
 import { Input } from "@/components/ui/input";
 import { hexToRgbString } from "@/lib/colors";
-import type { ComponentProp } from "../../../types/playground";
+import type { ComponentProp } from "@/types/playground";
 import { getColorPickerValue } from "@/lib/playground-color-utils";
 
 interface ColorValueControlProps {

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { MatrixCodeRain } from "../ui/matrix-code-rain";
+import { MatrixCodeRain } from "@/registry/ui/matrix-code-rain";
 
 export default function MatrixCodeRainDemo() {
   const [color, setColor] = useState("#00ff00");

@@ -1,4 +1,8 @@
-import { ImageSlider, ImageLayer, Divider } from "../ui/image-comparison";
+import {
+  ImageSlider,
+  ImageLayer,
+  Divider,
+} from "@/registry/ui/image-comparison";
 
 export const ImageComparisonDemo = () => {
   return (

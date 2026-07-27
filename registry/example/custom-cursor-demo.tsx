@@ -29,7 +29,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Cursor } from "../ui/custom-cursor";
+import { Cursor } from "@/registry/ui/custom-cursor";
 import Image from "next/image";
 
 export default function CustomCursorDemo() {

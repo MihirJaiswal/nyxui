@@ -7,7 +7,7 @@ import {
   Variant,
   MotionConfig,
 } from "motion/react";
-import { cn } from "../../lib/utils";
+import { cn } from "@/lib/utils";
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
 export type AccordionContextType = {

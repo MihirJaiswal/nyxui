@@ -1,12 +1,16 @@
-import { Tooltip, TooltipContent, TooltipTrigger } from "../../ui/tooltip";
-import { cn } from "../../../lib/utils";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
 import { JSX } from "react";
-import { NextjsIcon } from "../../global/icons/NextjsIcon";
-import { ReactIcon } from "../../global/icons/ReactIcon";
-import { TypescriptIcon } from "../../global/icons/TypescriptIcon";
-import { TailwindcssIcon } from "../../global/icons/TailwindcssIcon";
-import { MotionIcon } from "../../global/icons/MotionIcon";
-import { ShadcnIcon } from "../../global/icons/ShadcnIcon";
+import { NextjsIcon } from "@/components/global/icons/NextjsIcon";
+import { ReactIcon } from "@/components/global/icons/ReactIcon";
+import { TypescriptIcon } from "@/components/global/icons/TypescriptIcon";
+import { TailwindcssIcon } from "@/components/global/icons/TailwindcssIcon";
+import { MotionIcon } from "@/components/global/icons/MotionIcon";
+import { ShadcnIcon } from "@/components/global/icons/ShadcnIcon";
 
 type TechComponentType = {
   name: string;

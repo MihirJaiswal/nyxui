@@ -3,9 +3,9 @@ import React from "react";
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import { useTheme } from "next-themes";
 
-import { cn } from "../../lib/utils";
-import { Button } from "../ui/button";
-import { useMounted } from "../../hooks/use-mounted";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { useMounted } from "@/hooks/use-mounted";
 
 export const ModeToggle = React.forwardRef<
   HTMLButtonElement,

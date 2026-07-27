@@ -1,4 +1,4 @@
-import { Grid } from "../Grid";
+import { Grid } from "@/components/playground/Grid";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
 import {
   SIDEBAR_PX,

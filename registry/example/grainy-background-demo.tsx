@@ -1,7 +1,7 @@
 import {
   GrainyBackground,
   GrainyBackgroundProps,
-} from "../ui/grainy-background";
+} from "@/registry/ui/grainy-background";
 
 export default function GrainyBgDemo() {
   const animationTypes: Array<GrainyBackgroundProps["animationType"]> = [

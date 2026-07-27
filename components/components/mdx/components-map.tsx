@@ -7,15 +7,15 @@ import {
 } from "@/components/ui/accordion";
 import TechStack from "./tech-stack";
 import RepoDownload from "./repo-download";
-import TemplateActions from "../template/template-actions";
-import TemplateFeatures from "../template/template-features";
-import TemplateShowcase from "../template/template-showcase";
-import TemplateSteps from "../template/template-steps";
-import { ComponentSource } from "../code-block/component-source";
+import TemplateActions from "@/components/components/template/template-actions";
+import TemplateFeatures from "@/components/components/template/template-features";
+import TemplateShowcase from "@/components/components/template/template-showcase";
+import TemplateSteps from "@/components/components/template/template-steps";
+import { ComponentSource } from "@/components/components/code-block/component-source";
 import { headings, text, table } from "./typography";
 import { Code, Pre } from "./CodeBlock";
 import { stepOverrides, tabsOverrides, LinkedCard } from "./tabs-overrides";
-import TemplatePreview from "../template/template-preview";
+import TemplatePreview from "@/components/components/template/template-preview";
 
 export const mdxComponents = {
   Accordion,

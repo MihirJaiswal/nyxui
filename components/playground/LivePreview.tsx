@@ -9,11 +9,8 @@ import {
   expandDottedConfig,
   generatePlaygroundCode,
   type CodeVariant,
-} from "../../lib/codegen";
-import type {
-  ComponentConfig,
-  ComponentDefinition,
-} from "../../types/playground";
+} from "@/lib/codegen";
+import type { ComponentConfig, ComponentDefinition } from "@/types/playground";
 import { getNyxuiTheme } from "@/lib/shiki-themes";
 import { cn } from "@/lib/utils";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";

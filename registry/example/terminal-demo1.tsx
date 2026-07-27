@@ -1,5 +1,5 @@
 import React from "react";
-import InteractiveTerminal from "../ui/terminal";
+import InteractiveTerminal from "@/registry/ui/terminal";
 import { Coffee } from "lucide-react";
 
 export default function TerminalDemo2() {

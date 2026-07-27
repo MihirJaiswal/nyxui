@@ -1,4 +1,4 @@
-import { ImageScanner } from "../ui/image-scanner";
+import { ImageScanner } from "@/registry/ui/image-scanner";
 
 export default function ImageScannerDemo() {
   const personScanResults = [

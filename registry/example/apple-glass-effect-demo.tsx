@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { GlassContainer } from "../ui/apple-glass-effect";
+import { GlassContainer } from "@/registry/ui/apple-glass-effect";
 import {
   Play,
   Pause,

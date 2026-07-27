@@ -1,5 +1,5 @@
 import React from "react";
-import RevealCard from "../ui/reveal-card";
+import RevealCard from "@/registry/ui/reveal-card";
 
 const RevealCardDemo = () => {
   const heroes = [
