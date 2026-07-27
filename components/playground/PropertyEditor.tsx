@@ -1,7 +1,7 @@
 "use client";
 
 import { Check, ChevronDown, Link2, RotateCcw, Search, X } from "lucide-react";
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import type {
   ComponentDefinition,
   ComponentConfig,
@@ -21,10 +21,22 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Slider } from "@/components/ui/slider";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
 import CodeEditor from "./CodeEditor";
 import { cn } from "@/lib/utils";
 import { componentToHex, rgbToHex, hexToRgbString } from "@/lib/colors";
-import { useClickOutside } from "@/hooks/use-click-outside";
 import { EmptyState } from "@/components/ui/empty-state";
 
 interface PropertyEditorProps {
@@ -131,13 +143,6 @@ const PropertyEditor = ({
   const [searchQuery, setSearchQuery] = useState("");
   const [componentSearch, setComponentSearch] = useState("");
   const [isComponentDropdownOpen, setIsComponentDropdownOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  useClickOutside(
-    dropdownRef,
-    () => setIsComponentDropdownOpen(false),
-    isComponentDropdownOpen,
-  );
 
   const filteredComponents = useMemo(() => {
     const query = componentSearch.trim().toLowerCase();
@@ -417,67 +422,60 @@ const PropertyEditor = ({
     <div className="flex h-full flex-col">
       <div className="border-b border-border/60 px-1.5 py-4">
         <div className="flex items-center justify-between gap-3">
-          <div className="relative min-w-0 flex-1" ref={dropdownRef}>
-            <button
-              onClick={() => {
-                setIsComponentDropdownOpen((prev) => !prev);
-                setComponentSearch("");
-              }}
-              className="flex w-full items-center gap-1.5 text-left"
-            >
-              <h3 className="min-w-0 truncate text-sm font-medium">
-                {component.name}
-              </h3>
-              <ChevronDown
-                className={cn(
-                  "size-3.5 shrink-0 text-muted-foreground transition-transform",
-                  isComponentDropdownOpen && "rotate-180",
-                )}
-              />
-            </button>
-            {isComponentDropdownOpen && (
-              <div className="absolute left-0 right-0 top-full z-50 mt-1 rounded-lg border border-border/60 shadow-md bg-background">
-                <div className="relative border-b border-border/60 p-2">
-                  <Search className="absolute left-4 top-1/2 size-3.5 -translate-y-1/2 text-muted-foreground" />
-                  <input
-                    type="text"
-                    placeholder="Search components..."
-                    value={componentSearch}
-                    onChange={(e) => setComponentSearch(e.target.value)}
-                    autoFocus
-                    className="h-8 w-full rounded-md bg-muted/50 pl-8 pr-2 text-sm placeholder:text-muted-foreground focus:bg-background focus:outline-none"
-                  />
-                </div>
-                <div className="max-h-64 overflow-y-auto p-1 scrollbar-no">
-                  {filteredComponents.length > 0 ? (
-                    filteredComponents.map(([key, comp]) => (
-                      <button
+          <Popover
+            open={isComponentDropdownOpen}
+            onOpenChange={(open) => {
+              setIsComponentDropdownOpen(open);
+              if (!open) setComponentSearch("");
+            }}
+          >
+            <PopoverTrigger asChild>
+              <button className="flex min-w-0 flex-1 items-center gap-1.5 text-left">
+                <h3 className="min-w-0 truncate text-sm font-medium">
+                  {component.name}
+                </h3>
+                <ChevronDown
+                  className={cn(
+                    "size-3.5 shrink-0 text-muted-foreground transition-transform",
+                    isComponentDropdownOpen && "rotate-180",
+                  )}
+                />
+              </button>
+            </PopoverTrigger>
+            <PopoverContent align="start" className="w-[280px] p-0">
+              <Command shouldFilter={false}>
+                <CommandInput
+                  placeholder="Search components..."
+                  value={componentSearch}
+                  onValueChange={setComponentSearch}
+                />
+                <CommandList className="max-h-64">
+                  <CommandEmpty>No components found</CommandEmpty>
+                  <CommandGroup>
+                    {filteredComponents.map(([key, comp]) => (
+                      <CommandItem
                         key={key}
-                        onClick={() => {
+                        value={key}
+                        onSelect={() => {
                           onSelectComponent(key);
-                          setIsComponentDropdownOpen(false);
-                          setComponentSearch("");
+                          requestAnimationFrame(() =>
+                            setIsComponentDropdownOpen(false),
+                          );
                         }}
                         className={cn(
-                          "flex w-full items-center rounded-md px-2 py-1.5 text-left text-sm transition-colors",
-                          key === selectedComponent
-                            ? "bg-muted font-medium text-foreground"
-                            : "text-muted-foreground hover:bg-muted hover:text-foreground",
+                          key === selectedComponent &&
+                            "font-medium text-foreground",
                         )}
                       >
                         {comp.name}
-                      </button>
-                    ))
-                  ) : (
-                    <EmptyState
-                      message="No components found"
-                      className="py-3"
-                    />
-                  )}
-                </div>
-              </div>
-            )}
-          </div>
+                      </CommandItem>
+                    ))}
+                  </CommandGroup>
+                </CommandList>
+              </Command>
+            </PopoverContent>
+          </Popover>
+
           <div className="flex shrink-0 items-center gap-1">
             <button
               onClick={onCopyLink}
