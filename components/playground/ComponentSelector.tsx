@@ -9,13 +9,15 @@ import {
   useSpring,
   type MotionValue,
 } from "motion/react";
-import { Search, X } from "lucide-react";
 import type { ComponentRegistry } from "./types";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
-import { preloadTick, playHoverTick } from "@/lib/hover-tick";
 import { useKeyboardShortcut } from "@/hooks/use-keyboard-shortcut";
 import { EmptyState } from "@/components/ui/empty-state";
+import { SearchInput } from "@/components/ui/search-input";
+import { PhantomLine } from "../global/Phantom-line";
+import { useHoverTick } from "@/hooks/use-hover-tick";
+import { CategoryHeading } from "../global/CategoryHeading";
 
 interface ComponentSelectorProps {
   components: ComponentRegistry;
@@ -27,6 +29,8 @@ const BASE_WIDTH = 32;
 const MAX_WIDTH = 45;
 const SIGMA = 10;
 const HOVER_NONE = -100000;
+const LISTBOX_ID = "component-selector-listbox";
+const optionId = (key: string) => `component-option-${key}`;
 
 const SPRING_CONFIG = { stiffness: 900, damping: 40, mass: 0.15 };
 const LABEL_TRANSITION = {
@@ -37,6 +41,7 @@ const LABEL_TRANSITION = {
 
 interface TickerItemProps {
   mouseY: MotionValue<number>;
+  id: string;
   index: number;
   isActive: boolean;
   isHovered: boolean;
@@ -46,10 +51,12 @@ interface TickerItemProps {
   name: string;
   onSelect: () => void;
   onMouseEnter: () => void;
+  onHoverTick: (index: number) => void;
 }
 
 const TickerItem = ({
   mouseY,
+  id,
   index,
   isActive,
   isHovered,
@@ -59,6 +66,7 @@ const TickerItem = ({
   name,
   onSelect,
   onMouseEnter,
+  onHoverTick,
 }: TickerItemProps) => {
   const ref = useRef<HTMLButtonElement>(null);
   const widthMv = useMotionValue(
@@ -91,13 +99,16 @@ const TickerItem = ({
   const handleMouseEnter = () => {
     onMouseEnter();
     if (!isActive) {
-      playHoverTick(index);
+      onHoverTick(index);
     }
   };
 
   return (
     <motion.button
       ref={ref}
+      id={id}
+      role="option"
+      aria-selected={isActive}
       data-index={index}
       onClick={onSelect}
       onMouseEnter={handleMouseEnter}
@@ -108,16 +119,7 @@ const TickerItem = ({
         isLast && "mb-px",
       )}
     >
-      {isFirst && (
-        <span
-          className="pointer-events-none absolute inset-x-0 bottom-full flex h-px translate-y-1/2 items-center gap-3"
-          aria-hidden="true"
-        >
-          <span className="flex w-11 shrink-0 items-center">
-            <span className="block h-px w-8 shrink-0 bg-foreground/30" />
-          </span>
-        </span>
-      )}
+      {isFirst && <PhantomLine position="top" />}
 
       <span className="flex w-11 shrink-0 items-center" aria-hidden="true">
         <motion.span
@@ -140,16 +142,7 @@ const TickerItem = ({
         {name}
       </motion.span>
 
-      {!isLast && (
-        <span
-          className="pointer-events-none absolute inset-x-0 top-full flex h-px -translate-y-1/2 items-center gap-3"
-          aria-hidden="true"
-        >
-          <span className="flex w-11 shrink-0 items-center">
-            <span className="block h-px w-8 shrink-0 bg-foreground/30" />
-          </span>
-        </span>
-      )}
+      {!isLast && <PhantomLine position="bottom" />}
     </motion.button>
   );
 };
@@ -166,10 +159,7 @@ const ComponentSelector = ({
   const mouseY = useMotionValue(HOVER_NONE);
   const listRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    preloadTick();
-  }, []);
+  const hoverTick = useHoverTick();
 
   // Global "f" shortcut to focus the search input.
   useKeyboardShortcut("f", () => {
@@ -247,52 +237,47 @@ const ComponentSelector = ({
     setHoveredKey(null);
   };
 
+  const activeDescendantId =
+    focusedIndex >= 0 && filteredComponents[focusedIndex]
+      ? optionId(filteredComponents[focusedIndex][0])
+      : undefined;
+
   return (
     <div className="flex flex-col">
       <div className="border-b border-border/60 p-3">
-        <div className="relative border border-border rounded-lg">
-          <Search className="absolute left-3 top-1/2 size-3.5 -translate-y-1/2 text-muted-foreground" />
-          <input
-            ref={inputRef}
-            type="text"
-            placeholder="Search components..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            onKeyDown={handleSearchKeyDown}
-            onFocus={() => setIsInputFocused(true)}
-            onBlur={() => setIsInputFocused(false)}
-            className="h-9 w-full rounded-lg bg-muted/50 py-2 pl-9 pr-14 text-sm text-foreground placeholder:text-muted-foreground focus:bg-background focus:outline-none"
-          />
-          {searchQuery ? (
-            <button
-              onClick={() => setSearchQuery("")}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-foreground"
-            >
-              <X className="size-3.5" />
-            </button>
-          ) : (
-            <kbd className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 rounded border border-border/60 bg-background px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground">
-              {isInputFocused ? "esc" : "f"}
-            </kbd>
-          )}
-        </div>
+        <SearchInput
+          ref={inputRef}
+          value={searchQuery}
+          onValueChange={setSearchQuery}
+          onKeyDown={handleSearchKeyDown}
+          onFocus={() => setIsInputFocused(true)}
+          onBlur={() => setIsInputFocused(false)}
+          placeholder="Search components..."
+          shortcutKey="f"
+          isFocused={isInputFocused}
+          containerClassName="border border-border rounded-lg"
+          role="combobox"
+          aria-expanded="true"
+          aria-controls={LISTBOX_ID}
+          aria-activedescendant={activeDescendantId}
+          aria-autocomplete="list"
+        />
       </div>
 
       <div className="min-h-0 flex-1 overflow-y-auto p-3 scrollbar-no">
         <div className="space-y-4">
           <div>
-            <h4 className="flex items-center gap-3 text-sm font-medium text-foreground">
-              <span
-                className="flex w-11 shrink-0 items-center"
-                aria-hidden="true"
-              >
-                <span className="block h-px w-8 shrink-0 bg-foreground/30" />
-              </span>
-              <span className="min-w-0 truncate mb-1.5">Components</span>
-            </h4>
+            <CategoryHeading
+              title="Components"
+              variant="muted"
+              className="mb-1.5"
+            />
 
             <div
               ref={listRef}
+              id={LISTBOX_ID}
+              role="listbox"
+              aria-label="Components"
               className="grid grid-flow-row auto-rows-max text-sm"
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
@@ -301,6 +286,7 @@ const ComponentSelector = ({
                 filteredComponents.map(([key, component], index) => (
                   <TickerItem
                     key={key}
+                    id={optionId(key)}
                     mouseY={mouseY}
                     index={index}
                     isActive={selectedComponent === key}
@@ -314,6 +300,7 @@ const ComponentSelector = ({
                       onSelect(key);
                     }}
                     onMouseEnter={() => setHoveredKey(key)}
+                    onHoverTick={hoverTick}
                   />
                 ))
               ) : (

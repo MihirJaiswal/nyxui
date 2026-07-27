@@ -2,12 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useEffect } from "react";
+import React from "react";
 import { cn } from "../../lib/utils";
 import { PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import { preloadTick, playHoverTick } from "../../lib/hover-tick";
 import { useToggle } from "../../hooks/use-toggle";
+import { PhantomLine } from "../global/Phantom-line";
+import { useHoverTick } from "@/hooks/use-hover-tick";
+import { CategoryHeading } from "../global/CategoryHeading";
 
 interface CategoryItem {
   name: string;
@@ -39,16 +41,18 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
   const currentPath = usePathname();
   const [isCollapsed, , setIsCollapsed] = useToggle(false);
   const activeItemRef = React.useRef<HTMLAnchorElement | null>(null);
+  const hoverTick = useHoverTick();
+
   const groupedComponents = React.useMemo(
-    () => groupItems(componentItems),
+    () => groupItems(componentItems, "Components"),
     [componentItems],
   );
   const groupedTemplates = React.useMemo(
-    () => groupItems(templateItems),
+    () => groupItems(templateItems, "Templates"),
     [templateItems],
   );
   const groupedBlocks = React.useMemo(
-    () => groupItems(blockItems),
+    () => groupItems(blockItems, "Blocks"),
     [blockItems],
   );
 
@@ -81,11 +85,6 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
     activeItemRef.current?.scrollIntoView({ block: "center" });
   }, []);
 
-  // Preload the hover-tick AudioBuffer so it's ready by the first hover.
-  useEffect(() => {
-    preloadTick();
-  }, []);
-
   const renderGuide = () => (
     <span className="flex w-11 shrink-0 items-center" aria-hidden="true">
       <motion.span
@@ -99,31 +98,6 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
     </span>
   );
 
-  const PhantomLine = ({ position }: { position: "top" | "bottom" }) => (
-    <span
-      className={cn(
-        "pointer-events-none absolute inset-x-0 flex h-px items-center gap-3",
-        position === "top"
-          ? "bottom-full translate-y-1/2"
-          : "top-full -translate-y-1/2",
-      )}
-      aria-hidden="true"
-    >
-      <span className="flex w-11 shrink-0 items-center">
-        <span className="block h-px w-8 shrink-0 bg-foreground/30" />
-      </span>
-    </span>
-  );
-
-  const renderCategoryHeading = (title: string) => (
-    <h4 className="mb-2 flex items-center gap-3 text-sm font-medium text-foreground">
-      <span className="flex w-11 shrink-0 items-center" aria-hidden="true">
-        <span className="block h-px w-8 shrink-0 bg-foreground/80" />
-      </span>
-      <span className="min-w-0 truncate">{title}</span>
-    </h4>
-  );
-
   const renderSectionItems = (items: CategoryItem[]) => {
     return items.map((item, index) => {
       const isActive = currentPath === item.href;
@@ -135,7 +109,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
           href={item.href}
           aria-current={isActive ? "page" : undefined}
           onMouseEnter={() => {
-            if (!isActive) playHoverTick(index);
+            if (!isActive) hoverTick(index);
           }}
           className={cn(
             "group relative flex min-h-7 w-full items-center gap-3 rounded-md py-1 text-sm transition-colors hide-scrollbar",
@@ -233,53 +207,10 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
                     visible: { opacity: 1, x: 0 },
                   }}
                   transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                  className=""
                 >
-                  {renderCategoryHeading(gettingStartedSection.title)}
+                  <CategoryHeading title={gettingStartedSection.title} />
                   <div className="grid grid-flow-row auto-rows-max text-sm">
-                    {gettingStartedSection.items.map((item, index) => {
-                      const isActive = currentPath === item.href;
-                      const isLast = item.href === lastVisibleHref;
-                      return (
-                        <MotionLink
-                          key={item.href}
-                          ref={isActive ? activeItemRef : undefined}
-                          href={item.href}
-                          aria-current={isActive ? "page" : undefined}
-                          onMouseEnter={() => {
-                            if (!isActive) playHoverTick(index);
-                          }}
-                          className={cn(
-                            "group relative flex min-h-7 w-full items-center gap-3 rounded-md py-1 transition-colors",
-                            isActive
-                              ? "text-primary"
-                              : "text-muted-foreground hover:text-primary",
-                          )}
-                          initial={false}
-                          animate={isActive ? "active" : "normal"}
-                          whileHover="hover"
-                        >
-                          {index === 0 && <PhantomLine position="top" />}
-                          {renderGuide()}
-                          <motion.span
-                            className={cn(
-                              "min-w-0 flex-1 truncate text-sm",
-                              isActive && "font-medium",
-                            )}
-                            title={item.name}
-                            variants={itemLabelVariants}
-                            transition={{
-                              type: "spring",
-                              stiffness: 600,
-                              damping: 32,
-                            }}
-                          >
-                            {item.name}
-                          </motion.span>
-                          {!isLast && <PhantomLine position="bottom" />}
-                        </MotionLink>
-                      );
-                    })}
+                    {renderSectionItems(gettingStartedSection.items)}
                   </div>
                 </motion.div>
 
@@ -298,7 +229,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
                         damping: 30,
                       }}
                     >
-                      {renderCategoryHeading(category)}
+                      <CategoryHeading title={category} />
                       <div className="grid grid-flow-row auto-rows-max text-sm">
                         {renderSectionItems(items)}
                       </div>
@@ -306,54 +237,48 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
                   ))}
 
                 {/* Components Section */}
-                {type === "components" && (
-                  <>
-                    {groupedComponents.map(([category, items]) => (
-                      <motion.div
-                        key={category}
-                        variants={{
-                          hidden: { opacity: 0, x: -8 },
-                          visible: { opacity: 1, x: 0 },
-                        }}
-                        transition={{
-                          type: "spring",
-                          stiffness: 500,
-                          damping: 30,
-                        }}
-                      >
-                        {renderCategoryHeading(category)}
-                        <div className="grid grid-flow-row auto-rows-max text-sm">
-                          {renderSectionItems(items)}
-                        </div>
-                      </motion.div>
-                    ))}
-                  </>
-                )}
+                {type === "components" &&
+                  groupedComponents.map(([category, items]) => (
+                    <motion.div
+                      key={category}
+                      variants={{
+                        hidden: { opacity: 0, x: -8 },
+                        visible: { opacity: 1, x: 0 },
+                      }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 500,
+                        damping: 30,
+                      }}
+                    >
+                      <CategoryHeading title={category} />
+                      <div className="grid grid-flow-row auto-rows-max text-sm">
+                        {renderSectionItems(items)}
+                      </div>
+                    </motion.div>
+                  ))}
 
                 {/* Blocks Section */}
-                {type === "blocks" && (
-                  <>
-                    {groupedBlocks.map(([category, items]) => (
-                      <motion.div
-                        key={category}
-                        variants={{
-                          hidden: { opacity: 0, x: -8 },
-                          visible: { opacity: 1, x: 0 },
-                        }}
-                        transition={{
-                          type: "spring",
-                          stiffness: 500,
-                          damping: 30,
-                        }}
-                      >
-                        {renderCategoryHeading(category)}
-                        <div className="grid grid-flow-row auto-rows-max text-sm">
-                          {renderSectionItems(items)}
-                        </div>
-                      </motion.div>
-                    ))}
-                  </>
-                )}
+                {type === "blocks" &&
+                  groupedBlocks.map(([category, items]) => (
+                    <motion.div
+                      key={category}
+                      variants={{
+                        hidden: { opacity: 0, x: -8 },
+                        visible: { opacity: 1, x: 0 },
+                      }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 500,
+                        damping: 30,
+                      }}
+                    >
+                      <CategoryHeading title={category} />
+                      <div className="grid grid-flow-row auto-rows-max text-sm">
+                        {renderSectionItems(items)}
+                      </div>
+                    </motion.div>
+                  ))}
               </motion.div>
             </motion.div>
           )}
@@ -377,11 +302,14 @@ const itemLabelVariants = {
   hover: { x: 4 },
 };
 
-function groupItems(items: CategoryItem[]): [string, CategoryItem[]][] {
+function groupItems(
+  items: CategoryItem[],
+  fallbackCategory: string,
+): [string, CategoryItem[]][] {
   const grouped = new Map<string, CategoryItem[]>();
 
   for (const item of items) {
-    const category = item.category ?? "Components";
+    const category = item.category ?? fallbackCategory;
     const existing = grouped.get(category) ?? [];
     existing.push(item);
     grouped.set(category, existing);
