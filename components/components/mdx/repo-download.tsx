@@ -4,9 +4,9 @@ import { ArrowRightIcon, Download, Github, Loader } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { toast } from "sonner";
-import { buttonVariants } from "../ui/button";
-import { cn } from "../../lib/utils";
 import { externalLinks } from "@/lib/links";
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/button";
 
 interface RepoDownloadProps {
   url: string;

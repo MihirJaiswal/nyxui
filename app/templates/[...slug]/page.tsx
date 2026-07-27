@@ -1,7 +1,6 @@
 import { Mdx } from "@/components/components/mdx/mdx-components";
-import { badgeVariants } from "@/components/ui/badge";
 import { DocPageHeader } from "@/components/components/doc-page-header";
-import { absoluteUrl, cn } from "@/lib/utils";
+import { absoluteUrl } from "@/lib/utils";
 import {
   createBaseMetadata,
   createTemplateSchema,
@@ -10,9 +9,8 @@ import {
   getDocFromParams,
   type SlugPageProps,
 } from "@/lib/docs";
-import { externalLinks, itemHref, siteLinks } from "@/lib/links";
+import { externalLinks, itemHref } from "@/lib/links";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/global/JsonLd";
 
