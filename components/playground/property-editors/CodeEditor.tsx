@@ -28,12 +28,6 @@ const CodeEditor = ({
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const preRef = useRef<HTMLPreElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-
-  // Auto-resize the textarea to fit its content, capped at maxHeight.
-  // The container height follows the textarea (the only in-flow child),
-  // and the absolutely-positioned <pre> fills the container so the
-  // highlighted background stays in sync. Past maxHeight the textarea
-  // scrolls and handleScroll keeps the <pre> aligned.
   const resizeTextarea = () => {
     const ta = textareaRef.current;
     if (!ta) return;
@@ -156,27 +150,6 @@ const CodeEditor = ({
         autoCorrect="off"
         autoCapitalize="off"
       />
-
-      {/* Custom styles for better selection visibility and theme-aware Shiki tokens */}
-      <style jsx>{`
-        textarea::selection {
-          background-color: color-mix(
-            in srgb,
-            var(--primary) 25%,
-            transparent
-          ) !important;
-        }
-        textarea::-moz-selection {
-          background-color: color-mix(
-            in srgb,
-            var(--primary) 25%,
-            transparent
-          ) !important;
-        }
-        :global(.shiki) {
-          background-color: transparent !important;
-        }
-      `}</style>
     </div>
   );
 };
