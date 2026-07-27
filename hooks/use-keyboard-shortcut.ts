@@ -1,32 +1,17 @@
 "use client";
 
-import { useEffect } from "react";
+import { useCallback, useRef } from "react";
+import { useEventListener } from "./use-event-listener";
 
 interface KeyboardShortcutOptions {
-  /** Require the Cmd key (macOS) or Ctrl key (other platforms). */
   modKey?: boolean;
-  /** Require the Meta/Cmd key specifically. */
   metaKey?: boolean;
-  /** Require the Ctrl key specifically. */
   ctrlKey?: boolean;
-  /** Require the Shift key. */
   shiftKey?: boolean;
-  /** Skip the shortcut when typing in an input/textarea/contenteditable (default true). */
   ignoreInputs?: boolean;
-  /** Call `event.preventDefault()` when the shortcut fires (default true). */
   preventDefault?: boolean;
 }
 
-/**
- * Register a global keyboard shortcut.
- *
- * - `key` is compared against `KeyboardEvent.key` (case-insensitive).
- * - `modKey` requires Cmd (macOS) or Ctrl (other platforms) — use this
- *   for cross-platform "Cmd/Ctrl+K" style shortcuts.
- * - Other modifier flags require that specific modifier when set to `true`.
- * - `ignoreInputs` (default `true`) skips the shortcut when the user is
- *   typing in an `<input>`, `<textarea>`, or `contenteditable` element.
- */
 export function useKeyboardShortcut(
   key: string | string[],
   callback: (event: KeyboardEvent) => void,
@@ -41,19 +26,20 @@ export function useKeyboardShortcut(
     preventDefault = true,
   } = options;
 
-  useEffect(() => {
-    const keys = Array.isArray(key)
-      ? key.map((k) => k.toLowerCase())
-      : [key.toLowerCase()];
+  const savedCallback = useRef(callback);
+  savedCallback.current = callback;
 
-    const handleKeyDown = (event: KeyboardEvent) => {
+  const handleKeyDown = useCallback(
+    (event: KeyboardEvent) => {
+      const keys = Array.isArray(key)
+        ? key.map((k) => k.toLowerCase())
+        : [key.toLowerCase()];
+
       if (modKey && !(event.metaKey || event.ctrlKey)) return;
       if (metaKey && !event.metaKey) return;
       if (ctrlKey && !event.ctrlKey) return;
       if (shiftKey && !event.shiftKey) return;
 
-      // When no modifiers are required, ignore events that have modifiers
-      // held (so plain keys don't fire while e.g. Cmd is down).
       if (
         !modKey &&
         !metaKey &&
@@ -82,19 +68,10 @@ export function useKeyboardShortcut(
       if (preventDefault) {
         event.preventDefault();
       }
-      callback(event);
-    };
+      savedCallback.current(event);
+    },
+    [key, modKey, metaKey, ctrlKey, shiftKey, ignoreInputs, preventDefault],
+  );
 
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [
-    key,
-    callback,
-    modKey,
-    metaKey,
-    ctrlKey,
-    shiftKey,
-    ignoreInputs,
-    preventDefault,
-  ]);
+  useEventListener("keydown", handleKeyDown);
 }
