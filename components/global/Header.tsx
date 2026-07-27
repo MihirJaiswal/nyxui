@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import {
@@ -10,6 +11,12 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "../ui/sheet";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
 import { ChevronDown, Menu, Search } from "lucide-react";
 import { ModeToggle } from "./ThemeToggle";
 import { cn } from "../../lib/utils";
@@ -18,7 +25,6 @@ import { componentsData } from "../../registry/Data";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { useMounted } from "../../hooks/use-mounted";
 import { useEventListener } from "../../hooks/use-event-listener";
-import { useClickOutside } from "../../hooks/use-click-outside";
 import { XTwitterIcon } from "./icons/XTwitterIcon";
 import { SocialLinkButton } from "./SocialLinkButton";
 import { GradientDivider } from "./GradientDivider";
@@ -27,16 +33,14 @@ import { externalLinks, itemHref, siteLinks } from "@/lib/links";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
-  const [activeLink, setActiveLink] = useState("/");
-  const [moreOpen, setMoreOpen] = useState(false);
-  const moreRef = useRef<HTMLDivElement>(null);
+  const [sheetOpen, setSheetOpen] = useState(false);
+  const activeLink = usePathname();
   const mounted = useMounted();
 
-  useEventListener("scroll", () => setScrolled(window.scrollY > 20));
-
-  useEffect(() => {
-    setActiveLink(window.location.pathname);
-  }, []);
+  useEventListener("scroll", () => {
+    const isScrolled = window.scrollY > 20;
+    setScrolled((prev) => (prev === isScrolled ? prev : isScrolled));
+  });
 
   const navLinks = [
     { href: siteLinks.components, label: "Components" },
@@ -51,9 +55,9 @@ export default function Header() {
 
   const isMoreActive = moreLinks.some((link) => activeLink === link.href);
 
-  useClickOutside(moreRef, () => setMoreOpen(false), moreOpen);
-
   const { components } = componentsData;
+
+  const closeSheet = () => setSheetOpen(false);
 
   const openSearch = () => {
     document.dispatchEvent(
@@ -119,42 +123,36 @@ export default function Header() {
               </Link>
             ))}
 
-            <div className="relative" ref={moreRef}>
-              <button
-                onClick={() => setMoreOpen((prev) => !prev)}
-                className={cn(
-                  "flex items-center gap-0.5 px-3 py-2 text-sm font-medium transition-colors hover:text-foreground",
-                  isMoreActive ? "text-primary" : "text-muted-foreground",
-                )}
-              >
-                More
-                <ChevronDown
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button
                   className={cn(
-                    "size-3.5 transition-transform mt-0.5 ml-0.5",
-                    moreOpen && "rotate-180",
+                    "group flex items-center gap-0.5 px-3 py-2 text-sm font-medium transition-colors hover:text-foreground outline-none",
+                    isMoreActive ? "text-primary" : "text-muted-foreground",
                   )}
-                />
-              </button>
-              {moreOpen && (
-                <div className="absolute left-0 top-full z-50 mt-1 w-44 rounded-lg border border-border/60 bg-popover p-1 shadow-md">
-                  {moreLinks.map((link) => (
+                >
+                  More
+                  <ChevronDown className="size-3.5 transition-transform mt-0.5 ml-0.5 group-data-[state=open]:rotate-180" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="w-44">
+                {moreLinks.map((link) => (
+                  <DropdownMenuItem key={link.href} asChild>
                     <Link
-                      key={link.href}
                       href={link.href}
-                      onClick={() => setMoreOpen(false)}
+                      aria-label={link.label}
                       className={cn(
-                        "block rounded-md px-3 py-2 text-sm transition-colors",
                         activeLink === link.href
-                          ? "bg-muted font-medium text-foreground"
-                          : "text-muted-foreground hover:bg-muted hover:text-foreground",
+                          ? "font-medium text-foreground"
+                          : "text-muted-foreground",
                       )}
                     >
                       {link.label}
                     </Link>
-                  ))}
-                </div>
-              )}
-            </div>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </nav>
         </div>
 
@@ -244,7 +242,7 @@ export default function Header() {
               </Button>
             </Link>
             <ModeToggle />
-            <Sheet>
+            <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
               <SheetTrigger asChild>
                 <Button
                   aria-label="Open Menu"
@@ -280,6 +278,7 @@ export default function Header() {
                         key={link.href}
                         href={link.href}
                         aria-label={link.label}
+                        onClick={closeSheet}
                         className={cn(
                           "flex items-center rounded-md p-2.5 text-sm font-medium transition-colors",
                           activeLink === link.href
@@ -296,6 +295,7 @@ export default function Header() {
                         key={link.href}
                         href={link.href}
                         aria-label={link.label}
+                        onClick={closeSheet}
                         className={cn(
                           "flex items-center rounded-md p-2.5 text-sm font-medium transition-colors",
                           activeLink === link.href
@@ -321,6 +321,7 @@ export default function Header() {
                           key={slug}
                           href={itemHref("components", slug)}
                           aria-label={comp.title}
+                          onClick={closeSheet}
                           className={cn(
                             "flex items-center rounded-md p-2 text-sm transition-colors",
                             activeLink === itemHref("components", slug)
