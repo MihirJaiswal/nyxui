@@ -28,13 +28,6 @@ export const ComponentWrapper = ({
       )}
       key={key}
     >
-      {/* <div
-        className={cn(
-          `absolute inset-0 size-full`,
-          `bg-[radial-gradient(#00000022_1px,transparent_1px)] dark:bg-[radial-gradient(#ffffff22_1px,transparent_1px)]`,
-          "lab-bg pointer-events-none [background-size:16px_16px]",
-        )}
-      /> */}
       <div className="absolute right-1 top-1 flex items-center">
         <OpenInV0Button url={registryItemUrl(name)} />
         <Button

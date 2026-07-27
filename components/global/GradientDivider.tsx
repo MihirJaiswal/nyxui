@@ -1,9 +1,5 @@
 import { cn } from "@/lib/utils";
 
-/**
- * Subtle horizontal gradient line, positioned at the top or bottom edge
- * of the nearest positioned ancestor.
- */
 export function GradientDivider({
   position = "top",
 }: {

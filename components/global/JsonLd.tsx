@@ -1,6 +1,3 @@
-/**
- * Renders a JSON-LD `<script>` tag for structured data.
- */
 export function JsonLd({ data }: { data: object }) {
   return (
     <script
