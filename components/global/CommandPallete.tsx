@@ -20,7 +20,7 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from "./Command";
+} from "@/components/ui/command";
 import { Button } from "../ui/button";
 import {
   componentsData,
