@@ -40,6 +40,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Footer from "@/components/global/Footer";
 import { JsonLd } from "@/components/global/JsonLd";
 import { externalLinks } from "@/lib/links";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   metadataBase: new URL(`${externalLinks.site}/`),
@@ -172,6 +173,7 @@ export default function RootLayout({
           {/* <Banner /> */}
           <main>{children}</main>
           <Footer />
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
