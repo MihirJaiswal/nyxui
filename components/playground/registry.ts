@@ -2,7 +2,7 @@ import type {
   ComponentDefinition,
   ComponentRegistry,
   PlaygroundComponent,
-} from "./types";
+} from "../../types/playground";
 
 type ComponentModule = Record<string, unknown>;
 

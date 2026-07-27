@@ -1,5 +1,5 @@
 import { componentRegistry } from "@/components/playground/registry";
-import { ComponentConfig } from "@/components/playground/types";
+import { ComponentConfig } from "@/types/playground";
 
 export const PLAYGROUND_STORAGE_KEY = "playground-config";
 
