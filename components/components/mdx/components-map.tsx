@@ -8,16 +8,15 @@ import {
 import { Callout } from "../callout";
 import TechStack from "../tech-stack";
 import RepoDownload from "../repo-download";
-import TemplateActions from "../template-actions";
-import TemplateFeatures from "../template-features";
-import TemplateIntro from "../template-intro";
-import TemplatePreview from "../template-preview";
-import TemplateShowcase from "../template-showcase";
-import TemplateSteps from "../template-steps";
-import { ComponentSource } from "../component-source";
+import TemplateActions from "../template/template-actions";
+import TemplateFeatures from "../template/template-features";
+import TemplateShowcase from "../template/template-showcase";
+import TemplateSteps from "../template/template-steps";
+import { ComponentSource } from "../code-block/component-source";
 import { headings, text, table } from "./typography";
 import { Code, Pre } from "./CodeBlock";
 import { stepOverrides, tabsOverrides, LinkedCard } from "./tabs-overrides";
+import TemplatePreview from "../template/template-preview";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const mdxComponents = {
@@ -30,7 +29,6 @@ export const mdxComponents = {
   RepoDownload,
   TemplateActions,
   TemplateFeatures,
-  TemplateIntro,
   TemplatePreview,
   TemplateShowcase,
   TemplateSteps,

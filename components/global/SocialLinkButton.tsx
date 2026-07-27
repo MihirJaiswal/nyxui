@@ -1,9 +1,6 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-/**
- * Round icon-button linking to an external social profile.
- */
 export function SocialLinkButton({
   href,
   label,

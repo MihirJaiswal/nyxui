@@ -1,11 +1,11 @@
 "use client";
-import { Button } from "../ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
-import { useConfig } from "../../hooks/use-config";
-import { useCopyToClipboard } from "../../hooks/use-copy-to-clipboard";
-import { useMounted } from "../../hooks/use-mounted";
-import { trackEvent } from "../../lib/event";
-import { NpmCommands } from "../../types/unist";
+import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useConfig } from "@/hooks/use-config";
+import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
+import { useMounted } from "@/hooks/use-mounted";
+import { trackEvent } from "@/lib/event";
+import { NpmCommands } from "@/types/unist";
 import { CheckIcon, CopyIcon } from "lucide-react";
 import * as React from "react";
 
