@@ -119,23 +119,13 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
           type="button"
           onClick={() => setIsCollapsed(!isCollapsed)}
           aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
-          className={cn(
-            "flex h-10 shrink-0 items-center text-muted-foreground transition-colors hover:text-primary",
-            isCollapsed ? "justify-center px-0" : "gap-2 px-3",
-          )}
+          className="flex h-10 w-10 shrink-0 items-center justify-center text-muted-foreground transition-colors hover:text-primary"
         >
-          <motion.span
-            key={isCollapsed ? "open" : "close"}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.15 }}
-          >
-            {isCollapsed ? (
-              <PanelLeftOpen className="size-3.5" />
-            ) : (
-              <PanelLeftClose className="size-3.5" />
-            )}
-          </motion.span>
+          {isCollapsed ? (
+            <PanelLeftOpen className="size-3.5" />
+          ) : (
+            <PanelLeftClose className="size-3.5" />
+          )}
         </button>
 
         <AnimatePresence initial={false}>
