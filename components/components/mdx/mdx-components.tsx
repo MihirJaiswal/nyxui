@@ -1,7 +1,7 @@
 import { useMDXComponent } from "@content-collections/mdx/react";
 import { cn } from "@/lib/utils";
 import { mdxComponents } from "./components-map";
-import { ComponentPreview } from "../component-preview";
+import { ComponentPreview } from "../preview/component-preview";
 
 interface MDXProps {
   code: string;

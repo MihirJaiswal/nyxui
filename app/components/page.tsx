@@ -1,4 +1,4 @@
-import ComponentGrid from "@/components/components/ComponentGrid";
+import ComponentGrid from "@/components/components/gallery/ComponentGrid";
 import { getPublishedDocCount } from "@/lib/registry";
 import { absoluteUrl, getCurrentYear } from "@/lib/utils";
 import type { Metadata } from "next";

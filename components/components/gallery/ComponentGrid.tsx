@@ -1,5 +1,5 @@
 import { ComponentCard } from "./ComponentCard";
-import { componentsData } from "../../registry/Data";
+import { componentsData } from "@/registry/Data";
 
 interface ComponentGridProps {
   type?: "components" | "blocks" | "templates";

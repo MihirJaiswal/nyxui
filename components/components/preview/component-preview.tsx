@@ -1,7 +1,7 @@
-import { Index } from "../../__registry__";
+import { Index } from "@/__registry__";
 import { ComponentWrapper } from "./component-wrapper";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
-import { cn } from "../../lib/utils";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { cn } from "@/lib/utils";
 import { Loader, Maximize } from "lucide-react";
 import { previewHref } from "@/lib/links";
 import Link from "next/link";

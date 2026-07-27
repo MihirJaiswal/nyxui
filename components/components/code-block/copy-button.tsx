@@ -3,18 +3,18 @@
 import * as React from "react";
 import { DropdownMenuTriggerProps } from "@radix-ui/react-dropdown-menu";
 import { CheckIcon, CopyIcon } from "lucide-react";
-import { NpmCommands } from "../../types/unist";
+import { NpmCommands } from "@/types/unist";
 
-import { Event, trackEvent } from "../../lib/event";
-import { useCopyToClipboard } from "../../hooks/use-copy-to-clipboard";
-import { cn } from "../../lib/utils";
-import { Button, ButtonProps } from "../ui/button";
+import { Event, trackEvent } from "@/lib/event";
+import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
+import { cn } from "@/lib/utils";
+import { Button, ButtonProps } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
 
 interface CopyButtonProps extends ButtonProps {
   value: string;

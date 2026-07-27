@@ -1,16 +1,10 @@
-import { componentsData } from "../../registry/Data";
+import { componentsData } from "@/registry/Data";
 import { ComponentSidebarClient } from "./ComponentSidebarClient";
 import { itemHref, getComponentCategory } from "@/lib/links";
+import type { CategoryItem } from "../../../types/sidebar-types";
 
 interface ComponentSidebarProps {
   type?: "components" | "blocks";
-}
-
-interface SidebarItem {
-  name: string;
-  href: string;
-  isNew: boolean;
-  category?: string;
 }
 
 interface RegistryEntry {
@@ -21,7 +15,7 @@ interface RegistryEntry {
 
 const TEMPLATE_CATEGORY = "Portfolio";
 const BLOCK_CATEGORY = "Blocks";
-const DEFAULT_GETTING_STARTED_ITEM: SidebarItem = {
+const DEFAULT_GETTING_STARTED_ITEM: CategoryItem = {
   name: "Introduction",
   href: "/docs",
   isNew: false,
@@ -29,8 +23,8 @@ const DEFAULT_GETTING_STARTED_ITEM: SidebarItem = {
 
 function toSortedItems<T extends RegistryEntry>(
   entries: Record<string, T> | undefined,
-  mapItem: (key: string, item: T) => SidebarItem,
-): SidebarItem[] {
+  mapItem: (key: string, item: T) => CategoryItem,
+): CategoryItem[] {
   return Object.entries(entries ?? {})
     .map(([key, item]) => mapItem(key, item))
     .sort((a, b) => a.name.localeCompare(b.name));
@@ -69,7 +63,7 @@ export const ComponentSidebar = ({
     }),
   );
 
-  const gettingStartedItems: SidebarItem[] = componentsData.links
+  const gettingStartedItems: CategoryItem[] = componentsData.links
     ? Object.entries(componentsData.links).map(([key, title]) => ({
         name: String(title),
         href: `/${key}`,

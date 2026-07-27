@@ -1,7 +1,7 @@
 import { getRegistryCounts } from "@/lib/registry";
 import { absoluteUrl, getCurrentYear } from "@/lib/utils";
 import type { Metadata } from "next";
-import ComponentGrid from "@/components/components/ComponentGrid";
+import ComponentGrid from "@/components/components/gallery/ComponentGrid";
 import { createBaseMetadata, publisher } from "@/lib/docs";
 import { JsonLd } from "@/components/global/JsonLd";
 
