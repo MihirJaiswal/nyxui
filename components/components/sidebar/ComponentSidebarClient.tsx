@@ -5,8 +5,8 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import { useToggle } from "@/hooks/use-toggle";
 import { useHoverTick } from "@/hooks/use-hover-tick";
+import { useSidebarCollapse } from "@/hooks/use-sidebar-collapse";
 import { SidebarItem } from "./SidebarItem";
 import { SidebarSection } from "./SidebarSection";
 import type {
@@ -38,7 +38,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
   type = "components",
 }) => {
   const currentPath = usePathname();
-  const [isCollapsed, , setIsCollapsed] = useToggle(false);
+  const [isCollapsed, setIsCollapsed] = useSidebarCollapse();
   const activeItemRef = React.useRef<HTMLAnchorElement | null>(null);
   const hoverTick = useHoverTick();
 
