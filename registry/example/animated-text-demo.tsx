@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import reactElementToJSXString from "react-element-to-jsx-string";
 import { toast, Toaster } from "sonner";
-import { AnimateText } from "../ui/animated-text";
+import { AnimateText } from "@/registry/ui/animated-text";
 import { Copy, Check } from "lucide-react";
 
 interface AnimationCard {

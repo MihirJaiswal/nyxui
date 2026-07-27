@@ -12,7 +12,7 @@ import { SidebarSection } from "./SidebarSection";
 import type {
   CategoryItem,
   ComponentSidebarClientProps,
-} from "../../../types/sidebar-types";
+} from "@/types/sidebar-types";
 
 function groupItems(
   items: CategoryItem[],

@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import img from "../../../public/assets/images/landing-page/cover.webp";
+import img from "@/public/assets/images/landing-page/cover.webp";
 import { useToggle } from "@/hooks/use-toggle";
 
 function GlassMusicPlayer() {

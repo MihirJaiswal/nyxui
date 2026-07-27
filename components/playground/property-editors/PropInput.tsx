@@ -11,10 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import type {
-  ComponentProp,
-  ComponentPropValue,
-} from "../../../types/playground";
+import type { ComponentProp, ComponentPropValue } from "@/types/playground";
 import CodeEditor from "./CodeEditor";
 import { ColorValueControl } from "./ColorValueControl";
 import { JsonObjectEditor } from "./JsonObjectEditor";

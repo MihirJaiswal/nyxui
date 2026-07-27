@@ -7,9 +7,9 @@ import TextureCard, {
 } from "./texture-card";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
-import blocks from "../../../public/assets/images/landing-page/blocks.png";
-import temlplates from "../../../public/assets/images/landing-page/templates.png";
-import components from "../../../public/assets/images/landing-page/components.png";
+import blocks from "@/public/assets/images/landing-page/blocks.png";
+import temlplates from "@/public/assets/images/landing-page/templates.png";
+import components from "@/public/assets/images/landing-page/components.png";
 
 export default function ContainCard() {
   const {

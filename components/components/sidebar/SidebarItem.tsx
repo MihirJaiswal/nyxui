@@ -12,7 +12,7 @@ import {
   SPRING_CONFIG,
   LABEL_TRANSITION,
 } from "@/components/global/GuideLine";
-import type { CategoryItem } from "../../../types/sidebar-types";
+import type { CategoryItem } from "@/types/sidebar-types";
 
 const MotionLink = motion.create(Link);
 

@@ -1,4 +1,4 @@
-import { GitHubRepoCard } from "../ui/github-repo-card";
+import { GitHubRepoCard } from "@/registry/ui/github-repo-card";
 
 export default function GitHubRepoCardDemo() {
   return (

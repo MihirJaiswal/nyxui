@@ -1,6 +1,6 @@
-import { DynamicRipple } from "../ui/dynamic-ripple";
-import { Button } from "../../components/ui/button";
-import { Badge } from "../../components/ui/badge";
+import { DynamicRipple } from "@/registry/ui/dynamic-ripple";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Droplets, Waves, Sparkles } from "lucide-react";
 
 export function DynamicRippleDemo() {

@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import reactElementToJSXString from "react-element-to-jsx-string";
 import { toast, Toaster } from "sonner";
-import { GlitchButton } from "../ui/glitch-button";
+import { GlitchButton } from "@/registry/ui/glitch-button";
 import {
   ArrowRight,
   Download,

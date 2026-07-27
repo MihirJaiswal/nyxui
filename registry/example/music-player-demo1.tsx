@@ -1,4 +1,4 @@
-import { MusicPlayer, Track } from "../ui/music-player";
+import { MusicPlayer, Track } from "@/registry/ui/music-player";
 
 export default function MusicPlayerDemo1() {
   const currentTrack: Track = {
