@@ -28,17 +28,14 @@ const CodeEditor = ({
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const preRef = useRef<HTMLPreElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const resizeTextarea = () => {
+
+  useLayoutEffect(() => {
     const ta = textareaRef.current;
     if (!ta) return;
     ta.style.height = "auto";
     const next = Math.min(ta.scrollHeight, maxHeight);
     ta.style.height = `${next}px`;
-  };
-
-  useLayoutEffect(() => {
-    resizeTextarea();
-  }, [value, maxHeight, resizeTextarea]);
+  }, [value, maxHeight]);
 
   useEffect(() => {
     const highlightCode = async () => {
