@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { componentsData } from "@/registry/Data";
 import { absoluteUrl } from "@/lib/utils";
 import type { Metadata } from "next";
-import { Mdx } from "@/components/components/mdx-components";
+import { Mdx } from "@/components/components/mdx/mdx-components";
 import { DocPageHeader } from "@/components/components/doc-page-header";
 import {
   createBaseMetadata,

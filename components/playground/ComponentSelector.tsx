@@ -46,7 +46,6 @@ interface SelectorItemProps {
   itemKey: string;
   name: string;
   isActive: boolean;
-  isHighlighted: boolean;
   isFirst: boolean;
   isLast: boolean;
   onSelect: () => void;
@@ -59,14 +58,14 @@ const SelectorItem = ({
   itemKey,
   name,
   isActive,
-  isHighlighted,
   isFirst,
   isLast,
   onSelect,
   onHoverTick,
 }: SelectorItemProps) => {
   const ref = useRef<HTMLDivElement>(null);
-  const highlighted = isActive || isHighlighted;
+  const [hovered, setHovered] = useState(false);
+  const highlighted = isActive || hovered;
   const widthMv = useMotionValue(highlighted ? MAX_WIDTH : BASE_WIDTH);
 
   useEffect(() => {
@@ -91,8 +90,10 @@ const SelectorItem = ({
       value={itemKey}
       onSelect={onSelect}
       onMouseEnter={() => {
+        setHovered(true);
         if (!isActive) onHoverTick(index);
       }}
+      onMouseLeave={() => setHovered(false)}
       className={cn(
         "group relative flex min-h-7 items-center gap-3 rounded-md py-1 text-sm transition-colors",
         "data-[selected=true]:bg-transparent !px-0",
@@ -190,6 +191,7 @@ const ComponentSelector = ({
           onKeyDown={handleSearchKeyDown}
           placeholder="Search components..."
           className="h-9 rounded-lg"
+          wrapperClassName="border rounded-lg"
         />
       </div>
 
@@ -212,7 +214,6 @@ const ComponentSelector = ({
               itemKey={key}
               name={component.name}
               isActive={selectedComponent === key}
-              isHighlighted={highlightedValue === key.toLowerCase()}
               isFirst={index === 0}
               isLast={index === filteredEntries.length - 1}
               onSelect={() => onSelect(key)}

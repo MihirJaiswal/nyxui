@@ -1,4 +1,4 @@
-import { Mdx } from "@/components/components/mdx-components";
+import { Mdx } from "@/components/components/mdx/mdx-components";
 import { badgeVariants } from "@/components/ui/badge";
 import { DocPageHeader } from "@/components/components/doc-page-header";
 import { absoluteUrl, cn } from "@/lib/utils";
