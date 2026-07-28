@@ -75,10 +75,10 @@ export function DocPageHeader({
       {links && (
         <div className="flex items-center gap-2 pt-1">
           {links.doc && (
-            <Link
+            <a
               href={links.doc}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className={cn(
                 badgeVariants({
                   variant: primaryDocLink ? "default" : "secondary",
@@ -88,18 +88,18 @@ export function DocPageHeader({
             >
               {linkLabels.doc}
               <ExternalLinkIcon className="size-3" />
-            </Link>
+            </a>
           )}
           {links.api && (
-            <Link
+            <a
               href={links.api}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className={cn(badgeVariants({ variant: "secondary" }), "gap-1")}
             >
               {linkLabels.api}
               <ExternalLinkIcon className="size-3" />
-            </Link>
+            </a>
           )}
         </div>
       )}
