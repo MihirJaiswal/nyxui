@@ -193,7 +193,7 @@ export const CommandPalette = () => {
 
       <CommandDialog open={open} onOpenChange={setOpen} title="Search Nyx UI">
         <CommandInput placeholder="Search pages, components, blocks..." />
-        <CommandList>
+        <CommandList className="scrollbar-no">
           <CommandEmpty>
             <div className="py-6 text-center">
               <p className="text-sm font-medium text-foreground">
