@@ -14,11 +14,11 @@ import { PlaygroundEmptyState } from "./PlaygroundEmptyState";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   useSidebarPanelSizes,
-  SIDEBAR_PX,
   SIDEBAR_INNER_CLASSNAME,
   SIDEBAR_OUTER_CLASSNAME,
   MAIN_OUTER_CLASSNAME,
 } from "@/hooks/use-sidebar-panel-sizes";
+import { cn } from "@/lib/utils";
 
 export const PlaygroundContent = ({
   initialComponent,
@@ -131,8 +131,10 @@ export const PlaygroundContent = ({
             // See useSidebarPanelSizes for why we don't guess a percentage.
             <>
               <div
-                style={{ width: SIDEBAR_PX, flexShrink: 0 }}
-                className={SIDEBAR_OUTER_CLASSNAME}
+                className={cn(
+                  SIDEBAR_OUTER_CLASSNAME,
+                  "w-[260px] shrink-0 xl:w-[310px]",
+                )}
               >
                 <div className={SIDEBAR_INNER_CLASSNAME}>
                   {sidebarPanelContent}
