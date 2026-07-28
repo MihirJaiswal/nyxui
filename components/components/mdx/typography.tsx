@@ -1,3 +1,4 @@
+import type { AnchorHTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
 import { CustomLink } from "./CustomLink";
 
@@ -59,7 +60,7 @@ export const headings = {
 };
 
 export const text = {
-  a: ({ className, ...props }: React.HTMLAttributes<HTMLAnchorElement>) => (
+  a: ({ className, ...props }: AnchorHTMLAttributes<HTMLAnchorElement>) => (
     <CustomLink
       className={cn(
         "font-medium underline underline-offset-4 text-foreground",
@@ -123,9 +124,9 @@ export const text = {
 
 export const table = {
   table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
-    <div className="my-6 w-full max-w-full overflow-hidden rounded-xl border border-border/70 bg-card text-card-foreground shadow-sm">
+    <div className="my-6 w-full max-w-full overflow-x-auto rounded-xl border border-border/70 bg-card text-card-foreground shadow-sm">
       <table
-        className={cn("w-full max-w-full border-collapse text-sm", className)}
+        className={cn("min-w-full border-collapse text-sm", className)}
         {...props}
       />
     </div>
