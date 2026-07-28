@@ -7,7 +7,7 @@ interface ComponentSidebarProps {
   type?: "components" | "blocks";
 }
 
-interface RegistryEntry {
+interface SortableEntry {
   title: string;
   isNew?: boolean;
   tags?: string[];
@@ -21,7 +21,7 @@ const DEFAULT_GETTING_STARTED_ITEM: CategoryItem = {
   isNew: false,
 };
 
-function toSortedItems<T extends RegistryEntry>(
+function toSortedItems<T extends SortableEntry>(
   entries: Record<string, T> | undefined,
   mapItem: (key: string, item: T) => CategoryItem,
 ): CategoryItem[] {

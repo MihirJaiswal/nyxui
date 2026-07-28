@@ -17,7 +17,6 @@ export const Pre = ({
   __pnpmCommand__,
   __yarnCommand__,
   __bunCommand__,
-  __withMeta__,
   __src__,
   __event__,
   ...props
@@ -88,16 +87,14 @@ export const Pre = ({
             data-variant="ghost"
             data-size="icon-xs"
             className={cn(
-              "group/button absolute right-3 top-3 z-10 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-border/70 bg-accent text-sm font-medium whitespace-nowrap text-muted-foreground opacity-0 outline-none transition-all select-none hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:scale-95 disabled:pointer-events-none disabled:opacity-50 group-hover/pre:opacity-100 [&_svg]:pointer-events-none [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0",
-              __withMeta__ && "top-12",
+              "group/button absolute right-2 bottom-2 z-10 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-border/70 bg-accent text-sm font-medium whitespace-nowrap text-muted-foreground opacity-0 outline-none transition-all select-none hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:scale-95 disabled:pointer-events-none disabled:opacity-50 group-hover/pre:opacity-100 [&_svg]:pointer-events-none [&_svg]:h-3.5 [&_svg]:w-3.5 [&_svg]:shrink-0",
             )}
           />
           <div
             aria-hidden="true"
             data-fade-overlay="true"
             className={cn(
-              "pointer-events-none absolute right-1.5 top-1.5 h-12 w-24 bg-gradient-to-l from-card to-transparent opacity-0 transition-opacity group-hover/pre:opacity-100",
-              __withMeta__ && "top-11",
+              "pointer-events-none absolute right-1 bottom-1 h-10 w-20 bg-gradient-to-l from-card to-transparent opacity-0 transition-opacity group-hover/pre:opacity-100",
             )}
           />
         </>

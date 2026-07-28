@@ -112,7 +112,7 @@ function itemKeywords(
   );
 }
 
-export function CommandPalette() {
+export const CommandPalette = () => {
   const [open, setOpen] = useState(false);
   const router = useRouter();
 
@@ -240,4 +240,4 @@ export function CommandPalette() {
       </CommandDialog>
     </>
   );
-}
+};

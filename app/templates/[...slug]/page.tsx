@@ -3,12 +3,12 @@ import { DocPageHeader } from "@/components/components/doc-page-header";
 import { absoluteUrl } from "@/lib/utils";
 import {
   createBaseMetadata,
-  createTemplateSchema,
   generateDocKeywords,
   generateDocStaticParams,
   getDocFromParams,
   type SlugPageProps,
 } from "@/lib/docs";
+import { createTemplateSchema } from "@/lib/docs-schema";
 import { externalLinks, itemHref } from "@/lib/links";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";

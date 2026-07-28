@@ -3,12 +3,12 @@ import { DocPageHeader } from "@/components/components/doc-page-header";
 import { absoluteUrl } from "@/lib/utils";
 import {
   createBaseMetadata,
-  createComponentSchema,
   generateDocKeywords,
   generateDocStaticParams,
   getDocFromParams,
   type SlugPageProps,
 } from "@/lib/docs";
+import { createComponentSchema } from "@/lib/docs-schema";
 import { externalLinks, itemHref, playgroundComponentHref } from "@/lib/links";
 import type { Metadata } from "next";
 import Link from "next/link";

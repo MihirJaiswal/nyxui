@@ -7,9 +7,9 @@ import { DocPageHeader } from "@/components/components/doc-page-header";
 import {
   createBaseMetadata,
   getDocFromParams,
-  publisher,
   type SlugPageProps,
 } from "@/lib/docs";
+import { publisher } from "@/lib/docs-schema";
 import { itemHref } from "@/lib/links";
 import { JsonLd } from "@/components/global/JsonLd";
 // import Link from "next/link";

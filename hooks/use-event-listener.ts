@@ -23,9 +23,9 @@ function resolveTarget(element: Element | undefined): EventTarget | null {
   return element as EventTarget;
 }
 
-export function useEventListener(
+export function useEventListener<T extends Event = Event>(
   eventName: string,
-  handler: (event: any) => void,
+  handler: (event: T) => void,
   element?: Element,
   options?: AddEventListenerOptions,
 ): void {
@@ -40,7 +40,7 @@ export function useEventListener(
     const target = resolveTarget(element);
     if (target == null) return;
 
-    const listener = (event: Event) => savedHandler.current(event);
+    const listener = (event: Event) => savedHandler.current(event as T);
 
     target.addEventListener(eventName, listener, options);
     return () => {
