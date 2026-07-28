@@ -7,15 +7,6 @@ import { UnistNode, UnistTree } from "@/types/unist";
 
 import Registry from "@/registry.json";
 
-export const styles = [
-  {
-    name: "default",
-    label: "Default",
-  },
-] as const;
-
-export type Style = (typeof styles)[number];
-
 export function rehypeComponent() {
   return async (tree: UnistTree) => {
     visit(tree, (node: UnistNode) => {
