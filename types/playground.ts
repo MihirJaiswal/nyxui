@@ -34,12 +34,6 @@ export type PlaygroundComponent = React.ComponentType<
   }
 >;
 
-export interface PlaygroundProps {
-  componentKey: string;
-  config: ComponentConfig;
-  component: ComponentDefinition;
-}
-
 export interface ComponentProp {
   type:
     | "string"
