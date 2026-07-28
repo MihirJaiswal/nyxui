@@ -40,7 +40,7 @@ export const ComponentCard = ({
       {/* Preview Area */}
       <div
         className="
-    relative w-full flex-1 min-h-80
+    relative w-full flex-1 min-h-60 sm:min-h-70 xl:min-h-80
     overflow-hidden rounded-2xl border border-background bg-background
     after:pointer-events-none
     after:absolute after:inset-0 after:z-10

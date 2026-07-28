@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { motion, AnimatePresence } from "motion/react";
 import {
   Sheet,
   SheetContent,
@@ -19,6 +20,8 @@ import { XTwitterIcon } from "@/components/global/icons/XTwitterIcon";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { ModeToggle } from "@/components/global/ThemeToggle";
 import { cn } from "@/lib/utils";
+import { CategoryHeading } from "@/components/global/CategoryHeading";
+import { PhantomLine } from "@/components/global/PhantomLine";
 
 interface NavLink {
   href: string;
@@ -31,10 +34,93 @@ interface MobileNavProps {
   moreLinks: NavLink[];
 }
 
+const SECTION_VARIANTS = {
+  hidden: { opacity: 0, x: -8 },
+  visible: { opacity: 1, x: 0 },
+};
+
+const SECTION_TRANSITION = {
+  type: "spring" as const,
+  stiffness: 500,
+  damping: 30,
+};
+
+const ITEM_VARIANTS = {
+  hidden: { opacity: 0, x: -8 },
+  visible: { opacity: 1, x: 0 },
+};
+
+const ITEM_TRANSITION = {
+  type: "spring" as const,
+  stiffness: 500,
+  damping: 30,
+};
+
 export function MobileNav({ activeLink, navLinks, moreLinks }: MobileNavProps) {
   const [sheetOpen, setSheetOpen] = useState(false);
   const closeSheet = () => setSheetOpen(false);
   const { components } = componentsData;
+
+  const componentEntries = Object.entries(components);
+
+  const allItems = [
+    ...navLinks,
+    ...moreLinks,
+    ...componentEntries.map(([slug, comp]) => ({
+      href: itemHref("components", slug),
+      label: comp.title,
+    })),
+  ];
+
+  const renderItem = (
+    href: string,
+    label: string,
+    index: number,
+    isLast: boolean,
+  ) => {
+    const isActive = activeLink === href;
+    return (
+      <motion.div
+        key={href}
+        variants={ITEM_VARIANTS}
+        transition={ITEM_TRANSITION}
+        className="relative"
+      >
+        {index === 0 && <PhantomLine position="top" />}
+        <Link
+          href={href}
+          aria-label={label}
+          onClick={closeSheet}
+          aria-current={isActive ? "page" : undefined}
+          className={cn(
+            "group relative flex min-h-7 w-full items-center gap-3 rounded-md py-1 text-sm transition-colors hide-scrollbar",
+            isActive
+              ? "text-primary"
+              : "text-muted-foreground hover:text-primary",
+          )}
+        >
+          <span className="flex w-11 shrink-0 items-center" aria-hidden="true">
+            <span
+              className={cn(
+                "block h-px w-8 shrink-0 origin-left transition-colors",
+                isActive ? "bg-primary" : "bg-foreground/30",
+              )}
+            />
+          </span>
+          <span
+            className={cn(
+              "min-w-0 flex-1 truncate text-sm",
+              isActive && "font-medium",
+            )}
+            title={label}
+          >
+            {label}
+          </span>
+        </Link>
+        {!isLast && <PhantomLine position="bottom" />}
+      </motion.div>
+    );
+  };
 
   return (
     <div className="flex items-center gap-1 lg:hidden">
@@ -85,87 +171,88 @@ export function MobileNav({ activeLink, navLinks, moreLinks }: MobileNavProps) {
         </SheetTrigger>
         <SheetContent
           side="right"
-          className="w-[280px] border-l border-border/60 bg-background/95 p-0 backdrop-blur-xl"
+          className="my-3 mr-3 h-[calc(100%-1.5rem)] w-[260px] overflow-hidden rounded-xl border border-border/70 bg-card p-0 shadow-sm"
         >
-          <div className="border-b border-border/60 p-4">
-            <SheetHeader>
-              <SheetTitle className="flex items-center gap-3">
-                <div className="flex h-8 w-8 items-center justify-center">
-                  <Logo className="transition-colors duration-200" />
-                </div>
-                <span className="text-md font-bold">Nyx UI</span>
-              </SheetTitle>
-            </SheetHeader>
-          </div>
-          <div className="h-[calc(100vh-120px)] overflow-auto overscroll-contain p-3 touch-pan-y">
-            <div className="mb-5 space-y-0.5">
-              <h3 className="pb-1.5 pl-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                Navigation
-              </h3>
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  aria-label={link.label}
-                  onClick={closeSheet}
-                  className={cn(
-                    "flex items-center rounded-md p-2.5 text-sm font-medium transition-colors",
-                    activeLink === link.href
-                      ? "text-primary"
-                      : "text-muted-foreground hover:bg-muted/30 hover:text-foreground",
-                  )}
-                >
-                  {link.label}
-                </Link>
-              ))}
-              <div className="my-2 h-px bg-border/40" />
-              {moreLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  aria-label={link.label}
-                  onClick={closeSheet}
-                  className={cn(
-                    "flex items-center rounded-md p-2.5 text-sm font-medium transition-colors",
-                    activeLink === link.href
-                      ? "text-primary"
-                      : "text-muted-foreground hover:bg-muted/30 hover:text-foreground",
-                  )}
-                >
-                  {link.label}
-                </Link>
-              ))}
+          <div className="flex h-full flex-col">
+            <div className="flex h-12 shrink-0 items-center gap-3 border-b border-border/70 px-4">
+              <SheetHeader className="p-0">
+                <SheetTitle className="flex items-center gap-3">
+                  <div className="flex h-8 w-8 items-center justify-center">
+                    <Logo className="transition-colors duration-200" />
+                  </div>
+                </SheetTitle>
+              </SheetHeader>
             </div>
-            <div className="relative">
-              <div className="my-3 h-px bg-border/40" />
-              <h3 className="mb-4 flex items-center pb-2 pl-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                <span>Components</span>
-                <span className="ml-2 rounded-full bg-muted px-1.5 py-0.5 text-[10px]">
-                  {Object.keys(components).length}
-                </span>
-              </h3>
-              <div className="space-y-0.5">
-                {Object.entries(components).map(([slug, comp]) => (
-                  <Link
-                    key={slug}
-                    href={itemHref("components", slug)}
-                    aria-label={comp.title}
-                    onClick={closeSheet}
-                    className={cn(
-                      "flex items-center rounded-md p-2 text-sm transition-colors",
-                      activeLink === itemHref("components", slug)
-                        ? "text-primary"
-                        : "text-muted-foreground hover:bg-muted/20 hover:text-foreground",
-                    )}
+
+            <AnimatePresence initial={false}>
+              {sheetOpen && (
+                <motion.div
+                  key="mobile-nav-content"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.12, delay: 0.08 }}
+                  className="min-h-0 flex-1 overflow-y-auto px-3 pb-3 scrollbar-no"
+                >
+                  <motion.div
+                    initial="hidden"
+                    animate="visible"
+                    variants={{
+                      hidden: {},
+                      visible: { transition: { staggerChildren: 0.02 } },
+                    }}
+                    className="space-y-2 hide-scrollbar mt-2"
                   >
-                    {comp.title}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-          <div className="border-t border-border/60 p-3">
-            <div className="flex items-center justify-between">
+                    <motion.div
+                      variants={SECTION_VARIANTS}
+                      transition={SECTION_TRANSITION}
+                    >
+                      <CategoryHeading title="Navigation" />
+                      <div className="grid grid-flow-row auto-rows-max text-sm">
+                        {navLinks.map((link, index) =>
+                          renderItem(
+                            link.href,
+                            link.label,
+                            index,
+                            index === navLinks.length - 1 &&
+                              moreLinks.length === 0,
+                          ),
+                        )}
+                        {moreLinks.map((link, index) =>
+                          renderItem(
+                            link.href,
+                            link.label,
+                            navLinks.length + index,
+                            index === moreLinks.length - 1,
+                          ),
+                        )}
+                      </div>
+                    </motion.div>
+
+                    <div className="my-3 h-px bg-border/40" />
+
+                    <motion.div
+                      variants={SECTION_VARIANTS}
+                      transition={SECTION_TRANSITION}
+                    >
+                      <CategoryHeading title="Components" />
+                      <div className="grid grid-flow-row auto-rows-max text-sm">
+                        {componentEntries.map(([slug, comp], index) =>
+                          renderItem(
+                            itemHref("components", slug),
+                            comp.title,
+                            index,
+                            index === componentEntries.length - 1,
+                          ),
+                        )}
+                      </div>
+                    </motion.div>
+                  </motion.div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            <div className="flex h-12 shrink-0 items-center justify-between border-t border-border/70 px-3">
               <div className="flex gap-2">
                 <SocialLinkButton
                   href={externalLinks.githubRepo}
