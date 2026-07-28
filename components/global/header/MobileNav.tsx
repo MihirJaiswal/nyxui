@@ -142,7 +142,7 @@ export function MobileNav({ activeLink, navLinks, moreLinks }: MobileNavProps) {
           size="icon"
           className="h-8 w-8 rounded-full p-0 text-muted-foreground hover:bg-muted/80 hover:text-foreground"
         >
-          <XTwitterIcon size={16} />
+          <XTwitterIcon size={12} />
           <span className="sr-only">Twitter</span>
         </Button>
       </Link>
