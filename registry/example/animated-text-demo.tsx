@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import reactElementToJSXString from "react-element-to-jsx-string";
-import { toast, Toaster } from "sonner";
+import { toast } from "sonner";
 import { AnimateText } from "@/registry/ui/animated-text";
 import { Copy, Check } from "lucide-react";
 
@@ -102,7 +102,6 @@ export const AnimationTextDemo = () => {
 
   return (
     <div className="w-full px-4 sm:px-6 md:px-8 max-w-7xl mx-auto pb-12">
-      <Toaster position="top-center" />
       <div className="flex flex-col">
         <div className="flex flex-col py-2 sm:py-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
