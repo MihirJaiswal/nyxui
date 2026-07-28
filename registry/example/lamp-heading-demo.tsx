@@ -3,7 +3,7 @@
 import type React from "react";
 import { useState } from "react";
 import reactElementToJSXString from "react-element-to-jsx-string";
-import { toast, Toaster } from "sonner";
+import { toast } from "sonner";
 import { LampHeading } from "@/registry/ui/lamp-heading";
 import { Copy, Check } from "lucide-react";
 
@@ -89,7 +89,6 @@ export const LampHeadingDemo = () => {
 
   return (
     <div className="w-full">
-      <Toaster position="top-center" />
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {lampHeadings.map((lamp, idx) => (
