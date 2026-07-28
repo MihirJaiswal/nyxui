@@ -11,6 +11,7 @@ import { useKeyboardShortcut } from "@/hooks/use-keyboard-shortcut";
 import { usePlaygroundState } from "@/hooks/use-playground-state";
 import { ErrorBoundary } from "@/components/global/ErrorBoundary";
 import { PlaygroundEmptyState } from "./PlaygroundEmptyState";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   useSidebarPanelSizes,
   SIDEBAR_PX,
@@ -52,7 +53,7 @@ export const PlaygroundContent = ({
   const sidebarSizes = useSidebarPanelSizes(panelGroupContainerRef);
 
   const sidebarPanelContent = selectedComponent ? (
-    <div className="min-h-0 flex-1 overflow-y-auto px-3 pb-3 scrollbar-no">
+    <div className="min-h-0 flex-1 overflow-y-auto p-4 scrollbar-no">
       <PropertyEditor
         component={componentRegistry[selectedComponent]}
         components={componentRegistry}
@@ -78,7 +79,7 @@ export const PlaygroundContent = ({
 
   const mainPanelContent = selectedComponent ? (
     <div className="flex-1 flex flex-col min-w-0">
-      <div className="flex-1 md:py-4 lg:py-10">
+      <div className="flex-1 py-4 lg:py-10">
         <LivePreview
           componentKey={selectedComponent}
           config={componentConfig}
@@ -144,15 +145,49 @@ export const PlaygroundContent = ({
           )}
         </div>
 
-        {/* Mobile layout */}
+        {/* Mobile layout — tab-based */}
         <div className="flex w-full flex-1 flex-col lg:hidden">
-          <div className="flex w-full flex-shrink-0 flex-col">
-            <div className="flex h-full flex-col overflow-hidden rounded-xl border border-border/70 bg-card shadow-sm">
-              {sidebarPanelContent}
-            </div>
-          </div>
-
-          {mainPanelContent}
+          {selectedComponent ? (
+            <Tabs defaultValue="preview" className="flex h-full flex-col gap-0">
+              <div className="sticky top-16 z-30 flex justify-start py-1">
+                <TabsList className="h-8 w-[200px]">
+                  <TabsTrigger value="preview" className="text-sm">
+                    Preview
+                  </TabsTrigger>
+                  <TabsTrigger value="props" className="text-sm">
+                    Props
+                  </TabsTrigger>
+                </TabsList>
+              </div>
+              <TabsContent
+                value="props"
+                className="mt-0 flex-1 overflow-hidden py-4"
+              >
+                <div
+                  className={
+                    SIDEBAR_INNER_CLASSNAME + " h-full rounded-none shadow-none"
+                  }
+                >
+                  {sidebarPanelContent}
+                </div>
+              </TabsContent>
+              <TabsContent
+                value="preview"
+                className="mt-0 flex-1 overflow-hidden"
+              >
+                <div className="h-full overflow-y-auto">{mainPanelContent}</div>
+              </TabsContent>
+            </Tabs>
+          ) : (
+            <>
+              <div className="flex-shrink-0">
+                <div className={SIDEBAR_INNER_CLASSNAME}>
+                  {sidebarPanelContent}
+                </div>
+              </div>
+              <div className="hidden lg:block">{mainPanelContent}</div>
+            </>
+          )}
         </div>
       </div>
     </ErrorBoundary>
