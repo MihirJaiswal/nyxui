@@ -52,7 +52,7 @@ export default function PlaygroundPage() {
   return (
     <>
       <Navbar />
-      <div className=" px-6 lg:px-6 xl:px-22 xl:container mx-auto">
+      <div className="py-6 px-6 lg:px-6 xl:px-22 xl:container mx-auto">
         <PlaygroundClient />
       </div>
     </>

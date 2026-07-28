@@ -17,6 +17,7 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
+import { Grid } from "@/components/playground/Grid";
 import { cn } from "@/lib/utils";
 import { useKeyboardShortcut } from "@/hooks/use-keyboard-shortcut";
 import { useHoverTick } from "@/hooks/use-hover-tick";
@@ -183,20 +184,24 @@ const ComponentSelector = ({
       onValueChange={setHighlightedValue}
       className="flex h-full flex-col gap-0 rounded-none bg-transparent"
     >
-      <div className="p-3">
+      <div className="lg:hidden">
+        <Grid />
+      </div>
+
+      <div className="p-3 lg:p-4">
         <CommandInput
           ref={inputRef}
           value={searchQuery}
           onValueChange={setSearchQuery}
           onKeyDown={handleSearchKeyDown}
           placeholder="Search components..."
-          className="h-9 rounded-lg"
+          className="h-9 rounded-lg text-sm"
           wrapperClassName="border rounded-lg"
         />
       </div>
 
       <CommandList
-        className="max-h-none min-h-0 flex-1 overflow-y-auto p-3 scrollbar-no"
+        className="max-h-none min-h-0 flex-1 overflow-y-auto p-3 lg:p-4 scrollbar-no"
         onMouseMove={(e) => mouseY.set(e.clientY)}
         onMouseLeave={() => mouseY.set(HOVER_NONE)}
       >

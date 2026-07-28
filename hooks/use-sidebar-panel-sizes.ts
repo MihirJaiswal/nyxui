@@ -7,7 +7,7 @@ export const SIDEBAR_INNER_CLASSNAME =
   "flex h-full flex-col overflow-hidden rounded-xl border border-border/70 bg-card shadow-sm";
 export const SIDEBAR_OUTER_CLASSNAME =
   "flex flex-col lg:sticky lg:top-16 lg:h-[calc(85vh+5rem)] lg:py-10";
-export const MAIN_OUTER_CLASSNAME = "flex flex-col min-w-0 pl-8 xl:pl-24";
+export const MAIN_OUTER_CLASSNAME = "flex flex-col min-w-0 lg:pl-8 xl:pl-24";
 
 export const useSidebarPanelSizes = (
   containerRef: React.RefObject<HTMLDivElement | null>,
