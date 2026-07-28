@@ -2,11 +2,11 @@ import { Grid } from "@/components/playground/Grid";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
-  SIDEBAR_PX,
   SIDEBAR_INNER_CLASSNAME,
   SIDEBAR_OUTER_CLASSNAME,
   MAIN_OUTER_CLASSNAME,
 } from "@/hooks/use-sidebar-panel-sizes";
+import { cn } from "@/lib/utils";
 
 export const PlaygroundEmptyState = () => {
   return (
@@ -28,8 +28,10 @@ export const PlaygroundLoading = () => {
       {/* Desktop layout */}
       <div className="hidden w-full flex-1 lg:flex lg:flex-row">
         <div
-          style={{ width: SIDEBAR_PX, flexShrink: 0 }}
-          className={SIDEBAR_OUTER_CLASSNAME}
+          className={cn(
+            SIDEBAR_OUTER_CLASSNAME,
+            "w-[260px] shrink-0 xl:w-[310px]",
+          )}
         >
           <div className={SIDEBAR_INNER_CLASSNAME}>
             <div className="flex-1 flex items-center justify-center p-6 lg:p-8">
