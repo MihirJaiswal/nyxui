@@ -147,11 +147,11 @@ export default function Navbar() {
           <Button
             variant="outline"
             aria-label="Search"
-            className="w-full max-w-xs justify-center rounded-full border-border/60 text-sm text-muted-foreground"
+            className="h-8 w-full max-w-xs justify-start gap-2 rounded-lg border-border/60 bg-muted/50 px-3 text-sm font-normal text-muted-foreground shadow-none transition-colors hover:bg-muted hover:text-foreground"
             onClick={openSearch}
           >
-            <Search className="mr-2 h-4 w-4" />
-            <span>Search</span>
+            <Search className="h-4 w-4 shrink-0" />
+            <span>Search...</span>
           </Button>
         </div>
 
