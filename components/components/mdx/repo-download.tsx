@@ -1,7 +1,6 @@
 "use client";
 
 import { ArrowRightIcon, Download, Github, Loader } from "lucide-react";
-import Link from "next/link";
 import { useState } from "react";
 import { toast } from "sonner";
 import { externalLinks } from "@/lib/links";
@@ -47,9 +46,10 @@ export default function RepoDownload({ url, free = false }: RepoDownloadProps) {
   }
 
   return (
-    <Link
+    <a
       href={externalLinks.githubRepo}
       target="_blank"
+      rel="noopener noreferrer"
       className={cn(
         buttonVariants({
           variant: "outline",
@@ -60,6 +60,6 @@ export default function RepoDownload({ url, free = false }: RepoDownloadProps) {
       <Github className="size-4" />
       Buy Now
       <ArrowRightIcon className="size-4 transition-all duration-300 ease-out group-hover:translate-x-1" />
-    </Link>
+    </a>
   );
 }

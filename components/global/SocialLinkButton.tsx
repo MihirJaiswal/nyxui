@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 export const SocialLinkButton = ({
@@ -13,7 +12,7 @@ export const SocialLinkButton = ({
   className?: string;
 }) => {
   return (
-    <Link
+    <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
@@ -24,6 +23,6 @@ export const SocialLinkButton = ({
       )}
     >
       {children}
-    </Link>
+    </a>
   );
 };

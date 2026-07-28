@@ -114,11 +114,11 @@ export function MobileNav({ activeLink, navLinks, moreLinks }: MobileNavProps) {
 
   return (
     <div className="flex items-center gap-1 lg:hidden">
-      <Link
+      <a
         aria-label="GitHub"
         href={externalLinks.githubRepo}
         target="_blank"
-        rel="noreferrer"
+        rel="noopener noreferrer"
       >
         <Button
           aria-label="GitHub"
@@ -129,12 +129,12 @@ export function MobileNav({ activeLink, navLinks, moreLinks }: MobileNavProps) {
           <GitHubLogoIcon className="h-4 w-4" />
           <span className="sr-only">GitHub</span>
         </Button>
-      </Link>
-      <Link
+      </a>
+      <a
         aria-label="Twitter"
         href={externalLinks.twitter}
         target="_blank"
-        rel="noreferrer"
+        rel="noopener noreferrer"
       >
         <Button
           aria-label="Twitter"
@@ -145,7 +145,7 @@ export function MobileNav({ activeLink, navLinks, moreLinks }: MobileNavProps) {
           <XTwitterIcon size={12} />
           <span className="sr-only">Twitter</span>
         </Button>
-      </Link>
+      </a>
       <ModeToggle />
       <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
         <SheetTrigger asChild>
