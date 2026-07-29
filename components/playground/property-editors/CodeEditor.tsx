@@ -3,6 +3,7 @@
 import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import { getHighlighter, type BundledLanguage } from "shiki";
 import { getNyxuiTheme, getNyxuiLightTheme } from "@/lib/shiki-themes";
+import { cn } from "@/lib/utils";
 
 interface CodeEditorProps {
   value: string;
@@ -92,7 +93,10 @@ const CodeEditor = ({
   return (
     <div
       ref={containerRef}
-      className={`relative overflow-hidden rounded-xl border border-border/70 bg-background dark:bg-background/30 ${className}`}
+      className={cn(
+        "relative overflow-hidden rounded-xl border border-border/70 bg-background dark:bg-background/30",
+        className,
+      )}
       style={style}
     >
       {/* Syntax highlighted background */}
@@ -126,11 +130,10 @@ const CodeEditor = ({
         onChange={handleTextareaChange}
         onScroll={handleScroll}
         placeholder={placeholder}
-        className={`
-          relative w-full resize-none outline-none border-0 focus:ring-0 focus:outline-none
-          ${value ? "text-transparent caret-foreground" : "text-muted-foreground"}
-          selection:bg-primary/25
-        `}
+        className={cn(
+          "relative w-full resize-none outline-none border-0 focus:ring-0 focus:outline-none selection:bg-primary/25",
+          value ? "text-transparent caret-foreground" : "text-muted-foreground",
+        )}
         style={{
           zIndex: 2,
           background: "transparent",

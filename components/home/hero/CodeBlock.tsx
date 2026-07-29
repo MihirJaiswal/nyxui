@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { Play, Pause, Copy, Check, RotateCcw } from "lucide-react";
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
 import { useToggle } from "@/hooks/use-toggle";
+import { cn } from "@/lib/utils";
 
 const AnimatedCodeBlockDemo = () => {
   const COLORS = {
@@ -195,7 +196,10 @@ const AnimatedCodeBlockDemo = () => {
 
           <button
             onClick={copyCode}
-            className={`p-1.5 rounded hover:bg-zinc-800 text-zinc-300 transition-colors ${copied ? "bg-green-600" : ""}`}
+            className={cn(
+              "p-1.5 rounded hover:bg-zinc-800 text-zinc-300 transition-colors",
+              copied && "bg-green-600",
+            )}
             title="Copy code"
           >
             {copied ? <Check size={16} /> : <Copy size={16} />}

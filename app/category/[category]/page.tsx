@@ -53,7 +53,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             title={component.title}
             description={component.description}
             imageSrc={component.image}
-            imageFit={component.imageFit}
+            imageClassName={component.imageClassName}
           />
         ))}
       </div>

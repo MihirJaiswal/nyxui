@@ -3,6 +3,7 @@ import type React from "react";
 import { useState, useRef, useEffect } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 interface CardProps {
   logo: string;
@@ -261,7 +262,11 @@ export default function ThreeDLayeredCard({
   return (
     <motion.div
       ref={ref}
-      className={`relative cursor-pointer ${className} ${isMobile ? "touch-manipulation" : ""}`}
+      className={cn(
+        "relative cursor-pointer",
+        className,
+        isMobile && "touch-manipulation",
+      )}
       style={{
         perspective: "1000px",
         transformStyle: "preserve-3d",
@@ -335,7 +340,7 @@ export default function ThreeDLayeredCard({
           }}
         >
           {/* Background gradient */}
-          <div className={`absolute inset-0 ${backgroundColor}`} />
+          <div className={cn("absolute inset-0", backgroundColor)} />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30" />
 
           {/* Smooth linear lens effect overlay */}

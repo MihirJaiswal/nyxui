@@ -3,6 +3,7 @@ import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { z } from "zod";
 import AnimatedLogo from "./animated-logo";
+import { cn } from "@/lib/utils";
 
 // Zod schema for email validation
 const emailSchema = z
@@ -188,9 +189,10 @@ export function NewsletterSection() {
               disabled={isLoading}
               maxLength={100}
               autoComplete="email"
-              className={`w-full bg-transparent border rounded-lg px-6 py-2 sm:py-4 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground/50 transition-colors duration-200 text-lg ${
-                hasErrors ? "border-red-500 bg-red-900/20" : "border-border/60"
-              }`}
+              className={cn(
+                "w-full bg-transparent border rounded-lg px-6 py-2 sm:py-4 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground/50 transition-colors duration-200 text-lg",
+                hasErrors ? "border-red-500 bg-red-900/20" : "border-border/60",
+              )}
             />
           </div>
 

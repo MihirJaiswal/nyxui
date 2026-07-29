@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
+import { cn } from "@/lib/utils";
 
 interface Message {
   id: string;
@@ -232,9 +233,10 @@ export default function AnimatedChatDemo() {
           {messages.map((message, index) => (
             <div
               key={message.id}
-              className={`flex w-full ${
-                message.sender === "user1" ? "justify-end" : "justify-start"
-              } animate-in slide-in-from-bottom-3 fade-in duration-500`}
+              className={cn(
+                "flex w-full animate-in slide-in-from-bottom-3 fade-in duration-500",
+                message.sender === "user1" ? "justify-end" : "justify-start",
+              )}
               style={{
                 animationDelay: `${Math.min(index * 100, 300)}ms`,
                 animationFillMode: "both",
@@ -242,11 +244,12 @@ export default function AnimatedChatDemo() {
             >
               <div className="group relative max-w-[75%]">
                 <div
-                  className={`w-full rounded-2xl px-4 py-2 transition-all duration-300 hover:scale-[1.02] cursor-pointer transform ${
+                  className={cn(
+                    "w-full rounded-2xl px-4 py-2 transition-all duration-300 hover:scale-[1.02] cursor-pointer transform",
                     message.sender === "user1"
                       ? "bg-blue-500 text-white rounded-br-md shadow-lg hover:shadow-xl ml-auto"
-                      : "bg-white dark:bg-zinc-800 dark:text-white text-zinc-800 rounded-bl-md shadow-md hover:shadow-lg border border-zinc-200 dark:border-zinc-700 mr-auto"
-                  }`}
+                      : "bg-white dark:bg-zinc-800 dark:text-white text-zinc-800 rounded-bl-md shadow-md hover:shadow-lg border border-zinc-200 dark:border-zinc-700 mr-auto",
+                  )}
                   onClick={() => {
                     const element = document.getElementById(
                       `msg-${message.id}`,
@@ -261,20 +264,22 @@ export default function AnimatedChatDemo() {
                 >
                   <p className="text-sm leading-relaxed">{message.text}</p>
                   <div
-                    className={`flex items-center justify-between mt-1 text-xs ${
+                    className={cn(
+                      "flex items-center justify-between mt-1 text-xs",
                       message.sender === "user1"
                         ? "text-blue-100"
-                        : "text-zinc-500 dark:text-zinc-400"
-                    }`}
+                        : "text-zinc-500 dark:text-zinc-400",
+                    )}
                   >
                     <span>{formatTime(message.timestamp)}</span>
                     {message.sender === "user1" && (
                       <span
-                        className={`transition-all duration-500 ${
+                        className={cn(
+                          "transition-all duration-500",
                           message.status === "read"
                             ? "text-blue-200 scale-110"
-                            : "text-blue-300"
-                        }`}
+                            : "text-blue-300",
+                        )}
                       >
                         {getStatusIcon(message.status)}
                       </span>
@@ -299,7 +304,10 @@ export default function AnimatedChatDemo() {
 
                 {/* Quick reaction buttons */}
                 <div
-                  className={`absolute -top-2 ${message.sender === "user1" ? "right-0" : "left-0"} opacity-0 group-hover:opacity-100 transition-all duration-300 flex gap-1 transform translate-y-2 group-hover:translate-y-0`}
+                  className={cn(
+                    "absolute -top-2 opacity-0 group-hover:opacity-100 transition-all duration-300 flex gap-1 transform translate-y-2 group-hover:translate-y-0",
+                    message.sender === "user1" ? "right-0" : "left-0",
+                  )}
                 >
                   {["❤️", "😊", "👍"].map((emoji) => (
                     <button
@@ -317,16 +325,18 @@ export default function AnimatedChatDemo() {
 
           {isTyping && typingUser && (
             <div
-              className={`flex w-full ${
-                typingUser === "user1" ? "justify-end" : "justify-start"
-              } animate-in slide-in-from-bottom-4 fade-in duration-300`}
+              className={cn(
+                "flex w-full animate-in slide-in-from-bottom-4 fade-in duration-300",
+                typingUser === "user1" ? "justify-end" : "justify-start",
+              )}
             >
               <div
-                className={`max-w-[75%] rounded-2xl px-4 py-3 ${
+                className={cn(
+                  "max-w-[75%] rounded-2xl px-4 py-3 shadow-md",
                   typingUser === "user1"
                     ? "bg-blue-500/80 text-white rounded-br-md ml-auto"
-                    : "bg-white dark:bg-zinc-800 text-zinc-800 dark:text-white rounded-bl-md border border-zinc-200 dark:border-zinc-700 mr-auto"
-                } shadow-md`}
+                    : "bg-white dark:bg-zinc-800 text-zinc-800 dark:text-white rounded-bl-md border border-zinc-200 dark:border-zinc-700 mr-auto",
+                )}
               >
                 <div className="flex gap-1 items-center">
                   <div
