@@ -72,8 +72,8 @@ export const ComponentSidebar = ({
     : [DEFAULT_GETTING_STARTED_ITEM];
 
   return (
-    <aside className="fixed top-16 z-30 hidden h-[calc(100vh-4rem)] w-auto shrink-0 pt-[22px] backdrop-blur-md lg:sticky lg:block">
-      <div className="h-full py-4">
+    <aside className="fixed top-16 z-30 hidden h-[calc(100vh-4rem)] w-auto shrink-0 backdrop-blur-md lg:sticky lg:block">
+      <div className="h-full py-10">
         <div className="flex h-full flex-col">
           <ComponentSidebarClient
             gettingStartedSection={{
