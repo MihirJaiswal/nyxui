@@ -20,7 +20,7 @@ export default function SidebarLayout({
     <div className="flex min-h-screen flex-col">
       <Navbar />
       <div
-        className={`flex w-full flex-1 flex-col px-6 lg:flex-row lg:px-6 xl:container xl:mx-auto xl:px-22 lg:gap-8 ${isCollapsed ? "xl:gap-0" : "xl:gap-24"}`}
+        className={`flex w-full flex-1 flex-col px-6 lg:flex-row lg:px-6 xl:container xl:mx-auto xl:px-22 lg:gap-8 ${isCollapsed ? "xl:gap-12" : "xl:gap-24"}`}
       >
         <aside className="hidden w-full shrink-0 lg:block lg:w-auto">
           <div className="sticky top-16 h-[calc(100vh-4rem)] overflow-x-hidden overflow-y-auto hide-scrollbar">
@@ -28,7 +28,7 @@ export default function SidebarLayout({
           </div>
         </aside>
         <main className="min-w-0 flex-1">
-          <div className="mx-auto w-full max-w-[1200px] py-4">{children}</div>
+          <div className="mx-auto w-full py-4">{children}</div>
         </main>
       </div>
     </div>
