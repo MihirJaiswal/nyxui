@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 export const PlaygroundEmptyState = () => {
   return (
     <div className="flex-1 flex flex-col overflow-hidden min-w-0">
-      <div className="flex-1 py-6 lg:py-10 overflow-auto">
+      <div className="flex-1 py-4 overflow-auto">
         <div className="h-full flex">
           <Grid />
         </div>

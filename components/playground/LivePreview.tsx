@@ -163,7 +163,7 @@ const LivePreview = ({
       }}
       className="w-full"
     >
-      <div className="overflow-hidden rounded-xl border border-border/60 bg-card shadow-sm">
+      <div className="flex flex-col overflow-hidden rounded-xl border border-border/60 bg-card shadow-sm lg:h-[calc(85vh+3rem)]">
         <div className="flex items-center justify-between px-4 pt-3">
           <TabsList className="relative z-0 flex h-10 w-fit items-center justify-center rounded-none border-0 bg-transparent p-0 text-muted-foreground">
             <TabsTrigger
@@ -266,10 +266,10 @@ const LivePreview = ({
           </div>
         </div>
 
-        <TabsContent value="preview" className="m-0">
-          <div className="relative overflow-auto px-2 pb-2">
-            <div className="rounded-[9px] border bg-background p-2">
-              <div className="flex min-h-[60vh] lg:min-h-[calc(85vh-5rem)] max-h-[60vh] lg:max-h-[calc(85vh-5rem)] w-full items-center justify-center overflow-hidden p-4">
+        <TabsContent value="preview" className="m-0 flex-1 min-h-0">
+          <div className="relative overflow-auto px-2 pb-2 h-full">
+            <div className="rounded-[9px] border bg-background p-2 h-full">
+              <div className="flex min-h-[60vh] lg:min-h-0 lg:h-full w-full items-center justify-center overflow-hidden p-4">
                 <div className="mx-auto flex w-full max-w-full items-center justify-center">
                   <div
                     className="component-preview-wrapper relative flex w-full items-center justify-center"
@@ -286,11 +286,11 @@ const LivePreview = ({
           </div>
         </TabsContent>
 
-        <TabsContent value="code" className="m-0">
-          <div className="relative overflow-auto px-2 pb-2">
-            <div className="rounded-[9px] border bg-background p-2">
+        <TabsContent value="code" className="m-0 flex-1 min-h-0">
+          <div className="relative overflow-auto px-2 pb-2 h-full">
+            <div className="rounded-[9px] border bg-background p-2 h-full">
               <div
-                className="min-h-[60vh] lg:min-h-[calc(85vh-5rem)] max-h-[60vh] lg:max-h-[calc(85vh-5rem)] overflow-auto rounded-[9px] bg-background [&_pre]:!m-0 [&_pre]:min-h-[inherit] [&_pre]:!bg-transparent [&_pre]:!py-3 [&_pre]:text-[13px] [&_pre]:leading-6 scrollbar-no"
+                className="min-h-[60vh] lg:min-h-0 lg:h-full overflow-auto rounded-[9px] bg-background [&_pre]:!m-0 [&_pre]:min-h-[inherit] [&_pre]:!bg-transparent [&_pre]:!py-3 [&_pre]:text-[13px] [&_pre]:leading-6 scrollbar-no"
                 dangerouslySetInnerHTML={{ __html: highlightedCode }}
               />
             </div>
