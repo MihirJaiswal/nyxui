@@ -2,7 +2,6 @@
 
 import React from "react";
 import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
 import { PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useHoverTick } from "@/hooks/use-hover-tick";
@@ -102,6 +101,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
       initial={false}
       animate={{
         height: isCollapsed ? 40 : "calc(100% - 1.5rem)",
+        width: isCollapsed ? 48 : "var(--sidebar-expanded-w, 250px)",
       }}
       transition={{
         type: "spring",
@@ -109,10 +109,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
         damping: 30,
         mass: 0.8,
       }}
-      className={cn(
-        "overflow-hidden rounded-xl border border-border/70 bg-card shadow-sm transition-[width] duration-300 ease-out",
-        isCollapsed ? "w-12" : "w-[250px] xl:w-[288px]",
-      )}
+      className="overflow-hidden rounded-xl border border-border/70 bg-card shadow-sm xl:[--sidebar-expanded-w:288px]"
     >
       <div className="flex h-full flex-col">
         <button

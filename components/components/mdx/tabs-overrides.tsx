@@ -33,7 +33,7 @@ export const tabsOverrides = {
   }: React.ComponentProps<typeof TabsList>) => (
     <TabsList
       className={cn(
-        "relative z-0 flex h-8 w-fit items-center justify-center rounded-lg bg-muted p-0.5 text-muted-foreground shadow-none inset-ring-1 inset-ring-border/64",
+        "relative z-0 flex h-8 w-fit items-center justify-center rounded-lg bg-card p-0.5 text-muted-foreground shadow-none inset-ring-1 inset-ring-border/64",
         className,
       )}
       {...props}
