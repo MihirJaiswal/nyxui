@@ -181,7 +181,7 @@ export const CommandPalette = () => {
     <>
       <Button
         variant="outline"
-        className="relative h-8 justify-start gap-2 rounded-lg border-border/60 bg-muted/50 px-3 text-sm font-normal text-muted-foreground shadow-none transition-colors hover:bg-muted hover:text-foreground sm:w-44"
+        className="relative h-8 justify-start gap-2 rounded-lg border-border/60 bg-card px-3 text-sm font-normal text-muted-foreground shadow-none transition-colors hover:bg-muted hover:text-foreground sm:w-44"
         onClick={() => setOpen(true)}
       >
         <Search className="h-4 w-4 shrink-0" />
