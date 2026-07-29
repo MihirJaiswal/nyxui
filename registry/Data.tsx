@@ -4,6 +4,7 @@ export interface Component {
   description: string;
   image: string;
   isNew?: boolean;
+  imageFit?: "cover" | "contain";
 }
 
 export interface template {
@@ -12,6 +13,7 @@ export interface template {
   description: string;
   image: string;
   isNew?: boolean;
+  imageFit?: "cover" | "contain";
 }
 
 export interface Block {
@@ -20,6 +22,7 @@ export interface Block {
   description: string;
   image: string;
   isNew?: boolean;
+  imageFit?: "cover" | "contain";
 }
 
 interface Links {
@@ -76,6 +79,7 @@ export const componentsData: ComponentsData = {
       tags: ["Background", "Animation"],
       description: "Smooth shifting grainy background for modern UIs.",
       image: "/assets/images/showcase/components/grainy-background.png",
+      imageFit: "cover",
     },
     "animated-text": {
       title: "Animated Text",
@@ -88,6 +92,7 @@ export const componentsData: ComponentsData = {
       tags: ["Background", "Interactive", "Animation"],
       description: "An interactive floating bubble animation for backgrounds.",
       image: "/assets/images/showcase/components/bubbles-background.png",
+      imageFit: "cover",
     },
     "dynamic-ripple": {
       title: "Dynamic Ripple",
@@ -162,6 +167,7 @@ export const componentsData: ComponentsData = {
       tags: ["Background", "Effects", "Animation"],
       description: "A component that simulates a matrix code rain effect.",
       image: "/assets/images/showcase/components/matrix-code-rain.png",
+      imageFit: "cover",
     },
     "morphing-blob": {
       title: "Morphing Blob",
@@ -201,6 +207,7 @@ export const componentsData: ComponentsData = {
       description: "A customizable Apple Glass effect component.",
       image: "/assets/images/showcase/components/apple-glass-effect.png",
       isNew: true,
+      imageFit: "cover",
     },
     "3d-layered-card": {
       title: "3D Layered Card",
