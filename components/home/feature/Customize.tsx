@@ -2,6 +2,7 @@
 import { useState, lazy, Suspense } from "react";
 import { Volume2, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import { cn } from "@/lib/utils";
 
 const MusicPlayer = lazy(() =>
   import("@/registry/ui/music-player").then((module) => ({
@@ -285,13 +286,16 @@ const MusicCardThemeCustomizer = () => {
             {themeOptions.map((option) => (
               <button
                 key={option.value}
-                className={`flex bg-white dark:bg-black items-center gap-3 px-6 py-3 border rounded-xl transition-all duration-200 hover:scale-105 ${
+                className={cn(
+                  "flex bg-white dark:bg-black items-center gap-3 px-6 py-3 border rounded-xl transition-all duration-200 hover:scale-105",
                   cardTheme === option.value
-                    ? `${
-                        borderColors[option.value] || borderColors.default
-                      } ${option.color} shadow-lg scale-105`
-                    : "border-gray-300 dark:border-gray-700 opacity-70 hover:opacity-100"
-                }`}
+                    ? cn(
+                        borderColors[option.value] || borderColors.default,
+                        option.color,
+                        "shadow-lg scale-105",
+                      )
+                    : "border-gray-300 dark:border-gray-700 opacity-70 hover:opacity-100",
+                )}
                 onClick={() => handleThemeChange(option.value)}
                 disabled={isAnimating}
               >

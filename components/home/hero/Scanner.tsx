@@ -3,6 +3,7 @@ import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { CheckCircle } from "lucide-react";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 interface ScanResult {
   id: string;
@@ -11,10 +12,6 @@ interface ScanResult {
   position: { x: number; y: number };
   label: string;
 }
-
-const cn = (...classes: (string | undefined | false)[]) => {
-  return classes.filter(Boolean).join(" ");
-};
 
 const ScannerSkeleton = () => {
   return (

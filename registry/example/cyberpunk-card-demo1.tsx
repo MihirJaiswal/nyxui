@@ -1,6 +1,7 @@
 import { Terminal, Zap, Shield, Activity, Database, Cpu } from "lucide-react";
 import { CyberpunkCard } from "@/registry/ui/cyberpunk-card";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 export default function CyberpunkCardDemo1() {
   return (
@@ -199,13 +200,15 @@ export default function CyberpunkCardDemo1() {
                     {[...Array(12)].map((_, i) => (
                       <div
                         key={i}
-                        className={`w-2 bg-gradient-to-t rounded-sm ${
+                        className={cn(
+                          "w-2 bg-gradient-to-t rounded-sm",
                           i < 9
                             ? "from-green-600 to-green-400"
                             : i < 11
                               ? "from-yellow-600 to-yellow-400"
-                              : "from-red-600 to-red-400"
-                        } ${i < 9 ? "animate-pulse" : ""}`}
+                              : "from-red-600 to-red-400",
+                          i < 9 && "animate-pulse",
+                        )}
                         style={{ height: `${(i + 1) * 8}%` }}
                       ></div>
                     ))}

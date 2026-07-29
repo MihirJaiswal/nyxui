@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { hexToRgbString } from "@/lib/colors";
+import { cn } from "@/lib/utils";
 
 function adjustColorBrightness(hex: string, percent: number): string {
   const num = parseInt(hex.replace("#", ""), 16);
@@ -359,7 +360,7 @@ const MinimalKeyboard: React.FC<MinimalKeyboardProps> = ({
                 <div
                   key={`key-${rowIndex}-${keyIndex}`}
                   data-key={key.code}
-                  className={`key ${key.code} ${isActive ? "active" : ""}`}
+                  className={cn("key", key.code, isActive && "active")}
                   style={getKeyStyle(key, isPressed, isActive)}
                   onMouseDown={() => key.code && handleKeyDown(key.code)}
                   onMouseUp={() => key.code && handleKeyUp(key.code)}

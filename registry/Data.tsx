@@ -4,7 +4,7 @@ export interface Component {
   description: string;
   image: string;
   isNew?: boolean;
-  imageFit?: "cover" | "contain";
+  imageClassName?: string;
 }
 
 export interface template {
@@ -13,7 +13,7 @@ export interface template {
   description: string;
   image: string;
   isNew?: boolean;
-  imageFit?: "cover" | "contain";
+  imageClassName?: string;
 }
 
 export interface Block {
@@ -22,7 +22,7 @@ export interface Block {
   description: string;
   image: string;
   isNew?: boolean;
-  imageFit?: "cover" | "contain";
+  imageClassName?: string;
 }
 
 interface Links {
@@ -53,6 +53,7 @@ export const componentsData: ComponentsData = {
       description: "A mesmerizing water ripple effect for interactive images.",
       image: "/assets/images/showcase/components/water-ripple-effect.png",
       isNew: true,
+      imageClassName: "scale-85",
     },
     "custom-cursor": {
       title: "Custom Cursor",
@@ -60,6 +61,7 @@ export const componentsData: ComponentsData = {
       description: "A customizable cursor that follows the mouse.",
       image: "/assets/images/showcase/components/custom-cursor.png",
       isNew: true,
+      imageClassName: "",
     },
     "animated-code-block": {
       title: "Animated Code Block",
@@ -73,26 +75,28 @@ export const componentsData: ComponentsData = {
       description:
         "A futuristic card design with neon glow and tech aesthetics.",
       image: "/assets/images/showcase/components/cyberpunkcard.png",
+      imageClassName: "scale-90",
     },
     "grainy-background": {
       title: "Grainy Background",
       tags: ["Background", "Animation"],
       description: "Smooth shifting grainy background for modern UIs.",
       image: "/assets/images/showcase/components/grainy-background.png",
-      imageFit: "cover",
+      imageClassName: "object-cover scale-101",
     },
     "animated-text": {
       title: "Animated Text",
       tags: ["Typography", "Animation"],
       description: "Text with various animation effects and transitions.",
       image: "/assets/images/showcase/components/animated-text.png",
+      imageClassName: "invert-100 dark:invert-0 object-cover",
     },
     "bubble-background": {
       title: "Bubble Background",
       tags: ["Background", "Interactive", "Animation"],
       description: "An interactive floating bubble animation for backgrounds.",
       image: "/assets/images/showcase/components/bubbles-background.png",
-      imageFit: "cover",
+      imageClassName: "object-cover scale-101",
     },
     "dynamic-ripple": {
       title: "Dynamic Ripple",
@@ -100,6 +104,7 @@ export const componentsData: ComponentsData = {
       description:
         "Interactive ripple effect that responds to cursor or touch.",
       image: "/assets/images/showcase/components/dynamic-ripple.png",
+      imageClassName: "object-cover scale-101",
     },
     "github-repo-card": {
       title: "GitHub Repo Card",
@@ -113,6 +118,7 @@ export const componentsData: ComponentsData = {
       tags: ["Buttons", "Effects", "Glitch"],
       description: "A button with a digital glitch effect on hover and click.",
       image: "/assets/images/showcase/components/glitch-button.png",
+      imageClassName: "scale-50",
     },
     keyboard: {
       title: "Keyboard",
@@ -125,12 +131,14 @@ export const componentsData: ComponentsData = {
       tags: ["Interactive", "Tools", "Mock"],
       description: "A nostalgic MS Paint-like drawing tool.",
       image: "/assets/images/showcase/components/ms-paint.png",
+      imageClassName: "scale-80",
     },
     "lamp-heading": {
       title: "Lamp Heading",
       tags: ["Typography", "Effects", "Futuristic"],
       description: "A heading component with a lamp effect.",
       image: "/assets/images/showcase/components/lamp-heading.png",
+      imageClassName: "invert-100 dark:invert-0 object-cover",
     },
     "liquid-metal-button": {
       title: "Liquid Metal Button",
@@ -143,31 +151,35 @@ export const componentsData: ComponentsData = {
       tags: ["Interactive", "Image", "Media"],
       description: "A component for comparing two images side-by-side.",
       image: "/assets/images/showcase/components/image-comparison.png",
+      imageClassName: "scale-80",
     },
     "image-scanner": {
       title: "Image Scanner",
       tags: ["Interactive", "Image", "Media"],
       description: "A component for scanning images with a futuristic effect.",
       image: "/assets/images/showcase/components/image-scanner.png",
+      imageClassName: "scale-80 contrast-105",
     },
     "glow-card": {
       title: "Glow Card",
       tags: ["Cards", "Effects", "Animation", "Interactive"],
       description: "A card component with subtle animation and transitions.",
       image: "/assets/images/showcase/components/glow-card.png",
+      imageClassName: "scale-90 rounded-3xl p-3 overflow-hidden",
     },
     marquee: {
       title: "Marquee",
       tags: ["Interactive", "Animation"],
       description: "A customizable, interactive scrolling marquee component.",
       image: "/assets/images/showcase/components/marquee.png",
+      imageClassName: "invert-100 grayscale dark:invert-0 object-cover",
     },
     "matrix-code-rain": {
       title: "Matrix Code Rain",
       tags: ["Background", "Effects", "Animation"],
       description: "A component that simulates a matrix code rain effect.",
       image: "/assets/images/showcase/components/matrix-code-rain.png",
-      imageFit: "cover",
+      imageClassName: "object-cover scale-101",
     },
     "morphing-blob": {
       title: "Morphing Blob",
@@ -187,6 +199,7 @@ export const componentsData: ComponentsData = {
       tags: ["Cards", "Effects", "3D", "Interactive"],
       description: "A card with reveal animations that show content on hover.",
       image: "/assets/images/showcase/components/reveal-card.png",
+      imageClassName: "scale-95",
     },
     "scroll-animation-trigger": {
       title: "Scroll Animation Trigger",
@@ -207,7 +220,7 @@ export const componentsData: ComponentsData = {
       description: "A customizable Apple Glass effect component.",
       image: "/assets/images/showcase/components/apple-glass-effect.png",
       isNew: true,
-      imageFit: "cover",
+      imageClassName: "object-cover scale-101",
     },
     "3d-layered-card": {
       title: "3D Layered Card",
@@ -215,6 +228,7 @@ export const componentsData: ComponentsData = {
       description: "A 3D card with layered effects and animations.",
       image: "/assets/images/showcase/components/3d-layered-card.png",
       isNew: true,
+      imageClassName: "scale-95",
     },
   },
   templates: {

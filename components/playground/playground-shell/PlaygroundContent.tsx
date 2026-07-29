@@ -165,7 +165,7 @@ export const PlaygroundContent = ({
                 value="props"
                 className="mt-0 flex-1 overflow-hidden py-4"
               >
-                <div className={SIDEBAR_INNER_CLASSNAME + " h-full"}>
+                <div className={cn(SIDEBAR_INNER_CLASSNAME, "h-full")}>
                   {sidebarPanelContent}
                 </div>
               </TabsContent>

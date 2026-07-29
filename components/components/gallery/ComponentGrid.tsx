@@ -33,7 +33,7 @@ export default function ComponentGrid({
           title={item.title}
           description={item.description}
           imageSrc={item.image}
-          imageFit={item.imageFit}
+          imageClassName={item.imageClassName}
           type={type}
         />
       ))}

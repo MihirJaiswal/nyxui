@@ -18,6 +18,7 @@ import {
   X,
 } from "lucide-react";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 export interface Track {
   id: string;
@@ -266,13 +267,25 @@ export const MusicPlayer = ({
     const baseStyles = "transition-all duration-500 backdrop-blur-sm";
     switch (theme) {
       case "spotify":
-        return `bg-green-50 dark:bg-black text-green-600 dark:text-green-500 border-2 border-green-400/40 shadow-2xl shadow-green-500/20 ${baseStyles}`;
+        return cn(
+          "bg-green-50 dark:bg-black text-green-600 dark:text-green-500 border-2 border-green-400/40 shadow-2xl shadow-green-500/20",
+          baseStyles,
+        );
       case "cosmic":
-        return `bg-gradient-to-br from-violet-900/95 via-purple-800/95 to-fuchsia-900/95 text-white border border-violet-400/40 shadow-2xl shadow-purple-500/20 ${baseStyles}`;
+        return cn(
+          "bg-gradient-to-br from-violet-900/95 via-purple-800/95 to-fuchsia-900/95 text-white border border-violet-400/40 shadow-2xl shadow-purple-500/20",
+          baseStyles,
+        );
       case "midnight":
-        return `bg-gradient-to-br from-slate-200 via-gray-200 to-zinc-200 dark:from-slate-900/95 dark:via-neutral-800/95 dark:to-zinc-900/95 text-black dark:text-white border border-slate-400/40 shadow-2xl shadow-slate-500/20 ${baseStyles}`;
+        return cn(
+          "bg-gradient-to-br from-slate-200 via-gray-200 to-zinc-200 dark:from-slate-900/95 dark:via-neutral-800/95 dark:to-zinc-900/95 text-black dark:text-white border border-slate-400/40 shadow-2xl shadow-slate-500/20",
+          baseStyles,
+        );
       default:
-        return `bg-gradient-to-br from-blue-100 via-cyan-100 to-teal-100 dark:from-blue-900/95 dark:via-cyan-800/95 dark:to-teal-900/95 text-black dark:text-white border border-blue-400/40 shadow-2xl shadow-cyan-500/20 ${baseStyles}`;
+        return cn(
+          "bg-gradient-to-br from-blue-100 via-cyan-100 to-teal-100 dark:from-blue-900/95 dark:via-cyan-800/95 dark:to-teal-900/95 text-black dark:text-white border border-blue-400/40 shadow-2xl shadow-cyan-500/20",
+          baseStyles,
+        );
     }
   };
 
@@ -307,12 +320,19 @@ export const MusicPlayer = ({
   return (
     <div className="relative">
       <div
-        className={`${getThemeStyles()} ${className} rounded-2xl overflow-hidden shadow-lg w-full max-w-md mx-auto min-w-0`}
+        className={cn(
+          getThemeStyles(),
+          className,
+          "rounded-2xl overflow-hidden shadow-lg w-full max-w-md mx-auto min-w-0",
+        )}
       >
         {/* Artwork Section */}
         <div className="relative">
           <div
-            className={`w-full transition-all duration-500 ${isExpanded ? "h-96" : "h-48 sm:h-60"} relative overflow-hidden`}
+            className={cn(
+              "w-full transition-all duration-500 relative overflow-hidden",
+              isExpanded ? "h-96" : "h-48 sm:h-60",
+            )}
           >
             <Image
               src={track.artwork || "/placeholder.svg"}
@@ -322,7 +342,10 @@ export const MusicPlayer = ({
               className="w-full h-full object-cover"
             />
             <div
-              className={`absolute inset-0 bg-gradient-to-t ${isExpanded ? "from-transparent" : "from-black/80"} via-transparent to-transparent`}
+              className={cn(
+                "absolute inset-0 bg-gradient-to-t via-transparent to-transparent",
+                isExpanded ? "from-transparent" : "from-black/80",
+              )}
             ></div>
             {/* Equalizer Overlay */}
             {showEqualizer && isPlaying && (
@@ -330,7 +353,10 @@ export const MusicPlayer = ({
                 {equalizerBars.map((height, i) => (
                   <div
                     key={i}
-                    className={`w-1 sm:w-1.5 bg-gradient-to-t ${getEqualizerColor()} rounded-full transition-all duration-150 shadow-sm`}
+                    className={cn(
+                      "w-1 sm:w-1.5 bg-gradient-to-t rounded-full transition-all duration-150 shadow-sm",
+                      getEqualizerColor(),
+                    )}
                     style={{ height: `${Math.max(4, height * 0.3)}px` }}
                   />
                 ))}
@@ -365,14 +391,18 @@ export const MusicPlayer = ({
             <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
               <button
                 onClick={() => setLiked(!liked)}
-                className={`p-1.5 sm:p-2 rounded-full transition-all hover:scale-110 duration-300 ${
+                className={cn(
+                  "p-1.5 sm:p-2 rounded-full transition-all hover:scale-110 duration-300",
                   liked
                     ? "text-red-500 drop-shadow-lg"
-                    : "text-black/40 dark:text-white/60 hover:text-white"
-                }`}
+                    : "text-black/40 dark:text-white/60 hover:text-white",
+                )}
               >
                 <Heart
-                  className={`h-4 w-4 sm:h-5 sm:w-5 ${liked ? "fill-current drop-shadow-sm" : ""}`}
+                  className={cn(
+                    "h-4 w-4 sm:h-5 sm:w-5",
+                    liked && "fill-current drop-shadow-sm",
+                  )}
                 />
               </button>
               <button className="p-1.5 sm:p-2 rounded-full text-black/40 hover:text-black/60 dark:text-white/60 dark:hover:text-white transition-colors">
@@ -391,7 +421,10 @@ export const MusicPlayer = ({
               onMouseLeave={() => setHoverTime(null)}
             >
               <div
-                className={`absolute top-0 left-0 h-full ${getAccentColor().split(" ")[0]} rounded-full transition-all`}
+                className={cn(
+                  "absolute top-0 left-0 h-full rounded-full transition-all",
+                  getAccentColor().split(" ")[0],
+                )}
                 style={{ width: `${(currentTime / track.duration) * 100}%` }}
               />
               <div
@@ -425,21 +458,23 @@ export const MusicPlayer = ({
             <div className="flex items-center gap-1 sm:gap-3 flex-shrink-0">
               <button
                 onClick={() => setIsShuffled(!isShuffled)}
-                className={`p-1.5 sm:p-2 rounded-full transition-all hover:scale-110 hidden sm:block ${
+                className={cn(
+                  "p-1.5 sm:p-2 rounded-full transition-all hover:scale-110 hidden sm:block",
                   isShuffled
-                    ? `text-black dark:text-white`
-                    : "text-black/80 hover:text-black dark:text-white/80 dark:hover:text-white"
-                }`}
+                    ? "text-black dark:text-white"
+                    : "text-black/80 hover:text-black dark:text-white/80 dark:hover:text-white",
+                )}
               >
                 <Shuffle className="h-3 w-3 sm:h-4 sm:w-4" />
               </button>
               <button
                 onClick={toggleRepeat}
-                className={`p-1.5 sm:p-2 rounded-full transition-all hover:scale-110 relative ${
+                className={cn(
+                  "p-1.5 sm:p-2 rounded-full transition-all hover:scale-110 relative",
                   repeatMode !== "off"
                     ? "text-black dark:text-white"
-                    : "text-black/80 hover:text-black dark:text-white/80 dark:hover:text-white"
-                }`}
+                    : "text-black/80 hover:text-black dark:text-white/80 dark:hover:text-white",
+                )}
               >
                 <Repeat className="h-3 w-3 sm:h-4 sm:w-4" />
                 {repeatMode === "one" && (
@@ -454,11 +489,12 @@ export const MusicPlayer = ({
             <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
               <button
                 onClick={() => skipTrack("prev")}
-                className={`p-1.5 sm:p-2 transition-all hover:scale-110 ${
+                className={cn(
+                  "p-1.5 sm:p-2 transition-all hover:scale-110",
                   queue.length > 0
                     ? "text-black/80 hover:text-black dark:text-white/80 dark:hover:text-white"
-                    : "text-black/40 dark:text-white/40 cursor-not-allowed"
-                }`}
+                    : "text-black/40 dark:text-white/40 cursor-not-allowed",
+                )}
                 disabled={queue.length === 0}
               >
                 <SkipBack className="h-5 w-5 sm:h-6 sm:w-6" />
@@ -466,7 +502,10 @@ export const MusicPlayer = ({
 
               <button
                 onClick={togglePlay}
-                className={`p-3 sm:p-4 rounded-full ${getAccentColor()} text-black hover:scale-105 transition-all duration-300 hover:shadow-xl flex-shrink-0`}
+                className={cn(
+                  "p-3 sm:p-4 rounded-full text-black hover:scale-105 transition-all duration-300 hover:shadow-xl flex-shrink-0",
+                  getAccentColor(),
+                )}
               >
                 {isPlaying ? (
                   <Pause className="h-5 w-5 sm:h-6 sm:w-6 fill-black" />
@@ -477,11 +516,12 @@ export const MusicPlayer = ({
 
               <button
                 onClick={() => skipTrack("next")}
-                className={`p-1.5 sm:p-2 transition-all hover:scale-110 ${
+                className={cn(
+                  "p-1.5 sm:p-2 transition-all hover:scale-110",
                   queue.length > 0
                     ? "text-black/80 hover:text-black dark:text-white/80 dark:hover:text-white"
-                    : "text-black/40 dark:text-white/40 cursor-not-allowed"
-                }`}
+                    : "text-black/40 dark:text-white/40 cursor-not-allowed",
+                )}
                 disabled={queue.length === 0}
               >
                 <SkipForward className="h-5 w-5 sm:h-6 sm:w-6" />
@@ -514,7 +554,10 @@ export const MusicPlayer = ({
                       onClick={handleVolumeChange}
                     >
                       <div
-                        className={`absolute bottom-0 w-full ${getAccentColor().split(" ")[0]} rounded-full transition-all`}
+                        className={cn(
+                          "absolute bottom-0 w-full rounded-full transition-all",
+                          getAccentColor().split(" ")[0],
+                        )}
                         style={{ height: `${isMuted ? 0 : volume}%` }}
                       />
                     </div>
@@ -534,11 +577,13 @@ export const MusicPlayer = ({
 
               <button
                 onClick={() => setShowQueue(!showQueue)}
-                className={`p-1.5 sm:p-2 rounded-full transition-all hover:scale-110 hidden sm:block ${
+                className={cn(
+                  "p-1.5 sm:p-2 rounded-full transition-all hover:scale-110 hidden sm:block",
                   showQueue || queue.length > 0
                     ? "text-black dark:text-white"
-                    : "text-black/60 dark:text-white/60"
-                } ${queue.length === 0 ? "opacity-50" : ""}`}
+                    : "text-black/60 dark:text-white/60",
+                  queue.length === 0 && "opacity-50",
+                )}
                 disabled={queue.length === 0}
               >
                 <List className="h-4 w-4 sm:h-5 sm:w-5" />
@@ -550,7 +595,10 @@ export const MusicPlayer = ({
 
       {showQueue && queue.length > 0 && (
         <div
-          className={`${getThemeStyles()} rounded-2xl mt-4 overflow-hidden shadow-lg w-full max-w-md mx-auto`}
+          className={cn(
+            getThemeStyles(),
+            "rounded-2xl mt-4 overflow-hidden shadow-lg w-full max-w-md mx-auto",
+          )}
         >
           <div className="p-4 sm:p-6">
             <div className="flex items-center justify-between mb-4">
@@ -568,9 +616,10 @@ export const MusicPlayer = ({
                 <div
                   key={queueTrack.id}
                   onClick={() => selectTrackFromQueue(queueTrack, index)}
-                  className={`flex items-center gap-3 p-2 rounded-lg cursor-pointer transition-all hover:bg-black/5 dark:hover:bg-white/5 ${
-                    index === currentIndex ? "bg-black/10 dark:bg-white/10" : ""
-                  }`}
+                  className={cn(
+                    "flex items-center gap-3 p-2 rounded-lg cursor-pointer transition-all hover:bg-black/5 dark:hover:bg-white/5",
+                    index === currentIndex && "bg-black/10 dark:bg-white/10",
+                  )}
                 >
                   <div className="w-10 h-10 rounded-md overflow-hidden flex-shrink-0">
                     <Image
@@ -583,11 +632,12 @@ export const MusicPlayer = ({
                   </div>
                   <div className="flex-1 min-w-0">
                     <p
-                      className={`text-sm font-medium truncate ${
+                      className={cn(
+                        "text-sm font-medium truncate",
                         index === currentIndex
                           ? "text-black dark:text-white"
-                          : "text-black/80 dark:text-white/80"
-                      }`}
+                          : "text-black/80 dark:text-white/80",
+                      )}
                     >
                       {queueTrack.title}
                     </p>
@@ -600,7 +650,10 @@ export const MusicPlayer = ({
                   </div>
                   {index === currentIndex && (
                     <div
-                      className={`w-2 h-2 rounded-full ${getAccentColor()} flex-shrink-0`}
+                      className={cn(
+                        "w-2 h-2 rounded-full flex-shrink-0",
+                        getAccentColor(),
+                      )}
                     />
                   )}
                 </div>
