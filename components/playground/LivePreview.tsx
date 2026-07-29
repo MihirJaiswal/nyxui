@@ -127,7 +127,7 @@ const LivePreview = ({
   const renderComponent = () => {
     if (!LazyComponent) {
       return (
-        <div className="flex min-h-64 flex-col items-center justify-center rounded-xl border border-border/60 bg-card p-8 text-center">
+        <div className="flex min-h-64 flex-col items-center justify-center rounded-[20px] border border-border/60 bg-card p-8 text-center">
           <h3 className="text-lg font-semibold text-foreground">
             Component Import Missing
           </h3>
@@ -163,7 +163,7 @@ const LivePreview = ({
       }}
       className="w-full"
     >
-      <div className="flex flex-col overflow-hidden rounded-xl border border-border/60 bg-card shadow-sm lg:h-[calc(85vh+3rem)]">
+      <div className="flex flex-col overflow-hidden rounded-[20px] border border-border/60 bg-card shadow-sm lg:h-[var(--content-h)]">
         <div className="flex items-center justify-between px-4 pt-3">
           <TabsList className="relative z-0 flex h-10 w-fit items-center justify-center rounded-none border-0 bg-transparent p-0 text-muted-foreground">
             <TabsTrigger
@@ -268,8 +268,8 @@ const LivePreview = ({
 
         <TabsContent value="preview" className="m-0 flex-1 min-h-0">
           <div className="relative overflow-auto px-2 pb-2 h-full">
-            <div className="rounded-[9px] border bg-background p-2 h-full">
-              <div className="flex min-h-[60vh] lg:min-h-0 lg:h-full w-full items-center justify-center overflow-hidden p-4">
+            <div className="rounded-2xl border bg-background p-2 h-full">
+              <div className="flex min-h-[60vh] lg:min-h-0 lg:h-full w-full items-center justify-center overflow-hidden p-4 rounded-2xl">
                 <div className="mx-auto flex w-full max-w-full items-center justify-center">
                   <div
                     className="component-preview-wrapper relative flex w-full items-center justify-center"
@@ -288,9 +288,9 @@ const LivePreview = ({
 
         <TabsContent value="code" className="m-0 flex-1 min-h-0">
           <div className="relative overflow-auto px-2 pb-2 h-full">
-            <div className="rounded-[9px] border bg-background p-2 h-full">
+            <div className="rounded-2xl border bg-background p-2 h-full">
               <div
-                className="min-h-[60vh] lg:min-h-0 lg:h-full overflow-auto rounded-[9px] bg-background [&_pre]:!m-0 [&_pre]:min-h-[inherit] [&_pre]:!bg-transparent [&_pre]:!py-3 [&_pre]:text-[13px] [&_pre]:leading-6 scrollbar-no"
+                className="min-h-[60vh] lg:min-h-0 lg:h-full overflow-auto rounded-2xl bg-background [&_pre]:!m-0 [&_pre]:min-h-[inherit] [&_pre]:!bg-transparent [&_pre]:!py-3 [&_pre]:text-[13px] [&_pre]:leading-6 scrollbar-no"
                 dangerouslySetInnerHTML={{ __html: highlightedCode }}
               />
             </div>
