@@ -11,7 +11,7 @@ import {
   type CodeVariant,
 } from "@/lib/codegen";
 import type { ComponentConfig, ComponentDefinition } from "@/types/playground";
-import { getNyxuiTheme } from "@/lib/shiki-themes";
+import { getNyxuiTheme, getNyxuiLightTheme } from "@/lib/shiki-themes";
 import { cn } from "@/lib/utils";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
@@ -37,7 +37,7 @@ const codeTabs: Array<{
   icon: React.ComponentType<{ className?: string }>;
 }> = [
   { value: "jsx", label: "JSX", icon: Code },
-  { value: "full", label: "Code", icon: FileCode2 },
+  { value: "full", label: "Full Code", icon: FileCode2 },
 ];
 
 function parseJSXString(jsxString: string): React.ReactNode {
@@ -95,15 +95,18 @@ const LivePreview = ({
       }
 
       try {
-        const theme = await getNyxuiTheme();
+        const [darkTheme, lightTheme] = await Promise.all([
+          getNyxuiTheme(),
+          getNyxuiLightTheme(),
+        ]);
         const highlighter = await getHighlighter({
-          themes: [theme],
+          themes: [darkTheme, lightTheme],
           langs: ["tsx", "bash"],
         });
 
         const highlighted = highlighter.codeToHtml(code, {
           lang: "tsx",
-          theme: "nyxui-dark",
+          themes: { dark: "nyxui-dark", light: "nyxui-light" },
         });
 
         setHighlightedCode(highlighted);
@@ -257,7 +260,7 @@ const LivePreview = ({
                 title={copiedVariant === codeVariant ? "Copied" : "Copy code"}
               >
                 {copiedVariant === codeVariant ? (
-                  <Check className="size-4" />
+                  <Check className="size-4 text-primary" />
                 ) : (
                   <Copy className="size-4" />
                 )}
@@ -288,7 +291,7 @@ const LivePreview = ({
 
         <TabsContent value="code" className="m-0 flex-1 min-h-0">
           <div className="relative overflow-auto px-2 pb-2 h-full">
-            <div className="rounded-2xl border bg-background p-2 h-full">
+            <div className="rounded-2xl border border-border/60 bg-background p-2 h-full">
               <div
                 className="min-h-[60vh] lg:min-h-0 lg:h-full overflow-auto rounded-2xl bg-background [&_pre]:!m-0 [&_pre]:min-h-[inherit] [&_pre]:!bg-transparent [&_pre]:!py-3 [&_pre]:text-[13px] [&_pre]:leading-6 scrollbar-no"
                 dangerouslySetInnerHTML={{ __html: highlightedCode }}

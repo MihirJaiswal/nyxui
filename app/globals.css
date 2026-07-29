@@ -866,6 +866,14 @@ body {
   color: var(--shiki-dark);
 }
 
+/* Playground LivePreview — Shiki dual-theme output (.shiki-themes) */
+/* Light mode: inline color is the light theme color (no override needed) */
+/* Dark mode: switch to --shiki-dark variables */
+.dark .shiki-themes,
+.dark .shiki-themes span {
+  color: var(--shiki-dark) !important;
+}
+
 [data-rehype-pretty-code-figure] .line--highlighted {
   @apply bg-zinc-700/50;
 }

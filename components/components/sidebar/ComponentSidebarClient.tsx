@@ -101,7 +101,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
       initial={false}
       animate={{
         height: isCollapsed ? 40 : "var(--content-h)",
-        width: isCollapsed ? 48 : "var(--sidebar-expanded-w, 250px)",
+        width: isCollapsed ? 40 : "var(--sidebar-expanded-w, 250px)",
       }}
       transition={{
         type: "spring",
@@ -109,7 +109,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
         damping: 30,
         mass: 0.8,
       }}
-      className="overflow-hidden rounded-[20px] border border-border/70 bg-card shadow-sm xl:[--sidebar-expanded-w:288px]"
+      className={`overflow-hidden ${isCollapsed ? "rounded-xl" : "rounded-[20px]"} border border-border/70 bg-card shadow-sm xl:[--sidebar-expanded-w:288px]`}
     >
       <div className="flex h-full flex-col">
         <button

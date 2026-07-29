@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import { getHighlighter, type BundledLanguage } from "shiki";
-import { useTheme } from "next-themes";
 import { getNyxuiTheme, getNyxuiLightTheme } from "@/lib/shiki-themes";
 
 interface CodeEditorProps {
@@ -29,8 +28,6 @@ const CodeEditor = ({
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const preRef = useRef<HTMLPreElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const { resolvedTheme } = useTheme();
-  const isDark = resolvedTheme !== "light";
 
   useLayoutEffect(() => {
     const ta = textareaRef.current;
@@ -43,18 +40,19 @@ const CodeEditor = ({
   useEffect(() => {
     const highlightCode = async () => {
       try {
-        const theme = isDark
-          ? await getNyxuiTheme()
-          : await getNyxuiLightTheme();
+        const [darkTheme, lightTheme] = await Promise.all([
+          getNyxuiTheme(),
+          getNyxuiLightTheme(),
+        ]);
         const highlighter = await getHighlighter({
-          themes: [theme],
+          themes: [darkTheme, lightTheme],
           langs: [language as BundledLanguage],
         });
 
         const codeToHighlight = value || "";
         const highlighted = highlighter.codeToHtml(codeToHighlight, {
           lang: language as BundledLanguage,
-          theme: isDark ? "nyxui-dark" : "nyxui-light",
+          themes: { dark: "nyxui-dark", light: "nyxui-light" },
         });
 
         setHighlightedCode(highlighted);
@@ -71,14 +69,14 @@ const CodeEditor = ({
           .replace(/'/g, "&#39;");
 
         setHighlightedCode(
-          `<pre style="background: transparent; color: ${isDark ? "rgb(201, 209, 217)" : "rgb(36, 41, 47)"}; padding: 0; margin: 0; font-family: ui-monospace, SFMono-Regular, 'SF Mono', Monaco, Consolas, 'Liberation Mono', 'Menlo', monospace; font-size: 14px; line-height: 1.5; white-space: pre-wrap; word-wrap: break-word; overflow-wrap: break-word;"><code>${escaped}</code></pre>`,
+          `<pre style="background: transparent; color: inherit; padding: 0; margin: 0; font-family: ui-monospace, SFMono-Regular, 'SF Mono', Monaco, Consolas, 'Liberation Mono', 'Menlo', monospace; font-size: 14px; line-height: 1.5; white-space: pre-wrap; word-wrap: break-word; overflow-wrap: break-word;"><code>${escaped}</code></pre>`,
         );
         setIsLoaded(true);
       }
     };
 
     highlightCode();
-  }, [value, language, isDark]);
+  }, [value, language]);
 
   const handleScroll = () => {
     if (textareaRef.current && preRef.current) {
@@ -94,7 +92,7 @@ const CodeEditor = ({
   return (
     <div
       ref={containerRef}
-      className={`relative overflow-hidden rounded-xl border border-border/70 bg-card ${className}`}
+      className={`relative overflow-hidden rounded-xl border border-border/70 bg-background dark:bg-background/30 ${className}`}
       style={style}
     >
       {/* Syntax highlighted background */}
