@@ -45,53 +45,78 @@
   --animate-ripple: ripple var(--duration, 2s) ease calc(var(--i, 0) * 0.2s)
     infinite;
   --shadow-glass: var(--glass-shadow);
+  --shadow-glass-lg: var(--elevation-lg);
+  --shadow-xs: var(--elevation-xs);
+  --shadow-sm: var(--elevation-sm);
+  --shadow-md: var(--elevation-md);
+  --shadow-lg: var(--elevation-lg);
+  --shadow-xl: var(--elevation-xl);
 }
 
 :root {
   --radius: 0.625rem;
-  --glass-shadow:
-    0 2px 8px -2px rgb(0 0 0 / 0.08), 0 4px 16px -4px rgb(0 0 0 / 0.06);
-  --preview-shadow: rgb(0 0 0 / 0.08) 0px 4px 8px 0px;
-  --preview-inset: rgb(0 0 0 / 0.06);
-  --background: oklch(0.98 0.002 60);
-  --foreground: oklch(0.18 0.01 60);
-  --card: oklch(0.955 0.003 60);
-  --card-foreground: oklch(0.18 0.01 60);
-  --popover: oklch(0.955 0.003 60);
-  --popover-foreground: oklch(0.18 0.01 60);
+  /* Subtle light-mode elevation scale */
+  --elevation-xs: 0 1px 1px 0 rgb(0 0 0 / 0.03);
+  --elevation-sm:
+    0 1px 2px 0 rgb(0 0 0 / 0.04), 0 1px 1px -1px rgb(0 0 0 / 0.02);
+  --elevation-md:
+    0 1px 3px 0 rgb(0 0 0 / 0.05), 0 2px 8px -2px rgb(0 0 0 / 0.04);
+  --elevation-lg:
+    0 2px 4px -1px rgb(0 0 0 / 0.05), 0 6px 16px -4px rgb(0 0 0 / 0.04);
+  --elevation-xl:
+    0 4px 8px -2px rgb(0 0 0 / 0.06), 0 12px 24px -6px rgb(0 0 0 / 0.05);
+  --glass-shadow: var(--elevation-md);
+  --preview-shadow: var(--elevation-sm);
+  --preview-inset: rgb(30 20 15 / 0.03);
+  --background: oklch(0.965 0.003 55);
+  --foreground: oklch(0.2 0.008 55);
+  --card: oklch(0.985 0.002 55);
+  --card-foreground: oklch(0.2 0.008 55);
+  --popover: oklch(0.99 0.001 55);
+  --popover-foreground: oklch(0.2 0.008 55);
   --primary: #ff4f11;
-  --primary-foreground: oklch(0.955 0.003 60);
-  --secondary: oklch(0.93 0.005 60);
-  --secondary-foreground: oklch(0.25 0.01 60);
-  --muted: oklch(0.93 0.005 60);
-  --muted-foreground: oklch(0.46 0.012 60);
-  --accent: oklch(0.91 0.008 60);
-  --accent-foreground: oklch(0.25 0.01 60);
+  --primary-foreground: oklch(0.99 0.001 55);
+  --secondary: oklch(0.962 0.002 55);
+  --secondary-foreground: oklch(0.25 0.008 55);
+  --muted: oklch(0.962 0.002 55);
+  --muted-foreground: oklch(0.5 0.008 55);
+  --accent: oklch(0.955 0.003 55);
+  --accent-foreground: oklch(0.25 0.008 55);
   --destructive: oklch(0.58 0.24 27);
-  --border: oklch(0 0 0 / 8%);
-  --input: oklch(0 0 0 / 12%);
+  --border: oklch(0 0 0 / 9%);
+  --input: oklch(0 0 0 / 11%);
   --ring: #ff4f11;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.955 0.003 60);
-  --sidebar-foreground: oklch(0.18 0.01 60);
+  --sidebar: oklch(0.965 0.003 55);
+  --sidebar-foreground: oklch(0.2 0.008 55);
   --sidebar-primary: #ff4f11;
-  --sidebar-primary-foreground: oklch(0.955 0.003 60);
-  --sidebar-accent: oklch(0.91 0.008 60);
-  --sidebar-accent-foreground: oklch(0.25 0.01 60);
-  --sidebar-border: oklch(0 0 0 / 8%);
+  --sidebar-primary-foreground: oklch(0.99 0.001 55);
+  --sidebar-accent: oklch(0.955 0.003 55);
+  --sidebar-accent-foreground: oklch(0.25 0.008 55);
+  --sidebar-border: oklch(0 0 0 / 9%);
   --sidebar-ring: #ff4f11;
 }
 
 .dark {
   --background: oklch(0.1448 0 0);
   --foreground: oklch(0.985 0 0);
-  --glass-shadow:
-    0 4px 8px -2px rgb(0 0 0 / 0.5), 0 8px 24px -4px rgb(0 0 0 / 0.4);
-  --preview-shadow: rgb(0 0 0 / 0.31) 0px 4px 8px 0px;
+  --elevation-xs: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --elevation-sm: 0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.3);
+  --elevation-md:
+    0 2px 4px -1px rgb(0 0 0 / 0.4), 0 4px 12px -2px rgb(0 0 0 / 0.4),
+    0 8px 24px -8px rgb(0 0 0 / 0.3);
+  --elevation-lg:
+    0 4px 8px -2px rgb(0 0 0 / 0.4), 0 8px 24px -4px rgb(0 0 0 / 0.4),
+    0 16px 48px -12px rgb(0 0 0 / 0.35);
+  --elevation-xl:
+    0 8px 16px -4px rgb(0 0 0 / 0.5), 0 16px 40px -8px rgb(0 0 0 / 0.45),
+    0 32px 64px -16px rgb(0 0 0 / 0.35);
+  --glass-shadow: var(--elevation-md);
+  --preview-shadow: var(--elevation-sm);
   --preview-inset: rgba(255, 255, 255, 0.11);
   --card: #0f0f0f;
   --card-foreground: oklch(0.985 0 0);
