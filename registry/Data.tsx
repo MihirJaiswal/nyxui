@@ -233,5 +233,52 @@ export const componentsData: ComponentsData = {
       image: "/assets/images/showcase/blocks/footer.png",
       isNew: true,
     },
+    hero: {
+      title: "Hero",
+      tags: ["Hero", "Section", "Landing"],
+      description:
+        "A bold hero section with headline, CTA buttons, and announcement badge.",
+      image: "/assets/images/showcase/blocks/hero.png",
+      isNew: true,
+    },
+    "bento-grid": {
+      title: "Bento Grid",
+      tags: ["Bento", "Grid", "Section", "Landing"],
+      description:
+        "A bento-style grid showcasing component demos with icons and descriptions.",
+      image: "/assets/images/showcase/blocks/bento-grid.png",
+      isNew: true,
+    },
+    feature: {
+      title: "Feature",
+      tags: ["Feature", "Section", "Landing"],
+      description:
+        "A two-column feature showcase with corner decorations and section labels.",
+      image: "/assets/images/showcase/blocks/feature.png",
+      isNew: true,
+    },
+    cards: {
+      title: "Cards",
+      tags: ["Cards", "Grid", "Section", "Landing"],
+      description:
+        "A collection grid of cards linking to components, templates, and blocks.",
+      image: "/assets/images/showcase/blocks/cards.png",
+      isNew: true,
+    },
+    social: {
+      title: "Social",
+      tags: ["Social", "Section", "Landing"],
+      description: "Social media cards with platform icons and follow buttons.",
+      image: "/assets/images/showcase/blocks/social.png",
+      isNew: true,
+    },
+    support: {
+      title: "Support",
+      tags: ["Support", "Section", "Landing"],
+      description:
+        "A support section with share buttons for LinkedIn, X, and GitHub.",
+      image: "/assets/images/showcase/blocks/support.png",
+      isNew: true,
+    },
   },
 };

@@ -1,0 +1,60 @@
+---
+title: Cards
+date: 2025-01-22
+description: A collection grid of cards linking to components, templates, and blocks.
+author: MihirJaiswal
+published: true
+tags: ["Cards", "Grid", "Section", "Landing"]
+---
+
+<ComponentPreview name="cards" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nyxui.com/r/cards.json"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies.</Step>
+
+```bash
+npm install lucide-react
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="cards" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { Cards } from "@/components/blocks/cards";
+```
+
+### Basic Usage
+
+```tsx
+<Cards />
+```

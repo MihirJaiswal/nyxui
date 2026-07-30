@@ -1,0 +1,60 @@
+---
+title: Support
+date: 2025-01-22
+description: A support section with share buttons for LinkedIn, X, and GitHub.
+author: MihirJaiswal
+published: true
+tags: ["Support", "Section", "Landing"]
+---
+
+<ComponentPreview name="support" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nyxui.com/r/support.json"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies.</Step>
+
+```bash
+npm install lucide-react
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="support" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { Support } from "@/components/blocks/support";
+```
+
+### Basic Usage
+
+```tsx
+<Support />
+```

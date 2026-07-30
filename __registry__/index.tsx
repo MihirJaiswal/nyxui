@@ -1322,4 +1322,125 @@ export const Index: Record<string, RegistryEntry> = {
     }),
     meta: undefined,
   },
+  hero: {
+    name: "hero",
+    description:
+      "A bold hero section with headline, CTA buttons, announcement badge, tech showcase, scanner, matrix rain, glass music player, and animated code block.",
+    type: "registry:ui",
+    registryDependencies: [
+      "apple-glass-effect",
+      "glitch-button",
+      "matrix-code-rain",
+    ],
+    files: [
+      {
+        path: "registry/blocks/hero.tsx",
+        type: "registry:ui",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import("@/registry/blocks/hero")) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "hero") };
+    }),
+    meta: undefined,
+  },
+  "bento-grid": {
+    name: "bento-grid",
+    description:
+      "A bento-style grid showcasing component demos including terminal, blob, tweet card, chat, and download steps with dynamic ripple.",
+    type: "registry:ui",
+    registryDependencies: [
+      "terminal",
+      "keyboard",
+      "morphing-blob",
+      "lamp-heading",
+      "glow-card",
+      "dynamic-ripple",
+    ],
+    files: [
+      {
+        path: "registry/blocks/bento-grid.tsx",
+        type: "registry:ui",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/blocks/bento-grid"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "bento-grid") };
+    }),
+    meta: undefined,
+  },
+  feature: {
+    name: "feature",
+    description:
+      "A two-column feature showcase with browser mockup, custom cursor, and music player theme customizer.",
+    type: "registry:ui",
+    registryDependencies: ["music-player", "custom-cursor"],
+    files: [
+      {
+        path: "registry/blocks/feature.tsx",
+        type: "registry:ui",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import("@/registry/blocks/feature")) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "feature") };
+    }),
+    meta: undefined,
+  },
+  cards: {
+    name: "cards",
+    description:
+      "A collection grid of cards linking to components, templates, and blocks with texture card styling.",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [
+      {
+        path: "registry/blocks/cards.tsx",
+        type: "registry:ui",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import("@/registry/blocks/cards")) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "cards") };
+    }),
+    meta: undefined,
+  },
+  social: {
+    name: "social",
+    description:
+      "Social media cards with 3D layered card effects and platform icons.",
+    type: "registry:ui",
+    registryDependencies: ["3d-layered-card"],
+    files: [
+      {
+        path: "registry/blocks/social.tsx",
+        type: "registry:ui",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import("@/registry/blocks/social")) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "social") };
+    }),
+    meta: undefined,
+  },
+  support: {
+    name: "support",
+    description:
+      "A support section with share buttons for LinkedIn, X, and GitHub, and animated phone mockups.",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [
+      {
+        path: "registry/blocks/support.tsx",
+        type: "registry:ui",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import("@/registry/blocks/support")) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "support") };
+    }),
+    meta: undefined,
+  },
 };
