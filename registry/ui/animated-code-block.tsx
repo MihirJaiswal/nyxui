@@ -13,7 +13,6 @@ import {
   Check,
   Code2,
   Copy,
-  Download,
   Maximize2,
   Minimize2,
   Pause,
@@ -53,7 +52,6 @@ export interface AnimatedCodeBlockProps {
   className?: string;
   autoPlay?: boolean;
   loop?: boolean;
-  blurEffect?: boolean;
   showControls?: boolean;
   onCopy?: () => void;
 }
@@ -217,8 +215,10 @@ export function AnimatedCodeBlock({
     };
 
     document.addEventListener("fullscreenchange", handleFullscreenChange);
+    document.addEventListener("fullscreenerror", handleFullscreenChange);
     return () => {
       document.removeEventListener("fullscreenchange", handleFullscreenChange);
+      document.removeEventListener("fullscreenerror", handleFullscreenChange);
       if (copyTimerRef.current !== null) {
         window.clearTimeout(copyTimerRef.current);
       }
@@ -238,8 +238,12 @@ export function AnimatedCodeBlock({
         Number.parseFloat(computedStyles.paddingTop) +
         Number.parseFloat(computedStyles.paddingBottom);
       const lineHeight = Number.parseFloat(computedStyles.lineHeight) || 24;
+      const minHeight = Number.parseFloat(computedStyles.minHeight) || 0;
+      const availableHeight = isFullscreen
+        ? codeViewport.clientHeight
+        : minHeight;
       const visibleLineCount = Math.floor(
-        Math.max(0, codeViewport.clientHeight - verticalPadding) / lineHeight,
+        Math.max(0, availableHeight - verticalPadding) / lineHeight,
       );
       setFillerLineCount(Math.max(0, visibleLineCount - codeLines.length));
     };
@@ -249,7 +253,7 @@ export function AnimatedCodeBlock({
     updateFillerLines();
 
     return () => resizeObserver.disconnect();
-  }, [codeLines.length, showLineNumbers]);
+  }, [codeLines.length, showLineNumbers, isFullscreen]);
 
   const displayedLines = useMemo(() => {
     let remainingCharacters = currentPosition;
@@ -343,23 +347,17 @@ export function AnimatedCodeBlock({
   }, [code, onCopy]);
 
   const toggleFullscreen = useCallback(async (): Promise<void> => {
-    if (document.fullscreenElement) {
-      await document.exitFullscreen();
-      return;
+    try {
+      if (document.fullscreenElement) {
+        await document.exitFullscreen();
+      } else {
+        await containerRef.current?.requestFullscreen();
+      }
+    } catch {
+      setIsFullscreen(false);
     }
-
-    await containerRef.current?.requestFullscreen();
   }, []);
 
-  const downloadCode = useCallback((): void => {
-    const file = new Blob([code], { type: "text/plain" });
-    const url = URL.createObjectURL(file);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = title || `code.${language}`;
-    link.click();
-    URL.revokeObjectURL(url);
-  }, [code, language, title]);
   const controlButtonClassName = cn(
     "rounded-md p-1.5 transition-colors focus-visible:outline-none focus-visible:ring-2",
     isMinimalTheme
@@ -368,9 +366,8 @@ export function AnimatedCodeBlock({
   );
 
   return (
-    <motion.div
+    <div
       ref={containerRef}
-      layout={!shouldReduceMotion}
       className={cn(
         "group/code relative flex w-full flex-col overflow-hidden border font-mono",
         isMinimalTheme ? "rounded-lg" : "rounded-xl",
@@ -381,253 +378,257 @@ export function AnimatedCodeBlock({
         className,
       )}
     >
-      <div
-        className={cn(
-          "relative flex items-center justify-between gap-3 border-b",
-          isMinimalTheme ? "min-h-12 px-4" : "min-h-14 px-3",
-          themeStyles.header,
-          themeStyles.border,
-        )}
-      >
-        <div className="flex min-w-0 items-center gap-2">
-          {!isMinimalTheme && (
-            <>
-              <div
-                className="hidden items-center gap-1.25 pr-1 sm:flex"
-                aria-hidden="true"
-              >
-                <span className="h-2 w-2 rounded-full bg-rose-400/80" />
-                <span className="h-2 w-2 rounded-full bg-amber-300/80" />
-                <span className="h-2 w-2 rounded-full bg-emerald-400/80" />
-              </div>
-              <div
-                className={cn(
-                  "hidden h-5 w-px sm:block",
-                  themeStyles.accentSoft,
-                )}
-              />
-            </>
-          )}
-          <Code2 className={cn("h-4 w-4 shrink-0", themeStyles.accentText)} />
-          <span className="truncate text-xs font-medium tracking-wide sm:text-sm">
-            {title}
-          </span>
-          <span
-            className={cn(
-              "hidden rounded-full px-2 py-1 text-xs font-semibold uppercase tracking-widest md:inline-flex",
-              themeStyles.accentSoft,
-            )}
-          >
-            {languageLabel}
-          </span>
-        </div>
-
-        {showControls && (
-          <div
-            className={cn(
-              "flex shrink-0 items-center rounded-lg border p-1",
-              themeStyles.border,
-              themeStyles.surface,
-            )}
-          >
-            <button
-              type="button"
-              onClick={completed ? restartAnimation : togglePlay}
-              className={controlButtonClassName}
-              aria-label={
-                completed
-                  ? "Replay animation"
-                  : isPlaying
-                    ? "Pause animation"
-                    : "Play animation"
-              }
-              title={completed ? "Replay" : isPlaying ? "Pause" : "Play"}
-            >
-              {completed ? (
-                <RotateCcw className="h-3.5 w-3.5" />
-              ) : isPlaying ? (
-                <Pause className="h-3.5 w-3.5" />
-              ) : (
-                <Play className="h-3.5 w-3.5" />
-              )}
-            </button>
-            <button
-              type="button"
-              onClick={() => void copyCode()}
-              className={controlButtonClassName}
-              aria-label={copied ? "Code copied" : "Copy code"}
-              title={copied ? "Copied" : "Copy"}
-            >
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.span
-                  key={copied ? "copied" : "copy"}
-                  initial={
-                    shouldReduceMotion ? false : { opacity: 0, scale: 0.75 }
-                  }
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={
-                    shouldReduceMotion ? undefined : { opacity: 0, scale: 0.75 }
-                  }
-                  className="block"
-                >
-                  {copied ? (
-                    <Check
-                      className={cn("h-3.5 w-3.5", themeStyles.accentText)}
-                    />
-                  ) : (
-                    <Copy className="h-3.5 w-3.5" />
-                  )}
-                </motion.span>
-              </AnimatePresence>
-            </button>
-            <button
-              type="button"
-              onClick={downloadCode}
-              className={cn("hidden sm:block", controlButtonClassName)}
-              aria-label="Download code"
-              title="Download"
-            >
-              <Download className="h-3.5 w-3.5" />
-            </button>
-            <button
-              type="button"
-              onClick={() => void toggleFullscreen()}
-              className={cn("hidden sm:block", controlButtonClassName)}
-              aria-label={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
-              title={isFullscreen ? "Exit fullscreen" : "Fullscreen"}
-            >
-              {isFullscreen ? (
-                <Minimize2 className="h-3.5 w-3.5" />
-              ) : (
-                <Maximize2 className="h-3.5 w-3.5" />
-              )}
-            </button>
-          </div>
-        )}
-      </div>
-
-      <div
-        ref={codeViewportRef}
-        className={cn(
-          "code-scrollbar relative min-h-80 flex-1 overflow-auto py-3 text-xs leading-6 sm:text-sm",
-          themeStyles.surface,
-          themeStyles.syntax,
-        )}
+      <motion.div
+        layout={!shouldReduceMotion}
+        className="flex min-h-0 flex-1 flex-col"
       >
         <div
           className={cn(
-            "pointer-events-none absolute inset-x-0 top-0 h-px",
-            isMinimalTheme ? "bg-black/5" : "bg-white/5",
+            "relative flex items-center justify-between gap-3 border-b",
+            isMinimalTheme ? "min-h-12 px-4" : "min-h-14 px-3",
+            themeStyles.header,
+            themeStyles.border,
           )}
-        />
-        <div className="min-w-max">
-          {codeLines.map((_, index) => {
-            const lineNumber = index + 1;
-            const isHighlighted =
-              highlightedLineSet.has(lineNumber) && writtenLines[index];
+        >
+          <div className="flex min-w-0 items-center gap-2">
+            {!isMinimalTheme && (
+              <>
+                <div
+                  className="hidden items-center gap-1.25 pr-1 sm:flex"
+                  aria-hidden="true"
+                >
+                  <span className="h-2 w-2 rounded-full bg-rose-400/80" />
+                  <span className="h-2 w-2 rounded-full bg-amber-300/80" />
+                  <span className="h-2 w-2 rounded-full bg-emerald-400/80" />
+                </div>
+                <div
+                  className={cn(
+                    "hidden h-5 w-px sm:block",
+                    themeStyles.accentSoft,
+                  )}
+                />
+              </>
+            )}
+            <Code2 className={cn("h-4 w-4 shrink-0", themeStyles.accentText)} />
+            <span className="truncate text-xs font-medium tracking-wide sm:text-sm">
+              {title}
+            </span>
+            <span
+              className={cn(
+                "hidden rounded-full px-2 py-1 text-xs font-semibold uppercase tracking-widest md:inline-flex",
+                themeStyles.accentSoft,
+              )}
+            >
+              {languageLabel}
+            </span>
+          </div>
 
-            return (
-              <div
-                key={lineNumber}
-                className={cn(
-                  "flex min-h-6 border-l-2 border-transparent pr-6 transition-colors duration-300 motion-reduce:transition-none",
-                  isHighlighted && themeStyles.highlight,
-                )}
+          {showControls && (
+            <div
+              className={cn(
+                "flex shrink-0 items-center rounded-lg border p-1",
+                themeStyles.border,
+                themeStyles.surface,
+              )}
+            >
+              <button
+                type="button"
+                onClick={completed ? restartAnimation : togglePlay}
+                className={controlButtonClassName}
+                aria-label={
+                  completed
+                    ? "Replay animation"
+                    : isPlaying
+                      ? "Pause animation"
+                      : "Play animation"
+                }
+                title={completed ? "Replay" : isPlaying ? "Pause" : "Play"}
               >
-                {showLineNumbers && (
+                {completed ? (
+                  <RotateCcw className="h-3.5 w-3.5" />
+                ) : isPlaying ? (
+                  <Pause className="h-3.5 w-3.5" />
+                ) : (
+                  <Play className="h-3.5 w-3.5" />
+                )}
+              </button>
+              <button
+                type="button"
+                onClick={() => void copyCode()}
+                className={controlButtonClassName}
+                aria-label={copied ? "Code copied" : "Copy code"}
+                title={copied ? "Copied" : "Copy"}
+              >
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.span
+                    key={copied ? "copied" : "copy"}
+                    initial={
+                      shouldReduceMotion ? false : { opacity: 0, scale: 0.75 }
+                    }
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={
+                      shouldReduceMotion
+                        ? undefined
+                        : { opacity: 0, scale: 0.75 }
+                    }
+                    className="block"
+                  >
+                    {copied ? (
+                      <Check
+                        className={cn("h-3.5 w-3.5", themeStyles.accentText)}
+                      />
+                    ) : (
+                      <Copy className="h-3.5 w-3.5" />
+                    )}
+                  </motion.span>
+                </AnimatePresence>
+              </button>
+              <button
+                type="button"
+                onClick={() => void toggleFullscreen()}
+                className={cn("hidden sm:block", controlButtonClassName)}
+                aria-label={
+                  isFullscreen ? "Exit fullscreen" : "Enter fullscreen"
+                }
+                title={isFullscreen ? "Exit fullscreen" : "Fullscreen"}
+              >
+                {isFullscreen ? (
+                  <Minimize2 className="h-3.5 w-3.5" />
+                ) : (
+                  <Maximize2 className="h-3.5 w-3.5" />
+                )}
+              </button>
+            </div>
+          )}
+        </div>
+
+        <div
+          ref={codeViewportRef}
+          className={cn(
+            "code-scrollbar relative min-h-80 flex-1 overflow-auto py-3 text-xs leading-6 sm:text-sm",
+            themeStyles.surface,
+            themeStyles.syntax,
+          )}
+        >
+          <div
+            className={cn(
+              "pointer-events-none absolute inset-x-0 top-0 h-px",
+              isMinimalTheme ? "bg-black/5" : "bg-white/5",
+            )}
+          />
+          <div className="min-w-max">
+            {codeLines.map((_, index) => {
+              const lineNumber = index + 1;
+              const isHighlighted =
+                highlightedLineSet.has(lineNumber) && writtenLines[index];
+
+              return (
+                <div
+                  key={lineNumber}
+                  className={cn(
+                    "flex min-h-6 border-l-2 border-transparent pr-6 transition-colors duration-300 motion-reduce:transition-none",
+                    isHighlighted && themeStyles.highlight,
+                  )}
+                >
+                  {showLineNumbers && (
+                    <span
+                      className={cn(
+                        "sticky left-0 z-10 w-14 shrink-0 select-none border-r pr-4 text-right tabular-nums",
+                        themeStyles.surface,
+                        themeStyles.border,
+                        isHighlighted
+                          ? themeStyles.accentText
+                          : themeStyles.muted,
+                      )}
+                      aria-hidden="true"
+                    >
+                      {lineNumber}
+                    </span>
+                  )}
+                  <code
+                    className={cn(
+                      "block whitespace-pre pl-4",
+                      !showLineNumbers && "pl-6",
+                    )}
+                  >
+                    <span
+                      dangerouslySetInnerHTML={{
+                        __html: highlightedLines[index],
+                      }}
+                    />
+                    {index === cursorLineIndex && (
+                      <motion.span
+                        className={cn(
+                          "ml-0.5 inline-block h-4 w-0.5 align-middle",
+                          themeStyles.accent,
+                        )}
+                        animate={
+                          shouldReduceMotion
+                            ? undefined
+                            : { opacity: [1, 0.2, 1] }
+                        }
+                        transition={{
+                          duration: 0.9,
+                          repeat: Number.POSITIVE_INFINITY,
+                        }}
+                        aria-hidden="true"
+                      />
+                    )}
+                  </code>
+                </div>
+              );
+            })}
+            {Array.from({ length: fillerLineCount }, (_, index) => {
+              const lineNumber = codeLines.length + index + 1;
+
+              return (
+                <div
+                  key={`filler-${lineNumber}`}
+                  className="flex min-h-6 border-l-2 border-transparent pr-6"
+                  aria-hidden="true"
+                >
                   <span
                     className={cn(
                       "sticky left-0 z-10 w-14 shrink-0 select-none border-r pr-4 text-right tabular-nums",
                       themeStyles.surface,
                       themeStyles.border,
-                      isHighlighted
-                        ? themeStyles.accentText
-                        : themeStyles.muted,
+                      themeStyles.muted,
                     )}
-                    aria-hidden="true"
                   >
                     {lineNumber}
                   </span>
-                )}
-                <code
-                  className={cn(
-                    "block whitespace-pre pl-4",
-                    !showLineNumbers && "pl-6",
-                  )}
-                >
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: highlightedLines[index],
-                    }}
-                  />
-                  {index === cursorLineIndex && (
-                    <motion.span
-                      className={cn(
-                        "ml-0.5 inline-block h-4 w-0.5 align-middle",
-                        themeStyles.accent,
-                      )}
-                      animate={
-                        shouldReduceMotion
-                          ? undefined
-                          : { opacity: [1, 0.2, 1] }
-                      }
-                      transition={{
-                        duration: 0.9,
-                        repeat: Number.POSITIVE_INFINITY,
-                      }}
-                      aria-hidden="true"
-                    />
-                  )}
-                </code>
-              </div>
-            );
-          })}
-          {Array.from({ length: fillerLineCount }, (_, index) => {
-            const lineNumber = codeLines.length + index + 1;
-
-            return (
-              <div
-                key={`filler-${lineNumber}`}
-                className="flex min-h-6 border-l-2 border-transparent pr-6"
-                aria-hidden="true"
-              >
-                <span
-                  className={cn(
-                    "sticky left-0 z-10 w-14 shrink-0 select-none border-r pr-4 text-right tabular-nums",
-                    themeStyles.surface,
-                    themeStyles.border,
-                    themeStyles.muted,
-                  )}
-                >
-                  {lineNumber}
-                </span>
-                <code className="block whitespace-pre pl-4">&nbsp;</code>
-              </div>
-            );
-          })}
+                  <code className="block whitespace-pre pl-4">&nbsp;</code>
+                </div>
+              );
+            })}
+          </div>
         </div>
-      </div>
 
-      <div
-        className={cn(
-          "relative flex items-center justify-between gap-4 text-xs uppercase tracking-widest",
-          isMinimalTheme ? "min-h-1 border-t-0 px-0" : "min-h-10 border-t px-4",
-          themeStyles.header,
-          themeStyles.border,
-          themeStyles.muted,
-        )}
-      >
-        <div className="flex items-center gap-2"></div>
-        <motion.div
+        <div
           className={cn(
-            "absolute inset-x-0 top-0 h-px origin-left",
-            themeStyles.accent,
+            "relative flex items-center justify-between gap-4 text-xs uppercase tracking-widest",
+            isMinimalTheme
+              ? "min-h-0.25 border-t-0 px-0"
+              : "min-h-10 border-t px-4",
+            themeStyles.header,
+            themeStyles.border,
+            themeStyles.muted,
           )}
-          initial={false}
-          animate={{ scaleX: Math.min(progress / 100, 1) }}
-          transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.12 }}
-        />
-      </div>
-    </motion.div>
+        >
+          <div className="flex items-center gap-2"></div>
+          <motion.div
+            className={cn(
+              "absolute inset-x-0 top-0 h-px origin-left",
+              themeStyles.accent,
+            )}
+            initial={false}
+            animate={{ scaleX: Math.min(progress / 100, 1) }}
+            transition={
+              shouldReduceMotion ? { duration: 0 } : { duration: 0.12 }
+            }
+          />
+        </div>
+      </motion.div>
+    </div>
   );
 }
