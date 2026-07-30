@@ -61,7 +61,7 @@ export const componentsData: ComponentsData = {
       description: "A customizable cursor that follows the mouse.",
       image: "/assets/images/showcase/components/custom-cursor.png",
       isNew: true,
-      imageClassName: "",
+      imageClassName: "scale-80",
     },
     "animated-code-block": {
       title: "Animated Code Block",
