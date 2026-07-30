@@ -179,7 +179,7 @@ export const componentsData: ComponentsData = {
       tags: ["Background", "Effects", "Animation"],
       description: "A component that simulates a matrix code rain effect.",
       image: "/assets/images/showcase/components/matrix-code-rain.png",
-      imageClassName: "object-cover scale-101",
+      imageClassName: "object-cover scale-101 invert dark:invert-0",
     },
     "morphing-blob": {
       title: "Morphing Blob",
@@ -199,7 +199,7 @@ export const componentsData: ComponentsData = {
       tags: ["Cards", "Effects", "3D", "Interactive"],
       description: "A card with reveal animations that show content on hover.",
       image: "/assets/images/showcase/components/reveal-card.png",
-      imageClassName: "scale-95",
+      imageClassName: "scale-95 -mt-5",
     },
     "scroll-animation-trigger": {
       title: "Scroll Animation Trigger",
