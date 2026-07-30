@@ -42,11 +42,7 @@ export function DocPageHeader({
         {title}
       </h1>
 
-      {description && (
-        <p className="text-muted-foreground [text-wrap:balance]">
-          {description}
-        </p>
-      )}
+      {description && <p className="text-muted-foreground">{description}</p>}
 
       {(hasTags || action) && (
         <div className="flex flex-wrap items-center justify-between gap-3 pt-1">

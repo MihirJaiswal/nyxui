@@ -43,7 +43,7 @@ export const ComponentWrapper = ({
 
       <div
         className={cn(
-          "flex min-h-72 w-full items-center justify-center overflow-hidden p-2 sm:p-4 md:p-6 lg:p-8 xl:p-10",
+          "flex min-h-72 w-full items-center justify-center overflow-hidden p-2 sm:p-4 md:p-6",
           stageClassName,
         )}
       >
