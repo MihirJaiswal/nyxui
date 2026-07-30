@@ -3,6 +3,7 @@ import type React from "react";
 import { useState, useRef, useEffect } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import Image from "next/image";
+import { Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface CardProps {
@@ -390,14 +391,7 @@ export default function ThreeDLayeredCard({
                 duration: 0.3,
               }}
             >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-              </svg>
+              <Plus size={16} />
             </motion.div>
           )}
 
