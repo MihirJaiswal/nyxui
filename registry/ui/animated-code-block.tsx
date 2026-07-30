@@ -1,277 +1,51 @@
 "use client";
-import { useState, useEffect, useRef, useMemo, useCallback } from "react";
-import { motion, AnimatePresence } from "motion/react";
-import { cn } from "@/lib/utils";
+
 import {
-  Play,
-  Pause,
-  Copy,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import {
   Check,
-  RotateCcw,
+  Code2,
+  Copy,
+  Download,
   Maximize2,
   Minimize2,
-  Download,
+  Pause,
+  Play,
+  RotateCcw,
 } from "lucide-react";
 import Prism from "prismjs";
-import "prismjs/components/prism-javascript";
-import "prismjs/components/prism-typescript";
-import "prismjs/components/prism-jsx";
-import "prismjs/components/prism-tsx";
-import "prismjs/components/prism-css";
-import "prismjs/components/prism-scss";
-import "prismjs/components/prism-json";
-import "prismjs/components/prism-python";
 import "prismjs/components/prism-bash";
-import "prismjs/components/prism-sql";
-import "prismjs/components/prism-yaml";
+import "prismjs/components/prism-css";
+import "prismjs/components/prism-javascript";
+import "prismjs/components/prism-json";
+import "prismjs/components/prism-jsx";
 import "prismjs/components/prism-markdown";
+import "prismjs/components/prism-python";
+import "prismjs/components/prism-scss";
+import "prismjs/components/prism-sql";
+import "prismjs/components/prism-tsx";
+import "prismjs/components/prism-typescript";
+import "prismjs/components/prism-yaml";
 
-const getScrollbarStyles = (theme: string) => {
-  const scrollbarColors = {
-    dark: "rgba(255, 255, 255, 0.2)",
-    minimal: "rgba(202, 138, 4, 0.3)",
-    terminal: "rgba(0, 255, 128, 0.2)",
-    cyberpunk: "rgba(236, 72, 153, 0.3)",
-  };
+import { cn } from "@/lib/utils";
 
-  const color =
-    scrollbarColors[theme as keyof typeof scrollbarColors] ||
-    scrollbarColors.dark;
-  const hoverColor = color.replace(
-    /[\d.]+\)$/,
-    (match) => String(Math.min(Number.parseFloat(match) + 0.2, 1)) + ")",
-  );
-
-  return `
-    .code-scrollbar::-webkit-scrollbar {
-      height: 8px;
-      width: 8px;
-    }
-    .code-scrollbar::-webkit-scrollbar-track {
-      background: transparent;
-      margin: 0 4px;
-    }
-    .code-scrollbar::-webkit-scrollbar-thumb {
-      background: ${color};
-      border-radius: 4px;
-      transition: background 0.2s ease;
-    }
-    .code-scrollbar::-webkit-scrollbar-thumb:hover {
-      background: ${hoverColor};
-    }
-    .code-scrollbar {
-      scrollbar-width: thin;
-      scrollbar-color: ${color} transparent;
-    }
-  `;
-};
-
-// Custom Prism theme styles for different themes
-const getPrismThemeStyles = (theme: string) => {
-  const baseStyles = `
-    .token.comment,
-    .token.prolog,
-    .token.doctype,
-    .token.cdata {
-      color: #6a737d;
-      font-style: italic;
-    }
-    .token.punctuation {
-      color: #f8f8f2;
-    }
-    .token.property,
-    .token.tag,
-    .token.constant,
-    .token.symbol,
-    .token.deleted {
-      color: #f92672;
-    }
-    .token.boolean,
-    .token.number {
-      color: #ae81ff;
-    }
-    .token.selector,
-    .token.attr-name,
-    .token.string,
-    .token.char,
-    .token.builtin,
-    .token.inserted {
-      color: #a6e22e;
-    }
-    .token.operator,
-    .token.entity,
-    .token.url,
-    .language-css .token.string,
-    .style .token.string,
-    .token.variable {
-      color: #f8f8f2;
-    }
-    .token.atrule,
-    .token.attr-value,
-    .token.function,
-    .token.class-name {
-      color: #e6db74;
-    }
-    .token.keyword {
-      color: #66d9ef;
-    }
-    .token.regex,
-    .token.important {
-      color: #fd971f;
-    }
-  `;
-
-  switch (theme) {
-    case "nightowl":
-      return `
-    ${baseStyles}
-    .token.comment,
-    .token.prolog,
-    .token.doctype,
-    .token.cdata {
-      color: #637777; 
-      font-style: italic;
-    }
-    .token.punctuation {
-      color: #c792ea;
-    }
-    .token.property,
-    .token.tag,
-    .token.constant,
-    .token.symbol,
-    .token.deleted {
-      color: #f78c6c;
-    }
-    .token.boolean,
-    .token.number {
-      color: #ff5874;
-    }
-    .token.selector,
-    .token.attr-name,
-    .token.string,
-    .token.char,
-    .token.builtin,
-    .token.inserted {
-      color: #addb67; 
-    }
-    .token.operator,
-    .token.entity,
-    .token.url,
-    .language-css .token.string,
-    .style .token.string {
-      color: #c792ea;
-    }
-    .token.keyword {
-      color: #7fdbca; 
-    }
-    .token.atrule,
-    .token.attr-value,
-    .token.function,
-    .token.class-name {
-      color: #82aaff;
-    }
-    .token.regex,
-    .token.important,
-    .token.variable {
-      color: #d6deeb; 
-    }
-    .token.bold {
-      font-weight: bold;
-    }
-    .token.italic {
-      font-style: italic;
-    }
-  `;
-
-    case "terminal":
-      return `
-        ${baseStyles}
-        .token.comment,
-        .token.prolog,
-        .token.doctype,
-        .token.cdata {
-          color: #10b981;
-          opacity: 0.7;
-        }
-        .token.property,
-        .token.tag,
-        .token.constant,
-        .token.symbol,
-        .token.deleted {
-          color: #34d399;
-        }
-        .token.boolean,
-        .token.number {
-          color: #6ee7b7;
-        }
-        .token.selector,
-        .token.attr-name,
-        .token.string,
-        .token.char,
-        .token.builtin,
-        .token.inserted {
-          color: #a7f3d0;
-        }
-        .token.keyword {
-          color: #10b981;
-          font-weight: bold;
-        }
-        .token.atrule,
-        .token.attr-value,
-        .token.function,
-        .token.class-name {
-          color: #34d399;
-        }
-      `;
-    case "cyberpunk":
-      return `
-        ${baseStyles}
-        .token.comment,
-        .token.prolog,
-        .token.doctype,
-        .token.cdata {
-          color: #a855f7;
-          opacity: 0.8;
-        }
-        .token.property,
-        .token.tag,
-        .token.constant,
-        .token.symbol,
-        .token.deleted {
-          color: #ec4899;
-        }
-        .token.boolean,
-        .token.number {
-          color: #f472b6;
-        }
-        .token.selector,
-        .token.attr-name,
-        .token.string,
-        .token.char,
-        .token.builtin,
-        .token.inserted {
-          color: #e879f9;
-        }
-        .token.keyword {
-          color: #c084fc;
-          font-weight: bold;
-        }
-        .token.atrule,
-        .token.attr-value,
-        .token.function,
-        .token.class-name {
-          color: #d946ef;
-        }
-      `;
-    default:
-      return baseStyles;
-  }
-};
+export type AnimatedCodeBlockTheme =
+  | "dark"
+  | "terminal"
+  | "minimal"
+  | "nightowl";
 
 export interface AnimatedCodeBlockProps {
   code: string;
   language?: string;
-  theme?: "dark" | "terminal" | "cyberpunk" | "nightowl";
+  theme?: AnimatedCodeBlockTheme;
   typingSpeed?: number;
   showLineNumbers?: boolean;
   highlightLines?: number[];
@@ -284,18 +58,97 @@ export interface AnimatedCodeBlockProps {
   onCopy?: () => void;
 }
 
-type ThemeStyles = {
-  background: string;
-  text: string;
-  lineNumbers: string;
-  highlight: string;
-  border: string;
+interface ThemeStyles {
+  shell: string;
   header: string;
+  surface: string;
+  border: string;
+  text: string;
+  muted: string;
   accent: string;
   accentText: string;
-  shadow: string;
-  scrollbarThumb: string;
+  accentSoft: string;
+  highlight: string;
+  syntax: string;
+}
+
+const themes: Record<AnimatedCodeBlockTheme, ThemeStyles> = {
+  dark: {
+    shell: "bg-slate-950 shadow-2xl shadow-black/40",
+    header: "bg-slate-900/90",
+    surface: "bg-slate-950",
+    border: "border-white/10",
+    text: "text-slate-100",
+    muted: "text-slate-500",
+    accent: "bg-violet-500",
+    accentText: "text-violet-300",
+    accentSoft: "bg-violet-400/10 text-violet-200",
+    highlight: "border-violet-400 bg-violet-400/10",
+    syntax:
+      "[&_.token.comment]:text-slate-500 [&_.token.comment]:italic [&_.token.punctuation]:text-slate-400 [&_.token.keyword]:text-violet-300 [&_.token.operator]:text-sky-300 [&_.token.string]:text-emerald-300 [&_.token.number]:text-amber-300 [&_.token.boolean]:text-amber-300 [&_.token.function]:text-blue-300 [&_.token.class-name]:text-cyan-300 [&_.token.tag]:text-rose-300 [&_.token.attr-name]:text-amber-200 [&_.token.property]:text-sky-300",
+  },
+  nightowl: {
+    shell: "bg-slate-950 shadow-2xl shadow-black/40",
+    header: "bg-slate-900/95",
+    surface: "bg-slate-950",
+    border: "border-sky-300/15",
+    text: "text-sky-50",
+    muted: "text-sky-200/40",
+    accent: "bg-sky-400",
+    accentText: "text-sky-300",
+    accentSoft: "bg-sky-400/10 text-sky-200",
+    highlight: "border-sky-400 bg-sky-400/10",
+    syntax:
+      "[&_.token.comment]:text-slate-500 [&_.token.comment]:italic [&_.token.punctuation]:text-violet-300 [&_.token.keyword]:text-cyan-300 [&_.token.operator]:text-violet-300 [&_.token.string]:text-lime-300 [&_.token.number]:text-rose-300 [&_.token.boolean]:text-rose-300 [&_.token.function]:text-blue-300 [&_.token.class-name]:text-blue-300 [&_.token.tag]:text-orange-300 [&_.token.attr-name]:text-lime-300 [&_.token.property]:text-orange-300",
+  },
+  terminal: {
+    shell: "bg-zinc-950 shadow-2xl shadow-black/40",
+    header: "bg-zinc-900/95",
+    surface: "bg-zinc-950",
+    border: "border-emerald-400/15",
+    text: "text-emerald-100",
+    muted: "text-emerald-300/40",
+    accent: "bg-emerald-400",
+    accentText: "text-emerald-300",
+    accentSoft: "bg-emerald-400/10 text-emerald-200",
+    highlight: "border-emerald-400 bg-emerald-400/10",
+    syntax:
+      "[&_.token.comment]:text-emerald-700 [&_.token.comment]:italic [&_.token.punctuation]:text-emerald-200/60 [&_.token.keyword]:text-emerald-300 [&_.token.operator]:text-teal-300 [&_.token.string]:text-lime-300 [&_.token.number]:text-yellow-300 [&_.token.boolean]:text-yellow-300 [&_.token.function]:text-teal-200 [&_.token.class-name]:text-emerald-200 [&_.token.tag]:text-lime-300 [&_.token.attr-name]:text-teal-300 [&_.token.property]:text-emerald-300",
+  },
+  minimal: {
+    shell: "bg-white shadow-sm shadow-black/5",
+    header: "bg-white",
+    surface: "bg-zinc-50",
+    border: "border-zinc-200",
+    text: "text-zinc-900",
+    muted: "text-zinc-400",
+    accent: "bg-zinc-900",
+    accentText: "text-zinc-700",
+    accentSoft: "bg-zinc-100 text-zinc-600",
+    highlight: "border-zinc-900 bg-zinc-100",
+    syntax:
+      "[&_.token.comment]:text-zinc-400 [&_.token.comment]:italic [&_.token.punctuation]:text-zinc-500 [&_.token.keyword]:text-blue-700 [&_.token.operator]:text-zinc-500 [&_.token.string]:text-emerald-700 [&_.token.number]:text-amber-700 [&_.token.boolean]:text-amber-700 [&_.token.function]:text-violet-700 [&_.token.class-name]:text-zinc-900 [&_.token.tag]:text-rose-700 [&_.token.attr-name]:text-amber-700 [&_.token.property]:text-blue-700",
+  },
 };
+
+const languageLabels: Record<string, string> = {
+  bash: "Shell",
+  css: "CSS",
+  javascript: "JavaScript",
+  json: "JSON",
+  jsx: "JSX",
+  markdown: "Markdown",
+  python: "Python",
+  scss: "SCSS",
+  sql: "SQL",
+  tsx: "TSX",
+  typescript: "TypeScript",
+  yaml: "YAML",
+};
+
+function getLanguage(language: string): Prism.Grammar {
+  return Prism.languages[language] ?? Prism.languages.javascript;
+}
 
 export function AnimatedCodeBlock({
   code,
@@ -308,564 +161,473 @@ export function AnimatedCodeBlock({
   className,
   autoPlay = false,
   loop = false,
-  blurEffect = false,
   showControls = true,
   onCopy,
-}: AnimatedCodeBlockProps) {
-  const [isPlaying, setIsPlaying] = useState(autoPlay);
-  const [currentPosition, setCurrentPosition] = useState(0);
+}: AnimatedCodeBlockProps): React.JSX.Element {
+  const shouldReduceMotion = useReducedMotion();
+  const startsCompleted = !autoPlay || Boolean(shouldReduceMotion);
+  const [currentPosition, setCurrentPosition] = useState(
+    startsCompleted ? code.length : 0,
+  );
+  const [isPlaying, setIsPlaying] = useState(autoPlay && !shouldReduceMotion);
   const [copied, setCopied] = useState(false);
-  const [completed, setCompleted] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [showTooltip, setShowTooltip] = useState("");
-  const [extraLines, setExtraLines] = useState(0);
-  const [highlightedCode, setHighlightedCode] = useState("");
-  const codeRef = useRef<HTMLDivElement>(null);
+  const [fillerLineCount, setFillerLineCount] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
-  const codeContainerRef = useRef<HTMLDivElement>(null);
-  const lineNumbersRef = useRef<HTMLDivElement>(null);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const codeViewportRef = useRef<HTMLDivElement>(null);
+  const timerRef = useRef<number | null>(null);
+  const copyTimerRef = useRef<number | null>(null);
+  const themeStyles = themes[theme];
+  const isMinimalTheme = theme === "minimal";
+  const codeLines = useMemo(() => code.split("\n"), [code]);
+  const completed = currentPosition >= code.length;
 
   useEffect(() => {
-    try {
-      const highlighted = Prism.highlight(
-        code,
-        Prism.languages[language] || Prism.languages.javascript,
-        language,
+    const showCompletedCode = !autoPlay || Boolean(shouldReduceMotion);
+    setCurrentPosition(showCompletedCode ? code.length : 0);
+    setIsPlaying(autoPlay && !shouldReduceMotion);
+  }, [autoPlay, code, shouldReduceMotion]);
+
+  useEffect(() => {
+    if (!isPlaying) return;
+
+    if (currentPosition < code.length) {
+      timerRef.current = window.setTimeout(
+        () => {
+          setCurrentPosition((position) => Math.min(position + 1, code.length));
+        },
+        Math.max(typingSpeed, 1),
       );
-      setHighlightedCode(highlighted);
-    } catch (error) {
-      console.warn("Failed to highlight code:", error);
-      setHighlightedCode(code);
-    }
-  }, [code, language]);
-
-  const themeStyles = useMemo((): ThemeStyles => {
-    switch (theme) {
-      case "dark":
-        return {
-          background: "bg-zinc-900",
-          text: "text-zinc-100",
-          lineNumbers: "text-zinc-500",
-          highlight: "bg-zinc-800",
-          border: "border-zinc-800",
-          header: "bg-zinc-800",
-          accent: "bg-indigo-600",
-          accentText: "text-indigo-400",
-          shadow: "shadow-lg shadow-black/20",
-          scrollbarThumb: "rgba(255, 255, 255, 0.2)",
-        };
-      case "nightowl":
-        return {
-          background: "bg-[#011627]",
-          text: "text-[#d6deeb]",
-          lineNumbers: "text-[#5f7e97]",
-          highlight: "bg-[#1d3b53]",
-          border: "border-[#1e2d3d]",
-          header: "bg-[#0b2942]",
-          accent: "bg-[#82aaff]",
-          accentText: "text-[#82aaff]",
-          shadow: "shadow-md shadow-[#82aaff]/20",
-          scrollbarThumb: "rgba(130, 170, 255, 0.3)",
-        };
-      case "terminal":
-        return {
-          background: "bg-[#0d1117]",
-          text: "text-[#00ff88]",
-          lineNumbers: "text-[#009966]",
-          highlight: "bg-[#003b2f]/60",
-          border: "border-[#1f2a30]",
-          header: "bg-[#161b22]",
-          accent: "bg-[#00c46f]",
-          accentText: "text-[#00ff88]",
-          shadow: "shadow-md shadow-[#00ff88]/20",
-          scrollbarThumb: "rgba(0, 255, 136, 0.3)",
-        };
-
-      case "cyberpunk":
-        return {
-          background:
-            "bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e]",
-          text: "text-[#e0e0f0]",
-          lineNumbers: "text-[#8f7ada]",
-          highlight: "bg-[#3e2d67]/60",
-          border: "border-[#5a4b8d]",
-          header: "bg-gradient-to-r from-[#2e1a47] to-[#443266]",
-          accent: "bg-[#ff00a0]",
-          accentText: "text-[#ff00a0]",
-          shadow: "shadow-lg shadow-[#ff00a0]/20",
-          scrollbarThumb: "rgba(255, 0, 160, 0.3)",
-        };
-
-      default:
-        return {
-          background: "bg-zinc-900",
-          text: "text-zinc-100",
-          lineNumbers: "text-zinc-500",
-          highlight: "bg-zinc-800",
-          border: "border-zinc-800",
-          header: "bg-zinc-800",
-          accent: "bg-indigo-600",
-          accentText: "text-indigo-400",
-          shadow: "shadow-lg shadow-black/20",
-          scrollbarThumb: "rgba(255, 255, 255, 0.2)",
-        };
-    }
-  }, [theme]);
-  useEffect(() => {
-    if (isFullscreen) {
-      const updateExtraLines = () => {
-        if (codeContainerRef.current && lineNumbersRef.current) {
-          const containerHeight = codeContainerRef.current.clientHeight;
-          const lineHeight = 24;
-          const codeLines = code.split("\n").length;
-          const visibleLines = Math.floor(containerHeight / lineHeight);
-          const extraLinesNeeded = Math.max(0, visibleLines - codeLines);
-          setExtraLines(extraLinesNeeded);
-        }
-      };
-      updateExtraLines();
-      window.addEventListener("resize", updateExtraLines);
-      return () => {
-        window.removeEventListener("resize", updateExtraLines);
-      };
+    } else if (loop) {
+      timerRef.current = window.setTimeout(() => {
+        setCurrentPosition(0);
+      }, 1200);
     } else {
-      setExtraLines(0);
+      setIsPlaying(false);
     }
-  }, [isFullscreen, code]);
 
-  useEffect(() => {
-    if (isPlaying && currentPosition < code.length) {
-      timerRef.current = setTimeout(() => {
-        setCurrentPosition(currentPosition + 1);
-      }, typingSpeed);
-    } else if (isPlaying && currentPosition >= code.length) {
-      if (loop) {
-        setTimeout(() => {
-          setCurrentPosition(0);
-        }, 1000);
-      } else {
-        setIsPlaying(false);
-        setCompleted(true);
-        setIsPaused(false);
-      }
-    }
     return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
+      if (timerRef.current !== null) window.clearTimeout(timerRef.current);
     };
-  }, [isPlaying, currentPosition, code, typingSpeed, loop]);
+  }, [code.length, currentPosition, isPlaying, loop, typingSpeed]);
 
   useEffect(() => {
-    const handleFullscreenChange = () => {
-      setIsFullscreen(!!document.fullscreenElement);
+    const handleFullscreenChange = (): void => {
+      setIsFullscreen(document.fullscreenElement === containerRef.current);
     };
+
     document.addEventListener("fullscreenchange", handleFullscreenChange);
     return () => {
       document.removeEventListener("fullscreenchange", handleFullscreenChange);
+      if (copyTimerRef.current !== null) {
+        window.clearTimeout(copyTimerRef.current);
+      }
     };
   }, []);
 
-  const restartAnimation = useCallback(() => {
+  useLayoutEffect(() => {
+    const codeViewport = codeViewportRef.current;
+    if (!codeViewport || !showLineNumbers) {
+      setFillerLineCount(0);
+      return;
+    }
+
+    const updateFillerLines = (): void => {
+      const computedStyles = window.getComputedStyle(codeViewport);
+      const verticalPadding =
+        Number.parseFloat(computedStyles.paddingTop) +
+        Number.parseFloat(computedStyles.paddingBottom);
+      const lineHeight = Number.parseFloat(computedStyles.lineHeight) || 24;
+      const visibleLineCount = Math.floor(
+        Math.max(0, codeViewport.clientHeight - verticalPadding) / lineHeight,
+      );
+      setFillerLineCount(Math.max(0, visibleLineCount - codeLines.length));
+    };
+
+    const resizeObserver = new ResizeObserver(updateFillerLines);
+    resizeObserver.observe(codeViewport);
+    updateFillerLines();
+
+    return () => resizeObserver.disconnect();
+  }, [codeLines.length, showLineNumbers]);
+
+  const displayedLines = useMemo(() => {
+    let remainingCharacters = currentPosition;
+
+    return codeLines.map((line) => {
+      if (remainingCharacters <= 0) return "";
+
+      const lineLength = line.length + 1;
+      if (remainingCharacters >= lineLength) {
+        remainingCharacters -= lineLength;
+        return line;
+      }
+
+      const visibleLine = line.slice(0, remainingCharacters);
+      remainingCharacters = 0;
+      return visibleLine;
+    });
+  }, [codeLines, currentPosition]);
+
+  const highlightedLines = useMemo(
+    () =>
+      displayedLines.map((line) =>
+        Prism.highlight(line, getLanguage(language), language),
+      ),
+    [displayedLines, language],
+  );
+
+  const cursorLineIndex = useMemo(() => {
+    if (!isPlaying || completed) return -1;
+
+    let characterCount = 0;
+    for (let index = 0; index < codeLines.length; index += 1) {
+      characterCount += codeLines[index].length + 1;
+      if (currentPosition < characterCount) return index;
+    }
+
+    return codeLines.length - 1;
+  }, [codeLines, completed, currentPosition, isPlaying]);
+
+  const highlightedLineSet = useMemo(
+    () => new Set(highlightLines),
+    [highlightLines],
+  );
+  const writtenLines = useMemo(() => {
+    let consumedCharacters = 0;
+
+    return codeLines.map((line) => {
+      const lineEndPosition = consumedCharacters + line.length;
+      const isWritten =
+        completed ||
+        (line.length === 0
+          ? currentPosition > lineEndPosition
+          : currentPosition >= lineEndPosition);
+      consumedCharacters = lineEndPosition + 1;
+      return isWritten;
+    });
+  }, [codeLines, completed, currentPosition]);
+  const progress =
+    code.length === 0 ? 100 : (currentPosition / code.length) * 100;
+  const languageLabel = languageLabels[language] ?? language.toUpperCase();
+
+  const restartAnimation = useCallback((): void => {
+    if (shouldReduceMotion) {
+      setCurrentPosition(code.length);
+      setIsPlaying(false);
+      return;
+    }
+
     setCurrentPosition(0);
     setIsPlaying(true);
-    setCompleted(false);
-    setIsPaused(false);
-  }, []);
+  }, [code.length, shouldReduceMotion]);
 
-  const togglePlay = useCallback(() => {
-    if (isPlaying) {
-      setIsPaused(true);
-    } else if (completed) {
+  const togglePlay = useCallback((): void => {
+    if (completed) {
       restartAnimation();
-    } else {
-      setIsPaused(false);
+      return;
     }
-    setIsPlaying(!isPlaying);
-  }, [isPlaying, completed, restartAnimation]);
 
-  const copyCode = useCallback(() => {
-    navigator.clipboard.writeText(code);
+    setIsPlaying((playing) => !playing);
+  }, [completed, restartAnimation]);
+
+  const copyCode = useCallback(async (): Promise<void> => {
+    await navigator.clipboard.writeText(code);
     setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-    if (onCopy) onCopy();
+    onCopy?.();
+
+    if (copyTimerRef.current !== null) {
+      window.clearTimeout(copyTimerRef.current);
+    }
+    copyTimerRef.current = window.setTimeout(() => setCopied(false), 1800);
   }, [code, onCopy]);
 
-  const toggleFullscreen = useCallback(() => {
-    if (!document.fullscreenElement && containerRef.current) {
-      containerRef.current.requestFullscreen().catch((err) => {
-        console.error(`Error attempting to enable fullscreen: ${err.message}`);
-      });
-    } else {
-      if (document.exitFullscreen) {
-        document.exitFullscreen();
-      }
+  const toggleFullscreen = useCallback(async (): Promise<void> => {
+    if (document.fullscreenElement) {
+      await document.exitFullscreen();
+      return;
     }
+
+    await containerRef.current?.requestFullscreen();
   }, []);
 
-  const downloadCode = useCallback(() => {
-    const element = document.createElement("a");
+  const downloadCode = useCallback((): void => {
     const file = new Blob([code], { type: "text/plain" });
-    element.href = URL.createObjectURL(file);
-    element.download = `code.${language}`;
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
-  }, [code, language]);
-
-  const codeLines = useMemo(() => code.split("\n"), [code]);
-
-  const renderLines = useCallback(() => {
-    let remainingChars = currentPosition;
-    const result = [];
-    for (let i = 0; i < codeLines.length; i++) {
-      const line = codeLines[i];
-      const lineLength = line.length + 1;
-      if (remainingChars <= 0) {
-        result.push("");
-      } else if (remainingChars >= lineLength) {
-        result.push(line);
-        remainingChars -= lineLength;
-      } else {
-        result.push(line.substring(0, remainingChars));
-        remainingChars = 0;
-      }
-    }
-    return result;
-  }, [currentPosition, codeLines]);
-
-  const displayedLines = useMemo(
-    () => (completed ? code.split("\n") : renderLines()),
-    [completed, code, renderLines],
-  );
-
-  const getCursorLineIndex = useCallback(() => {
-    if (!isPlaying && !isPaused) return -1;
-    let charsProcessed = 0;
-    for (let i = 0; i < codeLines.length; i++) {
-      const lineLength = codeLines[i].length + 1;
-      charsProcessed += lineLength;
-      if (currentPosition < charsProcessed) {
-        return i;
-      }
-    }
-    return codeLines.length - 1;
-  }, [isPlaying, isPaused, currentPosition, codeLines]);
-
-  const cursorLineIndex = useMemo(
-    () => getCursorLineIndex(),
-    [getCursorLineIndex],
-  );
-  const progressPercentage = useMemo(
-    () => Math.min(100, (currentPosition / code.length) * 100),
-    [currentPosition, code.length],
+    const url = URL.createObjectURL(file);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = title || `code.${language}`;
+    link.click();
+    URL.revokeObjectURL(url);
+  }, [code, language, title]);
+  const controlButtonClassName = cn(
+    "rounded-md p-1.5 transition-colors focus-visible:outline-none focus-visible:ring-2",
+    isMinimalTheme
+      ? "hover:bg-zinc-100 focus-visible:ring-zinc-300"
+      : "hover:bg-white/10 focus-visible:ring-white/40",
   );
 
   return (
-    <div
+    <motion.div
       ref={containerRef}
+      layout={!shouldReduceMotion}
       className={cn(
-        "animated-code-block rounded-lg overflow-hidden flex flex-col w-full",
-        themeStyles.background,
-        themeStyles.text,
+        "group/code relative flex w-full flex-col overflow-hidden border font-mono",
+        isMinimalTheme ? "rounded-lg" : "rounded-xl",
+        themeStyles.shell,
         themeStyles.border,
-        themeStyles.shadow,
-        "border transition-all duration-300",
-        isFullscreen ? "fixed inset-0 z-50 rounded-none h-screen" : "",
+        themeStyles.text,
+        isFullscreen && "h-screen rounded-none",
         className,
       )}
     >
-      <style
-        dangerouslySetInnerHTML={{
-          __html: getScrollbarStyles(theme) + getPrismThemeStyles(theme),
-        }}
-      />
-
       <div
         className={cn(
-          "flex items-center justify-between p-3 border-b border-opacity-20",
-          themeStyles.header,
-        )}
-      >
-        <div className="flex items-center gap-4 min-w-0 flex-1">
-          <div className="flex space-x-1.5 flex-shrink-0">
-            <div className="w-3 h-3 rounded-full bg-red-500"></div>
-            <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-            <div className="w-3 h-3 rounded-full bg-green-500"></div>
-          </div>
-          <h3 className="text-sm font-medium truncate">{title}</h3>
-        </div>
-        {showControls && (
-          <div className="flex items-center justify-end gap-2 flex-shrink-0">
-            {completed ? (
-              <button
-                onClick={restartAnimation}
-                onMouseEnter={() => setShowTooltip("restart")}
-                onMouseLeave={() => setShowTooltip("")}
-                className={cn(
-                  "p-1.5 rounded-full hover:bg-white/10 transition-colors relative",
-                )}
-                aria-label="Repeat animation"
-              >
-                <RotateCcw size={14} />
-                {showTooltip === "restart" && (
-                  <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 px-2 py-1 bg-black text-white text-xs rounded whitespace-nowrap">
-                    Restart
-                  </div>
-                )}
-              </button>
-            ) : (
-              <button
-                onClick={togglePlay}
-                onMouseEnter={() => setShowTooltip("play")}
-                onMouseLeave={() => setShowTooltip("")}
-                className={cn(
-                  "p-1.5 rounded-full hover:bg-white/10 transition-colors relative",
-                  isPlaying ? themeStyles.accent : "",
-                )}
-                aria-label={isPlaying ? "Pause" : "Play"}
-              >
-                {isPlaying ? <Pause size={14} /> : <Play size={14} />}
-                {showTooltip === "play" && (
-                  <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 px-2 py-1 bg-black text-white text-xs rounded whitespace-nowrap">
-                    {isPlaying ? "Pause" : "Play"}
-                  </div>
-                )}
-              </button>
-            )}
-            <button
-              onClick={copyCode}
-              onMouseEnter={() => setShowTooltip("copy")}
-              onMouseLeave={() => setShowTooltip("")}
-              className={cn(
-                "p-1.5 rounded-full hover:bg-white/10 transition-colors relative",
-                copied ? themeStyles.accent : "",
-              )}
-              aria-label="Copy code"
-            >
-              {copied ? <Check size={14} /> : <Copy size={14} />}
-              {showTooltip === "copy" && (
-                <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 px-2 py-1 bg-black text-white text-xs rounded whitespace-nowrap">
-                  {copied ? "Copied!" : "Copy"}
-                </div>
-              )}
-            </button>
-            <button
-              onClick={downloadCode}
-              onMouseEnter={() => setShowTooltip("download")}
-              onMouseLeave={() => setShowTooltip("")}
-              className="p-1.5 rounded-full hover:bg-white/10 transition-colors relative"
-              aria-label="Download code"
-            >
-              <Download size={14} />
-              {showTooltip === "download" && (
-                <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 px-2 py-1 bg-black text-white text-xs rounded whitespace-nowrap">
-                  Download
-                </div>
-              )}
-            </button>
-            <button
-              onClick={toggleFullscreen}
-              onMouseEnter={() => setShowTooltip("fullscreen")}
-              onMouseLeave={() => setShowTooltip("")}
-              className="p-1.5 rounded-full hover:bg-white/10 transition-colors relative"
-              aria-label={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
-            >
-              {isFullscreen ? <Minimize2 size={14} /> : <Maximize2 size={14} />}
-              {showTooltip === "fullscreen" && (
-                <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 px-2 py-1 bg-black text-white text-xs rounded whitespace-nowrap">
-                  {isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
-                </div>
-              )}
-            </button>
-          </div>
-        )}
-      </div>
-
-      <div className="relative overflow-hidden flex-grow flex flex-col">
-        {blurEffect && (
-          <div
-            className={cn(
-              "absolute inset-0 pointer-events-none opacity-[0.05] mix-blend-overlay",
-              theme === "terminal"
-                ? "bg-emerald-400"
-                : theme === "cyberpunk"
-                  ? "bg-fuchsia-400"
-                  : "bg-blue-400",
-            )}
-          />
-        )}
-        <div className="h-0.5 w-full bg-black/20 dark:bg-white/10 flex-shrink-0">
-          <motion.div
-            className={cn("h-full", themeStyles.accent)}
-            initial={{ width: 0 }}
-            animate={{ width: `${progressPercentage}%` }}
-            transition={{ duration: 0.1 }}
-          />
-        </div>
-        <div
-          className="relative flex-grow overflow-hidden"
-          ref={codeContainerRef}
-        >
-          <div
-            className="absolute top-0 right-0 bottom-0 w-12 pointer-events-none z-10 opacity-50"
-            style={{
-              background:
-                theme === "nightowl"
-                  ? "linear-gradient(to left, rgba(11, 41, 66, 0.5) 10%, transparent 100%)"
-                  : theme === "terminal"
-                    ? "linear-gradient(to left, rgba(2, 6, 23, 0.8) 10%, transparent 100%)"
-                    : theme === "cyberpunk"
-                      ? "linear-gradient(to left, rgba(76, 29, 149, 0.8) 10%, transparent 100%)"
-                      : "linear-gradient(to left, rgba(24, 24, 27, 0.8) 10%, transparent 100%)",
-            }}
-          />
-          <div
-            className="absolute top-0 left-0 bottom-0 w-12 pointer-events-none z-10 opacity-50"
-            style={{
-              background:
-                theme === "nightowl"
-                  ? "linear-gradient(to right, rgba(11, 41, 66, 0.8) 10%, transparent 100%)"
-                  : theme === "terminal"
-                    ? "linear-gradient(to right, rgba(2, 6, 23, 0.8) 10%, transparent 100%)"
-                    : theme === "cyberpunk"
-                      ? "linear-gradient(to right, rgba(76, 29, 149, 0.8) 10%, transparent 100%)"
-                      : "linear-gradient(to right, rgba(24, 24, 27, 0.8) 10%, transparent 100%)",
-            }}
-          />
-          <div className="overflow-auto code-scrollbar h-full">
-            <div className="flex min-w-full h-full">
-              {showLineNumbers && (
-                <div
-                  ref={lineNumbersRef}
-                  className={cn(
-                    "text-xs py-4 px-3 text-right select-none border-r border-opacity-20 sticky -left-1 h-full flex flex-col z-10",
-                    themeStyles.lineNumbers,
-                    themeStyles.border,
-                    themeStyles.background,
-                  )}
-                >
-                  <div className="flex flex-col">
-                    {codeLines.map((_, i) => (
-                      <div
-                        key={i}
-                        className="h-6 flex items-center justify-end"
-                      >
-                        {i + 1}
-                      </div>
-                    ))}
-                    {Array.from({ length: extraLines }).map((_, i) => (
-                      <div
-                        key={`extra-${i}`}
-                        className="h-6 flex items-center justify-end"
-                      >
-                        {codeLines.length + i + 1}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-              <div className="relative py-4 flex-grow h-full z-1" ref={codeRef}>
-                {highlightLines.map((lineNum) => (
-                  <div
-                    key={`highlight-${lineNum}`}
-                    className={cn(
-                      "absolute left-0 right-0 h-6",
-                      themeStyles.highlight,
-                    )}
-                    style={{ top: `${(lineNum - 1) * 24 + 16}px` }}
-                  />
-                ))}
-                <div className="relative z-10 px-4 font-mono text-sm h-full">
-                  {completed ? (
-                    <div
-                      className="whitespace-pre"
-                      dangerouslySetInnerHTML={{ __html: highlightedCode }}
-                    />
-                  ) : (
-                    <>
-                      {codeLines.map((line, i) => (
-                        <div key={i} className="h-6 whitespace-pre">
-                          {displayedLines[i] && (
-                            <span
-                              dangerouslySetInnerHTML={{
-                                __html: Prism.highlight(
-                                  displayedLines[i],
-                                  Prism.languages[language] ||
-                                    Prism.languages.javascript,
-                                  language,
-                                ),
-                              }}
-                            />
-                          )}
-                          {i === cursorLineIndex && (
-                            <motion.span
-                              className={cn(
-                                "inline-block w-2 h-5 -mb-0.5",
-                                themeStyles.accentText,
-                              )}
-                              animate={{ opacity: [1, 0] }}
-                              transition={{
-                                repeat: Number.POSITIVE_INFINITY,
-                                duration: 0.8,
-                              }}
-                            />
-                          )}
-                        </div>
-                      ))}
-                    </>
-                  )}
-                  {Array.from({ length: extraLines }).map((_, i) => (
-                    <div key={`extra-${i}`} className="h-6 whitespace-pre">
-                      &nbsp;
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div
-        className={cn(
-          "px-4 py-2 text-xs border-t border-opacity-20 flex justify-between items-center",
+          "relative flex items-center justify-between gap-3 border-b",
+          isMinimalTheme ? "min-h-12 px-4" : "min-h-14 px-3",
           themeStyles.header,
           themeStyles.border,
         )}
       >
-        <div className="flex items-center gap-2">
-          <div
+        <div className="flex min-w-0 items-center gap-2">
+          {!isMinimalTheme && (
+            <>
+              <div
+                className="hidden items-center gap-1.25 pr-1 sm:flex"
+                aria-hidden="true"
+              >
+                <span className="h-2 w-2 rounded-full bg-rose-400/80" />
+                <span className="h-2 w-2 rounded-full bg-amber-300/80" />
+                <span className="h-2 w-2 rounded-full bg-emerald-400/80" />
+              </div>
+              <div
+                className={cn(
+                  "hidden h-5 w-px sm:block",
+                  themeStyles.accentSoft,
+                )}
+              />
+            </>
+          )}
+          <Code2 className={cn("h-4 w-4 shrink-0", themeStyles.accentText)} />
+          <span className="truncate text-xs font-medium tracking-wide sm:text-sm">
+            {title}
+          </span>
+          <span
             className={cn(
-              "w-2 h-2 rounded-full",
-              isPlaying ? "bg-green-500" : "bg-gray-500",
+              "hidden rounded-full px-2 py-1 text-xs font-semibold uppercase tracking-widest md:inline-flex",
+              themeStyles.accentSoft,
             )}
-          ></div>
-          <span>
-            {isPlaying ? "Typing..." : completed ? "Completed" : "Paused"}
+          >
+            {languageLabel}
           </span>
         </div>
-        <div>{Math.round(progressPercentage)}% complete</div>
-      </div>
 
-      <AnimatePresence>
-        {isFullscreen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed top-4 right-4 z-50"
+        {showControls && (
+          <div
+            className={cn(
+              "flex shrink-0 items-center rounded-lg border p-1",
+              themeStyles.border,
+              themeStyles.surface,
+            )}
           >
             <button
-              onClick={toggleFullscreen}
-              className="bg-black/50 hover:bg-black/70 text-white p-2 rounded-full backdrop-blur-sm transition-colors"
-              aria-label="Exit fullscreen"
+              type="button"
+              onClick={completed ? restartAnimation : togglePlay}
+              className={controlButtonClassName}
+              aria-label={
+                completed
+                  ? "Replay animation"
+                  : isPlaying
+                    ? "Pause animation"
+                    : "Play animation"
+              }
+              title={completed ? "Replay" : isPlaying ? "Pause" : "Play"}
             >
-              <Minimize2 size={20} />
+              {completed ? (
+                <RotateCcw className="h-3.5 w-3.5" />
+              ) : isPlaying ? (
+                <Pause className="h-3.5 w-3.5" />
+              ) : (
+                <Play className="h-3.5 w-3.5" />
+              )}
             </button>
-          </motion.div>
+            <button
+              type="button"
+              onClick={() => void copyCode()}
+              className={controlButtonClassName}
+              aria-label={copied ? "Code copied" : "Copy code"}
+              title={copied ? "Copied" : "Copy"}
+            >
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.span
+                  key={copied ? "copied" : "copy"}
+                  initial={
+                    shouldReduceMotion ? false : { opacity: 0, scale: 0.75 }
+                  }
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={
+                    shouldReduceMotion ? undefined : { opacity: 0, scale: 0.75 }
+                  }
+                  className="block"
+                >
+                  {copied ? (
+                    <Check
+                      className={cn("h-3.5 w-3.5", themeStyles.accentText)}
+                    />
+                  ) : (
+                    <Copy className="h-3.5 w-3.5" />
+                  )}
+                </motion.span>
+              </AnimatePresence>
+            </button>
+            <button
+              type="button"
+              onClick={downloadCode}
+              className={cn("hidden sm:block", controlButtonClassName)}
+              aria-label="Download code"
+              title="Download"
+            >
+              <Download className="h-3.5 w-3.5" />
+            </button>
+            <button
+              type="button"
+              onClick={() => void toggleFullscreen()}
+              className={cn("hidden sm:block", controlButtonClassName)}
+              aria-label={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
+              title={isFullscreen ? "Exit fullscreen" : "Fullscreen"}
+            >
+              {isFullscreen ? (
+                <Minimize2 className="h-3.5 w-3.5" />
+              ) : (
+                <Maximize2 className="h-3.5 w-3.5" />
+              )}
+            </button>
+          </div>
         )}
-      </AnimatePresence>
-    </div>
+      </div>
+
+      <div
+        ref={codeViewportRef}
+        className={cn(
+          "code-scrollbar relative min-h-80 flex-1 overflow-auto py-3 text-xs leading-6 sm:text-sm",
+          themeStyles.surface,
+          themeStyles.syntax,
+        )}
+      >
+        <div
+          className={cn(
+            "pointer-events-none absolute inset-x-0 top-0 h-px",
+            isMinimalTheme ? "bg-black/5" : "bg-white/5",
+          )}
+        />
+        <div className="min-w-max">
+          {codeLines.map((_, index) => {
+            const lineNumber = index + 1;
+            const isHighlighted =
+              highlightedLineSet.has(lineNumber) && writtenLines[index];
+
+            return (
+              <div
+                key={lineNumber}
+                className={cn(
+                  "flex min-h-6 border-l-2 border-transparent pr-6 transition-colors duration-300 motion-reduce:transition-none",
+                  isHighlighted && themeStyles.highlight,
+                )}
+              >
+                {showLineNumbers && (
+                  <span
+                    className={cn(
+                      "sticky left-0 z-10 w-14 shrink-0 select-none border-r pr-4 text-right tabular-nums",
+                      themeStyles.surface,
+                      themeStyles.border,
+                      isHighlighted
+                        ? themeStyles.accentText
+                        : themeStyles.muted,
+                    )}
+                    aria-hidden="true"
+                  >
+                    {lineNumber}
+                  </span>
+                )}
+                <code
+                  className={cn(
+                    "block whitespace-pre pl-4",
+                    !showLineNumbers && "pl-6",
+                  )}
+                >
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: highlightedLines[index],
+                    }}
+                  />
+                  {index === cursorLineIndex && (
+                    <motion.span
+                      className={cn(
+                        "ml-0.5 inline-block h-4 w-0.5 align-middle",
+                        themeStyles.accent,
+                      )}
+                      animate={
+                        shouldReduceMotion
+                          ? undefined
+                          : { opacity: [1, 0.2, 1] }
+                      }
+                      transition={{
+                        duration: 0.9,
+                        repeat: Number.POSITIVE_INFINITY,
+                      }}
+                      aria-hidden="true"
+                    />
+                  )}
+                </code>
+              </div>
+            );
+          })}
+          {Array.from({ length: fillerLineCount }, (_, index) => {
+            const lineNumber = codeLines.length + index + 1;
+
+            return (
+              <div
+                key={`filler-${lineNumber}`}
+                className="flex min-h-6 border-l-2 border-transparent pr-6"
+                aria-hidden="true"
+              >
+                <span
+                  className={cn(
+                    "sticky left-0 z-10 w-14 shrink-0 select-none border-r pr-4 text-right tabular-nums",
+                    themeStyles.surface,
+                    themeStyles.border,
+                    themeStyles.muted,
+                  )}
+                >
+                  {lineNumber}
+                </span>
+                <code className="block whitespace-pre pl-4">&nbsp;</code>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <div
+        className={cn(
+          "relative flex items-center justify-between gap-4 text-xs uppercase tracking-widest",
+          isMinimalTheme ? "min-h-1 border-t-0 px-0" : "min-h-10 border-t px-4",
+          themeStyles.header,
+          themeStyles.border,
+          themeStyles.muted,
+        )}
+      >
+        <div className="flex items-center gap-2"></div>
+        <motion.div
+          className={cn(
+            "absolute inset-x-0 top-0 h-px origin-left",
+            themeStyles.accent,
+          )}
+          initial={false}
+          animate={{ scaleX: Math.min(progress / 100, 1) }}
+          transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.12 }}
+        />
+      </div>
+    </motion.div>
   );
 }

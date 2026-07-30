@@ -333,7 +333,7 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
       theme: {
         type: "select",
         default: "dark",
-        options: ["dark", "terminal", "cyberpunk", "nightowl"],
+        options: ["dark", "terminal", "minimal", "nightowl"],
         label: "Theme",
         description: "Visual theme for the code block",
         category: "Appearance",
