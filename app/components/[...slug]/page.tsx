@@ -88,7 +88,6 @@ export default async function ComponentPage({ params }: SlugPageProps) {
   const excludedComponents = [
     "marquee",
     "ms-paint",
-    "scroll-animation-trigger",
     "image-comparison",
     "reveal-card",
   ];

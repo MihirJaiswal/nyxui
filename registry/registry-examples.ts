@@ -464,48 +464,6 @@ export const examples: Registry["items"] = [
     ],
   },
   {
-    name: "scroll-animation-trigger-demo",
-    type: "registry:example",
-    title: "Scroll Animation Trigger Demo",
-    description: "Example showing a scroll animation trigger.",
-    registryDependencies: ["https://nyxui.com/r/scroll-animation-trigger.json"],
-    files: [
-      {
-        path: "registry/example/scroll-animation-trigger-demo.tsx",
-        type: "registry:example",
-        target: "components/scroll-animation-trigger-demo.tsx",
-      },
-    ],
-  },
-  {
-    name: "scroll-animation-trigger-demo1",
-    type: "registry:example",
-    title: "Scroll Animation Trigger Demo 1",
-    description: "Example showing a scroll animation trigger.",
-    registryDependencies: ["https://nyxui.com/r/scroll-animation-trigger.json"],
-    files: [
-      {
-        path: "registry/example/scroll-animation-trigger-demo1.tsx",
-        type: "registry:example",
-        target: "components/scroll-animation-trigger-demo1.tsx",
-      },
-    ],
-  },
-  {
-    name: "scroll-animation-trigger-demo2",
-    type: "registry:example",
-    title: "Scroll Animation Trigger Demo 2",
-    description: "Example showing a scroll animation trigger.",
-    registryDependencies: ["https://nyxui.com/r/scroll-animation-trigger.json"],
-    files: [
-      {
-        path: "registry/example/scroll-animation-trigger-demo2.tsx",
-        type: "registry:example",
-        target: "components/scroll-animation-trigger-demo2.tsx",
-      },
-    ],
-  },
-  {
     name: "terminal-demo",
     type: "registry:example",
     title: "Terminal Demo",
@@ -530,6 +488,34 @@ export const examples: Registry["items"] = [
         path: "registry/example/terminal-demo1.tsx",
         type: "registry:example",
         target: "components/terminal-demo1.tsx",
+      },
+    ],
+  },
+  {
+    name: "terminal-demo2",
+    type: "registry:example",
+    title: "Terminal Demo 2",
+    description: "Example showing a terminal with the default theme.",
+    registryDependencies: ["https://nyxui.com/r/terminal.json"],
+    files: [
+      {
+        path: "registry/example/terminal-demo2.tsx",
+        type: "registry:example",
+        target: "components/terminal-demo2.tsx",
+      },
+    ],
+  },
+  {
+    name: "terminal-demo3",
+    type: "registry:example",
+    title: "Terminal Demo 3",
+    description: "Example showing a terminal with the synthwave theme.",
+    registryDependencies: ["https://nyxui.com/r/terminal.json"],
+    files: [
+      {
+        path: "registry/example/terminal-demo3.tsx",
+        type: "registry:example",
+        target: "components/terminal-demo3.tsx",
       },
     ],
   },

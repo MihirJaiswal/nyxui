@@ -401,21 +401,6 @@ export const ui: Registry["items"] = [
     ],
   },
   {
-    name: "scroll-animation-trigger",
-    type: "registry:ui",
-    title: "Scroll Animation Trigger",
-    description:
-      "A scroll animation trigger that that provide several effects.",
-    dependencies: ["lucide-react", "motion"],
-    files: [
-      {
-        path: "registry/ui/scroll-animation-trigger.tsx",
-        type: "registry:ui",
-        target: "components/ui/scroll-animation-trigger.tsx",
-      },
-    ],
-  },
-  {
     name: "terminal",
     type: "registry:ui",
     title: "Terminal",
