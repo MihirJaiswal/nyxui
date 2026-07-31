@@ -5,24 +5,22 @@ import { Rocket } from "lucide-react";
 const TerminalDemo = () => {
   return (
     <div className="flex flex-col gap-12 w-full max-w-4xl mx-auto relative">
-      <div>
-        <InteractiveTerminal
-          command="deploy --production"
-          autoExecute
-          variant="dark"
-          repeat
-          icon={<Rocket className="mr-2 text-blue-400" />}
-          steps={[
-            "Initializing deployment pipeline...",
-            "Running pre-deployment checks...",
-            "Building application assets...",
-            "Running test suite...",
-            "Optimizing build size...",
-            "Provisioning cloud resources...",
-            "Deploying to production servers...",
-          ]}
-          finalMessage={`
-  ✅ DEPLOYMENT SUCCESSFUL!
+      <InteractiveTerminal
+        command="deploy --production"
+        autoExecute
+        variant="sky"
+        repeat
+        icon={<Rocket className="text-blue-400 size-4" />}
+        steps={[
+          "Initializing deployment pipeline...",
+          "Running pre-deployment checks...",
+          "Building application assets...",
+          "Running test suite...",
+          "Optimizing build size...",
+          "Provisioning cloud resources...",
+          "Deploying to production servers...",
+        ]}
+        finalMessage={`✅ DEPLOYMENT SUCCESSFUL!
   
   Application deployed to: https://nyxui.com/
   Build version: 1.0.42
@@ -31,10 +29,8 @@ const TerminalDemo = () => {
   
   All systems operational. Monitoring dashboard available at /admin/metrics
                 `}
-          stepDelay={800}
-          className="rounded-md border border-blue-900/50 shadow-md hover:shadow-lg transition-shadow"
-        />
-      </div>
+        stepDelay={800}
+      />
     </div>
   );
 };

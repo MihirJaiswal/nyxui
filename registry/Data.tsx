@@ -203,12 +203,6 @@ export const componentsData: ComponentsData = {
       image: "/assets/images/showcase/components/reveal-card.png",
       imageClassName: "scale-95 -mt-5",
     },
-    "scroll-animation-trigger": {
-      title: "Scroll Animation Trigger",
-      tags: ["Interactive", "Animation", "Scroll", "Effects"],
-      description: "Elements that animate when scrolled into view.",
-      image: "/assets/images/showcase/components/scroll-animation-trigger.png",
-    },
     terminal: {
       title: "Terminal",
       tags: ["Interactive", "Mock", "Tools"],

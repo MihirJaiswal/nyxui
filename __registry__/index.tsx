@@ -419,28 +419,6 @@ export const Index: Record<string, RegistryEntry> = {
     }),
     meta: undefined,
   },
-  "scroll-animation-trigger": {
-    name: "scroll-animation-trigger",
-    description:
-      "A scroll animation trigger that that provide several effects.",
-    type: "registry:ui",
-    registryDependencies: undefined,
-    files: [
-      {
-        path: "registry/ui/scroll-animation-trigger.tsx",
-        type: "registry:ui",
-      },
-    ],
-    component: React.lazy(async () => {
-      const mod = (await import(
-        "@/registry/ui/scroll-animation-trigger"
-      )) as RegistryModule;
-      return {
-        default: pickRegistryComponent(mod, "scroll-animation-trigger"),
-      };
-    }),
-    meta: undefined,
-  },
   terminal: {
     name: "terminal",
     description: "A terminal that that provide several effects.",
@@ -1171,69 +1149,6 @@ export const Index: Record<string, RegistryEntry> = {
     }),
     meta: undefined,
   },
-  "scroll-animation-trigger-demo": {
-    name: "scroll-animation-trigger-demo",
-    description: "Example showing a scroll animation trigger.",
-    type: "registry:example",
-    registryDependencies: ["https://nyxui.com/r/scroll-animation-trigger.json"],
-    files: [
-      {
-        path: "registry/example/scroll-animation-trigger-demo.tsx",
-        type: "registry:example",
-      },
-    ],
-    component: React.lazy(async () => {
-      const mod = (await import(
-        "@/registry/example/scroll-animation-trigger-demo"
-      )) as RegistryModule;
-      return {
-        default: pickRegistryComponent(mod, "scroll-animation-trigger-demo"),
-      };
-    }),
-    meta: undefined,
-  },
-  "scroll-animation-trigger-demo1": {
-    name: "scroll-animation-trigger-demo1",
-    description: "Example showing a scroll animation trigger.",
-    type: "registry:example",
-    registryDependencies: ["https://nyxui.com/r/scroll-animation-trigger.json"],
-    files: [
-      {
-        path: "registry/example/scroll-animation-trigger-demo1.tsx",
-        type: "registry:example",
-      },
-    ],
-    component: React.lazy(async () => {
-      const mod = (await import(
-        "@/registry/example/scroll-animation-trigger-demo1"
-      )) as RegistryModule;
-      return {
-        default: pickRegistryComponent(mod, "scroll-animation-trigger-demo1"),
-      };
-    }),
-    meta: undefined,
-  },
-  "scroll-animation-trigger-demo2": {
-    name: "scroll-animation-trigger-demo2",
-    description: "Example showing a scroll animation trigger.",
-    type: "registry:example",
-    registryDependencies: ["https://nyxui.com/r/scroll-animation-trigger.json"],
-    files: [
-      {
-        path: "registry/example/scroll-animation-trigger-demo2.tsx",
-        type: "registry:example",
-      },
-    ],
-    component: React.lazy(async () => {
-      const mod = (await import(
-        "@/registry/example/scroll-animation-trigger-demo2"
-      )) as RegistryModule;
-      return {
-        default: pickRegistryComponent(mod, "scroll-animation-trigger-demo2"),
-      };
-    }),
-    meta: undefined,
-  },
   "terminal-demo": {
     name: "terminal-demo",
     description: "Example showing a terminal.",
@@ -1269,6 +1184,44 @@ export const Index: Record<string, RegistryEntry> = {
         "@/registry/example/terminal-demo1"
       )) as RegistryModule;
       return { default: pickRegistryComponent(mod, "terminal-demo1") };
+    }),
+    meta: undefined,
+  },
+  "terminal-demo2": {
+    name: "terminal-demo2",
+    description: "Example showing a terminal with the default theme.",
+    type: "registry:example",
+    registryDependencies: ["https://nyxui.com/r/terminal.json"],
+    files: [
+      {
+        path: "registry/example/terminal-demo2.tsx",
+        type: "registry:example",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/example/terminal-demo2"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "terminal-demo2") };
+    }),
+    meta: undefined,
+  },
+  "terminal-demo3": {
+    name: "terminal-demo3",
+    description: "Example showing a terminal with the synthwave theme.",
+    type: "registry:example",
+    registryDependencies: ["https://nyxui.com/r/terminal.json"],
+    files: [
+      {
+        path: "registry/example/terminal-demo3.tsx",
+        type: "registry:example",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/example/terminal-demo3"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "terminal-demo3") };
     }),
     meta: undefined,
   },
