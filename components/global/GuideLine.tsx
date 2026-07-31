@@ -27,7 +27,7 @@ export const GuideLine = forwardRef<HTMLSpanElement, GuideLineProps>(
         style={{ width }}
         className={cn(
           "block h-px shrink-0 origin-left",
-          highlighted ? "bg-primary" : "bg-foreground/30",
+          highlighted ? "bg-brand" : "bg-foreground/30",
           className,
         )}
       />

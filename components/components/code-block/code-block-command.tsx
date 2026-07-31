@@ -70,7 +70,7 @@ export function CodeBlockCommand({
             <TabsTrigger
               key={manager}
               value={manager}
-              className="relative h-auto rounded-lg border-0 bg-transparent px-4 py-1.5 text-sm font-medium text-muted-foreground shadow-none transition-colors duration-200 hover:text-foreground data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-none"
+              className="relative h-auto rounded-lg border-0 bg-transparent px-4 py-1.5 text-sm font-medium text-muted-foreground shadow-none transition-colors duration-200 hover:text-foreground data-[state=active]:bg-brand data-[state=active]:text-brand-foreground data-[state=active]:shadow-none"
             >
               <span className="relative z-10">{manager}</span>
             </TabsTrigger>
@@ -94,7 +94,7 @@ export function CodeBlockCommand({
                     index === 0 ? (
                       <span
                         key={index}
-                        className="font-semibold tracking-wide text-primary"
+                        className="font-semibold tracking-wide text-brand"
                       >
                         {part}{" "}
                       </span>
@@ -113,11 +113,11 @@ export function CodeBlockCommand({
       <Button
         size="icon"
         variant="ghost"
-        className="absolute right-2 bottom-2 z-10 h-7 w-7 rounded-md border border-border/70 bg-accent text-muted-foreground opacity-0 transition-all hover:bg-muted hover:text-foreground active:scale-95 group-hover:opacity-100 [&_svg]:h-3.5 [&_svg]:w-3.5"
+        className="absolute right-2 bottom-2 z-10 h-7 w-7 rounded-md border border-border/70 bg-muted/50 text-muted-foreground opacity-0 transition-all hover:bg-muted/80 dark:hover:bg-muted/80 hover:text-foreground active:scale-95 group-hover:opacity-100 [&_svg]:h-3.5 [&_svg]:w-3.5"
         onClick={copyCommand}
       >
         <span className="sr-only">{hasCopied ? "Copied" : "Copy"}</span>
-        {hasCopied ? <CheckIcon className="text-primary" /> : <CopyIcon />}
+        {hasCopied ? <CheckIcon className="text-brand" /> : <CopyIcon />}
       </Button>
     </div>
   );

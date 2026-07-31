@@ -102,7 +102,7 @@ export default function Navbar() {
                 className={cn(
                   "px-3 py-2 text-sm font-medium transition-colors hover:text-foreground",
                   activeLink === link.href
-                    ? "text-primary"
+                    ? "text-brand"
                     : "text-muted-foreground",
                 )}
               >
@@ -115,7 +115,7 @@ export default function Navbar() {
                 <button
                   className={cn(
                     "group flex items-center gap-0.5 px-3 py-2 text-sm font-medium transition-colors hover:text-foreground outline-none",
-                    isMoreActive ? "text-primary" : "text-muted-foreground",
+                    isMoreActive ? "text-brand" : "text-muted-foreground",
                   )}
                 >
                   More

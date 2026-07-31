@@ -113,6 +113,7 @@ export const componentsData: ComponentsData = {
       description:
         "A card component that displays GitHub repository information.",
       image: "/assets/images/showcase/components/github-repo-card.png",
+      imageClassName: "scale-85",
     },
     "glitch-button": {
       title: "Glitch Button",
