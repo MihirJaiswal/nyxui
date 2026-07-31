@@ -253,25 +253,6 @@ export const Index: Record<string, RegistryEntry> = {
     }),
     meta: undefined,
   },
-  "liquid-metal-button": {
-    name: "liquid-metal-button",
-    description: "A button component with a liquid metal effect.",
-    type: "registry:ui",
-    registryDependencies: undefined,
-    files: [
-      {
-        path: "registry/ui/liquid-metal-button.tsx",
-        type: "registry:ui",
-      },
-    ],
-    component: React.lazy(async () => {
-      const mod = (await import(
-        "@/registry/ui/liquid-metal-button"
-      )) as RegistryModule;
-      return { default: pickRegistryComponent(mod, "liquid-metal-button") };
-    }),
-    meta: undefined,
-  },
   "image-comparison": {
     name: "image-comparison",
     description:
@@ -615,6 +596,46 @@ export const Index: Record<string, RegistryEntry> = {
     }),
     meta: undefined,
   },
+  "grainy-background-demo1": {
+    name: "grainy-background-demo1",
+    description:
+      "Example showing a dark aurora grainy background used as a hero section with headline and CTAs.",
+    type: "registry:example",
+    registryDependencies: ["https://nyxui.com/r/grainy-background"],
+    files: [
+      {
+        path: "registry/example/grainy-background-demo1.tsx",
+        type: "registry:example",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/example/grainy-background-demo1"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "grainy-background-demo1") };
+    }),
+    meta: undefined,
+  },
+  "grainy-background-demo2": {
+    name: "grainy-background-demo2",
+    description:
+      "Example showing mesh grainy backgrounds used in a pricing card layout.",
+    type: "registry:example",
+    registryDependencies: ["https://nyxui.com/r/grainy-background"],
+    files: [
+      {
+        path: "registry/example/grainy-background-demo2.tsx",
+        type: "registry:example",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/example/grainy-background-demo2"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "grainy-background-demo2") };
+    }),
+    meta: undefined,
+  },
   "animated-text-demo": {
     name: "animated-text-demo",
     description: "Example showing various text animations.",
@@ -767,6 +788,26 @@ export const Index: Record<string, RegistryEntry> = {
     }),
     meta: undefined,
   },
+  "github-repo-card-demo3": {
+    name: "github-repo-card-demo3",
+    description:
+      "Example showing a GitHub repo card with the modern-light theme.",
+    type: "registry:example",
+    registryDependencies: ["https://nyxui.com/r/github-repo-card.json"],
+    files: [
+      {
+        path: "registry/example/github-repo-card-demo3.tsx",
+        type: "registry:example",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/example/github-repo-card-demo3"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "github-repo-card-demo3") };
+    }),
+    meta: undefined,
+  },
   "glitch-button-demo": {
     name: "glitch-button-demo",
     description: "Example showing a glitch button.",
@@ -859,27 +900,6 @@ export const Index: Record<string, RegistryEntry> = {
         "@/registry/example/lamp-heading-demo"
       )) as RegistryModule;
       return { default: pickRegistryComponent(mod, "lamp-heading-demo") };
-    }),
-    meta: undefined,
-  },
-  "liquid-metal-button-demo": {
-    name: "liquid-metal-button-demo",
-    description: "Example showing a liquid metal button.",
-    type: "registry:example",
-    registryDependencies: ["https://nyxui.com/r/liquid-metal-button.json"],
-    files: [
-      {
-        path: "registry/example/liquid-metal-button-demo.tsx",
-        type: "registry:example",
-      },
-    ],
-    component: React.lazy(async () => {
-      const mod = (await import(
-        "@/registry/example/liquid-metal-button-demo"
-      )) as RegistryModule;
-      return {
-        default: pickRegistryComponent(mod, "liquid-metal-button-demo"),
-      };
     }),
     meta: undefined,
   },

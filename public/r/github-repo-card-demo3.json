@@ -1,17 +1,17 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "github-repo-card-demo1",
+  "name": "github-repo-card-demo3",
   "type": "registry:example",
-  "title": "Github Repo Card Demo 1",
-  "description": "Example showing a GitHub repo card.",
+  "title": "Github Repo Card Demo 3",
+  "description": "Example showing a GitHub repo card with the modern-light theme.",
   "dependencies": ["lucide-react"],
   "registryDependencies": ["https://nyxui.com/r/github-repo-card.json"],
   "files": [
     {
-      "path": "registry/example/github-repo-card-demo1.tsx",
-      "content": "import React from \"react\";\nimport { GitHubRepoCard } from \"@/registry/ui/github-repo-card\";\n\nexport default function GithubRepoCardDemo1() {\n  return (\n    <div className=\"max-w-md relative\">\n      <GitHubRepoCard\n        theme=\"neo-brutalist\"\n        repo={{\n          owner: \"microsoft\",\n          ownerAvatar: \"https://avatars.githubusercontent.com/u/6154722?v=4\",\n          name: \"vscode\",\n          description:\n            \"Visual Studio Code is a code editor redefined and optimized for building and debugging modern web and cloud applications.\",\n          stars: 145000,\n          forks: 25600,\n          watchers: 3100,\n          issues: 7800,\n          language: \"TypeScript\",\n          updatedAt: \"2025-04-05T19:22:11Z\",\n          topics: [\"editor\", \"ide\", \"typescript\", \"development\"],\n          activityData: [\n            0.7, 0.6, 0.8, 0.9, 1.0, 0.8, 0.9, 0.7, 0.8, 0.9, 0.8, 0.7,\n          ],\n          isPrivate: false,\n        }}\n      />\n    </div>\n  );\n}\n",
+      "path": "registry/example/github-repo-card-demo3.tsx",
+      "content": "import { GitHubRepoCard } from \"@/registry/ui/github-repo-card\";\n\nexport default function GithubRepoCardDemo3() {\n  return (\n    <div className=\"w-full max-w-md mx-auto relative\">\n      <GitHubRepoCard\n        theme=\"modern-light\"\n        repo={{\n          name: \"next.js\",\n          owner: \"vercel\",\n          ownerAvatar: \"https://avatars.githubusercontent.com/u/14985020?v=4\",\n          description:\n            \"The React Framework for the Web. Used by some of the world's largest companies, Next.js enables you to create high-quality web applications with the power of full-stack capabilities.\",\n          stars: 128000,\n          forks: 27200,\n          watchers: 4200,\n          issues: 2900,\n          language: \"JavaScript\",\n          updatedAt: \"2025-07-28T10:42:33Z\",\n          topics: [\"react\", \"nextjs\", \"ssr\", \"framework\"],\n          activityData: [\n            0.8, 0.9, 1.0, 0.9, 0.7, 0.8, 0.9, 1.0, 0.9, 0.8, 0.9, 1.0,\n          ],\n          isPrivate: false,\n        }}\n      />\n    </div>\n  );\n}\n",
       "type": "registry:example",
-      "target": "components/github-repo-card-demo1.tsx"
+      "target": "components/github-repo-card-demo3.tsx"
     },
     {
       "path": "registry/ui/github-repo-card.tsx",
