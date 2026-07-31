@@ -54,7 +54,7 @@ export const SidebarItem = ({
       onMouseLeave={() => setHovered(false)}
       className={cn(
         "group relative flex min-h-7 w-full items-center gap-3 rounded-md py-1 text-sm transition-colors hide-scrollbar",
-        isActive ? "text-primary" : "text-muted-foreground hover:text-primary",
+        isActive ? "text-brand" : "text-muted-foreground hover:text-brand",
       )}
     >
       {index === 0 && <PhantomLine position="top" />}

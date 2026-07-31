@@ -131,7 +131,7 @@ const CodeEditor = ({
         onScroll={handleScroll}
         placeholder={placeholder}
         className={cn(
-          "relative w-full resize-none outline-none border-0 focus:ring-0 focus:outline-none selection:bg-primary/25",
+          "relative w-full resize-none outline-none border-0 focus:ring-0 focus:outline-none selection:bg-brand/25",
           value ? "text-transparent caret-foreground" : "text-muted-foreground",
         )}
         style={{

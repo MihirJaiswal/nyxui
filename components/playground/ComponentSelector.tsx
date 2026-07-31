@@ -109,8 +109,8 @@ const SelectorItem = ({
         transition={LABEL_TRANSITION}
         className={cn(
           "min-w-0 flex-1 truncate text-left",
-          isActive ? "text-primary" : "text-muted-foreground",
-          highlighted && !isActive && "text-primary",
+          isActive ? "text-brand" : "text-muted-foreground",
+          highlighted && !isActive && "text-brand",
           isActive && "font-medium",
         )}
         title={name}
@@ -130,6 +130,7 @@ const ComponentSelector = ({
 }: ComponentSelectorProps) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [highlightedValue, setHighlightedValue] = useState("");
+  const [isInputFocused, setIsInputFocused] = useState(false);
   const mouseY = useMotionValue(HOVER_NONE);
   const inputRef = useRef<HTMLInputElement>(null);
   const hoverTick = useHoverTick();
@@ -189,15 +190,30 @@ const ComponentSelector = ({
       </div>
 
       <div className="px-3 pt-3 lg:pt-4 lg:px-4">
-        <CommandInput
-          ref={inputRef}
-          value={searchQuery}
-          onValueChange={setSearchQuery}
-          onKeyDown={handleSearchKeyDown}
-          placeholder="Search components..."
-          className="h-9 rounded-lg text-sm"
-          wrapperClassName="border rounded-lg"
-        />
+        <div className="relative">
+          <CommandInput
+            ref={inputRef}
+            value={searchQuery}
+            onValueChange={setSearchQuery}
+            onKeyDown={handleSearchKeyDown}
+            onFocus={() => setIsInputFocused(true)}
+            onBlur={() => setIsInputFocused(false)}
+            placeholder="Search components..."
+            className="h-9 rounded-lg text-sm pr-16"
+            wrapperClassName="border rounded-lg"
+          />
+          <div className="pointer-events-none absolute right-2.5 top-1/2 flex -translate-y-1/2 items-center gap-1">
+            {isInputFocused ? (
+              <kbd className="flex h-4 min-w-4 items-center justify-center rounded border border-border/60 bg-muted px-1 font-mono text-[10px] font-medium text-muted-foreground">
+                Esc
+              </kbd>
+            ) : (
+              <kbd className="flex h-4 min-w-4 items-center justify-center rounded border border-border/60 bg-muted px-1 font-mono text-[10px] font-medium text-muted-foreground">
+                F
+              </kbd>
+            )}
+          </div>
+        </div>
       </div>
 
       <CommandList
