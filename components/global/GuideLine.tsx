@@ -26,8 +26,9 @@ export const GuideLine = forwardRef<HTMLSpanElement, GuideLineProps>(
         ref={ref}
         style={{ width }}
         className={cn(
-          "block h-px shrink-0 origin-left",
+          "block h-px shrink-0 origin-left transition-colors",
           highlighted ? "bg-brand" : "bg-foreground/30",
+          "group-focus-within/cmdk:group-data-[selected=true]:bg-brand",
           className,
         )}
       />
