@@ -1,17 +1,17 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "animated-code-block-demo",
+  "name": "animated-code-block-demo2",
   "type": "registry:example",
-  "title": "Animated Code Block Demo",
-  "description": "Example showing a code block with typing animation effects.",
+  "title": "Animated Code Block Terminal Demo",
+  "description": "Example showing the code block with the terminal theme.",
   "dependencies": ["motion", "lucide-react", "prismjs"],
   "registryDependencies": ["https://nyxui.com/r/animated-code-block"],
   "files": [
     {
-      "path": "registry/example/animated-code-block-demo.tsx",
-      "content": "import { AnimatedCodeBlock } from \"@/registry/ui/animated-code-block\";\n\nconst exampleCode = `import { motion } from \"motion/react\";\n\ninterface FeatureCardProps {\n  title: string;\n  description: string;\n}\n\nexport function FeatureCard({\n  title,\n  description,\n}: FeatureCardProps) {\n  return (\n    <motion.article\n      initial={{ opacity: 0, y: 12 }}\n      animate={{ opacity: 1, y: 0 }}\n      whileHover={{ y: -4 }}\n      className=\"rounded-2xl border p-6\"\n    >\n      <h3>{title}</h3>\n      <p>{description}</p>\n    </motion.article>\n  );\n}`;\n\nexport default function AnimatedCodeBlockDemo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto w-full max-w-4xl p-5\">\n      <AnimatedCodeBlock\n        code={exampleCode}\n        theme=\"dark\"\n        title=\"feature-card.tsx\"\n        typingSpeed={10}\n        showLineNumbers\n        autoPlay\n        language=\"tsx\"\n        highlightLines={[12, 13, 14]}\n      />\n    </div>\n  );\n}\n",
+      "path": "registry/example/animated-code-block-demo2.tsx",
+      "content": "import { AnimatedCodeBlock } from \"@/registry/ui/animated-code-block\";\n\nconst exampleCode = `import { motion } from \"motion/react\";\n\ninterface FeatureCardProps {\n  title: string;\n  description: string;\n}\n\nexport function FeatureCard({\n  title,\n  description,\n}: FeatureCardProps) {\n  return (\n    <motion.article\n      initial={{ opacity: 0, y: 12 }}\n      animate={{ opacity: 1, y: 0 }}\n      whileHover={{ y: -4 }}\n      className=\"rounded-2xl border p-6\"\n    >\n      <h3>{title}</h3>\n      <p>{description}</p>\n    </motion.article>\n  );\n}`;\n\nexport default function AnimatedCodeBlockTerminalDemo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto w-full max-w-4xl p-5\">\n      <AnimatedCodeBlock\n        code={exampleCode}\n        theme=\"terminal\"\n        title=\"feature-card.tsx\"\n        typingSpeed={10}\n        showLineNumbers\n        autoPlay\n        language=\"tsx\"\n        highlightLines={[12, 13, 14]}\n      />\n    </div>\n  );\n}\n",
       "type": "registry:example",
-      "target": "components/animated-code-block-demo.tsx"
+      "target": "components/animated-code-block-demo2.tsx"
     },
     {
       "path": "registry/ui/animated-code-block.tsx",
