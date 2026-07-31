@@ -43,7 +43,7 @@ type ThemeTokens = {
 
 const THEMES: Record<string, ThemeTokens> = {
   default: {
-    glow: "shadow-[0_0_30px_-15px_rgba(16,185,129,0.15)] dark:shadow-[0_0_20px_-10px_rgba(16,185,129,0.15)]",
+    glow: "shadow-[0_0_30px_-15px_rgba(16,185,129,0.15)] dark:shadow-[0_0_12px_-10px_rgba(16,185,129,0.15)]",
     surface:
       "from-emerald-50/70 to-stone-100 text-emerald-700 dark:from-[#0a0f0d] dark:to-[#050807] dark:text-emerald-300",
     promptText: "text-emerald-600 dark:text-emerald-300",
@@ -52,7 +52,7 @@ const THEMES: Record<string, ThemeTokens> = {
     ring: "ring-emerald-600/30 dark:ring-emerald-300/25",
   },
   sky: {
-    glow: "shadow-[0_0_30px_-15px_rgba(56,189,248,0.15)] dark:shadow-[0_0_20px_-10px_rgba(56,189,248,0.15)]",
+    glow: "shadow-[0_0_30px_-15px_rgba(56,189,248,0.15)] dark:shadow-[0_0_12px_-10px_rgba(56,189,248,0.15)]",
     surface:
       "from-sky-50/70 to-stone-100 text-sky-700 dark:from-[#080b12] dark:to-[#04060a] dark:text-sky-300",
     promptText: "text-sky-600 dark:text-sky-300",
@@ -61,7 +61,7 @@ const THEMES: Record<string, ThemeTokens> = {
     ring: "ring-sky-600/30 dark:ring-sky-300/25",
   },
   synthwave: {
-    glow: "shadow-[0_0_30px_-15px_rgba(217,70,239,0.15)] dark:shadow-[0_0_20px_-10px_rgba(217,70,239,0.15)]",
+    glow: "shadow-[0_0_30px_-15px_rgba(217,70,239,0.15)] dark:shadow-[0_0_12px_-10px_rgba(217,70,239,0.15)]",
     surface:
       "from-fuchsia-50/70 to-stone-100 text-fuchsia-700 dark:from-[#0d020f] dark:to-[#050106] dark:text-fuchsia-400",
     promptText: "text-fuchsia-600 dark:text-fuchsia-300",
@@ -70,7 +70,7 @@ const THEMES: Record<string, ThemeTokens> = {
     ring: "ring-fuchsia-600/30 dark:ring-fuchsia-300/25",
   },
   retro: {
-    glow: "shadow-[0_0_30px_-15px_rgba(245,158,11,0.15)] dark:shadow-[0_0_20px_-12px_rgba(245,158,11,0.15)]",
+    glow: "shadow-[0_0_30px_-15px_rgba(245,158,11,0.15)] dark:shadow-[0_0_12px_-12px_rgba(245,158,11,0.15)]",
     surface:
       "from-amber-50/70 to-stone-100 text-amber-700 dark:from-[#140d02] dark:to-[#0a0600] dark:text-amber-300",
     promptText: "text-amber-600 dark:text-amber-300",
@@ -236,19 +236,27 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({
         />
         <div className="pointer-events-none absolute inset-0 z-20 bg-[radial-gradient(ellipse_at_top,transparent_40%,rgba(0,0,0,0.08))] dark:bg-[radial-gradient(ellipse_at_top,transparent_40%,rgba(0,0,0,0.5))]" />
 
-        {/* title bar — 3-col grid keeps center dead-center regardless of side widths */}
-        <div className="relative z-30 grid grid-cols-[auto_1fr_auto] items-center bg-black/[0.04] px-4 py-3 dark:bg-black/30">
+        {/* title bar — center absolutely positioned, immune to side width changes */}
+        <div className="relative z-30 flex items-center justify-between bg-black/[0.04] px-4 py-3 dark:bg-black/30">
           <div className="flex items-center gap-2">
-            <span className="h-3 w-3 rounded-full bg-[#ff5f57] ring-1 ring-black/20 transition-transform group-hover:scale-110" />
-            <span className="h-3 w-3 rounded-full bg-[#febc2e] ring-1 ring-black/20 transition-transform group-hover:scale-110" />
-            <span className="h-3 w-3 rounded-full bg-[#28c840] ring-1 ring-black/20 transition-transform group-hover:scale-110" />
+            <span className="h-3 w-3 rounded-full bg-[#ff5f57] ring-1 ring-black/20" />
+            <span className="h-3 w-3 rounded-full bg-[#febc2e] ring-1 ring-black/20" />
+            <span className="h-3 w-3 rounded-full bg-[#28c840] ring-1 ring-black/20" />
           </div>
-          <div className="flex items-center justify-center gap-2 text-xs text-black/50 dark:text-white/50">
+          <div className="pointer-events-none absolute left-1/2 flex -translate-x-1/2 items-center gap-2 text-xs text-black/50 dark:text-white/50">
             {icon}
-            <span className="tracking-wide">{title}</span>
+            <span className="max-w-48 truncate tracking-wide sm:max-w-none">
+              {title}
+            </span>
           </div>
-          <div className="flex w-[84px] items-center justify-center gap-1.5 rounded-full border border-black/10 bg-black/[0.04] px-2.5 py-1 text-[10px] uppercase tracking-wider text-black/60 dark:border-white/10 dark:bg-black/30 dark:text-white/60">
-            <span className="relative flex h-1.5 w-1.5">
+          <motion.div
+            layout="size"
+            transition={{
+              layout: { duration: 0.25, ease: [0.32, 0.72, 0, 1] },
+            }}
+            className="flex w-fit items-center gap-1.5 rounded-full border border-black/10 bg-black/[0.04] px-2.5 py-1 text-[10px] uppercase tracking-wider whitespace-nowrap text-black/60 dark:border-white/10 dark:bg-black/30 dark:text-white/60"
+          >
+            <span className="relative flex h-1.5 w-1.5 flex-shrink-0">
               {busy && (
                 <span
                   className={cn(
@@ -264,8 +272,18 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({
                 )}
               />
             </span>
-            {status.label}
-          </div>
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.span
+                key={status.label}
+                initial={{ opacity: 0, y: 3 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -3 }}
+                transition={{ duration: 0.15 }}
+              >
+                {status.label}
+              </motion.span>
+            </AnimatePresence>
+          </motion.div>
         </div>
 
         {/* command chip row */}

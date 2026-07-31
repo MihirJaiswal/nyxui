@@ -209,6 +209,7 @@ export const componentsData: ComponentsData = {
       description:
         "A command-line interface with typing animations and responses.",
       image: "/assets/images/showcase/components/interactive-terminal.png",
+      imageClassName: "scale-80",
     },
     "apple-glass-effect": {
       title: "Apple Glass Effect",
