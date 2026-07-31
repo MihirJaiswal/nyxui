@@ -68,7 +68,7 @@ export const componentsData: ComponentsData = {
       tags: ["Animation", "Interactive"],
       description: "Code snippets with typing and highlighting effects.",
       image: "/assets/images/showcase/components/animated-code-block.png",
-      imageClassName: "scale-90",
+      imageClassName: "scale-80",
     },
     "cyberpunk-card": {
       title: "Cyberpunk Card",
