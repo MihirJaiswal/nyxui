@@ -142,12 +142,6 @@ export const componentsData: ComponentsData = {
       image: "/assets/images/showcase/components/lamp-heading.png",
       imageClassName: "invert-100 dark:invert-0 object-cover",
     },
-    "liquid-metal-button": {
-      title: "Liquid Metal Button",
-      tags: ["Buttons", "Effects", "Interactive"],
-      description: "A button with fluid metallic animation effects.",
-      image: "/assets/images/showcase/components/liquid-metal-button.png",
-    },
     "image-comparison": {
       title: "Image Comparison",
       tags: ["Interactive", "Image", "Media"],
@@ -193,7 +187,7 @@ export const componentsData: ComponentsData = {
       title: "Music Player",
       tags: ["Interactive", "Media", "Player"],
       description:
-        "A customizable music player component with multiple themes.",
+        "An immersive music player with morphing collapse/expand animation, glass controls, and queue management.",
       image: "/assets/images/showcase/components/music-player.png",
     },
     "reveal-card": {

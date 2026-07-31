@@ -45,7 +45,6 @@ const componentMeta: Record<string, PlaygroundComponentMeta> = {
   "dynamic-ripple": {},
   terminal: { dependencies: ["motion", "lucide-react"], importType: "default" },
   "matrix-code-rain": { exportName: "MatrixCodeRain" },
-  "liquid-metal-button": { exportName: "LiquidMetalButton" },
   "image-scanner": { dependencies: ["motion"], exportName: "ImageScanner" },
 };
 
@@ -69,7 +68,6 @@ const componentLoaders: Record<string, () => Promise<ComponentModule>> = {
   "dynamic-ripple": () => import("@/registry/ui/dynamic-ripple"),
   terminal: () => import("@/registry/ui/terminal"),
   "matrix-code-rain": () => import("@/registry/ui/matrix-code-rain"),
-  "liquid-metal-button": () => import("@/registry/ui/liquid-metal-button"),
   "image-scanner": () => import("@/registry/ui/image-scanner"),
 };
 
@@ -2083,56 +2081,6 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
         default: "400px",
         label: "Height",
         description: "Container height (CSS value)",
-      },
-    },
-  },
-  "liquid-metal-button": {
-    name: "Liquid Metal Button",
-    component: "LiquidMetalButton",
-    props: {
-      children: {
-        type: "string",
-        default: "Liquid Metal",
-        label: "Button Text",
-        description: "Text content of the button",
-      },
-      theme: {
-        type: "select",
-        default: "silver",
-        options: [
-          "silver",
-          "gold",
-          "copper",
-          "mercury",
-          "steel",
-          "emerald",
-          "sapphire",
-        ],
-        label: "Metal Theme",
-        description: "Different metallic appearances",
-      },
-      size: {
-        type: "select",
-        default: "md",
-        options: ["sm", "md", "lg"],
-        label: "Size",
-        description: "Button size variant",
-      },
-      disabled: {
-        type: "boolean",
-        default: false,
-        label: "Disabled",
-        description: "Disable button interactions",
-      },
-      customColor: {
-        type: "color",
-        default: "#c0c0c0",
-        label: "Custom Color",
-        description: "Custom metallic color",
-        conditional: {
-          property: "theme",
-          value: "custom",
-        },
       },
     },
   },

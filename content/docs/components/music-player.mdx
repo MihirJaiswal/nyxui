@@ -1,7 +1,7 @@
 ---
 title: Music Player
 date: 2025-05-09
-description: A customizable music player component with multiple themes, playback controls, progress tracking, and responsive design.
+description: An immersive music player with morphing collapse/expand animation, glass controls, real audio playback, and queue management.
 author: nyxui
 published: true
 tags: ["Interactive", "Media", "Player"]
@@ -66,14 +66,31 @@ const sampleTrack: Track = {
   id: "1",
   title: "Blinding Lights",
   artist: "The Weeknd",
-  album: "After Hours",
   artwork: "/path/to/artwork.jpg",
   duration: 200,
-  url: "/path/to/audio.mp3",
 };
 
 export default function BasicUsage() {
-  return <MusicPlayer theme="default" currentTrack={sampleTrack} />;
+  return <MusicPlayer currentTrack={sampleTrack} />;
+}
+```
+
+### Real Audio Playback
+
+Pass a `url` to play actual audio. When omitted, the player runs in simulated mode.
+
+```tsx
+const sampleTrack: Track = {
+  id: "1",
+  title: "Blinding Lights",
+  artist: "The Weeknd",
+  artwork: "/path/to/artwork.jpg",
+  duration: 200,
+  url: "/path/to/audio.mp3", // local or remote URL
+};
+
+export default function RealAudio() {
+  return <MusicPlayer currentTrack={sampleTrack} />;
 }
 ```
 
@@ -86,7 +103,6 @@ export function AdvancedPlayer() {
       id: "1",
       title: "Sugar",
       artist: "Maroon 5",
-      album: "V",
       artwork: "/path/to/artwork1.jpg",
       duration: 240,
       url: "/path/to/audio1.mp3",
@@ -95,51 +111,34 @@ export function AdvancedPlayer() {
       id: "2",
       title: "Payphone",
       artist: "Maroon 5",
-      album: "Overexposed",
       artwork: "/path/to/artwork2.jpg",
       duration: 210,
       url: "/path/to/audio2.mp3",
     },
   ];
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const handlePlayPause = (isPlaying: boolean) => {
-    console.log(`Playback ${isPlaying ? "started" : "paused"}`);
-  };
-
-  const handleTimeChange = (currentTime: number) => {
-    console.log(`Current playback position: ${currentTime}s`);
-  };
-
-  const handleTrackChange = (track: Track, index: number) => {
-    setCurrentIndex(index);
-    console.log(`Changed to track: ${track.title}`);
-  };
-
-  const handleVolumeChange = (volume: number) => {
-    console.log(`Volume changed to: ${volume}%`);
-  };
-
   return (
     <MusicPlayer
-      theme="spotify"
-      currentTrack={playlist[currentIndex]}
+      currentTrack={playlist[0]}
       queue={playlist}
-      currentIndex={currentIndex}
       initialTime={30}
       autoPlay={false}
-      showEqualizer={true}
-      onPlayPause={handlePlayPause}
-      onTimeChange={handleTimeChange}
-      onTrackEnd={() => console.log("Track finished playing")}
-      onTrackChange={handleTrackChange}
-      onVolumeChange={handleVolumeChange}
-      className="rounded-xl shadow-lg"
     />
   );
 }
 ```
+
+### Collapse / Expand
+
+The player morphs between a compact pill bar and the full immersive card. The collapse button is in the top-left corner of the expanded card; click the thumbnail or title in the collapsed bar to expand again.
+
+### Keyboard Shortcuts
+
+| Key       | Action           |
+| --------- | ---------------- |
+| `Space`   | Play / Pause     |
+| `←` / `→` | Seek -10s / +10s |
+| `↑` / `↓` | Volume up / down |
 
 ## Types
 
@@ -150,7 +149,7 @@ interface Track {
   id: string;
   title: string;
   artist: string;
-  album: string;
+  album?: string;
   artwork: string;
   duration: number;
   url?: string;
@@ -161,18 +160,33 @@ interface Track {
 
 ### MusicPlayer
 
-| Prop             | Type                                               | Default      | Description                                           |
-| ---------------- | -------------------------------------------------- | ------------ | ----------------------------------------------------- |
-| `theme`          | `"default" \| "spotify" \| "cosmic" \| "midnight"` | `"default"`  | Visual theme of the music player                      |
-| `currentTrack`   | `Track`                                            | Sample track | Current track object containing metadata              |
-| `queue`          | `Track[]`                                          | `[]`         | Array of tracks in the playlist queue                 |
-| `currentIndex`   | `number`                                           | `0`          | Index of the current track in the queue               |
-| `initialTime`    | `number`                                           | `0`          | Initial playback position in seconds                  |
-| `className`      | `string`                                           | `""`         | Additional CSS classes to apply to the component      |
-| `autoPlay`       | `boolean`                                          | `false`      | Whether to start playback automatically               |
-| `showEqualizer`  | `boolean`                                          | `true`       | Whether to show the animated equalizer bars           |
-| `onPlayPause`    | `(isPlaying: boolean) => void`                     | `undefined`  | Callback triggered when play/pause is toggled         |
-| `onTimeChange`   | `(time: number) => void`                           | `undefined`  | Callback triggered when playback time changes         |
-| `onTrackEnd`     | `() => void`                                       | `undefined`  | Callback triggered when track playback ends           |
-| `onTrackChange`  | `(track: Track, index: number) => void`            | `undefined`  | Callback triggered when track changes (next/previous) |
-| `onVolumeChange` | `(volume: number) => void`                         | `undefined`  | Callback triggered when volume changes                |
+### Track Fields
+
+| Field      | Type     | Required | Description                                     |
+| ---------- | -------- | -------- | ----------------------------------------------- |
+| `id`       | `string` | Yes      | Unique identifier                               |
+| `title`    | `string` | Yes      | Track title                                     |
+| `artist`   | `string` | Yes      | Artist name                                     |
+| `album`    | `string` | No       | Album name (shown in expanded view if provided) |
+| `artwork`  | `string` | Yes      | Cover image URL (local or remote)               |
+| `duration` | `number` | Yes      | Track length in seconds                         |
+| `url`      | `string` | No       | Audio file URL. Enables real audio playback     |
+
+## Props
+
+### MusicPlayer
+
+| Prop             | Type                                    | Default      | Description                                           |
+| ---------------- | --------------------------------------- | ------------ | ----------------------------------------------------- |
+| `currentTrack`   | `Track`                                 | Sample track | Current track object containing metadata              |
+| `queue`          | `Track[]`                               | `[]`         | Array of tracks in the playlist queue                 |
+| `currentIndex`   | `number`                                | `0`          | Index of the current track in the queue               |
+| `initialTime`    | `number`                                | `0`          | Initial playback position in seconds                  |
+| `className`      | `string`                                | `""`         | Additional CSS classes to apply to the component      |
+| `autoPlay`       | `boolean`                               | `false`      | Whether to start playback automatically               |
+| `showEqualizer`  | `boolean`                               | `true`       | Show animated equalizer bars next to the track title  |
+| `onPlayPause`    | `(isPlaying: boolean) => void`          | `undefined`  | Callback triggered when play/pause is toggled         |
+| `onTimeChange`   | `(time: number) => void`                | `undefined`  | Callback triggered when playback time changes         |
+| `onTrackEnd`     | `() => void`                            | `undefined`  | Callback triggered when track playback ends           |
+| `onTrackChange`  | `(track: Track, index: number) => void` | `undefined`  | Callback triggered when track changes (next/previous) |
+| `onVolumeChange` | `(volume: number) => void`              | `undefined`  | Callback triggered when volume changes                |

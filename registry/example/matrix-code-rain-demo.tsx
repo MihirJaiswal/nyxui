@@ -23,7 +23,7 @@ export default function MatrixCodeRainDemo() {
   };
 
   return (
-    <div className="relative h-[400px] w-full overflow-hidden rounded-lg border border-border">
+    <div className="relative h-[450px] w-full overflow-hidden rounded-lg border border-border">
       <MatrixCodeRain color={color} width="100%" height="100%" />
 
       <div className="absolute inset-0 flex items-center justify-center">
