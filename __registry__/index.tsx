@@ -555,6 +555,69 @@ export const Index: Record<string, RegistryEntry> = {
     }),
     meta: undefined,
   },
+  "animated-code-block-demo1": {
+    name: "animated-code-block-demo1",
+    description: "Example showing the code block with the parchment theme.",
+    type: "registry:example",
+    registryDependencies: ["https://nyxui.com/r/animated-code-block"],
+    files: [
+      {
+        path: "registry/example/animated-code-block-demo1.tsx",
+        type: "registry:example",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/example/animated-code-block-demo1"
+      )) as RegistryModule;
+      return {
+        default: pickRegistryComponent(mod, "animated-code-block-demo1"),
+      };
+    }),
+    meta: undefined,
+  },
+  "animated-code-block-demo2": {
+    name: "animated-code-block-demo2",
+    description: "Example showing the code block with the terminal theme.",
+    type: "registry:example",
+    registryDependencies: ["https://nyxui.com/r/animated-code-block"],
+    files: [
+      {
+        path: "registry/example/animated-code-block-demo2.tsx",
+        type: "registry:example",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/example/animated-code-block-demo2"
+      )) as RegistryModule;
+      return {
+        default: pickRegistryComponent(mod, "animated-code-block-demo2"),
+      };
+    }),
+    meta: undefined,
+  },
+  "animated-code-block-demo3": {
+    name: "animated-code-block-demo3",
+    description: "Example showing the code block with the minimal theme.",
+    type: "registry:example",
+    registryDependencies: ["https://nyxui.com/r/animated-code-block"],
+    files: [
+      {
+        path: "registry/example/animated-code-block-demo3.tsx",
+        type: "registry:example",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/example/animated-code-block-demo3"
+      )) as RegistryModule;
+      return {
+        default: pickRegistryComponent(mod, "animated-code-block-demo3"),
+      };
+    }),
+    meta: undefined,
+  },
   "grainy-background-demo": {
     name: "grainy-background-demo",
     description: "Example showing an animated grainy background.",

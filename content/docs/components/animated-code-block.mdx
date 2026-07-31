@@ -59,6 +59,20 @@ export function cn(...inputs: ClassValue[]) {
 
 </Tabs>
 
+## Examples
+
+### Parchment
+
+<ComponentPreview name="animated-code-block-demo1" />
+
+### Terminal
+
+<ComponentPreview name="animated-code-block-demo2" />
+
+### Minimal
+
+<ComponentPreview name="animated-code-block-demo3" />
+
 ## Usage
 
 ```tsx
@@ -82,14 +96,13 @@ import { AnimatedCodeBlock } from "@/components/ui/animated-code-block";
 | Prop              | Type         | Default        | Description                                                       |
 | ----------------- | ------------ | -------------- | ----------------------------------------------------------------- |
 | `code`            | `string`     | `""`           | The code to display and animate                                   |
-| `theme`           | `string`     | `"dark"`       | The visual theme (dark, terminal, minimal, nightowl)              |
+| `theme`           | `string`     | `"dark"`       | The visual theme (dark, terminal, minimal, parchment)             |
 | `typingSpeed`     | `number`     | `50`           | The speed of the typing animation in milliseconds                 |
 | `showLineNumbers` | `boolean`    | `true`         | Whether to show line numbers                                      |
 | `highlightLines`  | `number[]`   | `[]`           | Array of line numbers to highlight                                |
 | `title`           | `string`     | `""`           | Title to display in the header                                    |
 | `autoPlay`        | `boolean`    | `false`        | Whether to start the animation automatically                      |
 | `loop`            | `boolean`    | `false`        | Whether to loop the animation                                     |
-| `blurEffect`      | `boolean`    | `false`        | Whether to add a terminal blur effect                             |
 | `showControls`    | `boolean`    | `true`         | Whether to show play/pause and copy controls                      |
 | `onCopy`          | `() => void` | `undefined`    | Callback function when code is copied                             |
 | `className`       | `string`     | `""`           | Additional CSS classes to apply                                   |

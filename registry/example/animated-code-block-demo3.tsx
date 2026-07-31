@@ -24,12 +24,12 @@ export function FeatureCard({
   );
 }`;
 
-export default function AnimatedCodeBlockDemo(): React.JSX.Element {
+export default function AnimatedCodeBlockMinimalDemo(): React.JSX.Element {
   return (
     <div className="mx-auto w-full max-w-4xl p-5">
       <AnimatedCodeBlock
         code={exampleCode}
-        theme="dark"
+        theme="minimal"
         title="feature-card.tsx"
         typingSpeed={10}
         showLineNumbers
