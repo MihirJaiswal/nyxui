@@ -189,6 +189,7 @@ export const componentsData: ComponentsData = {
       description:
         "An immersive music player with morphing collapse/expand animation, glass controls, and queue management.",
       image: "/assets/images/showcase/components/music-player.png",
+      imageClassName: "scale-90 dark:contrast-105",
     },
     "reveal-card": {
       title: "Reveal Card",

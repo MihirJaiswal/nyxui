@@ -15,19 +15,12 @@ export default function MusicPlayerCardsDemo() {
     },
     {
       id: "2",
-      title: "claudes plan",
-      artist: "Jeff Guo",
-      artwork: "/assets/images/music-player/cover2.png",
+      title: "Believer",
+      artist: "Imagine Dragons",
+      album: "Evolve",
+      artwork: "/assets/images/music-player/cover2.jpg",
       duration: 190,
       url: "/assets/audio/song2.mp3",
-    },
-    {
-      id: "3",
-      title: "Sugar",
-      artist: "Maroon 5",
-      album: "V",
-      artwork: "/assets/images/music-player/cover2.jpg",
-      duration: 235,
     },
   ];
 
