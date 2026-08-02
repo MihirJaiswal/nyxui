@@ -47,11 +47,6 @@ npm install lucide-react
 
 </Tabs>
 
-## Examples
-
-<ComponentPreview name="music-player-demo1" />
-<ComponentPreview name="music-player-demo2" />
-
 ## Usage
 
 ```tsx
@@ -118,12 +113,7 @@ export function AdvancedPlayer() {
   ];
 
   return (
-    <MusicPlayer
-      currentTrack={playlist[0]}
-      queue={playlist}
-      initialTime={30}
-      autoPlay={false}
-    />
+    <MusicPlayer currentTrack={playlist[0]} queue={playlist} autoPlay={false} />
   );
 }
 ```
@@ -181,7 +171,6 @@ interface Track {
 | `currentTrack`   | `Track`                                 | Sample track | Current track object containing metadata              |
 | `queue`          | `Track[]`                               | `[]`         | Array of tracks in the playlist queue                 |
 | `currentIndex`   | `number`                                | `0`          | Index of the current track in the queue               |
-| `initialTime`    | `number`                                | `0`          | Initial playback position in seconds                  |
 | `className`      | `string`                                | `""`         | Additional CSS classes to apply to the component      |
 | `autoPlay`       | `boolean`                               | `false`      | Whether to start playback automatically               |
 | `showEqualizer`  | `boolean`                               | `true`       | Show animated equalizer bars next to the track title  |

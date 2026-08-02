@@ -12,12 +12,12 @@ export const PhoneStatusBar = () => {
       {/* Dynamic island */}
       <div className="absolute left-1/2 -translate-x-1/2 top-1.5 flex items-center gap-2">
         <motion.div
-          className="h-3.5 w-24 rounded-full bg-zinc-900/90 dark:bg-zinc-100/15 border border-zinc-700/60 dark:border-white/15 shadow-inner"
+          className="h-3.5 w-24 rounded-full bg-zinc-900/90 dark:bg-zinc-100/15 border border-zinc-700/60 dark:border-white/15"
           whileHover={{ scale: 1.02 }}
           transition={{ type: "spring", stiffness: 400, damping: 25 }}
         />
         <motion.div
-          className="h-2.5 w-2.5 rounded-full bg-zinc-800/95 dark:bg-zinc-200/70 ring-2 ring-black/15 dark:ring-white/15 shadow-sm"
+          className="h-2.5 w-2.5 rounded-full bg-zinc-800/95 dark:bg-zinc-200/70 ring-2 ring-black/15 dark:ring-white/15"
           whileHover={{ scale: 1.1 }}
           transition={{ type: "spring", stiffness: 300, damping: 20 }}
         />

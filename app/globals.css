@@ -1,9 +1,16 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "shadow-plugin";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --shadow-xs: var(--smooth-shadow-xs);
+  --shadow-sm: var(--smooth-shadow-sm);
+  --shadow-md: var(--smooth-shadow-md);
+  --shadow-lg: var(--smooth-shadow-lg);
+  --shadow-xl: var(--smooth-shadow-xl);
+  --shadow-2xl: var(--smooth-shadow-2xl);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-satoshi), var(--font-geist-sans);
@@ -71,6 +78,10 @@
   --glass-shadow: var(--elevation-md);
   --preview-shadow: var(--elevation-sm);
   --preview-inset: rgb(30 20 15 / 0.03);
+  --inset-ring-shadow:
+    rgba(255, 255, 255, 0.1) 0px 0px 0.1px 0px inset,
+    rgba(255, 255, 255, 0.11) 0px 1px 1px 0px inset,
+    rgb(0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.31) 0px 1px 2px 0px;
   --background: oklch(0.965 0.003 55);
   --foreground: oklch(0.2 0.008 55);
   --card: oklch(0.985 0.002 55);
@@ -123,6 +134,10 @@
   --glass-shadow: var(--elevation-md);
   --preview-shadow: var(--elevation-sm);
   --preview-inset: rgba(255, 255, 255, 0.11);
+  --inset-ring-shadow:
+    rgba(255, 255, 255, 0.1) 0px 0px 0.1px 0px inset,
+    rgba(255, 255, 255, 0.11) 0px 1px 1px 0px inset,
+    rgb(0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.31) 0px 1px 2px 0px;
   --card: #0f0f0f;
   --card-foreground: oklch(0.985 0 0);
   --popover: #0f0f0f;
@@ -781,6 +796,10 @@ body {
 
 .flicker-animation {
   animation: flickerAnimation 2s infinite;
+}
+
+.inset-ring-shadow {
+  box-shadow: var(--inset-ring-shadow);
 }
 
 .click-glitch {

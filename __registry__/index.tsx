@@ -1112,44 +1112,6 @@ export const Index: Record<string, RegistryEntry> = {
     }),
     meta: undefined,
   },
-  "music-player-demo1": {
-    name: "music-player-demo1",
-    description: "Example showing a music player.",
-    type: "registry:example",
-    registryDependencies: ["https://nyxui.com/r/music-player.json"],
-    files: [
-      {
-        path: "registry/example/music-player-demo1.tsx",
-        type: "registry:example",
-      },
-    ],
-    component: React.lazy(async () => {
-      const mod = (await import(
-        "@/registry/example/music-player-demo1"
-      )) as RegistryModule;
-      return { default: pickRegistryComponent(mod, "music-player-demo1") };
-    }),
-    meta: undefined,
-  },
-  "music-player-demo2": {
-    name: "music-player-demo2",
-    description: "Example showing a music player.",
-    type: "registry:example",
-    registryDependencies: ["https://nyxui.com/r/music-player.json"],
-    files: [
-      {
-        path: "registry/example/music-player-demo2.tsx",
-        type: "registry:example",
-      },
-    ],
-    component: React.lazy(async () => {
-      const mod = (await import(
-        "@/registry/example/music-player-demo2"
-      )) as RegistryModule;
-      return { default: pickRegistryComponent(mod, "music-player-demo2") };
-    }),
-    meta: undefined,
-  },
   "reveal-card-demo": {
     name: "reveal-card-demo",
     description: "Example showing a reveal card.",

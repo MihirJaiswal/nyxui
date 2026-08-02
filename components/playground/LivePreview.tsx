@@ -166,7 +166,7 @@ const LivePreview = ({
       }}
       className="w-full"
     >
-      <div className="flex flex-col overflow-hidden rounded-[20px] border border-border/60 bg-card shadow-sm lg:h-[var(--content-h)]">
+      <div className="flex flex-col overflow-hidden rounded-[20px] border border-border/60 bg-card lg:h-[var(--content-h)]">
         <div className="flex items-center justify-between px-4 pt-3">
           <TabsList className="relative z-0 flex h-10 w-fit items-center justify-center rounded-none border-0 bg-transparent p-0 text-muted-foreground">
             <TabsTrigger

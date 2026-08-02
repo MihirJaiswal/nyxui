@@ -51,7 +51,7 @@ export const componentsData: ComponentsData = {
       title: "Water Ripple Effect",
       tags: ["Interactive", "Visual Effects", "Image"],
       description: "A mesmerizing water ripple effect for interactive images.",
-      image: "/assets/images/showcase/components/water-ripple-effect.png",
+      image: "/assets/images/showcase/components/water-ripple-effect.jpeg",
       isNew: true,
       imageClassName: "scale-85",
     },

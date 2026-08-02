@@ -23,7 +23,7 @@ type LampHeadingType = {
 const LampCard = ({ children, onClick, isCopied }: LampCard) => {
   return (
     <div
-      className="border group relative border-gray-300 dark:border-zinc-800 hover:border-zinc-500 hover:dark:border-zinc-500 rounded-lg p-6 flex flex-col items-center justify-center h-60 cursor-pointer hover:shadow-lg transition-all duration-300 bg-white dark:bg-black/50 backdrop-blur-sm"
+      className="border group relative border-gray-300 dark:border-zinc-800 hover:border-zinc-500 hover:dark:border-zinc-500 rounded-lg p-6 flex flex-col items-center justify-center h-60 cursor-pointer transition-all duration-300 bg-white dark:bg-black/50 backdrop-blur-sm"
       onClick={onClick}
     >
       <div className="mb-4 w-full flex items-center justify-center">

@@ -15,7 +15,7 @@ export function Mdx({ code, className, type = "components" }: MDXProps) {
   const componentsWithType = {
     ...mdxComponents,
     ComponentPreview: ({ name, ...props }: { name: string }) => (
-      <div className="w-full max-w-full overflow-hidden">
+      <div className="w-full max-w-full overflow-hidden px-0.5">
         <ComponentPreview name={name} type={type} {...props} />
       </div>
     ),

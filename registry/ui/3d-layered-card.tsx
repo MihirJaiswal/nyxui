@@ -288,7 +288,7 @@ export default function ThreeDLayeredCard({
     >
       {/* Card content with overflow hidden and max-height animation */}
       <motion.div
-        className="relative w-full border rounded-md shadow-2xl"
+        className="relative w-full border rounded-md"
         style={{
           rotateY: rotateY,
           rotateX: rotateX,

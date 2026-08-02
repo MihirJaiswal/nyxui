@@ -31,7 +31,7 @@ type GlitchButtonType = {
 const ButtonsCard = ({ children, onClick, isCopied }: ButtonsCard) => {
   return (
     <div
-      className="border group relative border-gray-300 dark:border-zinc-800 hover:border-zinc-500 hover:dark:border-zinc-500 rounded-lg p-3 flex flex-col items-center justify-center h-52 cursor-pointer hover:shadow-lg transition-shadow duration-200"
+      className="border group relative border-gray-300 dark:border-zinc-800 hover:border-zinc-500 hover:dark:border-zinc-500 rounded-lg p-3 flex flex-col items-center justify-center h-52 cursor-pointer transition-shadow duration-200"
       onClick={onClick}
     >
       <div className="mb-4">{children}</div>

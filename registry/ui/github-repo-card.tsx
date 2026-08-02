@@ -63,8 +63,7 @@ export const themes: ThemeOption[] = [
     cardBg:
       "bg-gradient-to-br from-slate-900/95 via-slate-800/95 to-slate-900/95",
     cardBorder: "border border-slate-700/50 backdrop-blur-xl",
-    cardHoverShadow:
-      "hover:shadow-2xl hover:shadow-blue-500/20 hover:scale-[1.02] transition-all duration-500 ease-out",
+    cardHoverShadow: "hover:scale-[1.02] transition-all duration-500 ease-out",
     accentColor: "text-blue-400",
     accentColorLight: "text-blue-400/20",
     graphColor: "text-blue-400",
@@ -81,9 +80,9 @@ export const themes: ThemeOption[] = [
     name: "Modern Light",
     description: "Clean light theme with soft shadows and a subtle blue accent",
     cardBg: "bg-gradient-to-b from-white to-slate-50/80",
-    cardBorder: "border border-slate-200/70 shadow-sm shadow-slate-200/50",
+    cardBorder: "border border-slate-200/70",
     cardHoverShadow:
-      "hover:shadow-xl hover:shadow-slate-300/50 hover:border-slate-300 hover:-translate-y-1 transition-all duration-300 ease-out",
+      "hover:border-slate-300 hover:-translate-y-1 transition-all duration-300 ease-out",
     accentColor: "text-blue-600",
     accentColorLight: "text-blue-600/10",
     graphColor: "text-blue-500",
@@ -102,7 +101,7 @@ export const themes: ThemeOption[] = [
     cardBg: "bg-gradient-to-b from-black/95 via-purple-950/95 to-black/95",
     cardBorder: "border border-cyan-500/30 backdrop-blur-xl",
     cardHoverShadow:
-      "hover:shadow-xl hover:shadow-cyan-500/40 hover:scale-[1.02] hover:border-cyan-400/50 transition-all duration-500 ease-out",
+      "hover:scale-[1.02] hover:border-cyan-400/50 transition-all duration-500 ease-out",
     accentColor: "text-cyan-400",
     accentColorLight: "text-cyan-400/20",
     graphColor: "text-cyan-400",
@@ -121,7 +120,7 @@ export const themes: ThemeOption[] = [
     cardBg: "bg-gradient-to-br from-amber-50 to-orange-50",
     cardBorder: "border-2 border-black",
     cardHoverShadow:
-      "hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all duration-300 ease-out",
+      "hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all duration-300 ease-out",
     accentColor: "text-rose-600",
     accentColorLight: "text-rose-600/20",
     graphColor: "text-rose-600",
