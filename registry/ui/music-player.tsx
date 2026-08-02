@@ -616,10 +616,10 @@ export const MusicPlayer = ({
                         <PopoverContent
                           side="bottom"
                           align="end"
-                          className="w-auto rounded-2xl border-border bg-primary/40 p-3 backdrop-blur-2xl"
+                          className="z-40 w-auto rounded-2xl border-border bg-primary/40 p-3 backdrop-blur-2xl"
                         >
                           <div className="flex flex-col items-center gap-2">
-                            <span className="text-xs tabular-nums text-muted-foreground">
+                            <span className="text-xs tabular-nums text-background">
                               {effectiveVolume}
                             </span>
                             <div
@@ -634,10 +634,10 @@ export const MusicPlayer = ({
                               onPointerDown={handleVolumePointerDown}
                               onPointerMove={handleVolumePointerMove}
                               onPointerUp={handleVolumePointerUp}
-                              className="relative h-24 w-2 cursor-pointer touch-none rounded-full bg-muted-foreground/15"
+                              className="relative h-24 w-2 cursor-pointer touch-none rounded-full bg-background/20"
                             >
                               <div
-                                className="absolute bottom-0 w-full rounded-full bg-foreground"
+                                className="absolute bottom-0 w-full rounded-full bg-background"
                                 style={{ height: `${effectiveVolume}%` }}
                               />
                             </div>
@@ -646,7 +646,7 @@ export const MusicPlayer = ({
                               size="icon"
                               onClick={toggleMute}
                               aria-label={isMuted ? "Unmute" : "Mute"}
-                              className="h-6 w-6 text-muted-foreground hover:bg-transparent hover:text-foreground"
+                              className="h-6 w-6 text-background hover:bg-white/10"
                             >
                               {effectiveVolume === 0 ? (
                                 <VolumeX className="h-3.5 w-3.5" />
