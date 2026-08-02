@@ -10,7 +10,7 @@ export function GlowCardDemo() {
           <GlowCard
             variant="cosmic"
             intensity={1.2}
-            className="h-64 aspect-4/3 shadow-gray-500/30 shadow-md border"
+            className="h-64 aspect-4/3 shadow-gray-500/30 shadow-md"
           >
             <div className="space-y-3">
               <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30">

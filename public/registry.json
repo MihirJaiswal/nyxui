@@ -1050,34 +1050,6 @@
       ]
     },
     {
-      "name": "music-player-demo1",
-      "type": "registry:example",
-      "title": "Music Player Demo 1",
-      "description": "Example showing a music player.",
-      "registryDependencies": ["https://nyxui.com/r/music-player.json"],
-      "files": [
-        {
-          "path": "registry/example/music-player-demo1.tsx",
-          "type": "registry:example",
-          "target": "components/music-player-demo1.tsx"
-        }
-      ]
-    },
-    {
-      "name": "music-player-demo2",
-      "type": "registry:example",
-      "title": "Music Player Demo 2",
-      "description": "Example showing a music player.",
-      "registryDependencies": ["https://nyxui.com/r/music-player.json"],
-      "files": [
-        {
-          "path": "registry/example/music-player-demo2.tsx",
-          "type": "registry:example",
-          "target": "components/music-player-demo2.tsx"
-        }
-      ]
-    },
-    {
       "name": "reveal-card-demo",
       "type": "registry:example",
       "title": "Reveal Card Demo",

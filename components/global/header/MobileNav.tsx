@@ -159,7 +159,7 @@ export function MobileNav({ activeLink, navLinks, moreLinks }: MobileNavProps) {
         </SheetTrigger>
         <SheetContent
           side="right"
-          className="my-3 mr-3 h-[calc(100%-1.5rem)] w-[260px] overflow-hidden rounded-xl border border-border/70 bg-card p-0 shadow-sm"
+          className="my-3 mr-3 h-[calc(100%-1.5rem)] w-[260px] overflow-hidden rounded-xl border border-border/70 bg-card p-0"
         >
           <div className="flex h-full flex-col">
             <div className="flex h-12 shrink-0 items-center gap-3 border-b border-border/70 px-4">

@@ -193,6 +193,9 @@ importers:
       shadcn:
         specifier: 2.6.0-canary.2
         version: 2.6.0-canary.2(@types/node@20.17.30)(typescript@5.8.3)
+      shadow-plugin:
+        specifier: ^1.2.1
+        version: 1.2.1
       sharp:
         specifier: 0.34.5
         version: 0.34.5
@@ -10257,6 +10260,12 @@ packages:
       }
     hasBin: true
 
+  shadow-plugin@1.2.1:
+    resolution:
+      {
+        integrity: sha512-yPkKk0qbCNMHipVpa6fxJFBJScXZLphv1HuTp48gUMNfs6F6CuUYxFasbGau58iBnrc6otN+Eix1lGTXdoDAKQ==,
+      }
+
   sharp@0.34.5:
     resolution:
       {
@@ -18713,6 +18722,8 @@ snapshots:
       - "@types/node"
       - supports-color
       - typescript
+
+  shadow-plugin@1.2.1: {}
 
   sharp@0.34.5:
     dependencies:

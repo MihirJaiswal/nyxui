@@ -168,7 +168,7 @@ const AnimatedCodeBlockDemo = () => {
   const progress = Math.min(100, (currentPosition / totalChars) * 100);
 
   return (
-    <div className="w-[350px] scale-80 mx-auto bg-zinc-950/50 rounded-sm overflow-hidden border border-zinc-800 shadow-xl">
+    <div className="w-[350px] scale-80 mx-auto bg-zinc-950/50 rounded-sm overflow-hidden border border-zinc-800">
       <div className="flex items-center justify-between p-3 bg-zinc-900 border-b border-zinc-800">
         <div className="flex items-center gap-3">
           <div className="flex gap-1.5">

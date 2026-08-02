@@ -124,7 +124,7 @@ export const text = {
 
 export const table = {
   table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
-    <div className="my-6 w-full max-w-full overflow-x-auto rounded-xl border border-border/70 bg-card text-card-foreground shadow-sm">
+    <div className="my-6 w-full max-w-full overflow-x-auto rounded-xl border border-border/70 bg-card text-card-foreground">
       <table
         className={cn("min-w-full border-collapse text-sm", className)}
         {...props}

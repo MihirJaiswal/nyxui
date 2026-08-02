@@ -109,7 +109,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
         damping: 30,
         mass: 0.8,
       }}
-      className="overflow-hidden border border-border/70 bg-card shadow-sm xl:[--sidebar-expanded-w:288px] rounded-[20px]"
+      className="overflow-hidden border border-border/70 bg-card xl:[--sidebar-expanded-w:288px] rounded-[20px]"
     >
       <div className="flex h-full flex-col">
         <button

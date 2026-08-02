@@ -104,7 +104,7 @@ export const ImageScannerDemo1 = () => {
   };
 
   return (
-    <div className="bg-white shadow-xl dark:bg-black/70 border md:scale-90 relative border-neutral-200 dark:border-neutral-700 rounded-sm p-3 sm:px-4 py-6 text-neutral-900 dark:text-white">
+    <div className="bg-white shadow-xl dark:bg-black/70 md:scale-90 relative border-neutral-200 dark:border-neutral-700 rounded-sm p-3 sm:px-4 py-6 text-neutral-900 dark:text-white">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 sm:mb-8 gap-4">
@@ -204,7 +204,7 @@ export const ImageScannerDemo1 = () => {
                       className={cn(
                         "p-3 sm:p-4.5 rounded-sm cursor-pointer transition-all border",
                         selectedCamera === index
-                          ? "bg-blue-50 dark:bg-blue-600/20 border-blue-200 dark:border-blue-500 shadow-sm dark:shadow-blue-500/20"
+                          ? "bg-blue-50 dark:bg-blue-600/20 border-blue-200 dark:border-blue-500 dark:shadow-blue-500/20"
                           : "bg-white dark:bg-neutral-800/50 border-neutral-200 dark:border-zinc-600 hover:bg-neutral-50 dark:hover:bg-neutral-700 hover:border-neutral-300 dark:hover:border-neutral-500",
                       )}
                       onClick={() => setSelectedCamera(index)}

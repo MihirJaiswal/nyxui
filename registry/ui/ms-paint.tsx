@@ -385,7 +385,7 @@ export default function MSpaint({
       role="application"
       aria-label="MS Paint drawing application"
       className={cn(
-        "relative md:px-0 bg-gray-200 border-2 border-white shadow-md mx-auto",
+        "relative md:px-0 bg-gray-200 border-2 border-white mx-auto",
         className,
       )}
       style={{
@@ -459,7 +459,7 @@ export default function MSpaint({
               </CustomButton>
 
               {menuOpen && (
-                <div className="absolute top-full left-0 z-10 bg-gray-300 shadow-md border border-gray-400 py-1 text-black">
+                <div className="absolute top-full left-0 z-10 bg-gray-300 border border-gray-400 py-1 text-black">
                   {menuItems.map((item, index) => (
                     <div
                       key={index}
@@ -501,7 +501,7 @@ export default function MSpaint({
             className={cn(
               "w-8 h-8 p-0 min-w-0 mb-1",
               tool === "brush"
-                ? "bg-blue-200 border-2 border-blue-600 shadow-lg"
+                ? "bg-blue-200 border-2 border-blue-600"
                 : "hover:bg-gray-200",
             )}
             onClick={() => {
@@ -519,7 +519,7 @@ export default function MSpaint({
             className={cn(
               "w-8 h-8 p-0 min-w-0 mb-1",
               tool === "eraser"
-                ? "bg-blue-200 border-2 border-blue-600 shadow-lg"
+                ? "bg-blue-200 border-2 border-blue-600"
                 : "hover:bg-gray-200",
             )}
             onClick={() => {
@@ -598,7 +598,7 @@ export default function MSpaint({
             className={cn(
               "p-0 min-w-0 relative overflow-hidden border-2 border-gray-400 transition-all duration-200",
               isMobile ? "w-6 h-6" : "w-8 h-8",
-              showColorPicker && "border-2 border-blue-500 scale-110 shadow-md",
+              showColorPicker && "border-2 border-blue-500 scale-110",
             )}
             onClick={toggleColorPicker}
             title="Custom Color"
@@ -634,7 +634,7 @@ export default function MSpaint({
                 className={cn(
                   "p-0 min-w-0 transition-all duration-200",
                   isMobile ? "w-6 h-6" : "w-8 h-8",
-                  color === c && "border-4 border-blue-500 scale-110 shadow-md",
+                  color === c && "border-4 border-blue-500 scale-110",
                 )}
                 onClick={() => handleColorChange(c)}
                 title={c}

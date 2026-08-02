@@ -10,7 +10,7 @@ const MusicPlayer = lazy(() =>
 
 const MusicPlayerSkeleton = ({ className }: { className?: string }) => (
   <div
-    className={`bg-zinc-900 ring-1 ring-white/10 rounded-[2rem] overflow-hidden shadow-lg w-full max-w-sm mx-auto ${className}`}
+    className={`bg-zinc-900 ring-1 ring-white/10 rounded-[2rem] overflow-hidden w-full max-w-sm mx-auto ${className}`}
   >
     <div className="aspect-[4/5] w-full bg-zinc-800 animate-pulse" />
   </div>
@@ -49,7 +49,6 @@ const MusicCardThemeCustomizer = () => {
                     <MusicPlayer
                       currentTrack={sampleTrack}
                       currentIndex={0}
-                      initialTime={45}
                       className="shadow-lg rounded-lg mr-1 scale-80 -mt-12"
                       autoPlay={false}
                     />
