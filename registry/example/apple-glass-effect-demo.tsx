@@ -28,7 +28,7 @@ export const GlassExamples = () => {
   const volume = 75;
 
   return (
-    <div className="min-h-screen py-8 px-2 2xl:p-8">
+    <div className="py-8 px-2 2xl:p-8">
       {/* Background */}
       <div className="absolute inset-0">
         <Image

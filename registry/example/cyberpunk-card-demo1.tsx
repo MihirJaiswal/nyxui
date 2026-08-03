@@ -1,4 +1,4 @@
-import { Terminal, Zap, Shield, Activity, Database, Cpu } from "lucide-react";
+import { Terminal, Shield, Activity, Cpu } from "lucide-react";
 import { CyberpunkCard } from "@/registry/ui/cyberpunk-card";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
@@ -26,10 +26,6 @@ export default function CyberpunkCardDemo1() {
             <div className="flex items-center gap-3 sm:gap-4">
               <div className="relative p-2 bg-purple-800/50 rounded-lg border border-purple-400/30">
                 <Terminal className="w-5 h-5 sm:w-7 sm:h-7 text-purple-200" />
-                <div className="absolute -top-1 -right-1 flex">
-                  <span className="w-2 h-2 bg-purple-400 rounded-full animate-ping"></span>
-                  <span className="absolute w-2 h-2 bg-purple-300 rounded-full"></span>
-                </div>
               </div>
               <div>
                 <h3 className="text-base sm:text-lg md:text-2xl font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-purple-200 via-white to-purple-200">
@@ -42,15 +38,10 @@ export default function CyberpunkCardDemo1() {
             </div>
             <div className="flex flex-col items-end gap-1">
               <div className="px-3 py-1.5 bg-gradient-to-r from-green-900/40 to-emerald-800/40 rounded-full text-xs border border-green-400/40 flex items-center gap-2 backdrop-blur-sm">
-                <div className="relative">
-                  <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                  <span className="absolute inset-0 w-2 h-2 bg-green-400 rounded-full animate-ping"></span>
-                </div>
                 <span className="text-green-300 font-bold tracking-wider">
                   ONLINE
                 </span>
               </div>
-              <div className="text-xs text-purple-300/60">NODE: 0x7F3A</div>
             </div>
           </div>
         </div>
@@ -71,23 +62,6 @@ export default function CyberpunkCardDemo1() {
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-pulse"></div>
                 <div className="absolute right-0 top-0 bottom-0 w-1 bg-white/80 animate-pulse"></div>
               </div>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-3 gap-4 text-xs font-mono">
-            <div className="text-center">
-              <div className="text-purple-300/80">UPTIME</div>
-              <div className="text-purple-100 font-bold">13:42:06</div>
-            </div>
-            <div className="text-center">
-              <div className="text-purple-300/80">THREATS</div>
-              <div className="text-red-400 font-bold animate-pulse">
-                0 ACTIVE
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="text-purple-300/80">BANDWIDTH</div>
-              <div className="text-cyan-400 font-bold">847 MB/s</div>
             </div>
           </div>
         </div>
@@ -135,18 +109,13 @@ export default function CyberpunkCardDemo1() {
                     "linear-gradient(to right, rgb(168, 85, 247) 1px, transparent 1px), linear-gradient(to bottom, rgb(168, 85, 247) 1px, transparent 1px)",
                 }}
               ></div>
-
               <div className="relative space-y-4">
                 {/* Connection Status */}
                 <div className="space-y-2">
                   <div className="flex items-center gap-2 text-sm text-purple-200">
-                    <Shield className="w-4 h-4" />
                     <span className="tracking-wider">CONNECTION STATUS:</span>
                   </div>
                   <div className="flex items-center gap-3 bg-gradient-to-r from-green-900/40 to-emerald-800/40 px-3 py-2 rounded-lg border border-green-400/30">
-                    <div className="relative">
-                      <Zap className="w-4 h-4 text-green-400 animate-pulse" />
-                    </div>
                     <span className="text-green-300 font-bold tracking-wider">
                       SECURED & ENCRYPTED
                     </span>
@@ -156,13 +125,9 @@ export default function CyberpunkCardDemo1() {
                 {/* Target Information */}
                 <div className="space-y-2">
                   <div className="flex items-center gap-2 text-sm text-purple-200">
-                    <Database className="w-4 h-4" />
                     <span className="tracking-wider">PRIMARY TARGET:</span>
                   </div>
                   <div className="bg-gradient-to-r from-red-900/40 to-orange-800/40 px-3 py-2 rounded-lg border border-red-400/30">
-                    <div className="text-red-300 font-mono text-sm animate-pulse">
-                      {">>"} ARASAKA_MAINFRAME.db
-                    </div>
                     <div className="text-xs text-red-400/80 mt-1">
                       SECURITY_LEVEL: MAXIMUM
                     </div>
@@ -172,7 +137,6 @@ export default function CyberpunkCardDemo1() {
                 {/* Network Metrics */}
                 <div className="space-y-2">
                   <div className="flex items-center gap-2 text-sm text-purple-200">
-                    <Activity className="w-4 h-4" />
                     <span className="tracking-wider">NETWORK METRICS:</span>
                   </div>
                   <div className="grid grid-cols-2 gap-2 text-xs">
@@ -221,8 +185,7 @@ export default function CyberpunkCardDemo1() {
 
         {/* Enhanced Footer Status */}
         <div className="relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-purple-400/10 to-transparent"></div>
-          <div className="relative flex flex-wrap justify-between items-center text-xs font-mono pt-3 border-t border-purple-400/30">
+          <div className="relative flex flex-wrap justify-between items-center text-xs font-mono pt-3">
             <div className="flex items-center gap-3 flex-wrap">
               <div className="flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-purple-800/40 to-purple-700/40 rounded-full border border-purple-500/30">
                 <Shield className="w-3 h-3 text-purple-400" />
