@@ -51,6 +51,10 @@ npm install lucide-react
 
 <ComponentPreview name="keyboard-demo1" />
 
+<ComponentPreview name="keyboard-demo2" />
+
+<ComponentPreview name="keyboard-demo3" />
+
 ## Usage
 
 ```tsx
@@ -63,7 +67,7 @@ import { Keyboard } from "@/components/ui/keyboard";
 
 // Custom theme with different layout
 <Keyboard
-  theme="mechanical"
+  theme="retro"
   layout="compact"
   showFunctionKeys={false}
 />
@@ -94,12 +98,12 @@ import { Keyboard } from "@/components/ui/keyboard";
 | `showFunctionKeys`          | `boolean`  | `true`        | Show function keys (F1-F12) row                                               |
 | `showNavigationCluster`     | `boolean`  | `true`        | Show navigation key cluster                                                   |
 | `activeKeys`                | `string[]` | `[]`          | Array of key codes to highlight as active                                     |
-| `activeKeyGlowColor`        | `string`   | `"#6366f1"`   | Glow color for active keys                                                    |
+| `activeKeyGlowColor`        | `string`   | `"#F57644"`   | Glow color for active keys                                                    |
 | `activeKeyGlowIntensity`    | `number`   | `0.8`         | Intensity of glow effect for active keys (0-1)                                |
-| `theme`                     | `string`   | `"cyberpunk"` | Keyboard theme (cyberpunk, minimal, retro, mechanical, neon, pastel)          |
+| `theme`                     | `string`   | `"cyberpunk"` | Keyboard theme (cyberpunk, retro, neon, pastel)                               |
 | `keyColor`                  | `string`   | `"#2a2a2a"`   | Base color for keyboard keys                                                  |
 | `keyTextColor`              | `string`   | `"#ffffff"`   | Text color for keyboard keys                                                  |
-| `accentColor`               | `string`   | `"#6366f1"`   | Accent color for special keys and highlights                                  |
+| `accentColor`               | `string`   | `"#F57644"`   | Accent color for special keys and highlights                                  |
 | `keyPressedColor`           | `string`   | `"#333333"`   | Color for pressed keys                                                        |
 | `keyPressAnimationDuration` | `number`   | `150`         | Duration of key press animation in milliseconds                               |
 | `onKeyPress`                | `function` | `() => {}`    | Callback function when a key is pressed (code: string, key?: string) => void  |
@@ -107,4 +111,4 @@ import { Keyboard } from "@/components/ui/keyboard";
 | `className`                 | `string`   | `""`          | Additional CSS classes to apply                                               |
 | `allowPhysicalKeyboard`     | `boolean`  | `true`        | Allow physical keyboard integration                                           |
 | `perspective`               | `number`   | `1000`        | CSS perspective value for 3D effect                                           |
-| `rotateX`                   | `number`   | `10`          | X-axis rotation angle in degrees                                              |
+| `rotateX`                   | `number`   | `0`           | X-axis rotation angle in degrees                                              |
