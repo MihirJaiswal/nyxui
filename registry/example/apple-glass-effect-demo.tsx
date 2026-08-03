@@ -212,7 +212,7 @@ export const GlassExamples = () => {
         </div>
 
         {/* Spotlight + Dock row */}
-        <div className="flex flex-col items-center gap-6">
+        <div className="md:flex flex-col items-center gap-6 hidden">
           {/* Spotlight Search */}
           <GlassContainer
             blur={40}
