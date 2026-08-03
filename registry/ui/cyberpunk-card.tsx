@@ -490,6 +490,12 @@ export const CyberpunkCard = ({
     >
       {getBackgroundPattern()}
 
+      {/* Inset ring highlight + soft outer shadow */}
+      <div
+        className="pointer-events-none absolute inset-0 rounded-[inherit]"
+        style={{ boxShadow: "var(--inset-ring-shadow)" }}
+      />
+
       {/* Particles Effect */}
       {backgroundEffect === "particles" &&
         particles.map((particle) => (
