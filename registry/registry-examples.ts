@@ -271,6 +271,34 @@ export const examples: Registry["items"] = [
     ],
   },
   {
+    name: "keyboard-demo2",
+    type: "registry:example",
+    title: "Keyboard Demo 2",
+    description: "Example showing a interactive keyboard.",
+    registryDependencies: ["https://nyxui.com/r/keyboard.json"],
+    files: [
+      {
+        path: "registry/example/keyboard-demo2.tsx",
+        type: "registry:example",
+        target: "components/keyboard-demo2.tsx",
+      },
+    ],
+  },
+  {
+    name: "keyboard-demo3",
+    type: "registry:example",
+    title: "Keyboard Demo 3",
+    description: "Example showing a interactive keyboard.",
+    registryDependencies: ["https://nyxui.com/r/keyboard.json"],
+    files: [
+      {
+        path: "registry/example/keyboard-demo3.tsx",
+        type: "registry:example",
+        target: "components/keyboard-demo3.tsx",
+      },
+    ],
+  },
+  {
     name: "ms-paint-demo",
     type: "registry:example",
     title: "MS Paint Demo",
