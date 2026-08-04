@@ -684,9 +684,9 @@ const InteractiveKeyboard: React.FC<InteractiveKeyboardProps> = ({
       lineHeight: "1",
       overflow: "hidden",
       boxSizing: "border-box" as const,
-      "--key-bevel-width": size >= 2 ? "20px" : "28px",
-      "--key-bevel-offset": size >= 2 ? "8px" : "12px",
-      "--key-bevel-opacity": size >= 2 ? "0.18" : "0.3",
+      "--key-bevel-width": "28px",
+      "--key-bevel-offset": "12px",
+      "--key-bevel-opacity": "0.3",
       willChange:
         hasTilt || isPressed || isActive ? "transform, box-shadow" : "auto",
     };
@@ -1001,6 +1001,7 @@ const InteractiveKeyboard: React.FC<InteractiveKeyboardProps> = ({
   const keyUnit = layout === "compact" ? 46 : 50;
   const keySpacing = 0;
   const keyHeight = layout === "compact" ? 46 : 50;
+  const keyBevelAngle = layout === "compact" ? 55 : 60;
   const calcKeyWidth = (size: number): number =>
     keyUnit * size + keySpacing * (size - 1);
   const keyboardStyle = {
@@ -1127,19 +1128,19 @@ const InteractiveKeyboard: React.FC<InteractiveKeyboardProps> = ({
           height: 1px;
           pointer-events: none;
           z-index: 0;
-          background: rgba(0, 0, 0, 0.32);
+          background: rgba(0, 0, 0, 0.30);
           opacity: var(--key-bevel-opacity);
         }
         .keyboard-container .key::before {
           left: 0;
           width: var(--key-bevel-width);
-          transform: rotate(-70deg) translateX(calc(var(--key-bevel-offset) * -1));
+          transform: rotate(-${keyBevelAngle}deg) translateX(calc(var(--key-bevel-offset) * -1));
           transform-origin: left bottom;
         }
         .keyboard-container .key::after {
           right: 0;
           width: var(--key-bevel-width);
-          transform: rotate(70deg) translateX(var(--key-bevel-offset));
+          transform: rotate(${keyBevelAngle}deg) translateX(var(--key-bevel-offset));
           transform-origin: right bottom;
         }
         .keyboard-container .key:focus-visible {
