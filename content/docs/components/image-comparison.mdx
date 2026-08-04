@@ -97,32 +97,33 @@ import {
 
 ### ImageSlider
 
-| Prop              | Type                        | Default                                      | Description                                                          |
-| ----------------- | --------------------------- | -------------------------------------------- | -------------------------------------------------------------------- |
-| `children`        | `React.ReactNode`           | `undefined`                                  | Content of the slider, typically ImageLayer components and a Divider |
-| `className`       | `string`                    | `""`                                         | Additional CSS classes to apply to the container                     |
-| `hoverControl`    | `boolean`                   | `false`                                      | Whether to control the slider by hovering instead of dragging        |
-| `orientation`     | `string`                    | `"horizontal"`                               | The orientation of the slider: "horizontal" or "vertical"            |
-| `defaultPosition` | `number`                    | `50`                                         | The initial position of the divider as a percentage (0-100)          |
-| `animationConfig` | `Partial<AnimationOptions>` | `{ damping: 15, stiffness: 400, mass: 0.4 }` | Framer Motion spring animation options for the slider movement       |
-| `dividerColor`    | `string`                    | `"#ffffff"`                                  | Color of the divider line                                            |
+| Prop                 | Type                         | Default                                      | Description                                                          |
+| -------------------- | ---------------------------- | -------------------------------------------- | -------------------------------------------------------------------- |
+| `children`           | `React.ReactNode`            | `undefined`                                  | Content of the slider, typically ImageLayer components and a Divider |
+| `className`          | `string`                     | `undefined`                                  | Additional CSS classes to apply to the container                     |
+| `hoverControl`       | `boolean`                    | `false`                                      | Whether to control the slider by hovering instead of dragging        |
+| `orientation`        | `"horizontal" \| "vertical"` | `"horizontal"`                               | The orientation of the slider                                        |
+| `defaultPosition`    | `number`                     | `50`                                         | The initial position of the divider as a percentage (0-100)          |
+| `animationConfig`    | `Partial<AnimationOptions>`  | `{ damping: 15, stiffness: 400, mass: 0.4 }` | Framer Motion spring animation options for the slider movement       |
+| `dividerColor`       | `string`                     | `"#ffffff"`                                  | Color of the divider line                                            |
+| `constrainToContent` | `boolean`                    | `false`                                      | Whether to constrain the slider drag to the content area             |
 
 ### ImageLayer
 
-| Prop        | Type      | Default     | Description                                                          |
-| ----------- | --------- | ----------- | -------------------------------------------------------------------- |
-| `className` | `string`  | `""`        | Additional CSS classes to apply to the image                         |
-| `alt`       | `string`  | `undefined` | Alt text for the image (required for accessibility)                  |
-| `src`       | `string`  | `undefined` | Source URL of the image                                              |
-| `layer`     | `string`  | `undefined` | Which side of the divider this image appears on: "first" or "second" |
-| `loading`   | `string`  | `"eager"`   | Image loading behavior: "lazy" or "eager"                            |
-| `priority`  | `boolean` | `false`     | Whether the image should be considered high priority for loading     |
+| Prop        | Type                  | Default      | Description                                                      |
+| ----------- | --------------------- | ------------ | ---------------------------------------------------------------- |
+| `className` | `string`              | `undefined`  | Additional CSS classes to apply to the image                     |
+| `alt`       | `string`              | **Required** | Alt text for the image (required for accessibility)              |
+| `src`       | `string`              | **Required** | Source URL of the image                                          |
+| `layer`     | `"first" \| "second"` | **Required** | Which side of the divider this image appears on                  |
+| `loading`   | `"lazy" \| "eager"`   | `"eager"`    | Image loading behavior                                           |
+| `priority`  | `boolean`             | `false`      | Whether the image should be considered high priority for loading |
 
 ### Divider
 
 | Prop          | Type              | Default     | Description                                                      |
 | ------------- | ----------------- | ----------- | ---------------------------------------------------------------- |
-| `className`   | `string`          | `""`        | Additional CSS classes to apply to the divider                   |
+| `className`   | `string`          | `undefined` | Additional CSS classes to apply to the divider                   |
 | `children`    | `React.ReactNode` | `undefined` | Custom content to display in the handle                          |
 | `width`       | `number`          | `2`         | Width of the divider line in pixels                              |
 | `showHandle`  | `boolean`         | `true`      | Whether to show the handle on the divider                        |

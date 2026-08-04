@@ -68,7 +68,7 @@ import { MSpaint } from "@/components/ui/ms-paint";
 <MSpaint
   colorPalette={["#ff0000", "#00ff00", "#0000ff", "#ffff00", "#ff00ff", "#00ffff"]}
   brushSize={5}
-  eraseSize={30}
+  eraserSize={30}
 />
 
 // With save callback
@@ -95,4 +95,4 @@ import { MSpaint } from "@/components/ui/ms-paint";
 | `style`        | `React.CSSProperties`                 | `{}`                                                   | Additional inline styles to apply to the container         |
 | `onSave`       | `(canvas: HTMLCanvasElement) => void` | `undefined`                                            | Callback function when the save button is clicked          |
 | `brushSize`    | `number`                              | `2`                                                    | Size of the brush used for drawing                         |
-| `eraseSize`    | `number`                              | `20`                                                   | Size of the eraser used for erasing                        |
+| `eraserSize`   | `number`                              | `20`                                                   | Size of the eraser used for erasing                        |

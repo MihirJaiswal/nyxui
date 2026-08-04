@@ -144,16 +144,16 @@ export const examples: Registry["items"] = [
     ],
   },
   {
-    name: "cyberpunk-card-demo1",
+    name: "cyberpunk-card-demo3",
     type: "registry:example",
-    title: "Cyberpunk Card Demo 1",
+    title: "Cyberpunk Card Demo 3",
     description: "Example showing a cyberpunk card.",
     registryDependencies: ["https://nyxui.com/r/cyberpunk-card.json"],
     files: [
       {
-        path: "registry/example/cyberpunk-card-demo1.tsx",
+        path: "registry/example/cyberpunk-card-demo3.tsx",
         type: "registry:example",
-        target: "components/cyberpunk-card-demo1.tsx",
+        target: "components/cyberpunk-card-demo3.tsx",
       },
     ],
   },
