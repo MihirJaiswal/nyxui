@@ -166,16 +166,17 @@ interface Track {
 
 ### MusicPlayer
 
-| Prop             | Type                                    | Default      | Description                                           |
-| ---------------- | --------------------------------------- | ------------ | ----------------------------------------------------- |
-| `currentTrack`   | `Track`                                 | Sample track | Current track object containing metadata              |
-| `queue`          | `Track[]`                               | `[]`         | Array of tracks in the playlist queue                 |
-| `currentIndex`   | `number`                                | `0`          | Index of the current track in the queue               |
-| `className`      | `string`                                | `""`         | Additional CSS classes to apply to the component      |
-| `autoPlay`       | `boolean`                               | `false`      | Whether to start playback automatically               |
-| `showEqualizer`  | `boolean`                               | `true`       | Show animated equalizer bars next to the track title  |
-| `onPlayPause`    | `(isPlaying: boolean) => void`          | `undefined`  | Callback triggered when play/pause is toggled         |
-| `onTimeChange`   | `(time: number) => void`                | `undefined`  | Callback triggered when playback time changes         |
-| `onTrackEnd`     | `() => void`                            | `undefined`  | Callback triggered when track playback ends           |
-| `onTrackChange`  | `(track: Track, index: number) => void` | `undefined`  | Callback triggered when track changes (next/previous) |
-| `onVolumeChange` | `(volume: number) => void`              | `undefined`  | Callback triggered when volume changes                |
+| Prop             | Type                                    | Default               | Description                                                                               |
+| ---------------- | --------------------------------------- | --------------------- | ----------------------------------------------------------------------------------------- |
+| `currentTrack`   | `Track`                                 | `undefined`           | Current track object containing metadata (falls back to internal default if not provided) |
+| `queue`          | `Track[]`                               | `[]`                  | Array of tracks in the playlist queue                                                     |
+| `currentIndex`   | `number`                                | `0`                   | Index of the current track in the queue                                                   |
+| `className`      | `string`                                | `""`                  | Additional CSS classes to apply to the component                                          |
+| `autoPlay`       | `boolean`                               | `false`               | Whether to start playback automatically                                                   |
+| `showEqualizer`  | `boolean`                               | `true`                | Show animated equalizer bars next to the track title                                      |
+| `accentColor`    | `string`                                | `"var(--foreground)"` | Accent color for active playing waveform, toggle indicators, and active queue row         |
+| `onPlayPause`    | `(isPlaying: boolean) => void`          | `undefined`           | Callback triggered when play/pause is toggled                                             |
+| `onTimeChange`   | `(time: number) => void`                | `undefined`           | Callback triggered when playback time changes                                             |
+| `onTrackEnd`     | `() => void`                            | `undefined`           | Callback triggered when track playback ends                                               |
+| `onTrackChange`  | `(track: Track, index: number) => void` | `undefined`           | Callback triggered when track changes (next/previous)                                     |
+| `onVolumeChange` | `(volume: number) => void`              | `undefined`           | Callback triggered when volume changes                                                    |

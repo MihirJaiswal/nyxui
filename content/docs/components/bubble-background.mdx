@@ -94,10 +94,10 @@ import { BubbleBackground } from "@/components/ui/bubble-background";
 
 ### Bubble Background
 
-| Prop           | Type     | Default               | Description                                                       |
-| -------------- | -------- | --------------------- | ----------------------------------------------------------------- |
-| `bgColorA`     | `string` | `"rgb(108, 0, 162)"`  | First color for the background gradient                           |
-| `bgColorB`     | `string` | `"rgb(0, 17, 82)"`    | Second color for the background gradient                          |
-| `bubbleColors` | `object` | `defaultBubbleColors` | RGB color values for different bubbles and the interactive bubble |
-| `blendMode`    | `string` | `"hard-light"`        | CSS blend mode for the bubble elements                            |
-| `bubbleSize`   | `string` | `"80%"`               | Size of the bubble elements relative to the container             |
+| Prop           | Type                                                                                                            | Default               | Description                                                       |
+| -------------- | --------------------------------------------------------------------------------------------------------------- | --------------------- | ----------------------------------------------------------------- |
+| `bgColorA`     | `string`                                                                                                        | `"rgb(108, 0, 162)"`  | First color for the background gradient                           |
+| `bgColorB`     | `string`                                                                                                        | `"rgb(0, 17, 82)"`    | Second color for the background gradient                          |
+| `bubbleColors` | `{ colorA?: string; colorB?: string; colorC?: string; colorD?: string; colorE?: string; interactive?: string }` | `defaultBubbleColors` | RGB color values for different bubbles and the interactive bubble |
+| `blendMode`    | `CSSProperties["mixBlendMode"]`                                                                                 | `"hard-light"`        | CSS blend mode for the bubble elements                            |
+| `bubbleSize`   | `string`                                                                                                        | `"80%"`               | Size of the bubble elements relative to the container             |

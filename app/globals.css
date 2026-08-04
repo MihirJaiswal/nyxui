@@ -255,6 +255,88 @@ body {
   /* Remove the global transition that was causing conflicts */
 }
 
+/*
+ * Slot reels: slot-spin-fast whizzes through the (duplicated) digit strip
+ * forever; slot-park travels one more strip pass and settles on the reel's 7
+ * (--slot-stop) with an overshoot bounce, staggered per reel via --park-dur.
+ * The duplicated strip makes translateY(-50%) identical to 0, so swapping
+ * between the two animations mid-spin is visually seamless.
+ */
+@keyframes slotSpin {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes slotPark {
+  0% {
+    transform: translateY(0);
+  }
+  45% {
+    transform: translateY(-50%);
+  }
+  90% {
+    transform: translateY(calc(-50% + var(--slot-stop) - 5%));
+  }
+  95% {
+    transform: translateY(calc(-50% + var(--slot-stop) + 1.5%));
+  }
+  100% {
+    transform: translateY(calc(-50% + var(--slot-stop)));
+  }
+}
+
+.slot-spin-fast {
+  animation: slotSpin var(--slot-dur, 0.5s) linear infinite;
+}
+
+.slot-park {
+  animation: slotPark var(--park-dur, 1.4s) linear forwards;
+}
+
+/*
+ * Rubber stamp slam: scales down from oversized with a slight rotate and an
+ * ink flash, settling at rest — used for the wanted poster's bounty stamp.
+ */
+@keyframes stampSlam {
+  0% {
+    transform: rotate(-14deg) scale(2.6);
+    opacity: 0;
+  }
+  55% {
+    transform: rotate(-10deg) scale(0.92);
+    opacity: 1;
+  }
+  75% {
+    transform: rotate(-12deg) scale(1.04);
+  }
+  100% {
+    transform: rotate(-12deg) scale(1);
+    opacity: 1;
+  }
+}
+
+.stamp-slam {
+  animation: stampSlam 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+}
+
+@keyframes redactorIn {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.redactor-in {
+  transform-origin: left;
+  animation: redactorIn 0.4s ease-out both;
+}
+
 @keyframes bgMove {
   0% {
     background-position: 0% 0%;
