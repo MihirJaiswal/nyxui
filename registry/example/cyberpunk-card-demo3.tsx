@@ -87,16 +87,6 @@ export const CyberpunkCardDemo3 = () => {
               Kabuto 歌舞伎町
             </p>
           </div>
-
-          <div className="flex w-full items-center justify-between border-y border-amber-300/20 py-2 text-[10px] uppercase tracking-[0.2em]">
-            <span className="flex items-center gap-1.5 text-amber-100">
-              <Coins className="h-3.5 w-3.5" /> Balance
-            </span>
-            <span className="text-amber-100">€$1,250</span>
-            <span className="text-amber-100">Last win</span>
-            <span className="font-bold text-amber-100">+5,000</span>
-          </div>
-
           <div className="relative">
             <div className="flex gap-2.5">
               {REELS.map((reel, i) => (
@@ -126,8 +116,7 @@ export const CyberpunkCardDemo3 = () => {
           <div className="relative mt-1 flex h-14 w-14 items-center justify-center">
             <Button
               type="button"
-              aria-pressed={rolling}
-              aria-label={rolling ? "Stop the reels" : "Spin the reels"}
+              variant="ghost"
               disabled={!rolling && !parked}
               onClick={(e) => {
                 e.stopPropagation();
@@ -136,8 +125,8 @@ export const CyberpunkCardDemo3 = () => {
               className={cn(
                 "group relative z-10 flex items-center justify-center gap-2 overflow-hidden text-amber-950 transition-all duration-200 ease-out disabled:opacity-50",
                 rolling
-                  ? "bg-[radial-gradient(circle_at_35%_28%,#fde68a,#d97706_45%,#78350f_100%)] ,inset_0_-6px_10px_rgba(0,0,0,0.45),"
-                  : "bg-[radial-gradient(circle_at_35%_28%,#fef3c7,#f59e0b_45%,#92400e_100%)] shadow-[0_0_26px_rgba(245,158,11,0.55),inset_0_-6px_10px_rgba(0,0,0,0.4),inset_0_2px_2px_rgba(255,255,255,0.45)] hover:shadow-[0_0_34px_rgba(245,158,11,0.7),inset_0_-6px_10px_rgba(0,0,0,0.4),inset_0_2px_2px_rgba(255,255,255,0.45)] active:shadow-[inset_0_6px_12px_rgba(0,0,0,0.55)]",
+                  ? "bg-amber-400 border-orange-950 hover:bg-amber-600"
+                  : "bg-amber-400 border-orange-950 hover:bg-amber-600",
               )}
             >
               {rolling ? (
