@@ -103,7 +103,7 @@ export const CyberpunkCardDemo3 = () => {
 
           <div className="text-center">
             {parked ? (
-              <p className="bg-gradient-to-r from-amber-100 via-white to-amber-100 bg-clip-text text-3xl font-black uppercase italic tracking-tight text-transparent">
+              <p className="text-white text-3xl font-black uppercase italic tracking-tight">
                 Jackpot!
               </p>
             ) : (
@@ -123,10 +123,10 @@ export const CyberpunkCardDemo3 = () => {
                 setRolling((r) => !r);
               }}
               className={cn(
-                "group relative z-10 flex items-center justify-center gap-2 overflow-hidden text-amber-950 transition-all duration-200 ease-out disabled:opacity-50",
+                "group relative z-10 flex items-center justify-center gap-2 overflow-hidden text-amber-950 transition-all duration-200 ease-out disabled:opacity-50 border border-amber-600/70",
                 rolling
-                  ? "bg-amber-400 border-orange-950 hover:bg-amber-600"
-                  : "bg-amber-400 border-orange-950 hover:bg-amber-600",
+                  ? "bg-amber-400 hover:bg-amber-500"
+                  : "bg-amber-400 hover:bg-amber-500",
               )}
             >
               {rolling ? (
