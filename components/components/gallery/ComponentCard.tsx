@@ -28,7 +28,7 @@ export const ComponentCard = ({
       href={href}
       className={cn(
         "group relative flex h-full cursor-pointer flex-col overflow-hidden",
-        "rounded-[20px] border border-muted bg-card p-3",
+        "rounded-[20px] border border-muted bg-card dark:bg-border/10 p-3",
         "shadow-glass transition-colors duration-200",
         "hover:bg-card/80 hover:shadow-glass-lg",
         className,
