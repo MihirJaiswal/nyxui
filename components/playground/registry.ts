@@ -2,7 +2,7 @@ import type {
   ComponentDefinition,
   ComponentRegistry,
   PlaygroundComponent,
-} from "./types";
+} from "@/types/playground";
 
 type ComponentModule = Record<string, unknown>;
 
@@ -32,7 +32,7 @@ const componentMeta: Record<string, PlaygroundComponentMeta> = {
   "github-repo-card": { dependencies: ["lucide-react"] },
   "glow-card": {},
   "music-player": { dependencies: ["lucide-react"] },
-  "animated-grainy-bg": { dependencies: ["motion"] },
+  "grainy-background": { dependencies: ["motion"] },
   "water-ripple-effect": { dependencies: ["three"], importType: "default" },
   "custom-cursor": { dependencies: ["motion"], exportName: "Cursor" },
   "apple-glass-effect": {
@@ -43,10 +43,17 @@ const componentMeta: Record<string, PlaygroundComponentMeta> = {
   "animated-text": { dependencies: ["motion"], exportName: "AnimateText" },
   "glitch-button": {},
   "dynamic-ripple": {},
-  terminal: { dependencies: ["lucide-react"], importType: "default" },
+  terminal: { dependencies: ["motion", "lucide-react"], importType: "default" },
   "matrix-code-rain": { exportName: "MatrixCodeRain" },
-  "liquid-metal-button": { exportName: "LiquidMetalButton" },
   "image-scanner": { dependencies: ["motion"], exportName: "ImageScanner" },
+  marquee: { dependencies: ["motion"] },
+  "image-comparison": { dependencies: ["motion"], exportName: "ImageSlider" },
+  "ms-paint": { dependencies: ["lucide-react"], importType: "default" },
+  "reveal-card": {
+    dependencies: [],
+    importType: "default",
+    exportName: "RevealCard",
+  },
 };
 
 const componentLoaders: Record<string, () => Promise<ComponentModule>> = {
@@ -59,7 +66,7 @@ const componentLoaders: Record<string, () => Promise<ComponentModule>> = {
   "github-repo-card": () => import("@/registry/ui/github-repo-card"),
   "glow-card": () => import("@/registry/ui/glow-card"),
   "music-player": () => import("@/registry/ui/music-player"),
-  "animated-grainy-bg": () => import("@/registry/ui/animated-grainy-bg"),
+  "grainy-background": () => import("@/registry/ui/grainy-background"),
   "water-ripple-effect": () => import("@/registry/ui/water-ripple-effect"),
   "custom-cursor": () => import("@/registry/ui/custom-cursor"),
   "apple-glass-effect": () => import("@/registry/ui/apple-glass-effect"),
@@ -69,8 +76,11 @@ const componentLoaders: Record<string, () => Promise<ComponentModule>> = {
   "dynamic-ripple": () => import("@/registry/ui/dynamic-ripple"),
   terminal: () => import("@/registry/ui/terminal"),
   "matrix-code-rain": () => import("@/registry/ui/matrix-code-rain"),
-  "liquid-metal-button": () => import("@/registry/ui/liquid-metal-button"),
   "image-scanner": () => import("@/registry/ui/image-scanner"),
+  marquee: () => import("@/registry/ui/marquee"),
+  "image-comparison": () => import("@/registry/ui/image-comparison"),
+  "ms-paint": () => import("@/registry/ui/ms-paint"),
+  "reveal-card": () => import("@/registry/ui/reveal-card"),
 };
 
 function pickComponent(
@@ -292,7 +302,6 @@ export const componentRegistry: ComponentRegistry = {
   return fibonacci(n - 1) + fibonacci(n - 2);
 }
 
-// Calculate the 10th Fibonacci number
 const result = fibonacci(10);
 console.log(\`The 10th Fibonacci number is: \${result}\`);`,
         label: "Code Content",
@@ -323,7 +332,7 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
       },
       title: {
         type: "string",
-        default: "Code",
+        default: "Code Example",
         label: "Title",
         description: "Title displayed in the header",
         category: "Content",
@@ -333,7 +342,7 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
       theme: {
         type: "select",
         default: "dark",
-        options: ["dark", "terminal", "minimal", "nightowl"],
+        options: ["dark", "terminal", "minimal", "parchment"],
         label: "Theme",
         description: "Visual theme for the code block",
         category: "Appearance",
@@ -345,18 +354,11 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
         description: "Display line numbers on the left side",
         category: "Appearance",
       },
-      blurEffect: {
-        type: "boolean",
-        default: false,
-        label: "Blur Effect",
-        description: "Add a subtle blur overlay effect",
-        category: "Appearance",
-      },
 
       // Animation
       autoPlay: {
         type: "boolean",
-        default: true,
+        default: false,
         label: "Auto Play",
         description: "Start typing animation automatically",
         category: "Animation",
@@ -389,7 +391,7 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
       },
       highlightLines: {
         type: "object",
-        default: [3, 7],
+        default: [],
         label: "Highlight Lines",
         description: "Array of line numbers to highlight",
         category: "Features",
@@ -429,14 +431,7 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
       theme: {
         type: "select",
         default: "cyberpunk",
-        options: [
-          "cyberpunk",
-          "minimal",
-          "retro",
-          "mechanical",
-          "neon",
-          "pastel",
-        ],
+        options: ["cyberpunk", "retro", "neon", "pastel"],
         label: "Theme",
         description: "Visual theme for the keyboard",
         category: "Appearance",
@@ -457,7 +452,7 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
       },
       accentColor: {
         type: "color",
-        default: "#6366f1",
+        default: "#F57644",
         label: "Accent Color",
         description: "Color for highlights and special elements",
         category: "Appearance",
@@ -478,17 +473,19 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
         max: 2000,
         step: 100,
         label: "Perspective",
-        description: "3D perspective value for the keyboard",
+        description:
+          "Camera depth for the 3D tilt. It is most visible when Rotation X is above 0.",
         category: "3D Effects",
       },
       rotateX: {
         type: "number",
-        default: 10,
+        default: 0,
         min: 0,
         max: 45,
         step: 5,
         label: "Rotation X",
-        description: "X-axis rotation in degrees",
+        description:
+          "Keyboard tilt in degrees. Keep it at 0 for a flat physical keyboard.",
         category: "3D Effects",
       },
 
@@ -521,7 +518,7 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
       },
       activeKeyGlowColor: {
         type: "color",
-        default: "#6366f1",
+        default: "#F57644",
         label: "Active Key Glow Color",
         description: "Color for active key glow effect",
         category: "Active Keys",
@@ -535,6 +532,13 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
         label: "Glow Intensity",
         description: "Intensity of the active key glow effect",
         category: "Active Keys",
+      },
+      className: {
+        type: "string",
+        default: "",
+        label: "CSS Classes",
+        description: "Additional Tailwind CSS classes for styling",
+        category: "Appearance",
       },
     },
   },
@@ -950,14 +954,7 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
       theme: {
         type: "select",
         default: "modern-light",
-        options: [
-          "modern-dark",
-          "modern-light",
-          "cyberpunk",
-          "neo-brutalist",
-          "aurora",
-          "forest",
-        ],
+        options: ["modern-dark", "modern-light", "cyberpunk", "neo-brutalist"],
         label: "Theme",
         description: "Visual theme for the repository card",
         category: "Appearance",
@@ -1128,26 +1125,16 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
       },
 
       // Appearance
-      theme: {
-        type: "select",
-        default: "default",
-        options: ["default", "spotify", "cosmic", "midnight"],
-        label: "Theme",
-        description: "Visual theme for the music player",
+      accentColor: {
+        type: "color",
+        default: "var(--foreground)",
+        label: "Accent Color",
+        description:
+          "Accent color for active playing waveform, toggle indicators, and active queue row",
         category: "Appearance",
       },
 
       // Playback
-      initialTime: {
-        type: "number",
-        default: 0,
-        min: 0,
-        max: 300,
-        step: 1,
-        label: "Initial Time (s)",
-        description: "Starting playback time in seconds",
-        category: "Playback",
-      },
       autoPlay: {
         type: "boolean",
         default: false,
@@ -1167,9 +1154,9 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
     },
   },
 
-  "animated-grainy-bg": {
-    name: "Animated Grainy Background",
-    component: "AnimatedGrainyBg",
+  "grainy-background": {
+    name: "Grainy Background",
+    component: "GrainyBackground",
     props: {
       // Content
       children: {
@@ -1304,6 +1291,22 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
         description: "CSS z-index value",
         category: "Layout",
       },
+      as: {
+        type: "select",
+        default: "div",
+        options: [
+          "div",
+          "section",
+          "article",
+          "main",
+          "aside",
+          "header",
+          "footer",
+        ],
+        label: "Render As",
+        description: "HTML element type to render as",
+        category: "Layout",
+      },
     },
   },
 
@@ -1324,9 +1327,9 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
       // Dimensions
       width: {
         type: "number",
-        default: 400,
+        default: 920,
         min: 200,
-        max: 800,
+        max: 1200,
         step: 50,
         label: "Width",
         description: "Width of the effect container",
@@ -1334,12 +1337,19 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
       },
       height: {
         type: "number",
-        default: 400,
+        default: 955,
         min: 200,
-        max: 800,
+        max: 1200,
         step: 50,
         label: "Height",
         description: "Height of the effect container",
+        category: "Dimensions",
+      },
+      containerClassName: {
+        type: "string",
+        default: "",
+        label: "Container Class",
+        description: "Additional CSS classes for the outer container wrapper",
         category: "Dimensions",
       },
       scale: {
@@ -1943,23 +1953,19 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
     props: {
       command: {
         type: "string",
-        default: "npm i name",
+        default: "help",
         label: "Command",
         description: "Command to execute in the terminal",
       },
       steps: {
         type: "object",
-        default: [
-          "Installing dependencies...",
-          "Resolving packages...",
-          "Building project...",
-        ],
+        default: ["Processing command..."],
         label: "Execution Steps",
         description: "Steps shown during command execution",
       },
       finalMessage: {
         type: "string",
-        default: "✅ Installation completed successfully!",
+        default: "Command executed successfully!",
         label: "Final Message",
         description: "Message shown when command completes",
       },
@@ -1968,6 +1974,7 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
         default: 1000,
         min: 100,
         max: 5000,
+        step: 100,
         label: "Step Delay (ms)",
         description: "Delay between execution steps",
       },
@@ -1976,6 +1983,7 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
         default: 100,
         min: 50,
         max: 500,
+        step: 10,
         label: "Typing Delay (ms)",
         description: "Delay between typed characters",
       },
@@ -1987,7 +1995,7 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
       },
       inputPlaceholder: {
         type: "string",
-        default: "Type your command here...",
+        default: "Type a command…",
         label: "Input Placeholder",
         description: "Placeholder text for input field",
       },
@@ -2018,11 +2026,17 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
         label: "CSS Classes",
         description: "Additional Tailwind CSS classes for styling",
       },
-      theme: {
+      title: {
+        type: "string",
+        default: "zsh — 80×24",
+        label: "Window Title",
+        description: "Title shown in the terminal title bar",
+      },
+      variant: {
         type: "select",
         default: "default",
-        options: ["default", "dark", "matrix", "retro"],
-        label: "Theme",
+        options: ["default", "sky", "synthwave", "retro"],
+        label: "Variant",
         description: "Terminal color theme",
       },
     },
@@ -2088,56 +2102,6 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
       },
     },
   },
-  "liquid-metal-button": {
-    name: "Liquid Metal Button",
-    component: "LiquidMetalButton",
-    props: {
-      children: {
-        type: "string",
-        default: "Liquid Metal",
-        label: "Button Text",
-        description: "Text content of the button",
-      },
-      theme: {
-        type: "select",
-        default: "silver",
-        options: [
-          "silver",
-          "gold",
-          "copper",
-          "mercury",
-          "steel",
-          "emerald",
-          "sapphire",
-        ],
-        label: "Metal Theme",
-        description: "Different metallic appearances",
-      },
-      size: {
-        type: "select",
-        default: "md",
-        options: ["sm", "md", "lg"],
-        label: "Size",
-        description: "Button size variant",
-      },
-      disabled: {
-        type: "boolean",
-        default: false,
-        label: "Disabled",
-        description: "Disable button interactions",
-      },
-      customColor: {
-        type: "color",
-        default: "#c0c0c0",
-        label: "Custom Color",
-        description: "Custom metallic color",
-        conditional: {
-          property: "theme",
-          value: "custom",
-        },
-      },
-    },
-  },
   "image-scanner": {
     name: "Image Scanner",
     component: "ImageScanner",
@@ -2177,15 +2141,24 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
       },
       autoScan: {
         type: "boolean",
-        default: true,
+        default: false,
         label: "Auto Scan",
         description: "Start scanning automatically",
       },
       scanDelay: {
         type: "number",
-        default: 0.5,
+        default: 0,
+        min: 0,
+        max: 10,
+        step: 0.5,
         label: "Scan Delay",
         description: "Delay before auto scan starts (seconds)",
+      },
+      triggerScan: {
+        type: "boolean",
+        default: false,
+        label: "Trigger Scan",
+        description: "Externally trigger the scanning effect",
       },
       scanAtScroll: {
         type: "boolean",
@@ -2275,6 +2248,443 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
         default: "",
         label: "Custom Class",
         description: "Additional CSS classes",
+      },
+    },
+  },
+
+  marquee: {
+    name: "Marquee",
+    component: "Marquee",
+    props: {
+      // Content
+      children: {
+        type: "textarea",
+        default: `<div className="flex gap-4">
+  <div className="flex items-center gap-2 rounded-lg bg-neutral-900 px-4 py-2 text-white">
+    <span className="text-lg font-bold">Item 1</span>
+  </div>
+  <div className="flex items-center gap-2 rounded-lg bg-neutral-900 px-4 py-2 text-white">
+    <span className="text-lg font-bold">Item 2</span>
+  </div>
+  <div className="flex items-center gap-2 rounded-lg bg-neutral-900 px-4 py-2 text-white">
+    <span className="text-lg font-bold">Item 3</span>
+  </div>
+  <div className="flex items-center gap-2 rounded-lg bg-neutral-900 px-4 py-2 text-white">
+    <span className="text-lg font-bold">Item 4</span>
+  </div>
+</div>`,
+        label: "Children Content",
+        description: "Content to scroll in the marquee",
+        category: "Content",
+        placeholder: "Enter content...",
+      },
+
+      // Layout
+      gap: {
+        type: "number",
+        default: 16,
+        min: 0,
+        max: 100,
+        step: 4,
+        label: "Gap",
+        description: "Gap between repeated content in pixels",
+        category: "Layout",
+      },
+      direction: {
+        type: "select",
+        default: "horizontal",
+        options: ["horizontal", "vertical"],
+        label: "Direction",
+        description: "Scroll direction",
+        category: "Layout",
+      },
+      reverse: {
+        type: "boolean",
+        default: false,
+        label: "Reverse",
+        description: "Reverse the scroll direction",
+        category: "Layout",
+      },
+      className: {
+        type: "string",
+        default: "",
+        label: "CSS Classes",
+        description: "Additional CSS classes",
+        category: "Layout",
+      },
+
+      // Animation
+      speed: {
+        type: "number",
+        default: 100,
+        min: 10,
+        max: 500,
+        step: 10,
+        label: "Speed",
+        description: "Scroll speed in pixels per second",
+        category: "Animation",
+      },
+      speedOnHover: {
+        type: "number",
+        default: 0,
+        min: 0,
+        max: 500,
+        step: 10,
+        label: "Speed on Hover",
+        description: "Scroll speed when hovered (0 means no change)",
+        category: "Animation",
+      },
+
+      // Edge Effects
+      fadeEdges: {
+        type: "boolean",
+        default: false,
+        label: "Fade Edges",
+        description: "Fade the edges of the marquee",
+        category: "Edge Effects",
+      },
+      fadeWidth: {
+        type: "number",
+        default: 64,
+        min: 0,
+        max: 300,
+        step: 8,
+        label: "Fade Width",
+        description: "Width of the fade effect in pixels",
+        category: "Edge Effects",
+        conditional: {
+          property: "fadeEdges",
+          value: true,
+        },
+      },
+
+      // Interaction
+      pauseOnTap: {
+        type: "boolean",
+        default: true,
+        label: "Pause on Tap",
+        description: "Pause animation when tapped",
+        category: "Interaction",
+      },
+      draggable: {
+        type: "boolean",
+        default: true,
+        label: "Draggable",
+        description: "Allow drag to scroll",
+        category: "Interaction",
+      },
+    },
+  },
+
+  "image-comparison": {
+    name: "Image Comparison",
+    component: "ImageSlider",
+    props: {
+      // Content
+      children: {
+        type: "textarea",
+        default: `<ImageLayer
+  src="https://raw.githubusercontent.com/MihirJaiswal/nyxui/refs/heads/main/public/assets/images/image-comparison/before.jpg"
+  alt="Before"
+  layer="first"
+/>
+<ImageLayer
+  src="https://raw.githubusercontent.com/MihirJaiswal/nyxui/refs/heads/main/public/assets/images/image-comparison/after.jpg"
+  alt="After"
+  layer="second"
+/>
+<Divider />`,
+        label: "Children Content",
+        description: "ImageLayer and Divider components",
+        category: "Content",
+        placeholder: "Enter content...",
+      },
+      className: {
+        type: "string",
+        default: "h-96 w-full overflow-hidden rounded-xl",
+        label: "CSS Classes",
+        description: "Additional CSS classes for the container",
+        category: "Layout",
+      },
+
+      // Behavior
+      hoverControl: {
+        type: "boolean",
+        default: false,
+        label: "Hover Control",
+        description: "Control the slider by hovering instead of dragging",
+        category: "Behavior",
+      },
+      orientation: {
+        type: "select",
+        default: "horizontal",
+        options: ["horizontal", "vertical"],
+        label: "Orientation",
+        description: "Slider orientation",
+        category: "Behavior",
+      },
+      defaultPosition: {
+        type: "number",
+        default: 50,
+        min: 0,
+        max: 100,
+        step: 1,
+        label: "Default Position",
+        description: "Initial divider position as a percentage (0-100)",
+        category: "Behavior",
+      },
+      constrainToContent: {
+        type: "boolean",
+        default: false,
+        label: "Constrain to Content",
+        description: "Constrain the slider drag to the content area",
+        category: "Behavior",
+      },
+
+      // Appearance
+      dividerColor: {
+        type: "color",
+        default: "#ffffff",
+        label: "Divider Color",
+        description: "Color of the divider line",
+        category: "Appearance",
+      },
+    },
+  },
+
+  "ms-paint": {
+    name: "MS Paint",
+    component: "MSpaint",
+    props: {
+      // Dimensions
+      width: {
+        type: "number",
+        default: 800,
+        min: 400,
+        max: 1200,
+        step: 50,
+        label: "Width",
+        description: "Width of the drawing canvas container in pixels",
+        category: "Dimensions",
+      },
+      height: {
+        type: "number",
+        default: 500,
+        min: 300,
+        max: 800,
+        step: 50,
+        label: "Height",
+        description: "Height of the drawing canvas area in pixels",
+        category: "Dimensions",
+      },
+      canvasWidth: {
+        type: "number",
+        default: 2000,
+        min: 500,
+        max: 5000,
+        step: 100,
+        label: "Canvas Width",
+        description: "Width of the actual canvas element",
+        category: "Dimensions",
+      },
+      canvasHeight: {
+        type: "number",
+        default: 2000,
+        min: 500,
+        max: 5000,
+        step: 100,
+        label: "Canvas Height",
+        description: "Height of the actual canvas element",
+        category: "Dimensions",
+      },
+
+      // Appearance
+      title: {
+        type: "string",
+        default: "untitled - Paint",
+        label: "Title",
+        description: "Title text displayed in the window header",
+        category: "Appearance",
+      },
+      className: {
+        type: "string",
+        default: "",
+        label: "CSS Classes",
+        description: "Additional CSS classes for the container",
+        category: "Appearance",
+      },
+
+      // Tools
+      brushSize: {
+        type: "number",
+        default: 2,
+        min: 1,
+        max: 50,
+        step: 1,
+        label: "Brush Size",
+        description: "Size of the brush used for drawing",
+        category: "Tools",
+      },
+      eraserSize: {
+        type: "number",
+        default: 20,
+        min: 1,
+        max: 100,
+        step: 1,
+        label: "Eraser Size",
+        description: "Size of the eraser",
+        category: "Tools",
+      },
+      colorPalette: {
+        type: "object",
+        default: [
+          "#000000",
+          "#7f7f7f",
+          "#880015",
+          "#ed1c24",
+          "#ff7f27",
+          "#fff200",
+          "#22b14c",
+          "#00a2e8",
+          "#3f48cc",
+          "#a349a4",
+          "#ffffff",
+          "#c3c3c3",
+          "#b97a57",
+          "#ffaec9",
+          "#ffc90e",
+          "#efe4b0",
+          "#b5e61d",
+          "#99d9ea",
+          "#7092be",
+          "#c8bfe7",
+        ],
+        label: "Color Palette",
+        description: "Array of hex color codes for the color palette",
+        category: "Tools",
+      },
+    },
+  },
+
+  "reveal-card": {
+    name: "Reveal Card",
+    component: "RevealCard",
+    props: {
+      // Images
+      coverImage: {
+        type: "string",
+        default:
+          "https://raw.githubusercontent.com/MihirJaiswal/nyxui/refs/heads/main/public/assets/images/reveal-card/cover.jpg",
+        label: "Cover Image",
+        description: "URL for the cover image",
+        category: "Images",
+      },
+      titleImage: {
+        type: "string",
+        default:
+          "https://raw.githubusercontent.com/MihirJaiswal/nyxui/refs/heads/main/public/assets/images/reveal-card/title.png",
+        label: "Title Image",
+        description: "URL for the title image",
+        category: "Images",
+      },
+      characterImage: {
+        type: "string",
+        default:
+          "https://raw.githubusercontent.com/MihirJaiswal/nyxui/refs/heads/main/public/assets/images/reveal-card/character.png",
+        label: "Character Image",
+        description: "URL for the character image",
+        category: "Images",
+      },
+
+      // Dimensions
+      width: {
+        type: "number",
+        default: 266,
+        min: 150,
+        max: 500,
+        step: 10,
+        label: "Width",
+        description: "Width of the card in pixels",
+        category: "Dimensions",
+      },
+      height: {
+        type: "number",
+        default: 400,
+        min: 200,
+        max: 700,
+        step: 10,
+        label: "Height",
+        description: "Height of the card in pixels",
+        category: "Dimensions",
+      },
+
+      // Animation
+      hoverRotation: {
+        type: "number",
+        default: 25,
+        min: 0,
+        max: 45,
+        step: 1,
+        label: "Hover Rotation",
+        description: "Rotation angle on hover in degrees",
+        category: "Animation",
+      },
+      titleTranslateY: {
+        type: "number",
+        default: -50,
+        min: -200,
+        max: 0,
+        step: 5,
+        label: "Title Translate Y",
+        description: "Y-axis translation for title image on hover",
+        category: "Animation",
+      },
+      characterTranslateY: {
+        type: "number",
+        default: -15,
+        min: -200,
+        max: 0,
+        step: 5,
+        label: "Character Translate Y",
+        description: "Y-axis translation for character image on hover",
+        category: "Animation",
+      },
+      characterTranslateZ: {
+        type: "number",
+        default: 100,
+        min: 0,
+        max: 300,
+        step: 10,
+        label: "Character Translate Z",
+        description: "Z-axis translation for character image on hover",
+        category: "Animation",
+      },
+
+      // Options
+      priority: {
+        type: "boolean",
+        default: false,
+        label: "Priority Loading",
+        description:
+          "If true, images are prioritized for loading (eager loading)",
+        category: "Options",
+      },
+      threshold: {
+        type: "number",
+        default: 0.3,
+        min: 0,
+        max: 1,
+        step: 0.1,
+        label: "Threshold",
+        description: "The threshold for triggering the animation (0-1)",
+        category: "Options",
+      },
+      className: {
+        type: "string",
+        default: "",
+        label: "CSS Classes",
+        description: "Additional CSS classes for the card",
+        category: "Options",
       },
     },
   },

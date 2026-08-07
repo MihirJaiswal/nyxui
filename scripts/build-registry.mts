@@ -11,10 +11,10 @@ import {
 } from "shadcn/registry";
 import { z } from "zod";
 
-import { blocks } from "../registry/registry-blocks";
-import { examples } from "../registry/registry-examples";
-import { lib } from "../registry/registry-lib";
-import { ui } from "../registry/registry-ui";
+import { blocks } from "@/registry/registry-blocks";
+import { examples } from "@/registry/registry-examples";
+import { lib } from "@/registry/registry-lib";
+import { ui } from "@/registry/registry-ui";
 
 type RegistryItem = Registry["items"][number];
 type RegistryFile = NonNullable<RegistryItem["files"]>[number];

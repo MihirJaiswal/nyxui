@@ -3,9 +3,9 @@ import React from "react";
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import { useTheme } from "next-themes";
 
-import { cn } from "../../lib/utils";
-import { Button } from "../ui/button";
-import { useMounted } from "../../hooks/use-mounted";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { useMounted } from "@/hooks/use-mounted";
 
 export const ModeToggle = React.forwardRef<
   HTMLButtonElement,
@@ -45,8 +45,11 @@ export const ModeToggle = React.forwardRef<
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
       {...props}
     >
-      <SunIcon className="size-[1.2rem] text-neutral-800 dark:hidden dark:text-neutral-200 transition-all duration-150" />
-      <MoonIcon className="hidden size-[1.2rem] text-neutral-800 dark:block dark:text-neutral-200 transition-all duration-150" />
+      <SunIcon className="size-[1rem] text-neutral-800 dark:hidden dark:text-neutral-200 transition-all duration-150" />
+      <MoonIcon
+        className="hidden size-[1
+      rem] text-neutral-800 dark:block dark:text-neutral-200 transition-all duration-150"
+      />
     </Button>
   );
 });

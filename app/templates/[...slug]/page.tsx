@@ -1,18 +1,18 @@
-import { Mdx } from "@/components/components/mdx-components";
-import { badgeVariants } from "@/components/ui/badge";
+import { Mdx } from "@/components/components/mdx/mdx-components";
 import { DocPageHeader } from "@/components/components/doc-page-header";
-import { absoluteUrl, cn } from "@/lib/utils";
+import { absoluteUrl } from "@/lib/utils";
 import {
-  createTemplateSchema,
+  createBaseMetadata,
   generateDocKeywords,
   generateDocStaticParams,
   getDocFromParams,
   type SlugPageProps,
 } from "@/lib/docs";
-import { externalLinks, itemHref, siteLinks } from "@/lib/links";
+import { createTemplateSchema } from "@/lib/docs-schema";
+import { externalLinks, itemHref } from "@/lib/links";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
+import { JsonLd } from "@/components/global/JsonLd";
 
 export async function generateMetadata({
   params,
@@ -44,56 +44,26 @@ export async function generateMetadata({
   });
   const enhancedTitle = `${template.title} Template - React & Next.js | Nyx UI Templates`;
   const enhancedDescription = `${template.description || `${template.title} template for React and Next.js applications.`} Built with Tailwind CSS, TypeScript, and Framer Motion. Professional template from Nyx UI library. Free to use, customizable, and production-ready.`;
+  const canonical = absoluteUrl(itemHref("templates", templateName));
 
   return {
-    title: enhancedTitle,
-    description: enhancedDescription,
-    keywords: templateKeywords,
+    ...createBaseMetadata({
+      title: enhancedTitle,
+      description: enhancedDescription,
+      keywords: templateKeywords,
+      canonical,
+      image: template.image || "/nyx.webp",
+      twitterCreator: "@nuvyx_ui",
+      type: "article",
+    }),
     authors: [{ name: "Mihir Jaiswal", url: externalLinks.twitter }],
     creator: "Nyx UI",
     publisher: "Nyx UI",
-
     openGraph: {
       title: `${template.title} - React Template | Nyx UI`,
-      description: enhancedDescription,
-      type: "article",
-      url: absoluteUrl(itemHref("templates", templateName)),
       siteName: "Nyx UI Templates",
       locale: "en_US",
-      images: [
-        {
-          url: template.image || "/nyx.webp",
-          width: 1200,
-          height: 630,
-          alt: `${template.title} React Template - Nyx UI`,
-        },
-      ],
     },
-    twitter: {
-      card: "summary_large_image",
-      title: `${template.title} React Template | Nyx UI`,
-      description: enhancedDescription,
-      images: [template.image || "/nyx.webp"],
-      creator: "@nuvyx_ui",
-      site: "@nuvyx_ui",
-    },
-
-    alternates: {
-      canonical: absoluteUrl(itemHref("templates", templateName)),
-    },
-
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        "max-video-preview": -1,
-        "max-image-preview": "large",
-        "max-snippet": -1,
-      },
-    },
-
     category: "Web Development",
     other: {
       "article:section": "UI Templates",
@@ -122,10 +92,7 @@ export default async function TemplatePage({ params }: SlugPageProps) {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
-      />
+      <JsonLd data={schemaData} />
 
       {/* Additional meta tags in head */}
       <meta name="template-name" content={template.title} />
@@ -134,7 +101,7 @@ export default async function TemplatePage({ params }: SlugPageProps) {
       <meta name="styling" content="Tailwind CSS" />
       <meta name="template-type" content="Website Template" />
 
-      <div className="mx-auto w-full max-w-[1200px]">
+      <div className="w-full">
         <DocPageHeader
           title={template.title}
           description={template.description}
@@ -145,27 +112,9 @@ export default async function TemplatePage({ params }: SlugPageProps) {
           primaryDocLink
         />
 
-        <div className="mt-6 space-y-8">
+        <div className="pt-6">
           <div className="mdx-content">
             <Mdx code={template.body.code} />
-          </div>
-        </div>
-
-        {/* Template-specific footer with additional actions */}
-        <div className="mt-12 pt-6 border-t border-border">
-          <div className="flex flex-wrap gap-4 justify-between items-center">
-            <div className="text-sm text-muted-foreground">
-              Need help with this template? Check out our documentation or reach
-              out to support.
-            </div>
-            <div className="flex gap-2">
-              <Link
-                href={siteLinks.templates}
-                className={cn(badgeVariants({ variant: "outline" }), "gap-1")}
-              >
-                ← All Templates
-              </Link>
-            </div>
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Target, Star, Moon, Skull, Droplet } from "lucide-react";
 import Image from "next/image";
-import { GlowCard } from "../ui/glow-card";
+import { GlowCard } from "@/registry/ui/glow-card";
 
 export default function GlowCardDemo1() {
   return (

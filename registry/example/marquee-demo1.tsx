@@ -1,5 +1,5 @@
 import React from "react";
-import { Marquee } from "../ui/marquee";
+import { Marquee } from "@/registry/ui/marquee";
 import Image from "next/image";
 
 export default function MarqueeDemo1() {

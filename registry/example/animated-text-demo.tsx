@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import reactElementToJSXString from "react-element-to-jsx-string";
-import { toast, Toaster } from "sonner";
-import { AnimateText } from "../ui/animated-text";
+import { toast } from "sonner";
+import { AnimateText } from "@/registry/ui/animated-text";
 import { Copy, Check } from "lucide-react";
 
 interface AnimationCard {
@@ -27,7 +27,7 @@ const AnimationCard = ({
 }: AnimationCard) => {
   return (
     <div
-      className="border group relative rounded-lg p-3 sm:p-4 shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer bg-background"
+      className="border group relative rounded-lg p-3 sm:p-4 transition-shadow duration-300 cursor-pointer bg-background"
       onClick={onClick}
     >
       <p className="text-xs sm:text-sm font-semibold mb-2">{title}</p>
@@ -101,8 +101,7 @@ export const AnimationTextDemo = () => {
   };
 
   return (
-    <div className="w-full px-4 sm:px-6 md:px-8 max-w-7xl mx-auto pb-12">
-      <Toaster position="top-center" />
+    <div className="w-full px-4 sm:px-6 md:px-8 max-w-7xl mx-auto py-6">
       <div className="flex flex-col">
         <div className="flex flex-col py-2 sm:py-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">

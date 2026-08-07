@@ -77,10 +77,6 @@ export function CustomizedCard() {
           titleTranslateY={-60}
           characterTranslateY={-40}
           characterTranslateZ={120}
-          gradientColors={{
-            top: "rgba(25,25,25,0.8)",
-            bottom: "rgba(10,10,10,0.9)",
-          }}
           animation={{
             duration: 600,
             delay: 100,
@@ -103,20 +99,19 @@ export function CustomizedCard() {
 
 ### Reveal Card
 
-| Prop                  | Type      | Default                                                            | Description                                                  |
-| --------------------- | --------- | ------------------------------------------------------------------ | ------------------------------------------------------------ |
-| `coverImage`          | `string`  | `""`                                                               | URL for the cover image.                                     |
-| `titleImage`          | `string`  | `""`                                                               | URL for the title image.                                     |
-| `characterImage`      | `string`  | `""`                                                               | URL for the character image.                                 |
-| `width`               | `number`  | `266`                                                              | Width of the card in pixels.                                 |
-| `height`              | `number`  | `400`                                                              | Height of the card in pixels.                                |
-| `hoverRotation`       | `number`  | `25`                                                               | Rotation angle on hover.                                     |
-| `titleTranslateY`     | `number`  | `-50`                                                              | Y-axis translation for title image on hover.                 |
-| `characterTranslateY` | `number`  | `-30`                                                              | Y-axis translation for character image on hover.             |
-| `characterTranslateZ` | `number`  | `100`                                                              | Z-axis translation for character image on hover.             |
-| `alt`                 | `object`  | `{ cover: "Cover Image", title: "Title", character: "Character" }` | Alternate text for the images.                               |
-| `gradientColors`      | `object`  | `{ top: "rgba(12,13,19,1)", bottom: "rgba(12,13,19,1)" }`          | Gradient overlay colors for the cover image.                 |
-| `animation`           | `object`  | `{ duration: 500, delay: 0 }`                                      | Animation duration and delay in milliseconds.                |
-| `priority`            | `boolean` | `false`                                                            | If true, images are prioritized for loading (eager loading). |
-| `threshold`           | `number`  | `0.3`                                                              | The threshold for triggering the animation (0-1).            |
-| `className`           | `string`  | `""`                                                               | Additional CSS classes for the card.                         |
+| Prop                  | Type                                                     | Default                                                            | Description                                                  |
+| --------------------- | -------------------------------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------ |
+| `coverImage`          | `string`                                                 | **Required**                                                       | URL for the cover image.                                     |
+| `titleImage`          | `string`                                                 | **Required**                                                       | URL for the title image.                                     |
+| `characterImage`      | `string`                                                 | **Required**                                                       | URL for the character image.                                 |
+| `width`               | `number`                                                 | `266`                                                              | Width of the card in pixels.                                 |
+| `height`              | `number`                                                 | `400`                                                              | Height of the card in pixels.                                |
+| `hoverRotation`       | `number`                                                 | `25`                                                               | Rotation angle on hover.                                     |
+| `titleTranslateY`     | `number`                                                 | `-50`                                                              | Y-axis translation for title image on hover.                 |
+| `characterTranslateY` | `number`                                                 | `-15`                                                              | Y-axis translation for character image on hover.             |
+| `characterTranslateZ` | `number`                                                 | `100`                                                              | Z-axis translation for character image on hover.             |
+| `alt`                 | `{ cover?: string; title?: string; character?: string }` | `{ cover: "Cover Image", title: "Title", character: "Character" }` | Alternate text for the images.                               |
+| `animation`           | `{ duration?: number; delay?: number }`                  | `{ duration: 500, delay: 0 }`                                      | Animation duration and delay in milliseconds.                |
+| `priority`            | `boolean`                                                | `false`                                                            | If true, images are prioritized for loading (eager loading). |
+| `threshold`           | `number`                                                 | `0.3`                                                              | The threshold for triggering the animation (0-1).            |
+| `className`           | `string`                                                 | `""`                                                               | Additional CSS classes for the card.                         |

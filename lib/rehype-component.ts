@@ -3,18 +3,9 @@ import path from "path";
 import { u } from "unist-builder";
 import { visit } from "unist-util-visit";
 
-import { UnistNode, UnistTree } from "../types/unist";
+import { UnistNode, UnistTree } from "@/types/unist";
 
-import Registry from "../registry.json";
-
-export const styles = [
-  {
-    name: "default",
-    label: "Default",
-  },
-] as const;
-
-export type Style = (typeof styles)[number];
+import Registry from "@/registry.json";
 
 export function rehypeComponent() {
   return async (tree: UnistTree) => {

@@ -1,11 +1,36 @@
 "use client";
 
 import type React from "react";
-
-import { motion } from "motion/react";
-import { ChevronDown, Check, Search } from "lucide-react";
-import type { ComponentRegistry } from "./types";
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import {
+  animate,
+  motion,
+  useMotionValue,
+  useMotionValueEvent,
+  useSpring,
+  type MotionValue,
+} from "motion/react";
+import {
+  Command,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
+import { Grid } from "@/components/playground/Grid";
+import { cn } from "@/lib/utils";
+import { useKeyboardShortcut } from "@/hooks/use-keyboard-shortcut";
+import { useHoverTick } from "@/hooks/use-hover-tick";
+import { CategoryHeading } from "@/components/global/CategoryHeading";
+import type { ComponentRegistry } from "@/types/playground";
+import { PhantomLine } from "@/components/global/PhantomLine";
+import {
+  GuideLine,
+  BASE_WIDTH,
+  MAX_WIDTH,
+  SPRING_CONFIG,
+  LABEL_TRANSITION,
+} from "@/components/global/GuideLine";
 
 interface ComponentSelectorProps {
   components: ComponentRegistry;
@@ -13,202 +38,215 @@ interface ComponentSelectorProps {
   onSelect: (componentKey: string) => void;
 }
 
+const SIGMA = 10;
+const HOVER_NONE = -100000;
+
+interface SelectorItemProps {
+  mouseY: MotionValue<number>;
+  index: number;
+  itemKey: string;
+  name: string;
+  isActive: boolean;
+  isFirst: boolean;
+  isLast: boolean;
+  isKeyboardSelected: boolean;
+  onSelect: () => void;
+  onHoverTick: (index: number) => void;
+}
+
+const SelectorItem = ({
+  mouseY,
+  index,
+  itemKey,
+  name,
+  isActive,
+  isFirst,
+  isLast,
+  isKeyboardSelected,
+  onSelect,
+  onHoverTick,
+}: SelectorItemProps) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [hovered, setHovered] = useState(false);
+  const highlighted = isActive || hovered || isKeyboardSelected;
+  const widthMv = useMotionValue(highlighted ? MAX_WIDTH : BASE_WIDTH);
+
+  useEffect(() => {
+    animate(widthMv, highlighted ? MAX_WIDTH : BASE_WIDTH, SPRING_CONFIG);
+  }, [highlighted, widthMv]);
+
+  useMotionValueEvent(mouseY, "change", (y) => {
+    if (highlighted || !ref.current) return;
+
+    const rect = ref.current.getBoundingClientRect();
+    const centerY = rect.top + rect.height / 2;
+    const distance = Math.abs(y - centerY);
+    const influence = Math.exp(-(distance * distance) / (2 * SIGMA * SIGMA));
+    widthMv.set(BASE_WIDTH + influence * (MAX_WIDTH - BASE_WIDTH));
+  });
+
+  const width = useSpring(widthMv, SPRING_CONFIG);
+
+  return (
+    <CommandItem
+      ref={ref}
+      value={itemKey}
+      onSelect={onSelect}
+      onMouseEnter={() => {
+        setHovered(true);
+        if (!isActive) onHoverTick(index);
+      }}
+      onMouseLeave={() => setHovered(false)}
+      className={cn(
+        "group relative flex min-h-7 items-center gap-3 rounded-md py-1 text-sm transition-colors",
+        "data-[selected=true]:bg-transparent !px-0",
+      )}
+    >
+      {isFirst && <PhantomLine position="top" />}
+
+      <GuideLine width={width} highlighted={highlighted} />
+
+      <motion.span
+        animate={{ x: highlighted ? 4 : 0 }}
+        transition={LABEL_TRANSITION}
+        className={cn(
+          "min-w-0 flex-1 truncate text-left transition-colors",
+          isActive ? "text-brand" : "text-muted-foreground",
+          highlighted && !isActive && "text-brand",
+          "group-focus-within/cmdk:group-data-[selected=true]:text-brand",
+          isActive && "font-medium",
+        )}
+        title={name}
+      >
+        {name}
+      </motion.span>
+
+      {!isLast && <PhantomLine position="bottom" />}
+    </CommandItem>
+  );
+};
+
 const ComponentSelector = ({
   components,
   selectedComponent,
   onSelect,
 }: ComponentSelectorProps) => {
-  const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [highlightedIndex, setHighlightedIndex] = useState(-1);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const searchInputRef = useRef<HTMLInputElement>(null);
+  const [highlightedValue, setHighlightedValue] = useState("");
+  const [isInputFocused, setIsInputFocused] = useState(false);
+  const mouseY = useMotionValue(HOVER_NONE);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const hoverTick = useHoverTick();
 
-  const componentEntries = Object.entries(components);
-  const selectedComponentData = components[selectedComponent];
+  useKeyboardShortcut("f", () => {
+    inputRef.current?.focus();
+  });
 
-  const filteredComponents = componentEntries.filter(
-    ([key, component]) =>
-      component.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      key.toLowerCase().includes(searchQuery.toLowerCase()),
+  const entries = useMemo(
+    () =>
+      Object.entries(components).sort(([, a], [, b]) =>
+        a.name.localeCompare(b.name),
+      ),
+    [components],
   );
 
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  const filteredEntries = useMemo(
+    () =>
+      entries.filter(
+        ([key, component]) =>
+          component.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          key.toLowerCase().includes(searchQuery.toLowerCase()),
+      ),
+    [entries, searchQuery],
+  );
 
   useEffect(() => {
-    if (isOpen && searchInputRef.current) {
-      searchInputRef.current.focus();
+    if (filteredEntries.length === 0) {
+      setHighlightedValue("");
+      return;
     }
-    setHighlightedIndex(-1);
-  }, [isOpen]);
-
-  useEffect(() => {
-    if (filteredComponents.length > 0) {
-      setHighlightedIndex(0);
-    } else {
-      setHighlightedIndex(-1);
+    const stillVisible = filteredEntries.some(
+      ([key]) => key.toLowerCase() === highlightedValue,
+    );
+    if (!stillVisible) {
+      setHighlightedValue(filteredEntries[0][0].toLowerCase());
     }
-  }, [searchQuery, filteredComponents.length]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filteredEntries]);
 
-  const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (!isOpen) return;
-
-    switch (event.key) {
-      case "ArrowDown":
-        event.preventDefault();
-        setHighlightedIndex((prev) =>
-          prev < filteredComponents.length - 1 ? prev + 1 : 0,
-        );
-        break;
-      case "ArrowUp":
-        event.preventDefault();
-        setHighlightedIndex((prev) =>
-          prev > 0 ? prev - 1 : filteredComponents.length - 1,
-        );
-        break;
-      case "Enter":
-        event.preventDefault();
-        const indexToSelect = highlightedIndex >= 0 ? highlightedIndex : 0;
-        if (
-          filteredComponents.length > 0 &&
-          indexToSelect < filteredComponents.length
-        ) {
-          const [key] = filteredComponents[indexToSelect];
-          onSelect(key);
-          setIsOpen(false);
-          setSearchQuery("");
-        }
-        break;
-      case "Escape":
-        setIsOpen(false);
-        setSearchQuery("");
-        break;
+  const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Escape") {
+      e.preventDefault();
+      inputRef.current?.blur();
     }
-  };
-
-  const handleToggleDropdown = () => {
-    if (isOpen) {
-      setSearchQuery("");
-    }
-    setIsOpen(!isOpen);
   };
 
   return (
-    <div className="relative w-full" ref={dropdownRef}>
-      <div className="border-b border-border/60 bg-background p-3">
-        <button
-          onClick={handleToggleDropdown}
-          className="flex w-full items-center justify-between rounded-md border border-border/70 bg-background px-3 py-2.5 text-left transition-colors hover:bg-muted/50"
-        >
-          <div className="min-w-0 flex-1">
-            <span className="mb-0.5 block text-[11px] font-medium uppercase text-muted-foreground">
-              Component
-            </span>
-            <span className="block truncate text-sm font-medium">
-              {selectedComponentData
-                ? selectedComponentData.name
-                : "Select a Component"}
-            </span>
-          </div>
-          <ChevronDown
-            className={`ml-2 h-4 w-4 flex-shrink-0 text-muted-foreground transition-transform duration-200 ${
-              isOpen ? "rotate-180" : ""
-            }`}
-          />
-        </button>
-
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
-            className="absolute left-3 right-3 top-full z-50 mt-2 max-h-80 overflow-hidden rounded-md border border-border/70 bg-background shadow-lg"
-          >
-            <div className="border-b border-border/60 p-3">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                <input
-                  ref={searchInputRef}
-                  type="text"
-                  placeholder="Search components..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  onKeyDown={handleKeyDown}
-                  className="w-full rounded-md border border-border/70 bg-background py-2 pl-10 pr-4 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
-                />
-              </div>
-            </div>
-
-            <div className="max-h-64 overflow-y-auto">
-              <div className="p-2">
-                {filteredComponents.length > 0 ? (
-                  filteredComponents.map(([key, component], index) => (
-                    <motion.button
-                      key={key}
-                      onClick={() => {
-                        onSelect(key);
-                        setIsOpen(false);
-                        setSearchQuery("");
-                      }}
-                      className={`w-full rounded-md px-3 py-2.5 text-left transition-colors ${
-                        selectedComponent === key
-                          ? "bg-muted text-foreground"
-                          : highlightedIndex === index
-                            ? "bg-muted/70 text-foreground"
-                            : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
-                      }`}
-                      onMouseEnter={() => setHighlightedIndex(index)}
-                    >
-                      <div className="flex items-center justify-between">
-                        <div className="min-w-0 flex-1">
-                          <h4 className="truncate text-sm font-medium">
-                            {component.name}
-                          </h4>
-                          <p className="mt-0.5 truncate font-mono text-[11px] text-muted-foreground">
-                            {key}
-                          </p>
-                        </div>
-                        {selectedComponent === key && (
-                          <Check className="ml-2 h-4 w-4 flex-shrink-0 text-primary" />
-                        )}
-                      </div>
-                    </motion.button>
-                  ))
-                ) : (
-                  <div className="py-8 text-center text-muted-foreground">
-                    <Search className="mx-auto mb-3 h-8 w-8 opacity-50" />
-                    <p className="text-sm">No components found</p>
-                    <p className="mt-1 text-xs">Try a different search term</p>
-                  </div>
-                )}
-              </div>
-            </div>
-          </motion.div>
-        )}
+    <Command
+      shouldFilter={false}
+      value={highlightedValue}
+      onValueChange={setHighlightedValue}
+      className="group/cmdk flex h-full flex-col gap-0 rounded-none bg-transparent"
+    >
+      <div className="lg:hidden">
+        <Grid />
       </div>
 
-      {componentEntries.length === 0 && (
-        <div className="py-8 text-center text-muted-foreground">
-          <p className="text-sm">No components available</p>
+      <div className="px-3 pt-3 lg:pt-4 lg:px-4">
+        <div className="group relative">
+          <CommandInput
+            ref={inputRef}
+            value={searchQuery}
+            onValueChange={setSearchQuery}
+            onKeyDown={handleSearchKeyDown}
+            onFocus={() => setIsInputFocused(true)}
+            onBlur={() => setIsInputFocused(false)}
+            placeholder="Search components..."
+            className="h-9 rounded-lg text-sm pr-16"
+            wrapperClassName="border rounded-lg"
+          />
+          <div className="pointer-events-none absolute right-2.5 top-1/2 flex -translate-y-1/2 items-center gap-1">
+            <kbd className="flex h-4 min-w-4 items-center justify-center rounded border border-border/60 bg-muted px-1 font-mono text-[10px] font-medium text-muted-foreground group-focus-within:hidden">
+              F
+            </kbd>
+            <kbd className="hidden h-4 min-w-4 items-center justify-center rounded border border-border/60 bg-muted px-1 font-mono text-[10px] font-medium text-muted-foreground group-focus-within:flex">
+              Esc
+            </kbd>
+          </div>
         </div>
-      )}
-    </div>
+      </div>
+
+      <CommandList
+        className="max-h-none min-h-0 flex-1 overflow-y-auto p-3 lg:p-4 scrollbar-no"
+        onMouseMove={(e) => mouseY.set(e.clientY)}
+        onMouseLeave={() => mouseY.set(HOVER_NONE)}
+      >
+        <CommandGroup>
+          <CategoryHeading
+            title="Components"
+            variant="muted"
+            className="mb-1.5"
+          />
+          {filteredEntries.map(([key, component], index) => (
+            <SelectorItem
+              key={key}
+              mouseY={mouseY}
+              index={index}
+              itemKey={key}
+              name={component.name}
+              isActive={selectedComponent === key}
+              isKeyboardSelected={
+                isInputFocused && highlightedValue === key.toLowerCase()
+              }
+              isFirst={index === 0}
+              isLast={index === filteredEntries.length - 1}
+              onSelect={() => onSelect(key)}
+              onHoverTick={hoverTick}
+            />
+          ))}
+        </CommandGroup>
+      </CommandList>
+    </Command>
   );
 };
 

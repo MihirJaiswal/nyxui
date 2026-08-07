@@ -1,5 +1,5 @@
 import React from "react";
-import WaterRippleEffect from "../ui/water-ripple-effect";
+import WaterRippleEffect from "@/registry/ui/water-ripple-effect";
 
 export default function WaterRippleEffectDemo() {
   return (

@@ -301,11 +301,11 @@ import { GlitchButton } from "@/components/ui/glitch-button";
 
 ## Props
 
-| Prop            | Type              | Default                                         | Description                                                                                  |
-| --------------- | ----------------- | ----------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `glitchOnHover` | `boolean`         | `true`                                          | Whether to trigger glitch effects when hovering over the button.                             |
-| `borderColor`   | `string`          | `"white"`                                       | Custom border color for the glitch effect.                                                   |
-| `glitchAlways`  | `boolean`         | `false`                                         | Whether to continuously display the glitch effect regardless of hover/click state.           |
-| `glitchColors`  | `object`          | `{ primary: '#ef00eff', secondary: '#00ffff' }` | Custom colors for the glitch effect with primary and secondary properties.                   |
-| `className`     | `string`          | `""`                                            | Additional CSS classes to apply. Background and text colors are detected from these classes. |
-| `children`      | `React.ReactNode` | `undefined`                                     | Content of the button.                                                                       |
+| Prop            | Type                                       | Default                                        | Description                                                                                  |
+| --------------- | ------------------------------------------ | ---------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `glitchOnHover` | `boolean`                                  | `true`                                         | Whether to trigger glitch effects when hovering over the button.                             |
+| `borderColor`   | `string`                                   | `"white"`                                      | Custom border color for the glitch effect.                                                   |
+| `glitchAlways`  | `boolean`                                  | `false`                                        | Whether to continuously display the glitch effect regardless of hover/click state.           |
+| `glitchColors`  | `{ primary?: string; secondary?: string }` | `{ primary: '#ef00ef', secondary: '#00ffff' }` | Custom colors for the glitch effect with primary and secondary properties.                   |
+| `className`     | `string`                                   | `""`                                           | Additional CSS classes to apply. Background and text colors are detected from these classes. |
+| `children`      | `React.ReactNode`                          | **Required**                                   | Content of the button.                                                                       |

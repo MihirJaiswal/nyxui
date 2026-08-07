@@ -10,19 +10,9 @@ export const TerminalKeyboardDemo = () => {
           <InteractiveTerminal
             autoExecute={true}
             command="npx shadcn@latest"
-            className="rounded-none font-mono text-sm pb-2"
+            className="font-mono text-sm pb-2"
             repeat={true}
-            variant="custom"
-            customTheme={{
-              container:
-                "bg-transparent dark:bg-black text-emerald-500 dark:text-green-500",
-              header:
-                "bg-zinc-800 dark:bg-green-950/40 text-emerald-400 dark:text-green-500",
-              output:
-                "bg-zinc-800 dark:bg-green-950/40 text-emerald-400 dark:text-green-500",
-              button:
-                "bg-gray-100 dark:bg-gray-950 text-emerald-500 dark:text-green-500 hover:bg-gray-200 dark:hover:bg-gray-800",
-            }}
+            variant="default"
             icon={
               <Code className="mr-1 mt-1 text-emerald-500 dark:text-green-500 w-4 h-4" />
             }

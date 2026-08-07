@@ -9,6 +9,28 @@ import {
   Menu,
 } from "lucide-react";
 import { useEffect, useState } from "react";
+import { hexToRgbString } from "@/lib/colors";
+import { cn } from "@/lib/utils";
+
+function adjustColorBrightness(hex: string, percent: number): string {
+  const num = parseInt(hex.replace("#", ""), 16);
+  const amt = Math.round(2.55 * percent);
+  const R = (num >> 16) + amt;
+  const G = ((num >> 8) & 0x00ff) + amt;
+  const B = (num & 0x0000ff) + amt;
+
+  return (
+    "#" +
+    (
+      0x1000000 +
+      (R < 255 ? (R < 0 ? 0 : R) : 255) * 0x10000 +
+      (G < 255 ? (G < 0 ? 0 : G) : 255) * 0x100 +
+      (B < 255 ? (B < 0 ? 0 : B) : 255)
+    )
+      .toString(16)
+      .slice(1)
+  );
+}
 
 interface KeyObject {
   label?: string;
@@ -209,33 +231,6 @@ const MinimalKeyboard: React.FC<MinimalKeyboardProps> = ({
     });
   };
 
-  const adjustColorBrightness = (hex: string, percent: number): string => {
-    const num = parseInt(hex.replace("#", ""), 16);
-    const amt = Math.round(2.55 * percent);
-    const R = (num >> 16) + amt;
-    const G = ((num >> 8) & 0x00ff) + amt;
-    const B = (num & 0x0000ff) + amt;
-
-    return (
-      "#" +
-      (
-        0x1000000 +
-        (R < 255 ? (R < 0 ? 0 : R) : 255) * 0x10000 +
-        (G < 255 ? (G < 0 ? 0 : G) : 255) * 0x100 +
-        (B < 255 ? (B < 0 ? 0 : B) : 255)
-      )
-        .toString(16)
-        .slice(1)
-    );
-  };
-
-  const hexToRgb = (hex: string): string => {
-    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result
-      ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}`
-      : "0, 255, 255";
-  };
-
   const isKeyActive = (code: string | undefined): boolean => {
     if (!code) return false;
     return activeKeys.includes(code);
@@ -271,9 +266,9 @@ const MinimalKeyboard: React.FC<MinimalKeyboardProps> = ({
       baseStyle = {
         ...baseStyle,
         background: `linear-gradient(145deg, ${adjustColorBrightness(keyColor, 10)}, ${keyColor})`,
-        boxShadow: `0 3px 0 ${adjustColorBrightness(keyColor, -20)}, 0 0 20px rgba(${hexToRgb(activeKeyGlowColor)}, ${activeKeyGlowIntensity}), inset 0 1px 1px rgba(255, 255, 255, 0.1)`,
+        boxShadow: `0 3px 0 ${adjustColorBrightness(keyColor, -20)}, 0 0 20px rgba(${hexToRgbString(activeKeyGlowColor)}, ${activeKeyGlowIntensity}), inset 0 1px 1px rgba(255, 255, 255, 0.1)`,
         color: activeKeyGlowColor,
-        textShadow: `0 0 10px rgba(${hexToRgb(activeKeyGlowColor)}, 0.9)`,
+        textShadow: `0 0 10px rgba(${hexToRgbString(activeKeyGlowColor)}, 0.9)`,
         border: `1px solid ${activeKeyGlowColor}`,
       };
     }
@@ -282,9 +277,9 @@ const MinimalKeyboard: React.FC<MinimalKeyboardProps> = ({
       baseStyle = {
         ...baseStyle,
         background: `linear-gradient(145deg, ${keyPressedColor}, ${adjustColorBrightness(keyPressedColor, -10)})`,
-        boxShadow: `0 0 0 ${adjustColorBrightness(keyColor, -20)}, 0 0 15px rgba(${hexToRgb(accentColor)}, 0.5), inset 0 1px 2px rgba(0, 0, 0, 0.3)`,
+        boxShadow: `0 0 0 ${adjustColorBrightness(keyColor, -20)}, 0 0 15px rgba(${hexToRgbString(accentColor)}, 0.5), inset 0 1px 2px rgba(0, 0, 0, 0.3)`,
         color: accentColor,
-        textShadow: `0 0 8px rgba(${hexToRgb(accentColor)}, 0.7)`,
+        textShadow: `0 0 8px rgba(${hexToRgbString(accentColor)}, 0.7)`,
         border: `1px solid ${adjustColorBrightness(keyPressedColor, 10)}`,
         transition: "all 0.08s cubic-bezier(0.23, 1, 0.32, 1)",
       };
@@ -365,7 +360,7 @@ const MinimalKeyboard: React.FC<MinimalKeyboardProps> = ({
                 <div
                   key={`key-${rowIndex}-${keyIndex}`}
                   data-key={key.code}
-                  className={`key ${key.code} ${isActive ? "active" : ""}`}
+                  className={cn("key", key.code, isActive && "active")}
                   style={getKeyStyle(key, isPressed, isActive)}
                   onMouseDown={() => key.code && handleKeyDown(key.code)}
                   onMouseUp={() => key.code && handleKeyUp(key.code)}

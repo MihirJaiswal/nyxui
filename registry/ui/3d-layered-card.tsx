@@ -3,6 +3,8 @@ import type React from "react";
 import { useState, useRef, useEffect } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import Image from "next/image";
+import { Plus } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface CardProps {
   logo: string;
@@ -261,7 +263,11 @@ export default function ThreeDLayeredCard({
   return (
     <motion.div
       ref={ref}
-      className={`relative cursor-pointer ${className} ${isMobile ? "touch-manipulation" : ""}`}
+      className={cn(
+        "relative cursor-pointer",
+        className,
+        isMobile && "touch-manipulation",
+      )}
       style={{
         perspective: "1000px",
         transformStyle: "preserve-3d",
@@ -282,7 +288,7 @@ export default function ThreeDLayeredCard({
     >
       {/* Card content with overflow hidden and max-height animation */}
       <motion.div
-        className="relative w-full border rounded-md shadow-2xl"
+        className="relative w-full border rounded-md"
         style={{
           rotateY: rotateY,
           rotateX: rotateX,
@@ -335,7 +341,7 @@ export default function ThreeDLayeredCard({
           }}
         >
           {/* Background gradient */}
-          <div className={`absolute inset-0 ${backgroundColor}`} />
+          <div className={cn("absolute inset-0", backgroundColor)} />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30" />
 
           {/* Smooth linear lens effect overlay */}
@@ -385,14 +391,7 @@ export default function ThreeDLayeredCard({
                 duration: 0.3,
               }}
             >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-              </svg>
+              <Plus size={16} />
             </motion.div>
           )}
 

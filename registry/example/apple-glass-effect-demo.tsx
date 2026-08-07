@@ -1,368 +1,274 @@
 "use client";
 import { useState } from "react";
-import { GlassContainer } from "../ui/apple-glass-effect";
+import { GlassContainer } from "@/registry/ui/apple-glass-effect";
 import {
   Play,
   Pause,
   SkipBack,
   SkipForward,
-  Volume2,
-  Heart,
   Search,
-  Calendar,
-  Sun,
   Wifi,
   Battery,
   Bluetooth,
   AirVent,
   Flashlight,
-  Calculator,
-  MessagesSquareIcon as Messages,
-  Bell,
+  Heart,
+  Command,
 } from "lucide-react";
 import Image from "next/image";
 
 export const GlassExamples = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const volume = 75;
+
+  const apps = [
+    { src: "/assets/images/apple-glass-effect/finder.webp", alt: "Finder" },
+    { src: "/assets/images/apple-glass-effect/map.webp", alt: "Maps" },
+    { src: "/assets/images/apple-glass-effect/safari.webp", alt: "Safari" },
+    { src: "/assets/images/apple-glass-effect/books.webp", alt: "Books" },
+    { src: "/assets/images/apple-glass-effect/messages.webp", alt: "Messages" },
+  ];
 
   return (
-    <div className="min-h-screen py-8 px-2 2xl:p-8">
+    <div className="relative w-full overflow-hidden px-4 py-6 sm:px-6 sm:py-8 2xl:px-10 2xl:py-10">
       {/* Background */}
       <div className="absolute inset-0">
         <Image
           src="/assets/images/apple-glass-effect/img.jpg"
-          alt="background image"
+          alt="background"
           fill
           priority
-          className="h-full w-full object-cover absolute inset-0"
+          className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/30 to-pink-900/20" />
+        <div className="absolute inset-0 bg-black/25" />
+        <div className="absolute inset-0 bg-gradient-to-br from-sky-600/15 via-transparent to-fuchsia-600/15" />
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        {/* Top Row - Control Center Style */}
-        <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-8">
-          {/* Music Player Widget */}
+      <div className="relative z-10 mx-auto max-w-6xl">
+        {/* Menu Bar */}
+        <GlassContainer
+          blur={28}
+          highlightOpacity={0.5}
+          innerGlowOpacity={0.35}
+          specularIntensity={0.5}
+          hover={false}
+          border={false}
+          className="mb-6 w-full rounded-2xl p-0 font-normal"
+        >
+          <div className="flex h-11 items-center justify-between px-4">
+            <div className="flex items-center gap-5 text-[13px] text-white/85">
+              <span className="font-semibold"></span>
+              <span className="hidden sm:inline">File</span>
+              <span className="hidden sm:inline">Edit</span>
+              <span className="hidden md:inline">View</span>
+              <span className="hidden md:inline">Window</span>
+              <span className="hidden md:inline">Help</span>
+            </div>
+            <div className="flex items-center gap-3.5 text-white/85">
+              <Wifi className="h-4 w-4" />
+              <Battery className="h-4 w-4" />
+              <span className="text-[13px] tabular-nums">2:30 PM</span>
+            </div>
+          </div>
+        </GlassContainer>
+
+        {/* Hero row */}
+        <div className="mb-6 grid grid-cols-1 gap-6 lg:grid-cols-5">
+          {/* Music Player */}
           <GlassContainer
-            blur={0}
-            highlightOpacity={0}
-            innerGlowOpacity={0}
-            specularIntensity={0.5}
-            className="lg:col-span-2 h-58 w-full px-6"
+            blur={32}
+            highlightOpacity={0.45}
+            innerGlowOpacity={0.3}
+            specularIntensity={0.6}
+            border={false}
+            hover={false}
+            className="rounded-3xl p-6 font-normal lg:col-span-3"
           >
-            <div className="w-full">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-purple-600 rounded-xl flex items-center justify-center">
+            <div className="flex flex-col gap-5">
+              <div className="flex items-center gap-4">
+                <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl shadow-xl ring-1 ring-white/25">
                   <Image
                     src="/assets/images/apple-glass-effect/cover.jpeg"
                     alt="Music Cover"
-                    width={64}
-                    height={64}
-                    className="rounded-lg shadow-lg"
+                    fill
+                    className="object-cover"
                   />
                 </div>
-                <div className="flex-1">
-                  <h3 className="text-md sm:text-lg font-semibold text-white">
+                <div className="min-w-0 flex-1">
+                  <p className="text-[11px] font-semibold uppercase tracking-wider text-white/50">
                     Now Playing
-                  </h3>
-                  <p className="text-white/80 text-sm sm:text-base">
-                    Until I Found You
                   </p>
-                  <p className="text-white/60 text-sm">Stephen Sanchez</p>
+                  <h3 className="truncate text-xl font-semibold text-white">
+                    Until I Found You
+                  </h3>
+                  <p className="truncate text-sm text-white/65">
+                    Stephen Sanchez
+                  </p>
                 </div>
-                <Heart className="w-6 h-6 text-white/60 hover:text-red-400 cursor-pointer transition-colors hidden sm:block" />
+                <button
+                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-white/60 transition-colors hover:bg-white/10 hover:text-red-400"
+                  aria-label="Like"
+                >
+                  <Heart className="h-5 w-5" />
+                </button>
               </div>
 
-              <div className="flex items-center justify-center gap-6 mb-4">
-                <SkipBack className="w-5 h-5 sm:w-6 sm:h-6 text-white/80 hover:text-white cursor-pointer transition-colors" />
+              {/* Progress */}
+              <div>
+                <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/15">
+                  <div className="h-full w-1/3 rounded-full bg-white/90" />
+                </div>
+                <div className="mt-1.5 flex justify-between text-[11px] tabular-nums text-white/45">
+                  <span>1:12</span>
+                  <span>-2:24</span>
+                </div>
+              </div>
+
+              {/* Transport */}
+              <div className="flex items-center justify-center gap-10">
+                <button
+                  className="text-white/70 transition-colors hover:text-white"
+                  aria-label="Previous"
+                >
+                  <SkipBack className="h-5 w-5" />
+                </button>
                 <button
                   onClick={() => setIsPlaying(!isPlaying)}
-                  className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
+                  className="flex h-14 w-14 items-center justify-center rounded-full bg-white/20 shadow-lg ring-1 ring-white/20 backdrop-blur-sm transition-all hover:scale-105 hover:bg-white/30 active:scale-95"
+                  aria-label={isPlaying ? "Pause" : "Play"}
                 >
                   {isPlaying ? (
-                    <Pause className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                    <Pause className="h-6 w-6 text-white" />
                   ) : (
-                    <Play className="w-5 h-5 sm:w-6 sm:h-6 text-white ml-1" />
+                    <Play className="ml-1 h-6 w-6 text-white" />
                   )}
                 </button>
-                <SkipForward className="w-5 h-5 sm:w-6 sm:h-6 text-white/80 hover:text-white cursor-pointer transition-colors" />
-              </div>
-
-              <div className="flex items-center gap-3">
-                <Volume2 className="w-4 h-4 text-white/60" />
-                <div className="flex-1 h-1 bg-white/20 rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-white rounded-full transition-all duration-200"
-                    style={{ width: `${volume}%` }}
-                  />
-                </div>
-                <span className="text-xs text-white/60 w-8">{volume}%</span>
-              </div>
-
-              <div className="text-xs text-white/40 mt-3">
-                Settings: Blur 0px • Highlight 0 • Glow 0 • Specular 0.5
+                <button
+                  className="text-white/70 transition-colors hover:text-white"
+                  aria-label="Next"
+                >
+                  <SkipForward className="h-5 w-5" />
+                </button>
               </div>
             </div>
           </GlassContainer>
 
-          {/* Control Center Toggles */}
+          {/* Control Center */}
           <GlassContainer
-            blur={20}
-            highlightOpacity={0.3}
-            innerGlowOpacity={0.2}
-            specularIntensity={0.4}
-            className="h-68"
+            blur={28}
+            highlightOpacity={0.4}
+            innerGlowOpacity={0.25}
+            specularIntensity={0.5}
+            border={false}
+            hover={false}
+            className="rounded-3xl p-5 font-normal lg:col-span-2"
           >
-            <div className="w-full">
-              <h3 className="text-lg font-semibold text-white mb-4">
+            <div className="flex flex-col gap-4">
+              <h3 className="text-[11px] font-semibold uppercase tracking-wider text-white/50">
                 Control Center
               </h3>
               <div className="grid grid-cols-2 gap-3">
-                <div className="bg-blue-500/30 rounded-xl p-3 flex flex-col items-center gap-2 hover:bg-blue-500/40 transition-colors cursor-pointer">
-                  <Wifi className="w-6 h-6 text-blue-300" />
-                  <span className="text-xs text-white/80">Wi-Fi</span>
-                </div>
-                <div className="bg-blue-500/30 rounded-xl p-3 flex flex-col items-center gap-2 hover:bg-blue-500/40 transition-colors cursor-pointer">
-                  <Bluetooth className="w-6 h-6 text-blue-300" />
-                  <span className="text-xs text-white/80">Bluetooth</span>
-                </div>
-                <div className="bg-white/20 rounded-xl p-3 flex flex-col items-center gap-2 hover:bg-white/30 transition-colors cursor-pointer">
-                  <AirVent className="w-6 h-6 text-white/80" />
-                  <span className="text-xs text-white/80">AirDrop</span>
-                </div>
-                <div className="bg-yellow-500/30 rounded-xl p-3 flex flex-col items-center gap-2 hover:bg-yellow-500/40 transition-colors cursor-pointer">
-                  <Flashlight className="w-6 h-6 text-yellow-300" />
-                  <span className="text-xs text-white/80">Flashlight</span>
-                </div>
-              </div>
-              <div className="text-xs text-white/40 mt-3">
-                Settings: Blur 20px • Highlight 0.3 • Glow 0.2 • Specular 0.4
+                <button className="flex items-center gap-2.5 rounded-2xl bg-blue-500/25 px-3.5 py-3 text-left transition-colors hover:bg-blue-500/35">
+                  <Wifi className="h-5 w-5 shrink-0 text-blue-200" />
+                  <div className="min-w-0">
+                    <p className="truncate text-[13px] font-medium text-white">
+                      Wi-Fi
+                    </p>
+                    <p className="truncate text-[10px] text-white/55">Home</p>
+                  </div>
+                </button>
+                <button className="flex items-center gap-2.5 rounded-2xl bg-blue-500/25 px-3.5 py-3 text-left transition-colors hover:bg-blue-500/35">
+                  <Bluetooth className="h-5 w-5 shrink-0 text-blue-200" />
+                  <div className="min-w-0">
+                    <p className="truncate text-[13px] font-medium text-white">
+                      Bluetooth
+                    </p>
+                    <p className="truncate text-[10px] text-white/55">On</p>
+                  </div>
+                </button>
+                <button className="flex items-center gap-2.5 rounded-2xl bg-white/12 px-3.5 py-3 text-left transition-colors hover:bg-white/20">
+                  <AirVent className="h-5 w-5 shrink-0 text-white/80" />
+                  <div className="min-w-0">
+                    <p className="truncate text-[13px] font-medium text-white">
+                      AirDrop
+                    </p>
+                    <p className="truncate text-[10px] text-white/55">
+                      Everyone
+                    </p>
+                  </div>
+                </button>
+                <button className="flex items-center gap-2.5 rounded-2xl bg-yellow-500/25 px-3.5 py-3 text-left transition-colors hover:bg-yellow-500/35">
+                  <Flashlight className="h-5 w-5 shrink-0 text-yellow-200" />
+                  <div className="min-w-0">
+                    <p className="truncate text-[13px] font-medium text-white">
+                      Flashlight
+                    </p>
+                    <p className="truncate text-[10px] text-white/55">Off</p>
+                  </div>
+                </button>
               </div>
             </div>
           </GlassContainer>
         </div>
 
-        {/* Middle Row - Widgets */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
-          {/* Weather Widget */}
-          <GlassContainer
-            blur={15}
-            highlightOpacity={0.5}
-            innerGlowOpacity={0.4}
-            specularIntensity={0.6}
-            className="h-44"
-          >
-            <div className="w-full text-center">
-              <div className="flex items-center justify-center mb-2">
-                <Sun className="w-8 h-8 text-yellow-300" />
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-1">72°</h3>
-              <p className="text-white/80 text-sm mb-1">Sunny</p>
-              <p className="text-white/60 text-xs">San Francisco</p>
-              <div className="text-xs text-white/40 mt-2">
-                Blur 15px • Highlight 0.5
-              </div>
-            </div>
-          </GlassContainer>
-
-          {/* Calendar Widget */}
-          <GlassContainer
-            blur={3}
-            highlightOpacity={0.2}
-            innerGlowOpacity={0.1}
-            specularIntensity={0.3}
-            className="h-44"
-          >
-            <div className="w-full">
-              <div className="flex items-center gap-3 mb-3">
-                <Calendar className="w-6 h-6 text-red-400" />
-                <h3 className="text-lg font-semibold text-white">Today</h3>
-              </div>
-              <div className="space-y-2">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                  <span className="text-sm text-white/80">Team Meeting</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                  <span className="text-sm text-white/80">Lunch Break</span>
-                </div>
-              </div>
-              <div className="text-xs text-white/40 mt-2">
-                Blur 3px • Highlight 0.2
-              </div>
-            </div>
-          </GlassContainer>
-
-          {/* Notification Panel */}
-          <GlassContainer
-            blur={5}
-            highlightOpacity={0.6}
-            innerGlowOpacity={0.5}
-            specularIntensity={0.7}
-            className="h-44"
-          >
-            <div className="w-full">
-              <div className="flex items-center gap-3 mb-3">
-                <Bell className="w-6 h-6 text-white" />
-                <h3 className="text-lg font-semibold text-white">
-                  Notifications
-                </h3>
-              </div>
-              <div className="space-y-2">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
-                    <Messages className="w-4 h-4 text-white" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-white/90">New message</p>
-                    <p className="text-xs text-white/60">2 min ago</p>
-                  </div>
-                </div>
-              </div>
-              <div className="text-xs text-white/40 mt-2">
-                Blur 5px • Highlight 0.6
-              </div>
-            </div>
-          </GlassContainer>
-
+        {/* Spotlight + Dock row */}
+        <div className="md:flex flex-col items-center gap-6 hidden">
           {/* Spotlight Search */}
           <GlassContainer
             blur={40}
-            highlightOpacity={0.8}
-            innerGlowOpacity={0.6}
-            specularIntensity={0.8}
-            className="h-44"
+            highlightOpacity={0.6}
+            innerGlowOpacity={0.4}
+            specularIntensity={0.7}
+            border={false}
+            hover={false}
+            className="w-full max-w-xl rounded-2xl p-0 font-normal"
           >
-            <div className="w-full">
-              <div className="flex items-center gap-3 mb-4">
-                <Search className="w-6 h-6 text-white/80" />
-                <input
-                  type="text"
-                  placeholder="Spotlight Search"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="flex-1 bg-transparent text-white placeholder-white/60 outline-none"
-                />
-              </div>
-              <div className="space-y-2">
-                <div className="flex items-center gap-3 hover:bg-white/10 rounded-lg p-2 cursor-pointer transition-colors">
-                  <Calculator className="w-5 h-5 text-white/80" />
-                  <span className="text-sm text-white/80">Calculator</span>
-                </div>
-              </div>
-              <div className="text-xs text-white/40 mt-2">
-                Blur 40px • Highlight 0.8
-              </div>
+            <div className="flex h-12 items-center gap-3 px-4">
+              <Search className="h-4.5 w-4.5 shrink-0 text-white/60" />
+              <input
+                type="text"
+                placeholder="Spotlight Search"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="min-w-0 flex-1 bg-transparent text-[14px] text-white placeholder-white/45 outline-none"
+              />
+              <kbd className="hidden items-center gap-0.5 rounded-md bg-white/10 px-1.5 py-0.5 text-[10px] text-white/50 sm:flex">
+                <Command className="h-2.5 w-2.5" />K
+              </kbd>
             </div>
           </GlassContainer>
-        </div>
 
-        {/* Dock */}
-        <GlassContainer
-          blur={0}
-          highlightOpacity={0.3}
-          innerGlowOpacity={0.2}
-          specularIntensity={0.4}
-          className="mx-auto max-w-[39rem] h-32 rounded-2xl hidden md:block"
-        >
-          <div className="w-full flex items-center justify-center">
-            <div className="flex items-center gap-4">
-              {[
-                {
-                  src: "/assets/images/apple-glass-effect/finder.webp",
-                  alt: "finder",
-                },
-                {
-                  src: "/assets/images/apple-glass-effect/map.webp",
-                  alt: "maps",
-                },
-                {
-                  src: "/assets/images/apple-glass-effect/safari.webp",
-                  alt: "safari",
-                },
-                {
-                  src: "/assets/images/apple-glass-effect/books.webp",
-                  alt: "books",
-                },
-                {
-                  src: "/assets/images/apple-glass-effect/messages.webp",
-                  alt: "messages",
-                },
-              ].map((app, index) => (
-                <div
-                  key={index}
-                  className={`w-24 h-24 rounded-xl flex items-center justify-center hover:scale-110 transition-transform cursor-pointer shadow-lg`}
+          {/* Dock */}
+          <GlassContainer
+            blur={32}
+            highlightOpacity={0.5}
+            innerGlowOpacity={0.3}
+            specularIntensity={0.5}
+            border={false}
+            hover={false}
+            className="rounded-[2rem] p-0 px-4 font-normal"
+          >
+            <div className="flex h-24 items-center gap-3">
+              {apps.map((app) => (
+                <button
+                  key={app.alt}
+                  className="flex h-16 w-16 items-center justify-center transition-transform duration-300 hover:-translate-y-2.5 hover:scale-110 active:scale-95"
+                  aria-label={app.alt}
                 >
                   <Image
                     src={app.src}
                     alt={app.alt}
-                    width={500}
-                    height={500}
+                    width={64}
+                    height={64}
                     quality={100}
+                    className="rounded-xl shadow-lg"
                   />
-                </div>
+                </button>
               ))}
             </div>
-          </div>
-        </GlassContainer>
-
-        {/* Settings Info */}
-        <div className="mt-8 text-center hidden md:block">
-          <p className="text-white/60 text-sm">
-            Dock Settings: Blur 0px • Highlight 0.3 • Glow 0.2 • Specular 0.4 •
-            Border Radius 2.5rem
-          </p>
+          </GlassContainer>
         </div>
-
-        {/* Menu Bar */}
-        <GlassContainer
-          blur={20}
-          highlightOpacity={0.4}
-          innerGlowOpacity={0.3}
-          specularIntensity={0.5}
-          className="fixed top-4 left-4 right-4 h-12 z-50 rounded-[1rem] hidden md:block"
-        >
-          <div className="w-full flex items-center justify-between px-4">
-            <div className="flex items-center gap-4">
-              <span className="text-white/80 text-sm">Finder</span>
-              <span className="text-white/80 text-sm">File</span>
-              <span className="text-white/80 text-sm">Edit</span>
-              <span className="text-white/80 text-sm">View</span>
-            </div>
-            <div className="flex items-center gap-4">
-              <Wifi className="w-4 h-4 text-white/80" />
-              <Battery className="w-4 h-4 text-white/80" />
-              <span className="text-white/80 text-sm">2:30 PM</span>
-            </div>
-          </div>
-        </GlassContainer>
       </div>
-
-      {/* Custom Slider Styles */}
-      <style jsx>{`
-        .slider::-webkit-slider-thumb {
-          appearance: none;
-          height: 16px;
-          width: 16px;
-          border-radius: 50%;
-          background: white;
-          cursor: pointer;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .slider::-moz-range-thumb {
-          height: 16px;
-          width: 16px;
-          border-radius: 50%;
-          background: white;
-          cursor: pointer;
-          border: none;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-      `}</style>
     </div>
   );
 };

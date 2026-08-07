@@ -40,7 +40,6 @@ export const GlassContainer: React.FC<
     specularIntensity = 0.4,
     ...props
   }) => {
-    // Variant-specific configurations
     const variantConfig = {
       default: { blur: 20, opacity: 0.25 },
       prominent: { blur: 30, opacity: 0.35 },
@@ -51,16 +50,15 @@ export const GlassContainer: React.FC<
     const config = variantConfig[variant];
     const finalBlur = blur !== undefined ? blur : config.blur;
     const finalOpacity = opacity !== undefined ? opacity : config.opacity;
+    const shouldDistort = distortion !== "none" && finalBlur > 0;
 
-    // Distortion configurations
     const distortionConfig = {
       none: { scale: 0, frequency: 0 },
-      subtle: { scale: 50, frequency: 0.008 },
-      medium: { scale: 70, frequency: 0.008 },
-      strong: { scale: 120, frequency: 0.012 },
+      subtle: { scale: 8, frequency: 0.05 },
+      medium: { scale: 15, frequency: 0.07 },
+      strong: { scale: 25, frequency: 0.09 },
     };
 
-    // Tint configurations
     const tintStyles = {
       neutral: "rgba(255, 255, 255, 0.25)",
       warm: "rgba(255, 248, 240, 0.3)",
@@ -70,14 +68,15 @@ export const GlassContainer: React.FC<
 
     const distortConfig = distortionConfig[distortion];
 
-    // Generate a consistent filter ID
     const baseId = useId();
     const filterId = `glass-filter-${baseId}`;
+    const specularStrong = `rgba(255, 255, 255, ${specularIntensity})`;
+    const specularWeak = `rgba(255, 255, 255, ${specularIntensity * 0.25})`;
 
     return (
       <div
         className={cn(
-          "relative font-semibold text-white cursor-pointer bg-transparent overflow-hidden transition-all duration-400 rounded-4xl p-4 shadow-lg",
+          "relative isolate font-semibold text-white cursor-pointer bg-transparent overflow-hidden transition-all duration-400 rounded-4xl p-4 shadow-lg",
           hover && "hover:scale-[1.02] hover:shadow-2xl",
           border && "border border-white/25",
           className,
@@ -91,10 +90,10 @@ export const GlassContainer: React.FC<
         {...props}
       >
         <div
-          className="absolute inset-0 z-0 isolate"
+          className="absolute inset-0 z-0 overflow-hidden rounded-[inherit]"
           style={{
             backdropFilter: `blur(${finalBlur}px)`,
-            filter: distortion !== "none" ? `url(#${filterId})` : "none",
+            filter: shouldDistort ? `url(#${filterId})` : "none",
           }}
         />
 
@@ -111,23 +110,23 @@ export const GlassContainer: React.FC<
 
         {/* Noise texture overlay */}
         <div
-          className="absolute inset-0 z-15 opacity-[0.03]"
+          className="absolute inset-0 z-[15] opacity-[0.03]"
           style={{
-            background: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crest width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+            background: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
           }}
         />
 
         {/* Specular highlights */}
         <div
-          className="absolute inset-0 z-25 pointer-events-none"
+          className="absolute inset-0 z-[25] pointer-events-none"
           style={{
             opacity: highlightOpacity,
             background: `
             linear-gradient(135deg, 
-              ${highlightColor.replace(/rgba?\([^)]*\)/, `rgba(255, 255, 255, ${specularIntensity})`)} 0%, 
+              ${specularStrong} 0%, 
               transparent 20%, 
               transparent 80%, 
-              ${highlightColor.replace(/rgba?\([^)]*\)/, `rgba(255, 255, 255, ${specularIntensity * 0.25})`)} 100%
+              ${specularWeak} 100%
             )
           `,
           }}
@@ -149,10 +148,16 @@ export const GlassContainer: React.FC<
         <div className="z-40 relative">{children}</div>
 
         {/* SVG Filter Definition */}
-        {distortion !== "none" && (
+        {shouldDistort && (
           <svg style={{ position: "absolute", width: 0, height: 0 }}>
             <defs>
-              <filter id={filterId} x="0%" y="0%" width="100%" height="100%">
+              <filter
+                id={filterId}
+                x="-30%"
+                y="-30%"
+                width="160%"
+                height="160%"
+              >
                 <feTurbulence
                   type="fractalNoise"
                   baseFrequency={`${distortConfig.frequency} ${distortConfig.frequency}`}
@@ -160,7 +165,11 @@ export const GlassContainer: React.FC<
                   seed="92"
                   result="noise"
                 />
-                <feGaussianBlur in="noise" stdDeviation="2" result="blurred" />
+                <feGaussianBlur
+                  in="noise"
+                  stdDeviation="0.5"
+                  result="blurred"
+                />
                 <feDisplacementMap
                   in="SourceGraphic"
                   in2="blurred"

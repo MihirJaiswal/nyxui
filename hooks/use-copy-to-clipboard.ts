@@ -7,28 +7,108 @@ interface UseCopyToClipboardOptions {
   onCopy?: (value: string) => void;
 }
 
+function isIOS(): boolean {
+  if (typeof navigator === "undefined") return false;
+  const ua = navigator.userAgent.toLowerCase();
+  const platform = navigator.platform?.toLowerCase() ?? "";
+  const isIPad =
+    /ipad/.test(ua) ||
+    (platform === "macintel" && navigator.maxTouchPoints > 1);
+  return /iphone|ipod/.test(ua) || isIPad;
+}
+
 export function useCopyToClipboard({
   timeout = 2000,
   onCopy,
 }: UseCopyToClipboardOptions = {}) {
-  const [hasCopied, setHasCopied] = React.useState(false);
+  const [copyCount, setCopyCount] = React.useState(0);
+  const hasCopied = copyCount > 0;
+  const isMountedRef = React.useRef(true);
 
   React.useEffect(() => {
-    if (!hasCopied) {
+    isMountedRef.current = true;
+    return () => {
+      isMountedRef.current = false;
+    };
+  }, []);
+
+  React.useEffect(() => {
+    if (copyCount === 0) {
       return;
     }
 
-    const timer = window.setTimeout(() => setHasCopied(false), timeout);
+    const timer = window.setTimeout(() => {
+      if (isMountedRef.current) {
+        setCopyCount(0);
+      }
+    }, timeout);
+
     return () => window.clearTimeout(timer);
-  }, [hasCopied, timeout]);
+  }, [copyCount, timeout]);
+
+  const legacyCopy = React.useCallback((value: string) => {
+    const textarea = document.createElement("textarea");
+    textarea.value = value;
+    textarea.setAttribute("readonly", "");
+    textarea.style.position = "fixed";
+    textarea.style.left = "-9999px";
+    textarea.style.top = "0";
+    document.body.appendChild(textarea);
+
+    let succeeded = false;
+    try {
+      if (isIOS()) {
+        textarea.contentEditable = "true";
+        textarea.readOnly = false;
+        const range = document.createRange();
+        range.selectNodeContents(textarea);
+        const selection = window.getSelection();
+        selection?.removeAllRanges();
+        selection?.addRange(range);
+        textarea.setSelectionRange(0, textarea.value.length);
+      } else {
+        textarea.select();
+      }
+
+      succeeded = document.execCommand("copy");
+    } catch {
+      succeeded = false;
+    } finally {
+      document.body.removeChild(textarea);
+    }
+
+    return succeeded;
+  }, []);
 
   const copy = React.useCallback(
     async (value: string) => {
-      await navigator.clipboard.writeText(value);
+      let succeeded = false;
+
+      if (navigator.clipboard && window.isSecureContext) {
+        try {
+          await navigator.clipboard.writeText(value);
+          succeeded = true;
+        } catch {
+          // fall through to legacy method
+        }
+      }
+
+      if (!succeeded) {
+        succeeded = legacyCopy(value);
+      }
+
+      if (!succeeded) {
+        throw new Error("Failed to copy");
+      }
+
+      if (!isMountedRef.current) {
+        return;
+      }
+
       onCopy?.(value);
-      setHasCopied(true);
+      setCopyCount((c) => c + 1);
     },
-    [onCopy],
+    [onCopy, legacyCopy],
   );
 
   return { copy, hasCopied };

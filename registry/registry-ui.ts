@@ -17,17 +17,17 @@ export const ui: Registry["items"] = [
     ],
   },
   {
-    name: "animated-grainy-bg",
+    name: "grainy-background",
     type: "registry:ui",
-    title: "Animated Grainy Background",
+    title: "Grainy Background",
     description:
       "A dynamic animated gradient background component that supports various gradient patterns and animations.",
     dependencies: ["motion"],
     files: [
       {
-        path: "registry/ui/animated-grainy-bg.tsx",
+        path: "registry/ui/grainy-background.tsx",
         type: "registry:ui",
-        target: "components/ui/animated-grainy-bg.tsx",
+        target: "components/ui/grainy-background.tsx",
       },
     ],
   },
@@ -273,19 +273,6 @@ export const ui: Registry["items"] = [
     ],
   },
   {
-    name: "liquid-metal-button",
-    type: "registry:ui",
-    title: "Liquid Metal Button",
-    description: "A button component with a liquid metal effect.",
-    files: [
-      {
-        path: "registry/ui/liquid-metal-button.tsx",
-        type: "registry:ui",
-        target: "components/ui/liquid-metal-button.tsx",
-      },
-    ],
-  },
-  {
     name: "image-comparison",
     type: "registry:ui",
     title: "Image Comparison",
@@ -397,21 +384,6 @@ export const ui: Registry["items"] = [
         path: "registry/ui/reveal-card.tsx",
         type: "registry:ui",
         target: "components/ui/reveal-card.tsx",
-      },
-    ],
-  },
-  {
-    name: "scroll-animation-trigger",
-    type: "registry:ui",
-    title: "Scroll Animation Trigger",
-    description:
-      "A scroll animation trigger that that provide several effects.",
-    dependencies: ["lucide-react", "motion"],
-    files: [
-      {
-        path: "registry/ui/scroll-animation-trigger.tsx",
-        type: "registry:ui",
-        target: "components/ui/scroll-animation-trigger.tsx",
       },
     ],
   },

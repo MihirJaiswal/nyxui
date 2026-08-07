@@ -32,7 +32,7 @@ npx shadcn@latest add "https://nyxui.com/r/terminal.json"
 <Step>Install dependencies.</Step>
 
 ```bash
-npm install lucide-react
+npm install lucide-react motion
 ```
 
 <Step>Copy and paste the following code into your project.</Step>
@@ -50,43 +50,6 @@ export function cn(...inputs: ClassValue[]) {
 }
 ```
 
-<Step>
-  Add the following CSS to your global stylesheet (e.g., `app/globals.css`)
-</Step>
-
-```css
-@keyframes terminal-blink {
-  0%,
-  100% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
-@keyframes terminal-fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(2px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.terminal-cursor::after {
-  content: "|";
-  margin-left: 2px;
-  animation: terminal-blink 1s infinite;
-}
-
-.terminal-line {
-  animation: terminal-fade-in 0.3s ease-in-out;
-}
-```
-
 <Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
@@ -97,7 +60,15 @@ export function cn(...inputs: ClassValue[]) {
 
 ## Examples
 
-### Manually type command
+### Default theme
+
+<ComponentPreview name="terminal-demo2" />
+
+### Synthwave theme
+
+<ComponentPreview name="terminal-demo3" />
+
+### Retro theme — manually type command
 
 <ComponentPreview name="terminal-demo1" />
 
@@ -127,7 +98,7 @@ import { Terminal } from "lucide-react";
     "Deploying to production..."
   ]}
   finalMessage="Deployment successful!"
-  variant="dark"
+  variant="sky"
   stepDelay={800}
 />
 
@@ -150,27 +121,27 @@ import { Terminal } from "lucide-react";
     "Accessing mainframe..."
   ]}
   finalMessage="Access granted!"
-  variant="matrix"
+  variant="synthwave"
   promptSymbol=">"
-  className="border border-green-500"
+  className="border border-fuchsia-500"
 />
 ```
 
 ## Props
 
-| Prop               | Type                                                                        | Default                            | Description                                                          |
-| ------------------ | --------------------------------------------------------------------------- | ---------------------------------- | -------------------------------------------------------------------- |
-| `command`          | `string`                                                                    | `"help"`                           | Command that users need to enter to trigger the terminal sequence    |
-| `steps`            | `string[]`                                                                  | `["Processing command"]`           | Array of processing steps to display sequentially                    |
-| `finalMessage`     | `string`                                                                    | `"Command executed successfully!"` | Final message to display after all processing steps                  |
-| `stepDelay`        | `number`                                                                    | `1000`                             | Delay between processing steps in milliseconds                       |
-| `typingDelay`      | `number`                                                                    | `100`                              | Delay between individual keystrokes when animating typing            |
-| `icon`             | `React.ReactNode`                                                           | `<TerminalIcon />`                 | Icon to display in the command info bar                              |
-| `promptSymbol`     | `string`                                                                    | `"$"`                              | Terminal prompt symbol displayed before user input                   |
-| `inputPlaceholder` | `string`                                                                    | `"Type your command here"`         | Placeholder text for the input field                                 |
-| `autoExecute`      | `boolean`                                                                   | `false`                            | Enables automatic command execution without waiting for user input   |
-| `repeat`           | `boolean`                                                                   | `false`                            | Whether to repeat the entire command sequence automatically          |
-| `repeatDelay`      | `number`                                                                    | `3000`                             | Delay between repetitions when `repeat` is enabled                   |
-| `className`        | `string`                                                                    | `undefined`                        | Additional CSS class names to apply to the terminal container        |
-| `variant`          | `string`                                                                    | `"default"`                        | Visual style variant (default, dark, matrix, retro, custom)          |
-| `customTheme`      | `{ container?: string; header?: string; output?: string; button?: string }` | `{}`                               | Custom CSS theme overrides for container, header, output, and button |
+| Prop               | Type              | Default                            | Description                                                        |
+| ------------------ | ----------------- | ---------------------------------- | ------------------------------------------------------------------ |
+| `command`          | `string`          | `"help"`                           | Command that users need to enter to trigger the terminal sequence  |
+| `steps`            | `string[]`        | `["Processing command"]`           | Array of processing steps to display sequentially                  |
+| `finalMessage`     | `string`          | `"Command executed successfully!"` | Final message to display after all processing steps                |
+| `stepDelay`        | `number`          | `1000`                             | Delay between processing steps in milliseconds                     |
+| `typingDelay`      | `number`          | `100`                              | Delay between individual keystrokes when animating typing          |
+| `icon`             | `React.ReactNode` | `<TerminalIcon />`                 | Icon to display in the title bar                                   |
+| `promptSymbol`     | `string`          | `"$"`                              | Terminal prompt symbol displayed before user input                 |
+| `inputPlaceholder` | `string`          | `"Type a command…"`                | Placeholder text for the input field                               |
+| `autoExecute`      | `boolean`         | `false`                            | Enables automatic command execution without waiting for user input |
+| `repeat`           | `boolean`         | `false`                            | Whether to repeat the entire command sequence automatically        |
+| `repeatDelay`      | `number`          | `3000`                             | Delay between repetitions when `repeat` is enabled                 |
+| `className`        | `string`          | `undefined`                        | Additional CSS class names to apply to the terminal container      |
+| `title`            | `string`          | `"zsh — 80×24"`                    | Window title shown in the title bar                                |
+| `variant`          | `string`          | `"default"`                        | Visual style variant (default, sky, synthwave, retro)              |

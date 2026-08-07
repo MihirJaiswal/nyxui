@@ -21,7 +21,7 @@ const LinkedInPost = () => {
       whileInView={{ y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className="group/post border border-zinc-300 dark:border-zinc-800/70 bg-gradient-to-br from-transparent via-transparent to-transparent dark:from-white/10 dark:via-white/5  backdrop-blur-sm px-4 pt-4 pb-2 mb-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-zinc-700/90 hover:bg-gradient-to-br hover:from-white/15 hover:via-white/10 hover:to-white/5 focus-within:border-blue-600/60 motion-safe:transition-transform rounded-lg relative"
+      className="group/post border border-zinc-300 dark:border-zinc-800/70 bg-gradient-to-br from-transparent via-transparent to-transparent dark:from-white/10 dark:via-white/5  backdrop-blur-sm px-4 pt-4 pb-2 mb-3 transition-all duration-300 hover:-translate-y-1 hover:border-zinc-700/90 hover:bg-gradient-to-br hover:from-white/15 hover:via-white/10 hover:to-white/5 focus-within:border-blue-600/60 motion-safe:transition-transform rounded-lg relative"
       tabIndex={-1}
       whileHover={{ scale: 1.01 }}
     >
@@ -33,7 +33,7 @@ const LinkedInPost = () => {
             height={40}
             loading="lazy"
             alt="User avatar"
-            className="h-10 w-10 rounded-full border border-zinc-800/60 shadow-sm object-cover"
+            className="h-10 w-10 rounded-full border border-zinc-800/60 object-cover"
           />
           <div>
             <div className="flex items-center gap-1">
@@ -62,7 +62,7 @@ const LinkedInPost = () => {
             <span className="text-blue-500">#webdev #UI #frontend</span>
           </p>
           <motion.div
-            className="mt-3 flex items-center justify-center p-3 overflow-hidden rounded-lg border border-zinc-300 dark:border-zinc-800/70 shadow-sm"
+            className="mt-3 flex items-center justify-center p-3 overflow-hidden rounded-lg border border-zinc-300 dark:border-zinc-800/70"
             whileHover={{ scale: 1.01 }}
             transition={{ type: "spring", stiffness: 200, damping: 20 }}
           >

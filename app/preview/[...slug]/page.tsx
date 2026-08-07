@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import { componentsData } from "@/registry/Data";
 import { Index } from "@/__registry__";
 
 interface PreviewPageProps {
@@ -11,10 +10,9 @@ interface PreviewPageProps {
 export default async function BlockPreviewPage({ params }: PreviewPageProps) {
   const { slug } = await params;
   const blockName = slug[0];
-  const block = componentsData.blocks[blockName];
   const Component = Index[blockName]?.component;
 
-  if (!block || !Component) {
+  if (!Component) {
     notFound();
   }
 

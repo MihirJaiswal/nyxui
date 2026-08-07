@@ -29,8 +29,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Cursor } from "../ui/custom-cursor";
+import { Cursor } from "@/registry/ui/custom-cursor";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 export default function CustomCursorDemo() {
   const [selectedTool, setSelectedTool] = useState("pointer");
@@ -131,11 +132,12 @@ export default function CustomCursorDemo() {
 
           <Cursor name="Button" cursorColor="green">
             <div
-              className={`flex items-center gap-2 p-1 rounded cursor-pointer ${
+              className={cn(
+                "flex items-center gap-2 p-1 rounded cursor-pointer",
                 selectedLayer === "button"
                   ? "bg-blue-600"
-                  : "hover:bg-[#2c2c2c]"
-              }`}
+                  : "hover:bg-[#2c2c2c]",
+              )}
               onClick={() => setSelectedLayer("button")}
             >
               <div className="w-3 h-3" />
@@ -449,11 +451,12 @@ export default function CustomCursorDemo() {
               <Button
                 variant="ghost"
                 size="sm"
-                className={`w-8 h-8 sm:w-10 sm:h-10 p-0 ${
+                className={cn(
+                  "w-8 h-8 sm:w-10 sm:h-10 p-0",
                   selectedTool === tool.id
                     ? "bg-[#3c3c3c] text-white"
-                    : "text-gray-400 hover:text-white hover:bg-[#3c3c3c]"
-                }`}
+                    : "text-gray-400 hover:text-white hover:bg-[#3c3c3c]",
+                )}
                 onClick={() => setSelectedTool(tool.id)}
               >
                 <tool.icon className="w-3 h-3 sm:w-4 sm:h-4" />
@@ -523,21 +526,21 @@ export default function CustomCursorDemo() {
 
                 <div className="flex-1 flex items-center justify-center">
                   <Image
-                    src="/logo.svg"
+                    src="/nyx-logo.webp"
                     alt="Placeholder"
                     width={150}
                     height={150}
-                    className="rounded-xl"
+                    className="rounded-xl dark:invert"
                   />
                 </div>
 
                 <div className="space-y-3 sm:space-y-4">
                   <div
-                    className={`w-full py-3 sm:py-4 px-4 sm:px-6 bg-blue-600 text-white rounded-lg text-center font-medium cursor-pointer text-sm sm:text-base ${
-                      selectedLayer === "button"
-                        ? "ring-2 ring-blue-400 ring-offset-2"
-                        : ""
-                    }`}
+                    className={cn(
+                      "w-full py-3 sm:py-4 px-4 sm:px-6 bg-blue-600 text-white rounded-lg text-center font-medium cursor-pointer text-sm sm:text-base",
+                      selectedLayer === "button" &&
+                        "ring-2 ring-blue-400 ring-offset-2",
+                    )}
                     onClick={() => setSelectedLayer("button")}
                   >
                     Get Started

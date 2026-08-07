@@ -17,7 +17,7 @@ const nextConfig: NextConfig = withBundlerAnalyzer({
       "@react-three/fiber",
       "@react-three/drei",
       "@react-three/postprocessing",
-      "framer-motion",
+      "motion",
       "animejs",
       "firebase",
       "lucide-react",

@@ -1,6 +1,5 @@
-import { absoluteUrl } from "@/lib/utils";
-import { externalLinks, itemHref } from "@/lib/links";
 import { allDocs, type Doc } from "content-collections";
+import type { Metadata } from "next";
 
 export interface SlugPageProps {
   params: Promise<{
@@ -85,126 +84,61 @@ export function generateDocKeywords({
   return keywords;
 }
 
-const publisher = {
-  "@type": "Organization",
-  name: "Nyx UI",
-  url: `${externalLinks.site}/`,
-  logo: {
-    "@type": "ImageObject",
-    url: externalLinks.logo,
-  },
-};
-
-const author = {
-  "@type": "Person",
-  name: "Mihir Jaiswal",
-  url: externalLinks.twitter,
-};
-
-export function createComponentSchema(
-  doc: Doc,
-  slug: string,
-): Record<string, unknown> {
-  return {
-    "@context": "https://schema.org",
-    "@type": ["TechArticle", "SoftwareSourceCode"],
-    headline: `${doc.title} React Component - Nyx UI Documentation`,
-    description:
-      doc.description ||
-      `${doc.title} component for React and Next.js applications built with Tailwind CSS and TypeScript.`,
-    author,
-    publisher,
-    mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": absoluteUrl(itemHref("components", slug)),
-    },
-    datePublished: doc.date || new Date().toISOString().split("T")[0],
-    dateModified: new Date().toISOString(),
-    programmingLanguage: ["TypeScript", "React", "Next.js"],
-    runtimePlatform: "Web Browser",
-    operatingSystem: "Cross-platform",
-    applicationCategory: "DeveloperApplication",
-    keywords: [
-      doc.title.toLowerCase(),
-      "react component",
-      "next.js component",
-      "nyx ui",
-      "nyxui",
-      "tailwind css",
-      "typescript",
-      ...(doc.tags || []),
-    ].join(", "),
-    about: {
-      "@type": "Thing",
-      name: `${doc.title} Component`,
-      description: `A ${doc.title.toLowerCase()} component built for React and Next.js applications using Tailwind CSS and TypeScript.`,
-    },
-    isPartOf: {
-      "@type": "SoftwareApplication",
-      name: "Nyx UI",
-      url: `${externalLinks.site}/`,
-      description: "Modern React UI component library for Next.js applications",
-    },
-  };
+interface CreateBaseMetadataOptions {
+  title: string;
+  description: string;
+  keywords: string[];
+  canonical: string;
+  image?: string;
+  twitterCreator?: string;
+  type?: "website" | "article";
 }
 
-export function createTemplateSchema(
-  template: Doc,
-  slug: string,
-): Record<string, unknown> {
+/**
+ * Returns the shared metadata fields (openGraph, twitter, robots,
+ * alternates.canonical, title, description, keywords) used by all
+ * listing/detail pages. Each page merges its unique fields on top.
+ */
+export function createBaseMetadata({
+  title,
+  description,
+  keywords,
+  canonical,
+  image = "/nyx.webp",
+  twitterCreator = "@mihir_jaiswal_",
+  type = "website",
+}: CreateBaseMetadataOptions): Metadata {
   return {
-    "@context": "https://schema.org",
-    "@type": ["WebApplication", "SoftwareSourceCode", "CreativeWork"],
-    headline: `${template.title} React Template - Nyx UI Documentation`,
-    name: `${template.title} Template`,
-    description:
-      template.description ||
-      `${template.title} template for React and Next.js applications built with Tailwind CSS and TypeScript.`,
-    author,
-    publisher,
-    mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": absoluteUrl(itemHref("templates", slug)),
+    title,
+    description,
+    keywords,
+    openGraph: {
+      title,
+      description,
+      type,
+      url: canonical,
+      siteName: "Nyx UI",
+      images: [
+        {
+          url: image,
+          width: 1200,
+          height: 630,
+        },
+      ],
     },
-    datePublished: template.date || new Date().toISOString().split("T")[0],
-    dateModified: new Date().toISOString(),
-    programmingLanguage: ["TypeScript", "React", "Next.js"],
-    runtimePlatform: "Web Browser",
-    operatingSystem: "Cross-platform",
-    applicationCategory: "DeveloperApplication",
-    softwareVersion: "1.0",
-    keywords: [
-      template.title.toLowerCase(),
-      "react template",
-      "next.js template",
-      "nyx ui",
-      "nyxui",
-      "tailwind css",
-      "typescript",
-      "website template",
-      "ui template",
-      ...(template.tags || []),
-    ].join(", "),
-    about: {
-      "@type": "Thing",
-      name: `${template.title} Template`,
-      description: `A ${template.title.toLowerCase()} template built for React and Next.js applications using Tailwind CSS and TypeScript.`,
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [image],
+      creator: twitterCreator,
     },
-    isPartOf: {
-      "@type": "SoftwareApplication",
-      name: "Nyx UI Templates",
-      url: absoluteUrl("/templates"),
-      description: "Modern React template collection for Next.js applications",
+    robots: {
+      index: true,
+      follow: true,
     },
-    screenshot: template.image || "/nyx.webp",
-    applicationSubCategory: "Web Template",
-    featureList: [
-      "React & Next.js Compatible",
-      "Tailwind CSS Styling",
-      "TypeScript Support",
-      "Responsive Design",
-      "Production Ready",
-      "Customizable Components",
-    ],
+    alternates: {
+      canonical,
+    },
   };
 }

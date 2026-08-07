@@ -37,9 +37,8 @@ export function BentoGrid({
       className={clsx(
         className,
         "group relative flex flex-col overflow-hidden rounded-lg",
-        "bg-white dark:bg-zinc-950 shadow-md ring-1 ring-black/5 dark:ring-white/5",
-        "data-[dark]:bg-zinc-950 data-[dark]:ring-white/5",
-        "transition-all duration-300 hover:scale-[1.005]",
+        "bg-card border border-border/60",
+        "transition-colors duration-200",
         isFull && "h-full",
       )}
       role="article"
@@ -56,9 +55,8 @@ export function BentoGrid({
           <div
             aria-hidden="true"
             className={clsx(
-              "absolute inset-0 bg-gradient-to-b from-white",
+              "absolute inset-0 bg-gradient-to-b from-card",
               gradientPercentage,
-              "group-data-[dark]:from-zinc-950",
             )}
           />
         )}
@@ -66,9 +64,8 @@ export function BentoGrid({
           <div
             aria-hidden="true"
             className={clsx(
-              "absolute inset-0 bg-gradient-to-t from-white",
+              "absolute inset-0 bg-gradient-to-t from-card",
               gradientPercentage,
-              "group-data-[dark]:from-zinc-950",
             )}
           />
         )}
@@ -88,22 +85,10 @@ export function BentoGrid({
       {!isFull && (enableTitle || enableDescription) && (
         <div className={clsx("relative", padding)}>
           {enableTitle && (
-            <h3
-              className={clsx(
-                titleClassName,
-                "text-gray-950 group-data-[dark]:text-white dark:text-white",
-              )}
-            >
-              {title}
-            </h3>
+            <h3 className={clsx(titleClassName, "text-foreground")}>{title}</h3>
           )}
           {enableDescription && (
-            <p
-              className={clsx(
-                descriptionClassName,
-                "text-gray-600 group-data-[dark]:text-gray-300 dark:text-gray-300",
-              )}
-            >
+            <p className={clsx(descriptionClassName, "text-muted-foreground")}>
               {description}
             </p>
           )}

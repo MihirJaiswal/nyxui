@@ -3,8 +3,8 @@
 import type React from "react";
 import { useState } from "react";
 import reactElementToJSXString from "react-element-to-jsx-string";
-import { toast, Toaster } from "sonner";
-import { LampHeading } from "../ui/lamp-heading";
+import { toast } from "sonner";
+import { LampHeading } from "@/registry/ui/lamp-heading";
 import { Copy, Check } from "lucide-react";
 
 interface LampCard {
@@ -23,7 +23,7 @@ type LampHeadingType = {
 const LampCard = ({ children, onClick, isCopied }: LampCard) => {
   return (
     <div
-      className="border group relative border-gray-300 dark:border-zinc-800 hover:border-zinc-500 hover:dark:border-zinc-500 rounded-lg p-6 flex flex-col items-center justify-center h-60 cursor-pointer hover:shadow-lg transition-all duration-300 bg-white dark:bg-black/50 backdrop-blur-sm"
+      className="border group relative border-gray-300 dark:border-zinc-800 hover:border-zinc-500 hover:dark:border-zinc-500 rounded-lg p-6 flex flex-col items-center justify-center h-60 cursor-pointer transition-all duration-300 bg-white dark:bg-black/50 backdrop-blur-sm"
       onClick={onClick}
     >
       <div className="mb-4 w-full flex items-center justify-center">
@@ -89,7 +89,6 @@ export const LampHeadingDemo = () => {
 
   return (
     <div className="w-full">
-      <Toaster position="top-center" />
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {lampHeadings.map((lamp, idx) => (

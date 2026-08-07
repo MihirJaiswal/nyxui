@@ -1,8 +1,9 @@
 import { componentsData } from "@/registry/Data";
-import { ComponentCard } from "@/components/components/ComponentCard";
+import { ComponentCard } from "@/components/components/gallery/ComponentCard";
 import type { Metadata } from "next";
 import { absoluteUrl } from "@/lib/utils";
 import { categoryHref, tagToSlug } from "@/lib/links";
+import { createBaseMetadata } from "@/lib/docs";
 
 interface CategoryPageProps {
   params: Promise<{
@@ -52,6 +53,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             title={component.title}
             description={component.description}
             imageSrc={component.image}
+            imageClassName={component.imageClassName}
           />
         ))}
       </div>
@@ -80,7 +82,7 @@ export async function generateMetadata({
     ? `Explore ${titleCategory} React UI components from Nyx UI. Built with TypeScript, Tailwind CSS, and Framer Motion for Next.js applications.`
     : "Browse React UI components by category from Nyx UI.";
 
-  return {
+  return createBaseMetadata({
     title: `${titleCategory} Components | Nyx UI`,
     description,
     keywords: [
@@ -91,32 +93,8 @@ export async function generateMetadata({
       "next.js components",
       "tailwind css",
     ],
-    alternates: {
-      canonical: absoluteUrl(categoryHref(normalized)),
-    },
-    robots: { index: true, follow: true },
-    openGraph: {
-      title: `${titleCategory} Components | Nyx UI`,
-      description,
-      url: absoluteUrl(categoryHref(normalized)),
-      siteName: "Nyx UI",
-      type: "website",
-      images: [
-        {
-          url: "/nyx.webp",
-          width: 1200,
-          height: 630,
-          alt: `${titleCategory} Components - Nyx UI`,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${titleCategory} Components | Nyx UI`,
-      description,
-      images: ["/nyx.webp"],
-    },
-  };
+    canonical: absoluteUrl(categoryHref(normalized)),
+  });
 }
 
 export const revalidate = 86400; // Revalidate daily

@@ -39,7 +39,7 @@ export type AnimatedCodeBlockTheme =
   | "dark"
   | "terminal"
   | "minimal"
-  | "nightowl";
+  | "parchment";
 
 export interface AnimatedCodeBlockProps {
   code: string;
@@ -72,7 +72,7 @@ interface ThemeStyles {
 
 const themes: Record<AnimatedCodeBlockTheme, ThemeStyles> = {
   dark: {
-    shell: "bg-slate-950 shadow-2xl shadow-black/40",
+    shell: "bg-slate-950 shadow-[0_3px_10px_rgb(0,0,0,0.2)]",
     header: "bg-slate-900/90",
     surface: "bg-slate-950",
     border: "border-white/10",
@@ -85,22 +85,22 @@ const themes: Record<AnimatedCodeBlockTheme, ThemeStyles> = {
     syntax:
       "[&_.token.comment]:text-slate-500 [&_.token.comment]:italic [&_.token.punctuation]:text-slate-400 [&_.token.keyword]:text-violet-300 [&_.token.operator]:text-sky-300 [&_.token.string]:text-emerald-300 [&_.token.number]:text-amber-300 [&_.token.boolean]:text-amber-300 [&_.token.function]:text-blue-300 [&_.token.class-name]:text-cyan-300 [&_.token.tag]:text-rose-300 [&_.token.attr-name]:text-amber-200 [&_.token.property]:text-sky-300",
   },
-  nightowl: {
-    shell: "bg-slate-950 shadow-2xl shadow-black/40",
-    header: "bg-slate-900/95",
-    surface: "bg-slate-950",
-    border: "border-sky-300/15",
-    text: "text-sky-50",
-    muted: "text-sky-200/40",
-    accent: "bg-sky-400",
-    accentText: "text-sky-300",
-    accentSoft: "bg-sky-400/10 text-sky-200",
-    highlight: "border-sky-400 bg-sky-400/10",
+  parchment: {
+    shell: "bg-[#f5ecd9] shadow-xl shadow-amber-900/10",
+    header: "bg-[#ebe0c8]",
+    surface: "bg-[#f5ecd9]",
+    border: "border-[#3a2e1f]/15",
+    text: "text-[#3a2e1f]",
+    muted: "text-[#8a7a5e]",
+    accent: "bg-[#b85c38]",
+    accentText: "text-[#b85c38]",
+    accentSoft: "bg-[#b85c38]/10 text-[#9c4a1a]",
+    highlight: "border-[#b85c38] bg-[#b85c38]/10",
     syntax:
-      "[&_.token.comment]:text-slate-500 [&_.token.comment]:italic [&_.token.punctuation]:text-violet-300 [&_.token.keyword]:text-cyan-300 [&_.token.operator]:text-violet-300 [&_.token.string]:text-lime-300 [&_.token.number]:text-rose-300 [&_.token.boolean]:text-rose-300 [&_.token.function]:text-blue-300 [&_.token.class-name]:text-blue-300 [&_.token.tag]:text-orange-300 [&_.token.attr-name]:text-lime-300 [&_.token.property]:text-orange-300",
+      "[&_.token.comment]:text-[#8a7a5e] [&_.token.comment]:italic [&_.token.punctuation]:text-[#6b5d44] [&_.token.keyword]:text-[#b85c38] [&_.token.operator]:text-[#6b5d44] [&_.token.string]:text-[#6b7f3e] [&_.token.number]:text-[#9c4a1a] [&_.token.boolean]:text-[#9c4a1a] [&_.token.function]:text-[#2f5d8a] [&_.token.class-name]:text-[#2f5d8a] [&_.token.tag]:text-[#9c4a1a] [&_.token.attr-name]:text-[#6b7f3e] [&_.token.property]:text-[#2f5d8a]",
   },
   terminal: {
-    shell: "bg-zinc-950 shadow-2xl shadow-black/40",
+    shell: "bg-zinc-950 shadow-2xl shadow-[0_3px_10px_rgb(0,0,0,0.2)]",
     header: "bg-zinc-900/95",
     surface: "bg-zinc-950",
     border: "border-emerald-400/15",
@@ -390,11 +390,11 @@ export function AnimatedCodeBlock({
             themeStyles.border,
           )}
         >
-          <div className="flex min-w-0 items-center gap-2">
+          <div className="flex min-w-0 items-center gap-2 self-stretch">
             {!isMinimalTheme && (
               <>
                 <div
-                  className="hidden items-center gap-1.25 pr-1 sm:flex"
+                  className="hidden items-center gap-1.25 pr-3 sm:flex"
                   aria-hidden="true"
                 >
                   <span className="h-2 w-2 rounded-full bg-rose-400/80" />
@@ -402,8 +402,9 @@ export function AnimatedCodeBlock({
                   <span className="h-2 w-2 rounded-full bg-emerald-400/80" />
                 </div>
                 <div
+                  aria-hidden="true"
                   className={cn(
-                    "hidden h-5 w-px sm:block",
+                    "absolute bottom-0 left-14 top-0 hidden w-px sm:block",
                     themeStyles.accentSoft,
                   )}
                 />
@@ -508,6 +509,9 @@ export function AnimatedCodeBlock({
             "code-scrollbar relative min-h-80 flex-1 overflow-auto py-3 text-xs leading-6 sm:text-sm",
             themeStyles.surface,
             themeStyles.syntax,
+            showLineNumbers && themeStyles.border,
+            showLineNumbers &&
+              "before:content-[''] before:pointer-events-none before:absolute before:bottom-0 before:left-14 before:top-0 before:z-20 before:border-r before:[border-color:inherit]",
           )}
         >
           <div
@@ -533,9 +537,8 @@ export function AnimatedCodeBlock({
                   {showLineNumbers && (
                     <span
                       className={cn(
-                        "sticky left-0 z-10 w-14 shrink-0 select-none border-r pr-4 text-right tabular-nums",
+                        "sticky left-0 z-10 w-14 shrink-0 select-none pr-4 text-right tabular-nums",
                         themeStyles.surface,
-                        themeStyles.border,
                         isHighlighted
                           ? themeStyles.accentText
                           : themeStyles.muted,
@@ -589,9 +592,8 @@ export function AnimatedCodeBlock({
                 >
                   <span
                     className={cn(
-                      "sticky left-0 z-10 w-14 shrink-0 select-none border-r pr-4 text-right tabular-nums",
+                      "sticky left-0 z-10 w-14 shrink-0 select-none pr-4 text-right tabular-nums",
                       themeStyles.surface,
-                      themeStyles.border,
                       themeStyles.muted,
                     )}
                   >
@@ -616,17 +618,19 @@ export function AnimatedCodeBlock({
           )}
         >
           <div className="flex items-center gap-2"></div>
-          <motion.div
-            className={cn(
-              "absolute inset-x-0 top-0 h-px origin-left",
-              themeStyles.accent,
-            )}
-            initial={false}
-            animate={{ scaleX: Math.min(progress / 100, 1) }}
-            transition={
-              shouldReduceMotion ? { duration: 0 } : { duration: 0.12 }
-            }
-          />
+          {!isMinimalTheme && (
+            <motion.div
+              className={cn(
+                "absolute inset-x-0 top-0 h-px origin-left",
+                themeStyles.accent,
+              )}
+              initial={false}
+              animate={{ scaleX: Math.min(progress / 100, 1) }}
+              transition={
+                shouldReduceMotion ? { duration: 0 } : { duration: 0.12 }
+              }
+            />
+          )}
         </div>
       </motion.div>
     </div>

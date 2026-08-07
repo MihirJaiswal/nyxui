@@ -1,4 +1,4 @@
-import { Marquee } from "../ui/marquee";
+import { Marquee } from "@/registry/ui/marquee";
 
 export const MarqueeDemo = () => {
   return (

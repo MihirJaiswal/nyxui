@@ -3,6 +3,7 @@ import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { z } from "zod";
 import AnimatedLogo from "./animated-logo";
+import { cn } from "@/lib/utils";
 
 // Zod schema for email validation
 const emailSchema = z
@@ -139,12 +140,12 @@ export function NewsletterSection() {
           />
         </div>
         <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-2xl sm:text-4xl font-semibold text-white mb-4 animate-in fade-in duration-500">
+          <h2 className="text-2xl sm:text-4xl font-semibold text-foreground mb-4 animate-in fade-in duration-500">
             Thanks for subscribing!
           </h2>
           <button
             onClick={() => setIsSubmitted(false)}
-            className="text-zinc-400 hover:text-white transition-colors duration-200 underline"
+            className="text-muted-foreground hover:text-foreground transition-colors duration-200 underline"
           >
             Subscribe another email
           </button>
@@ -168,10 +169,10 @@ export function NewsletterSection() {
         />
       </div>
       <div className="max-w-2xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl text-center font-bold tracking-tight leading-tight mb-2">
+        <h2 className="text-3xl sm:text-4xl text-center font-bold tracking-tight leading-tight mb-2 text-foreground">
           Want our product updates and news?
         </h2>
-        <p className="text-zinc-600 dark:text-zinc-400 text-center mb-5">
+        <p className="text-muted-foreground text-center mb-5">
           Join our newsletter to stay up to date.
         </p>
         <form
@@ -188,16 +189,17 @@ export function NewsletterSection() {
               disabled={isLoading}
               maxLength={100}
               autoComplete="email"
-              className={`w-full bg-transparent border rounded-sm px-6 py-2 sm:py-4 text-white placeholder-zinc-400 focus:outline-none focus:border-zinc-500 transition-colors duration-200 text-lg ${
-                hasErrors ? "border-red-500 bg-red-900/20" : "border-zinc-600"
-              }`}
+              className={cn(
+                "w-full bg-transparent border rounded-lg px-6 py-2 sm:py-4 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground/50 transition-colors duration-200 text-lg",
+                hasErrors ? "border-red-500 bg-red-900/20" : "border-border/60",
+              )}
             />
           </div>
 
           <Button
             type="submit"
             disabled={isLoading || !email.trim()}
-            className="px-6 py-5.5 sm:py-7 rounded-sm hover:bg-zinc-100 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed group"
+            className="px-6 py-5.5 sm:py-7 rounded-lg bg-foreground text-background hover:bg-foreground/90 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed group"
           >
             {isLoading ? "Sending..." : "Send"}
           </Button>
@@ -207,7 +209,10 @@ export function NewsletterSection() {
         {hasErrors && (
           <div className="mt-4 text-center">
             {errors.map((error, index) => (
-              <div key={index} className="text-red-400 text-sm mb-1">
+              <div
+                key={index}
+                className="text-red-500 dark:text-red-400 text-sm mb-1"
+              >
                 {error}
               </div>
             ))}
@@ -216,7 +221,7 @@ export function NewsletterSection() {
 
         {/* Success message */}
         {successMessage && (
-          <div className="mt-4 text-center text-green-400 text-sm">
+          <div className="mt-4 text-center text-green-600 dark:text-green-400 text-sm">
             {successMessage}
           </div>
         )}

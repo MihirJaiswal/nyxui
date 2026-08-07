@@ -1,19 +1,21 @@
-import { Mdx } from "@/components/components/mdx-components";
+import { Mdx } from "@/components/components/mdx/mdx-components";
 import { DocPageHeader } from "@/components/components/doc-page-header";
 import { absoluteUrl } from "@/lib/utils";
 import {
-  createComponentSchema,
+  createBaseMetadata,
   generateDocKeywords,
   generateDocStaticParams,
   getDocFromParams,
   type SlugPageProps,
 } from "@/lib/docs";
+import { createComponentSchema } from "@/lib/docs-schema";
 import { externalLinks, itemHref, playgroundComponentHref } from "@/lib/links";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Play } from "lucide-react";
+import { JsonLd } from "@/components/global/JsonLd";
 
 export async function generateMetadata({
   params,
@@ -41,56 +43,24 @@ export async function generateMetadata({
   });
   const enhancedTitle = `${doc.title} Component - React & Next.js | Nyx UI Library`;
   const enhancedDescription = `${doc.description || `${doc.title} component for React and Next.js applications.`} Built with Tailwind CSS, TypeScript, and Framer Motion. Part of Nyx UI component library. Free to use, customizable, and accessible.`;
+  const canonical = absoluteUrl(itemHref("components", componentName));
 
   return {
-    title: enhancedTitle,
-    description: enhancedDescription,
-    keywords: componentKeywords,
+    ...createBaseMetadata({
+      title: enhancedTitle,
+      description: enhancedDescription,
+      keywords: componentKeywords,
+      canonical,
+      image: doc.image || "/nyx.webp",
+      type: "article",
+    }),
     authors: [{ name: "Mihir Jaiswal", url: externalLinks.twitter }],
     creator: "Nyx UI",
     publisher: "Nyx UI",
-
     openGraph: {
       title: `${doc.title} - React Component | Nyx UI`,
-      description: enhancedDescription,
-      type: "article",
-      url: absoluteUrl(itemHref("components", componentName)),
-      siteName: "Nyx UI",
       locale: "en_US",
-      images: [
-        {
-          url: doc.image || "/nyx.webp",
-          width: 1200,
-          height: 630,
-          alt: `${doc.title} React Component - Nyx UI`,
-        },
-      ],
     },
-    twitter: {
-      card: "summary_large_image",
-      title: `${doc.title} React Component | Nyx UI`,
-      description: enhancedDescription,
-      images: [doc.image || "/nyx.webp"],
-      creator: "@mihir_jaiswal_",
-      site: "@mihir_jaiswal_",
-    },
-
-    alternates: {
-      canonical: absoluteUrl(itemHref("components", componentName)),
-    },
-
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        "max-video-preview": -1,
-        "max-image-preview": "large",
-        "max-snippet": -1,
-      },
-    },
-
     category: "Web Development",
     other: {
       "article:section": "UI Components",
@@ -118,7 +88,6 @@ export default async function ComponentPage({ params }: SlugPageProps) {
   const excludedComponents = [
     "marquee",
     "ms-paint",
-    "scroll-animation-trigger",
     "image-comparison",
     "reveal-card",
   ];
@@ -129,10 +98,7 @@ export default async function ComponentPage({ params }: SlugPageProps) {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
-      />
+      <JsonLd data={schemaData} />
 
       {/* Additional meta tags in head */}
       <meta name="component-name" content={doc.title} />
@@ -140,7 +106,7 @@ export default async function ComponentPage({ params }: SlugPageProps) {
       <meta name="framework" content="React, Next.js" />
       <meta name="styling" content="Tailwind CSS" />
 
-      <div className="mx-auto w-full max-w-[1200px]">
+      <div className="w-full">
         <DocPageHeader
           title={doc.title}
           description={doc.description}
@@ -148,12 +114,17 @@ export default async function ComponentPage({ params }: SlugPageProps) {
           links={doc.links}
           action={
             shouldShowPlaygroundButton ? (
-              <Link href={playgroundComponentHref(componentName)}>
-                <Button variant="default" size="sm" className="gap-2 w-full">
-                  <Play className="w-4 h-4" />
+              <Button
+                asChild
+                variant="outline"
+                size="sm"
+                className="h-8 gap-2 rounded-lg border-border/70 bg-background px-3 text-xs text-muted-foreground shadow-none hover:bg-muted hover:text-foreground dark:border-white/10 dark:bg-[#111111] dark:hover:bg-[#1A1A1A]"
+              >
+                <Link href={playgroundComponentHref(componentName)}>
+                  <Play className="size-3.5" />
                   Open in Playground
-                </Button>
-              </Link>
+                </Link>
+              </Button>
             ) : null
           }
         />

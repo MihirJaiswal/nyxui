@@ -16,16 +16,88 @@ export const examples: Registry["items"] = [
     ],
   },
   {
-    name: "animated-grainy-bg-demo",
+    name: "animated-code-block-demo1",
     type: "registry:example",
-    title: "Animated Grainy Background Demo",
-    description: "Example showing an animated grainy background.",
-    registryDependencies: ["https://nyxui.com/r/animated-grainy-bg"],
+    title: "Animated Code Block Parchment Demo",
+    description: "Example showing the code block with the parchment theme.",
+    registryDependencies: ["https://nyxui.com/r/animated-code-block"],
     files: [
       {
-        path: "registry/example/animated-grainy-bg-demo.tsx",
+        path: "registry/example/animated-code-block-demo1.tsx",
         type: "registry:example",
-        target: "components/animated-grainy-bg-demo.tsx",
+        target: "components/animated-code-block-demo1.tsx",
+      },
+    ],
+  },
+  {
+    name: "animated-code-block-demo2",
+    type: "registry:example",
+    title: "Animated Code Block Terminal Demo",
+    description: "Example showing the code block with the terminal theme.",
+    registryDependencies: ["https://nyxui.com/r/animated-code-block"],
+    files: [
+      {
+        path: "registry/example/animated-code-block-demo2.tsx",
+        type: "registry:example",
+        target: "components/animated-code-block-demo2.tsx",
+      },
+    ],
+  },
+  {
+    name: "animated-code-block-demo3",
+    type: "registry:example",
+    title: "Animated Code Block Minimal Demo",
+    description: "Example showing the code block with the minimal theme.",
+    registryDependencies: ["https://nyxui.com/r/animated-code-block"],
+    files: [
+      {
+        path: "registry/example/animated-code-block-demo3.tsx",
+        type: "registry:example",
+        target: "components/animated-code-block-demo3.tsx",
+      },
+    ],
+  },
+  {
+    name: "grainy-background-demo",
+    type: "registry:example",
+    title: "Grainy Background Demo",
+    description: "Example showing an animated grainy background.",
+    registryDependencies: ["https://nyxui.com/r/grainy-background"],
+    files: [
+      {
+        path: "registry/example/grainy-background-demo.tsx",
+        type: "registry:example",
+        target: "components/grainy-background-demo.tsx",
+      },
+    ],
+  },
+  {
+    name: "grainy-background-demo1",
+    type: "registry:example",
+    title: "Grainy Background Hero Demo",
+    description:
+      "Example showing a dark aurora grainy background used as a hero section with headline and CTAs.",
+    registryDependencies: ["https://nyxui.com/r/grainy-background"],
+    files: [
+      {
+        path: "registry/example/grainy-background-demo1.tsx",
+        type: "registry:example",
+        target: "components/grainy-background-demo1.tsx",
+      },
+    ],
+  },
+  {
+    name: "grainy-background-demo2",
+    type: "registry:example",
+    title: "Grainy Background Pricing Demo",
+    description:
+      "Example showing mesh grainy backgrounds used in a pricing card layout.",
+    registryDependencies: ["https://nyxui.com/r/grainy-background"],
+    files: [
+      {
+        path: "registry/example/grainy-background-demo2.tsx",
+        type: "registry:example",
+        target: "components/grainy-background-demo2.tsx",
       },
     ],
   },
@@ -68,20 +140,6 @@ export const examples: Registry["items"] = [
         path: "registry/example/cyberpunk-card-demo.tsx",
         type: "registry:example",
         target: "components/cyberpunk-card-demo.tsx",
-      },
-    ],
-  },
-  {
-    name: "cyberpunk-card-demo1",
-    type: "registry:example",
-    title: "Cyberpunk Card Demo 1",
-    description: "Example showing a cyberpunk card.",
-    registryDependencies: ["https://nyxui.com/r/cyberpunk-card.json"],
-    files: [
-      {
-        path: "registry/example/cyberpunk-card-demo1.tsx",
-        type: "registry:example",
-        target: "components/cyberpunk-card-demo1.tsx",
       },
     ],
   },
@@ -142,6 +200,21 @@ export const examples: Registry["items"] = [
     ],
   },
   {
+    name: "github-repo-card-demo3",
+    type: "registry:example",
+    title: "Github Repo Card Demo 3",
+    description:
+      "Example showing a GitHub repo card with the modern-light theme.",
+    registryDependencies: ["https://nyxui.com/r/github-repo-card.json"],
+    files: [
+      {
+        path: "registry/example/github-repo-card-demo3.tsx",
+        type: "registry:example",
+        target: "components/github-repo-card-demo3.tsx",
+      },
+    ],
+  },
+  {
     name: "glitch-button-demo",
     type: "registry:example",
     title: "Glitch Button Demo",
@@ -184,6 +257,34 @@ export const examples: Registry["items"] = [
     ],
   },
   {
+    name: "keyboard-demo2",
+    type: "registry:example",
+    title: "Keyboard Demo 2",
+    description: "Example showing a interactive keyboard.",
+    registryDependencies: ["https://nyxui.com/r/keyboard.json"],
+    files: [
+      {
+        path: "registry/example/keyboard-demo2.tsx",
+        type: "registry:example",
+        target: "components/keyboard-demo2.tsx",
+      },
+    ],
+  },
+  {
+    name: "keyboard-demo3",
+    type: "registry:example",
+    title: "Keyboard Demo 3",
+    description: "Example showing a interactive keyboard.",
+    registryDependencies: ["https://nyxui.com/r/keyboard.json"],
+    files: [
+      {
+        path: "registry/example/keyboard-demo3.tsx",
+        type: "registry:example",
+        target: "components/keyboard-demo3.tsx",
+      },
+    ],
+  },
+  {
     name: "ms-paint-demo",
     type: "registry:example",
     title: "MS Paint Demo",
@@ -208,20 +309,6 @@ export const examples: Registry["items"] = [
         path: "registry/example/lamp-heading-demo.tsx",
         type: "registry:example",
         target: "components/lamp-heading-demo.tsx",
-      },
-    ],
-  },
-  {
-    name: "liquid-metal-button-demo",
-    type: "registry:example",
-    title: "Liquid Metal Button Demo",
-    description: "Example showing a liquid metal button.",
-    registryDependencies: ["https://nyxui.com/r/liquid-metal-button.json"],
-    files: [
-      {
-        path: "registry/example/liquid-metal-button-demo.tsx",
-        type: "registry:example",
-        target: "components/liquid-metal-button-demo.tsx",
       },
     ],
   },
@@ -380,34 +467,6 @@ export const examples: Registry["items"] = [
     ],
   },
   {
-    name: "music-player-demo1",
-    type: "registry:example",
-    title: "Music Player Demo 1",
-    description: "Example showing a music player.",
-    registryDependencies: ["https://nyxui.com/r/music-player.json"],
-    files: [
-      {
-        path: "registry/example/music-player-demo1.tsx",
-        type: "registry:example",
-        target: "components/music-player-demo1.tsx",
-      },
-    ],
-  },
-  {
-    name: "music-player-demo2",
-    type: "registry:example",
-    title: "Music Player Demo 2",
-    description: "Example showing a music player.",
-    registryDependencies: ["https://nyxui.com/r/music-player.json"],
-    files: [
-      {
-        path: "registry/example/music-player-demo2.tsx",
-        type: "registry:example",
-        target: "components/music-player-demo2.tsx",
-      },
-    ],
-  },
-  {
     name: "reveal-card-demo",
     type: "registry:example",
     title: "Reveal Card Demo",
@@ -418,48 +477,6 @@ export const examples: Registry["items"] = [
         path: "registry/example/reveal-card-demo.tsx",
         type: "registry:example",
         target: "components/reveal-card-demo.tsx",
-      },
-    ],
-  },
-  {
-    name: "scroll-animation-trigger-demo",
-    type: "registry:example",
-    title: "Scroll Animation Trigger Demo",
-    description: "Example showing a scroll animation trigger.",
-    registryDependencies: ["https://nyxui.com/r/scroll-animation-trigger.json"],
-    files: [
-      {
-        path: "registry/example/scroll-animation-trigger-demo.tsx",
-        type: "registry:example",
-        target: "components/scroll-animation-trigger-demo.tsx",
-      },
-    ],
-  },
-  {
-    name: "scroll-animation-trigger-demo1",
-    type: "registry:example",
-    title: "Scroll Animation Trigger Demo 1",
-    description: "Example showing a scroll animation trigger.",
-    registryDependencies: ["https://nyxui.com/r/scroll-animation-trigger.json"],
-    files: [
-      {
-        path: "registry/example/scroll-animation-trigger-demo1.tsx",
-        type: "registry:example",
-        target: "components/scroll-animation-trigger-demo1.tsx",
-      },
-    ],
-  },
-  {
-    name: "scroll-animation-trigger-demo2",
-    type: "registry:example",
-    title: "Scroll Animation Trigger Demo 2",
-    description: "Example showing a scroll animation trigger.",
-    registryDependencies: ["https://nyxui.com/r/scroll-animation-trigger.json"],
-    files: [
-      {
-        path: "registry/example/scroll-animation-trigger-demo2.tsx",
-        type: "registry:example",
-        target: "components/scroll-animation-trigger-demo2.tsx",
       },
     ],
   },
@@ -488,6 +505,34 @@ export const examples: Registry["items"] = [
         path: "registry/example/terminal-demo1.tsx",
         type: "registry:example",
         target: "components/terminal-demo1.tsx",
+      },
+    ],
+  },
+  {
+    name: "terminal-demo2",
+    type: "registry:example",
+    title: "Terminal Demo 2",
+    description: "Example showing a terminal with the default theme.",
+    registryDependencies: ["https://nyxui.com/r/terminal.json"],
+    files: [
+      {
+        path: "registry/example/terminal-demo2.tsx",
+        type: "registry:example",
+        target: "components/terminal-demo2.tsx",
+      },
+    ],
+  },
+  {
+    name: "terminal-demo3",
+    type: "registry:example",
+    title: "Terminal Demo 3",
+    description: "Example showing a terminal with the synthwave theme.",
+    registryDependencies: ["https://nyxui.com/r/terminal.json"],
+    files: [
+      {
+        path: "registry/example/terminal-demo3.tsx",
+        type: "registry:example",
+        target: "components/terminal-demo3.tsx",
       },
     ],
   },

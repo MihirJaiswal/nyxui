@@ -1,6 +1,9 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { Play, Pause, Copy, Check, RotateCcw } from "lucide-react";
+import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
+import { useToggle } from "@/hooks/use-toggle";
+import { cn } from "@/lib/utils";
 
 const AnimatedCodeBlockDemo = () => {
   const COLORS = {
@@ -73,9 +76,9 @@ const AnimatedCodeBlockDemo = () => {
     color: COLORS[colorKey as keyof typeof COLORS],
   }));
 
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, togglePlaying, setIsPlaying] = useToggle(true);
   const [currentPosition, setCurrentPosition] = useState(0);
-  const [copied, setCopied] = useState(false);
+  const { copy: copyToClipboard, hasCopied: copied } = useCopyToClipboard();
   const [completed, setCompleted] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const totalChars = codeTokens.reduce(
@@ -104,13 +107,11 @@ const AnimatedCodeBlockDemo = () => {
       setCurrentPosition(0);
       setCompleted(false);
     }
-    setIsPlaying(!isPlaying);
+    togglePlaying();
   };
 
   const copyCode = () => {
-    navigator.clipboard.writeText(plainCode);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    copyToClipboard(plainCode);
   };
   const renderVisibleCode = () => {
     if (completed) {
@@ -167,7 +168,7 @@ const AnimatedCodeBlockDemo = () => {
   const progress = Math.min(100, (currentPosition / totalChars) * 100);
 
   return (
-    <div className="w-[350px] scale-80 mx-auto bg-zinc-950/50 rounded-sm overflow-hidden border border-zinc-800 shadow-xl">
+    <div className="w-[350px] scale-80 mx-auto bg-zinc-950/50 rounded-sm overflow-hidden border border-zinc-800">
       <div className="flex items-center justify-between p-3 bg-zinc-900 border-b border-zinc-800">
         <div className="flex items-center gap-3">
           <div className="flex gap-1.5">
@@ -195,7 +196,10 @@ const AnimatedCodeBlockDemo = () => {
 
           <button
             onClick={copyCode}
-            className={`p-1.5 rounded hover:bg-zinc-800 text-zinc-300 transition-colors ${copied ? "bg-green-600" : ""}`}
+            className={cn(
+              "p-1.5 rounded hover:bg-zinc-800 text-zinc-300 transition-colors",
+              copied && "bg-green-600",
+            )}
             title="Copy code"
           >
             {copied ? <Check size={16} /> : <Copy size={16} />}

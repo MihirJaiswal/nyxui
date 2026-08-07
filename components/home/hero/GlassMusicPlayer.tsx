@@ -10,10 +10,11 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import img from "../../../public/assets/images/landing-page/cover.webp";
+import img from "@/public/assets/images/landing-page/cover.webp";
+import { useToggle } from "@/hooks/use-toggle";
 
 function GlassMusicPlayer() {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, togglePlaying] = useToggle(false);
   const [progress, setProgress] = useState(45);
   const [currentTime, setCurrentTime] = useState(125);
   const duration = 248;
@@ -65,7 +66,7 @@ function GlassMusicPlayer() {
           {/* Album Art and Track Info */}
           <div className="flex items-center gap-4 mb-6">
             <div className="relative">
-              <div className="w-16 h-16 rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/20">
+              <div className="w-16 h-16 rounded-2xl overflow-hidden shadow-2xl">
                 <Image
                   src={img}
                   alt="Album Cover"
@@ -130,8 +131,8 @@ function GlassMusicPlayer() {
             </button>
 
             <button
-              onClick={() => setIsPlaying(!isPlaying)}
-              className="w-12 h-12 bg-white/60 dark:bg-white/15 hover:bg-white/25 rounded-full flex items-center justify-center transition-all duration-200 backdrop-blur-sm border border-white/20 shadow-lg hover:scale-105"
+              onClick={() => togglePlaying()}
+              className="w-12 h-12 bg-white/60 dark:bg-white/15 hover:bg-white/25 rounded-full flex items-center justify-center transition-all duration-200 backdrop-blur-sm border border-white/20 hover:scale-105"
             >
               {isPlaying ? (
                 <Pause className="w-6 h-6 text-neutral-900 dark:text-white" />

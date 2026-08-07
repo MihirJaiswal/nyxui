@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import reactElementToJSXString from "react-element-to-jsx-string";
-import { toast, Toaster } from "sonner";
-import { GlitchButton } from "../ui/glitch-button";
+import { toast } from "sonner";
+import { GlitchButton } from "@/registry/ui/glitch-button";
 import {
   ArrowRight,
   Download,
@@ -31,7 +31,7 @@ type GlitchButtonType = {
 const ButtonsCard = ({ children, onClick, isCopied }: ButtonsCard) => {
   return (
     <div
-      className="border group relative border-gray-300 dark:border-zinc-800 hover:border-zinc-500 hover:dark:border-zinc-500 rounded-lg p-3 flex flex-col items-center justify-center h-52 cursor-pointer hover:shadow-lg transition-shadow duration-200"
+      className="border group relative border-gray-300 dark:border-zinc-800 hover:border-zinc-500 hover:dark:border-zinc-500 rounded-lg p-3 flex flex-col items-center justify-center h-52 cursor-pointer transition-shadow duration-200"
       onClick={onClick}
     >
       <div className="mb-4">{children}</div>
@@ -115,7 +115,6 @@ export const GlitchButtonDemo = () => {
 
   return (
     <div className="pb-4 px-4 w-full">
-      <Toaster position="top-center" />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full max-w-7xl mx-auto gap-6">
         {glitchButtons.map((button, idx) => (
           <ButtonsCard

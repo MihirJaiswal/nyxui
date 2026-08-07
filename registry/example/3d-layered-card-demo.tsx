@@ -1,11 +1,11 @@
 import { Badge } from "@/components/ui/badge";
 import { Clock } from "lucide-react";
-import ThreeDLayeredCard from "../ui/3d-layered-card";
+import ThreeDLayeredCard from "@/registry/ui/3d-layered-card";
 
 function ThreeDLayeredCardDemo() {
   return (
-    <div className="flex items-center justify-center relative z-1 max-w-4xl mx-auto overflow-hidden">
-      <div className="overflow-hidden flex flex-col items-center justify-center gap-3 relative py-24 px-4">
+    <div className="flex items-center justify-center relative z-1 max-w-4xl mx-auto py-24">
+      <div className="flex flex-col items-center justify-center gap-3 relative px-4">
         <div className="flex flex-col md:flex-row  gap-3">
           <ThreeDLayeredCard
             logo="/assets/images/3d-layered-card/snaplogo.svg"

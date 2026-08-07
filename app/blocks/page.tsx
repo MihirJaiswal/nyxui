@@ -1,8 +1,10 @@
 import { getRegistryCounts } from "@/lib/registry";
-import { absoluteUrl } from "@/lib/utils";
+import { absoluteUrl, getCurrentYear } from "@/lib/utils";
 import type { Metadata } from "next";
-import ComponentGrid from "@/components/components/ComponentGrid";
-import { externalLinks } from "@/lib/links";
+import ComponentGrid from "@/components/components/gallery/ComponentGrid";
+import { createBaseMetadata } from "@/lib/docs";
+import { publisher } from "@/lib/docs-schema";
+import { JsonLd } from "@/components/global/JsonLd";
 
 function getBlockCount() {
   return getRegistryCounts().blocks;
@@ -10,9 +12,10 @@ function getBlockCount() {
 
 export async function generateMetadata(): Promise<Metadata> {
   const blockCount = getBlockCount();
-  const currentYear = new Date().getFullYear();
+  const currentYear = getCurrentYear();
+  const canonical = absoluteUrl("/blocks");
 
-  return {
+  return createBaseMetadata({
     title: `Nyx UI | Blocks`,
     description: `Browse ${blockCount}+ modern React UI blocks. Complete sections like hero, footer, CTA, and more. Built with TypeScript, Tailwind CSS & Framer Motion.`,
     keywords: [
@@ -30,39 +33,9 @@ export async function generateMetadata(): Promise<Metadata> {
       "footer blocks",
       "cta blocks",
     ],
-
-    openGraph: {
-      title: `NyxUI Blocks - ${blockCount}+ React Section Blocks`,
-      description: `Browse and copy ${blockCount}+ premium React section blocks for your next project.`,
-      url: absoluteUrl("/blocks"),
-      siteName: "Nyx UI",
-      images: [
-        {
-          url: "/api/og/blocks",
-          width: 1200,
-          height: 630,
-          alt: `NyxUI Blocks Library - ${blockCount}+ Section Blocks`,
-        },
-      ],
-    },
-
-    twitter: {
-      card: "summary_large_image",
-      title: `NyxUI - ${blockCount}+ React Section Blocks`,
-      description: `Modern React section blocks for Next.js. Built with TypeScript & Tailwind CSS.`,
-      images: ["/nyx.webp"],
-      creator: "@mihir_jaiswal_",
-    },
-
-    robots: {
-      index: true,
-      follow: true,
-    },
-
-    alternates: {
-      canonical: absoluteUrl("/blocks"),
-    },
-  };
+    canonical,
+    image: "/api/og/blocks",
+  });
 }
 
 const BlocksPage = () => {
@@ -78,19 +51,12 @@ const BlocksPage = () => {
       name: "React Section Blocks",
       numberOfItems: blockCount,
     },
-    publisher: {
-      "@type": "Organization",
-      name: "Nyx UI",
-      url: `${externalLinks.site}/`,
-    },
+    publisher,
   };
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
-      />
+      <JsonLd data={schemaData} />
       <div className="flex flex-col lg:flex-row gap-6 lg:gap-10">
         <div className="flex-1 order-2 lg:order-1 min-w-0">
           <ComponentGrid type="blocks" />

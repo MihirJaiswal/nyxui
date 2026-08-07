@@ -6,47 +6,45 @@ author: mihirJaiswal
 published: true
 ---
 
-<div className="flex flex-col gap-4">
-  <video
-    autoPlay
-    loop
-    muted
-    src="/assets/videos/single-page-portfolio.mp4"
-    className="w-full aspect-4/3 md:aspect-video object-cover rounded-xl border mb-3"
+<TemplateShowcase
+  videoSrc="/assets/videos/single-page-portfolio.mp4"
+  fullscreenHref="https://minimalist-portfolio-nyxui.vercel.app/"
+/>
+
+<TemplateActions>
+  <RepoDownload
+    url="https://github.com/MihirJaiswal/minimalist-portfolio-nyxui/archive/refs/tags/v1.0.0.zip"
+    free
   />
-  <div className="flex flex-col justify-start items-start gap-3 sm:flex-row">
-    <RepoDownload
-      url="https://github.com/mihirjaiswal/minimalist-portfolio-nyxui/archive/refs/tags/v1.0.0.zip"
-      free
-    />
-    <TemplatePreview href="https://minimalist-portfolio-nyxui.vercel.app/">
-      Live Preview{" "}
-    </TemplatePreview>
-  </div>
-</div>
+  <TemplatePreview href="https://minimalist-portfolio-nyxui.vercel.app/">
+    Live Preview
+  </TemplatePreview>
+</TemplateActions>
 
-## What is this?
+## What's included
 
-A complete template to market yourself and your portfolio to the world as a developer
+<TemplateFeatures
+  items={[
+    "Hero Section",
+    "Projects Section",
+    "About Section",
+    "Work Experience",
+    "Education",
+    "Contact Section",
+    "Footer",
+  ]}
+/>
 
-## How can I customize this?
+## Setup
 
-- Edit the index.ts and constant.tsx file.
-- Edit the images in the template to your own
-- Deploy the template to vercel
-- Share the link to your portfolio
-
-## How many sections are there?
-
-This template includes the following sections:
-
-- Hero Section
-- Projects Section
-- About Section
-- Work Section
-- Education Section
-- Contact Section
-- Footer Section
+<TemplateSteps
+  items={[
+    "Download the template above.",
+    "Update `index.ts` and `constant.tsx`.",
+    "Replace the placeholder images.",
+    "Deploy to Vercel.",
+  ]}
+/>
 
 ## Tech Stack
 

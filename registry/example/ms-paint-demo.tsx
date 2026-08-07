@@ -1,5 +1,5 @@
 "use client";
-import DrawingCanvas from "../ui/ms-paint";
+import DrawingCanvas from "@/registry/ui/ms-paint";
 
 export default function MSpaintDemo() {
   const handleSave = (canvas: HTMLCanvasElement) => {
@@ -18,7 +18,7 @@ export default function MSpaintDemo() {
     }, "image/png");
   };
   return (
-    <div className="h-screen w-full max-w-4xl mx-auto overflow-hidden relative">
+    <div className="w-full max-w-4xl mx-auto overflow-hidden relative p-4">
       <DrawingCanvas
         title="My Drawing App"
         onSave={handleSave}

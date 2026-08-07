@@ -1,11 +1,46 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+
+const Satoshi = localFont({
+  src: [
+    {
+      path: "../public/fonts/Satoshi-Light.woff2",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Satoshi-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Satoshi-Medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Satoshi-Bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Satoshi-Black.woff2",
+      weight: "900",
+      style: "normal",
+    },
+  ],
+  variable: "--font-satoshi",
+  display: "swap",
+});
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Banner } from "@/components/global/Banner";
+// import { Banner } from "@/components/global/Banner";
 import Footer from "@/components/global/Footer";
+import { JsonLd } from "@/components/global/JsonLd";
 import { externalLinks } from "@/lib/links";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   metadataBase: new URL(`${externalLinks.site}/`),
@@ -104,31 +139,28 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${GeistSans.variable} ${GeistMono.variable} dark`}
+      className={`${Satoshi.variable} ${GeistSans.variable} ${GeistMono.variable} dark`}
       suppressHydrationWarning
     >
       <head>
         {/* Add JSON-LD structured data */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "SoftwareApplication",
-              name: "Nyx UI",
-              description:
-                "Nyx UI is a collection of modern React components and templates for developers.",
-              url: `${externalLinks.site}/`,
-              author: {
-                "@type": "Person",
-                name: "Mihir Jaiswal",
-                url: externalLinks.twitter,
-              },
-              applicationCategory: "DeveloperApplication",
-              operatingSystem: "Web Browser",
-              keywords:
-                "UI library, React components, Next.js, Tailwind CSS, TypeScript",
-            }),
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            name: "Nyx UI",
+            description:
+              "Nyx UI is a collection of modern React components and templates for developers.",
+            url: `${externalLinks.site}/`,
+            author: {
+              "@type": "Person",
+              name: "Mihir Jaiswal",
+              url: externalLinks.twitter,
+            },
+            applicationCategory: "DeveloperApplication",
+            operatingSystem: "Web Browser",
+            keywords:
+              "UI library, React components, Next.js, Tailwind CSS, TypeScript",
           }}
         />
       </head>
@@ -138,9 +170,10 @@ export default function RootLayout({
           defaultTheme="dark"
           enableSystem={false}
         >
-          <Banner />
+          {/* <Banner /> */}
           <main>{children}</main>
           <Footer />
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
