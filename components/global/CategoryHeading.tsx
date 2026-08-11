@@ -13,7 +13,7 @@ export const CategoryHeading = ({
 }: CategoryHeadingProps) => (
   <h4
     className={cn(
-      "mb-2 flex items-center gap-3 text-sm font-medium text-foreground",
+      "mb-1 flex items-center gap-3 text-sm font-medium text-foreground",
       className,
     )}
   >

@@ -2,10 +2,15 @@ import { cn } from "@/lib/utils";
 
 interface PhantomLineProps {
   position: "top" | "bottom";
+  double?: boolean;
   className?: string;
 }
 
-export const PhantomLine = ({ position, className }: PhantomLineProps) => (
+export const PhantomLine = ({
+  position,
+  double = false,
+  className,
+}: PhantomLineProps) => (
   <span
     className={cn(
       "pointer-events-none absolute inset-x-0 flex h-px items-center gap-3",
@@ -16,8 +21,14 @@ export const PhantomLine = ({ position, className }: PhantomLineProps) => (
     )}
     aria-hidden="true"
   >
-    <span className="flex w-11 shrink-0 items-center">
+    <span
+      className={cn(
+        "flex w-11 shrink-0",
+        double ? "flex-col gap-2" : "items-center",
+      )}
+    >
       <span className="block h-px w-8 shrink-0 bg-foreground/30" />
+      {double && <span className="block h-px w-8 shrink-0 bg-foreground/30" />}
     </span>
   </span>
 );
