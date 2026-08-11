@@ -5,12 +5,12 @@ import { motion, type MotionValue } from "motion/react";
 import { cn } from "@/lib/utils";
 
 export const BASE_WIDTH = 32;
-export const MAX_WIDTH = 45;
-export const SPRING_CONFIG = { stiffness: 900, damping: 40, mass: 0.15 };
+export const MAX_WIDTH = 50;
+export const SPRING_CONFIG = { stiffness: 1200, damping: 32, mass: 0.12 };
 export const LABEL_TRANSITION = {
   type: "spring" as const,
-  stiffness: 600,
-  damping: 32,
+  stiffness: 950,
+  damping: 42,
 };
 
 interface GuideLineProps {
@@ -26,7 +26,7 @@ export const GuideLine = forwardRef<HTMLSpanElement, GuideLineProps>(
         ref={ref}
         style={{ width }}
         className={cn(
-          "block h-px shrink-0 origin-left transition-colors",
+          "block h-px shrink-0 origin-left transition-colors duration-50 ease-out",
           highlighted ? "bg-brand" : "bg-foreground/30",
           "group-focus-within/cmdk:group-data-[selected=true]:bg-brand",
           className,

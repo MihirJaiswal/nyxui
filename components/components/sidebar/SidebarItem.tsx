@@ -57,10 +57,10 @@ export const SidebarItem = ({
         isActive ? "text-brand" : "text-muted-foreground hover:text-brand",
       )}
     >
-      {index === 0 && <PhantomLine position="top" />}
+      {index === 0 && <PhantomLine position="top" double />}
       <GuideLine width={width} highlighted={highlighted} />
       <motion.span
-        animate={{ x: highlighted ? 4 : 0 }}
+        animate={{ x: highlighted ? 7 : 0 }}
         transition={LABEL_TRANSITION}
         className={cn(
           "min-w-0 flex-1 truncate text-sm",
@@ -70,7 +70,7 @@ export const SidebarItem = ({
       >
         {item.name}
       </motion.span>
-      {!isLast && <PhantomLine position="bottom" />}
+      {!isLast && <PhantomLine position="bottom" double />}
     </MotionLink>
   );
 };

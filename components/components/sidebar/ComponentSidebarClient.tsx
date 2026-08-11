@@ -142,7 +142,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
                   hidden: {},
                   visible: { transition: { staggerChildren: 0.02 } },
                 }}
-                className="space-y-2 hide-scrollbar"
+                className="space-y-1 hide-scrollbar"
               >
                 <SidebarSection title={gettingStartedSection.title}>
                   {renderSectionItems(gettingStartedSection.items)}

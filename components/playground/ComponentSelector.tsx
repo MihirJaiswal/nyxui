@@ -102,12 +102,12 @@ const SelectorItem = ({
         "data-[selected=true]:bg-transparent !px-0",
       )}
     >
-      {isFirst && <PhantomLine position="top" />}
+      {isFirst && <PhantomLine position="top" double />}
 
       <GuideLine width={width} highlighted={highlighted} />
 
       <motion.span
-        animate={{ x: highlighted ? 4 : 0 }}
+        animate={{ x: highlighted ? 7 : 0 }}
         transition={LABEL_TRANSITION}
         className={cn(
           "min-w-0 flex-1 truncate text-left transition-colors",
@@ -121,7 +121,7 @@ const SelectorItem = ({
         {name}
       </motion.span>
 
-      {!isLast && <PhantomLine position="bottom" />}
+      {!isLast && <PhantomLine position="bottom" double />}
     </CommandItem>
   );
 };
@@ -222,11 +222,7 @@ const ComponentSelector = ({
         onMouseLeave={() => mouseY.set(HOVER_NONE)}
       >
         <CommandGroup>
-          <CategoryHeading
-            title="Components"
-            variant="muted"
-            className="mb-1.5"
-          />
+          <CategoryHeading title="Components" variant="muted" />
           {filteredEntries.map(([key, component], index) => (
             <SelectorItem
               key={key}
