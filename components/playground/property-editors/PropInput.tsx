@@ -204,7 +204,7 @@ export function PropInput({ property, prop, value, onChange }: PropInputProps) {
 
       return (
         <JsonObjectEditor
-          value={objectValue as Record<string, ComponentPropValue>}
+          value={objectValue as ComponentPropValue}
           onChange={(parsed) => onChange(property, parsed)}
         />
       );

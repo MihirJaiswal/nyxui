@@ -2,6 +2,13 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import { Caveat } from "next/font/google";
+
+const CaveatFont = Caveat({
+  subsets: ["latin"],
+  variable: "--font-caveat-next",
+  display: "swap",
+});
 
 const Satoshi = localFont({
   src: [
@@ -139,7 +146,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${Satoshi.variable} ${GeistSans.variable} ${GeistMono.variable} dark`}
+      className={`${Satoshi.variable} ${GeistSans.variable} ${GeistMono.variable} ${CaveatFont.variable} dark`}
       suppressHydrationWarning
     >
       <head>

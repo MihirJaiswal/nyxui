@@ -1072,22 +1072,6 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
     name: "Music Player",
     component: "MusicPlayer",
     props: {
-      // Current Track
-      currentTrack: {
-        type: "object",
-        default: {
-          id: "sample-track",
-          title: "Blinding Lights",
-          artist: "The Weeknd",
-          album: "After Hours",
-          artwork:
-            "https://raw.githubusercontent.com/MihirJaiswal/nyxui/refs/heads/main/public/assets/images/music-player/song.jpg",
-          duration: 240,
-        },
-        label: "Current Track",
-        description: "Currently playing track information",
-        category: "Track Data",
-      },
       queue: {
         type: "object",
         default: [
