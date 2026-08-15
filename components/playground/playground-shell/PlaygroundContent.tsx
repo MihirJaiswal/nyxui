@@ -87,6 +87,7 @@ export const PlaygroundContent = ({
           showCode={showCode}
           onToggleCode={() => setShowCode(!showCode)}
           onCopyCode={handleCopyCode}
+          onConfigChange={handlePropertyChange}
         />
       </div>
     </div>

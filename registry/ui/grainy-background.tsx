@@ -161,7 +161,7 @@ const getGradientPattern = (
       });
 
       // Primary mesh nodes
-      meshPoints.forEach((point, i) => {
+      meshPoints.forEach((point) => {
         const { x, y, color } = point;
         gradients.push(
           `radial-gradient(circle at ${x}% ${y}%, ${color}${heavyOpacity} 0%, ${color}${baseOpacity} 20%, ${color}${lightOpacity} 45%, ${color}${ultraLightOpacity} 65%, transparent 85%)`,
@@ -454,6 +454,7 @@ export const GrainyBackground: React.FC<GrainyBackgroundProps> = ({
     >
       {/* Base gradient layer */}
       <motion.div
+        suppressHydrationWarning
         className="absolute inset-0"
         variants={variants}
         animate={animate ? "animate" : "static"}
@@ -467,6 +468,7 @@ export const GrainyBackground: React.FC<GrainyBackgroundProps> = ({
 
       {/* Primary grain layer */}
       <motion.div
+        suppressHydrationWarning
         className="absolute inset-0"
         variants={grainVariants}
         animate={animate ? "animate" : "static"}

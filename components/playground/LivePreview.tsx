@@ -11,7 +11,11 @@ import {
   generatePlaygroundCode,
   type CodeVariant,
 } from "@/lib/codegen";
-import type { ComponentConfig, ComponentDefinition } from "@/types/playground";
+import type {
+  ComponentConfig,
+  ComponentDefinition,
+  ComponentPropValue,
+} from "@/types/playground";
 import { getNyxuiTheme, getNyxuiLightTheme } from "@/lib/shiki-themes";
 import { cn } from "@/lib/utils";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -30,6 +34,7 @@ interface LivePreviewProps {
   showCode: boolean;
   onToggleCode: () => void;
   onCopyCode: (variant: CodeVariant) => void;
+  onConfigChange: (property: string, value: ComponentPropValue) => void;
 }
 
 const codeTabs: Array<{
@@ -95,6 +100,7 @@ const LivePreview = ({
   showCode,
   onToggleCode,
   onCopyCode,
+  onConfigChange,
 }: LivePreviewProps) => {
   const [highlightedCode, setHighlightedCode] = useState("");
   const [refreshKey, setRefreshKey] = useState(componentKey);
@@ -169,12 +175,25 @@ const LivePreview = ({
     }
 
     const { children, ...otherProps } = expandDottedConfig(config);
+    const previewProps: Record<string, unknown> = { ...otherProps };
+    const previewKey =
+      componentKey === "music-player"
+        ? `${refreshKey}-${config.currentIndex}-${config.autoPlay}`
+        : refreshKey;
+
+    if (componentKey === "music-player") {
+      previewProps.onTrackChange = (_track: unknown, index: number) =>
+        onConfigChange("currentIndex", index);
+      previewProps.onPlayPause = (isPlaying: boolean) =>
+        onConfigChange("autoPlay", isPlaying);
+    }
+
     const childrenContent =
       typeof children === "string" ? parseJSXString(children) : children;
 
     return (
       <Suspense fallback={<PreviewFallback />}>
-        <LazyComponent key={refreshKey} {...otherProps}>
+        <LazyComponent key={previewKey} {...previewProps}>
           {childrenContent}
         </LazyComponent>
       </Suspense>
