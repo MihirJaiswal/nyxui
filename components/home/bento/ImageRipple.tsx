@@ -5,11 +5,11 @@ function Imageripple() {
     <div className=" flex items-center justify-center">
       <div className="flex w-full items-center justify-center">
         <WaterRippleEffect
-          imageSrc="/assets/images/landing-page/tailwind.jpg"
-          rippleIntensity={0.2}
-          hoverRippleMultiplier={5}
-          height={250}
-          width={450}
+          imageSrc="/assets/images/landing-page/imgd.png"
+          rippleIntensity={0}
+          hoverRippleMultiplier={50}
+          height={215}
+          width={300}
           className="!p-0"
         />
       </div>

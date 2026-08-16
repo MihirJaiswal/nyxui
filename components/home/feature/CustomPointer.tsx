@@ -27,7 +27,7 @@ const CursorLoader = () => (
 export const CustomPointer = () => (
   <div
     className={
-      "flex w-full h-full flex-col justify-between rounded-none bg-blue-200/40 dark:bg-black text-white relative"
+      "flex w-full h-full flex-col justify-between rounded-none bg-orange-50/40 dark:bg-black text-white relative"
     }
   >
     <Suspense fallback={<CursorLoader />}>
@@ -128,7 +128,7 @@ export const CustomPointer = () => (
             </div>
           </div>
         </div>
-        <div className="absolute bottom-0 right-0 h-full w-full rounded-full bg-gradient-to-br from-red-500 via-fuchsia-500 to-red-500 opacity-[0.3] blur-3xl" />
+        <div className="absolute bottom-0 right-0 h-full w-full rounded-full bg-gradient-to-br from-red-500 via-brand to-red-500 opacity-[0.3] blur-3xl" />
       </Cursor>
     </Suspense>
   </div>

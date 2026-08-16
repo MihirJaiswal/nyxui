@@ -1,15 +1,18 @@
+import type React from "react";
+
 export function XTwitterIcon({
   className,
   size,
 }: {
   className?: string;
   size?: number;
-}) {
+}): React.ReactElement {
   return (
     <svg
       className={className}
       height={size}
       width={size}
+      style={size === undefined ? undefined : { height: size, width: size }}
       fill="currentColor"
       viewBox="0 0 1200 1227"
       xmlns="http://www.w3.org/2000/svg"

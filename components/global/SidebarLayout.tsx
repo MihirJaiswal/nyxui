@@ -2,7 +2,6 @@
 
 import React from "react";
 import { ComponentSidebar } from "@/components/components/sidebar/component-sidebar";
-import Navbar from "@/components/global/header/Navbar";
 import { useSidebarCollapse } from "@/hooks/use-sidebar-collapse";
 import { cn } from "@/lib/utils";
 
@@ -18,8 +17,7 @@ export default function SidebarLayout({
   const [isCollapsed] = useSidebarCollapse();
 
   return (
-    <div className="flex min-h-screen flex-col">
-      <Navbar />
+    <div className="flex flex-1 flex-col">
       <div
         className={cn(
           "flex w-full flex-1 flex-col px-6 lg:flex-row lg:px-6 xl:container xl:mx-auto xl:px-22 lg:gap-8",

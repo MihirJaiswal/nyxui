@@ -15,18 +15,18 @@ import { ModeToggle } from "@/components/global/ThemeToggle";
 import { cn } from "@/lib/utils";
 import { CommandPalette } from "@/components/global/CommandPalette";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
-import { useMounted } from "@/hooks/use-mounted";
 import { useEventListener } from "@/hooks/use-event-listener";
 import { XTwitterIcon } from "@/components/global/icons/XTwitterIcon";
-import { GradientDivider } from "@/components/global/GradientDivider";
 import Logo from "@/components/global/Logo";
 import { MobileNav } from "./MobileNav";
 import { externalLinks, siteLinks } from "@/lib/links";
+import { motion, useReducedMotion } from "motion/react";
 
-export default function Navbar() {
+export default function Navbar(): React.ReactElement {
   const [scrolled, setScrolled] = useState(false);
   const activeLink = usePathname();
-  const mounted = useMounted();
+  const shouldReduceMotion = useReducedMotion();
+  const isHome = activeLink === siteLinks.home;
 
   useEventListener("scroll", () => {
     const isScrolled = window.scrollY > 20;
@@ -52,35 +52,32 @@ export default function Navbar() {
     );
   };
 
-  if (!mounted) {
-    return (
-      <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-md">
-        <div className="flex h-16 items-center justify-between px-4 md:px-6 xl:container xl:px-20 mx-auto">
-          <div className="flex items-center gap-2">
-            <div className="h-8 w-8 animate-pulse rounded-full bg-muted md:h-9 md:w-9" />
-            <div className="hidden h-5 w-20 animate-pulse rounded bg-muted md:block" />
-          </div>
-          <div className="hidden items-center gap-3 lg:flex">
-            <div className="h-8 w-8 animate-pulse rounded-full bg-muted" />
-            <div className="h-8 w-8 animate-pulse rounded-full bg-muted" />
-            <div className="h-8 w-8 animate-pulse rounded-full bg-muted" />
-          </div>
-        </div>
-      </header>
-    );
-  }
-
   return (
-    <header
+    <motion.header
+      initial={false}
+      animate={{ maxWidth: isHome ? "55rem" : "85rem" }}
+      transition={
+        shouldReduceMotion
+          ? { duration: 0 }
+          : {
+              type: "tween",
+              duration: 0.42,
+              ease: [0.22, 1, 0.36, 1],
+            }
+      }
       className={cn(
-        "sticky top-0 z-50 w-full transition-all duration-200",
-        scrolled
-          ? "border-b border-border/50 bg-background/95 backdrop-blur-xl"
-          : "border-b border-transparent bg-background/80 backdrop-blur-md",
+        "top-4 z-50 w-full will-change-[max-width]",
+        isHome ? "fixed left-1/2 -translate-x-1/2" : "sticky mx-auto",
       )}
     >
-      <GradientDivider position="bottom" />
-      <div className="flex h-16 items-center justify-between px-4 md:px-6 xl:container xl:px-20 mx-auto">
+      <div
+        className={cn(
+          "mx-auto flex w-full max-w-full items-center justify-between rounded-[60px] px-4 py-2 shadow-[inset_1.5px_0_0_rgba(40,30,20,0.06),inset_-1px_0_0_rgba(40,30,20,0.06),inset_0_1px_0_rgba(40,30,20,0.09)] backdrop-blur-[20px] transition-[background-color,border-color,box-shadow] duration-500 ease-out motion-reduce:transition-none md:px-6 dark:shadow-[inset_1.2px_0_0_rgba(255,255,255,0.04),inset_-1.2px_0_0_rgba(255,255,255,0.04),inset_0_1.2px_0_rgba(255,255,255,0.1),inset_0_0.6px_0_rgba(255,255,255,0.1)]",
+          scrolled
+            ? "bg-card/95 shadow-[inset_1px_0_0_rgba(40,30,20,0.06),inset_-1px_0_0_rgba(40,30,20,0.06),inset_0_1px_0_rgba(40,30,20,0.09),inset_0_-1.5px_0_rgba(40,30,20,0.06)] dark:bg-black/80 dark:shadow-[inset_1.2px_0_0_rgba(255,255,255,0.04),inset_-1.2px_0_0_rgba(255,255,255,0.04),inset_0_1.2px_0_rgba(255,255,255,0.1),inset_0_0.6px_0_rgba(255,255,255,0.1),inset_0_-1.6px_0_rgba(255,255,255,0.06)]"
+            : "",
+        )}
+      >
         <div className="flex items-center">
           <Link
             href="/"
@@ -100,7 +97,7 @@ export default function Navbar() {
                 href={link.href}
                 aria-label={link.label}
                 className={cn(
-                  "px-3 py-2 text-sm font-medium transition-colors hover:text-foreground",
+                  "px-3 py-2 text-sm transition-colors hover:text-foreground",
                   activeLink === link.href
                     ? "text-brand"
                     : "text-muted-foreground",
@@ -114,7 +111,7 @@ export default function Navbar() {
               <DropdownMenuTrigger asChild>
                 <button
                   className={cn(
-                    "group flex items-center gap-0.5 px-3 py-2 text-sm font-medium transition-colors hover:text-foreground outline-none",
+                    "group flex items-center gap-0.5 px-3 py-2 text-sm transition-colors hover:text-foreground outline-none",
                     isMoreActive ? "text-brand" : "text-muted-foreground",
                   )}
                 >
@@ -156,7 +153,7 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-1">
-          <div className="hidden items-center gap-2 lg:flex">
+          <div className="hidden items-center lg:flex">
             <CommandPalette />
             <div>
               <a
@@ -187,7 +184,7 @@ export default function Navbar() {
                   size="icon"
                   className="rounded-full text-muted-foreground hover:bg-muted/80 hover:text-foreground"
                 >
-                  <XTwitterIcon size={10} />
+                  <XTwitterIcon size={14} />
                   <span className="sr-only">Twitter</span>
                 </Button>
               </a>
@@ -202,6 +199,6 @@ export default function Navbar() {
           />
         </div>
       </div>
-    </header>
+    </motion.header>
   );
 }
