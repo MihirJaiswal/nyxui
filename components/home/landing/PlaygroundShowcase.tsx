@@ -1,9 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { siteLinks } from "@/lib/links";
-import { PlaygroundDemo } from "./PlaygroundDemo";
-
-const WORKFLOW = ["Choose", "Tune", "Ship"] as const;
 
 export function PlaygroundShowcase(): React.ReactElement {
   return (
@@ -17,7 +14,8 @@ export function PlaygroundShowcase(): React.ReactElement {
             <h2 className="max-w-xl text-4xl leading-tight font-medium tracking-tight sm:text-5xl">
               A playground,
               <br />
-              not a <span className="font-caveat text-brand text-6xl">showroom.</span>
+              not a{" "}
+              <span className="font-caveat text-brand text-6xl">showroom.</span>
             </h2>
           </div>
 
@@ -37,22 +35,7 @@ export function PlaygroundShowcase(): React.ReactElement {
           </div>
         </div>
 
-        <div className="px-4 py-8 sm:px-8 sm:py-10 md:px-12">
-        </div>
-
-        <ol className="grid border-t border-border/60 sm:grid-cols-3 sm:divide-x sm:divide-border/60">
-          {WORKFLOW.map((step, index) => (
-            <li
-              key={step}
-              className="flex items-center gap-4 border-b border-border/60 px-6 py-5 last:border-b-0 sm:border-b-0"
-            >
-              <span className="font-mono text-[10px] text-brand">
-                0{index + 1}
-              </span>
-              <span className="text-sm text-foreground/70">{step}</span>
-            </li>
-          ))}
-        </ol>
+        <div className="px-4 py-8 sm:px-8 sm:py-10 md:px-12"></div>
       </div>
     </section>
   );

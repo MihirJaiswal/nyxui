@@ -148,6 +148,10 @@ export function ComponentCompass({
   });
 
   useEffect(() => {
+    preloadTick();
+  }, []);
+
+  useEffect(() => {
     rotation.jump(initialRotation);
     setActiveIndex(INITIAL_COMPONENT_INDEX);
 
@@ -273,7 +277,7 @@ export function ComponentCompass({
 
   return (
     <div className="relative left-1/2 mt-4 w-screen -translate-x-1/2 border-b border-border/60">
-      <div className="relative mx-auto flex max-w-295 justify-center">
+      <div className="relative mx-auto flex justify-center">
         <div
           onPointerEnter={preloadTick}
           onPointerDown={handlePointerDown}
@@ -303,6 +307,7 @@ export function ComponentCompass({
               linesPerComponent={LINES_PER_COMPONENT}
               linesPerWhiteGroup={LINES_PER_WHITE_GROUP}
               onComponentFocus={rotateToComponent}
+              onComponentHover={playHoverTick}
               rotation={rotation}
               timelineLineCount={timelineLineCount}
             />

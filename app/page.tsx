@@ -1,5 +1,5 @@
-import Navbar from "@/components/global/header/Navbar";
 import { LandingHero } from "@/components/home/LandingHero";
+import { ComponentBentoGrid } from "@/components/home/landing/ComponentBentoGrid";
 import { LandingCta } from "@/components/home/landing/LandingCta";
 import { PlaygroundShowcase } from "@/components/home/landing/PlaygroundShowcase";
 import { componentRegistry } from "@/components/playground/registry";
@@ -19,10 +19,14 @@ export default function Home() {
   );
 
   return (
-    <div className="flex min-h-screen flex-col dark:bg-black overflow-hidden">
-      <Navbar />
+    <div
+      data-home-page
+      className="flex flex-1 flex-col overflow-hidden dark:bg-black"
+    >
       <LandingHero components={components} />
+      <ComponentBentoGrid />
       <PlaygroundShowcase />
+      <LandingCta />
     </div>
   );
 }

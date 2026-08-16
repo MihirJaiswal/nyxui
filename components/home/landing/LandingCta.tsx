@@ -1,67 +1,49 @@
-"use client";
-
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { useReducedMotion } from "motion/react";
+import { ArrowUpRight } from "lucide-react";
 import { siteLinks } from "@/lib/links";
-import { GrainyBackground } from "@/registry/ui/grainy-background";
-
-const CTA_GRAIN_COLORS = ["#ff4d1f", "#000", "#180806", "#030303"];
+import AnimatedLogo from "@/components/home/newsletter/animated-logo";
 
 export function LandingCta(): React.ReactElement {
-  const shouldReduceMotion = useReducedMotion();
-
   return (
-    <section className="relative left-1/2 w-screen -translate-x-1/2 border-b border-border/60">
-      <div className="relative mx-auto max-w-295">
-        <GrainyBackground
-          colors={CTA_GRAIN_COLORS}
-          speed={0.65}
-          grainType="paper"
-          grainIntensity={38}
-          grainSize={1002}
-          animationType="pulse"
-          size="full"
-          position="relative"
-          animate={!shouldReduceMotion}
-          darkMode
-          grainBlendMode="soft-light"
-          style={{ height: "auto" }}
-          className="group isolate border border-brand/25 shadow-2xl"
-        >
-          <div className="relative py-16">
-            <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center text-center">
-              <h2 className="text-4xl leading-[0.95] font-medium tracking-tight text-foreground sm:text-6xl md:text-7xl">
-                Make it feel
-                <br />
-                unmistakably{" "}
-                <span className="font-caveat text-brand">yours.</span>
-              </h2>
+    <section className="relative left-1/2 w-screen -translate-x-1/2">
+      <div className="relative mx-auto grid min-h-80 max-w-295 border-x border-border/60 md:grid-cols-[minmax(0,1fr)_20rem]">
+        <div className="flex flex-col justify-between px-6 py-10 sm:px-10 sm:py-12 md:px-12 md:py-14">
+          <h2 className="max-w-4xl text-4xl leading-[1.05] font-medium tracking-tight sm:text-5xl md:text-6xl">
+            Got an interface in mind?
+            <br />
+            <span className="text-foreground/65">
+              Let&apos;s make it feel{" "}
+              <span className="text-brand font-caveat text-7xl">alive</span>.
+            </span>
+          </h2>
 
-              <p className="mt-7 max-w-xl text-sm leading-6 text-foreground/65 sm:text-base sm:leading-7">
-                Start with a living component, shape every detail in the
-                playground, and take clean production-ready code with you.
-              </p>
+          <Link
+            href={siteLinks.playground}
+            className="group mt-16 inline-flex w-fit items-center gap-3 text-sm font-medium text-foreground sm:mt-20"
+          >
+            <span className="flex size-7 items-center justify-center rounded-full bg-brand text-white transition-colors group-hover:bg-brand/85">
+              <ArrowUpRight className="size-3.5" aria-hidden="true" />
+            </span>
+            Open playground
+          </Link>
+        </div>
 
-              <div className="mt-9 flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row">
-                <Link
-                  href={siteLinks.playground}
-                  className="group/button inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-foreground px-6 text-sm font-medium text-background transition-transform hover:scale-[1.02] sm:w-auto"
-                >
-                  Open playground
-                  <ArrowRight className="size-4 transition-transform group-hover/button:translate-x-1" />
-                </Link>
-                <Link
-                  href={siteLinks.components}
-                  className="group/button inline-flex h-11 w-full items-center justify-center gap-2 rounded-full border border-foreground/20 bg-background/20 px-6 text-sm text-foreground backdrop-blur-md transition-colors hover:bg-background/35 sm:w-auto"
-                >
-                  Browse components
-                  <ArrowUpRight className="size-4 transition-transform group-hover/button:-translate-y-0.5 group-hover/button:translate-x-0.5" />
-                </Link>
-              </div>
-            </div>
+        <div className="relative flex min-h-72 items-center justify-center overflow-hidden border-t border-border/60 md:min-h-0 md:border-t-0 md:border-l">
+          <div className="size-32 sm:size-36">
+            <AnimatedLogo
+              className="h-full w-full text-black dark:text-white"
+              fillStartRatio={0}
+              strokeClassName="stroke-brand"
+              strokeOnly
+              strokeFadeDurationMs={500}
+              strokeWidth={14}
+              durationMs={14000}
+              fadeMs={900}
+              threshold={0.5}
+              triggerOnce
+            />
           </div>
-        </GrainyBackground>
+        </div>
       </div>
     </section>
   );

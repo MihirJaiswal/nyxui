@@ -48,6 +48,7 @@ import Footer from "@/components/global/Footer";
 import { JsonLd } from "@/components/global/JsonLd";
 import { externalLinks } from "@/lib/links";
 import { Toaster } from "@/components/ui/sonner";
+import Navbar from "@/components/global/header/Navbar";
 
 export const metadata: Metadata = {
   metadataBase: new URL(`${externalLinks.site}/`),
@@ -178,8 +179,11 @@ export default function RootLayout({
           enableSystem={false}
         >
           {/* <Banner /> */}
-          <main>{children}</main>
-          <Footer />
+          <div className="flex min-h-screen flex-col dark:has-[[data-home-page]]:bg-black">
+            <Navbar />
+            <main className="flex min-h-0 flex-1 flex-col">{children}</main>
+            <Footer />
+          </div>
           <Toaster />
         </ThemeProvider>
       </body>
