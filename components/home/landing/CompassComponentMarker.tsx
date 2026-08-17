@@ -14,6 +14,7 @@ import { useState } from "react";
 import { COMPASS_GEOMETRY } from "./compass-geometry";
 import type { LandingComponent } from "./types";
 import { cn } from "@/lib/utils";
+import responsiveStyles from "./compass-responsive.module.css";
 
 interface CompassComponentMarkerProps {
   angle: number;
@@ -63,10 +64,10 @@ export function CompassComponentMarker({
     mass: 0.9,
   });
   const markerHeight = isActive
-    ? COMPASS_GEOMETRY.activeMarkerHeightCqw
+    ? COMPASS_GEOMETRY.activeMarkerHeight
     : isHovered
-      ? COMPASS_GEOMETRY.hoveredMarkerHeightCqw
-      : COMPASS_GEOMETRY.inactiveMarkerHeightCqw;
+      ? COMPASS_GEOMETRY.hoveredMarkerHeight
+      : COMPASS_GEOMETRY.inactiveMarkerHeight;
 
   return (
     <div
@@ -76,12 +77,13 @@ export function CompassComponentMarker({
     >
       <motion.span
         aria-hidden="true"
-        className={
+        className={cn(
           isActive
             ? "pointer-events-none absolute left-0 top-0 w-0.5 bg-brand transition-colors duration-200"
-            : "pointer-events-none absolute left-0 top-0 w-px bg-foreground transition-colors duration-200 group-hover/marker:bg-brand group-focus-within/marker:bg-brand"
-        }
-        animate={{ height: `${markerHeight}cqw` }}
+            : "pointer-events-none absolute left-0 top-0 w-px bg-foreground transition-colors duration-200 group-hover/marker:bg-brand group-focus-within/marker:bg-brand",
+          isActive && responsiveStyles.mobileActiveMarkerLine,
+        )}
+        animate={{ height: markerHeight }}
         transition={
           shouldReduceMotion
             ? { duration: 0 }
@@ -91,12 +93,7 @@ export function CompassComponentMarker({
           transform: `translate(-50%, -${COMPASS_GEOMETRY.rulerRadiusCqw}cqw)`,
         }}
       />
-      <div
-        className="absolute left-0 top-0"
-        style={{
-          transform: `translateY(-${COMPASS_GEOMETRY.cardRadiusCqw}cqw)`,
-        }}
-      >
+      <div className={`absolute left-0 top-0 ${responsiveStyles.cardAnchor}`}>
         <motion.div
           className="w-28 -translate-x-1/2 -translate-y-1/2 sm:w-36"
           style={{ scale: shouldReduceMotion ? proximityScale : smoothScale }}
@@ -117,14 +114,14 @@ export function CompassComponentMarker({
           >
             <div
               className={cn(
-                "aspect-[1.65/1] w-full overflow-hidden rounded-xl p-0.5 shadow-lg",
+                "aspect-[1.65/1] w-full overflow-hidden rounded-lg p-0.5 shadow-lg sm:rounded-xl",
                 isActive || isHovered
                   ? "bg-linear-to-r from-brand/30 via-brand/85 to-brand/30"
                   : "bg-primary/40",
               )}
             >
-              <div className="h-full w-full overflow-hidden rounded-[10px] bg-background p-1">
-                <div className="h-full w-full overflow-hidden rounded-lg bg-zinc-950">
+              <div className="h-full w-full overflow-hidden rounded-md bg-background p-1 sm:rounded-[10px]">
+                <div className="h-full w-full overflow-hidden rounded-sm bg-zinc-950 sm:rounded-lg">
                   {component.image ? (
                     <Image
                       src={component.image}
@@ -144,11 +141,10 @@ export function CompassComponentMarker({
               </div>
             </div>
             <span
-              className={
-                isActive
-                  ? "mt-1.5 block truncate text-center font-caveat text-brand"
-                  : "mt-1.5 block truncate text-center font-caveat text-sm text-foreground"
-              }
+              className={cn(
+                "mt-1 block truncate text-center font-caveat text-xs sm:mt-1.5 sm:text-sm",
+                isActive ? "text-brand" : "text-foreground",
+              )}
             >
               {component.name}
             </span>

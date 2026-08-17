@@ -1,12 +1,11 @@
 export const COMPASS_GEOMETRY = {
-  activeMarkerHeightCqw: 2.68,
-  cardRadiusCqw: 42.3,
-  hoveredMarkerHeightCqw: 3.2,
-  inactiveMarkerHeightCqw: 2.7,
-  largeTickHeightRem: 2.5,
+  activeMarkerHeight: "2.68cqw",
+  hoveredMarkerHeight: "3.2cqw",
+  inactiveMarkerHeight: "2.7cqw",
+  largeTickHeight: "2.5rem",
   rulerRadiusCqw: 48,
   smallLinesPerGroup: 7,
-  smallTickHeightRem: 1.5,
-  wheelWidthPercent: 178,
+  smallTickHeight: "1.5rem",
+  wheelWidthPerComponentRem: 3.35,
   whiteGroupsPerComponent: 3,
 } as const;
