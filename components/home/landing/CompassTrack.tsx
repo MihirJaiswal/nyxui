@@ -17,6 +17,19 @@ interface CompassTrackProps {
   timelineLineCount: number;
 }
 
+const VISIBLE_MARKERS_EACH_SIDE = 2;
+
+function getCircularIndexDistance(
+  index: number,
+  activeIndex: number,
+  count: number,
+): number {
+  const forwardDistance = (((index - activeIndex) % count) + count) % count;
+  return forwardDistance > count / 2
+    ? forwardDistance - count
+    : forwardDistance;
+}
+
 export function CompassTrack({
   activeIndex,
   components,
@@ -45,6 +58,13 @@ export function CompassTrack({
       />
 
       {components.map((component, index) => {
+        const indexDistance = getCircularIndexDistance(
+          index,
+          activeIndex,
+          components.length,
+        );
+        if (Math.abs(indexDistance) > VISIBLE_MARKERS_EACH_SIDE) return null;
+
         const markerLine = index * linesPerComponent + firstMarkerOffset;
         const angle = (markerLine / timelineLineCount) * 360;
 
