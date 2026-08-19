@@ -1,26 +1,9 @@
 .wheel {
-  width: max(clamp(42rem, 178%, 131rem), var(--compact-compass-wheel-width));
-  transform: translateX(-50%) scale(1.4);
+  width: 131rem;
+  transform: translateX(-50%) scale(1);
   transform-origin: top center;
 }
 
 .cardAnchor {
-  transform: translateY(-40cqw);
-}
-
-@media (max-width: 47.999rem) {
-  .mobileActiveMarkerLine {
-    height: 3.2cqw !important;
-  }
-}
-
-@media (min-width: 48rem) {
-  .wheel {
-    width: 178%;
-    transform: translateX(-50%) scale(1);
-  }
-
-  .cardAnchor {
-    transform: translateY(-42.3cqw);
-  }
+  transform: translateY(-55.4rem);
 }

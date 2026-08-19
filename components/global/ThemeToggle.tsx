@@ -21,12 +21,13 @@ export const ModeToggle = React.forwardRef<
         variant="ghost"
         type="button"
         size="icon"
-        className={cn("px-2 animate-pulse", className)}
+        className={cn("px-2", className)}
         aria-label="Toggle theme"
         disabled
         {...props}
       >
-        <div className="size-[1.2rem] bg-muted rounded" />
+        <SunIcon className="size-[1rem] text-neutral-800 dark:hidden dark:text-neutral-200" />
+        <MoonIcon className="hidden size-[1rem] text-neutral-800 dark:block dark:text-neutral-200" />
       </Button>
     );
   }

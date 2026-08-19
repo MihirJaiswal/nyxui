@@ -17,6 +17,7 @@ import {
   type PointerEvent as ReactPointerEvent,
   type WheelEvent as ReactWheelEvent,
 } from "react";
+
 import { playHoverTick, preloadTick } from "@/lib/hover-tick";
 import { COMPASS_GEOMETRY } from "./compass-geometry";
 import { CompassTrack } from "./CompassTrack";
@@ -54,10 +55,6 @@ interface StoppableAnimation {
   stop: () => void;
 }
 
-interface CompassWheelStyle extends CSSProperties {
-  "--compact-compass-wheel-width": string;
-}
-
 const SNAP_SPRING = {
   type: "spring",
   stiffness: 250,
@@ -75,9 +72,7 @@ export function ComponentCompass({
   const componentCount = Math.max(components.length, 1);
   const degreesPerComponent = 360 / componentCount;
   const timelineLineCount = componentCount * LINES_PER_COMPONENT;
-  const wheelStyle: CompassWheelStyle = {
-    "--compact-compass-wheel-width": `${componentCount * COMPASS_GEOMETRY.wheelWidthPerComponentRem}rem`,
-    containerType: "inline-size",
+  const wheelStyle: CSSProperties = {
     left: "50%",
   };
   const markerAngleOffset = (FIRST_MARKER_OFFSET / timelineLineCount) * 360;
