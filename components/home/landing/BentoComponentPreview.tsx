@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { useIsMobile } from "@/hooks/use-media-query";
 
 export type BentoComponentName =
   | "Custom Pointer"
@@ -43,6 +44,7 @@ interface BentoComponentPreviewProps {
 export function BentoComponentPreview({
   name,
 }: BentoComponentPreviewProps): React.ReactElement {
+  const isMobile = useIsMobile();
   if (name === "Image Ripple") {
     return (
       <div className="absolute inset-4 flex items-center justify-center overflow-hidden rounded-2xl">
@@ -64,9 +66,9 @@ export function BentoComponentPreview({
   if (name === "Keyboard") {
     return (
       <div className="absolute inset-4 flex items-center justify-center overflow-hidden rounded-2xl">
-        <div className="w-max origin-center scale-50">
+        <div className="w-max origin-center scale-38 sm:scale-52 md:scale-70 lg:scale-48 xl:scale-50">
           <InteractiveKeyboard
-            layout="standard"
+            layout={isMobile ? "compact" : "standard"}
             showFunctionKeys
             showNavigationCluster
             allowPhysicalKeyboard
@@ -81,7 +83,7 @@ export function BentoComponentPreview({
   if (name === "Terminal") {
     return (
       <div className="absolute inset-4 flex items-center justify-center overflow-hidden rounded-2xl p-4">
-        <div className="w-full origin-center scale-x-90 scale-y-80">
+        <div className="w-full origin-center scale-60 sm:scale-55 md:scale-60 lg:scale-90 grid lg:block items-center justify-center">
           <InteractiveTerminal
             command="npx shadcn add @nyxui/keyboard"
             steps={[
@@ -99,7 +101,7 @@ export function BentoComponentPreview({
             typingDelay={28}
             title="nyx install"
             variant="retro"
-            className="w-full"
+            className="w-113 lg:w-full"
           />
         </div>
       </div>
@@ -110,7 +112,7 @@ export function BentoComponentPreview({
     <div className="absolute inset-4 flex items-center justify-center overflow-hidden rounded-2xl p-6">
       <GlitchButton
         glitchAlways
-        className="rounded-xl bg-zinc-900 px-6 py-4 text-lg sm:text-2xl border"
+        className="rounded-xl bg-zinc-900 px-6 py-4 text-lg sm:text-2xl md:text-3xl border"
       >
         Ship it
       </GlitchButton>

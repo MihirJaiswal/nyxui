@@ -13,7 +13,10 @@ export function LandingCta(): React.ReactElement {
             <br />
             <span className="text-foreground/65">
               Let&apos;s make it feel{" "}
-              <span className="text-brand font-caveat text-7xl">alive</span>.
+              <span className="text-brand font-caveat text-5xl sm:text-6xl md:text-7xl">
+                alive
+              </span>
+              .
             </span>
           </h2>
 

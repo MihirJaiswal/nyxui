@@ -5,6 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --breakpoint-xs: 30rem;
   --shadow-xs: var(--smooth-shadow-xs);
   --shadow-sm: var(--smooth-shadow-sm);
   --shadow-md: var(--smooth-shadow-md);
