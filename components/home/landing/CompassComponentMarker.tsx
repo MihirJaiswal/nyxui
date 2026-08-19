@@ -81,21 +81,21 @@ export function CompassComponentMarker({
           isActive
             ? "pointer-events-none absolute left-0 top-0 w-0.5 bg-brand transition-colors duration-200"
             : "pointer-events-none absolute left-0 top-0 w-px bg-foreground transition-colors duration-200 group-hover/marker:bg-brand group-focus-within/marker:bg-brand",
-          isActive && responsiveStyles.mobileActiveMarkerLine,
         )}
         animate={{ height: markerHeight }}
+        initial={false}
         transition={
           shouldReduceMotion
             ? { duration: 0 }
             : { type: "spring", stiffness: 380, damping: 28, mass: 0.8 }
         }
         style={{
-          transform: `translate(-50%, -${COMPASS_GEOMETRY.rulerRadiusCqw}cqw)`,
+          transform: `translate(-50%, -${COMPASS_GEOMETRY.rulerRadiusRem}rem)`,
         }}
       />
       <div className={`absolute left-0 top-0 ${responsiveStyles.cardAnchor}`}>
         <motion.div
-          className="w-28 -translate-x-1/2 -translate-y-1/2 sm:w-36"
+          className="w-36 -translate-x-1/2 -translate-y-1/2"
           style={{ scale: shouldReduceMotion ? proximityScale : smoothScale }}
         >
           <Link
@@ -114,14 +114,14 @@ export function CompassComponentMarker({
           >
             <div
               className={cn(
-                "aspect-[1.65/1] w-full overflow-hidden rounded-lg p-0.5 shadow-lg sm:rounded-xl",
+                "aspect-[1.65/1] w-full overflow-hidden rounded-xl p-0.5 shadow-lg",
                 isActive || isHovered
                   ? "bg-linear-to-r from-brand/30 via-brand/85 to-brand/30"
                   : "bg-primary/40",
               )}
             >
-              <div className="h-full w-full overflow-hidden rounded-md bg-background p-1 sm:rounded-[10px]">
-                <div className="h-full w-full overflow-hidden rounded-sm bg-zinc-950 sm:rounded-lg">
+              <div className="h-full w-full overflow-hidden rounded-[13px] bg-background p-1">
+                <div className="h-full w-full overflow-hidden rounded-lg bg-zinc-950">
                   {component.image ? (
                     <Image
                       src={component.image}
@@ -142,7 +142,7 @@ export function CompassComponentMarker({
             </div>
             <span
               className={cn(
-                "mt-1 block truncate text-center font-caveat text-xs sm:mt-1.5 sm:text-sm",
+                "mt-1.5 block truncate text-center font-caveat text-sm",
                 isActive ? "text-brand" : "text-foreground",
               )}
             >
