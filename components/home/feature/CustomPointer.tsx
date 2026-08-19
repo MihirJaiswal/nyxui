@@ -116,7 +116,7 @@ export const CustomPointer = () => (
                   />
                 </svg>
               </div>
-              <div className="mt-6 sm:mt-10 text-7xl font-thin text-black">
+              <div className="mt-6 sm:mt-10 text-5xl sm:text-[2.6rem] md:text-5xl lg:text-7xl font-thin text-black">
                 <div className="relative max-w-sm border-[1.5px] border-blue-400 px-0.5">
                   Build great UI.
                   <div className="absolute bottom-0 right-0 h-1 w-1 translate-x-1/2 translate-y-1/2 rounded-full bg-blue-400" />

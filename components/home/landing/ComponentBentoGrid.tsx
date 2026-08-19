@@ -26,23 +26,28 @@ const BENTO_LAYOUTS = [
     cells: [
       {
         name: "Keyboard",
-        className: "min-h-52 md:col-span-6 md:min-h-0",
+        className:
+          "min-h-52 sm:col-span-2 md:col-span-12 md:min-h-72 md:pb-4 lg:col-span-6 lg:min-h-0",
       },
       {
         name: "Glitch Button",
-        className: "min-h-52 md:col-span-3 md:min-h-0",
+        className:
+          "min-h-52 sm:col-span-1 md:col-span-6 lg:col-span-3 lg:min-h-0",
       },
       {
         name: "Image Ripple",
-        className: "min-h-52 md:col-span-3 md:min-h-0",
+        className:
+          "min-h-52 sm:col-span-1 md:col-span-6 lg:col-span-3 lg:min-h-0",
       },
       {
         name: "Terminal",
-        className: "min-h-72 md:col-span-5 md:row-span-2 md:min-h-0",
+        className:
+          "min-h-72 sm:col-span-1 md:col-span-6 lg:col-span-5 lg:row-span-2 lg:min-h-0",
       },
       {
         name: "Custom Pointer",
-        className: "min-h-72 md:col-span-7 md:row-span-2 md:min-h-0",
+        className:
+          "min-h-72 sm:col-span-1 md:col-span-6 lg:col-span-7 lg:row-span-2 lg:min-h-0",
       },
     ],
   },
@@ -52,23 +57,28 @@ const BENTO_LAYOUTS = [
     cells: [
       {
         name: "Keyboard",
-        className: "min-h-52 md:col-span-12 md:min-h-0",
+        className:
+          "min-h-52 sm:col-span-2 md:col-span-12 md:min-h-72 md:pb-4 lg:col-span-12 lg:min-h-0",
       },
       {
         name: "Custom Pointer",
-        className: "min-h-52 md:col-span-3 md:row-span-2 md:min-h-0",
+        className:
+          "min-h-52 sm:col-span-1 md:col-span-6 lg:col-span-3 lg:row-span-2 lg:min-h-0",
       },
       {
         name: "Terminal",
-        className: "min-h-72 md:col-span-6 md:row-span-2 md:min-h-0",
+        className:
+          "min-h-72 sm:col-span-1 md:col-span-6 lg:col-span-6 lg:row-span-2 lg:min-h-0",
       },
       {
         name: "Glitch Button",
-        className: "min-h-52 md:col-span-3 md:min-h-0",
+        className:
+          "min-h-52 sm:col-span-1 md:col-span-6 lg:col-span-3 lg:min-h-0",
       },
       {
         name: "Image Ripple",
-        className: "min-h-52 md:col-span-3 md:min-h-0",
+        className:
+          "min-h-52 sm:col-span-1 md:col-span-6 lg:col-span-3 lg:min-h-0",
       },
     ],
   },
@@ -78,23 +88,28 @@ const BENTO_LAYOUTS = [
     cells: [
       {
         name: "Terminal",
-        className: "min-h-72 md:col-span-8 md:row-span-2 md:min-h-0",
+        className:
+          "min-h-72 sm:col-span-1 md:col-span-6 lg:col-span-8 lg:row-span-2 lg:min-h-0",
       },
       {
         name: "Keyboard",
-        className: "min-h-52 md:col-span-4 md:min-h-0",
+        className:
+          "min-h-52 sm:col-span-1 md:col-span-6 md:min-h-72 lg:col-span-4 lg:min-h-0",
       },
       {
         name: "Glitch Button",
-        className: "min-h-52 md:col-span-2 md:min-h-0",
+        className:
+          "min-h-52 sm:col-span-1 md:col-span-6 lg:col-span-2 lg:min-h-0",
       },
       {
         name: "Image Ripple",
-        className: "min-h-52 md:col-span-2 md:min-h-0",
+        className:
+          "min-h-52 sm:col-span-1 md:col-span-6 lg:col-span-2 lg:min-h-0",
       },
       {
         name: "Custom Pointer",
-        className: "min-h-52 md:col-span-12 md:min-h-0",
+        className:
+          "min-h-52 sm:col-span-2 md:col-span-12 lg:col-span-12 lg:min-h-0",
       },
     ],
   },
@@ -154,7 +169,7 @@ export function ComponentBentoGrid(): React.ReactElement {
               The component collection
             </p>
             <h2 className="max-w-xl text-4xl leading-tight font-medium tracking-tight sm:text-5xl">
-              Practical components.
+              Design basics.
               <br />
               Unforgettable{" "}
               <span className="font-caveat text-brand text-6xl">details.</span>
@@ -170,7 +185,7 @@ export function ComponentBentoGrid(): React.ReactElement {
           </div>
         </div>
 
-        <div className="grid grid-flow-row-dense grid-cols-1 gap-3 p-3 sm:p-5 md:auto-rows-52 md:grid-cols-12">
+        <div className="grid grid-flow-row-dense grid-cols-1 gap-3 p-3 sm:grid-cols-2 sm:p-5 md:grid-cols-12 lg:auto-rows-52">
           {activeLayout.cells.map((cell, index) => (
             <BentoCell
               key={`${activeLayout.name}-${cell.name}`}
