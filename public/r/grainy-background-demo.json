@@ -4,13 +4,8 @@
   "type": "registry:example",
   "title": "Grainy Background Demo",
   "description": "Example showing an animated grainy background.",
-  "dependencies": [
-    "motion",
-    "lucide-react"
-  ],
-  "registryDependencies": [
-    "https://nyxui.com/r/grainy-background"
-  ],
+  "dependencies": ["motion", "lucide-react"],
+  "registryDependencies": ["https://nyxui.com/r/grainy-background"],
   "files": [
     {
       "path": "registry/example/grainy-background-demo.tsx",

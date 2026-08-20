@@ -15,19 +15,6 @@ interface CompassTrackProps {
   timelineLineCount: number;
 }
 
-const VISIBLE_MARKERS_EACH_SIDE = 2;
-
-function getCircularIndexDistance(
-  index: number,
-  activeIndex: number,
-  count: number,
-): number {
-  const forwardDistance = (((index - activeIndex) % count) + count) % count;
-  return forwardDistance > count / 2
-    ? forwardDistance - count
-    : forwardDistance;
-}
-
 export function CompassTrack({
   activeIndex,
   components,
@@ -47,7 +34,6 @@ export function CompassTrack({
       className="absolute inset-0"
       style={{ rotate: rotation }}
     >
-      <div className="absolute rounded-full" style={{ inset: "2%" }} />
       <CompassRulerTicks
         firstMarkerOffset={firstMarkerOffset}
         linesPerComponent={linesPerComponent}

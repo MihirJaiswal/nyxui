@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { COMPASS_GEOMETRY } from "@/lib/compass-geometry";
 
 interface CompassRulerTicksProps {
@@ -7,7 +8,7 @@ interface CompassRulerTicksProps {
   timelineLineCount: number;
 }
 
-export function CompassRulerTicks({
+export const CompassRulerTicks = memo(function CompassRulerTicks({
   firstMarkerOffset,
   linesPerComponent,
   linesPerWhiteGroup,
@@ -43,4 +44,4 @@ export function CompassRulerTicks({
       })}
     </>
   );
-}
+});

@@ -61,6 +61,8 @@ const SNAP_SPRING = {
   mass: 0.9,
 } as const;
 
+const WHEEL_STYLE: CSSProperties = { left: "50%" };
+
 function wrapIndex(index: number, count: number): number {
   return ((index % count) + count) % count;
 }
@@ -71,9 +73,6 @@ export function ComponentCompass({
   const componentCount = Math.max(components.length, 1);
   const degreesPerComponent = 360 / componentCount;
   const timelineLineCount = componentCount * LINES_PER_COMPONENT;
-  const wheelStyle: CSSProperties = {
-    left: "50%",
-  };
   const markerAngleOffset = (FIRST_MARKER_OFFSET / timelineLineCount) * 360;
   const initialRotation =
     -INITIAL_COMPONENT_INDEX * degreesPerComponent - markerAngleOffset;
@@ -143,7 +142,8 @@ export function ComponentCompass({
     const rawIndex = Math.round(
       -(latestRotation + markerAngleOffset) / degreesPerComponent,
     );
-    setActiveIndex(wrapIndex(rawIndex, componentCount));
+    const nextIndex = wrapIndex(rawIndex, componentCount);
+    setActiveIndex((prev) => (prev === nextIndex ? prev : nextIndex));
     const degreesPerLine = 360 / timelineLineCount;
     const currentLine = Math.round(latestRotation / degreesPerLine);
     if (currentLine !== lastSoundedLineRef.current) {
@@ -298,7 +298,7 @@ export function ComponentCompass({
         >
           <div
             className="absolute top-0 aspect-square compass-wheel"
-            style={wheelStyle}
+            style={WHEEL_STYLE}
           >
             <CompassTrack
               activeIndex={activeIndex}

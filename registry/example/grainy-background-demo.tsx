@@ -154,7 +154,9 @@ function TileCard({ tile }: { tile: Tile }) {
         </GrainyBackground>
       </div>
       {/* Content */}
-      <div className={`flex flex-col justify-end ${isLarge ? "px-4 pb-4 pt-2" : "px-3 pb-3"}`}>
+      <div
+        className={`flex flex-col justify-end ${isLarge ? "px-4 pb-4 pt-2" : "px-3 pb-3"}`}
+      >
         <p
           className={`leading-relaxed text-neutral-500 dark:text-neutral-400 ${isLarge ? "text-sm" : "text-[11px]"}`}
         >

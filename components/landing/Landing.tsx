@@ -7,9 +7,7 @@ interface LandingHeroProps {
   components: LandingComponent[];
 }
 
-export function Landing({
-  components,
-}: LandingHeroProps): React.ReactElement {
+export function Landing({ components }: LandingHeroProps): React.ReactElement {
   return (
     <section className="relative max-w-295 mx-auto">
       <div className="relative">
