@@ -97,6 +97,453 @@ function pickComponent(
 }
 
 export const componentRegistry: ComponentRegistry = {
+  "water-ripple-effect": {
+    name: "Water Ripple Effect",
+    component: "WaterRippleEffect",
+    props: {
+      // Image
+      imageSrc: {
+        type: "string",
+        default:
+          "https://raw.githubusercontent.com/MihirJaiswal/nyxui/refs/heads/main/public/assets/images/water-ripple-effect/art.jpg",
+        label: "Image Source",
+        description: "URL of the image to apply ripple effect to",
+        category: "Image",
+      },
+
+      // Dimensions
+      width: {
+        type: "number",
+        default: 920,
+        min: 200,
+        max: 1200,
+        step: 50,
+        label: "Width",
+        description: "Width of the effect container",
+        category: "Dimensions",
+      },
+      height: {
+        type: "number",
+        default: 955,
+        min: 200,
+        max: 1200,
+        step: 50,
+        label: "Height",
+        description: "Height of the effect container",
+        category: "Dimensions",
+      },
+      containerClassName: {
+        type: "string",
+        default: "",
+        label: "Container Class",
+        description: "Additional CSS classes for the outer container wrapper",
+        category: "Dimensions",
+      },
+      scale: {
+        type: "number",
+        default: 1.0,
+        min: 0.5,
+        max: 2.0,
+        step: 0.1,
+        label: "Scale",
+        description: "Scale factor for the entire effect",
+        category: "Dimensions",
+      },
+
+      // Wave Effects
+      waveIntensity: {
+        type: "number",
+        default: 0.006,
+        min: 0,
+        max: 0.02,
+        step: 0.001,
+        label: "Wave Intensity",
+        description: "Intensity of the base wave distortion",
+        category: "Wave Effects",
+      },
+      waveFrequency: {
+        type: "number",
+        default: 10.0,
+        min: 5.0,
+        max: 20.0,
+        step: 0.5,
+        label: "Wave Frequency",
+        description: "Frequency of the wave patterns",
+        category: "Wave Effects",
+      },
+
+      // Ripple Effects
+      rippleIntensity: {
+        type: "number",
+        default: 0.012,
+        min: 0,
+        max: 0.03,
+        step: 0.001,
+        label: "Ripple Intensity",
+        description: "Intensity of mouse-interactive ripples",
+        category: "Ripple Effects",
+      },
+      rippleFrequency: {
+        type: "number",
+        default: 20.0,
+        min: 10.0,
+        max: 40.0,
+        step: 1.0,
+        label: "Ripple Frequency",
+        description: "Frequency of the ripple patterns",
+        category: "Ripple Effects",
+      },
+      hoverRippleMultiplier: {
+        type: "number",
+        default: 4.0,
+        min: 1.0,
+        max: 8.0,
+        step: 0.5,
+        label: "Hover Multiplier",
+        description: "Multiplier for ripple intensity on hover",
+        category: "Ripple Effects",
+      },
+
+      // Animation
+      animationSpeed: {
+        type: "number",
+        default: 1.0,
+        min: 0.1,
+        max: 3.0,
+        step: 0.1,
+        label: "Animation Speed",
+        description: "Speed of all animations",
+        category: "Animation",
+      },
+      transitionSpeed: {
+        type: "number",
+        default: 0.08,
+        min: 0.01,
+        max: 0.2,
+        step: 0.01,
+        label: "Transition Speed",
+        description: "Speed of hover transitions",
+        category: "Animation",
+      },
+
+      // Distortion
+      distortionAmount: {
+        type: "number",
+        default: 0.008,
+        min: 0,
+        max: 0.02,
+        step: 0.001,
+        label: "Distortion Amount",
+        description: "Amount of overall distortion effect",
+        category: "Distortion",
+      },
+    },
+  },
+  "image-scanner": {
+    name: "Image Scanner",
+    component: "ImageScanner",
+    props: {
+      image: {
+        type: "string",
+        default:
+          "https://raw.githubusercontent.com/MihirJaiswal/nyxui/refs/heads/main/public/assets/images/image-scanner/img.jpg",
+        label: "Image URL",
+        description: "Source image to scan",
+      },
+      alt: {
+        type: "string",
+        default: "Scanning image",
+        label: "Alt Text",
+        description: "Alternative text for accessibility",
+      },
+      scanSpeed: {
+        type: "number",
+        default: 2,
+        label: "Scan Speed",
+        description: "Animation speed (0.5-5)",
+      },
+      scanColor: {
+        type: "select",
+        default: "emerald",
+        options: ["emerald", "blue", "purple", "amber", "red", "cyan", "pink"],
+        label: "Scan Color",
+        description: "Color theme for scan effects",
+      },
+      scanType: {
+        type: "select",
+        default: "default",
+        options: ["default", "grid", "radar", "pulse", "wave", "matrix"],
+        label: "Scan Type",
+        description: "Type of scanning animation",
+      },
+      autoScan: {
+        type: "boolean",
+        default: false,
+        label: "Auto Scan",
+        description: "Start scanning automatically",
+      },
+      scanDelay: {
+        type: "number",
+        default: 0,
+        min: 0,
+        max: 10,
+        step: 0.5,
+        label: "Scan Delay",
+        description: "Delay before auto scan starts (seconds)",
+      },
+      triggerScan: {
+        type: "boolean",
+        default: false,
+        label: "Trigger Scan",
+        description: "Externally trigger the scanning effect",
+      },
+      scanAtScroll: {
+        type: "boolean",
+        default: false,
+        label: "Scan at Scroll",
+        description: "Trigger scan when scrolled into view",
+      },
+      showDataOverlay: {
+        type: "boolean",
+        default: true,
+        label: "Show Data Overlay",
+        description: "Display scanning data overlay",
+      },
+      showProgress: {
+        type: "boolean",
+        default: true,
+        label: "Show Progress",
+        description: "Display scan progress indicator",
+      },
+      scanIntensity: {
+        type: "select",
+        default: "medium",
+        options: ["low", "medium", "high", "extreme"],
+        label: "Scan Intensity",
+        description: "Intensity of scan effects",
+      },
+      showScanResults: {
+        type: "boolean",
+        default: true,
+        label: "Show Scan Results",
+        description: "Display detected objects/anomalies",
+      },
+      scanResults: {
+        type: "textarea",
+        default: [
+          {
+            id: "target-1",
+            type: "object",
+            confidence: 95,
+            position: { x: 25, y: 30 },
+            label: "Target Alpha",
+          },
+          {
+            id: "anomaly-1",
+            type: "anomaly",
+            confidence: 78,
+            position: { x: 65, y: 45 },
+            label: "Anomaly Beta",
+          },
+          {
+            id: "data-1",
+            type: "data",
+            confidence: 89,
+            position: { x: 40, y: 70 },
+            label: "Data Node",
+          },
+          {
+            id: "threat-1",
+            type: "threat",
+            confidence: 85,
+            position: { x: 80, y: 20 },
+            label: "Security Risk",
+          },
+        ],
+        label: "Scan Results (JSON)",
+        description:
+          "Custom scan results as JSON string. Leave empty to use auto-generated results.",
+        conditional: {
+          property: "showScanResults",
+          value: true,
+        },
+      },
+      loop: {
+        type: "boolean",
+        default: false,
+        label: "Loop",
+        description: "Continuously repeat scan animation",
+      },
+      disableClickToScan: {
+        type: "boolean",
+        default: false,
+        label: "Disable Click to Scan",
+        description: "Prevent manual scan triggering",
+      },
+      className: {
+        type: "string",
+        default: "",
+        label: "Custom Class",
+        description: "Additional CSS classes",
+      },
+    },
+  },
+
+  "3d-layered-card": {
+    name: "3D Layered Card",
+    component: "ThreeDLayeredCard",
+    props: {
+      // Content
+      logo: {
+        type: "string",
+        default:
+          "https://raw.githubusercontent.com/MihirJaiswal/nyxui/1ea447828a11aeb31e46b57a06d74916ff2dcf65/public/assets/images/3d-layered-card/snaplogo.svg",
+        label: "Logo Image",
+        description: "URL for the logo image",
+        category: "Content",
+      },
+      className: {
+        type: "string",
+        default: "",
+        label: "CSS Classes",
+        description: "Additional Tailwind CSS classes for styling",
+        category: "Appearance",
+      },
+      mainImage: {
+        type: "string",
+        default:
+          "https://raw.githubusercontent.com/MihirJaiswal/nyxui/refs/heads/main/public/assets/images/3d-layered-card/snap.png",
+        label: "Main Image",
+        description: "URL for the main character/content image",
+        category: "Content",
+      },
+      title: {
+        type: "string",
+        default: "3D Card Title",
+        label: "Title",
+        description: "Title text displayed on the card",
+        category: "Content",
+      },
+      children: {
+        type: "textarea",
+        default: `<div className="text-center space-y-2">
+  <h3 className="text-lg font-bold">Expanded Content</h3>
+  <p className="text-sm opacity-90">
+    This content appears when the card is expanded.
+  </p>
+</div>`,
+        label: "Expanded Content",
+        description: "JSX content shown when card is expanded",
+        category: "Content",
+        placeholder: "Enter expanded content...",
+      },
+      height: {
+        type: "object",
+        default: { collapsed: 130, expanded: 300 },
+        label: "Height",
+        description: "Height for collapsed and expanded states",
+        category: "Dimensions",
+      },
+      logoPosition: {
+        type: "object",
+        default: { expanded: 15 },
+        label: "Logo Position",
+        description: "Top position of logo when expanded",
+        category: "Dimensions",
+      },
+      // Dimensions
+      width: {
+        type: "number",
+        default: 288,
+        min: 200,
+        max: 500,
+        step: 10,
+        label: "Width (px)",
+        description: "Card width in pixels",
+        category: "Dimensions",
+      },
+      logoSize: {
+        type: "number",
+        default: 64,
+        min: 32,
+        max: 128,
+        step: 8,
+        label: "Logo Size (px)",
+        description: "Size of the logo in pixels",
+        category: "Dimensions",
+      },
+      titlePosition: {
+        type: "number",
+        default: 90,
+        min: 60,
+        max: 120,
+        step: 5,
+        label: "Title Position",
+        description: "Vertical position of title from top",
+        category: "Dimensions",
+      },
+
+      // Heights (deprecated - use height object instead)
+      // Note: collapsedHeight and expandedHeight are legacy props
+      // The component uses height={ collapsed: number, expanded: number }
+
+      // Styling
+      backgroundColor: {
+        type: "string",
+        default: "bg-gradient-to-b from-[#FF9901] via-[#DF911A] to-[#724f13]",
+        label: "Background",
+        description: "Background gradient or color class",
+        category: "Styling",
+      },
+      textColor: {
+        type: "color",
+        default: "#ffffff",
+        label: "Text Color",
+        description: "Color of text elements",
+        category: "Styling",
+      },
+      borderColor: {
+        type: "color",
+        default: "",
+        label: "Border Color",
+        description: "Optional border color",
+        category: "Styling",
+      },
+      borderWidth: {
+        type: "string",
+        default: "0",
+        label: "Border Width",
+        description: "Border width (e.g., '2px')",
+        category: "Styling",
+      },
+
+      // Effects
+      shineIntensity: {
+        type: "number",
+        default: 0.3,
+        min: 0,
+        max: 1,
+        step: 0.1,
+        label: "Shine Intensity",
+        description: "Intensity of the shine effect",
+        category: "Effects",
+      },
+      glowColor: {
+        type: "color",
+        default: "rgba(255, 165, 0, 0.1)",
+        label: "Glow Color",
+        description: "Color of the glow effect",
+        category: "Effects",
+      },
+      glowGradient: {
+        type: "color",
+        default: "#fde047",
+        label: "Glow Gradient",
+        description: "Gradient color for glow effects",
+        category: "Effects",
+      },
+    },
+  },
   "cyberpunk-card": {
     name: "Cyberpunk Card",
     component: "CyberpunkCard",
@@ -395,306 +842,6 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
         label: "Highlight Lines",
         description: "Array of line numbers to highlight",
         category: "Features",
-      },
-    },
-  },
-
-  keyboard: {
-    name: "Interactive Keyboard",
-    component: "InteractiveKeyboard",
-    props: {
-      // Layout
-      layout: {
-        type: "select",
-        default: "standard",
-        options: ["standard", "compact"],
-        label: "Layout",
-        description: "Keyboard layout type",
-        category: "Layout",
-      },
-      showFunctionKeys: {
-        type: "boolean",
-        default: true,
-        label: "Show Function Keys",
-        description: "Display F1-F12 function keys row",
-        category: "Layout",
-      },
-      showNavigationCluster: {
-        type: "boolean",
-        default: true,
-        label: "Show Navigation Cluster",
-        description: "Display navigation keys (Insert, Delete, etc.)",
-        category: "Layout",
-      },
-
-      // Appearance
-      theme: {
-        type: "select",
-        default: "cyberpunk",
-        options: ["cyberpunk", "retro", "neon", "pastel"],
-        label: "Theme",
-        description: "Visual theme for the keyboard",
-        category: "Appearance",
-      },
-      keyColor: {
-        type: "color",
-        default: "#2a2a2a",
-        label: "Key Color",
-        description: "Base color for keyboard keys",
-        category: "Appearance",
-      },
-      keyTextColor: {
-        type: "color",
-        default: "#ffffff",
-        label: "Key Text Color",
-        description: "Color of text on keys",
-        category: "Appearance",
-      },
-      accentColor: {
-        type: "color",
-        default: "#F57644",
-        label: "Accent Color",
-        description: "Color for highlights and special elements",
-        category: "Appearance",
-      },
-      keyPressedColor: {
-        type: "color",
-        default: "#333333",
-        label: "Pressed Key Color",
-        description: "Color when keys are pressed",
-        category: "Appearance",
-      },
-
-      // 3D Effects
-      perspective: {
-        type: "number",
-        default: 1000,
-        min: 500,
-        max: 2000,
-        step: 100,
-        label: "Perspective",
-        description:
-          "Camera depth for the 3D tilt. It is most visible when Rotation X is above 0.",
-        category: "3D Effects",
-      },
-      rotateX: {
-        type: "number",
-        default: 0,
-        min: 0,
-        max: 45,
-        step: 5,
-        label: "Rotation X",
-        description:
-          "Keyboard tilt in degrees. Keep it at 0 for a flat physical keyboard.",
-        category: "3D Effects",
-      },
-
-      // Interaction
-      allowPhysicalKeyboard: {
-        type: "boolean",
-        default: true,
-        label: "Physical Keyboard",
-        description: "Respond to physical keyboard input",
-        category: "Interaction",
-      },
-      keyPressAnimationDuration: {
-        type: "number",
-        default: 150,
-        min: 50,
-        max: 500,
-        step: 50,
-        label: "Animation Duration (ms)",
-        description: "Duration of key press animation",
-        category: "Interaction",
-      },
-
-      // Active Keys
-      activeKeys: {
-        type: "object",
-        default: ["KeyW", "KeyA", "KeyS", "KeyD"],
-        label: "Active Keys",
-        description: "Array of key codes to highlight as active",
-        category: "Active Keys",
-      },
-      activeKeyGlowColor: {
-        type: "color",
-        default: "#F57644",
-        label: "Active Key Glow Color",
-        description: "Color for active key glow effect",
-        category: "Active Keys",
-      },
-      activeKeyGlowIntensity: {
-        type: "number",
-        default: 0.8,
-        min: 0.1,
-        max: 1.0,
-        step: 0.1,
-        label: "Glow Intensity",
-        description: "Intensity of the active key glow effect",
-        category: "Active Keys",
-      },
-      className: {
-        type: "string",
-        default: "",
-        label: "CSS Classes",
-        description: "Additional Tailwind CSS classes for styling",
-        category: "Appearance",
-      },
-    },
-  },
-
-  "3d-layered-card": {
-    name: "3D Layered Card",
-    component: "ThreeDLayeredCard",
-    props: {
-      // Content
-      logo: {
-        type: "string",
-        default:
-          "https://raw.githubusercontent.com/MihirJaiswal/nyxui/1ea447828a11aeb31e46b57a06d74916ff2dcf65/public/assets/images/3d-layered-card/snaplogo.svg",
-        label: "Logo Image",
-        description: "URL for the logo image",
-        category: "Content",
-      },
-      className: {
-        type: "string",
-        default: "",
-        label: "CSS Classes",
-        description: "Additional Tailwind CSS classes for styling",
-        category: "Appearance",
-      },
-      mainImage: {
-        type: "string",
-        default:
-          "https://raw.githubusercontent.com/MihirJaiswal/nyxui/refs/heads/main/public/assets/images/3d-layered-card/snap.png",
-        label: "Main Image",
-        description: "URL for the main character/content image",
-        category: "Content",
-      },
-      title: {
-        type: "string",
-        default: "3D Card Title",
-        label: "Title",
-        description: "Title text displayed on the card",
-        category: "Content",
-      },
-      children: {
-        type: "textarea",
-        default: `<div className="text-center space-y-2">
-  <h3 className="text-lg font-bold">Expanded Content</h3>
-  <p className="text-sm opacity-90">
-    This content appears when the card is expanded.
-  </p>
-</div>`,
-        label: "Expanded Content",
-        description: "JSX content shown when card is expanded",
-        category: "Content",
-        placeholder: "Enter expanded content...",
-      },
-      height: {
-        type: "object",
-        default: { collapsed: 130, expanded: 300 },
-        label: "Height",
-        description: "Height for collapsed and expanded states",
-        category: "Dimensions",
-      },
-      logoPosition: {
-        type: "object",
-        default: { expanded: 15 },
-        label: "Logo Position",
-        description: "Top position of logo when expanded",
-        category: "Dimensions",
-      },
-      // Dimensions
-      width: {
-        type: "number",
-        default: 288,
-        min: 200,
-        max: 500,
-        step: 10,
-        label: "Width (px)",
-        description: "Card width in pixels",
-        category: "Dimensions",
-      },
-      logoSize: {
-        type: "number",
-        default: 64,
-        min: 32,
-        max: 128,
-        step: 8,
-        label: "Logo Size (px)",
-        description: "Size of the logo in pixels",
-        category: "Dimensions",
-      },
-      titlePosition: {
-        type: "number",
-        default: 90,
-        min: 60,
-        max: 120,
-        step: 5,
-        label: "Title Position",
-        description: "Vertical position of title from top",
-        category: "Dimensions",
-      },
-
-      // Heights (deprecated - use height object instead)
-      // Note: collapsedHeight and expandedHeight are legacy props
-      // The component uses height={ collapsed: number, expanded: number }
-
-      // Styling
-      backgroundColor: {
-        type: "string",
-        default: "bg-gradient-to-b from-[#FF9901] via-[#DF911A] to-[#724f13]",
-        label: "Background",
-        description: "Background gradient or color class",
-        category: "Styling",
-      },
-      textColor: {
-        type: "color",
-        default: "#ffffff",
-        label: "Text Color",
-        description: "Color of text elements",
-        category: "Styling",
-      },
-      borderColor: {
-        type: "color",
-        default: "",
-        label: "Border Color",
-        description: "Optional border color",
-        category: "Styling",
-      },
-      borderWidth: {
-        type: "string",
-        default: "0",
-        label: "Border Width",
-        description: "Border width (e.g., '2px')",
-        category: "Styling",
-      },
-
-      // Effects
-      shineIntensity: {
-        type: "number",
-        default: 0.3,
-        min: 0,
-        max: 1,
-        step: 0.1,
-        label: "Shine Intensity",
-        description: "Intensity of the shine effect",
-        category: "Effects",
-      },
-      glowColor: {
-        type: "color",
-        default: "rgba(255, 165, 0, 0.1)",
-        label: "Glow Color",
-        description: "Color of the glow effect",
-        category: "Effects",
-      },
-      glowGradient: {
-        type: "color",
-        default: "#fde047",
-        label: "Glow Gradient",
-        description: "Gradient color for glow effects",
-        category: "Effects",
       },
     },
   },
@@ -1290,149 +1437,6 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
         label: "Render As",
         description: "HTML element type to render as",
         category: "Layout",
-      },
-    },
-  },
-
-  "water-ripple-effect": {
-    name: "Water Ripple Effect",
-    component: "WaterRippleEffect",
-    props: {
-      // Image
-      imageSrc: {
-        type: "string",
-        default:
-          "https://raw.githubusercontent.com/MihirJaiswal/nyxui/refs/heads/main/public/assets/images/water-ripple-effect/art.jpg",
-        label: "Image Source",
-        description: "URL of the image to apply ripple effect to",
-        category: "Image",
-      },
-
-      // Dimensions
-      width: {
-        type: "number",
-        default: 920,
-        min: 200,
-        max: 1200,
-        step: 50,
-        label: "Width",
-        description: "Width of the effect container",
-        category: "Dimensions",
-      },
-      height: {
-        type: "number",
-        default: 955,
-        min: 200,
-        max: 1200,
-        step: 50,
-        label: "Height",
-        description: "Height of the effect container",
-        category: "Dimensions",
-      },
-      containerClassName: {
-        type: "string",
-        default: "",
-        label: "Container Class",
-        description: "Additional CSS classes for the outer container wrapper",
-        category: "Dimensions",
-      },
-      scale: {
-        type: "number",
-        default: 1.0,
-        min: 0.5,
-        max: 2.0,
-        step: 0.1,
-        label: "Scale",
-        description: "Scale factor for the entire effect",
-        category: "Dimensions",
-      },
-
-      // Wave Effects
-      waveIntensity: {
-        type: "number",
-        default: 0.006,
-        min: 0,
-        max: 0.02,
-        step: 0.001,
-        label: "Wave Intensity",
-        description: "Intensity of the base wave distortion",
-        category: "Wave Effects",
-      },
-      waveFrequency: {
-        type: "number",
-        default: 10.0,
-        min: 5.0,
-        max: 20.0,
-        step: 0.5,
-        label: "Wave Frequency",
-        description: "Frequency of the wave patterns",
-        category: "Wave Effects",
-      },
-
-      // Ripple Effects
-      rippleIntensity: {
-        type: "number",
-        default: 0.012,
-        min: 0,
-        max: 0.03,
-        step: 0.001,
-        label: "Ripple Intensity",
-        description: "Intensity of mouse-interactive ripples",
-        category: "Ripple Effects",
-      },
-      rippleFrequency: {
-        type: "number",
-        default: 20.0,
-        min: 10.0,
-        max: 40.0,
-        step: 1.0,
-        label: "Ripple Frequency",
-        description: "Frequency of the ripple patterns",
-        category: "Ripple Effects",
-      },
-      hoverRippleMultiplier: {
-        type: "number",
-        default: 4.0,
-        min: 1.0,
-        max: 8.0,
-        step: 0.5,
-        label: "Hover Multiplier",
-        description: "Multiplier for ripple intensity on hover",
-        category: "Ripple Effects",
-      },
-
-      // Animation
-      animationSpeed: {
-        type: "number",
-        default: 1.0,
-        min: 0.1,
-        max: 3.0,
-        step: 0.1,
-        label: "Animation Speed",
-        description: "Speed of all animations",
-        category: "Animation",
-      },
-      transitionSpeed: {
-        type: "number",
-        default: 0.08,
-        min: 0.01,
-        max: 0.2,
-        step: 0.01,
-        label: "Transition Speed",
-        description: "Speed of hover transitions",
-        category: "Animation",
-      },
-
-      // Distortion
-      distortionAmount: {
-        type: "number",
-        default: 0.008,
-        min: 0,
-        max: 0.02,
-        step: 0.001,
-        label: "Distortion Amount",
-        description: "Amount of overall distortion effect",
-        category: "Distortion",
       },
     },
   },
@@ -2086,155 +2090,6 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
       },
     },
   },
-  "image-scanner": {
-    name: "Image Scanner",
-    component: "ImageScanner",
-    props: {
-      image: {
-        type: "string",
-        default:
-          "https://raw.githubusercontent.com/MihirJaiswal/nyxui/refs/heads/main/public/assets/images/image-scanner/img.jpg",
-        label: "Image URL",
-        description: "Source image to scan",
-      },
-      alt: {
-        type: "string",
-        default: "Scanning image",
-        label: "Alt Text",
-        description: "Alternative text for accessibility",
-      },
-      scanSpeed: {
-        type: "number",
-        default: 2,
-        label: "Scan Speed",
-        description: "Animation speed (0.5-5)",
-      },
-      scanColor: {
-        type: "select",
-        default: "emerald",
-        options: ["emerald", "blue", "purple", "amber", "red", "cyan", "pink"],
-        label: "Scan Color",
-        description: "Color theme for scan effects",
-      },
-      scanType: {
-        type: "select",
-        default: "default",
-        options: ["default", "grid", "radar", "pulse", "wave", "matrix"],
-        label: "Scan Type",
-        description: "Type of scanning animation",
-      },
-      autoScan: {
-        type: "boolean",
-        default: false,
-        label: "Auto Scan",
-        description: "Start scanning automatically",
-      },
-      scanDelay: {
-        type: "number",
-        default: 0,
-        min: 0,
-        max: 10,
-        step: 0.5,
-        label: "Scan Delay",
-        description: "Delay before auto scan starts (seconds)",
-      },
-      triggerScan: {
-        type: "boolean",
-        default: false,
-        label: "Trigger Scan",
-        description: "Externally trigger the scanning effect",
-      },
-      scanAtScroll: {
-        type: "boolean",
-        default: false,
-        label: "Scan at Scroll",
-        description: "Trigger scan when scrolled into view",
-      },
-      showDataOverlay: {
-        type: "boolean",
-        default: true,
-        label: "Show Data Overlay",
-        description: "Display scanning data overlay",
-      },
-      showProgress: {
-        type: "boolean",
-        default: true,
-        label: "Show Progress",
-        description: "Display scan progress indicator",
-      },
-      scanIntensity: {
-        type: "select",
-        default: "medium",
-        options: ["low", "medium", "high", "extreme"],
-        label: "Scan Intensity",
-        description: "Intensity of scan effects",
-      },
-      showScanResults: {
-        type: "boolean",
-        default: true,
-        label: "Show Scan Results",
-        description: "Display detected objects/anomalies",
-      },
-      scanResults: {
-        type: "textarea",
-        default: [
-          {
-            id: "target-1",
-            type: "object",
-            confidence: 95,
-            position: { x: 25, y: 30 },
-            label: "Target Alpha",
-          },
-          {
-            id: "anomaly-1",
-            type: "anomaly",
-            confidence: 78,
-            position: { x: 65, y: 45 },
-            label: "Anomaly Beta",
-          },
-          {
-            id: "data-1",
-            type: "data",
-            confidence: 89,
-            position: { x: 40, y: 70 },
-            label: "Data Node",
-          },
-          {
-            id: "threat-1",
-            type: "threat",
-            confidence: 85,
-            position: { x: 80, y: 20 },
-            label: "Security Risk",
-          },
-        ],
-        label: "Scan Results (JSON)",
-        description:
-          "Custom scan results as JSON string. Leave empty to use auto-generated results.",
-        conditional: {
-          property: "showScanResults",
-          value: true,
-        },
-      },
-      loop: {
-        type: "boolean",
-        default: false,
-        label: "Loop",
-        description: "Continuously repeat scan animation",
-      },
-      disableClickToScan: {
-        type: "boolean",
-        default: false,
-        label: "Disable Click to Scan",
-        description: "Prevent manual scan triggering",
-      },
-      className: {
-        type: "string",
-        default: "",
-        label: "Custom Class",
-        description: "Additional CSS classes",
-      },
-    },
-  },
 
   marquee: {
     name: "Marquee",
@@ -2356,82 +2211,6 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
         label: "Draggable",
         description: "Allow drag to scroll",
         category: "Interaction",
-      },
-    },
-  },
-
-  "image-comparison": {
-    name: "Image Comparison",
-    component: "ImageSlider",
-    props: {
-      // Content
-      children: {
-        type: "textarea",
-        default: `<ImageLayer
-  src="https://raw.githubusercontent.com/MihirJaiswal/nyxui/refs/heads/main/public/assets/images/image-comparison/before.jpg"
-  alt="Before"
-  layer="first"
-/>
-<ImageLayer
-  src="https://raw.githubusercontent.com/MihirJaiswal/nyxui/refs/heads/main/public/assets/images/image-comparison/after.jpg"
-  alt="After"
-  layer="second"
-/>
-<Divider />`,
-        label: "Children Content",
-        description: "ImageLayer and Divider components",
-        category: "Content",
-        placeholder: "Enter content...",
-      },
-      className: {
-        type: "string",
-        default: "h-96 w-full overflow-hidden rounded-xl",
-        label: "CSS Classes",
-        description: "Additional CSS classes for the container",
-        category: "Layout",
-      },
-
-      // Behavior
-      hoverControl: {
-        type: "boolean",
-        default: false,
-        label: "Hover Control",
-        description: "Control the slider by hovering instead of dragging",
-        category: "Behavior",
-      },
-      orientation: {
-        type: "select",
-        default: "horizontal",
-        options: ["horizontal", "vertical"],
-        label: "Orientation",
-        description: "Slider orientation",
-        category: "Behavior",
-      },
-      defaultPosition: {
-        type: "number",
-        default: 50,
-        min: 0,
-        max: 100,
-        step: 1,
-        label: "Default Position",
-        description: "Initial divider position as a percentage (0-100)",
-        category: "Behavior",
-      },
-      constrainToContent: {
-        type: "boolean",
-        default: false,
-        label: "Constrain to Content",
-        description: "Constrain the slider drag to the content area",
-        category: "Behavior",
-      },
-
-      // Appearance
-      dividerColor: {
-        type: "color",
-        default: "#ffffff",
-        label: "Divider Color",
-        description: "Color of the divider line",
-        category: "Appearance",
       },
     },
   },
@@ -2669,6 +2448,226 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
         label: "CSS Classes",
         description: "Additional CSS classes for the card",
         category: "Options",
+      },
+    },
+  },
+
+  keyboard: {
+    name: "Interactive Keyboard",
+    component: "InteractiveKeyboard",
+    props: {
+      // Layout
+      layout: {
+        type: "select",
+        default: "standard",
+        options: ["standard", "compact"],
+        label: "Layout",
+        description: "Keyboard layout type",
+        category: "Layout",
+      },
+      showFunctionKeys: {
+        type: "boolean",
+        default: true,
+        label: "Show Function Keys",
+        description: "Display F1-F12 function keys row",
+        category: "Layout",
+      },
+      showNavigationCluster: {
+        type: "boolean",
+        default: true,
+        label: "Show Navigation Cluster",
+        description: "Display navigation keys (Insert, Delete, etc.)",
+        category: "Layout",
+      },
+
+      // Appearance
+      theme: {
+        type: "select",
+        default: "cyberpunk",
+        options: ["cyberpunk", "retro", "neon", "pastel"],
+        label: "Theme",
+        description: "Visual theme for the keyboard",
+        category: "Appearance",
+      },
+      keyColor: {
+        type: "color",
+        default: "#2a2a2a",
+        label: "Key Color",
+        description: "Base color for keyboard keys",
+        category: "Appearance",
+      },
+      keyTextColor: {
+        type: "color",
+        default: "#ffffff",
+        label: "Key Text Color",
+        description: "Color of text on keys",
+        category: "Appearance",
+      },
+      accentColor: {
+        type: "color",
+        default: "#F57644",
+        label: "Accent Color",
+        description: "Color for highlights and special elements",
+        category: "Appearance",
+      },
+      keyPressedColor: {
+        type: "color",
+        default: "#333333",
+        label: "Pressed Key Color",
+        description: "Color when keys are pressed",
+        category: "Appearance",
+      },
+
+      // 3D Effects
+      perspective: {
+        type: "number",
+        default: 1000,
+        min: 500,
+        max: 2000,
+        step: 100,
+        label: "Perspective",
+        description:
+          "Camera depth for the 3D tilt. It is most visible when Rotation X is above 0.",
+        category: "3D Effects",
+      },
+      rotateX: {
+        type: "number",
+        default: 0,
+        min: 0,
+        max: 45,
+        step: 5,
+        label: "Rotation X",
+        description:
+          "Keyboard tilt in degrees. Keep it at 0 for a flat physical keyboard.",
+        category: "3D Effects",
+      },
+
+      // Interaction
+      allowPhysicalKeyboard: {
+        type: "boolean",
+        default: true,
+        label: "Physical Keyboard",
+        description: "Respond to physical keyboard input",
+        category: "Interaction",
+      },
+      keyPressAnimationDuration: {
+        type: "number",
+        default: 150,
+        min: 50,
+        max: 500,
+        step: 50,
+        label: "Animation Duration (ms)",
+        description: "Duration of key press animation",
+        category: "Interaction",
+      },
+
+      // Active Keys
+      activeKeys: {
+        type: "object",
+        default: ["KeyW", "KeyA", "KeyS", "KeyD"],
+        label: "Active Keys",
+        description: "Array of key codes to highlight as active",
+        category: "Active Keys",
+      },
+      activeKeyGlowColor: {
+        type: "color",
+        default: "#F57644",
+        label: "Active Key Glow Color",
+        description: "Color for active key glow effect",
+        category: "Active Keys",
+      },
+      activeKeyGlowIntensity: {
+        type: "number",
+        default: 0.8,
+        min: 0.1,
+        max: 1.0,
+        step: 0.1,
+        label: "Glow Intensity",
+        description: "Intensity of the active key glow effect",
+        category: "Active Keys",
+      },
+      className: {
+        type: "string",
+        default: "",
+        label: "CSS Classes",
+        description: "Additional Tailwind CSS classes for styling",
+        category: "Appearance",
+      },
+    },
+  },
+
+  "image-comparison": {
+    name: "Image Comparison",
+    component: "ImageSlider",
+    props: {
+      // Content
+      children: {
+        type: "textarea",
+        default: `<ImageLayer
+  src="https://raw.githubusercontent.com/MihirJaiswal/nyxui/refs/heads/main/public/assets/images/image-comparison/before.jpg"
+  alt="Before"
+  layer="first"
+/>
+<ImageLayer
+  src="https://raw.githubusercontent.com/MihirJaiswal/nyxui/refs/heads/main/public/assets/images/image-comparison/after.jpg"
+  alt="After"
+  layer="second"
+/>
+<Divider />`,
+        label: "Children Content",
+        description: "ImageLayer and Divider components",
+        category: "Content",
+        placeholder: "Enter content...",
+      },
+      className: {
+        type: "string",
+        default: "h-96 w-full overflow-hidden rounded-xl",
+        label: "CSS Classes",
+        description: "Additional CSS classes for the container",
+        category: "Layout",
+      },
+
+      // Behavior
+      hoverControl: {
+        type: "boolean",
+        default: false,
+        label: "Hover Control",
+        description: "Control the slider by hovering instead of dragging",
+        category: "Behavior",
+      },
+      orientation: {
+        type: "select",
+        default: "horizontal",
+        options: ["horizontal", "vertical"],
+        label: "Orientation",
+        description: "Slider orientation",
+        category: "Behavior",
+      },
+      defaultPosition: {
+        type: "number",
+        default: 50,
+        min: 0,
+        max: 100,
+        step: 1,
+        label: "Default Position",
+        description: "Initial divider position as a percentage (0-100)",
+        category: "Behavior",
+      },
+      constrainToContent: {
+        type: "boolean",
+        default: false,
+        label: "Constrain to Content",
+        description: "Constrain the slider drag to the content area",
+        category: "Behavior",
+      },
+
+      // Appearance
+      dividerColor: {
+        type: "color",
+        default: "#ffffff",
+        label: "Divider Color",
+        description: "Color of the divider line",
+        category: "Appearance",
       },
     },
   },

@@ -898,6 +898,10 @@ body {
     @apply bg-background text-foreground;
     /* Removed problematic margin/padding/box-sizing resets */
   }
+
+  html {
+    scrollbar-gutter: stable;
+  }
 }
 
 /* Simplified scrollbar styling */
