@@ -11,7 +11,8 @@ export function InstallCommandCopy(): React.ReactElement {
   return (
     <code className="relative z-10 mt-2 inline-flex max-w-full items-center gap-1 overflow-hidden text-xs text-muted-foreground px-12">
       <span className="truncate">
-        <span className="text-brand">npx</span> shadcn add https://nyxui.com/r/glow-card.json
+        <span className="text-brand">npx</span> shadcn add
+        https://nyxui.com/r/glow-card.json
       </span>
       <button
         type="button"

@@ -10,7 +10,7 @@ import {
   useTransform,
   type MotionValue,
 } from "motion/react";
-import { useState } from "react";
+import { memo, useState } from "react";
 import { COMPASS_GEOMETRY } from "../../../lib/compass-geometry";
 import type { LandingComponent } from "../../../types/landing";
 import { cn } from "@/lib/utils";
@@ -33,7 +33,7 @@ function getShortestAngle(angle: number): number {
   return ((((angle + 180) % 360) + 360) % 360) - 180;
 }
 
-export function CompassComponentMarker({
+export const CompassComponentMarker = memo(function CompassComponentMarker({
   angle,
   component,
   degreesPerComponent,
@@ -152,4 +152,4 @@ export function CompassComponentMarker({
       </div>
     </div>
   );
-}
+});
