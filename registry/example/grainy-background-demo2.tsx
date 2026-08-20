@@ -1,6 +1,5 @@
 import { GrainyBackground } from "@/registry/ui/grainy-background";
 import {
-  Check,
   Zap,
   Sparkles,
   Crown,
@@ -8,17 +7,16 @@ import {
   Shapes,
   Bot,
   Star,
-  MessageSquare,
   TrendingUp,
   LifeBuoy,
   Hash,
   Diamond,
-  Palette as PaletteIcon,
+  type LucideIcon,
 } from "lucide-react";
 
 interface Feature {
   label: string;
-  icon: React.ElementType;
+  icon: LucideIcon;
 }
 
 interface Plan {
@@ -26,7 +24,7 @@ interface Plan {
   description: string;
   price: string;
   cta: string;
-  icon: React.ElementType;
+  icon: LucideIcon;
   colors: string[];
   animationType: "flow" | "mesh" | "waves" | "aurora" | "spiral" | "pulse";
   grainType: "digital" | "plasma" | "scratches" | "paper" | "noise" | "dust";
@@ -118,7 +116,7 @@ const plans: Plan[] = [
   },
 ];
 
-function HexIcon({ gradientId, icon: Icon }: { gradientId: string; icon: React.ElementType }) {
+function HexIcon({ gradientId, icon: Icon }: { gradientId: string; icon: LucideIcon }) {
   return (
     <div className="relative size-6 shrink-0">
       <svg className="block size-full" fill="none" viewBox="0 0 20 22" xmlns="http://www.w3.org/2000/svg">
