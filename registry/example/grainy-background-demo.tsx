@@ -136,9 +136,6 @@ function TileCard({ tile }: { tile: Tile }) {
             className={`relative z-10 flex h-full flex-col justify-between ${isLarge ? "p-5" : "p-3"}`}
           >
             <div className="flex items-center justify-between">
-              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-white/15 backdrop-blur-sm">
-                <Icon className="h-3.5 w-3.5 text-white" />
-              </div>
               <span
                 className={`font-medium uppercase tracking-wider text-white/60 ${isLarge ? "text-[11px]" : "text-[9px]"}`}
               >

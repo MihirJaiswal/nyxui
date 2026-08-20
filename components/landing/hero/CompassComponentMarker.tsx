@@ -121,9 +121,9 @@ export const CompassComponentMarker = memo(function CompassComponentMarker({
             >
               <div className="h-full w-full overflow-hidden rounded-[13px] bg-background p-1">
                 <div className="h-full w-full overflow-hidden rounded-lg bg-zinc-950">
-                  {component.image ? (
+                  {component.heroImage || component.image ? (
                     <Image
-                      src={component.image}
+                      src={component.heroImage || component.image!}
                       alt={`${component.name} preview`}
                       width={240}
                       height={146}
