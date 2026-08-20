@@ -129,7 +129,7 @@ export const CompassComponentMarker = memo(function CompassComponentMarker({
                       height={146}
                       priority={index < 5}
                       draggable={false}
-                      className="block h-full w-full object-contain"
+                      className="block h-full w-full object-cover"
                     />
                   ) : (
                     <div className="flex h-full items-center justify-center bg-background">
