@@ -78,8 +78,8 @@ export const CompassComponentMarker = memo(function CompassComponentMarker({
         aria-hidden="true"
         className={cn(
           isActive
-            ? "pointer-events-none absolute left-0 top-0 w-0.5 bg-brand transition-colors duration-200"
-            : "pointer-events-none absolute left-0 top-0 w-px bg-foreground transition-colors duration-200 group-hover/marker:bg-brand group-focus-within/marker:bg-brand",
+            ? "pointer-events-none absolute left-0 top-0 w-[1.4px] bg-brand transition-colors duration-200"
+            : "pointer-events-none absolute left-0 top-0 w-[1.3px] bg-foreground transition-colors duration-200 group-hover/marker:bg-brand group-focus-within/marker:bg-brand",
         )}
         animate={{ height: markerHeight }}
         initial={false}
@@ -94,7 +94,7 @@ export const CompassComponentMarker = memo(function CompassComponentMarker({
       />
       <div className="absolute left-0 top-0 compass-card-anchor">
         <motion.div
-          className="w-36 -translate-x-1/2 -translate-y-1/2"
+          className="w-38 -translate-x-1/2 -translate-y-1/2"
           style={{ scale: shouldReduceMotion ? proximityScale : smoothScale }}
         >
           <Link
@@ -113,7 +113,7 @@ export const CompassComponentMarker = memo(function CompassComponentMarker({
           >
             <div
               className={cn(
-                "aspect-[1.65/1] w-full overflow-hidden rounded-xl p-0.5 shadow-lg",
+                "aspect-video w-full overflow-hidden rounded-xl p-0.5 shadow-lg",
                 isActive || isHovered
                   ? "bg-linear-to-r from-brand/30 via-brand/85 to-brand/30"
                   : "bg-primary/40",

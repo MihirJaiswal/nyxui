@@ -4,7 +4,7 @@ import { siteLinks } from "@/lib/links";
 
 export function LandingActions(): React.ReactElement {
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center border-b w-screen border-border/60 py-7 left-1/2 relative -translate-x-1/2">
       <Link
         href={siteLinks.components}
         className="group inline-flex items-center gap-2 text-sm text-foreground/75 transition-colors hover:text-foreground"
