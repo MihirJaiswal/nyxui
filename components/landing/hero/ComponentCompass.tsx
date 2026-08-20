@@ -292,7 +292,7 @@ export function ComponentCompass({
           onWheel={handleWheel}
           onKeyDown={handleKeyDown}
           onClickCapture={handleClickCapture}
-          className="relative h-96 w-full max-w-295 cursor-grab touch-pan-y select-none overflow-hidden outline-none active:cursor-grabbing focus-visible:ring-1 focus-visible:ring-brand/60"
+          className="relative h-72 md:h-90 w-full max-w-295 cursor-grab touch-pan-y select-none overflow-hidden outline-none active:cursor-grabbing focus-visible:ring-1 focus-visible:ring-brand/60 mt-2"
           tabIndex={0}
           aria-label="Curved component compass. Drag to rotate and browse."
         >
@@ -312,9 +312,6 @@ export function ComponentCompass({
               timelineLineCount={timelineLineCount}
             />
           </div>
-        </div>
-        <div className="absolute bottom-15 left-1/2 z-30 -translate-x-1/2">
-          <LandingActions />
         </div>
       </div>
     </div>

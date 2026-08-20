@@ -30,8 +30,8 @@ export const CompassRulerTicks = memo(function CompassRulerTicks({
             data-line-size={isBigWhiteLine ? "big" : "small"}
             className={
               isBigWhiteLine
-                ? "absolute left-1/2 top-1/2 w-px origin-top bg-foreground/70"
-                : "absolute left-1/2 top-1/2 w-px origin-top bg-foreground/40"
+                ? "absolute left-1/2 top-1/2 w-[1.3px] origin-top bg-foreground/80"
+                : "absolute left-1/2 top-1/2 w-[1.3px] origin-top bg-foreground/50 dark:bg-foreground/40"
             }
             style={{
               height: isBigWhiteLine
