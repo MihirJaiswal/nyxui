@@ -11,10 +11,9 @@ import {
   type MotionValue,
 } from "motion/react";
 import { useState } from "react";
-import { COMPASS_GEOMETRY } from "./compass-geometry";
-import type { LandingComponent } from "./types";
+import { COMPASS_GEOMETRY } from "../../../lib/compass-geometry";
+import type { LandingComponent } from "../../../types/landing";
 import { cn } from "@/lib/utils";
-import responsiveStyles from "./compass-responsive.module.css";
 
 interface CompassComponentMarkerProps {
   angle: number;
@@ -93,7 +92,7 @@ export function CompassComponentMarker({
           transform: `translate(-50%, -${COMPASS_GEOMETRY.rulerRadiusRem}rem)`,
         }}
       />
-      <div className={`absolute left-0 top-0 ${responsiveStyles.cardAnchor}`}>
+      <div className="absolute left-0 top-0 compass-card-anchor">
         <motion.div
           className="w-36 -translate-x-1/2 -translate-y-1/2"
           style={{ scale: shouldReduceMotion ? proximityScale : smoothScale }}

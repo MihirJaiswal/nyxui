@@ -1,4 +1,4 @@
-import { COMPASS_GEOMETRY } from "./compass-geometry";
+import { COMPASS_GEOMETRY } from "@/lib/compass-geometry";
 
 interface CompassRulerTicksProps {
   firstMarkerOffset: number;

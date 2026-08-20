@@ -1,9 +1,0 @@
-.wheel {
-  width: 131rem;
-  transform: translateX(-50%) scale(1);
-  transform-origin: top center;
-}
-
-.cardAnchor {
-  transform: translateY(-55.4rem);
-}

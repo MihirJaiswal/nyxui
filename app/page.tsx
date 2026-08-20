@@ -1,7 +1,7 @@
-import { LandingHero } from "@/components/home/LandingHero";
-import { ComponentBentoGrid } from "@/components/home/landing/ComponentBentoGrid";
-import { LandingCta } from "@/components/home/landing/LandingCta";
-import { PlaygroundShowcase } from "@/components/home/landing/PlaygroundShowcase";
+import { ComponentBentoGrid } from "@/components/landing/bento/ComponentBentoGrid";
+import { LandingCta } from "@/components/landing/cta/LandingCta";
+import { Landing } from "@/components/landing/Landing";
+import { PlaygroundShowcase } from "@/components/landing/playground/PlaygroundShowcase";
 import { componentRegistry } from "@/components/playground/registry";
 import { componentsData } from "@/registry/Data";
 
@@ -23,7 +23,7 @@ export default function Home() {
       data-home-page
       className="flex flex-1 flex-col overflow-hidden dark:bg-black"
     >
-      <LandingHero components={components} />
+      <Landing components={components} />
       <ComponentBentoGrid />
       <PlaygroundShowcase />
       <LandingCta />

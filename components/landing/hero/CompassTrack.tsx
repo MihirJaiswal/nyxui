@@ -1,9 +1,7 @@
-"use client";
-
 import { motion, type MotionValue } from "motion/react";
 import { CompassComponentMarker } from "./CompassComponentMarker";
 import { CompassRulerTicks } from "./CompassRulerTicks";
-import type { LandingComponent } from "./types";
+import type { LandingComponent } from "../../../types/landing";
 
 interface CompassTrackProps {
   activeIndex: number;
