@@ -12,7 +12,7 @@ export type BentoComponentName =
 
 const CustomPointerPreview = dynamic(
   () =>
-    import("@/components/home/feature/CustomPointer").then(
+    import("@/components/landing/bento/CustomPointer").then(
       (module) => module.CustomPointer,
     ),
   { ssr: false },

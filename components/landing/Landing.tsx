@@ -1,15 +1,13 @@
-import { ComponentCompass } from "./landing/ComponentCompass";
-import { LandingFeatureGrid } from "./landing/LandingFeatureGrid";
-import { LandingHeroIntro } from "./landing/LandingHeroIntro";
-import type { LandingComponent } from "./landing/types";
-
-export type { LandingComponent } from "./landing/types";
+import { LandingComponent } from "@/types/landing";
+import { LandingHeroIntro } from "./hero/LandingHeroIntro";
+import { ComponentCompass } from "./hero/ComponentCompass";
+import { LandingFeatureGrid } from "./hero/LandingFeatureGrid";
 
 interface LandingHeroProps {
   components: LandingComponent[];
 }
 
-export function LandingHero({
+export function Landing({
   components,
 }: LandingHeroProps): React.ReactElement {
   return (

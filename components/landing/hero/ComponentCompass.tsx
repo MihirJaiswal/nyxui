@@ -19,11 +19,10 @@ import {
 } from "react";
 
 import { playHoverTick, preloadTick } from "@/lib/hover-tick";
-import { COMPASS_GEOMETRY } from "./compass-geometry";
+import { COMPASS_GEOMETRY } from "../../../lib/compass-geometry";
 import { CompassTrack } from "./CompassTrack";
 import { LandingActions } from "./LandingActions";
-import type { LandingComponent } from "./types";
-import responsiveStyles from "./compass-responsive.module.css";
+import type { LandingComponent } from "../../../types/landing";
 
 const SMALL_LINES_PER_GROUP = COMPASS_GEOMETRY.smallLinesPerGroup;
 const WHITE_GROUPS_PER_COMPONENT = COMPASS_GEOMETRY.whiteGroupsPerComponent;
@@ -298,7 +297,7 @@ export function ComponentCompass({
           aria-label="Curved component compass. Drag to rotate and browse."
         >
           <div
-            className={`absolute top-0 aspect-square ${responsiveStyles.wheel}`}
+            className="absolute top-0 aspect-square compass-wheel"
             style={wheelStyle}
           >
             <CompassTrack
