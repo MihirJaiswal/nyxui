@@ -1,19 +1,46 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
-import AnimatedLogo from "@/components/home/newsletter/animated-logo";
+import { ArrowUpRight, Check } from "lucide-react";
+import { NyxLogo } from "@/components/global/nyx-logo";
+import { GlowCard } from "@/registry/ui/glow-card";
+
+const cardContent = (
+  <>
+    <p className="m-0 flex items-center gap-1.5 text-foreground">
+      <NyxLogo aria-hidden="true" className="size-4 text-brand" />
+      npx @nyxui add glow-card
+    </p>
+    <ul className="mt-2 flex list-none flex-col gap-1 p-0">
+      <li className="m-0 flex items-center gap-1.5 text-foreground">
+        <Check aria-hidden="true" className="size-3 text-brand" />
+        Fetched glow-card from registry
+      </li>
+      <li className="m-0 flex items-center gap-1.5 text-foreground">
+        <Check aria-hidden="true" className="size-3 text-brand" />
+        Added magnetic-button
+      </li>
+      <li className="m-0 flex items-center gap-1.5 text-foreground">
+        <Check aria-hidden="true" className="size-3 text-brand" />
+        Dependencies up to date
+      </li>
+    </ul>
+    <p className="mt-2 text-foreground/50">
+      Installed: <span className="text-foreground">3 components in 2.1s</span>
+    </p>
+  </>
+);
 
 export function LandingCta(): React.ReactElement {
   return (
-    <section className="relative left-1/2 w-screen -translate-x-1/2">
-      <div className="relative mx-auto grid min-h-80 max-w-295 border-x border-border/60 lg:grid-cols-[minmax(0,1fr)_20rem]">
-        <div className="flex flex-col justify-between px-6 py-10 sm:px-10 sm:py-12 md:px-12 md:py-14 gap-8">
+    <section className="group relative left-1/2 w-screen -translate-x-1/2 overflow-hidden">
+      <div className="relative mx-auto grid lg:min-h-80 max-w-295 border-x border-border/60 lg:grid-cols-[minmax(0,1fr)_20rem]">
+        <div className="flex flex-col justify-between px-6 py-10 sm:px-10 sm:py-12 md:px-12 md:py-14 lg:gap-8">
           <h2 className="max-w-4xl text-3xl leading-[1.05] font-medium tracking-tight sm:text-5xl md:text-6xl">
-            Got an interface in mind?
+            Less code more impact
             <br />
             <span className="text-foreground/65">
-              Let&apos;s make it feel{" "}
+              ship something{" "}
               <span className="text-brand font-caveat text-5xl sm:text-6xl md:text-7xl">
-                alive
+                today
               </span>
               .
             </span>
@@ -21,27 +48,33 @@ export function LandingCta(): React.ReactElement {
 
           <Link
             href="mailto:jaiswalmihir.business@gmail.com"
-            className="group inline-flex items-center gap-2 text-sm text-foreground/75 transition-colors hover:text-foreground"
+            className="group/link inline-flex items-center gap-2 text-sm text-foreground/75 transition-colors hover:text-foreground pt-8 lg:pt0"
           >
-            <span className="size-3 bg-brand transition-transform group-hover:rotate-45" />
+            <span className="size-3 bg-brand transition-transform group-hover/link:rotate-45" />
             Get in touch <ArrowUpRight className="size-4" />
           </Link>
         </div>
 
-        <div className="relative flex min-h-72 items-center justify-center overflow-hidden border-t border-border/60 md:min-h-0 md:border-t-0 md:border-l">
-          <div className="size-32 sm:size-36">
-            <AnimatedLogo
-              className="h-full w-full text-black dark:text-white"
-              fillStartRatio={0}
-              strokeClassName="stroke-brand"
-              strokeOnly
-              strokeFadeDurationMs={500}
-              strokeWidth={14}
-              durationMs={14000}
-              fadeMs={900}
-              threshold={0.5}
-              triggerOnce
-            />
+        <div className="relative hidden lg:block overflow-hidden">
+          <div className="absolute left-3 top-16 transition-transform duration-150 ease-in group-hover:-rotate-2 group-hover:scale-[1.02]">
+            <GlowCard
+              variant="liquid"
+              liquidColor="#ffb08a"
+              intensity={0.4}
+              allowCustomBackground
+              className="h-105 w-90 rounded-xl bg-muted/80 p-4 font-mono text-xs border border-border/60 dark:hidden"
+            >
+              {cardContent}
+            </GlowCard>
+            <GlowCard
+              variant="liquid"
+              liquidColor="#ff6a2a"
+              intensity={0.2}
+              allowCustomBackground
+              className="hidden h-105 w-90 rounded-xl bg-muted/80 p-4 font-mono text-xs border border-border/60 dark:block"
+            >
+              {cardContent}
+            </GlowCard>
           </div>
         </div>
       </div>
