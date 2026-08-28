@@ -43,7 +43,7 @@ export default function FooterSection() {
             </a>
           </div>
         </div>
-        <div className="mt-12 flex items-center justify-center md:items-start gap-8">
+        <div className="md:mt-12 flex items-center justify-center md:items-start gap-8">
           <div className="min-w-0 md:flex-1 overflow-hidden flex items-center justify-center">
             <span
               className="block w-full select-none whitespace-nowrap text-center text-[20vw] font-black leading-[0.8] tracking-tighter text-foreground/10 md:text-left md:text-[11rem] lg:text-[16rem]"
