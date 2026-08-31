@@ -49,12 +49,12 @@ export default function FooterSection() {
             </a>
           </div>
         </div>
-        <div className="md:mt-12 flex items-center justify-center md:items-start gap-8">
+        <div className="flex items-center justify-center md:items-end gap-8 pb-4 mt-6">
           <div className="relative min-w-0 md:flex-1 flex items-center justify-center md:justify-start">
             <div className="text-foreground">
               <AnimatedLogo
-                width={100}
-                height={85}
+                width={60}
+                height={45}
                 weight={0}
                 strokeWidth={20}
                 durationMs={1600}
@@ -64,7 +64,7 @@ export default function FooterSection() {
               />
             </div>
           </div>
-          <div className="hidden shrink-0 md:block pb-2">
+          <div className="hidden shrink-0 md:block">
             <span className="mb-3 block font-mono text-[10px] uppercase tracking-widest text-foreground/40">
               Explore
             </span>
@@ -73,22 +73,19 @@ export default function FooterSection() {
                 href={siteLinks.components}
                 className="inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
-                Components
-                <ArrowUpRight className="size-3.5" />
+                Components <ArrowUpRight className="size-3.5" />
               </Link>
               <Link
                 href={siteLinks.playground}
                 className="inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
-                Playground
-                <ArrowUpRight className="size-3.5" />
+                Playground <ArrowUpRight className="size-3.5" />
               </Link>
               <Link
                 href={siteLinks.docs}
                 className="inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
-                Documentation
-                <ArrowUpRight className="size-3.5" />
+                Documentation <ArrowUpRight className="size-3.5" />
               </Link>
             </div>
           </div>
