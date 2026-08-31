@@ -15,6 +15,7 @@ type AnimatedLogoProps = React.SVGProps<SVGSVGElement> & {
   revealAfterAnimation?: boolean;
   fadeMs?: number;
   rootMargin?: string;
+  weight?: number;
 };
 
 const logoPaths = [
@@ -35,6 +36,7 @@ export default function AnimatedLogo({
   revealAfterAnimation = false,
   fadeMs = 250,
   rootMargin = "0px 0px -10% 0px",
+  weight = 0,
   ...props
 }: AnimatedLogoProps) {
   const [shouldAnimate, setShouldAnimate] = useState(false);
@@ -181,6 +183,16 @@ export default function AnimatedLogo({
           to { stroke-opacity: 0; }
         }
       `}</style>
+      {weight !== 0 && (
+        <defs>
+          <filter id={`${instanceId}-weight`}>
+            <feMorphology
+              operator={weight > 0 ? "dilate" : "erode"}
+              radius={Math.abs(weight)}
+            />
+          </filter>
+        </defs>
+      )}
       {/* Layer 1: stroke only. Draws in via stroke-dashoffset, then fades
           away on its own. Nothing else happens on this layer. */}
       <g
@@ -219,7 +231,11 @@ export default function AnimatedLogo({
       </g>
 
       {!strokeOnly && (
-        <g fill="currentColor" stroke="none">
+        <g
+          fill="currentColor"
+          stroke="none"
+          filter={weight !== 0 ? `url(#${instanceId}-weight)` : undefined}
+        >
           {logoPaths.map((path, index) => {
             const beginMs = index * 80;
             const fillStyle: React.CSSProperties = {
