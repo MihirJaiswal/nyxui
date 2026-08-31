@@ -12,7 +12,7 @@ export default function FooterSection() {
   return (
     <footer className="relative w-full border-t border-border/60">
       <div
-        className={`mx-auto px-6 flex flex-col ${isHome ? "max-w-300" : "max-w-350"}`}
+        className={`mx-auto px-6 flex flex-col ${isHome ? "max-w-285" : "max-w-350"}`}
       >
         {/* Bottom: copyright + socials */}
         <div className="flex flex-col items-center justify-between gap-4 py-5 md:flex-row">
