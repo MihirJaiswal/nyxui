@@ -1,7 +1,7 @@
-import Link from "next/link";
 import { ArrowUpRight, Check } from "lucide-react";
 import { NyxLogo } from "@/components/global/nyx-logo";
 import { GlowCard } from "@/registry/ui/glow-card";
+import { MorphLink } from "@/components/ui/morph-link";
 
 const cardContent = (
   <>
@@ -46,13 +46,15 @@ export function LandingCta(): React.ReactElement {
             </span>
           </h2>
 
-          <Link
+          <MorphLink
             href="mailto:jaiswalmihir.business@gmail.com"
-            className="group/link inline-flex items-center gap-2 text-sm text-foreground/75 transition-colors hover:text-foreground pt-8 lg:pt0"
+            className="self-start mt-4 md:mt-2"
           >
-            <span className="size-3 bg-brand transition-transform group-hover/link:rotate-45" />
-            Get in touch <ArrowUpRight className="size-4" />
-          </Link>
+            <div className="flex items-center gap-1">
+              <span>Get in touch</span>{" "}
+              <ArrowUpRight className="inline size-4" />
+            </div>
+          </MorphLink>
         </div>
 
         <div className="relative hidden lg:block overflow-hidden">

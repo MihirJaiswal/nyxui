@@ -1156,3 +1156,39 @@ body {
 .compass-card-anchor {
   transform: translateY(-55.4rem);
 }
+
+/* Footer: clip Grid inside the "NYX UI" text */
+@media (min-width: 768px) {
+  .nyx-clip-text {
+    font-size: 6rem;
+    font-family: var(--font-sans), sans-serif;
+    line-height: 1;
+    text-anchor: start;
+    x: 0;
+  }
+  .nyx-footer-svg {
+    height: 4.8rem;
+    overflow: visible;
+  }
+}
+@media (min-width: 1024px) {
+  .nyx-clip-text {
+    font-size: 9rem;
+  }
+  .nyx-footer-svg {
+    height: 7.2rem;
+    overflow: visible;
+  }
+}
+
+@keyframes nyx-grid-scroll {
+  0% {
+    transform: translateY(-60px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.animate-nyx-grid {
+  animation: nyx-grid-scroll 2s linear infinite;
+}

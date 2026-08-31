@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { siteLinks } from "@/lib/links";
+import { MorphLink } from "@/components/ui/morph-link";
 
 export function PlaygroundShowcase(): React.ReactElement {
   return (
@@ -14,8 +14,12 @@ export function PlaygroundShowcase(): React.ReactElement {
             <h2 className="max-w-xl text-4xl leading-tight font-medium tracking-tight sm:text-5xl">
               A playground,
               <br />
-              not a{" "}
-              <span className="font-caveat text-brand text-6xl">showroom.</span>
+              <span className="text-foreground/65">
+                not a{" "}
+                <span className="font-caveat text-brand text-6xl">
+                  showroom.
+                </span>
+              </span>
             </h2>
           </div>
 
@@ -24,14 +28,12 @@ export function PlaygroundShowcase(): React.ReactElement {
               Choose any component, tune its props, test every state, and copy
               production-ready code without leaving the canvas.
             </p>
-            <Link
-              href={siteLinks.playground}
-              className="group mt-7 inline-flex w-fit items-center gap-2 text-sm text-foreground transition-colors hover:text-brand"
-            >
-              <span className="size-2.5 bg-brand" />
-              Open the playground
-              <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-            </Link>
+            <MorphLink href={siteLinks.playground} className="mt-7 w-fit">
+              <div className="flex items-center gap-1">
+                <span>Open the playground</span>
+                <ArrowUpRight className="inline size-4" />
+              </div>
+            </MorphLink>
           </div>
         </div>
 
