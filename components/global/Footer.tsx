@@ -5,14 +5,13 @@ import { usePathname } from "next/navigation";
 import { externalLinks, siteLinks } from "@/lib/links";
 import { getCurrentYear } from "@/lib/utils";
 import { XTwitterIcon } from "./icons/XTwitterIcon";
-import AnimatedLogo from "../home/newsletter/animated-logo";
 
 export default function FooterSection() {
   const isHome = usePathname() === siteLinks.home;
   return (
     <footer className="relative w-full border-t border-border/60">
       <div
-        className={`mx-auto px-6 flex flex-col ${isHome ? "max-w-285" : "max-w-350"}`}
+        className={`mx-auto px-6 flex flex-col ${isHome ? "max-w-285" : "max-w-345"}`}
       >
         {/* Bottom: copyright + socials */}
         <div className="flex flex-col items-center justify-between gap-4 py-5 md:flex-row">
@@ -50,18 +49,12 @@ export default function FooterSection() {
           </div>
         </div>
         <div className="flex items-center justify-center md:items-end gap-8 pb-4 mt-6">
-          <div className="relative min-w-0 md:flex-1 flex items-center justify-center md:justify-start">
-            <div className="text-foreground">
-              <AnimatedLogo
-                width={60}
-                height={45}
-                weight={0}
-                strokeWidth={20}
-                durationMs={1600}
-                threshold={0}
-                rootMargin="200px"
-                color="#ff500d"
-              />
+          <div className="relative min-w-0 md:flex-1 flex items-center justify-center md:justify-start gap-4">
+            <div>
+              <p className="text-6xl font-semibold">
+                NYX{" "}
+                <span className="font-caveat text-brand font-black">UI</span>
+              </p>
             </div>
           </div>
           <div className="hidden shrink-0 md:block">
