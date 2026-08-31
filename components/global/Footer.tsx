@@ -51,13 +51,11 @@ export default function FooterSection() {
         </div>
         <div className="md:mt-12 flex items-center justify-center md:items-start gap-8">
           <div className="relative min-w-0 md:flex-1 flex items-center justify-center md:justify-start">
-            <div
-              className="text-foreground"
-              style={{ minHeight: 115, minWidth: 130 }}
-            >
+            <div className="text-foreground">
               <AnimatedLogo
                 width={100}
                 height={85}
+                weight={0}
                 strokeWidth={20}
                 durationMs={1600}
                 threshold={0}
@@ -66,7 +64,7 @@ export default function FooterSection() {
               />
             </div>
           </div>
-          <div className="hidden shrink-0 md:block">
+          <div className="hidden shrink-0 md:block pb-2">
             <span className="mb-3 block font-mono text-[10px] uppercase tracking-widest text-foreground/40">
               Explore
             </span>
