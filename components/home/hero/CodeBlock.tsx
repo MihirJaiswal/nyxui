@@ -100,7 +100,7 @@ const AnimatedCodeBlockDemo = () => {
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current);
     };
-  }, [isPlaying, currentPosition, totalChars]);
+  }, [isPlaying, currentPosition, totalChars, setIsPlaying]);
 
   const togglePlay = () => {
     if (completed) {
