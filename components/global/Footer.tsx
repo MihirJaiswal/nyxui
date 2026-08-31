@@ -66,7 +66,7 @@ export default function FooterSection() {
                         y="98%"
                         dominantBaseline="alphabetic"
                         className="nyx-clip-text"
-                        fontWeight={800}
+                        fontWeight={700}
                         letterSpacing="-0.05em"
                       >
                         NYX UI
@@ -89,7 +89,7 @@ export default function FooterSection() {
                     y="98%"
                     dominantBaseline="alphabetic"
                     className="nyx-clip-text"
-                    fontWeight={800}
+                    fontWeight={700}
                     letterSpacing="-0.05em"
                   >
                     <tspan fill="currentColor" stroke="none">
