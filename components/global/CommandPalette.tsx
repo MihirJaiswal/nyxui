@@ -10,7 +10,6 @@ import {
   Home,
   LayoutTemplate,
   Play,
-  Search,
 } from "lucide-react";
 import {
   CommandDialog,
