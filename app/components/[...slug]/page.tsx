@@ -11,10 +11,9 @@ import {
 import { createComponentSchema } from "@/lib/docs-schema";
 import { externalLinks, itemHref, playgroundComponentHref } from "@/lib/links";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Button } from "@/components/ui/button";
-import { Play } from "lucide-react";
+import { MorphLink } from "@/components/ui/morph-link";
+import { ArrowUpRight } from "lucide-react";
 import { JsonLd } from "@/components/global/JsonLd";
 
 export async function generateMetadata({
@@ -114,17 +113,12 @@ export default async function ComponentPage({ params }: SlugPageProps) {
           links={doc.links}
           action={
             shouldShowPlaygroundButton ? (
-              <Button
-                asChild
-                variant="outline"
-                size="sm"
-                className="h-8 gap-2 rounded-lg border-border/70 bg-background px-3 text-xs text-muted-foreground shadow-none hover:bg-muted hover:text-foreground dark:border-white/10 dark:bg-[#111111] dark:hover:bg-[#1A1A1A]"
-              >
-                <Link href={playgroundComponentHref(componentName)}>
-                  <Play className="size-3.5" />
-                  Open in Playground
-                </Link>
-              </Button>
+              <MorphLink href={playgroundComponentHref(componentName)}>
+                <div className="flex items-center gap-1">
+                  <span>Open in Playground</span>
+                  <ArrowUpRight className="inline size-4" />
+                </div>
+              </MorphLink>
             ) : null
           }
         />
