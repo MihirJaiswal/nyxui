@@ -1443,15 +1443,12 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
       // Content
       children: {
         type: "textarea",
-        default: `<Cursor>
-  <div className="h-96 w-100 bg-linear-to-br from-blue-800 to-purple-900 rounded-lg flex items-center justify-center">
+        default: `<div className="h-96 w-100 bg-linear-to-br from-blue-800 to-purple-900 rounded-lg flex items-center justify-center">
   <div className="text-center space-y-4">
     <h3 className="text-2xl font-bold text-white">Custom Cursor Area</h3>
     <p className="text-gray-200">Move your mouse around to see the custom cursor</p>
   </div>
-</div>
-</Cursor>
-        `,
+</div>`,
         label: "Children Content",
         description: "Content area where custom cursor will be active",
         category: "Content",
