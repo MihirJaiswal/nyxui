@@ -37,7 +37,19 @@ export function PlaygroundShowcase(): React.ReactElement {
           </div>
         </div>
 
-        <div className="px-4 py-8 sm:px-8 sm:py-10 md:px-12"></div>
+        <div>
+          <div className="w-[91.5%] mx-auto">
+            <video
+              src="/assets/videos/playground-demo-dark.mp4"
+              className="w-full"
+              autoPlay
+              muted
+              loop
+              playsInline
+              controls
+            />
+          </div>
+        </div>
       </div>
     </section>
   );

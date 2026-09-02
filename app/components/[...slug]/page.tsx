@@ -104,7 +104,7 @@ export default async function ComponentPage({ params }: SlugPageProps) {
           action={
             <MorphLink href={playgroundComponentHref(componentName)}>
               <div className="flex items-center gap-1">
-                <span>Open in Playground</span>
+                <span className="text-xs">Open in Playground</span>
                 <ArrowUpRight className="inline size-4" />
               </div>
             </MorphLink>
