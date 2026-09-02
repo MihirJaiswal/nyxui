@@ -10,10 +10,10 @@ import img from "@/public/docs/docs-cover.png";
 
 export default function IntroductionPage() {
   return (
-    <div className="mx-auto max-w-[1200px] px-1 py-6">
+    <div className="mx-auto max-w-300 px-1 py-6">
       {/* Hero */}
       <section className="mb-10">
-        <p className="mb-3 text-sm font-medium tracking-wide text-[#FF4F11] uppercase">
+        <p className="mb-3 text-xs font-medium tracking-wide text-[#FF4F11] uppercase">
           Introduction
         </p>
         <h1 className="text-4xl font-bold tracking-tight mb-5">
