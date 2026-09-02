@@ -255,6 +255,7 @@ export const componentsData: ComponentsData = {
       tags: ["Portfolio", "Template", "Minimalist", "Single Page"],
       description: "A simple, elegant single page portfolio template.",
       image: "/assets/images/showcase/templates/single-page-portfolio.png",
+      imageClassName: "object-cover",
     },
     "minimalist-portfolio": {
       title: "Minimalist Portfolio",
@@ -262,6 +263,7 @@ export const componentsData: ComponentsData = {
       tags: ["Portfolio", "Template", "Minimalist", "Single Page"],
       description: "A simple, elegant minimalist portfolio template.",
       image: "/assets/images/showcase/templates/minimalist-portfolio.png",
+      imageClassName: "object-cover",
     },
   },
   blocks: {

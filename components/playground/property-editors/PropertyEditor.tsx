@@ -118,7 +118,7 @@ const PropertyEditor = ({
                 />
               </button>
             </PopoverTrigger>
-            <PopoverContent align="start" className="w-[280px] p-0">
+            <PopoverContent align="start" className="w-70 p-0">
               <Command shouldFilter={false}>
                 <CommandInput
                   placeholder="Search components..."
@@ -140,7 +140,7 @@ const PropertyEditor = ({
                         }}
                         className={cn(
                           key === selectedComponent &&
-                            "font-medium text-foreground",
+                            "bg-primary/5 font-medium text-foreground",
                         )}
                       >
                         {comp.name}

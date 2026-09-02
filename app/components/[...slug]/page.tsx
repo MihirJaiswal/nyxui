@@ -83,16 +83,6 @@ export default async function ComponentPage({ params }: SlugPageProps) {
     notFound();
   }
 
-  // Components that should NOT show the playground button
-  const excludedComponents = [
-    "marquee",
-    "ms-paint",
-    "image-comparison",
-    "reveal-card",
-  ];
-  const shouldShowPlaygroundButton =
-    componentName && !excludedComponents.includes(componentName.toLowerCase());
-
   const schemaData = createComponentSchema(doc, componentName);
 
   return (
@@ -112,14 +102,12 @@ export default async function ComponentPage({ params }: SlugPageProps) {
           tags={doc.tags}
           links={doc.links}
           action={
-            shouldShowPlaygroundButton ? (
-              <MorphLink href={playgroundComponentHref(componentName)}>
-                <div className="flex items-center gap-1">
-                  <span>Open in Playground</span>
-                  <ArrowUpRight className="inline size-4" />
-                </div>
-              </MorphLink>
-            ) : null
+            <MorphLink href={playgroundComponentHref(componentName)}>
+              <div className="flex items-center gap-1">
+                <span>Open in Playground</span>
+                <ArrowUpRight className="inline size-4" />
+              </div>
+            </MorphLink>
           }
         />
 

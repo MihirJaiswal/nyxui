@@ -104,8 +104,7 @@ export const componentRegistry: ComponentRegistry = {
       // Image
       imageSrc: {
         type: "string",
-        default:
-          "https://raw.githubusercontent.com/MihirJaiswal/nyxui/refs/heads/main/public/assets/images/water-ripple-effect/art.jpg",
+        default: "/assets/images/water-ripple-effect/art.jpg",
         label: "Image Source",
         description: "URL of the image to apply ripple effect to",
         category: "Image",
@@ -245,8 +244,7 @@ export const componentRegistry: ComponentRegistry = {
     props: {
       image: {
         type: "string",
-        default:
-          "https://raw.githubusercontent.com/MihirJaiswal/nyxui/refs/heads/main/public/assets/images/image-scanner/img.jpg",
+        default: "/assets/images/image-scanner/img.jpg",
         label: "Image URL",
         description: "Source image to scan",
       },
@@ -396,8 +394,7 @@ export const componentRegistry: ComponentRegistry = {
       // Content
       logo: {
         type: "string",
-        default:
-          "https://raw.githubusercontent.com/MihirJaiswal/nyxui/1ea447828a11aeb31e46b57a06d74916ff2dcf65/public/assets/images/3d-layered-card/snaplogo.svg",
+        default: "/assets/images/3d-layered-card/snaplogo.svg",
         label: "Logo Image",
         description: "URL for the logo image",
         category: "Content",
@@ -411,8 +408,7 @@ export const componentRegistry: ComponentRegistry = {
       },
       mainImage: {
         type: "string",
-        default:
-          "https://raw.githubusercontent.com/MihirJaiswal/nyxui/refs/heads/main/public/assets/images/3d-layered-card/snap.png",
+        default: "/assets/images/3d-layered-card/snap.png",
         label: "Main Image",
         description: "URL for the main character/content image",
         category: "Content",
@@ -1227,8 +1223,7 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
             title: "Blinding Lights",
             artist: "The Weeknd",
             album: "After Hours",
-            artwork:
-              "https://raw.githubusercontent.com/MihirJaiswal/nyxui/refs/heads/main/public/assets/images/music-player/song.jpg",
+            artwork: "/assets/images/music-player/cover.jpg",
             duration: 240,
           },
           {
@@ -1292,7 +1287,7 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
       // Content
       children: {
         type: "textarea",
-        default: `<div className="flex items-center justify-center h-[400px] w-[600px] text-center space-y-4">
+        default: `<div className="flex items-center justify-center h-100 w-150 text-center space-y-4">
   <div className="flex flex-col items-center justify-center gap-2">
     <h2 className="text-4xl font-bold mb-4">Animated Background</h2>
     <p className="text-lg opacity-90">
@@ -1449,7 +1444,7 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
       children: {
         type: "textarea",
         default: `<Cursor>
-  <div className="h-96 w-[400px] bg-gradient-to-br from-blue-800 to-purple-900 rounded-lg flex items-center justify-center">
+  <div className="h-96 w-100 bg-linear-to-br from-blue-800 to-purple-900 rounded-lg flex items-center justify-center">
   <div className="text-center space-y-4">
     <h3 className="text-2xl font-bold text-white">Custom Cursor Area</h3>
     <p className="text-gray-200">Move your mouse around to see the custom cursor</p>
@@ -1857,7 +1852,7 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
     props: {
       children: {
         type: "textarea",
-        default: `<div className="text-center flex items-center justify-center  h-[400px] w-full p-12 border space-y-4">
+        default: `<div className="text-center flex items-center justify-center  h-100 w-full p-12 border space-y-4">
         <div className='py-12'>
         <h3 className="text-2xl font-bold">Dynamic Ripple Effect</h3>
         <p className="text-sm opacity-90">
@@ -2337,7 +2332,7 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
       coverImage: {
         type: "string",
         default:
-          "https://raw.githubusercontent.com/MihirJaiswal/nyxui/refs/heads/main/public/assets/images/reveal-card/cover.jpg",
+          "https://raw.githubusercontent.com/MihirJaiswal/hero-hq/main/public/spidermanposter.jpg",
         label: "Cover Image",
         description: "URL for the cover image",
         category: "Images",
@@ -2345,7 +2340,7 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
       titleImage: {
         type: "string",
         default:
-          "https://raw.githubusercontent.com/MihirJaiswal/nyxui/refs/heads/main/public/assets/images/reveal-card/title.png",
+          "https://raw.githubusercontent.com/MihirJaiswal/hero-hq/main/public/pngwing1.png",
         label: "Title Image",
         description: "URL for the title image",
         category: "Images",
@@ -2353,7 +2348,7 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
       characterImage: {
         type: "string",
         default:
-          "https://raw.githubusercontent.com/MihirJaiswal/nyxui/refs/heads/main/public/assets/images/reveal-card/character.png",
+          "https://raw.githubusercontent.com/MihirJaiswal/hero-hq/main/public/spidermanpng.png",
         label: "Character Image",
         description: "URL for the character image",
         category: "Images",
@@ -2604,12 +2599,12 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
       children: {
         type: "textarea",
         default: `<ImageLayer
-  src="https://raw.githubusercontent.com/MihirJaiswal/nyxui/refs/heads/main/public/assets/images/image-comparison/before.jpg"
+  src="/assets/images/image-comparison/2.jpg"
   alt="Before"
   layer="first"
 />
 <ImageLayer
-  src="https://raw.githubusercontent.com/MihirJaiswal/nyxui/refs/heads/main/public/assets/images/image-comparison/after.jpg"
+  src="/assets/images/image-comparison/1.jpg"
   alt="After"
   layer="second"
 />

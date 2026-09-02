@@ -10,13 +10,12 @@ interface LandingHeroProps {
 
 export function Landing({ components }: LandingHeroProps): React.ReactElement {
   return (
-    <section className="relative max-w-295 mx-auto">
+    <section className="relative max-w-295 mx-auto h-screen">
       <div className="relative">
-        <div className="border-x border-border/60 pt-32 sm:pt-38">
+        <div className="border-x border-border/60 pt-32 sm:pt-40">
           <LandingHeroIntro />
           <ComponentCompass components={components} />
         </div>
-
         <LandingActions />
         <LandingFeatureGrid />
       </div>
