@@ -3,7 +3,6 @@
 import type React from "react";
 import { lazy, Suspense, useEffect, useMemo, useState } from "react";
 import { Check, Code, Copy, FileCode2, RefreshCw } from "lucide-react";
-import parse from "html-react-parser";
 import { ImageLayer, Divider } from "@/registry/ui/image-comparison";
 import { getHighlighter } from "shiki";
 import {
@@ -50,35 +49,55 @@ const JSX_COMPONENT_MAP: Record<
   string,
   React.ComponentType<Record<string, unknown>>
 > = {
-  imagelayer: ImageLayer as React.ComponentType<Record<string, unknown>>,
-  divider: Divider as React.ComponentType<Record<string, unknown>>,
+  ImageLayer: ImageLayer as React.ComponentType<Record<string, unknown>>,
+  Divider: Divider as React.ComponentType<Record<string, unknown>>,
 };
 
 function parseJSXString(jsxString: string): React.ReactNode {
   try {
-    const htmlString = jsxString
-      .replace(/className=/g, "class=")
-      .replace(/\{/g, "")
-      .replace(/\}/g, "");
+    // Match self-closing JSX tags: <Component prop="value" />
+    const tagRegex = /<([A-Za-z][A-Za-z0-9]*)\b([^>]*?)\/>/g;
+    const elements: React.ReactNode[] = [];
+    let lastIndex = 0;
+    let match: RegExpExecArray | null;
+    let index = 0;
 
-    return parse(htmlString, {
-      replace: (domNode) => {
-        if (domNode.type === "tag" && domNode.name) {
-          const Component = JSX_COMPONENT_MAP[domNode.name.toLowerCase()];
-          if (Component) {
-            const props: Record<string, unknown> = { ...domNode.attribs };
-            if (props.class) {
-              props.className = props.class;
-              delete props.class;
-            }
-            const children = (domNode.children ?? []).map((child) =>
-              "data" in child ? (child.data ?? "") : "",
-            );
-            return <Component {...props}>{children}</Component>;
-          }
+    while ((match = tagRegex.exec(jsxString)) !== null) {
+      // Capture any text between tags
+      if (match.index > lastIndex) {
+        const text = jsxString.slice(lastIndex, match.index).trim();
+        if (text) elements.push(text);
+      }
+
+      const tagName = match[1];
+      const Component = JSX_COMPONENT_MAP[tagName];
+      if (Component) {
+        const attrString = match[2].trim();
+        const props: Record<string, unknown> = {};
+
+        // Parse attributes: prop="value" or prop='value'
+        const attrRegex =
+          /([a-zA-Z_][a-zA-Z0-9_-]*)\s*=\s*(?:"([^"]*)"|'([^']*)')/g;
+        let attrMatch: RegExpExecArray | null;
+        while ((attrMatch = attrRegex.exec(attrString)) !== null) {
+          const key = attrMatch[1];
+          const value = attrMatch[2] ?? attrMatch[3] ?? "";
+          props[key === "class" ? "className" : key] = value;
         }
-      },
-    });
+
+        elements.push(<Component key={index++} {...props} />);
+      }
+
+      lastIndex = tagRegex.lastIndex;
+    }
+
+    // Capture trailing text
+    if (lastIndex < jsxString.length) {
+      const text = jsxString.slice(lastIndex).trim();
+      if (text) elements.push(text);
+    }
+
+    return elements;
   } catch (error) {
     console.error("Error parsing JSX string:", error);
     return jsxString.replace(/<[^>]*>/g, "");
@@ -211,7 +230,7 @@ const LivePreview = ({
       }}
       className="w-full"
     >
-      <div className="flex flex-col overflow-hidden rounded-[20px] border border-border/60 bg-card lg:h-[var(--content-h)]">
+      <div className="flex flex-col overflow-hidden rounded-[20px] border border-border/60 bg-card lg:h-(--content-h)">
         <div className="flex items-center justify-between px-4 pt-3">
           <TabsList className="relative z-0 flex h-10 w-fit items-center justify-center rounded-none border-0 bg-transparent p-0 text-muted-foreground">
             <TabsTrigger
@@ -338,7 +357,7 @@ const LivePreview = ({
           <div className="relative overflow-auto px-2 pb-2 h-full">
             <div className="rounded-2xl border border-border/60 bg-background p-2 h-full">
               <div
-                className="min-h-[60vh] lg:min-h-0 lg:h-full overflow-auto rounded-2xl bg-background [&_pre]:!m-0 [&_pre]:min-h-[inherit] [&_pre]:!bg-transparent [&_pre]:!py-3 [&_pre]:text-[13px] [&_pre]:leading-6 scrollbar-no"
+                className="min-h-[60vh] lg:min-h-0 lg:h-full overflow-auto rounded-2xl bg-background [&_pre]:m-0! [&_pre]:min-h-[inherit] [&_pre]:bg-transparent! [&_pre]:py-3! [&_pre]:text-[13px] [&_pre]:leading-6 scrollbar-no"
                 dangerouslySetInnerHTML={{ __html: highlightedCode }}
               />
             </div>
