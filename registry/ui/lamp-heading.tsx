@@ -497,7 +497,7 @@ export const LampHeading = ({
           className="w-full"
           style={{
             height: `${lineHeight}px`,
-            background: gradientString,
+            backgroundImage: gradientString,
             backgroundSize: "200% 100%",
             borderRadius: "50px",
             boxShadow: `0 0 ${glowSize}px ${gradientColors.from}80, 0 0 ${glowSize * 2}px ${gradientColors.to}40, 0 0 ${glowSize * 3}px ${gradientColors.from}20`,
