@@ -512,7 +512,7 @@ export const LampHeading = ({
         <motion.div
           variants={flowAnimation}
           animate="animate"
-          className="bg-gradient-to-b from-white via-white/50 to-transparent"
+          className="bg-linear-to-b from-white via-white/50 to-transparent"
           style={{
             height: `${Math.max(1, lineHeight * 0.1)}px`,
             width: "98%",
