@@ -64,7 +64,7 @@ export function PropInput({ property, prop, value, onChange }: PropInputProps) {
           placeholder={
             prop.placeholder || `Enter ${prop.label.toLowerCase()}...`
           }
-          className="min-h-[96px] resize-none border-border/60 bg-background text-sm"
+          className="min-h-24 resize-none border-border/60 bg-background text-sm"
           rows={4}
         />
       );
