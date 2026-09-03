@@ -49,7 +49,7 @@ export const metadata: Metadata = {
 
 export default function PlaygroundPage() {
   return (
-    <div className="py-6 px-6 lg:px-6 xl:px-22 xl:container mx-auto">
+    <div className="mx-auto w-full max-w-345 px-6 py-6">
       <PlaygroundClient />
     </div>
   );
