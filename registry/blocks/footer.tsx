@@ -1,3 +1,9 @@
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
 import {
   Facebook,
@@ -133,23 +139,29 @@ export const Footer = () => {
 
           {/* Mobile accordions */}
           <div className="mt-8 flex flex-col xl:hidden">
-            {columns.map((column) => (
-              <details
-                key={column.title}
-                className="group border-b border-foreground/15"
-              >
-                <summary className="flex w-full cursor-pointer list-none items-center justify-between py-4 text-left [&::-webkit-details-marker]:hidden">
-                  <span className="text-lg font-bold">{column.title}</span>
-                  <Plus
-                    className="size-4 shrink-0 transition-transform duration-300 group-open:rotate-45"
-                    aria-hidden="true"
-                  />
-                </summary>
-                <div className="pb-6">
-                  <ColumnLinks column={column} />
-                </div>
-              </details>
-            ))}
+            <Accordion
+              className="flex w-full flex-col divide-y divide-foreground/15"
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
+              {columns.map((column) => (
+                <AccordionItem key={column.title} value={column.title}>
+                  <AccordionTrigger className="w-full py-4 text-left">
+                    <div className="flex w-full items-center justify-between">
+                      <span className="text-lg font-bold">{column.title}</span>
+                      <Plus
+                        className="size-4 shrink-0 text-foreground transition-transform duration-300 group-data-expanded:rotate-45"
+                        aria-hidden="true"
+                      />
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <div className="pb-6">
+                      <ColumnLinks column={column} />
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
 
           <p className="mt-6 hidden max-w-80 text-sm leading-relaxed text-muted-foreground xl:mt-10 xl:block">
