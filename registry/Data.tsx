@@ -272,6 +272,7 @@ export const componentsData: ComponentsData = {
       tags: ["Footer", "Section"],
       description: "A simple footer component.",
       image: "/assets/images/showcase/blocks/footer.png",
+      imageClassName: "object-cover invert dark:invert-0",
       isNew: true,
     },
   },
