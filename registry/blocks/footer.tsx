@@ -97,7 +97,6 @@ const socialLinks = [
 const legalLinks: FooterLink[] = [
   { label: "Privacy Policy", href: "/privacy" },
   { label: "Terms of Service", href: "/terms" },
-  { label: "Cookie Policy", href: "/cookies" },
 ];
 
 const linkClass =
@@ -117,7 +116,7 @@ export const Footer = () => {
       <div className="relative z-20 flex flex-col justify-between xl:flex-row xl:gap-40">
         {/* Left column — socials + blurb */}
         <div className="flex flex-col">
-          <div className="flex gap-5">
+          <div className="flex w-full justify-center lg:justify-normal gap-5">
             {socialLinks.map((social) => (
               <Link
                 key={social.label}
@@ -172,7 +171,7 @@ export const Footer = () => {
       </div>
 
       {/* Big wordmark */}
-      <div className="mb-8 mt-4 flex w-full">
+      <div className="mb-8 mt-8 lg:mt-4 flex w-full">
         <p
           className="w-full bg-linear-to-b from-foreground/25 to-foreground/2 bg-clip-text text-center text-[18vw] leading-[0.8] font-black tracking-tighter text-transparent select-none xl:text-[13vw]"
           aria-hidden="true"
@@ -197,7 +196,7 @@ export const Footer = () => {
             </Link>
           ))}
         </div>
-        <div className="flex flex-1 flex-col justify-between gap-6 sm:flex-row sm:items-center sm:gap-0 xl:justify-end">
+        <div className="flex flex-1 flex-col justify-center w-full gap-6 sm:flex-row items-center sm:gap-0 xl:justify-end">
           <p className="text-sm text-muted-foreground/70">
             © {new Date().getFullYear()} Nyx UI. All rights reserved.
           </p>
