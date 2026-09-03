@@ -39,6 +39,24 @@ function pickRegistryComponent(
 }
 
 export const Index: Record<string, RegistryEntry> = {
+  accordion: {
+    name: "accordion",
+    description:
+      "A motion-powered accordion with smooth height and opacity animations for expanding and collapsing content.",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [
+      {
+        path: "registry/ui/accordion.tsx",
+        type: "registry:ui",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import("@/registry/ui/accordion")) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "accordion") };
+    }),
+    meta: undefined,
+  },
   "animated-code-block": {
     name: "animated-code-block",
     description:
@@ -1324,9 +1342,9 @@ export const Index: Record<string, RegistryEntry> = {
   footer: {
     name: "footer",
     description:
-      "A simple footer component i will add some more modern components in the future.",
+      "A modern footer with responsive accordion navigation, social links and a large wordmark.",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["accordion"],
     files: [
       {
         path: "registry/blocks/footer.tsx",

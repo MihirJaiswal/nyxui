@@ -6,8 +6,9 @@ export const blocks: Registry["items"] = [
     type: "registry:ui",
     title: "Footer",
     description:
-      "A simple footer component i will add some more modern components in the future.",
-    dependencies: ["lucide-react"],
+      "A modern footer with responsive accordion navigation, social links and a large wordmark.",
+    dependencies: ["motion", "lucide-react"],
+    registryDependencies: ["accordion"],
     files: [
       {
         path: "registry/blocks/footer.tsx",
