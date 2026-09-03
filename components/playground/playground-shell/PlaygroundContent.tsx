@@ -116,7 +116,7 @@ export const PlaygroundContent = ({
                 </div>
               </Panel>
 
-              <PanelResizeHandle className="group relative -ml-1.75 flex w-3 flex-shrink-0 cursor-col-resize items-center justify-center">
+              <PanelResizeHandle className="group relative -ml-1.75 flex w-3 shrink-0 cursor-col-resize items-center justify-center">
                 <div className="bg-background rounded-full border border-border p-0.5">
                   <GripVertical className="relative z-10 h-3 w-3 text-muted-foreground/40" />
                 </div>
@@ -134,7 +134,7 @@ export const PlaygroundContent = ({
               <div
                 className={cn(
                   SIDEBAR_OUTER_CLASSNAME,
-                  "w-[260px] shrink-0 xl:w-[310px]",
+                  "w-65 shrink-0 xl:w-77.5",
                 )}
               >
                 <div className={SIDEBAR_INNER_CLASSNAME}>
@@ -153,7 +153,7 @@ export const PlaygroundContent = ({
           {selectedComponent ? (
             <Tabs defaultValue="preview" className="flex h-full flex-col gap-0">
               <div className="sticky top-16 z-30 flex justify-start py-1">
-                <TabsList className="h-8 w-[200px]">
+                <TabsList className="h-8 w-50">
                   <TabsTrigger value="preview" className="text-sm">
                     Preview
                   </TabsTrigger>
@@ -179,7 +179,7 @@ export const PlaygroundContent = ({
             </Tabs>
           ) : (
             <>
-              <div className="flex-shrink-0">
+              <div className="shrink-0">
                 <div className={SIDEBAR_INNER_CLASSNAME}>
                   {sidebarPanelContent}
                 </div>

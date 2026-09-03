@@ -178,7 +178,7 @@ export default function RootLayout({
           enableSystem={false}
         >
           {/* <Banner /> */}
-          <div className="flex min-h-screen flex-col dark:has-[[data-home-page]]:bg-black">
+          <div className="flex min-h-screen flex-col dark:has-data-home-page:bg-black">
             <Navbar />
             <main className="flex min-h-0 flex-1 flex-col">{children}</main>
             <Footer />

@@ -20,7 +20,7 @@ export default function SidebarLayout({
     <div className="flex flex-1 flex-col">
       <div
         className={cn(
-          "flex w-full flex-1 flex-col px-6 lg:flex-row lg:px-6 xl:container xl:mx-auto xl:px-22 lg:gap-8",
+          "max-w-345 mx-auto flex w-full flex-1 flex-col px-6 lg:flex-row lg:px-6 xl:mx-auto lg:gap-8",
           isCollapsed ? "xl:gap-12" : "xl:gap-24",
         )}
       >
