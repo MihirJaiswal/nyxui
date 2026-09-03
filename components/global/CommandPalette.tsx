@@ -180,7 +180,7 @@ export const CommandPalette = () => {
     <>
       <Button
         variant="ghost"
-        className="relative justify-start gap-2 px-3 text-sm font-normal text-muted-foreground !border-none"
+        className="relative justify-start gap-2 px-3 text-sm font-normal text-muted-foreground border-none!"
         onClick={() => setOpen(true)}
       >
         <kbd className="pointer-events-none hidden shrink-0 select-none items-center gap-1 rounded border border-border/60 bg-background px-1.5 font-mono text-[10px] font-medium text-muted-foreground sm:flex">

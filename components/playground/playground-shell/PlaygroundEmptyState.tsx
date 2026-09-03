@@ -27,12 +27,7 @@ export const PlaygroundLoading = () => {
     <div className="h-full flex flex-col bg-background">
       {/* Desktop layout */}
       <div className="hidden w-full flex-1 lg:flex lg:flex-row">
-        <div
-          className={cn(
-            SIDEBAR_OUTER_CLASSNAME,
-            "w-[260px] shrink-0 xl:w-[310px]",
-          )}
-        >
+        <div className={cn(SIDEBAR_OUTER_CLASSNAME, "w-65 shrink-0 xl:w-77.5")}>
           <div className={SIDEBAR_INNER_CLASSNAME}>
             <div className="flex-1 flex items-center justify-center p-6 lg:p-8">
               <div className="text-center">
@@ -53,7 +48,7 @@ export const PlaygroundLoading = () => {
       <div className="flex w-full flex-1 flex-col lg:hidden">
         <Tabs defaultValue="preview" className="flex h-full flex-col gap-0">
           <div className="sticky top-16 z-30 flex justify-start mt-3">
-            <TabsList className="h-8 w-[200px]">
+            <TabsList className="h-8 w-50">
               <TabsTrigger value="preview" className="text-sm">
                 Preview
               </TabsTrigger>

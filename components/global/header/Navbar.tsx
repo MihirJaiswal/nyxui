@@ -66,7 +66,7 @@ export default function Navbar(): React.ReactElement {
             }
       }
       className={cn(
-        "top-1.5 lg:top-4 z-50 w-full will-change-[max-width]",
+        "top-1.5 lg:top-4 z-50 w-full will-change-[max-width] px-3",
         isHome ? "fixed left-1/2 -translate-x-1/2" : "sticky mx-auto",
       )}
     >

@@ -6,7 +6,7 @@ import { AnimateText } from "@/registry/ui/animated-text";
 
 export function Grid() {
   return (
-    <div className="relative flex h-[35vh] lg:h-[var(--content-h)] w-full flex-col items-center justify-center overflow-hidden rounded-[20px] rounded-b-none border-0 border-b border-border bg-muted mb-2 lg:rounded-[20px] lg:border lg:mb-0">
+    <div className="relative flex h-[35vh] lg:h-(--content-h) w-full flex-col items-center justify-center overflow-hidden rounded-[20px] rounded-b-none border-0 border-b border-border bg-muted mb-2 lg:rounded-[20px] lg:border lg:mb-0">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -19,9 +19,9 @@ export function Grid() {
           whileHover={{ scale: 1.05 }}
           transition={{ type: "spring", stiffness: 300 }}
         >
-          <div className="w-14 h-14 lg:w-32 lg:h-32 mx-auto bg-gradient-to-br from-foreground/20 to-foreground/5 rounded-3xl flex items-center justify-center relative overflow-hidden">
+          <div className="w-14 h-14 lg:w-32 lg:h-32 mx-auto bg-linear-to-br from-foreground/20 to-foreground/5 rounded-3xl flex items-center justify-center relative overflow-hidden">
             <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-foreground/10 to-transparent"
+              className="absolute inset-0 bg-linear-to-r from-foreground/10 to-transparent"
               animate={{ y: [-100, 100] }}
               transition={{
                 duration: 3,
