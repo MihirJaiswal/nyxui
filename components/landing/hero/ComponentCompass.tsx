@@ -21,7 +21,6 @@ import {
 import { playHoverTick, preloadTick } from "@/lib/hover-tick";
 import { COMPASS_GEOMETRY } from "../../../lib/compass-geometry";
 import { CompassTrack } from "./CompassTrack";
-import { LandingActions } from "./LandingActions";
 import type { LandingComponent } from "../../../types/landing";
 
 const SMALL_LINES_PER_GROUP = COMPASS_GEOMETRY.smallLinesPerGroup;

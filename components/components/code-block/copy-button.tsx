@@ -5,9 +5,12 @@ import { CheckIcon, CopyIcon } from "lucide-react";
 import { Event, trackEvent } from "@/lib/event";
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
 import { cn } from "@/lib/utils";
-import { Button, ButtonProps } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
+import type { VariantProps } from "class-variance-authority";
 
-interface CopyButtonProps extends ButtonProps {
+interface CopyButtonProps
+  extends React.ComponentProps<"button">,
+    VariantProps<typeof buttonVariants> {
   value: string;
   src: string;
   event?: Event["name"];

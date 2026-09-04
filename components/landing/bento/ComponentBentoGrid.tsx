@@ -154,7 +154,7 @@ function BentoCell({
 
 export function ComponentBentoGrid(): React.ReactElement {
   const shouldReduceMotion = useReducedMotion();
-  const [activeLayoutIndex, setActiveLayoutIndex] = useState(0);
+  const [activeLayoutIndex] = useState(0);
   const activeLayout: BentoLayoutDefinition = BENTO_LAYOUTS[activeLayoutIndex];
 
   return (
