@@ -101,10 +101,8 @@ const TickerItem = ({
       onMouseEnter={handleMouseEnter}
       className={cn(
         "group relative flex min-h-7 w-full items-center gap-3 rounded-md py-1 text-sm transition-colors outline-none",
-        isActive
-          ? "text-[#FF4F11]"
-          : "text-muted-foreground hover:text-[#FF4F11]",
-        isFocused && !isActive && "bg-muted/50 text-[#FF4F11]",
+        isActive ? "text-primary" : "text-muted-foreground hover:text-primary",
+        isFocused && !isActive && "bg-muted/50 text-primary",
         isLast && "mb-px",
       )}
     >
@@ -114,7 +112,7 @@ const TickerItem = ({
           aria-hidden="true"
         >
           <span className="flex w-11 shrink-0 items-center">
-            <span className="block h-px w-8 shrink-0 bg-border dark:bg-white/30" />
+            <span className="block h-px w-8 shrink-0 bg-foreground/30" />
           </span>
         </span>
       )}
@@ -124,7 +122,7 @@ const TickerItem = ({
           style={{ width }}
           className={cn(
             "block h-px shrink-0 origin-left",
-            isHighlighted ? "bg-[#FF4F11]" : "bg-border dark:bg-white/30",
+            isHighlighted ? "bg-primary" : "bg-foreground/30",
           )}
         />
       </span>
@@ -146,7 +144,7 @@ const TickerItem = ({
           aria-hidden="true"
         >
           <span className="flex w-11 shrink-0 items-center">
-            <span className="block h-px w-8 shrink-0 bg-border dark:bg-white/30" />
+            <span className="block h-px w-8 shrink-0 bg-foreground/30" />
           </span>
         </span>
       )}
@@ -268,7 +266,7 @@ const ComponentSelector = ({
   return (
     <div className="flex flex-col">
       <div className="border-b border-border/60 p-3">
-        <div className="relative">
+        <div className="relative border border-border rounded-lg">
           <Search className="absolute left-3 top-1/2 size-3.5 -translate-y-1/2 text-muted-foreground" />
           <input
             ref={inputRef}
@@ -304,7 +302,7 @@ const ComponentSelector = ({
                 className="flex w-11 shrink-0 items-center"
                 aria-hidden="true"
               >
-                <span className="block h-px w-8 shrink-0 bg-border dark:bg-white/60" />
+                <span className="block h-px w-8 shrink-0 bg-foreground/30" />
               </span>
               <span className="min-w-0 truncate mb-1.5">Components</span>
             </h4>

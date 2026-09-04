@@ -122,7 +122,7 @@ export default function FooterSection() {
           <div className="order-1 flex items-center gap-1 md:order-2">
             <SocialLink href={externalLinks.twitter} label="X/Twitter">
               <svg
-                className="size-4"
+                className="size-3"
                 viewBox="0 0 1200 1227"
                 fill="currentColor"
                 xmlns="http://www.w3.org/2000/svg"

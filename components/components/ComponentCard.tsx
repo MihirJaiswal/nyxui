@@ -26,15 +26,15 @@ export const ComponentCard = ({
       href={href}
       className={cn(
         "group relative flex h-full cursor-pointer flex-col overflow-hidden",
-        "rounded-[20px] border border-[#121212] bg-[#121212] p-3",
+        "rounded-[20px] border border-card bg-card p-3",
         "shadow-glass transition-colors duration-200",
-        "hover:bg-[#161616]",
+        "hover:bg-secondary",
         className,
       )}
     >
       {/* Title Area */}
       <div className="flex flex-col items-start justify-between gap-1.5 px-2 pb-2">
-        <h3 className="text-white font-medium">{title}</h3>
+        <h3 className="text-card-foreground font-medium">{title}</h3>
         {/* {description && (
           <div className="flex items-center justify-center gap-2 text-sm font-medium text-white/50 whitespace-nowrap">
             {description}
@@ -46,7 +46,7 @@ export const ComponentCard = ({
       <div
         className="
     relative w-full flex-1 min-h-72
-    overflow-hidden rounded-2xl border border-black bg-background
+    overflow-hidden rounded-2xl border border-background bg-background
 
     after:pointer-events-none
     after:absolute after:inset-0 after:z-10
@@ -58,7 +58,7 @@ export const ComponentCard = ({
         }}
       >
         {imageSrc ? (
-          <div className="relative w-full h-full bg-[oklch(0.1448_0_0)] isolate overflow-hidden ">
+          <div className="relative w-full h-full bg-background isolate overflow-hidden ">
             <Image
               src={imageSrc}
               alt={title}
@@ -69,7 +69,7 @@ export const ComponentCard = ({
             />
           </div>
         ) : (
-          <div className="w-14 h-14 rounded-full flex-shrink-0 bg-[oklch(0.1448_0_0)]">
+          <div className="w-14 h-14 rounded-full flex-shrink-0 bg-background">
             <Image
               src="/nyx-logo.webp"
               alt={title}

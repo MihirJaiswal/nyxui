@@ -29,7 +29,7 @@ const SIDEBAR_PX = 310;
 // Shared classNames so the "not measured yet" fallback layout and the
 // real PanelGroup layout look pixel-identical (see useSidebarPanelSizes).
 const SIDEBAR_INNER_CLASSNAME =
-  "flex h-full flex-col overflow-hidden rounded-xl border border-border/70 bg-card/70 shadow-sm dark:border-white/5 dark:bg-[#0F0F0F]";
+  "flex h-full flex-col overflow-hidden rounded-xl border border-border/70 bg-card shadow-sm";
 const SIDEBAR_OUTER_CLASSNAME =
   "flex flex-col lg:sticky lg:top-16 lg:h-[calc(85vh+5rem)] lg:py-10";
 const MAIN_OUTER_CLASSNAME = "flex flex-col min-w-0 pl-8 xl:pl-24";
@@ -480,7 +480,7 @@ const PlaygroundContent = ({
         {/* Mobile layout */}
         <div className="flex w-full flex-1 flex-col lg:hidden">
           <div className="flex w-full flex-shrink-0 flex-col">
-            <div className="flex h-full flex-col overflow-hidden rounded-xl border border-border/70 bg-card/70 shadow-sm dark:border-white/5 dark:bg-[#0F0F0F]">
+            <div className="flex h-full flex-col overflow-hidden rounded-xl border border-border/70 bg-card shadow-sm">
               {sidebarPanelContent}
             </div>
           </div>

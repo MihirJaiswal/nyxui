@@ -185,7 +185,7 @@ const components = {
     />
   ),
   table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
-    <div className="my-6 w-full max-w-full overflow-hidden rounded-xl border border-border/70 bg-card text-card-foreground shadow-sm dark:border-white/5 dark:bg-[#0F0F0F]">
+    <div className="my-6 w-full max-w-full overflow-hidden rounded-xl border border-border/70 bg-card text-card-foreground shadow-sm">
       <table
         className={cn("w-full max-w-full border-collapse text-sm", className)}
         {...props}
@@ -198,7 +198,7 @@ const components = {
   }: React.HTMLAttributes<HTMLTableSectionElement>) => (
     <thead
       className={cn(
-        "border-b border-border/70 bg-muted/50 text-muted-foreground dark:border-white/5 dark:bg-[#151515]",
+        "border-b border-border/70 bg-muted/50 text-muted-foreground",
         className,
       )}
       {...props}
@@ -207,7 +207,7 @@ const components = {
   tr: ({ className, ...props }: React.HTMLAttributes<HTMLTableRowElement>) => (
     <tr
       className={cn(
-        "border-b border-border/60 transition-colors last:border-b-0 hover:bg-muted/30 dark:border-white/5 dark:hover:bg-[#151515]",
+        "border-b border-border/60 transition-colors last:border-b-0 hover:bg-muted/30",
         className,
       )}
       {...props}
@@ -216,7 +216,7 @@ const components = {
   th: ({ className, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
     <th
       className={cn(
-        "border-r border-border/60 px-3 py-3 text-left text-xs font-medium uppercase tracking-wide last:border-r-0 dark:border-white/5 sm:px-4",
+        "border-r border-border/60 px-3 py-3 text-left text-xs font-medium uppercase tracking-wide last:border-r-0 sm:px-4",
         className,
       )}
       {...props}
@@ -225,7 +225,7 @@ const components = {
   td: ({ className, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
     <td
       className={cn(
-        "border-r border-border/60 px-3 py-3 text-xs leading-6 text-muted-foreground last:border-r-0 dark:border-white/5 dark:text-neutral-400 sm:px-4 sm:text-sm [&[align=center]]:text-center [&[align=right]]:text-right",
+        "border-r border-border/60 px-3 py-3 text-xs leading-6 text-muted-foreground last:border-r-0 sm:px-4 sm:text-sm [&[align=center]]:text-center [&[align=right]]:text-right",
         className,
       )}
       {...props}
@@ -258,7 +258,7 @@ const components = {
   }: React.ComponentProps<typeof TabsList>) => (
     <TabsList
       className={cn(
-        "relative z-0 flex h-8 w-fit items-center justify-center rounded-lg bg-zinc-50 p-0.5 text-muted-foreground shadow-none inset-ring-1 inset-ring-border/64 dark:bg-zinc-900",
+        "relative z-0 flex h-8 w-fit items-center justify-center rounded-lg bg-muted p-0.5 text-muted-foreground shadow-none inset-ring-1 inset-ring-border/64",
         className,
       )}
       {...props}
@@ -271,7 +271,7 @@ const components = {
   }: React.ComponentProps<typeof TabsTrigger>) => (
     <TabsTrigger
       className={cn(
-        "relative z-10 flex h-7 flex-1 shrink-0 items-center justify-center gap-2 rounded-md border-0 bg-transparent px-4 py-1 font-sans text-sm font-medium whitespace-nowrap text-muted-foreground shadow-none outline-none transition-[color,background-color] hover:text-foreground focus-visible:inset-ring-1 focus-visible:inset-ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-white data-[state=active]:text-foreground data-[state=active]:shadow-none data-[state=active]:inset-ring-1 data-[state=active]:inset-ring-foreground/10 dark:data-[state=active]:bg-muted dark:data-[state=active]:inset-ring-foreground/6 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "relative z-10 flex h-7 flex-1 shrink-0 items-center justify-center gap-2 rounded-md border-0 bg-transparent px-4 py-1 font-sans text-sm font-medium whitespace-nowrap text-muted-foreground shadow-none outline-none transition-[color,background-color] hover:text-foreground focus-visible:inset-ring-1 focus-visible:inset-ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-muted data-[state=active]:text-foreground data-[state=active]:shadow-none data-[state=active]:inset-ring-1 data-[state=active]:inset-ring-foreground/10 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className,
       )}
       {...props}
@@ -345,7 +345,7 @@ const components = {
     }
 
     return (
-      <div className="group/pre relative overflow-hidden rounded-xl border border-border/70 bg-white shadow-sm dark:border-white/5 dark:bg-[#0F0F0F]">
+      <div className="group/pre relative overflow-hidden rounded-xl border border-border/70 bg-card shadow-sm">
         <pre
           className={cn(
             "m-0 max-h-[650px] w-full max-w-full overflow-x-auto bg-transparent p-4 pr-24 text-[13px] leading-6 [--code-padding-right:6rem] [&_code]:min-w-full [&_code]:bg-transparent [&_code]:p-0 [&_code]:leading-6 [&_code]:whitespace-pre [&_[data-line]]:min-h-6 [&_[data-line]]:pr-[var(--code-padding-right)] [&_[data-line]]:leading-6 scrollbar-no",
@@ -371,7 +371,7 @@ const components = {
               data-variant="ghost"
               data-size="icon-xs"
               className={cn(
-                "group/button absolute right-3 top-3 z-10 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-border/70 bg-white text-sm font-medium whitespace-nowrap text-muted-foreground opacity-0 outline-none transition-all select-none hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:scale-95 disabled:pointer-events-none disabled:opacity-50 group-hover/pre:opacity-100 dark:border-white/5 dark:bg-[#1A1A1A] dark:text-neutral-400 dark:hover:bg-[#252525] dark:hover:text-neutral-200 [&_svg]:pointer-events-none [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0",
+                "group/button absolute right-3 top-3 z-10 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-border/70 bg-accent text-sm font-medium whitespace-nowrap text-muted-foreground opacity-0 outline-none transition-all select-none hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:scale-95 disabled:pointer-events-none disabled:opacity-50 group-hover/pre:opacity-100 [&_svg]:pointer-events-none [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0",
                 __withMeta__ && "top-12",
               )}
             />
@@ -379,7 +379,7 @@ const components = {
               aria-hidden="true"
               data-fade-overlay="true"
               className={cn(
-                "pointer-events-none absolute right-1.5 top-1.5 h-12 w-24 bg-gradient-to-l from-white to-transparent opacity-0 transition-opacity group-hover/pre:opacity-100 dark:from-[#0F0F0F]",
+                "pointer-events-none absolute right-1.5 top-1.5 h-12 w-24 bg-gradient-to-l from-card to-transparent opacity-0 transition-opacity group-hover/pre:opacity-100",
                 __withMeta__ && "top-11",
               )}
             />
