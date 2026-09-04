@@ -46,21 +46,33 @@ const codeTabs: Array<{
   { value: "full", label: "Full Code", icon: FileCode2 },
 ];
 
+// Keys are lowercase because html-react-parser normalizes tag names
+// (`<Divider />` becomes `<divider>`).
 const JSX_COMPONENT_MAP: Record<
   string,
   React.ComponentType<Record<string, unknown>>
 > = {
-  ImageLayer: ImageLayer as React.ComponentType<Record<string, unknown>>,
-  Divider: Divider as React.ComponentType<Record<string, unknown>>,
+  imagelayer: ImageLayer as React.ComponentType<Record<string, unknown>>,
+  divider: Divider as React.ComponentType<Record<string, unknown>>,
 };
 
 function parseJSXString(jsxString: string): React.ReactNode {
   try {
-    return parse(jsxString, {
+    // htmlparser2 ignores the self-closing "/" on unknown (custom) tags in
+    // HTML mode, so `<ImageLayer /><ImageLayer /><Divider />` nests instead
+    // of creating siblings — and later elements would be swallowed as
+    // dropped children. Rewrite known self-closing custom tags into explicit
+    // open/close pairs so siblings stay siblings.
+    const normalized = jsxString.replace(
+      /<(ImageLayer|Divider)(\s[^>]*?)?\s*\/>/g,
+      (_match, tag: string, attrs: string = "") => `<${tag}${attrs}></${tag}>`,
+    );
+
+    return parse(normalized, {
       replace: (domNode) => {
         if (domNode.type !== "tag") return;
         const element = domNode as Element;
-        const Component = JSX_COMPONENT_MAP[element.name];
+        const Component = JSX_COMPONENT_MAP[element.name.toLowerCase()];
         if (!Component) return;
 
         const props: Record<string, unknown> = {};
