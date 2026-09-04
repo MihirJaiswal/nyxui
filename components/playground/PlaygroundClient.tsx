@@ -148,24 +148,16 @@ const PlaygroundContent = ({
   const router = useRouter();
   const { showToast, Toast } = useToast();
 
-  // Persist config to localStorage
+  // Only restore from localStorage if a component is specified in the URL
   useEffect(() => {
-    if (searchParams.get("component")) {
+    const componentFromUrl = searchParams.get("component");
+    if (componentFromUrl) {
       return;
     }
 
-    const saved = localStorage.getItem("playground-config");
-    if (saved) {
-      try {
-        const { component, config } = JSON.parse(saved);
-        if (component && componentRegistry[component]) {
-          setSelectedComponent(component);
-          setComponentConfig(config);
-        }
-      } catch {
-        // Invalid saved state, ignore
-      }
-    }
+    // No component in URL — don't auto-restore, show empty/grid state
+    setSelectedComponent("");
+    setComponentConfig({});
   }, [searchParams]);
 
   useEffect(() => {
@@ -328,7 +320,7 @@ const PlaygroundContent = ({
     <PlaygroundErrorBoundary onReset={handleReset}>
       <div className="h-full flex flex-col bg-background">
         {/* Main Content */}
-        <div className="flex-1 flex flex-col lg:flex-row">
+        <div className="flex-1 flex flex-col lg:flex-row lg:gap-8 xl:gap-20">
           {/* Left Sidebar - Controls */}
           <div className="flex max-h-96 w-full flex-shrink-0 flex-col overflow-hidden border-b border-border/60 bg-background lg:sticky lg:top-0 lg:max-h-screen lg:w-80 lg:border-b-0 lg:border-r xl:w-96 border-x">
             {/* Component Selector */}
@@ -375,7 +367,7 @@ const PlaygroundContent = ({
           {/* Right Side - Live Preview or Empty State */}
           {selectedComponent ? (
             <div className="flex-1 flex flex-col min-w-0">
-              <div className="flex-1 md:p-4 lg:p-6">
+              <div className="flex-1 md:py-4 lg:py-6">
                 <LivePreview
                   componentKey={selectedComponent}
                   config={componentConfig}
