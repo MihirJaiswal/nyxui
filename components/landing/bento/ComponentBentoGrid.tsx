@@ -171,8 +171,12 @@ export function ComponentBentoGrid(): React.ReactElement {
             <h2 className="max-w-xl text-4xl leading-tight font-medium tracking-tight sm:text-5xl">
               Design basics.
               <br />
-              Defining{" "}
-              <span className="font-caveat text-brand text-6xl">details.</span>
+              <span className="text-foreground/65">
+                Defining{" "}
+                <span className="font-caveat text-brand text-6xl">
+                  details.
+                </span>
+              </span>
             </h2>
           </div>
 
