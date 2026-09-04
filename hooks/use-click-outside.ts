@@ -1,11 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-
-/**
- * Call `handler` when a `mousedown` occurs outside the referenced element.
- * No-op while `enabled` is false (defaults to true).
- */
 export function useClickOutside<T extends HTMLElement>(
   ref: React.RefObject<T | null>,
   handler: () => void,
