@@ -3,6 +3,7 @@ import { CodeBlockCommand } from "./code-block-command";
 import RepoDownload from "./repo-download";
 import TechStack from "./tech-stack";
 import TemplatePreview from "./template-preview";
+import TemplateShowcase from "./template-showcase";
 import {
   Accordion,
   AccordionContent,
@@ -52,6 +53,7 @@ const components = {
   TechStack,
   RepoDownload,
   TemplatePreview,
+  TemplateShowcase,
   Image,
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

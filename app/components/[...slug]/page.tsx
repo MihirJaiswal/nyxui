@@ -140,7 +140,7 @@ export default async function ComponentPage({ params }: SlugPageProps) {
       <meta name="framework" content="React, Next.js" />
       <meta name="styling" content="Tailwind CSS" />
 
-      <div className="mx-auto w-full max-w-[1200px]">
+      <div className="w-full">
         <DocPageHeader
           title={doc.title}
           description={doc.description}

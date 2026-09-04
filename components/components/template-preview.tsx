@@ -15,10 +15,8 @@ export default function TemplatePreview({
   return (
     <Link
       className={cn(
-        buttonVariants({
-          variant: "outline",
-        }),
-        "not-prose group relative w-full gap-2  border border-zinc-300 dark:border-zinc-600 rounded-sm",
+        buttonVariants({ variant: "outline" }),
+        "not-prose group relative w-full gap-2 rounded-lg sm:w-auto",
       )}
       href={href}
       target="_blank"

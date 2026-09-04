@@ -1,7 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
-import { ComponentSidebar } from "@/components/components/component-sidebar";
-import Header from "@/components/global/Header";
+import SidebarLayout from "@/components/global/SidebarLayout";
 import { absoluteUrl } from "@/lib/utils";
 import { externalLinks, siteLinks } from "@/lib/links";
 
@@ -82,17 +81,5 @@ export default function DocsLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <div className="flex min-h-screen flex-col">
-      <Header />
-      <div className="flex w-full flex-1 flex-col lg:flex-row lg:gap-8 xl:gap-20 px-6 lg:px-6 xl:px-22 xl:container mx-auto">
-        <aside className="hidden lg:block w-full shrink-0 lg:w-auto">
-          <div className="sticky top-16 h-[calc(100vh-4rem)] overflow-x-hidden overflow-y-auto hide-scrollbar">
-            <ComponentSidebar />
-          </div>
-        </aside>
-        <main className="flex-1">{children}</main>
-      </div>
-    </div>
-  );
+  return <SidebarLayout>{children}</SidebarLayout>;
 }

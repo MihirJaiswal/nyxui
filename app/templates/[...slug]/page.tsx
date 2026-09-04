@@ -134,7 +134,7 @@ export default async function TemplatePage({ params }: SlugPageProps) {
       <meta name="styling" content="Tailwind CSS" />
       <meta name="template-type" content="Website Template" />
 
-      <div className="mx-auto w-full max-w-[1200px]">
+      <div className="w-full">
         <DocPageHeader
           title={template.title}
           description={template.description}
@@ -145,28 +145,22 @@ export default async function TemplatePage({ params }: SlugPageProps) {
           primaryDocLink
         />
 
-        <div className="mt-6 space-y-8">
+        <div className="pt-6">
           <div className="mdx-content">
             <Mdx code={template.body.code} />
           </div>
         </div>
 
-        {/* Template-specific footer with additional actions */}
-        <div className="mt-12 pt-6 border-t border-border">
-          <div className="flex flex-wrap gap-4 justify-between items-center">
-            <div className="text-sm text-muted-foreground">
-              Need help with this template? Check out our documentation or reach
-              out to support.
-            </div>
-            <div className="flex gap-2">
-              <Link
-                href={siteLinks.templates}
-                className={cn(badgeVariants({ variant: "outline" }), "gap-1")}
-              >
-                ← All Templates
-              </Link>
-            </div>
-          </div>
+        <div className="mt-12 flex items-center justify-between border-t border-border pt-6">
+          <p className="text-sm text-muted-foreground">
+            Need help? Check out our documentation or reach out to support.
+          </p>
+          <Link
+            href={siteLinks.templates}
+            className={cn(badgeVariants({ variant: "outline" }), "gap-1")}
+          >
+            ← All Templates
+          </Link>
         </div>
       </div>
     </>

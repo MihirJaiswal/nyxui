@@ -37,25 +37,19 @@ export function DocPageHeader({
   const hasTags = Boolean(tags?.length);
 
   return (
-    <div className="space-y-4 mt-5">
-      <div>
-        <h1 className="scroll-m-20 text-3xl font-bold tracking-tight sm:text-4xl break-words">
-          {title}
-        </h1>
-      </div>
+    <div className="mt-6 space-y-4">
+      <h1 className="scroll-m-20 text-3xl font-bold tracking-tight sm:text-4xl break-words">
+        {title}
+      </h1>
 
       {description && (
-        <div>
-          <p className="text-muted-foreground dark:text-[#A1A1AA] ">
-            <span className="md:inline-block align-top no-underline md:[text-wrap:balance]">
-              {description}
-            </span>
-          </p>
-        </div>
+        <p className="text-muted-foreground [text-wrap:balance]">
+          {description}
+        </p>
       )}
 
       {(hasTags || action) && (
-        <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
+        <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
           {hasTags ? (
             <div className="flex flex-wrap gap-2">
               {tags?.map((tag) => (
@@ -64,7 +58,7 @@ export function DocPageHeader({
                   href={categoryHref(tag, tagBasePath)}
                   className={cn(
                     badgeVariants({ variant: "outline" }),
-                    "h-7 rounded-lg border-border/70 bg-background px-2.5 text-xs font-medium text-muted-foreground shadow-none transition-colors hover:bg-muted hover:text-foreground dark:border-white/10 dark:bg-[#111111] dark:hover:bg-[#1A1A1A]",
+                    "h-7 rounded-lg border-border/60 bg-background px-2.5 text-xs font-medium text-muted-foreground shadow-none transition-colors hover:bg-muted hover:text-foreground",
                   )}
                 >
                   {tag}
@@ -79,7 +73,7 @@ export function DocPageHeader({
       )}
 
       {links && (
-        <div className="flex items-center space-x-2 pt-2">
+        <div className="flex items-center gap-2 pt-1">
           {links.doc && (
             <Link
               href={links.doc}
@@ -90,9 +84,6 @@ export function DocPageHeader({
                   variant: primaryDocLink ? "default" : "secondary",
                 }),
                 "gap-1",
-                primaryDocLink
-                  ? "bg-green-600 hover:bg-green-700"
-                  : "hover:bg-gray-200 dark:hover:bg-zinc-700",
               )}
             >
               {linkLabels.doc}
@@ -106,7 +97,7 @@ export function DocPageHeader({
               rel="noreferrer"
               className={cn(
                 badgeVariants({ variant: "secondary" }),
-                "gap-1 hover:bg-gray-200 dark:hover:bg-zinc-700",
+                "gap-1",
               )}
             >
               {linkLabels.api}

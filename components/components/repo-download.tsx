@@ -34,7 +34,7 @@ export default function RepoDownload({ url, free = false }: RepoDownloadProps) {
       <Button
         onClick={handleDownload}
         disabled={loading}
-        className="not-prose group relative rounded-sm w-full gap-2"
+        className="not-prose group relative w-full gap-2 rounded-lg sm:w-auto"
       >
         {loading ? "Downloading" : "Free Download"}
         {!loading && <Download className="size-4" />}
@@ -51,7 +51,7 @@ export default function RepoDownload({ url, free = false }: RepoDownloadProps) {
         buttonVariants({
           variant: "default",
         }),
-        "not-prose group relative w-full gap-1",
+        "not-prose group relative w-full gap-1 rounded-lg sm:w-auto",
       )}
     >
       Buy Now
