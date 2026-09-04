@@ -25,7 +25,7 @@ export default function SidebarLayout({
         )}
       >
         <aside className="hidden w-full shrink-0 lg:block lg:w-auto">
-          <div className="sticky top-16 h-[calc(100vh-4rem)] overflow-x-hidden overflow-y-auto hide-scrollbar">
+          <div className="sticky top-16 mt-3 h-[calc(100vh-4rem)] overflow-x-hidden overflow-y-auto hide-scrollbar">
             <ComponentSidebar type={sidebarType} />
           </div>
         </aside>
