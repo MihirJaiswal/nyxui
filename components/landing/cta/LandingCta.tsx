@@ -37,13 +37,11 @@ export function LandingCta(): React.ReactElement {
           <h2 className="max-w-4xl text-3xl leading-[1.05] font-medium tracking-tight sm:text-5xl md:text-6xl">
             Less code more impact
             <br />
-            <span className="text-foreground/65">
-              ship something{" "}
-              <span className="text-brand font-caveat text-5xl sm:text-6xl md:text-7xl">
-                today
-              </span>
-              .
+            ship something{" "}
+            <span className="text-brand font-caveat text-5xl sm:text-6xl md:text-7xl">
+              today
             </span>
+            .
           </h2>
 
           <MorphLink
