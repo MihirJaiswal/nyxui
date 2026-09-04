@@ -273,19 +273,6 @@ export const ui: Registry["items"] = [
     ],
   },
   {
-    name: "liquid-metal-button",
-    type: "registry:ui",
-    title: "Liquid Metal Button",
-    description: "A button component with a liquid metal effect.",
-    files: [
-      {
-        path: "registry/ui/liquid-metal-button.tsx",
-        type: "registry:ui",
-        target: "components/ui/liquid-metal-button.tsx",
-      },
-    ],
-  },
-  {
     name: "image-comparison",
     type: "registry:ui",
     title: "Image Comparison",

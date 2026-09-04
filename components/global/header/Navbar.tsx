@@ -171,7 +171,7 @@ export default function Navbar() {
                   size="icon"
                   className="rounded-full text-muted-foreground hover:bg-muted/80 hover:text-foreground"
                 >
-                  <GitHubLogoIcon className="h-4.5 w-4.5" />
+                  <GitHubLogoIcon className="h-5 w-5" />
                   <span className="sr-only">GitHub</span>
                 </Button>
               </a>
@@ -187,7 +187,7 @@ export default function Navbar() {
                   size="icon"
                   className="rounded-full text-muted-foreground hover:bg-muted/80 hover:text-foreground"
                 >
-                  <XTwitterIcon size={14} />
+                  <XTwitterIcon size={10} />
                   <span className="sr-only">Twitter</span>
                 </Button>
               </a>

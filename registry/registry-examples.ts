@@ -72,6 +72,36 @@ export const examples: Registry["items"] = [
     ],
   },
   {
+    name: "grainy-background-demo1",
+    type: "registry:example",
+    title: "Grainy Background Hero Demo",
+    description:
+      "Example showing a dark aurora grainy background used as a hero section with headline and CTAs.",
+    registryDependencies: ["https://nyxui.com/r/grainy-background"],
+    files: [
+      {
+        path: "registry/example/grainy-background-demo1.tsx",
+        type: "registry:example",
+        target: "components/grainy-background-demo1.tsx",
+      },
+    ],
+  },
+  {
+    name: "grainy-background-demo2",
+    type: "registry:example",
+    title: "Grainy Background Pricing Demo",
+    description:
+      "Example showing mesh grainy backgrounds used in a pricing card layout.",
+    registryDependencies: ["https://nyxui.com/r/grainy-background"],
+    files: [
+      {
+        path: "registry/example/grainy-background-demo2.tsx",
+        type: "registry:example",
+        target: "components/grainy-background-demo2.tsx",
+      },
+    ],
+  },
+  {
     name: "animated-text-demo",
     type: "registry:example",
     title: "Animated Text Demo",
@@ -184,6 +214,21 @@ export const examples: Registry["items"] = [
     ],
   },
   {
+    name: "github-repo-card-demo3",
+    type: "registry:example",
+    title: "Github Repo Card Demo 3",
+    description:
+      "Example showing a GitHub repo card with the modern-light theme.",
+    registryDependencies: ["https://nyxui.com/r/github-repo-card.json"],
+    files: [
+      {
+        path: "registry/example/github-repo-card-demo3.tsx",
+        type: "registry:example",
+        target: "components/github-repo-card-demo3.tsx",
+      },
+    ],
+  },
+  {
     name: "glitch-button-demo",
     type: "registry:example",
     title: "Glitch Button Demo",
@@ -250,20 +295,6 @@ export const examples: Registry["items"] = [
         path: "registry/example/lamp-heading-demo.tsx",
         type: "registry:example",
         target: "components/lamp-heading-demo.tsx",
-      },
-    ],
-  },
-  {
-    name: "liquid-metal-button-demo",
-    type: "registry:example",
-    title: "Liquid Metal Button Demo",
-    description: "Example showing a liquid metal button.",
-    registryDependencies: ["https://nyxui.com/r/liquid-metal-button.json"],
-    files: [
-      {
-        path: "registry/example/liquid-metal-button-demo.tsx",
-        type: "registry:example",
-        target: "components/liquid-metal-button-demo.tsx",
       },
     ],
   },
