@@ -11,9 +11,9 @@ export const CyberpunkCardDemo = () => {
         colorShift
         borderStyle="circuit"
         backgroundEffect="circuit"
-        className="h-full transition-transform duration-200"
+        className="w-fit transition-transform duration-200"
       >
-        <div className="flex flex-col gap-2 p-1 max-w-xs">
+        <div className="flex flex-col gap-2 p-1 w-80">
           <div className="flex justify-between items-start">
             <h3 className="text-2xl font-bold tracking-tight text-pink-100">
               Lucy
@@ -57,7 +57,7 @@ export const CyberpunkCardDemo = () => {
             </div>
           </div>
 
-          <Button className="mt-1 bg-pink-500/20 text-pink-100 hover:bg-pink-500/40 w-full justify-between text-sm">
+          <Button className="mt-1 bg-none bg-pink-500/20 text-pink-100 hover:bg-pink-500/40 border border-pink-500/30 w-full justify-between text-sm">
             ENGAGE <ChevronRight className="w-4 h-4" />
           </Button>
         </div>
@@ -67,9 +67,9 @@ export const CyberpunkCardDemo = () => {
         colorShift
         borderStyle="circuit"
         backgroundEffect="scanlines"
-        className="h-full transition-transform duration-200"
+        className="w-fit transition-transform duration-200"
       >
-        <div className="flex flex-col gap-2 p-1 max-w-xs">
+        <div className="flex flex-col gap-2 p-1 w-80">
           <div className="flex justify-between items-start">
             <h3 className="text-2xl font-bold tracking-tight text-pink-100">
               David
@@ -113,7 +113,7 @@ export const CyberpunkCardDemo = () => {
             </div>
           </div>
 
-          <Button className="mt-1 bg-pink-500/20 text-pink-100 hover:bg-pink-500/40 w-full justify-between text-sm">
+          <Button className="mt-1 bg-none bg-blue-500/20 text-pink-100 hover:bg-blue-500/40 w-full justify-between text-sm border border-blue-500/30">
             ENGAGE <ChevronRight className="w-4 h-4" />
           </Button>
         </div>
