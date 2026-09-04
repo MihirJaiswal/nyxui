@@ -43,7 +43,6 @@ const Satoshi = localFont({
 });
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-// import { Banner } from "@/components/global/Banner";
 import Footer from "@/components/global/Footer";
 import { JsonLd } from "@/components/global/JsonLd";
 import { externalLinks } from "@/lib/links";
