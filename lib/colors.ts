@@ -11,9 +11,7 @@ export function rgbToHex(red: number, green: number, blue: number): string {
   return `#${componentToHex(red)}${componentToHex(green)}${componentToHex(blue)}`;
 }
 
-export function hexToRgb(
-  hex: string,
-): { r: number; g: number; b: number } | null {
+function hexToRgb(hex: string): { r: number; g: number; b: number } | null {
   const normalizedHex = hex.replace("#", "");
   const match = /^([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(normalizedHex);
   if (!match) {
