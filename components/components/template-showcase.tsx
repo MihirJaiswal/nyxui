@@ -1,16 +1,16 @@
-import { ReactNode } from "react";
+import { Maximize } from "lucide-react";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 interface TemplateShowcaseProps {
   videoSrc: string;
-  children?: ReactNode;
-  actions?: ReactNode;
+  fullscreenHref?: string;
   className?: string;
 }
 
 export default function TemplateShowcase({
   videoSrc,
-  actions,
+  fullscreenHref,
   className,
 }: TemplateShowcaseProps) {
   return (
@@ -25,6 +25,17 @@ export default function TemplateShowcase({
         <span className="text-sm font-medium text-muted-foreground">
           Preview
         </span>
+        {fullscreenHref && (
+          <Link
+            href={fullscreenHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex size-7 items-center justify-center rounded-[5px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground dark:hover:bg-muted/50"
+            aria-label="Open in full screen"
+          >
+            <Maximize size={16} />
+          </Link>
+        )}
       </div>
 
       {/* Video */}
@@ -37,13 +48,6 @@ export default function TemplateShowcase({
           className="w-full aspect-4/3 md:aspect-video object-cover"
         />
       </div>
-
-      {/* Actions */}
-      {actions && (
-        <div className="flex flex-col items-start gap-3 border-t border-border/40 p-4 sm:flex-row">
-          {actions}
-        </div>
-      )}
     </div>
   );
 }

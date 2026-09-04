@@ -19,7 +19,7 @@ export default function IntroductionPage() {
         <h1 className="text-4xl font-bold tracking-tight mb-5">
           What is Nyx UI?
         </h1>
-        <p className="text-lg leading-relaxed text-muted-foreground">
+        <p className="leading-relaxed text-muted-foreground">
           A collection of reusable components, templates, and blocks designed
           for seamless integration into your web projects. Built with a creative
           touch and meticulous attention to detail.
