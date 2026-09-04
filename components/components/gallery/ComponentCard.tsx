@@ -65,6 +65,7 @@ export const ComponentCard = ({
               )}
               quality={100}
               loading="lazy"
+              draggable="false"
             />
           </div>
         ) : (
