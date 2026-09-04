@@ -71,10 +71,7 @@ export const text = {
   ),
   p: ({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
     <p
-      className={cn(
-        "leading-7 [&:not(:first-child)]:mt-6 text-foreground",
-        className,
-      )}
+      className={cn("leading-7 not-first:mt-6 text-foreground", className)}
       {...props}
     />
   ),
@@ -164,7 +161,7 @@ export const table = {
   td: ({ className, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
     <td
       className={cn(
-        "border-r border-border/60 px-3 py-3 text-xs leading-6 text-muted-foreground last:border-r-0 sm:px-4 sm:text-sm [&[align=center]]:text-center [&[align=right]]:text-right",
+        "border-r border-border/60 px-3 py-3 text-xs leading-6 text-muted-foreground last:border-r-0 sm:px-4 sm:text-sm [[align=center]]:text-center [[align=right]]:text-right",
         className,
       )}
       {...props}

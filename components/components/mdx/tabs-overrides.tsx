@@ -14,7 +14,7 @@ export const stepOverrides = {
   ),
   Steps: ({ ...props }) => (
     <div
-      className="[&>h3]:step steps mb-12 overflow-visible pl-8 relative before:absolute before:left-0 before:top-0 before:h-full before:w-px before:bg-gradient-to-b before:from-transparent before:via-muted-foreground/50 before:to-transparent w-full max-w-full "
+      className="[&>h3]:step steps mb-12 overflow-visible pl-8 relative before:absolute before:left-0 before:top-0 before:h-full before:w-px before:bg-linear-to-b before:from-transparent before:via-muted-foreground/50 before:to-transparent w-full max-w-full "
       {...props}
     />
   ),

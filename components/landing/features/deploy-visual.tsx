@@ -27,7 +27,7 @@ export function DeployVisual(): React.ReactElement {
         </div>
 
         {/* canvas body */}
-        <div className="relative flex h-44 items-center justify-center overflow-hidden bg-[linear-gradient(to_right,rgba(128,128,128,0.12)_1px,transparent_1px),linear-gradient(to_bottom,rgba(128,128,128,0.12)_1px,transparent_1px)] bg-[size:26px_26px] [mask-image:radial-gradient(70%_70%_at_50%_50%,black,transparent)]">
+        <div className="relative flex h-44 items-center justify-center overflow-hidden bg-[linear-gradient(to_right,rgba(128,128,128,0.12)_1px,transparent_1px),linear-gradient(to_bottom,rgba(128,128,128,0.12)_1px,transparent_1px)] bg-size-[26px_26px] mask-[radial-gradient(70%_70%_at_50%_50%,black,transparent)]">
           {/* measurement guides — vertical pinned to the text's left edge, horizontal across its mid */}
           <div
             aria-hidden="true"

@@ -38,7 +38,7 @@ export function DocPageHeader({
 
   return (
     <div className="mt-6 space-y-4">
-      <h1 className="scroll-m-20 text-3xl font-bold tracking-tight sm:text-4xl break-words">
+      <h1 className="scroll-m-20 text-3xl font-bold tracking-tight sm:text-4xl wrap-break-word">
         {title}
       </h1>
 

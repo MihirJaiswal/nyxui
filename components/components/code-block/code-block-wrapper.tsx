@@ -31,7 +31,7 @@ export function CodeBlockWrapper({
         >
           <div
             className={cn(
-              "[&_pre]:my-0 [&_pre]: max-h-[650px] rounded-md [&_pre]:pb-[100px]",
+              "[&_pre]:my-0 [&_pre]: max-h-162 rounded-md [&_pre]:pb-25",
               !isOpened ? "[&_pre]:overflow-hidden" : "[&_pre]:overflow-auto]",
             )}
           >
@@ -40,7 +40,7 @@ export function CodeBlockWrapper({
         </CollapsibleContent>
         <div
           className={cn(
-            "absolute flex items-center justify-center bg-gradient-to-b from-background/10 to-background to-90% p-2",
+            "absolute flex items-center justify-center bg-linear-to-b from-background/10 to-background to-90% p-2",
             isOpened
               ? "inset-x-0 bottom-0 h-12 from-background/30"
               : "inset-0 ",

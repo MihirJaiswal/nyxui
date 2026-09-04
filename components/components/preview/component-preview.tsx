@@ -105,7 +105,7 @@ export function ComponentPreview({
           </ComponentWrapper>
         </TabsContent>
         <TabsContent value="code" className="px-1 pb-1">
-          <div className="relative w-full overflow-hidden [&_[data-rehype-pretty-code-figure]]:my-0 [&_[data-rehype-pretty-code-figure]>div]:max-h-[400px] [&_[data-rehype-pretty-code-figure]>div]:rounded-2xl [&_pre]:my-0 [&_pre]:max-h-[400px] [&_pre]:overflow-auto [&_.absolute]:bottom-3">
+          <div className="relative w-full overflow-hidden **:data-rehype-pretty-code-figure:my-0 [&_[data-rehype-pretty-code-figure]>div]:max-h-100 [&_[data-rehype-pretty-code-figure]>div]:rounded-2xl [&_pre]:my-0 [&_pre]:max-h-100 [&_pre]:overflow-auto [&_.absolute]:bottom-3">
             {Code}
           </div>
         </TabsContent>
