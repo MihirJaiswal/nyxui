@@ -12,7 +12,7 @@ export default function IntroductionPage() {
   return (
     <div className="mx-auto max-w-[1200px] px-1 py-6">
       {/* Hero */}
-      <section className="mb-16">
+      <section className="mb-10">
         <p className="mb-3 text-sm font-medium tracking-wide text-[#FF4F11] uppercase">
           Introduction
         </p>
@@ -27,7 +27,7 @@ export default function IntroductionPage() {
       </section>
 
       {/* Cover image */}
-      <div className="relative mb-16 overflow-hidden rounded-xl border border-border/60">
+      <div className="relative mb-10 overflow-hidden rounded-xl border border-border/60">
         <Image
           src={img}
           alt="Nyx UI Components Preview"
@@ -41,7 +41,7 @@ export default function IntroductionPage() {
       </div>
 
       {/* Philosophy */}
-      <section className="mb-16" id="philosophy">
+      <section className="mb-10" id="philosophy">
         <h2 className="mb-8 text-2xl font-semibold tracking-tight">
           What Drives Us
         </h2>
