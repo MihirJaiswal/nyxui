@@ -20,13 +20,11 @@ interface ComponentSelectorProps {
   onSelect: (componentKey: string) => void;
 }
 
-const BASE_WIDTH = 28;
+const BASE_WIDTH = 32;
 const MAX_WIDTH = 45;
-const SIGMA = 10; // px — controls how far the bulge reaches. Bigger = wider ripple.
-const HOVER_NONE = -100000; // sentinel: "cursor is nowhere near the list"
+const SIGMA = 10;
+const HOVER_NONE = -100000;
 
-// Retuned to be snappy instead of floaty. Damping ratio here is ~1.08
-// (barely overdamped — settles fast, no overshoot/bounce).
 const SPRING_CONFIG = { stiffness: 900, damping: 40, mass: 0.15 };
 const LABEL_TRANSITION = {
   type: "spring" as const,
@@ -39,6 +37,8 @@ interface TickerItemProps {
   index: number;
   isActive: boolean;
   isHovered: boolean;
+  isFirst: boolean;
+  isLast: boolean;
   name: string;
   onSelect: () => void;
   onMouseEnter: () => void;
@@ -49,15 +49,14 @@ const TickerItem = ({
   index,
   isActive,
   isHovered,
+  isFirst,
+  isLast,
   name,
   onSelect,
   onMouseEnter,
 }: TickerItemProps) => {
   const ref = useRef<HTMLButtonElement>(null);
 
-  // Reads the item's real screen position at the moment mouseY changes —
-  // no assumptions about row height, gaps, or list length, so it can't
-  // drift out of sync the way index-based math can.
   const rawWidth = useTransform(mouseY, (y) => {
     if (isActive) return MAX_WIDTH;
     if (!ref.current) return BASE_WIDTH;
@@ -66,10 +65,6 @@ const TickerItem = ({
     const centerY = rect.top + rect.height / 2;
     const distance = Math.abs(y - centerY);
 
-    // Gaussian falloff — same shape as macOS dock magnification.
-    // At distance = 0 (hovered row): influence = 1
-    // At distance ≈ one row away: influence ≈ 0.5
-    // Fades smoothly to 0 further out.
     const influence = Math.exp(-(distance * distance) / (2 * SIGMA * SIGMA));
     return BASE_WIDTH + influence * (MAX_WIDTH - BASE_WIDTH);
   });
@@ -79,8 +74,6 @@ const TickerItem = ({
 
   const handleMouseEnter = () => {
     onMouseEnter();
-    // Skip the tick when re-entering the already-active row — nothing
-    // visually changes there, so the sound would just feel redundant.
     if (!isActive) {
       playHoverTick(index);
     }
@@ -96,8 +89,20 @@ const TickerItem = ({
         isActive
           ? "text-[#FF4F11]"
           : "text-muted-foreground hover:text-[#FF4F11]",
+        isLast && "mb-px",
       )}
     >
+      {isFirst && (
+        <span
+          className="pointer-events-none absolute inset-x-0 bottom-full flex h-px translate-y-1/2 items-center gap-3"
+          aria-hidden="true"
+        >
+          <span className="flex w-11 shrink-0 items-center">
+            <span className="block h-px w-8 shrink-0 bg-border dark:bg-white/30" />
+          </span>
+        </span>
+      )}
+
       <span className="flex w-11 shrink-0 items-center" aria-hidden="true">
         <motion.span
           style={{ width }}
@@ -118,6 +123,17 @@ const TickerItem = ({
       >
         {name}
       </motion.span>
+
+      {!isLast && (
+        <span
+          className="pointer-events-none absolute inset-x-0 top-full flex h-px -translate-y-1/2 items-center gap-3"
+          aria-hidden="true"
+        >
+          <span className="flex w-11 shrink-0 items-center">
+            <span className="block h-px w-8 shrink-0 bg-border dark:bg-white/30" />
+          </span>
+        </span>
+      )}
     </motion.button>
   );
 };
@@ -131,9 +147,6 @@ const ComponentSelector = ({
   const [hoveredKey, setHoveredKey] = useState<string | null>(null);
   const mouseY = useMotionValue(HOVER_NONE);
 
-  // Kick off decode as soon as the sidebar mounts so the buffer is ready
-  // by the first hover. The AudioContext will be suspended until a user
-  // gesture, but decoding works while suspended.
   useEffect(() => {
     preloadTick();
   }, []);
@@ -187,14 +200,14 @@ const ComponentSelector = ({
       <div className="min-h-0 flex-1 overflow-y-auto p-3 scrollbar-no">
         <div className="space-y-4">
           <div>
-            <h4 className="mb-2 flex items-center gap-3 text-sm font-medium text-foreground">
+            <h4 className="flex items-center gap-3 text-sm font-medium text-foreground">
               <span
                 className="flex w-11 shrink-0 items-center"
                 aria-hidden="true"
               >
                 <span className="block h-px w-8 shrink-0 bg-border dark:bg-white/60" />
               </span>
-              <span className="min-w-0 truncate">Components</span>
+              <span className="min-w-0 truncate mb-1.5">Components</span>
             </h4>
 
             <div
@@ -210,6 +223,8 @@ const ComponentSelector = ({
                     index={index}
                     isActive={selectedComponent === key}
                     isHovered={hoveredKey === key}
+                    isFirst={index === 0}
+                    isLast={index === filteredComponents.length - 1}
                     name={component.name}
                     onSelect={() => onSelect(key)}
                     onMouseEnter={() => setHoveredKey(key)}

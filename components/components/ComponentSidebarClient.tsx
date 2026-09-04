@@ -51,6 +51,31 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
     [blockItems],
   );
 
+  const lastVisibleHref = React.useMemo(() => {
+    const lastGettingStarted = gettingStartedSection.items.at(-1)?.href;
+    const lastTemplate =
+      templateItems.length > 0
+        ? groupedTemplates.at(-1)?.[1].at(-1)?.href
+        : undefined;
+    const lastComponent =
+      type === "components" && groupedComponents.length > 0
+        ? groupedComponents.at(-1)?.[1].at(-1)?.href
+        : undefined;
+    const lastBlock =
+      type === "blocks" && groupedBlocks.length > 0
+        ? groupedBlocks.at(-1)?.[1].at(-1)?.href
+        : undefined;
+
+    return lastBlock ?? lastComponent ?? lastTemplate ?? lastGettingStarted;
+  }, [
+    gettingStartedSection,
+    groupedTemplates,
+    templateItems.length,
+    type,
+    groupedComponents,
+    groupedBlocks,
+  ]);
+
   React.useEffect(() => {
     activeItemRef.current?.scrollIntoView({ block: "center" });
   }, []);
@@ -73,6 +98,22 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
     </span>
   );
 
+  const PhantomLine = ({ position }: { position: "top" | "bottom" }) => (
+    <span
+      className={cn(
+        "pointer-events-none absolute inset-x-0 flex h-px items-center gap-3",
+        position === "top"
+          ? "bottom-full translate-y-1/2"
+          : "top-full -translate-y-1/2",
+      )}
+      aria-hidden="true"
+    >
+      <span className="flex w-11 shrink-0 items-center">
+        <span className="block h-px w-8 shrink-0 bg-border dark:bg-white/30" />
+      </span>
+    </span>
+  );
+
   const renderCategoryHeading = (title: string) => (
     <h4 className="mb-2 flex items-center gap-3 text-sm font-medium text-foreground">
       <span className="flex w-11 shrink-0 items-center" aria-hidden="true">
@@ -85,6 +126,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
   const renderSectionItems = (items: CategoryItem[]) => {
     return items.map((item, index) => {
       const isActive = currentPath === item.href;
+      const isLast = item.href === lastVisibleHref;
       return (
         <MotionLink
           key={item.href}
@@ -104,6 +146,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
           animate={isActive ? "active" : "normal"}
           whileHover="hover"
         >
+          {index === 0 && <PhantomLine position="top" />}
           {renderGuide()}
           <motion.span
             className={cn(
@@ -116,6 +159,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
           >
             {item.name}
           </motion.span>
+          {!isLast && <PhantomLine position="bottom" />}
         </MotionLink>
       );
     });
@@ -179,7 +223,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
                   hidden: {},
                   visible: { transition: { staggerChildren: 0.02 } },
                 }}
-                className="space-y-4 hide-scrollbar"
+                className="space-y-2 hide-scrollbar"
               >
                 {/* Getting Started Section */}
                 <motion.div
@@ -194,6 +238,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
                   <div className="grid grid-flow-row auto-rows-max text-sm">
                     {gettingStartedSection.items.map((item, index) => {
                       const isActive = currentPath === item.href;
+                      const isLast = item.href === lastVisibleHref;
                       return (
                         <MotionLink
                           key={item.href}
@@ -213,6 +258,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
                           animate={isActive ? "active" : "normal"}
                           whileHover="hover"
                         >
+                          {index === 0 && <PhantomLine position="top" />}
                           {renderGuide()}
                           <motion.span
                             className={cn(
@@ -229,6 +275,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
                           >
                             {item.name}
                           </motion.span>
+                          {!isLast && <PhantomLine position="bottom" />}
                         </MotionLink>
                       );
                     })}
