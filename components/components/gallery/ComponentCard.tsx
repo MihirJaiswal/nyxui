@@ -10,6 +10,7 @@ interface ComponentCardProps {
   imageSrc?: string;
   type?: "components" | "blocks" | "templates";
   className?: string;
+  imageFit?: "cover" | "contain";
 }
 
 export const ComponentCard = ({
@@ -18,6 +19,7 @@ export const ComponentCard = ({
   imageSrc,
   type = "components",
   className,
+  imageFit = "contain",
 }: ComponentCardProps) => {
   const href = `/${type}/${slug}`;
 
@@ -57,7 +59,10 @@ export const ComponentCard = ({
               src={imageSrc}
               alt={title}
               fill
-              className="object-contain dark:mix-blend-screen"
+              className={cn(
+                imageFit === "cover" ? "object-cover" : "object-contain",
+                "dark:mix-blend-screen scale-101",
+              )}
               quality={100}
               loading="lazy"
             />
