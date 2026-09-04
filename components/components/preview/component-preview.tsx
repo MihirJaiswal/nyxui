@@ -47,7 +47,7 @@ export function ComponentPreview({
   return (
     <div
       className={cn(
-        "not-prose relative my-5 overflow-hidden rounded-xl border border-border/60 bg-card text-foreground",
+        "not-prose relative my-5 overflow-hidden rounded-[20px] border border-muted bg-card text-foreground shadow-glass hover:shadow-glass-lg transition-shadow duration-200",
         className,
       )}
       {...props}
@@ -83,6 +83,7 @@ export function ComponentPreview({
         <TabsContent value="preview" className="px-1 pb-1">
           <ComponentWrapper
             name={name}
+            className="rounded-2xl"
             stageClassName={
               isBlobPreview
                 ? "min-h-[460px] sm:min-h-[480px] md:min-h-[500px]"
@@ -104,7 +105,7 @@ export function ComponentPreview({
           </ComponentWrapper>
         </TabsContent>
         <TabsContent value="code" className="px-1 pb-1">
-          <div className="relative w-full overflow-hidden [&_[data-rehype-pretty-code-figure]]:my-0 [&_[data-rehype-pretty-code-figure]>div]:max-h-[400px] [&_[data-rehype-pretty-code-figure]>div]:rounded-[9px] [&_pre]:my-0 [&_pre]:max-h-[400px] [&_pre]:overflow-auto [&_.absolute]:bottom-3">
+          <div className="relative w-full overflow-hidden [&_[data-rehype-pretty-code-figure]]:my-0 [&_[data-rehype-pretty-code-figure]>div]:max-h-[400px] [&_[data-rehype-pretty-code-figure]>div]:rounded-2xl [&_pre]:my-0 [&_pre]:max-h-[400px] [&_pre]:overflow-auto [&_.absolute]:bottom-3">
             {Code}
           </div>
         </TabsContent>
