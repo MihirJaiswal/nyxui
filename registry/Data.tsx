@@ -127,6 +127,7 @@ export const componentsData: ComponentsData = {
       tags: ["Interactive", "Tools", "Mock"],
       description: "Interactive keyboard component with customizable keys.",
       image: "/assets/images/showcase/components/keyboard.png",
+      imageClassName: "scale-90",
     },
     "ms-paint": {
       title: "MS Paint",

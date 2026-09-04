@@ -865,6 +865,44 @@ export const Index: Record<string, RegistryEntry> = {
     }),
     meta: undefined,
   },
+  "keyboard-demo2": {
+    name: "keyboard-demo2",
+    description: "Example showing a interactive keyboard.",
+    type: "registry:example",
+    registryDependencies: ["https://nyxui.com/r/keyboard.json"],
+    files: [
+      {
+        path: "registry/example/keyboard-demo2.tsx",
+        type: "registry:example",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/example/keyboard-demo2"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "keyboard-demo2") };
+    }),
+    meta: undefined,
+  },
+  "keyboard-demo3": {
+    name: "keyboard-demo3",
+    description: "Example showing a interactive keyboard.",
+    type: "registry:example",
+    registryDependencies: ["https://nyxui.com/r/keyboard.json"],
+    files: [
+      {
+        path: "registry/example/keyboard-demo3.tsx",
+        type: "registry:example",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/example/keyboard-demo3"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "keyboard-demo3") };
+    }),
+    meta: undefined,
+  },
   "ms-paint-demo": {
     name: "ms-paint-demo",
     description: "Example showing a MS Paint clone.",
