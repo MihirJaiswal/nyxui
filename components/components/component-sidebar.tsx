@@ -6,53 +6,76 @@ interface ComponentSidebarProps {
   type?: "components" | "blocks";
 }
 
+interface SidebarItem {
+  name: string;
+  href: string;
+  isNew: boolean;
+  category?: string;
+}
+
+interface RegistryEntry {
+  title: string;
+  isNew?: boolean;
+  tags?: string[];
+}
+
+const TEMPLATE_CATEGORY = "Portfolio";
+const BLOCK_CATEGORY = "Blocks";
+const DEFAULT_GETTING_STARTED_ITEM: SidebarItem = {
+  name: "Introduction",
+  href: "/docs",
+  isNew: false,
+};
+
+function toSortedItems<T extends RegistryEntry>(
+  entries: Record<string, T> | undefined,
+  mapItem: (key: string, item: T) => SidebarItem,
+): SidebarItem[] {
+  return Object.entries(entries ?? {})
+    .map(([key, item]) => mapItem(key, item))
+    .sort((a, b) => a.name.localeCompare(b.name));
+}
+
 export const ComponentSidebar = ({
   type = "components",
 }: ComponentSidebarProps) => {
-  const processedComponents = Object.entries(componentsData.components || {})
-    .map(([key, component]) => {
-      return {
-        name: component.title,
-        href: itemHref("components", key),
-        isNew: Boolean(component.isNew),
-        category: getComponentCategory(component.title, component.tags),
-      };
-    })
-    .sort((a, b) => a.name.localeCompare(b.name));
+  const processedComponents = toSortedItems(
+    componentsData.components,
+    (key, component) => ({
+      name: component.title,
+      href: itemHref("components", key),
+      isNew: Boolean(component.isNew),
+      category: getComponentCategory(component.title, component.tags),
+    }),
+  );
 
-  // Add processing for templates
-  const processedTemplates = Object.entries(componentsData.templates || {})
-    .map(([key, template]) => {
-      return {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        name: (template as any).title,
-        href: itemHref("templates", key),
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        isNew: Boolean((template as any).isNew),
-        category: "Portfolio",
-      };
-    })
-    .sort((a, b) => a.name.localeCompare(b.name));
+  const processedTemplates = toSortedItems(
+    componentsData.templates,
+    (key, template) => ({
+      name: template.title,
+      href: itemHref("templates", key),
+      isNew: Boolean(template.isNew),
+      category: TEMPLATE_CATEGORY,
+    }),
+  );
 
-  // Add processing for blocks
-  const processedBlocks = Object.entries(componentsData.blocks || {})
-    .map(([key, block]) => {
-      return {
-        name: block.title,
-        href: itemHref("blocks", key),
-        isNew: Boolean(block.isNew),
-        category: "Blocks",
-      };
-    })
-    .sort((a, b) => a.name.localeCompare(b.name));
+  const processedBlocks = toSortedItems(
+    componentsData.blocks,
+    (key, block) => ({
+      name: block.title,
+      href: itemHref("blocks", key),
+      isNew: Boolean(block.isNew),
+      category: BLOCK_CATEGORY,
+    }),
+  );
 
-  const gettingStartedItems = componentsData.links
+  const gettingStartedItems: SidebarItem[] = componentsData.links
     ? Object.entries(componentsData.links).map(([key, title]) => ({
         name: String(title),
         href: `/${key}`,
         isNew: false,
       }))
-    : [{ name: "Introduction", href: "/docs", isNew: false }];
+    : [DEFAULT_GETTING_STARTED_ITEM];
 
   return (
     <aside className="fixed top-16 z-30 hidden h-[calc(100vh-4rem)] w-auto shrink-0 pt-[22px] backdrop-blur-md lg:sticky lg:block">

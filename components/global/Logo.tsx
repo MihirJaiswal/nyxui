@@ -1,6 +1,4 @@
-import * as React from "react";
 import Image, { type ImageProps } from "next/image";
-
 import { cn } from "@/lib/utils";
 
 type LogoProps = Omit<ImageProps, "src" | "alt"> & {
