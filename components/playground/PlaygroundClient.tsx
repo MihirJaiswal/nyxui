@@ -20,6 +20,7 @@ import { componentRegistry } from "./registry";
 import { Grid } from "./Grid";
 import { generatePlaygroundCode, type CodeVariant } from "./codegen";
 import { playgroundComponentHref } from "@/lib/links";
+import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
 
 // Sidebar's current fixed width (was `lg:w-72`) — used as both the
 // default AND the minimum size of the resizable sidebar panel.
@@ -206,6 +207,10 @@ const PlaygroundContent = ({
   const searchParams = useSearchParams();
   const router = useRouter();
   const { showToast, Toast } = useToast();
+  const { copy: copyLink, hasCopied: linkCopied } = useCopyToClipboard({
+    timeout: 2000,
+    onCopy: () => showToast("Playground link copied"),
+  });
 
   const panelGroupContainerRef = useRef<HTMLDivElement>(null);
   const sidebarSizes = useSidebarPanelSizes(panelGroupContainerRef);
@@ -343,7 +348,7 @@ const PlaygroundContent = ({
     [selectedComponent, componentConfig, showToast],
   );
 
-  const handleCopyLink = useCallback(async () => {
+  const handleCopyLink = useCallback(() => {
     if (!selectedComponent) {
       return;
     }
@@ -353,14 +358,8 @@ const PlaygroundContent = ({
     url.searchParams.set("component", selectedComponent);
     url.searchParams.set("config", encodeConfig(componentConfig));
 
-    try {
-      await navigator.clipboard.writeText(url.toString());
-      showToast("Playground link copied");
-    } catch (err) {
-      showToast("Failed to copy link");
-      console.error("Clipboard error:", err);
-    }
-  }, [selectedComponent, componentConfig, showToast]);
+    copyLink(url.toString()).catch(() => showToast("Failed to copy link"));
+  }, [selectedComponent, componentConfig, copyLink, showToast]);
 
   // Keyboard shortcuts
   useEffect(() => {
@@ -389,6 +388,7 @@ const PlaygroundContent = ({
         onResetAll={handleResetCurrent}
         onResetProperty={handleResetProperty}
         onCopyLink={handleCopyLink}
+        linkCopied={linkCopied}
         onSelectComponent={handleComponentSelect}
       />
     </div>
@@ -485,6 +485,7 @@ const PlaygroundContent = ({
           {mainPanelContent}
         </div>
       </div>
+      <Toast />
     </PlaygroundErrorBoundary>
   );
 };

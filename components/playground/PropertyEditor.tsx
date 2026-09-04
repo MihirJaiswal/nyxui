@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDown, Link2, RotateCcw, Search, X } from "lucide-react";
+import { Check, ChevronDown, Link2, RotateCcw, Search, X } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type {
   ComponentDefinition,
@@ -33,6 +33,7 @@ interface PropertyEditorProps {
   onResetAll: () => void;
   onResetProperty: (property: string) => void;
   onCopyLink: () => void;
+  linkCopied?: boolean;
   onSelectComponent: (key: string) => void;
 }
 
@@ -138,6 +139,7 @@ const PropertyEditor = ({
   onResetAll,
   onResetProperty,
   onCopyLink,
+  linkCopied = false,
   onSelectComponent,
 }: PropertyEditorProps) => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -500,10 +502,19 @@ const PropertyEditor = ({
           <div className="flex shrink-0 items-center gap-1">
             <button
               onClick={onCopyLink}
-              className="rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+              className={cn(
+                "rounded-md p-1.5 transition-colors hover:bg-muted",
+                linkCopied
+                  ? "text-green-600 hover:text-green-700"
+                  : "text-muted-foreground hover:text-foreground",
+              )}
               title="Copy playground link"
             >
-              <Link2 className="size-3.5" />
+              {linkCopied ? (
+                <Check className="size-3.5" />
+              ) : (
+                <Link2 className="size-3.5" />
+              )}
             </button>
             <button
               onClick={onResetAll}
