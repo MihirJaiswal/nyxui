@@ -9,7 +9,7 @@ import {
   useSpring,
   type MotionValue,
 } from "motion/react";
-import type { ComponentRegistry } from "./types";
+import type { ComponentRegistry } from "../../types/playground";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { useKeyboardShortcut } from "@/hooks/use-keyboard-shortcut";

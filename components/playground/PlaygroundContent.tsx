@@ -14,9 +14,12 @@ import { useSearchParams, useRouter } from "next/navigation";
 import ComponentSelector from "./ComponentSelector";
 import PropertyEditor from "./PropertyEditor";
 import LivePreview from "./LivePreview";
-import type { ComponentConfig, ComponentPropValue } from "./types";
+import type {
+  ComponentConfig,
+  ComponentPropValue,
+} from "../../types/playground";
 import { componentRegistry } from "./registry";
-import { generatePlaygroundCode, type CodeVariant } from "./codegen";
+import { generatePlaygroundCode, type CodeVariant } from "../../lib/codegen";
 import { playgroundComponentHref } from "@/lib/links";
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
 import { useKeyboardShortcut } from "@/hooks/use-keyboard-shortcut";
