@@ -36,7 +36,7 @@ export function CompassRulerTicks({
               height: isBigWhiteLine
                 ? COMPASS_GEOMETRY.largeTickHeight
                 : COMPASS_GEOMETRY.smallTickHeight,
-              transform: `rotate(${angle}deg) translateY(-${COMPASS_GEOMETRY.rulerRadiusCqw}cqw)`,
+              transform: `rotate(${angle}deg) translateY(-${COMPASS_GEOMETRY.rulerRadiusRem}rem)`,
             }}
           />
         );

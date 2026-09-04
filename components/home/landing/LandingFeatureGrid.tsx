@@ -1,7 +1,14 @@
-import { Copy } from "lucide-react";
+"use client";
+
+import { Check, Copy } from "lucide-react";
 import Image from "next/image";
+import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
+
+const INSTALL_COMMAND = "npx shadcn add https://nyxui.com/r/glow-card.json";
 
 export function LandingFeatureGrid(): React.ReactElement {
+  const { copy, hasCopied } = useCopyToClipboard();
+
   return (
     <div className="relative left-1/2 w-screen -translate-x-1/2 border-b border-border/60">
       <ul className="relative mx-auto grid max-w-295 divide-y divide-border/60 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
@@ -32,9 +39,21 @@ export function LandingFeatureGrid(): React.ReactElement {
           <span className="relative z-10 font-caveat text-xl text-foreground/85">
             Give it a try
           </span>
-          <code className="relative z-10 mt-2 text-xs text-muted-foreground">
+          <code className="relative z-10 mt-2 inline-flex items-center gap-1 text-xs text-muted-foreground">
             <span className="text-brand">npx</span> shadcn add
-            @nyxui/interactive-terminal <Copy className="ml-1 inline size-3" />
+            https://nyxui.com/r/glow-card.json
+            <button
+              type="button"
+              onClick={() => copy(INSTALL_COMMAND)}
+              className="ml-1 inline-flex items-center text-muted-foreground transition-colors hover:text-foreground"
+              aria-label="Copy install command"
+            >
+              {hasCopied ? (
+                <Check className="size-3 text-brand" />
+              ) : (
+                <Copy className="size-3" />
+              )}
+            </button>
           </code>
         </li>
 

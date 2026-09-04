@@ -1,17 +1,6 @@
-"use client";
-
-import { motion, useReducedMotion } from "motion/react";
-
 export function LandingHeroIntro(): React.ReactElement {
-  const shouldReduceMotion = useReducedMotion();
-
   return (
-    <motion.div
-      initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-      className="mx-auto max-w-3xl px-6 text-center"
-    >
+    <div className="mx-auto max-w-3xl px-6 text-center">
       <h1 className="text-balance text-5xl font-medium dark:font-normal tracking-[-0.03em] sm:text-7xl leading-[0.68]">
         Build interfaces
         <br />
@@ -24,6 +13,6 @@ export function LandingHeroIntro(): React.ReactElement {
         Easily plug in the latest trending components without stressing over
         design or animations.
       </p>
-    </motion.div>
+    </div>
   );
 }

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { siteLinks } from "@/lib/links";
 import AnimatedLogo from "@/components/home/newsletter/animated-logo";
 
 export function LandingCta(): React.ReactElement {
@@ -21,13 +20,11 @@ export function LandingCta(): React.ReactElement {
           </h2>
 
           <Link
-            href={siteLinks.playground}
-            className="group mt-16 inline-flex w-fit items-center gap-3 text-sm font-medium text-foreground sm:mt-20"
+            href="mailto:jaiswalmihir.business@gmail.com"
+            className="group inline-flex items-center gap-2 text-sm text-foreground/75 transition-colors hover:text-foreground"
           >
-            <span className="flex size-7 items-center justify-center rounded-full bg-brand text-white transition-colors group-hover:bg-brand/85">
-              <ArrowUpRight className="size-3.5" aria-hidden="true" />
-            </span>
-            Open playground
+            <span className="size-3 bg-brand transition-transform group-hover:rotate-45" />
+            Get in touch <ArrowUpRight className="size-4" />
           </Link>
         </div>
 
