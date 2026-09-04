@@ -65,7 +65,7 @@ export function CodeBlockCommand({
           });
         }}
       >
-        <TabsList className="mb-4 flex h-auto w-fit items-center gap-1 rounded-xl border border-border/70 bg-muted p-1">
+        <TabsList className="mb-4 flex h-auto w-fit items-center gap-1 rounded-xl border border-border/70 bg-card p-1">
           {packageManagers.map((manager) => (
             <TabsTrigger
               key={manager}

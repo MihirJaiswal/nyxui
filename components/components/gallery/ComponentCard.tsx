@@ -26,7 +26,7 @@ export const ComponentCard = ({
       href={href}
       className={cn(
         "group relative flex h-full cursor-pointer flex-col overflow-hidden",
-        "rounded-[20px] border border-card bg-card p-3",
+        "rounded-[20px] border border-muted bg-card p-3",
         "shadow-glass transition-colors duration-200",
         "hover:bg-secondary",
         className,
@@ -45,10 +45,10 @@ export const ComponentCard = ({
     after:pointer-events-none
     after:absolute after:inset-0 after:z-10
     after:rounded-2xl
-    after:shadow-[inset_0_0_0.1px_rgba(255,255,255,0.1),inset_0_1px_1px_rgba(255,255,255,0.11)]
+    after:shadow-[inset_0_0_0.1px_var(--preview-inset),inset_0_1px_1px_var(--preview-inset)]
   "
         style={{
-          boxShadow: "rgba(0, 0, 0, 0.31) 0px 4px 8px 0px",
+          boxShadow: "var(--preview-shadow)",
         }}
       >
         {imageSrc ? (
@@ -57,7 +57,7 @@ export const ComponentCard = ({
               src={imageSrc}
               alt={title}
               fill
-              className="object-contain mix-blend-screen"
+              className="object-contain dark:mix-blend-screen"
               quality={100}
               loading="lazy"
             />
