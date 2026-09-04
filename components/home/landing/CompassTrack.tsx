@@ -1,0 +1,64 @@
+"use client";
+
+import { motion, type MotionValue } from "motion/react";
+import { CompassComponentMarker } from "./CompassComponentMarker";
+import { CompassRulerTicks } from "./CompassRulerTicks";
+import type { LandingComponent } from "./types";
+
+interface CompassTrackProps {
+  activeIndex: number;
+  components: LandingComponent[];
+  firstMarkerOffset: number;
+  linesPerComponent: number;
+  linesPerWhiteGroup: number;
+  onComponentFocus: (index: number) => void;
+  rotation: MotionValue<number>;
+  timelineLineCount: number;
+}
+
+export function CompassTrack({
+  activeIndex,
+  components,
+  firstMarkerOffset,
+  linesPerComponent,
+  linesPerWhiteGroup,
+  onComponentFocus,
+  rotation,
+  timelineLineCount,
+}: CompassTrackProps): React.ReactElement {
+  const degreesPerComponent = 360 / Math.max(components.length, 1);
+
+  return (
+    <motion.div
+      data-component-timeline
+      className="absolute inset-0"
+      style={{ rotate: rotation }}
+    >
+      <div className="absolute rounded-full" style={{ inset: "2%" }} />
+      <CompassRulerTicks
+        firstMarkerOffset={firstMarkerOffset}
+        linesPerComponent={linesPerComponent}
+        linesPerWhiteGroup={linesPerWhiteGroup}
+        timelineLineCount={timelineLineCount}
+      />
+
+      {components.map((component, index) => {
+        const markerLine = index * linesPerComponent + firstMarkerOffset;
+        const angle = (markerLine / timelineLineCount) * 360;
+
+        return (
+          <CompassComponentMarker
+            key={component.slug}
+            angle={angle}
+            component={component}
+            degreesPerComponent={degreesPerComponent}
+            index={index}
+            isActive={activeIndex === index}
+            onFocus={onComponentFocus}
+            rotation={rotation}
+          />
+        );
+      })}
+    </motion.div>
+  );
+}
