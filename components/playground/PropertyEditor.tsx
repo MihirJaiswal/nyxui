@@ -128,6 +128,39 @@ function isColorMapValue(
   return isRecordValue(value) && Object.values(value).every(isColorText);
 }
 
+function JsonObjectEditor({
+  value,
+  onChange,
+}: {
+  value: Record<string, ComponentPropValue>;
+  onChange: (next: Record<string, ComponentPropValue>) => void;
+}) {
+  const [draft, setDraft] = useState(() => JSON.stringify(value, null, 2));
+  const [error, setError] = useState<string | null>(null);
+
+  return (
+    <div className="space-y-1">
+      <CodeEditor
+        value={draft}
+        onChange={(newValue) => {
+          setDraft(newValue);
+          try {
+            const parsed = JSON.parse(newValue);
+            setError(null);
+            onChange(parsed);
+          } catch (err) {
+            setError(err instanceof Error ? err.message : "Invalid JSON");
+          }
+        }}
+        language="json"
+        className="w-full"
+        maxHeight={200}
+      />
+      {error && <p className="text-[11px] text-destructive">{error}</p>}
+    </div>
+  );
+}
+
 const PropertyEditor = ({
   component,
   components,
@@ -182,9 +215,15 @@ const PropertyEditor = ({
                   : event.target.value,
               )
             }
-            className="h-10 w-10 shrink-0 cursor-pointer rounded-md  bg-transparent p-0.5"
+            aria-label={label || "Color value"}
+            className="h-10 w-10 shrink-0 cursor-pointer rounded-md bg-transparent p-0.5"
           />
           <div className="min-w-0 flex-1 space-y-1">
+            {label && (
+              <span className="block truncate text-[11px] text-muted-foreground">
+                {label}
+              </span>
+            )}
             <Input
               type="text"
               value={colorValue}
@@ -317,15 +356,11 @@ const PropertyEditor = ({
 
       case "color": {
         const colorValue = String(value || "#000000");
-        return (
-          <div>
-            {renderColorValueControl(
-              prop.label,
-              colorValue,
-              (nextValue) => onChange(property, nextValue),
-              prop.colorFormat,
-            )}
-          </div>
+        return renderColorValueControl(
+          "",
+          colorValue,
+          (nextValue) => onChange(property, nextValue),
+          prop.colorFormat,
         );
       }
 
@@ -335,17 +370,19 @@ const PropertyEditor = ({
         if (isColorArrayValue(objectValue)) {
           return (
             <div className="space-y-2">
-              {objectValue.map((colorValue, index) =>
-                renderColorValueControl(
-                  `Color ${index + 1}`,
-                  colorValue,
-                  (nextValue) => {
-                    const nextColors = [...objectValue];
-                    nextColors[index] = nextValue;
-                    onChange(property, nextColors);
-                  },
-                ),
-              )}
+              {objectValue.map((colorValue, index) => (
+                <div key={index}>
+                  {renderColorValueControl(
+                    `Color ${index + 1}`,
+                    colorValue,
+                    (nextValue) => {
+                      const nextColors = [...objectValue];
+                      nextColors[index] = nextValue;
+                      onChange(property, nextColors);
+                    },
+                  )}
+                </div>
+              ))}
             </div>
           );
         }
@@ -353,32 +390,24 @@ const PropertyEditor = ({
         if (isColorMapValue(objectValue)) {
           return (
             <div className="space-y-2">
-              {Object.entries(objectValue).map(([key, colorValue]) =>
-                renderColorValueControl(key, colorValue, (nextValue) =>
-                  onChange(property, {
-                    ...objectValue,
-                    [key]: nextValue,
-                  }),
-                ),
-              )}
+              {Object.entries(objectValue).map(([key, colorValue]) => (
+                <div key={key}>
+                  {renderColorValueControl(key, colorValue, (nextValue) =>
+                    onChange(property, {
+                      ...objectValue,
+                      [key]: nextValue,
+                    }),
+                  )}
+                </div>
+              ))}
             </div>
           );
         }
 
         return (
-          <CodeEditor
-            value={JSON.stringify(objectValue, null, 2)}
-            onChange={(newValue) => {
-              try {
-                const parsed = JSON.parse(newValue);
-                onChange(property, parsed);
-              } catch {
-                // Invalid JSON, don't update
-              }
-            }}
-            language="json"
-            className="w-full"
-            maxHeight={200}
+          <JsonObjectEditor
+            value={objectValue as Record<string, ComponentPropValue>}
+            onChange={(parsed) => onChange(property, parsed)}
           />
         );
       }
@@ -486,6 +515,7 @@ const PropertyEditor = ({
                   : "text-muted-foreground hover:text-foreground",
               )}
               title="Copy playground link"
+              aria-label="Copy playground link"
             >
               {linkCopied ? (
                 <Check className="size-3.5" />
@@ -497,6 +527,7 @@ const PropertyEditor = ({
               onClick={onResetAll}
               className="rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
               title="Reset all props"
+              aria-label="Reset all props"
             >
               <RotateCcw className="size-3.5" />
             </button>
@@ -515,6 +546,7 @@ const PropertyEditor = ({
             <button
               onClick={() => setSearchQuery("")}
               className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-foreground"
+              aria-label="Clear search"
             >
               <X className="size-3.5" />
             </button>
@@ -543,6 +575,7 @@ const PropertyEditor = ({
                       onClick={() => onResetProperty(property)}
                       className="shrink-0 rounded-md p-1 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                       title={`Reset ${prop.label}`}
+                      aria-label={`Reset ${prop.label}`}
                     >
                       <RotateCcw className="size-3" />
                     </button>

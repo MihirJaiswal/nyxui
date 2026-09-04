@@ -184,22 +184,28 @@ const LivePreview = ({
               </button>
             )}
 
-            {showCode &&
-              codeTabs.map((tab) => (
-                <button
-                  key={tab.value}
-                  onClick={() => setCodeVariant(tab.value)}
-                  className={cn(
-                    "relative px-2 py-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground",
-                    codeVariant === tab.value && "text-foreground",
-                  )}
-                >
-                  {tab.label}
-                  {codeVariant === tab.value && (
-                    <span className="absolute inset-x-0 -bottom-1 h-0.5 rounded-full bg-foreground" />
-                  )}
-                </button>
-              ))}
+            {showCode && (
+              <Tabs
+                value={codeVariant}
+                onValueChange={(value) => setCodeVariant(value as CodeVariant)}
+              >
+                <TabsList className="relative z-0 flex h-10 w-fit items-center justify-center rounded-none border-0 bg-transparent p-0 text-muted-foreground">
+                  {codeTabs.map((tab) => {
+                    const Icon = tab.icon;
+                    return (
+                      <TabsTrigger
+                        key={tab.value}
+                        value={tab.value}
+                        className="relative h-7 rounded-lg border-0 bg-transparent px-2 py-0 text-sm font-medium text-muted-foreground shadow-none transition-colors hover:text-foreground data-[state=active]:bg-transparent data-[state=active]:text-foreground data-[state=active]:shadow-none after:absolute after:inset-x-0 after:-bottom-1.5 after:h-0.5 after:rounded-full after:bg-transparent data-[state=active]:after:bg-foreground"
+                      >
+                        <Icon className="size-3.5" />
+                        <span>{tab.label}</span>
+                      </TabsTrigger>
+                    );
+                  })}
+                </TabsList>
+              </Tabs>
+            )}
 
             {showCode && (
               <button
