@@ -58,13 +58,6 @@ export function CompassTrack({
       />
 
       {components.map((component, index) => {
-        const indexDistance = getCircularIndexDistance(
-          index,
-          activeIndex,
-          components.length,
-        );
-        if (Math.abs(indexDistance) > VISIBLE_MARKERS_EACH_SIDE) return null;
-
         const markerLine = index * linesPerComponent + firstMarkerOffset;
         const angle = (markerLine / timelineLineCount) * 360;
 
