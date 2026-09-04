@@ -42,6 +42,10 @@ export function absoluteUrl(path: string) {
   return `${process.env.NEXT_PUBLIC_APP_URL || "https://nyxui.com"}${path}`;
 }
 
+export function getCurrentYear(): number {
+  return new Date().getFullYear();
+}
+
 export function constructMetadata({
   title = "Nyx UI - Modern React + Tailwind CSS + Motion components & Templates",
   description = "Nyx UI is a curated collection of the best landing page components built using React + Tailwind CSS + Motion",

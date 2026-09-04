@@ -2,6 +2,7 @@ import { Mdx } from "@/components/components/mdx-components";
 import { DocPageHeader } from "@/components/components/doc-page-header";
 import { absoluteUrl } from "@/lib/utils";
 import {
+  createBaseMetadata,
   createComponentSchema,
   generateDocKeywords,
   generateDocStaticParams,
@@ -14,6 +15,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Play } from "lucide-react";
+import { JsonLd } from "@/components/global/JsonLd";
 
 export async function generateMetadata({
   params,
@@ -41,56 +43,24 @@ export async function generateMetadata({
   });
   const enhancedTitle = `${doc.title} Component - React & Next.js | Nyx UI Library`;
   const enhancedDescription = `${doc.description || `${doc.title} component for React and Next.js applications.`} Built with Tailwind CSS, TypeScript, and Framer Motion. Part of Nyx UI component library. Free to use, customizable, and accessible.`;
+  const canonical = absoluteUrl(itemHref("components", componentName));
 
   return {
-    title: enhancedTitle,
-    description: enhancedDescription,
-    keywords: componentKeywords,
+    ...createBaseMetadata({
+      title: enhancedTitle,
+      description: enhancedDescription,
+      keywords: componentKeywords,
+      canonical,
+      image: doc.image || "/nyx.webp",
+      type: "article",
+    }),
     authors: [{ name: "Mihir Jaiswal", url: externalLinks.twitter }],
     creator: "Nyx UI",
     publisher: "Nyx UI",
-
     openGraph: {
       title: `${doc.title} - React Component | Nyx UI`,
-      description: enhancedDescription,
-      type: "article",
-      url: absoluteUrl(itemHref("components", componentName)),
-      siteName: "Nyx UI",
       locale: "en_US",
-      images: [
-        {
-          url: doc.image || "/nyx.webp",
-          width: 1200,
-          height: 630,
-          alt: `${doc.title} React Component - Nyx UI`,
-        },
-      ],
     },
-    twitter: {
-      card: "summary_large_image",
-      title: `${doc.title} React Component | Nyx UI`,
-      description: enhancedDescription,
-      images: [doc.image || "/nyx.webp"],
-      creator: "@mihir_jaiswal_",
-      site: "@mihir_jaiswal_",
-    },
-
-    alternates: {
-      canonical: absoluteUrl(itemHref("components", componentName)),
-    },
-
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        "max-video-preview": -1,
-        "max-image-preview": "large",
-        "max-snippet": -1,
-      },
-    },
-
     category: "Web Development",
     other: {
       "article:section": "UI Components",
@@ -129,10 +99,7 @@ export default async function ComponentPage({ params }: SlugPageProps) {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
-      />
+      <JsonLd data={schemaData} />
 
       {/* Additional meta tags in head */}
       <meta name="component-name" content={doc.title} />

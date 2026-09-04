@@ -11,9 +11,10 @@ import {
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import img from "../../../public/assets/images/landing-page/cover.webp";
+import { useToggle } from "@/hooks/use-toggle";
 
 function GlassMusicPlayer() {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, togglePlaying] = useToggle(false);
   const [progress, setProgress] = useState(45);
   const [currentTime, setCurrentTime] = useState(125);
   const duration = 248;
@@ -130,7 +131,7 @@ function GlassMusicPlayer() {
             </button>
 
             <button
-              onClick={() => setIsPlaying(!isPlaying)}
+              onClick={() => togglePlaying()}
               className="w-12 h-12 bg-white/60 dark:bg-white/15 hover:bg-white/25 rounded-full flex items-center justify-center transition-all duration-200 backdrop-blur-sm border border-white/20 shadow-lg hover:scale-105"
             >
               {isPlaying ? (

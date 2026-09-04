@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import type { ComponentType } from "react";
 import { useRouter } from "next/navigation";
 import {
@@ -28,6 +28,7 @@ import {
   type Component,
 } from "../../registry/Data";
 import { itemHref, siteLinks } from "@/lib/links";
+import { useKeyboardShortcut } from "../../hooks/use-keyboard-shortcut";
 
 type CommandSection = "Pages" | "Components" | "Blocks" | "Templates";
 
@@ -119,33 +120,16 @@ export function CommandPalette() {
   const [open, setOpen] = useState(false);
   const router = useRouter();
 
-  useEffect(() => {
-    const down = (event: KeyboardEvent) => {
-      const isSearchShortcut =
-        (event.key.toLowerCase() === "k" && (event.metaKey || event.ctrlKey)) ||
-        event.key === "/";
+  // Cmd/Ctrl+K toggles the palette (works even while typing in inputs).
+  useKeyboardShortcut("k", () => setOpen((currentOpen) => !currentOpen), {
+    modKey: true,
+    ignoreInputs: false,
+  });
 
-      if (!isSearchShortcut) {
-        return;
-      }
-
-      const target = event.target as HTMLElement | null;
-      const isTyping =
-        target?.tagName === "INPUT" ||
-        target?.tagName === "TEXTAREA" ||
-        target?.isContentEditable;
-
-      if (event.key === "/" && isTyping) {
-        return;
-      }
-
-      event.preventDefault();
-      setOpen((currentOpen) => !currentOpen);
-    };
-
-    document.addEventListener("keydown", down);
-    return () => document.removeEventListener("keydown", down);
-  }, []);
+  // `/` also toggles, but only when NOT typing in an input.
+  useKeyboardShortcut("/", () => setOpen((currentOpen) => !currentOpen), {
+    ignoreInputs: true,
+  });
 
   const commandSections = useMemo(() => {
     const componentCommands: CommandEntry[] = Object.entries(

@@ -21,6 +21,8 @@ import { Grid } from "./Grid";
 import { generatePlaygroundCode, type CodeVariant } from "./codegen";
 import { playgroundComponentHref } from "@/lib/links";
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
+import { useKeyboardShortcut } from "@/hooks/use-keyboard-shortcut";
+import { LoadingSpinner } from "@/components/ui/loading-spinner";
 
 // Sidebar's current fixed width (was `lg:w-72`) — used as both the
 // default AND the minimum size of the resizable sidebar panel.
@@ -365,20 +367,13 @@ const PlaygroundContent = ({
   }, [selectedComponent, componentConfig, copyLink, showToast]);
 
   // Keyboard shortcuts
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === "c" && e.shiftKey) {
-        e.preventDefault();
-        handleCopyCode();
-      }
-      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
-        e.preventDefault();
-        setShowCode((prev) => !prev);
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [handleCopyCode]);
+  useKeyboardShortcut("c", () => handleCopyCode(), {
+    modKey: true,
+    shiftKey: true,
+  });
+  useKeyboardShortcut("k", () => setShowCode((prev) => !prev), {
+    modKey: true,
+  });
 
   const sidebarPanelContent = selectedComponent ? (
     <div className="min-h-0 flex-1 overflow-y-auto px-3 pb-3 scrollbar-no">
@@ -507,7 +502,7 @@ const PlaygroundLoading = () => {
           <div className={SIDEBAR_INNER_CLASSNAME}>
             <div className="flex-1 flex items-center justify-center p-6 lg:p-8">
               <div className="text-center">
-                <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+                <LoadingSpinner size={32} className="mx-auto mb-4" />
                 <p className="text-sm lg:text-base text-muted-foreground">
                   Loading playground...
                 </p>
@@ -526,7 +521,7 @@ const PlaygroundLoading = () => {
           <div className={SIDEBAR_INNER_CLASSNAME}>
             <div className="flex-1 flex items-center justify-center p-6">
               <div className="text-center">
-                <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+                <LoadingSpinner size={32} className="mx-auto mb-4" />
                 <p className="text-sm text-muted-foreground">
                   Loading playground...
                 </p>
