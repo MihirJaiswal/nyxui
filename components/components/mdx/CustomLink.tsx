@@ -1,20 +1,34 @@
 import Link from "next/link";
+import type { AnchorHTMLAttributes } from "react";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const CustomLink = (props: any) => {
-  const href = props.href;
+type CustomLinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
+  href?: string;
+};
+
+export const CustomLink = ({ href, children, ...props }: CustomLinkProps) => {
+  if (!href) {
+    return <a {...props}>{children}</a>;
+  }
 
   if (href.startsWith("/")) {
     return (
       <Link {...props} href={href}>
-        {props.children}
+        {children}
       </Link>
     );
   }
 
   if (href.startsWith("#")) {
-    return <a {...props} />;
+    return (
+      <a href={href} {...props}>
+        {children}
+      </a>
+    );
   }
 
-  return <a target="_blank" rel="noopener noreferrer" {...props} />;
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
+      {children}
+    </a>
+  );
 };

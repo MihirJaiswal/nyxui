@@ -1,3 +1,4 @@
+import type React from "react";
 import Image from "next/image";
 import {
   Accordion,
@@ -31,8 +32,7 @@ export const mdxComponents = {
   TemplateSteps,
   Image,
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  ComponentSource: (props: any) => (
+  ComponentSource: (props: React.ComponentProps<typeof ComponentSource>) => (
     <div className="w-full max-w-full overflow-hidden">
       <ComponentSource {...props} />
     </div>

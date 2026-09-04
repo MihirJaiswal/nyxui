@@ -19,8 +19,7 @@ interface SparklesProps {
   mousemove?: boolean;
   hover?: boolean;
   background?: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  options?: Record<string, any>;
+  options?: Record<string, unknown>;
 }
 
 export function Sparkles({
@@ -97,8 +96,7 @@ export function Sparkles({
       },
       move: {
         enable: true,
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        direction: direction as any,
+        direction: direction as unknown as never,
         speed: {
           min: minSpeed || speed / 130,
           max: speed,

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-export function SocialLinkButton({
+export const SocialLinkButton = ({
   href,
   label,
   children,
@@ -11,7 +11,7 @@ export function SocialLinkButton({
   label: string;
   children: React.ReactNode;
   className?: string;
-}) {
+}) => {
   return (
     <Link
       href={href}
@@ -26,4 +26,4 @@ export function SocialLinkButton({
       {children}
     </Link>
   );
-}
+};

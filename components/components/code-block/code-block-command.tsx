@@ -85,7 +85,7 @@ export function CodeBlockCommand({
               value={manager}
               className="relative mt-0 group"
             >
-              <pre className="overflow-x-auto whitespace-nowrap rounded-xl border border-border/70 bg-card p-4 pr-14 font-mono text-[13px] text-muted-foreground">
+              <pre className="overflow-x-auto whitespace-nowrap rounded-xl border border-border/70 bg-card p-4 pr-14 font-mono text-[13px] text-muted-foreground scrollbar-no">
                 <code
                   className="relative font-mono text-[13px] leading-relaxed text-muted-foreground"
                   data-language="bash"
@@ -113,7 +113,7 @@ export function CodeBlockCommand({
       <Button
         size="icon"
         variant="ghost"
-        className="absolute right-3 bottom-3 z-10 h-8 w-8 rounded-md border border-border/70 bg-accent text-muted-foreground opacity-0 transition-all hover:bg-muted hover:text-foreground active:scale-95 group-hover:opacity-100 [&_svg]:h-4 [&_svg]:w-4"
+        className="absolute right-2 bottom-2 z-10 h-7 w-7 rounded-md border border-border/70 bg-accent text-muted-foreground opacity-0 transition-all hover:bg-muted hover:text-foreground active:scale-95 group-hover:opacity-100 [&_svg]:h-3.5 [&_svg]:w-3.5"
         onClick={copyCommand}
       >
         <span className="sr-only">{hasCopied ? "Copied" : "Copy"}</span>

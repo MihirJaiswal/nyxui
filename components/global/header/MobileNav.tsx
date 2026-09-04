@@ -60,17 +60,7 @@ export function MobileNav({ activeLink, navLinks, moreLinks }: MobileNavProps) {
   const [sheetOpen, setSheetOpen] = useState(false);
   const closeSheet = () => setSheetOpen(false);
   const { components } = componentsData;
-
   const componentEntries = Object.entries(components);
-
-  const allItems = [
-    ...navLinks,
-    ...moreLinks,
-    ...componentEntries.map(([slug, comp]) => ({
-      href: itemHref("components", slug),
-      label: comp.title,
-    })),
-  ];
 
   const renderItem = (
     href: string,

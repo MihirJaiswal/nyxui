@@ -2,7 +2,8 @@ import ComponentGrid from "@/components/components/gallery/ComponentGrid";
 import { getPublishedDocCount } from "@/lib/registry";
 import { absoluteUrl, getCurrentYear } from "@/lib/utils";
 import type { Metadata } from "next";
-import { createBaseMetadata, publisher } from "@/lib/docs";
+import { createBaseMetadata } from "@/lib/docs";
+import { publisher } from "@/lib/docs-schema";
 import { JsonLd } from "@/components/global/JsonLd";
 
 function getComponentCount() {
