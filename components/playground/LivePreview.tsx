@@ -3,6 +3,7 @@
 import type React from "react";
 import { lazy, Suspense, useEffect, useMemo, useState } from "react";
 import { Check, Code, Copy, FileCode2, RefreshCw } from "lucide-react";
+import parse, { type Element } from "html-react-parser";
 import { ImageLayer, Divider } from "@/registry/ui/image-comparison";
 import { getHighlighter } from "shiki";
 import {
@@ -55,49 +56,21 @@ const JSX_COMPONENT_MAP: Record<
 
 function parseJSXString(jsxString: string): React.ReactNode {
   try {
-    // Match self-closing JSX tags: <Component prop="value" />
-    const tagRegex = /<([A-Za-z][A-Za-z0-9]*)\b([^>]*?)\/>/g;
-    const elements: React.ReactNode[] = [];
-    let lastIndex = 0;
-    let match: RegExpExecArray | null;
-    let index = 0;
+    return parse(jsxString, {
+      replace: (domNode) => {
+        if (domNode.type !== "tag") return;
+        const element = domNode as Element;
+        const Component = JSX_COMPONENT_MAP[element.name];
+        if (!Component) return;
 
-    while ((match = tagRegex.exec(jsxString)) !== null) {
-      // Capture any text between tags
-      if (match.index > lastIndex) {
-        const text = jsxString.slice(lastIndex, match.index).trim();
-        if (text) elements.push(text);
-      }
-
-      const tagName = match[1];
-      const Component = JSX_COMPONENT_MAP[tagName];
-      if (Component) {
-        const attrString = match[2].trim();
         const props: Record<string, unknown> = {};
-
-        // Parse attributes: prop="value" or prop='value'
-        const attrRegex =
-          /([a-zA-Z_][a-zA-Z0-9_-]*)\s*=\s*(?:"([^"]*)"|'([^']*)')/g;
-        let attrMatch: RegExpExecArray | null;
-        while ((attrMatch = attrRegex.exec(attrString)) !== null) {
-          const key = attrMatch[1];
-          const value = attrMatch[2] ?? attrMatch[3] ?? "";
+        for (const [key, value] of Object.entries(element.attribs)) {
           props[key === "class" ? "className" : key] = value;
         }
 
-        elements.push(<Component key={index++} {...props} />);
-      }
-
-      lastIndex = tagRegex.lastIndex;
-    }
-
-    // Capture trailing text
-    if (lastIndex < jsxString.length) {
-      const text = jsxString.slice(lastIndex).trim();
-      if (text) elements.push(text);
-    }
-
-    return elements;
+        return <Component {...props} />;
+      },
+    });
   } catch (error) {
     console.error("Error parsing JSX string:", error);
     return jsxString.replace(/<[^>]*>/g, "");
