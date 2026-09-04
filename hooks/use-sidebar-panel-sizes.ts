@@ -10,11 +10,10 @@ export const SIDEBAR_OUTER_CLASSNAME =
   "flex flex-col lg:sticky lg:top-16 lg:h-[calc(85vh+5rem)] lg:py-10";
 export const MAIN_OUTER_CLASSNAME = "flex flex-col min-w-0 lg:pl-8 xl:pl-24";
 
+const XL_MQ = "(min-width: 1280px)";
+
 export function getSidebarPx(): number {
-  if (
-    typeof window !== "undefined" &&
-    window.matchMedia("(min-width: 1280px)").matches
-  ) {
+  if (typeof window !== "undefined" && window.matchMedia(XL_MQ).matches) {
     return SIDEBAR_PX_XL;
   }
   return SIDEBAR_PX_LG;
@@ -38,8 +37,8 @@ export const useSidebarPanelSizes = (
     const update = () => {
       const total = el.offsetWidth;
       if (total > 0) {
-        const sidebarPx = getSidebarPx();
-        const pct = (sidebarPx / total) * 100;
+        const px = getSidebarPx();
+        const pct = (px / total) * 100;
         setSizes({ sidebarPct: pct, minSidebarPct: pct });
       }
     };
@@ -48,7 +47,7 @@ export const useSidebarPanelSizes = (
     const ro = new ResizeObserver(update);
     ro.observe(el);
 
-    const mq = window.matchMedia("(min-width: 1280px)");
+    const mq = window.matchMedia(XL_MQ);
     mq.addEventListener("change", update);
     return () => {
       ro.disconnect();
