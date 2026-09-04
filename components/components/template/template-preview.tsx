@@ -1,9 +1,8 @@
 import { ReactNode } from "react";
 import Link from "next/link";
 import { ExternalLinkIcon } from "@radix-ui/react-icons";
-
-import { cn } from "../../lib/utils";
-import { buttonVariants } from "../ui/button";
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/button";
 
 export default function TemplatePreview({
   href,

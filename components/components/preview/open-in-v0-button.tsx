@@ -1,5 +1,5 @@
-import { Button } from "../ui/button";
-import { V0Icon } from "../global/icons/V0Icon";
+import { Button } from "@/components/ui/button";
+import { V0Icon } from "@/components/global/icons/V0Icon";
 
 export function OpenInV0Button({ url }: { url: string }) {
   return (

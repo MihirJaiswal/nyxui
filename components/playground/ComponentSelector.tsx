@@ -96,9 +96,7 @@ const SelectorItem = ({
       onMouseLeave={() => setHovered(false)}
       className={cn(
         "group relative flex min-h-7 items-center gap-3 rounded-md py-1 text-sm transition-colors",
-        "data-[selected=true]:bg-transparent !px-0",
-        isActive ? "text-primary" : "text-muted-foreground",
-        highlighted && !isActive && "text-primary",
+        "data-[selected=true]:bg-transparent data-[selected=true]:text-inherit !px-0",
       )}
     >
       {isFirst && <PhantomLine position="top" />}
@@ -110,6 +108,8 @@ const SelectorItem = ({
         transition={LABEL_TRANSITION}
         className={cn(
           "min-w-0 flex-1 truncate text-left",
+          isActive ? "text-primary" : "text-muted-foreground",
+          highlighted && !isActive && "text-primary",
           isActive && "font-medium",
         )}
         title={name}

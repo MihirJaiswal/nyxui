@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentSidebar } from "@/components/components/component-sidebar";
+import { ComponentSidebar } from "@/components/components/sidebar/component-sidebar";
 import Navbar from "@/components/global/header/Navbar";
 
 interface SidebarLayoutProps {

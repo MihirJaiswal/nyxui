@@ -1,5 +1,5 @@
 import { componentsData } from "@/registry/Data";
-import { ComponentCard } from "@/components/components/ComponentCard";
+import { ComponentCard } from "@/components/components/gallery/ComponentCard";
 import type { Metadata } from "next";
 import { absoluteUrl } from "@/lib/utils";
 import { categoryHref, tagToSlug } from "@/lib/links";
