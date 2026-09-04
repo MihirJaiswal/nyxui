@@ -1,11 +1,18 @@
 "use client";
 
 import type React from "react";
-import { motion } from "motion/react";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+  type MotionValue,
+} from "motion/react";
 import { Search, X } from "lucide-react";
 import type { ComponentRegistry } from "./types";
-import { useState, useMemo } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
+import { preloadTick, playHoverTick } from "@/lib/hover-tick";
 
 interface ComponentSelectorProps {
   components: ComponentRegistry;
@@ -13,16 +20,106 @@ interface ComponentSelectorProps {
   onSelect: (componentKey: string) => void;
 }
 
-const itemLineVariants = {
-  normal: { width: 28 },
-  active: { width: 40, backgroundColor: "#FF4F11" },
-  hover: { width: 40, backgroundColor: "#FF4F11" },
+const BASE_WIDTH = 28;
+const MAX_WIDTH = 45;
+const SIGMA = 10; // px — controls how far the bulge reaches. Bigger = wider ripple.
+const HOVER_NONE = -100000; // sentinel: "cursor is nowhere near the list"
+
+// Retuned to be snappy instead of floaty. Damping ratio here is ~1.08
+// (barely overdamped — settles fast, no overshoot/bounce).
+const SPRING_CONFIG = { stiffness: 900, damping: 40, mass: 0.15 };
+const LABEL_TRANSITION = {
+  type: "spring" as const,
+  stiffness: 600,
+  damping: 32,
 };
 
-const itemLabelVariants = {
-  normal: { x: 0 },
-  active: { x: 4 },
-  hover: { x: 4 },
+interface TickerItemProps {
+  mouseY: MotionValue<number>;
+  index: number;
+  isActive: boolean;
+  isHovered: boolean;
+  name: string;
+  onSelect: () => void;
+  onMouseEnter: () => void;
+}
+
+const TickerItem = ({
+  mouseY,
+  index,
+  isActive,
+  isHovered,
+  name,
+  onSelect,
+  onMouseEnter,
+}: TickerItemProps) => {
+  const ref = useRef<HTMLButtonElement>(null);
+
+  // Reads the item's real screen position at the moment mouseY changes —
+  // no assumptions about row height, gaps, or list length, so it can't
+  // drift out of sync the way index-based math can.
+  const rawWidth = useTransform(mouseY, (y) => {
+    if (isActive) return MAX_WIDTH;
+    if (!ref.current) return BASE_WIDTH;
+
+    const rect = ref.current.getBoundingClientRect();
+    const centerY = rect.top + rect.height / 2;
+    const distance = Math.abs(y - centerY);
+
+    // Gaussian falloff — same shape as macOS dock magnification.
+    // At distance = 0 (hovered row): influence = 1
+    // At distance ≈ one row away: influence ≈ 0.5
+    // Fades smoothly to 0 further out.
+    const influence = Math.exp(-(distance * distance) / (2 * SIGMA * SIGMA));
+    return BASE_WIDTH + influence * (MAX_WIDTH - BASE_WIDTH);
+  });
+
+  const width = useSpring(rawWidth, SPRING_CONFIG);
+  const isHighlighted = isActive || isHovered;
+
+  const handleMouseEnter = () => {
+    onMouseEnter();
+    // Skip the tick when re-entering the already-active row — nothing
+    // visually changes there, so the sound would just feel redundant.
+    if (!isActive) {
+      playHoverTick(index);
+    }
+  };
+
+  return (
+    <motion.button
+      ref={ref}
+      onClick={onSelect}
+      onMouseEnter={handleMouseEnter}
+      className={cn(
+        "group relative flex min-h-7 w-full items-center gap-3 rounded-md py-1 text-sm transition-colors",
+        isActive
+          ? "text-[#FF4F11]"
+          : "text-muted-foreground hover:text-[#FF4F11]",
+      )}
+    >
+      <span className="flex w-11 shrink-0 items-center" aria-hidden="true">
+        <motion.span
+          style={{ width }}
+          className={cn(
+            "block h-px shrink-0 origin-left",
+            isHighlighted ? "bg-[#FF4F11]" : "bg-border dark:bg-white/30",
+          )}
+        />
+      </span>
+      <motion.span
+        animate={{ x: isHighlighted ? 4 : 0 }}
+        transition={LABEL_TRANSITION}
+        className={cn(
+          "min-w-0 flex-1 truncate text-sm text-left",
+          isActive && "font-medium",
+        )}
+        title={name}
+      >
+        {name}
+      </motion.span>
+    </motion.button>
+  );
 };
 
 const ComponentSelector = ({
@@ -31,6 +128,15 @@ const ComponentSelector = ({
   onSelect,
 }: ComponentSelectorProps) => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [hoveredKey, setHoveredKey] = useState<string | null>(null);
+  const mouseY = useMotionValue(HOVER_NONE);
+
+  // Kick off decode as soon as the sidebar mounts so the buffer is ready
+  // by the first hover. The AudioContext will be suspended until a user
+  // gesture, but decoding works while suspended.
+  useEffect(() => {
+    preloadTick();
+  }, []);
 
   const componentEntries = Object.entries(components);
 
@@ -45,6 +151,15 @@ const ComponentSelector = ({
         .sort(([, a], [, b]) => a.name.localeCompare(b.name)),
     [componentEntries, searchQuery],
   );
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    mouseY.set(e.clientY);
+  };
+
+  const handleMouseLeave = () => {
+    mouseY.set(HOVER_NONE);
+    setHoveredKey(null);
+  };
 
   return (
     <div className="flex flex-col">
@@ -82,59 +197,24 @@ const ComponentSelector = ({
               <span className="min-w-0 truncate">Components</span>
             </h4>
 
-            <div className="grid grid-flow-row auto-rows-max text-sm">
+            <div
+              className="grid grid-flow-row auto-rows-max text-sm"
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+            >
               {filteredComponents.length > 0 ? (
-                filteredComponents.map(([key, component]) => {
-                  const isActive = selectedComponent === key;
-                  return (
-                    <motion.button
-                      key={key}
-                      onClick={() => onSelect(key)}
-                      className={cn(
-                        "group relative flex min-h-7 w-full items-center gap-3 rounded-md py-1 text-sm transition-colors",
-                        isActive
-                          ? "text-[#FF4F11]"
-                          : "text-muted-foreground hover:text-[#FF4F11]",
-                      )}
-                      initial={false}
-                      animate={isActive ? "active" : "normal"}
-                      whileHover="hover"
-                    >
-                      <span
-                        className="flex w-11 shrink-0 items-center"
-                        aria-hidden="true"
-                      >
-                        <motion.span
-                          className="block h-px shrink-0 origin-left bg-border dark:bg-white/30"
-                          variants={itemLineVariants}
-                          transition={{
-                            width: {
-                              type: "spring",
-                              stiffness: 600,
-                              damping: 32,
-                            },
-                            backgroundColor: { duration: 0 },
-                          }}
-                        />
-                      </span>
-                      <motion.span
-                        className={cn(
-                          "min-w-0 flex-1 truncate text-sm text-left",
-                          isActive && "font-medium",
-                        )}
-                        title={component.name}
-                        variants={itemLabelVariants}
-                        transition={{
-                          type: "spring",
-                          stiffness: 600,
-                          damping: 32,
-                        }}
-                      >
-                        {component.name}
-                      </motion.span>
-                    </motion.button>
-                  );
-                })
+                filteredComponents.map(([key, component], index) => (
+                  <TickerItem
+                    key={key}
+                    mouseY={mouseY}
+                    index={index}
+                    isActive={selectedComponent === key}
+                    isHovered={hoveredKey === key}
+                    name={component.name}
+                    onSelect={() => onSelect(key)}
+                    onMouseEnter={() => setHoveredKey(key)}
+                  />
+                ))
               ) : (
                 <p className="py-4 text-center text-sm text-muted-foreground">
                   No components found

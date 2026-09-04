@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { cn } from "../../lib/utils";
 import { PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import { preloadTick, playHoverTick } from "../../lib/hover-tick";
 
 interface CategoryItem {
   name: string;
@@ -54,6 +55,11 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
     activeItemRef.current?.scrollIntoView({ block: "center" });
   }, []);
 
+  // Preload the hover-tick AudioBuffer so it's ready by the first hover.
+  useEffect(() => {
+    preloadTick();
+  }, []);
+
   const renderGuide = () => (
     <span className="flex w-11 shrink-0 items-center" aria-hidden="true">
       <motion.span
@@ -77,7 +83,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
   );
 
   const renderSectionItems = (items: CategoryItem[]) => {
-    return items.map((item) => {
+    return items.map((item, index) => {
       const isActive = currentPath === item.href;
       return (
         <MotionLink
@@ -85,6 +91,9 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
           ref={isActive ? activeItemRef : undefined}
           href={item.href}
           aria-current={isActive ? "page" : undefined}
+          onMouseEnter={() => {
+            if (!isActive) playHoverTick(index);
+          }}
           className={cn(
             "group relative flex min-h-7 w-full items-center gap-3 rounded-md py-1 text-sm transition-colors hide-scrollbar",
             isActive
@@ -183,7 +192,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
                 >
                   {renderCategoryHeading(gettingStartedSection.title)}
                   <div className="grid grid-flow-row auto-rows-max text-sm">
-                    {gettingStartedSection.items.map((item) => {
+                    {gettingStartedSection.items.map((item, index) => {
                       const isActive = currentPath === item.href;
                       return (
                         <MotionLink
@@ -191,6 +200,9 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
                           ref={isActive ? activeItemRef : undefined}
                           href={item.href}
                           aria-current={isActive ? "page" : undefined}
+                          onMouseEnter={() => {
+                            if (!isActive) playHoverTick(index);
+                          }}
                           className={cn(
                             "group relative flex min-h-7 w-full items-center gap-3 rounded-md py-1 transition-colors",
                             isActive
