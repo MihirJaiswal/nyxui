@@ -1,6 +1,7 @@
 "use client";
 import type React from "react";
 import { useEffect, useState } from "react";
+import { cn } from "@/lib/utils";
 import {
   Command,
   ArrowUp,
@@ -1340,7 +1341,7 @@ const InteractiveKeyboard: React.FC<InteractiveKeyboardProps> = ({
   const maxMainRowWidth = calculateMaxMainRowWidth();
   return (
     <div
-      className={`keyboard-container ${className}`}
+      className={cn("keyboard-container", className)}
       style={{
         display: "flex",
         justifyContent: "center",
@@ -1407,7 +1408,7 @@ const InteractiveKeyboard: React.FC<InteractiveKeyboardProps> = ({
                       <div
                         key={`key-${rowIndex}-${keyIndex}`}
                         data-key={key.code}
-                        className={`key ${key.code} ${isActive ? "active" : ""}`}
+                        className={cn("key", key.code, isActive && "active")}
                         style={getKeyStyle(key, isPressed, isActive)}
                         onMouseDown={() => key.code && handleKeyDown(key.code)}
                         onMouseUp={() => key.code && handleKeyUp(key.code)}
@@ -1550,7 +1551,7 @@ const InteractiveKeyboard: React.FC<InteractiveKeyboardProps> = ({
                         <div
                           key={`nav-key-${rowIndex}-${keyIndex}`}
                           data-key={key.code}
-                          className={`key ${key.code} ${isActive ? "active" : ""}`}
+                          className={cn("key", key.code, isActive && "active")}
                           style={getKeyStyle(key, isPressed, isActive)}
                           onMouseDown={() =>
                             key.code && handleKeyDown(key.code)

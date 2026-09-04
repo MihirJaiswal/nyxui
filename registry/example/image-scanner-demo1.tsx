@@ -14,6 +14,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
 export const ImageScannerDemo1 = () => {
   const [selectedCamera, setSelectedCamera] = useState(0);
@@ -200,23 +201,25 @@ export const ImageScannerDemo1 = () => {
                   {cameras.map((camera, index) => (
                     <div
                       key={camera.id}
-                      className={`p-3 sm:p-4.5 rounded-sm cursor-pointer transition-all border ${
+                      className={cn(
+                        "p-3 sm:p-4.5 rounded-sm cursor-pointer transition-all border",
                         selectedCamera === index
                           ? "bg-blue-50 dark:bg-blue-600/20 border-blue-200 dark:border-blue-500 shadow-sm dark:shadow-blue-500/20"
-                          : "bg-white dark:bg-neutral-800/50 border-neutral-200 dark:border-zinc-600 hover:bg-neutral-50 dark:hover:bg-neutral-700 hover:border-neutral-300 dark:hover:border-neutral-500"
-                      }`}
+                          : "bg-white dark:bg-neutral-800/50 border-neutral-200 dark:border-zinc-600 hover:bg-neutral-50 dark:hover:bg-neutral-700 hover:border-neutral-300 dark:hover:border-neutral-500",
+                      )}
                       onClick={() => setSelectedCamera(index)}
                     >
                       <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center gap-2 flex-1 min-w-0">
                           <div
-                            className={`w-3 h-3 rounded-full flex-shrink-0 ${
+                            className={cn(
+                              "w-3 h-3 rounded-full flex-shrink-0",
                               camera.alertLevel === "critical"
                                 ? "bg-red-500 animate-pulse"
                                 : camera.alertLevel === "warning"
                                   ? "bg-amber-500"
-                                  : "bg-emerald-500"
-                            }`}
+                                  : "bg-emerald-500",
+                            )}
                           />
                           <p className="font-medium text-neutral-900 dark:text-white text-sm truncate">
                             {camera.name}

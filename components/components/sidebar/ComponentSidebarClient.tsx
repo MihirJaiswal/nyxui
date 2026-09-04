@@ -6,6 +6,7 @@ import { PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useHoverTick } from "@/hooks/use-hover-tick";
 import { useSidebarCollapse } from "@/hooks/use-sidebar-collapse";
+import { cn } from "@/lib/utils";
 import { SidebarItem } from "./SidebarItem";
 import { SidebarSection } from "./SidebarSection";
 import type {
@@ -109,7 +110,10 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
         damping: 30,
         mass: 0.8,
       }}
-      className={`overflow-hidden ${isCollapsed ? "rounded-xl" : "rounded-[20px]"} border border-border/70 bg-card shadow-sm xl:[--sidebar-expanded-w:288px]`}
+      className={cn(
+        "overflow-hidden border border-border/70 bg-card shadow-sm xl:[--sidebar-expanded-w:288px]",
+        isCollapsed ? "rounded-xl" : "rounded-[20px]",
+      )}
     >
       <div className="flex h-full flex-col">
         <button

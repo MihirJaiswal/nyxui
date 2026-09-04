@@ -10,7 +10,7 @@ interface ComponentCardProps {
   imageSrc?: string;
   type?: "components" | "blocks" | "templates";
   className?: string;
-  imageFit?: "cover" | "contain";
+  imageClassName?: string;
 }
 
 export const ComponentCard = ({
@@ -19,7 +19,7 @@ export const ComponentCard = ({
   imageSrc,
   type = "components",
   className,
-  imageFit = "contain",
+  imageClassName,
 }: ComponentCardProps) => {
   const href = `/${type}/${slug}`;
 
@@ -54,14 +54,14 @@ export const ComponentCard = ({
         }}
       >
         {imageSrc ? (
-          <div className="relative w-full h-full bg-background isolate overflow-hidden ">
+          <div className="relative w-full h-full bg-background isolate overflow-hidden">
             <Image
               src={imageSrc}
               alt={title}
               fill
               className={cn(
-                imageFit === "cover" ? "object-cover" : "object-contain",
-                "dark:mix-blend-screen scale-101",
+                "object-contain dark:mix-blend-screen",
+                imageClassName,
               )}
               quality={100}
               loading="lazy"

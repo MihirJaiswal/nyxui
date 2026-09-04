@@ -1,6 +1,7 @@
 "use client";
 import React, { useRef, useState, useEffect, useCallback } from "react";
 import { Pencil, Eraser, Square, Save, Menu } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export interface MSpaintProps {
   width?: number;
@@ -38,7 +39,11 @@ const CustomButton: React.FC<CustomButtonProps> = ({
       : "bg-gray-200 text-gray-900 hover:bg-gray-300";
   return (
     <button
-      className={`inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 disabled:opacity-50 disabled:cursor-not-allowed ${variantStyles} ${className}`}
+      className={cn(
+        "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 disabled:opacity-50 disabled:cursor-not-allowed",
+        variantStyles,
+        className,
+      )}
       onClick={onClick}
       title={title}
     >
@@ -379,7 +384,10 @@ export default function MSpaint({
       ref={containerRef}
       role="application"
       aria-label="MS Paint drawing application"
-      className={`absolute md:px-0 bg-gray-200 border-2 border-white shadow-md ${className}`}
+      className={cn(
+        "absolute md:px-0 bg-gray-200 border-2 border-white shadow-md",
+        className,
+      )}
       style={{
         width: `${dimensions.width}px`,
         left: "50%",
@@ -482,7 +490,10 @@ export default function MSpaint({
 
       <div className="flex">
         <div
-          className={`${isMobile ? "w-10" : "w-12"} bg-gray-300 p-1 border-r border-gray-400 flex flex-col items-center`}
+          className={cn(
+            "bg-gray-300 p-1 border-r border-gray-400 flex flex-col items-center",
+            isMobile ? "w-10" : "w-12",
+          )}
           role="toolbar"
           aria-label="Drawing tools"
         >
@@ -490,7 +501,12 @@ export default function MSpaint({
             variant="ghost"
             aria-checked={tool === "brush"}
             aria-label="Brush tool (B)"
-            className={`w-8 h-8 p-0 min-w-0 mb-1 ${tool === "brush" ? "bg-blue-200 border-2 border-blue-600 shadow-lg" : "hover:bg-gray-200"}`}
+            className={cn(
+              "w-8 h-8 p-0 min-w-0 mb-1",
+              tool === "brush"
+                ? "bg-blue-200 border-2 border-blue-600 shadow-lg"
+                : "hover:bg-gray-200",
+            )}
             onClick={() => {
               setTool("brush");
               updateStatus("Brush tool selected");
@@ -503,7 +519,12 @@ export default function MSpaint({
             variant="ghost"
             aria-checked={tool === "eraser"}
             aria-label="Eraser tool (E)"
-            className={`w-8 h-8 p-0 min-w-0 mb-1 ${tool === "eraser" ? "bg-blue-200 border-2 border-blue-600 shadow-lg" : "hover:bg-gray-200"}`}
+            className={cn(
+              "w-8 h-8 p-0 min-w-0 mb-1",
+              tool === "eraser"
+                ? "bg-blue-200 border-2 border-blue-600 shadow-lg"
+                : "hover:bg-gray-200",
+            )}
             onClick={() => {
               setTool("eraser");
               updateStatus("Eraser tool selected");
@@ -577,8 +598,11 @@ export default function MSpaint({
         <div className="relative ml-2">
           <CustomButton
             variant="ghost"
-            className={`${isMobile ? "w-6 h-6" : "w-8 h-8"} p-0 min-w-0 relative overflow-hidden border-2 border-gray-400 transition-all duration-200
-              ${showColorPicker ? "border-2 border-blue-500 scale-110 shadow-md" : ""}`}
+            className={cn(
+              "p-0 min-w-0 relative overflow-hidden border-2 border-gray-400 transition-all duration-200",
+              isMobile ? "w-6 h-6" : "w-8 h-8",
+              showColorPicker && "border-2 border-blue-500 scale-110 shadow-md",
+            )}
             onClick={toggleColorPicker}
             title="Custom Color"
           >
@@ -596,7 +620,10 @@ export default function MSpaint({
             style={{ top: 0, left: 0, width: "1px", height: "1px" }}
           />
           <div
-            className={`${isMobile ? "w-6 h-6" : "w-8 h-8"} border-2 border-gray-400 mt-1`}
+            className={cn(
+              "border-2 border-gray-400 mt-1",
+              isMobile ? "w-6 h-6" : "w-8 h-8",
+            )}
             style={{ backgroundColor: color }}
             title={`Current Color: ${color}`}
           />
@@ -607,8 +634,11 @@ export default function MSpaint({
               <CustomButton
                 key={c}
                 variant="ghost"
-                className={`${isMobile ? "w-6 h-6" : "w-8 h-8"} p-0 min-w-0 transition-all duration-200
-                ${color === c ? "border-4 border-blue-500 scale-110 shadow-md" : ""}`}
+                className={cn(
+                  "p-0 min-w-0 transition-all duration-200",
+                  isMobile ? "w-6 h-6" : "w-8 h-8",
+                  color === c && "border-4 border-blue-500 scale-110 shadow-md",
+                )}
                 onClick={() => handleColorChange(c)}
                 title={c}
               >
@@ -618,7 +648,9 @@ export default function MSpaint({
         </div>
       </div>
       <div className="bg-gray-300 px-2 py-1.5 text-sm border-t border-gray-400 flex flex-wrap items-center">
-        <div className={`${isMobile ? "w-full" : "grow"} truncate text-black`}>
+        <div
+          className={cn("truncate text-black", isMobile ? "w-full" : "grow")}
+        >
           {statusText}
         </div>
       </div>
