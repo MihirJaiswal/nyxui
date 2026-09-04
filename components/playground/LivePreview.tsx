@@ -11,6 +11,7 @@ import {
   type CodeVariant,
 } from "./codegen";
 import type { ComponentConfig, ComponentDefinition } from "./types";
+import { getNyxuiTheme } from "@/lib/shiki-themes";
 import { cn } from "@/lib/utils";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
@@ -87,17 +88,15 @@ const LivePreview = ({
       }
 
       try {
+        const theme = await getNyxuiTheme();
         const highlighter = await getHighlighter({
-          themes: ["github-dark"],
+          themes: [theme],
           langs: ["tsx", "bash"],
         });
 
         const highlighted = highlighter.codeToHtml(code, {
           lang: "tsx",
-          themes: {
-            light: "github-dark",
-            dark: "github-dark",
-          },
+          theme: "nyxui-dark",
         });
 
         setHighlightedCode(highlighted);
@@ -245,7 +244,7 @@ const LivePreview = ({
           <div className="relative overflow-auto px-2 pb-2">
             <div className="rounded-[9px] border bg-background p-2">
               <div
-                className="min-h-[calc(85vh-5rem)] max-h-[calc(85vh-5rem)] overflow-auto rounded-[9px] bg-background p-4 [&_pre]:!m-0 [&_pre]:min-h-[inherit] [&_pre]:!bg-transparent [&_pre]:!p-4 [&_pre]:text-sm [&_pre]:leading-relaxed scrollbar-no"
+                className="min-h-[calc(85vh-5rem)] max-h-[calc(85vh-5rem)] overflow-auto rounded-[9px] bg-background [&_pre]:!m-0 [&_pre]:min-h-[inherit] [&_pre]:!bg-transparent [&_pre]:!py-3 [&_pre]:text-[13px] [&_pre]:leading-6 scrollbar-no"
                 dangerouslySetInnerHTML={{ __html: highlightedCode }}
               />
             </div>

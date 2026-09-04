@@ -348,7 +348,7 @@ const components = {
       <div className="group/pre relative overflow-hidden rounded-xl border border-border/70 bg-white shadow-sm dark:border-white/5 dark:bg-[#0F0F0F]">
         <pre
           className={cn(
-            "m-0 max-h-[650px] w-full max-w-full overflow-x-auto bg-transparent p-4 pr-24 text-[13px] leading-6 [--code-padding-right:6rem] [&_code]:min-w-full [&_code]:bg-transparent [&_code]:p-0 [&_code]:leading-6 [&_code]:whitespace-pre [&_[data-line]]:min-h-6 [&_[data-line]]:pr-[var(--code-padding-right)] [&_[data-line]]:leading-6",
+            "m-0 max-h-[650px] w-full max-w-full overflow-x-auto bg-transparent p-4 pr-24 text-[13px] leading-6 [--code-padding-right:6rem] [&_code]:min-w-full [&_code]:bg-transparent [&_code]:p-0 [&_code]:leading-6 [&_code]:whitespace-pre [&_[data-line]]:min-h-6 [&_[data-line]]:pr-[var(--code-padding-right)] [&_[data-line]]:leading-6 scrollbar-no",
             className,
           )}
           style={{

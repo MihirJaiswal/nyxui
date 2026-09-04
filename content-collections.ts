@@ -9,17 +9,22 @@ import { createHighlighter } from "shiki";
 import { visit } from "unist-util-visit";
 import { rehypeComponent } from "./lib/rehype-component";
 import { rehypeNpmCommand } from "./lib/rehype-npm-command";
+import { getNyxuiTheme } from "./lib/shiki-themes";
 
 const prettyCodeOptions: Options = {
   theme: {
-    dark: "vesper",
+    dark: "nyxui-dark" as never,
     light: "github-light-default",
   },
   keepBackground: true,
-  getHighlighter: (options) =>
-    createHighlighter({
-      ...options,
-    }),
+  getHighlighter: async (options) => {
+    const nyxuiDark = await getNyxuiTheme();
+    const opts = options as unknown as { themes?: unknown; langs?: unknown };
+    return createHighlighter({
+      ...opts,
+      themes: [nyxuiDark, "github-light-default"],
+    } as never);
+  },
   onVisitLine(node) {
     if (node.children.length === 0) {
       node.children = [{ type: "text", value: " " }];

@@ -292,7 +292,6 @@ export const componentRegistry: ComponentRegistry = {
   return fibonacci(n - 1) + fibonacci(n - 2);
 }
 
-// Calculate the 10th Fibonacci number
 const result = fibonacci(10);
 console.log(\`The 10th Fibonacci number is: \${result}\`);`,
         label: "Code Content",
