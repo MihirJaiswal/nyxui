@@ -116,7 +116,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
           type="button"
           onClick={() => setIsCollapsed(!isCollapsed)}
           aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
-          className="flex h-10 w-10 shrink-0 items-center justify-center text-muted-foreground transition-colors hover:text-primary"
+          className="flex h-10 w-10 shrink-0 items-center justify-center text-muted-foreground transition-colors hover:text-brand"
         >
           {isCollapsed ? (
             <PanelLeftOpen className="size-3.5" />

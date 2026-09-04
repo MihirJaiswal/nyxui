@@ -219,7 +219,7 @@ export const CommandPalette = () => {
                       onSelect={() => runCommand(item.href)}
                       className="group gap-2.5"
                     >
-                      <Icon className="h-4 w-4 shrink-0 text-muted-foreground transition-colors group-data-[selected=true]:text-[#FF4F11]" />
+                      <Icon className="h-4 w-4 shrink-0 text-muted-foreground transition-colors group-data-[selected=true]:text-brand" />
                       <div className="min-w-0 flex-1 truncate">
                         <span className="text-sm font-medium">
                           {item.title}

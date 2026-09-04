@@ -260,7 +260,7 @@ const LivePreview = ({
                 title={copiedVariant === codeVariant ? "Copied" : "Copy code"}
               >
                 {copiedVariant === codeVariant ? (
-                  <Check className="size-4 text-primary" />
+                  <Check className="size-4 text-brand" />
                 ) : (
                   <Copy className="size-4" />
                 )}

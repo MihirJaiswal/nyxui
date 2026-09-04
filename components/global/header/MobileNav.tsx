@@ -84,16 +84,14 @@ export function MobileNav({ activeLink, navLinks, moreLinks }: MobileNavProps) {
           aria-current={isActive ? "page" : undefined}
           className={cn(
             "group relative flex min-h-7 w-full items-center gap-3 rounded-md py-1 text-sm transition-colors hide-scrollbar",
-            isActive
-              ? "text-primary"
-              : "text-muted-foreground hover:text-primary",
+            isActive ? "text-brand" : "text-muted-foreground hover:text-brand",
           )}
         >
           <span className="flex w-11 shrink-0 items-center" aria-hidden="true">
             <span
               className={cn(
                 "block h-px w-8 shrink-0 origin-left transition-colors",
-                isActive ? "bg-primary" : "bg-foreground/30",
+                isActive ? "bg-brand" : "bg-foreground/30",
               )}
             />
           </span>
