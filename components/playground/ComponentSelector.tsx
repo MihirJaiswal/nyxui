@@ -99,7 +99,7 @@ const SelectorItem = ({
       onMouseLeave={() => setHovered(false)}
       className={cn(
         "group relative flex min-h-7 items-center gap-3 rounded-md py-1 text-sm transition-colors",
-        "data-[selected=true]:bg-transparent !px-0",
+        "data-[selected=true]:bg-transparent px-0!",
       )}
     >
       {isFirst && <PhantomLine position="top" double />}
@@ -217,7 +217,7 @@ const ComponentSelector = ({
       </div>
 
       <CommandList
-        className="max-h-none min-h-0 flex-1 overflow-y-auto p-3 lg:p-4 scrollbar-no"
+        className="max-h-none min-h-0 flex-1 overflow-y-auto p-3 scrollbar-no"
         onMouseMove={(e) => mouseY.set(e.clientY)}
         onMouseLeave={() => mouseY.set(HOVER_NONE)}
       >
