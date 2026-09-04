@@ -5,9 +5,23 @@ import { usePathname } from "next/navigation";
 import React from "react";
 import { cn } from "../../lib/utils";
 import { PanelLeftClose, PanelLeftOpen } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
+import {
+  animate,
+  motion,
+  AnimatePresence,
+  useMotionValue,
+  useSpring,
+} from "motion/react";
+import { useState, useEffect } from "react";
 import { useToggle } from "../../hooks/use-toggle";
 import { PhantomLine } from "../global/Phantom-line";
+import {
+  GuideLine,
+  BASE_WIDTH,
+  MAX_WIDTH,
+  SPRING_CONFIG,
+  LABEL_TRANSITION,
+} from "../global/GuideLine";
 import { useHoverTick } from "@/hooks/use-hover-tick";
 import { CategoryHeading } from "../global/CategoryHeading";
 
@@ -85,60 +99,18 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
     activeItemRef.current?.scrollIntoView({ block: "center" });
   }, []);
 
-  const renderGuide = () => (
-    <span className="flex w-11 shrink-0 items-center" aria-hidden="true">
-      <motion.span
-        className="block h-px shrink-0 origin-left bg-foreground/30"
-        variants={itemLineVariants}
-        transition={{
-          width: { type: "spring", stiffness: 600, damping: 32 },
-          backgroundColor: { duration: 0 },
-        }}
+  const renderSectionItems = (items: CategoryItem[]) =>
+    items.map((item, index) => (
+      <SidebarItem
+        key={item.href}
+        item={item}
+        index={index}
+        isActive={currentPath === item.href}
+        isLast={item.href === lastVisibleHref}
+        activeItemRef={activeItemRef}
+        onHoverTick={hoverTick}
       />
-    </span>
-  );
-
-  const renderSectionItems = (items: CategoryItem[]) => {
-    return items.map((item, index) => {
-      const isActive = currentPath === item.href;
-      const isLast = item.href === lastVisibleHref;
-      return (
-        <MotionLink
-          key={item.href}
-          ref={isActive ? activeItemRef : undefined}
-          href={item.href}
-          aria-current={isActive ? "page" : undefined}
-          onMouseEnter={() => {
-            if (!isActive) hoverTick(index);
-          }}
-          className={cn(
-            "group relative flex min-h-7 w-full items-center gap-3 rounded-md py-1 text-sm transition-colors hide-scrollbar",
-            isActive
-              ? "text-primary"
-              : "text-muted-foreground hover:text-primary",
-          )}
-          initial={false}
-          animate={isActive ? "active" : "normal"}
-          whileHover="hover"
-        >
-          {index === 0 && <PhantomLine position="top" />}
-          {renderGuide()}
-          <motion.span
-            className={cn(
-              "min-w-0 flex-1 truncate text-sm",
-              isActive && "font-medium",
-            )}
-            title={item.name}
-            variants={itemLabelVariants}
-            transition={{ type: "spring", stiffness: 600, damping: 32 }}
-          >
-            {item.name}
-          </motion.span>
-          {!isLast && <PhantomLine position="bottom" />}
-        </MotionLink>
-      );
-    });
-  };
+    ));
 
   return (
     <motion.div
@@ -290,16 +262,63 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
 
 const MotionLink = motion.create(Link);
 
-const itemLineVariants = {
-  normal: { width: 32 },
-  active: { width: 44, backgroundColor: "var(--primary)" },
-  hover: { width: 44, backgroundColor: "var(--primary)" },
-};
+interface SidebarItemProps {
+  item: CategoryItem;
+  isActive: boolean;
+  isLast: boolean;
+  index: number;
+  activeItemRef: React.RefObject<HTMLAnchorElement | null>;
+  onHoverTick: (index: number) => void;
+}
 
-const itemLabelVariants = {
-  normal: { x: 0 },
-  active: { x: 4 },
-  hover: { x: 4 },
+const SidebarItem = ({
+  item,
+  isActive,
+  isLast,
+  index,
+  activeItemRef,
+  onHoverTick,
+}: SidebarItemProps) => {
+  const [hovered, setHovered] = useState(false);
+  const widthMv = useMotionValue(isActive ? MAX_WIDTH : BASE_WIDTH);
+  const width = useSpring(widthMv, SPRING_CONFIG);
+  const highlighted = isActive || hovered;
+
+  useEffect(() => {
+    animate(widthMv, highlighted ? MAX_WIDTH : BASE_WIDTH, SPRING_CONFIG);
+  }, [highlighted, widthMv]);
+
+  return (
+    <MotionLink
+      ref={isActive ? activeItemRef : undefined}
+      href={item.href}
+      aria-current={isActive ? "page" : undefined}
+      onMouseEnter={() => {
+        setHovered(true);
+        if (!isActive) onHoverTick(index);
+      }}
+      onMouseLeave={() => setHovered(false)}
+      className={cn(
+        "group relative flex min-h-7 w-full items-center gap-3 rounded-md py-1 text-sm transition-colors hide-scrollbar",
+        isActive ? "text-primary" : "text-muted-foreground hover:text-primary",
+      )}
+    >
+      {index === 0 && <PhantomLine position="top" />}
+      <GuideLine width={width} highlighted={highlighted} />
+      <motion.span
+        animate={{ x: highlighted ? 4 : 0 }}
+        transition={LABEL_TRANSITION}
+        className={cn(
+          "min-w-0 flex-1 truncate text-sm",
+          isActive && "font-medium",
+        )}
+        title={item.name}
+      >
+        {item.name}
+      </motion.span>
+      {!isLast && <PhantomLine position="bottom" />}
+    </MotionLink>
+  );
 };
 
 function groupItems(

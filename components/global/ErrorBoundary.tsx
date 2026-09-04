@@ -38,7 +38,7 @@ export class ErrorBoundary extends Component<
   render(): ReactNode {
     if (this.state.hasError) {
       return (
-        <div className="h-full flex flex-col">
+        <div className="h-screen flex flex-col items-center justify-center">
           <div className="text-center max-w-md">
             <AlertCircle className="w-12 h-12 text-destructive mx-auto mb-4" />
             <h3 className="text-lg font-semibold mb-2">Something went wrong</h3>
