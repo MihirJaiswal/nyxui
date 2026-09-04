@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Cloud, Star, Target, Waves, Wifi } from "lucide-react";
-import { GlowCard } from "../ui/glow-card";
+import { GlowCard } from "@/registry/ui/glow-card";
 
 export function GlowCardDemo() {
   return (

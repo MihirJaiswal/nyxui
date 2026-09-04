@@ -1,4 +1,4 @@
-import { ScrollAnimationTrigger } from "../ui/scroll-animation-trigger";
+import { ScrollAnimationTrigger } from "@/registry/ui/scroll-animation-trigger";
 import {
   ArrowDown,
   Sparkles,
@@ -7,7 +7,7 @@ import {
   ExternalLink,
   Wand2,
 } from "lucide-react";
-import { ScrollArea } from "../../components/ui/scroll-area";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export function ScrollAnimationTriggerDemo() {
   return (

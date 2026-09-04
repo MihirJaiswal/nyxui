@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { lazy, Suspense, useState, useEffect } from "react";
 import { externalLinks } from "@/lib/links";
-import img from "../../../public/assets/images/landing-page/mihir.webp";
+import img from "@/public/assets/images/landing-page/mihir.webp";
 
 // Lazy load the ImageRipple component
 const ImageRipple = lazy(() => import("./ImageRipple"));

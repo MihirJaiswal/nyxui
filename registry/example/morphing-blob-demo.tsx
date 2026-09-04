@@ -1,4 +1,4 @@
-import { MorphingBlob } from "../ui/morphing-blob";
+import { MorphingBlob } from "@/registry/ui/morphing-blob";
 import { MoonIcon } from "@radix-ui/react-icons";
 
 export const MorphingBlobDemo = () => {

@@ -3,10 +3,10 @@
 import { useRef } from "react";
 import { GripVertical } from "lucide-react";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
-import ComponentSelector from "../ComponentSelector";
-import PropertyEditor from "../property-editors/PropertyEditor";
-import LivePreview from "../LivePreview";
-import { componentRegistry } from "../registry";
+import ComponentSelector from "@/components/playground/ComponentSelector";
+import PropertyEditor from "@/components/playground/property-editors/PropertyEditor";
+import LivePreview from "@/components/playground/LivePreview";
+import { componentRegistry } from "@/components/playground/registry";
 import { useKeyboardShortcut } from "@/hooks/use-keyboard-shortcut";
 import { usePlaygroundState } from "@/hooks/use-playground-state";
 import { ErrorBoundary } from "@/components/global/ErrorBoundary";

@@ -21,14 +21,10 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/components/ui/command";
-import { Button } from "../ui/button";
-import {
-  componentsData,
-  type Block,
-  type Component,
-} from "../../registry/Data";
+import { Button } from "@/components/ui/button";
+import { componentsData, type Block, type Component } from "@/registry/Data";
 import { itemHref, siteLinks } from "@/lib/links";
-import { useKeyboardShortcut } from "../../hooks/use-keyboard-shortcut";
+import { useKeyboardShortcut } from "@/hooks/use-keyboard-shortcut";
 
 type CommandSection = "Pages" | "Components" | "Blocks" | "Templates";
 

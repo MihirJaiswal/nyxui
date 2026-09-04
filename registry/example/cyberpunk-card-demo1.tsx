@@ -1,5 +1,5 @@
 import { Terminal, Zap, Shield, Activity, Database, Cpu } from "lucide-react";
-import { CyberpunkCard } from "../ui/cyberpunk-card";
+import { CyberpunkCard } from "@/registry/ui/cyberpunk-card";
 import Image from "next/image";
 
 export default function CyberpunkCardDemo1() {

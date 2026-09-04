@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { ComponentPropValue } from "../../../types/playground";
+import type { ComponentPropValue } from "@/types/playground";
 import CodeEditor from "./CodeEditor";
 
 interface JsonObjectEditorProps {

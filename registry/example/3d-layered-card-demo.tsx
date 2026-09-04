@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Clock } from "lucide-react";
-import ThreeDLayeredCard from "../ui/3d-layered-card";
+import ThreeDLayeredCard from "@/registry/ui/3d-layered-card";
 
 function ThreeDLayeredCardDemo() {
   return (

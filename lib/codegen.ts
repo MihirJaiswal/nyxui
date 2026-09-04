@@ -2,7 +2,7 @@ import type {
   ComponentConfig,
   ComponentDefinition,
   ComponentPropValue,
-} from "../types/playground";
+} from "@/types/playground";
 import { registryItemUrl } from "@/lib/links";
 
 export type CodeVariant = "jsx" | "full" | "install";

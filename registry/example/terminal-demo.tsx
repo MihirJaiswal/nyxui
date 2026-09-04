@@ -1,5 +1,5 @@
 import React from "react";
-import InteractiveTerminal from "../ui/terminal";
+import InteractiveTerminal from "@/registry/ui/terminal";
 import { Rocket } from "lucide-react";
 
 const TerminalDemo = () => {

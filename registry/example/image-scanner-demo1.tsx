@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ImageScanner } from "../ui/image-scanner";
+import { ImageScanner } from "@/registry/ui/image-scanner";
 import {
   Activity,
   Clock,

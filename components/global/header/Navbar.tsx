@@ -3,23 +3,23 @@
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { Button } from "../../ui/button";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "../../ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
 import { ChevronDown, Search } from "lucide-react";
-import { ModeToggle } from "../ThemeToggle";
-import { cn } from "../../../lib/utils";
-import { CommandPalette } from "../CommandPallete";
+import { ModeToggle } from "@/components/global/ThemeToggle";
+import { cn } from "@/lib/utils";
+import { CommandPalette } from "@/components/global/CommandPallete";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
-import { useMounted } from "../../../hooks/use-mounted";
-import { useEventListener } from "../../../hooks/use-event-listener";
-import { XTwitterIcon } from "../icons/XTwitterIcon";
-import { GradientDivider } from "../GradientDivider";
-import Logo from "../Logo";
+import { useMounted } from "@/hooks/use-mounted";
+import { useEventListener } from "@/hooks/use-event-listener";
+import { XTwitterIcon } from "@/components/global/icons/XTwitterIcon";
+import { GradientDivider } from "@/components/global/GradientDivider";
+import Logo from "@/components/global/Logo";
 import { MobileNav } from "./MobileNav";
 import { externalLinks, siteLinks } from "@/lib/links";
 

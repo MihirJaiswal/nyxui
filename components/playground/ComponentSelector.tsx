@@ -20,16 +20,16 @@ import {
 import { cn } from "@/lib/utils";
 import { useKeyboardShortcut } from "@/hooks/use-keyboard-shortcut";
 import { useHoverTick } from "@/hooks/use-hover-tick";
-import { CategoryHeading } from "../global/CategoryHeading";
-import type { ComponentRegistry } from "../../types/playground";
-import { PhantomLine } from "../global/Phantom-line";
+import { CategoryHeading } from "@/components/global/CategoryHeading";
+import type { ComponentRegistry } from "@/types/playground";
+import { PhantomLine } from "@/components/global/Phantom-line";
 import {
   GuideLine,
   BASE_WIDTH,
   MAX_WIDTH,
   SPRING_CONFIG,
   LABEL_TRANSITION,
-} from "../global/GuideLine";
+} from "@/components/global/GuideLine";
 
 interface ComponentSelectorProps {
   components: ComponentRegistry;

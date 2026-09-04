@@ -1,6 +1,6 @@
 import React from "react";
-import { MusicPlayer } from "../ui/music-player";
-import type { Track } from "../ui/music-player";
+import { MusicPlayer } from "@/registry/ui/music-player";
+import type { Track } from "@/registry/ui/music-player";
 
 export default function MusicPlayerCardsDemo() {
   const currentTrack: Track = {

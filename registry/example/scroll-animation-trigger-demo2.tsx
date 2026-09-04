@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollAnimationTrigger } from "../ui/scroll-animation-trigger";
+import { ScrollAnimationTrigger } from "@/registry/ui/scroll-animation-trigger";
 import { RefreshCw } from "lucide-react";
 
 export default function ScrollAnimationTriggerDemo2() {

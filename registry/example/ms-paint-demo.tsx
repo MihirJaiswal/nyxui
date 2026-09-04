@@ -1,5 +1,5 @@
 "use client";
-import DrawingCanvas from "../ui/ms-paint";
+import DrawingCanvas from "@/registry/ui/ms-paint";
 
 export default function MSpaintDemo() {
   const handleSave = (canvas: HTMLCanvasElement) => {

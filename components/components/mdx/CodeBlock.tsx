@@ -1,8 +1,8 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { Event } from "@/lib/event";
-import { CodeBlockCommand } from "../code-block/code-block-command";
-import { CopyButton } from "../code-block/copy-button";
+import { CodeBlockCommand } from "@/components/components/code-block/code-block-command";
+import { CopyButton } from "@/components/components/code-block/copy-button";
 
 type CodeElementProps = React.HTMLAttributes<HTMLElement> & {
   "data-slot"?: string;

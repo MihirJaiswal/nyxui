@@ -1,6 +1,6 @@
 "use client";
 import { Code2 } from "lucide-react";
-import { RetroGrid } from "../ui/retro-grid";
+import { RetroGrid } from "@/components/ui/retro-grid";
 import { motion } from "framer-motion";
 import { AnimateText } from "@/registry/ui/animated-text";
 
