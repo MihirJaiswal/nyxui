@@ -12,6 +12,7 @@ interface CompassTrackProps {
   linesPerComponent: number;
   linesPerWhiteGroup: number;
   onComponentFocus: (index: number) => void;
+  onComponentHover: (index: number) => void;
   rotation: MotionValue<number>;
   timelineLineCount: number;
 }
@@ -23,6 +24,7 @@ export function CompassTrack({
   linesPerComponent,
   linesPerWhiteGroup,
   onComponentFocus,
+  onComponentHover,
   rotation,
   timelineLineCount,
 }: CompassTrackProps): React.ReactElement {
@@ -55,6 +57,7 @@ export function CompassTrack({
             index={index}
             isActive={activeIndex === index}
             onFocus={onComponentFocus}
+            onHoverTick={onComponentHover}
             rotation={rotation}
           />
         );

@@ -180,14 +180,12 @@ export const CommandPalette = () => {
   return (
     <>
       <Button
-        variant="outline"
-        className="relative h-8 justify-start gap-2 rounded-lg border-border/60 bg-card px-3 text-sm font-normal text-muted-foreground shadow-none transition-colors hover:bg-muted hover:text-foreground sm:w-44"
+        variant="ghost"
+        className="relative justify-start gap-2 px-3 text-sm font-normal text-muted-foreground !border-none"
         onClick={() => setOpen(true)}
       >
-        <Search className="h-4 w-4 shrink-0" />
-        <span className="inline-flex flex-1">Search...</span>
         <kbd className="pointer-events-none hidden shrink-0 select-none items-center gap-1 rounded border border-border/60 bg-background px-1.5 font-mono text-[10px] font-medium text-muted-foreground sm:flex">
-          <span className="text-xs">⌘</span>K
+          <span className="text-sm">⌘</span>K
         </kbd>
       </Button>
 

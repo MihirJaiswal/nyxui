@@ -22,6 +22,7 @@ interface CompassComponentMarkerProps {
   index: number;
   isActive: boolean;
   onFocus: (index: number) => void;
+  onHoverTick: (index: number) => void;
   rotation: MotionValue<number>;
 }
 
@@ -39,6 +40,7 @@ export function CompassComponentMarker({
   index,
   isActive,
   onFocus,
+  onHoverTick,
   rotation,
 }: CompassComponentMarkerProps): React.ReactElement {
   const shouldReduceMotion = useReducedMotion();
@@ -96,7 +98,7 @@ export function CompassComponentMarker({
         }}
       >
         <motion.div
-          className="w-28 -translate-x-1/2 -translate-y-1/2 sm:w-32"
+          className="w-28 -translate-x-1/2 -translate-y-1/2 sm:w-36"
           style={{ scale: shouldReduceMotion ? proximityScale : smoothScale }}
         >
           <Link
@@ -106,7 +108,10 @@ export function CompassComponentMarker({
                 onFocus(index);
               }
             }}
-            onMouseEnter={() => setIsHovered(true)}
+            onMouseEnter={() => {
+              setIsHovered(true);
+              onHoverTick(index);
+            }}
             onMouseLeave={() => setIsHovered(false)}
             className="group block"
           >
@@ -128,7 +133,7 @@ export function CompassComponentMarker({
                       height={146}
                       priority={index < 5}
                       draggable={false}
-                      className="block h-full w-full object-cover"
+                      className="block h-full w-full object-contain"
                     />
                   ) : (
                     <div className="flex h-full items-center justify-center bg-background">
