@@ -59,23 +59,23 @@ export const Index: Record<string, RegistryEntry> = {
     }),
     meta: undefined,
   },
-  "animated-grainy-bg": {
-    name: "animated-grainy-bg",
+  "grainy-background": {
+    name: "grainy-background",
     description:
       "A dynamic animated gradient background component that supports various gradient patterns and animations.",
     type: "registry:ui",
     registryDependencies: undefined,
     files: [
       {
-        path: "registry/ui/animated-grainy-bg.tsx",
+        path: "registry/ui/grainy-background.tsx",
         type: "registry:ui",
       },
     ],
     component: React.lazy(async () => {
       const mod = (await import(
-        "@/registry/ui/animated-grainy-bg"
+        "@/registry/ui/grainy-background"
       )) as RegistryModule;
-      return { default: pickRegistryComponent(mod, "animated-grainy-bg") };
+      return { default: pickRegistryComponent(mod, "grainy-background") };
     }),
     meta: undefined,
   },
@@ -555,22 +555,22 @@ export const Index: Record<string, RegistryEntry> = {
     }),
     meta: undefined,
   },
-  "animated-grainy-bg-demo": {
-    name: "animated-grainy-bg-demo",
+  "grainy-background-demo": {
+    name: "grainy-background-demo",
     description: "Example showing an animated grainy background.",
     type: "registry:example",
-    registryDependencies: ["https://nyxui.com/r/animated-grainy-bg"],
+    registryDependencies: ["https://nyxui.com/r/grainy-background"],
     files: [
       {
-        path: "registry/example/animated-grainy-bg-demo.tsx",
+        path: "registry/example/grainy-background-demo.tsx",
         type: "registry:example",
       },
     ],
     component: React.lazy(async () => {
       const mod = (await import(
-        "@/registry/example/animated-grainy-bg-demo"
+        "@/registry/example/grainy-background-demo"
       )) as RegistryModule;
-      return { default: pickRegistryComponent(mod, "animated-grainy-bg-demo") };
+      return { default: pickRegistryComponent(mod, "grainy-background-demo") };
     }),
     meta: undefined,
   },

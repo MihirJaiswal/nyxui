@@ -2,7 +2,7 @@ import { Index } from "../../__registry__";
 import { ComponentWrapper } from "./component-wrapper";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { cn } from "../../lib/utils";
-import { Code2Icon, LayoutPanelLeft, Loader } from "lucide-react";
+import { Loader } from "lucide-react";
 import * as React from "react";
 
 interface ComponentPreviewProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -39,35 +39,47 @@ export function ComponentPreview({
 
     return <Component />;
   }, [name]);
+  const isTallPreview = name === "3d-layered-card-demo";
+  const isBlobPreview = name === "morphing-blob-demo";
 
   return (
     <div
-      className={cn("relative my-4 flex flex-col space-y-2", className)}
+      className={cn(
+        "not-prose relative my-5 overflow-hidden rounded-xl border border-border/60 bg-card text-foreground",
+        className,
+      )}
       {...props}
     >
-      <Tabs defaultValue="preview" className="relative mr-auto w-full">
+      <Tabs defaultValue="preview" className="relative w-full gap-0">
         {!preview && (
-          <div className="flex items-center justify-between">
-            <TabsList className="inline-flex h-10 items-center text-muted-foreground w-full justify-start space-x-2 rounded-none bg-transparent p-0 max-w-xs">
+          <div className="z-10 px-4">
+            <TabsList className="relative z-0 flex h-10 w-fit items-center justify-center rounded-none border-0 bg-transparent p-0 text-muted-foreground">
               <TabsTrigger
                 value="preview"
-                className="whitespace-nowrap border-none text-sm disabled:pointer-events-none disabled:opacity-50 text-muted-foreground data-[state=active]:text-foreground relative flex h-10 w-32 items-center justify-center space-x-1 rounded-md bg-transparent p-0 px-4 font-semibold shadow-none transition-none data-[state=active]:bg-zinc-200 data-[state=active]:shadow-none dark:data-[state=active]:bg-zinc-900"
+                className="relative h-7 rounded-lg border-0 bg-transparent px-2 py-0 text-sm font-medium text-muted-foreground shadow-none transition-colors hover:text-foreground data-[state=active]:bg-transparent data-[state=active]:text-foreground data-[state=active]:shadow-none after:absolute after:inset-x-0 after:-bottom-1.5 after:h-0.5 after:rounded-full after:bg-transparent data-[state=active]:after:bg-foreground"
               >
-                <LayoutPanelLeft className="h-4 w-4" />
                 <span>Preview</span>
               </TabsTrigger>
               <TabsTrigger
                 value="code"
-                className="inline-flex border-none whitespace-nowrap text-sm disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-sm text-muted-foreground data-[state=active]:text-foreground data-[state=active]:shadow-non relative h-10 w-32 items-center justify-center space-x-1 rounded-md bg-transparent p-0 px-4 font-semibold shadow-none transition-none data-[state=active]:bg-zinc-200 dark:data-[state=active]:bg-zinc-900"
+                className="relative h-7 rounded-lg border-0 bg-transparent px-2 py-0 text-sm font-medium text-muted-foreground shadow-none transition-colors hover:text-foreground data-[state=active]:bg-transparent data-[state=active]:text-foreground data-[state=active]:shadow-none after:absolute after:inset-x-0 after:-bottom-1.5 after:h-0.5 after:rounded-full after:bg-transparent data-[state=active]:after:bg-foreground"
               >
-                <Code2Icon className="h-4 w-4" />
                 <span>Code</span>
               </TabsTrigger>
             </TabsList>
           </div>
         )}
-        <TabsContent value="preview" className="relative rounded-md">
-          <ComponentWrapper name={name}>
+        <TabsContent value="preview" className="px-1 pb-1">
+          <ComponentWrapper
+            name={name}
+            stageClassName={
+              isBlobPreview
+                ? "min-h-[460px] sm:min-h-[480px] md:min-h-[500px]"
+                : isTallPreview
+                  ? "min-h-[420px] sm:min-h-[460px] md:min-h-[500px] lg:min-h-[540px]"
+                  : undefined
+            }
+          >
             <React.Suspense
               fallback={
                 <div className="flex items-center text-sm text-muted-foreground">
@@ -80,11 +92,9 @@ export function ComponentPreview({
             </React.Suspense>
           </ComponentWrapper>
         </TabsContent>
-        <TabsContent value="code">
-          <div className="flex flex-col space-y-4">
-            <div className="w-full rounded-md relative [&_pre]:my-0 [&_pre]:max-h-[350px] [&_pre]:overflow-auto [&_.absolute]:top-4">
-              {Code}
-            </div>
+        <TabsContent value="code" className="px-1 pb-1">
+          <div className="relative w-full [&_[data-rehype-pretty-code-figure]]:my-0 [&_[data-rehype-pretty-code-figure]>div]:max-h-[400px] [&_[data-rehype-pretty-code-figure]>div]:rounded-[9px] [&_pre]:my-0 [&_pre]:max-h-[400px] [&_pre]:overflow-auto [&_.absolute]:top-3">
+            {Code}
           </div>
         </TabsContent>
       </Tabs>

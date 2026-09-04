@@ -32,7 +32,7 @@ const componentMeta: Record<string, PlaygroundComponentMeta> = {
   "github-repo-card": { dependencies: ["lucide-react"] },
   "glow-card": {},
   "music-player": { dependencies: ["lucide-react"] },
-  "animated-grainy-bg": { dependencies: ["motion"] },
+  "grainy-background": { dependencies: ["motion"] },
   "water-ripple-effect": { dependencies: ["three"], importType: "default" },
   "custom-cursor": { dependencies: ["motion"], exportName: "Cursor" },
   "apple-glass-effect": {
@@ -59,7 +59,7 @@ const componentLoaders: Record<string, () => Promise<ComponentModule>> = {
   "github-repo-card": () => import("@/registry/ui/github-repo-card"),
   "glow-card": () => import("@/registry/ui/glow-card"),
   "music-player": () => import("@/registry/ui/music-player"),
-  "animated-grainy-bg": () => import("@/registry/ui/animated-grainy-bg"),
+  "grainy-background": () => import("@/registry/ui/grainy-background"),
   "water-ripple-effect": () => import("@/registry/ui/water-ripple-effect"),
   "custom-cursor": () => import("@/registry/ui/custom-cursor"),
   "apple-glass-effect": () => import("@/registry/ui/apple-glass-effect"),
@@ -1167,9 +1167,9 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
     },
   },
 
-  "animated-grainy-bg": {
-    name: "Animated Grainy Background",
-    component: "AnimatedGrainyBg",
+  "grainy-background": {
+    name: "Grainy Background",
+    component: "GrainyBackground",
     props: {
       // Content
       children: {

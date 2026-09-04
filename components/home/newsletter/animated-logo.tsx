@@ -116,7 +116,6 @@ export default function AnimatedLogo({
     } else if (!triggerOnce) {
       setRevealed(false);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     shouldAnimate,
     playToken,
