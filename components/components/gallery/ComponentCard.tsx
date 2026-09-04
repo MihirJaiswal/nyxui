@@ -66,7 +66,7 @@ export const ComponentCard = ({
             />
           </div>
         ) : (
-          <div className="w-14 h-14 rounded-full flex-shrink-0 bg-background">
+          <div className="w-14 h-14 rounded-full shrink-0 bg-background">
             <Image
               src="/nyx-logo.webp"
               alt={title}
