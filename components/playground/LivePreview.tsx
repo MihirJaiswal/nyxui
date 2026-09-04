@@ -4,6 +4,7 @@ import type React from "react";
 import { lazy, Suspense, useEffect, useMemo, useState } from "react";
 import { Check, Code, Copy, FileCode2, RefreshCw } from "lucide-react";
 import parse from "html-react-parser";
+import { ImageLayer, Divider } from "@/registry/ui/image-comparison";
 import { getHighlighter } from "shiki";
 import {
   expandDottedConfig,
@@ -40,6 +41,14 @@ const codeTabs: Array<{
   { value: "full", label: "Full Code", icon: FileCode2 },
 ];
 
+const JSX_COMPONENT_MAP: Record<
+  string,
+  React.ComponentType<Record<string, unknown>>
+> = {
+  imagelayer: ImageLayer as React.ComponentType<Record<string, unknown>>,
+  divider: Divider as React.ComponentType<Record<string, unknown>>,
+};
+
 function parseJSXString(jsxString: string): React.ReactNode {
   try {
     const htmlString = jsxString
@@ -47,7 +56,24 @@ function parseJSXString(jsxString: string): React.ReactNode {
       .replace(/\{/g, "")
       .replace(/\}/g, "");
 
-    return parse(htmlString);
+    return parse(htmlString, {
+      replace: (domNode) => {
+        if (domNode.type === "tag" && domNode.name) {
+          const Component = JSX_COMPONENT_MAP[domNode.name.toLowerCase()];
+          if (Component) {
+            const props: Record<string, unknown> = { ...domNode.attribs };
+            if (props.class) {
+              props.className = props.class;
+              delete props.class;
+            }
+            const children = (domNode.children ?? []).map((child) =>
+              "data" in child ? (child.data ?? "") : "",
+            );
+            return <Component {...props}>{children}</Component>;
+          }
+        }
+      },
+    });
   } catch (error) {
     console.error("Error parsing JSX string:", error);
     return jsxString.replace(/<[^>]*>/g, "");

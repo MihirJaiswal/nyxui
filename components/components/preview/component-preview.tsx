@@ -47,7 +47,7 @@ export function ComponentPreview({
   return (
     <div
       className={cn(
-        "not-prose inset-ring-shadow relative my-5 overflow-hidden rounded-[20px] border border-muted bg-card text-foreground hover:shadow-glass-lg transition-shadow duration-200",
+        "not-prose inset-ring-shadow relative my-5 overflow-hidden rounded-[20px] border border-muted bg-card dark:bg-border/10 text-foreground hover:shadow-glass-lg transition-shadow duration-200",
         className,
       )}
       {...props}
