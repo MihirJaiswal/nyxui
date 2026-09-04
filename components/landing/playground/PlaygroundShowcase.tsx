@@ -14,12 +14,8 @@ export function PlaygroundShowcase(): React.ReactElement {
             <h2 className="max-w-xl text-4xl leading-tight font-medium tracking-tight sm:text-5xl">
               A playground,
               <br />
-              <span className="text-foreground/65">
-                not a{" "}
-                <span className="font-caveat text-brand text-6xl">
-                  showroom.
-                </span>
-              </span>
+              not a{" "}
+              <span className="font-caveat text-brand text-6xl">showroom.</span>
             </h2>
           </div>
 
