@@ -12,7 +12,7 @@ export function GradientDivider({
         position === "top" ? "top-0" : "top-full",
       )}
     >
-      <div className="h-full w-full bg-gradient-to-r from-transparent via-zinc-300 to-transparent dark:via-zinc-600" />
+      <div className="h-full w-full bg-linear-to-r from-transparent via-zinc-300 to-transparent dark:via-zinc-600" />
     </div>
   );
 }

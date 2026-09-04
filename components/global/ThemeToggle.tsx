@@ -26,8 +26,8 @@ export const ModeToggle = React.forwardRef<
         disabled
         {...props}
       >
-        <SunIcon className="size-[1rem] text-neutral-800 dark:hidden dark:text-neutral-200" />
-        <MoonIcon className="hidden size-[1rem] text-neutral-800 dark:block dark:text-neutral-200" />
+        <SunIcon className="size-4 text-neutral-800 dark:hidden dark:text-neutral-200" />
+        <MoonIcon className="hidden size-4 text-neutral-800 dark:block dark:text-neutral-200" />
       </Button>
     );
   }
@@ -46,11 +46,8 @@ export const ModeToggle = React.forwardRef<
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
       {...props}
     >
-      <SunIcon className="size-[1rem] text-neutral-800 dark:hidden dark:text-neutral-200 transition-all duration-150" />
-      <MoonIcon
-        className="hidden size-[1
-      rem] text-neutral-800 dark:block dark:text-neutral-200 transition-all duration-150"
-      />
+      <SunIcon className="size-4 text-neutral-800 dark:hidden dark:text-neutral-200 transition-all duration-150" />
+      <MoonIcon className="hidden size-4 text-neutral-800 dark:block dark:text-neutral-200 transition-all duration-150" />
     </Button>
   );
 });
