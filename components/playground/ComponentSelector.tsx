@@ -22,7 +22,7 @@ import { useKeyboardShortcut } from "@/hooks/use-keyboard-shortcut";
 import { useHoverTick } from "@/hooks/use-hover-tick";
 import { CategoryHeading } from "@/components/global/CategoryHeading";
 import type { ComponentRegistry } from "@/types/playground";
-import { PhantomLine } from "@/components/global/Phantom-line";
+import { PhantomLine } from "@/components/global/PhantomLine";
 import {
   GuideLine,
   BASE_WIDTH,

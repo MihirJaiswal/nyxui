@@ -13,7 +13,7 @@ import {
 import { ChevronDown, Search } from "lucide-react";
 import { ModeToggle } from "@/components/global/ThemeToggle";
 import { cn } from "@/lib/utils";
-import { CommandPalette } from "@/components/global/CommandPallete";
+import { CommandPalette } from "@/components/global/CommandPalette";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { useMounted } from "@/hooks/use-mounted";
 import { useEventListener } from "@/hooks/use-event-listener";

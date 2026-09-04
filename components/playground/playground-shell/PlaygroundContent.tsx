@@ -17,7 +17,7 @@ import {
   SIDEBAR_INNER_CLASSNAME,
   SIDEBAR_OUTER_CLASSNAME,
   MAIN_OUTER_CLASSNAME,
-} from "@/hooks/useSidebarPanelSizes";
+} from "@/hooks/use-sidebar-panel-sizes";
 
 export const PlaygroundContent = ({
   initialComponent,

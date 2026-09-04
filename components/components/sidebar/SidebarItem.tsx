@@ -4,7 +4,7 @@ import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { animate, motion, useMotionValue, useSpring } from "motion/react";
 import { cn } from "@/lib/utils";
-import { PhantomLine } from "@/components/global/Phantom-line";
+import { PhantomLine } from "@/components/global/PhantomLine";
 import {
   GuideLine,
   BASE_WIDTH,
@@ -12,7 +12,7 @@ import {
   SPRING_CONFIG,
   LABEL_TRANSITION,
 } from "@/components/global/GuideLine";
-import type { CategoryItem } from "@/types/sidebar-types";
+import type { CategoryItem } from "@/types/sidebar";
 
 const MotionLink = motion.create(Link);
 

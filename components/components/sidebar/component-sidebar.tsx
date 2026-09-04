@@ -1,7 +1,7 @@
 import { componentsData } from "@/registry/Data";
 import { ComponentSidebarClient } from "./ComponentSidebarClient";
 import { itemHref, getComponentCategory } from "@/lib/links";
-import type { CategoryItem } from "@/types/sidebar-types";
+import type { CategoryItem } from "@/types/sidebar";
 
 interface ComponentSidebarProps {
   type?: "components" | "blocks";
