@@ -385,14 +385,11 @@ export default function MSpaint({
       role="application"
       aria-label="MS Paint drawing application"
       className={cn(
-        "absolute md:px-0 bg-gray-200 border-2 border-white shadow-md",
+        "relative md:px-0 bg-gray-200 border-2 border-white shadow-md mx-auto",
         className,
       )}
       style={{
         width: `${dimensions.width}px`,
-        left: "50%",
-        top: "50%",
-        transform: "translate(-50%, -50%)",
         maxWidth: "100vw",
         ...style,
       }}
