@@ -55,7 +55,7 @@ export function CodeBlockCommand({
   }
 
   return (
-    <div className="relative">
+    <div className="group relative">
       <Tabs
         className="w-full max-w-full gap-0"
         defaultValue={packageManager}
@@ -117,7 +117,7 @@ export function CodeBlockCommand({
       <Button
         size="icon"
         variant="ghost"
-        className="absolute right-3 bottom-3 z-10 h-8 w-8 rounded-md border border-border/70 bg-white text-muted-foreground transition-all hover:bg-muted hover:text-foreground active:scale-95 dark:border-white/5 dark:bg-[#1A1A1A] dark:text-neutral-400 dark:hover:bg-[#252525] dark:hover:text-neutral-200 [&_svg]:h-4 [&_svg]:w-4"
+        className="absolute right-3 bottom-3 z-10 h-8 w-8 rounded-md border border-border/70 bg-white text-muted-foreground opacity-0 transition-all hover:bg-muted hover:text-foreground active:scale-95 group-hover:opacity-100 dark:border-white/5 dark:bg-[#1A1A1A] dark:text-neutral-400 dark:hover:bg-[#252525] dark:hover:text-neutral-200 [&_svg]:h-4 [&_svg]:w-4"
         onClick={copyCommand}
       >
         <span className="sr-only">{hasCopied ? "Copied" : "Copy"}</span>

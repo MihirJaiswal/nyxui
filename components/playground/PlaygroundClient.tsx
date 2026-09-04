@@ -211,6 +211,9 @@ const PlaygroundContent = ({
     timeout: 2000,
     onCopy: () => showToast("Playground link copied"),
   });
+  const { copy: copyCodeToClipboard } = useCopyToClipboard({
+    timeout: 2000,
+  });
 
   const panelGroupContainerRef = useRef<HTMLDivElement>(null);
   const sidebarSizes = useSidebarPanelSizes(panelGroupContainerRef);
@@ -332,7 +335,7 @@ const PlaygroundContent = ({
         : "";
 
       try {
-        await navigator.clipboard.writeText(code);
+        await copyCodeToClipboard(code);
         showToast(
           variant === "install"
             ? "Install command copied"
@@ -345,7 +348,7 @@ const PlaygroundContent = ({
         console.error("Clipboard error:", err);
       }
     },
-    [selectedComponent, componentConfig, showToast],
+    [selectedComponent, componentConfig, showToast, copyCodeToClipboard],
   );
 
   const handleCopyLink = useCallback(() => {
