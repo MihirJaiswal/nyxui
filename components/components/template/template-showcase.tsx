@@ -15,7 +15,7 @@ export default function TemplateShowcase({
   return (
     <div
       className={cn(
-        "not-prose relative my-5 overflow-hidden rounded-xl border border-border/60 bg-card",
+        "not-prose relative my-5 overflow-hidden rounded-[20px] border border-border/60 bg-card",
         className,
       )}
     >

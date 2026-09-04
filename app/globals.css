@@ -55,6 +55,7 @@
 
 :root {
   --radius: 0.625rem;
+  --content-h: calc(100vh - 9rem);
   /* Subtle light-mode elevation scale */
   --elevation-xs: 0 1px 1px 0 rgb(0 0 0 / 0.03);
   --elevation-sm:

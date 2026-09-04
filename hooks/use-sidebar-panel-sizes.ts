@@ -5,9 +5,9 @@ import { useLayoutEffect, useState } from "react";
 export const SIDEBAR_PX_LG = 260;
 export const SIDEBAR_PX_XL = 310;
 export const SIDEBAR_INNER_CLASSNAME =
-  "flex h-full flex-col overflow-hidden rounded-xl border border-border/70 bg-card shadow-sm";
+  "flex h-[var(--content-h)] flex-col overflow-hidden rounded-[20px] border border-border/70 bg-card shadow-sm";
 export const SIDEBAR_OUTER_CLASSNAME =
-  "flex flex-col lg:sticky lg:top-16 lg:h-[calc(85vh+5rem)] lg:py-4";
+  "flex flex-col lg:sticky lg:top-16 lg:h-[calc(100vh-4rem)] lg:py-4";
 export const MAIN_OUTER_CLASSNAME = "flex flex-col min-w-0 lg:pl-8 xl:pl-24";
 const XL_MQ = "(min-width: 1280px)";
 
