@@ -1,4 +1,4 @@
-import { Mdx } from "@/components/components/mdx-components";
+import { Mdx } from "@/components/components/mdx/mdx-components";
 import { DocPageHeader } from "@/components/components/doc-page-header";
 import { absoluteUrl } from "@/lib/utils";
 import {
