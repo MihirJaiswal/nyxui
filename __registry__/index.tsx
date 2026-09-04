@@ -693,25 +693,6 @@ export const Index: Record<string, RegistryEntry> = {
     }),
     meta: undefined,
   },
-  "cyberpunk-card-demo3": {
-    name: "cyberpunk-card-demo3",
-    description: "Example showing a cyberpunk card.",
-    type: "registry:example",
-    registryDependencies: ["https://nyxui.com/r/cyberpunk-card.json"],
-    files: [
-      {
-        path: "registry/example/cyberpunk-card-demo3.tsx",
-        type: "registry:example",
-      },
-    ],
-    component: React.lazy(async () => {
-      const mod = (await import(
-        "@/registry/example/cyberpunk-card-demo3"
-      )) as RegistryModule;
-      return { default: pickRegistryComponent(mod, "cyberpunk-card-demo3") };
-    }),
-    meta: undefined,
-  },
   "dynamic-ripple-demo": {
     name: "dynamic-ripple-demo",
     description: "Example showing a dynamic ripple effect.",

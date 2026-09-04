@@ -144,20 +144,6 @@ export const examples: Registry["items"] = [
     ],
   },
   {
-    name: "cyberpunk-card-demo3",
-    type: "registry:example",
-    title: "Cyberpunk Card Demo 3",
-    description: "Example showing a cyberpunk card.",
-    registryDependencies: ["https://nyxui.com/r/cyberpunk-card.json"],
-    files: [
-      {
-        path: "registry/example/cyberpunk-card-demo3.tsx",
-        type: "registry:example",
-        target: "components/cyberpunk-card-demo3.tsx",
-      },
-    ],
-  },
-  {
     name: "dynamic-ripple-demo",
     type: "registry:example",
     title: "Dynamic Ripple Demo",
