@@ -188,7 +188,7 @@ const ComponentSelector = ({
         <Grid />
       </div>
 
-      <div className="p-3 lg:p-4">
+      <div className="px-3 pt-3 lg:pt-4 lg:px-4">
         <CommandInput
           ref={inputRef}
           value={searchQuery}

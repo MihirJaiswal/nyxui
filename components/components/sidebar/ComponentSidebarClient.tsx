@@ -42,6 +42,16 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
   const activeItemRef = React.useRef<HTMLAnchorElement | null>(null);
   const hoverTick = useHoverTick();
 
+  const [isXl, setIsXl] = React.useState(false);
+  React.useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1280px)");
+    const update = () => setIsXl(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+  const expandedWidth = isXl ? 288 : 250;
+
   const groupedComponents = React.useMemo(
     () => groupItems(componentItems, "Components"),
     [componentItems],
@@ -101,7 +111,7 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
     <motion.div
       initial={false}
       animate={{
-        width: isCollapsed ? 48 : 288,
+        width: isCollapsed ? 48 : expandedWidth,
         height: isCollapsed ? 40 : "calc(100% - 1.5rem)",
       }}
       transition={{
