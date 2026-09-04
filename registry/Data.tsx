@@ -172,7 +172,7 @@ export const componentsData: ComponentsData = {
       tags: ["Interactive", "Animation"],
       description: "A customizable, interactive scrolling marquee component.",
       image: "/assets/images/showcase/components/marquee.png",
-      imageClassName: "invert-100 grayscale dark:invert-0 object-cover",
+      imageClassName: "scale-90",
     },
     "matrix-code-rain": {
       title: "Matrix Code Rain",
