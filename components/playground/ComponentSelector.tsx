@@ -1,11 +1,11 @@
 "use client";
 
 import type React from "react";
-
 import { motion } from "motion/react";
-import { ChevronDown, Check, Search } from "lucide-react";
+import { Search, X } from "lucide-react";
 import type { ComponentRegistry } from "./types";
-import { useState, useEffect, useRef } from "react";
+import { useState, useMemo } from "react";
+import { cn } from "@/lib/utils";
 
 interface ComponentSelectorProps {
   components: ComponentRegistry;
@@ -13,201 +13,123 @@ interface ComponentSelectorProps {
   onSelect: (componentKey: string) => void;
 }
 
+const itemLineVariants = {
+  normal: { width: 28 },
+  active: { width: 40, backgroundColor: "#FF4F11" },
+  hover: { width: 40, backgroundColor: "#FF4F11" },
+};
+
+const itemLabelVariants = {
+  normal: { x: 0 },
+  active: { x: 4 },
+  hover: { x: 4 },
+};
+
 const ComponentSelector = ({
   components,
   selectedComponent,
   onSelect,
 }: ComponentSelectorProps) => {
-  const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [highlightedIndex, setHighlightedIndex] = useState(-1);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const searchInputRef = useRef<HTMLInputElement>(null);
 
   const componentEntries = Object.entries(components);
-  const selectedComponentData = components[selectedComponent];
 
-  const filteredComponents = componentEntries.filter(
-    ([key, component]) =>
-      component.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      key.toLowerCase().includes(searchQuery.toLowerCase()),
+  const filteredComponents = useMemo(
+    () =>
+      componentEntries
+        .filter(
+          ([key, component]) =>
+            component.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            key.toLowerCase().includes(searchQuery.toLowerCase()),
+        )
+        .sort(([, a], [, b]) => a.name.localeCompare(b.name)),
+    [componentEntries, searchQuery],
   );
 
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (isOpen && searchInputRef.current) {
-      searchInputRef.current.focus();
-    }
-    setHighlightedIndex(-1);
-  }, [isOpen]);
-
-  useEffect(() => {
-    if (filteredComponents.length > 0) {
-      setHighlightedIndex(0);
-    } else {
-      setHighlightedIndex(-1);
-    }
-  }, [searchQuery, filteredComponents.length]);
-
-  const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (!isOpen) return;
-
-    switch (event.key) {
-      case "ArrowDown":
-        event.preventDefault();
-        setHighlightedIndex((prev) =>
-          prev < filteredComponents.length - 1 ? prev + 1 : 0,
-        );
-        break;
-      case "ArrowUp":
-        event.preventDefault();
-        setHighlightedIndex((prev) =>
-          prev > 0 ? prev - 1 : filteredComponents.length - 1,
-        );
-        break;
-      case "Enter":
-        event.preventDefault();
-        const indexToSelect = highlightedIndex >= 0 ? highlightedIndex : 0;
-        if (
-          filteredComponents.length > 0 &&
-          indexToSelect < filteredComponents.length
-        ) {
-          const [key] = filteredComponents[indexToSelect];
-          onSelect(key);
-          setIsOpen(false);
-          setSearchQuery("");
-        }
-        break;
-      case "Escape":
-        setIsOpen(false);
-        setSearchQuery("");
-        break;
-    }
-  };
-
-  const handleToggleDropdown = () => {
-    if (isOpen) {
-      setSearchQuery("");
-    }
-    setIsOpen(!isOpen);
-  };
-
   return (
-    <div className="relative w-full" ref={dropdownRef}>
-      <div className="border-b border-border/60 bg-background p-3">
-        <button
-          onClick={handleToggleDropdown}
-          className="flex w-full items-center justify-between rounded-md border border-border/70 bg-background px-3 py-2.5 text-left transition-colors hover:bg-muted/50"
-        >
-          <div className="min-w-0 flex-1">
-            <span className="mb-0.5 block text-[11px] font-medium uppercase text-muted-foreground">
-              Component
-            </span>
-            <span className="block truncate text-sm font-medium">
-              {selectedComponentData
-                ? selectedComponentData.name
-                : "Select a Component"}
-            </span>
-          </div>
-          <ChevronDown
-            className={`ml-2 h-4 w-4 flex-shrink-0 text-muted-foreground transition-transform duration-200 ${
-              isOpen ? "rotate-180" : ""
-            }`}
+    <div className="flex flex-col">
+      <div className="border-b border-border/60 p-3">
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 size-3.5 -translate-y-1/2 text-muted-foreground" />
+          <input
+            type="text"
+            placeholder="Search components..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="h-9 w-full rounded-lg bg-muted/50 py-2 pl-9 pr-8 text-sm text-foreground placeholder:text-muted-foreground focus:bg-background focus:outline-none"
           />
-        </button>
-
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
-            className="absolute left-3 right-3 top-full z-50 mt-2 max-h-80 overflow-hidden rounded-md border border-border/70 bg-background shadow-lg"
-          >
-            <div className="border-b border-border/60 p-3">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                <input
-                  ref={searchInputRef}
-                  type="text"
-                  placeholder="Search components..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  onKeyDown={handleKeyDown}
-                  className="w-full rounded-md border border-border/70 bg-background py-2 pl-10 pr-4 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
-                />
-              </div>
-            </div>
-
-            <div className="max-h-64 overflow-y-auto">
-              <div className="p-2">
-                {filteredComponents.length > 0 ? (
-                  filteredComponents.map(([key, component], index) => (
-                    <motion.button
-                      key={key}
-                      onClick={() => {
-                        onSelect(key);
-                        setIsOpen(false);
-                        setSearchQuery("");
-                      }}
-                      className={`w-full rounded-md px-3 py-2.5 text-left transition-colors ${
-                        selectedComponent === key
-                          ? "bg-muted text-foreground"
-                          : highlightedIndex === index
-                            ? "bg-muted/70 text-foreground"
-                            : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
-                      }`}
-                      onMouseEnter={() => setHighlightedIndex(index)}
-                    >
-                      <div className="flex items-center justify-between">
-                        <div className="min-w-0 flex-1">
-                          <h4 className="truncate text-sm font-medium">
-                            {component.name}
-                          </h4>
-                          <p className="mt-0.5 truncate font-mono text-[11px] text-muted-foreground">
-                            {key}
-                          </p>
-                        </div>
-                        {selectedComponent === key && (
-                          <Check className="ml-2 h-4 w-4 flex-shrink-0 text-primary" />
-                        )}
-                      </div>
-                    </motion.button>
-                  ))
-                ) : (
-                  <div className="py-8 text-center text-muted-foreground">
-                    <Search className="mx-auto mb-3 h-8 w-8 opacity-50" />
-                    <p className="text-sm">No components found</p>
-                    <p className="mt-1 text-xs">Try a different search term</p>
-                  </div>
-                )}
-              </div>
-            </div>
-          </motion.div>
-        )}
+          {searchQuery && (
+            <button
+              onClick={() => setSearchQuery("")}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <X className="size-3.5" />
+            </button>
+          )}
+        </div>
       </div>
 
-      {componentEntries.length === 0 && (
-        <div className="py-8 text-center text-muted-foreground">
-          <p className="text-sm">No components available</p>
+      <div className="min-h-0 flex-1 overflow-y-auto p-3 scrollbar-no">
+        <div className="space-y-4">
+          <div>
+            <h4 className="mb-2 flex items-center gap-3 text-sm font-medium text-foreground">
+              <span className="flex w-11 shrink-0 items-center" aria-hidden="true">
+                <span className="block h-px w-8 shrink-0 bg-border dark:bg-white/60" />
+              </span>
+              <span className="min-w-0 truncate">Components</span>
+            </h4>
+
+            <div className="grid grid-flow-row auto-rows-max text-sm">
+              {filteredComponents.length > 0 ? (
+                filteredComponents.map(([key, component]) => {
+                  const isActive = selectedComponent === key;
+                  return (
+                    <motion.button
+                      key={key}
+                      onClick={() => onSelect(key)}
+                      className={cn(
+                        "group relative flex min-h-7 w-full items-center gap-3 rounded-md py-1 text-sm transition-colors",
+                        isActive
+                          ? "text-[#FF4F11]"
+                          : "text-muted-foreground hover:text-[#FF4F11]",
+                      )}
+                      initial={false}
+                      animate={isActive ? "active" : "normal"}
+                      whileHover="hover"
+                    >
+                      <span className="flex w-11 shrink-0 items-center" aria-hidden="true">
+                        <motion.span
+                          className="block h-px shrink-0 origin-left bg-border dark:bg-white/18"
+                          variants={itemLineVariants}
+                          transition={{
+                            width: { type: "spring", stiffness: 600, damping: 32 },
+                            backgroundColor: { duration: 0 },
+                          }}
+                        />
+                      </span>
+                      <motion.span
+                        className={cn(
+                          "min-w-0 flex-1 truncate text-sm text-left",
+                          isActive && "font-medium",
+                        )}
+                        title={component.name}
+                        variants={itemLabelVariants}
+                        transition={{ type: "spring", stiffness: 600, damping: 32 }}
+                      >
+                        {component.name}
+                      </motion.span>
+                    </motion.button>
+                  );
+                })
+              ) : (
+                <p className="py-4 text-center text-sm text-muted-foreground">
+                  No components found
+                </p>
+              )}
+            </div>
+          </div>
         </div>
-      )}
+      </div>
     </div>
   );
 };
