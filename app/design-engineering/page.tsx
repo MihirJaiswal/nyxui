@@ -33,23 +33,25 @@ const SECTIONS: { heading: string; body: string[] }[] = [
   {
     heading: "What is design engineering",
     body: [
-      "Design engineering is the practice of closing the gap between design and code. A design engineer thinks in systems — spacing scales, motion curves, state machines — and ships those decisions as working UI instead of static mockups.",
-      "The discipline sits where Figma ends and the browser begins: prototyping in real technologies, owning polish that usually falls between two teams, and making sure what was designed is exactly what users get.",
+      "Design engineering is what happens when one person owns both the mockup and the code that ships it. A design engineer thinks in systems, things like spacing scales, motion curves and state machines, and then writes the actual UI instead of handing a picture of it to someone else.",
+      "The discipline sits where Figma ends and the browser begins. That territory used to belong to nobody. Designers shipped files, engineers shipped features, and everything in between, the hover states, the easing, the way a dialog settles into place, got decided by whoever happened to be holding the ticket.",
+      "The title is new but the work is not. People have been doing it under names like UX engineering, creative development and prototyping for years, usually without getting noticed or paid for it. Calling it design engineering just made the job visible enough to hire for.",
     ],
   },
   {
     heading: "Why it matters",
     body: [
-      "Most UI debt is translation debt. A design specifies 24px of space and a designer's eye for easing; somewhere in the handoff it becomes `mt-4` and a default tween. Multiply that by a product's worth of screens and the experience drifts from intentional to accidental.",
-      "Teams with strong design engineering ship interfaces that feel considered — because every component was decided once, in one pass, by someone who holds both the aesthetic and the implementation in their head at the same time.",
+      "Most UI debt is translation debt. A design specifies 24px of space and a certain feel for how a menu should open. Somewhere in the handoff that becomes mt-4 and a default tween. One screen survives it. A whole product does not.",
+      "The further a decision travels from the person who made it, the more of the decision gets lost. Design engineering shortens that distance to zero. The person who chose the easing curve is the person who writes the transition, so nothing gets approximated on the way to production.",
+      "There is also a speed argument. A prototype built in real code answers questions a static mockup cannot: does this feel right at 60fps, does it hold up with real data, does the motion survive contact with actual content. Teams that prototype this way learn faster because they test the real thing.",
     ],
   },
   {
     heading: "How Nyx UI is built around it",
     body: [
-      "Every component in this library is designed and engineered together. States, spacing, radii, and motion are tuned by hand, then frozen into the component — so the decisions travel with the code when you copy it into your app.",
-      "Because the behavior is baked in, you start from an intentional baseline instead of a default one. You can still override anything, but you're editing something that was already designed to work, not filling in gaps.",
-      "That's the promise: components that respect both sides of the craft — the design system they came from, and the engineering constraints they run under.",
+      "Every component in this library is designed and engineered together. States, spacing, radii and motion are tuned by hand, then frozen into the component, so the decisions travel with the code when you copy it into your app.",
+      "Because the behavior is baked in, you start from an intentional baseline instead of a default one. You can still override anything, but you are editing something that was already designed to work, not filling in gaps that were never decided.",
+      "That is the whole promise: components that respect both sides of the craft, the design system they came from and the engineering constraints they run under, because the same pair of hands built both sides.",
     ],
   },
 ];
@@ -61,7 +63,7 @@ export default function DesignEngineeringPage(): React.ReactElement {
       <div
         className="relative z-10 mx-auto lg:
       
-      max-w-[53rem] lg:border-x border-border/60 bg-background"
+      max-w-212 lg:border-x border-border/60 bg-background"
       >
         {/* Header */}
         <header className="border-b lg:border-y border-border/60 px-6 py-16  lg:px-12 md:py-11.75 lg:mt-15">
@@ -77,7 +79,7 @@ export default function DesignEngineeringPage(): React.ReactElement {
           </h1>
           <p className="mt-6 max-w-xl text-base leading-7 text-muted-foreground">
             Why the most considered interfaces are built by people who can do
-            both — and how that thinking shapes every component in Nyx UI.
+            both, and how that thinking shapes every component in Nyx UI.
           </p>
         </header>
 
