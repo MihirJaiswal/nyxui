@@ -3,12 +3,14 @@
 import {
   useState,
   useEffect,
+  useLayoutEffect,
   Suspense,
   useRef,
   startTransition,
   useCallback,
 } from "react";
-import { AlertCircle } from "lucide-react";
+import { AlertCircle, GripVertical } from "lucide-react";
+import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import ComponentSelector from "./ComponentSelector";
 import PropertyEditor from "./PropertyEditor";
 import LivePreview from "./LivePreview";
@@ -18,6 +20,18 @@ import { componentRegistry } from "./registry";
 import { Grid } from "./Grid";
 import { generatePlaygroundCode, type CodeVariant } from "./codegen";
 import { playgroundComponentHref } from "@/lib/links";
+
+// Sidebar's current fixed width (was `lg:w-72`) — used as both the
+// default AND the minimum size of the resizable sidebar panel.
+const SIDEBAR_PX = 310;
+
+// Shared classNames so the "not measured yet" fallback layout and the
+// real PanelGroup layout look pixel-identical (see useSidebarPanelSizes).
+const SIDEBAR_INNER_CLASSNAME =
+  "flex h-full flex-col overflow-hidden rounded-xl border border-border/70 bg-card/70 shadow-sm dark:border-white/5 dark:bg-[#0F0F0F]";
+const SIDEBAR_OUTER_CLASSNAME =
+  "flex flex-col lg:sticky lg:top-16 lg:h-[calc(100vh-4rem)] lg:py-10";
+const MAIN_OUTER_CLASSNAME = "flex flex-col min-w-0 pl-8 xl:pl-24";
 
 // Extract shared config generation logic
 const generateDefaultConfig = (componentKey: string): ComponentConfig => {
@@ -130,6 +144,51 @@ const useToast = () => {
   return { showToast, Toast };
 };
 
+// Converts the fixed SIDEBAR_PX value into a live percentage based on the
+// actual measured width of the container, so react-resizable-panels (which
+// only understands percentages) still respects a real pixel minimum.
+//
+// IMPORTANT: this returns `null` until we've actually measured the real
+// container on the client. We deliberately do NOT guess a percentage from
+// `window.innerWidth` or a hardcoded fallback for the "not measured yet"
+// state — any such guess will usually be wrong (e.g. a 25% fallback is
+// already bigger than 310px on anything wider than ~1240px), and since SSR
+// has no `window` at all, that wrong guess is what actually gets painted
+// first. The caller renders a plain fixed-width layout while this is null,
+// and only mounts the resizable PanelGroup once it flips to a real value —
+// see PlaygroundContent below.
+const useSidebarPanelSizes = (
+  containerRef: React.RefObject<HTMLDivElement | null>,
+) => {
+  const [sizes, setSizes] = useState<{
+    sidebarPct: number;
+    minSidebarPct: number;
+  } | null>(null);
+
+  // useLayoutEffect (not useEffect) so the measurement + swap to the real
+  // PanelGroup happens synchronously before the browser paints the client
+  // render, minimizing any visible flash once we're on the client.
+  useLayoutEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const update = () => {
+      const total = el.offsetWidth;
+      if (total > 0) {
+        const pct = (SIDEBAR_PX / total) * 100;
+        setSizes({ sidebarPct: pct, minSidebarPct: pct });
+      }
+    };
+
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [containerRef]);
+
+  return sizes;
+};
+
 // Extract the component that uses useSearchParams into a separate component
 const PlaygroundContent = ({
   initialComponent,
@@ -147,6 +206,9 @@ const PlaygroundContent = ({
   const searchParams = useSearchParams();
   const router = useRouter();
   const { showToast, Toast } = useToast();
+
+  const panelGroupContainerRef = useRef<HTMLDivElement>(null);
+  const sidebarSizes = useSidebarPanelSizes(panelGroupContainerRef);
 
   // Only restore from localStorage if a component is specified in the URL
   useEffect(() => {
@@ -316,65 +378,112 @@ const PlaygroundContent = ({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [handleCopyCode]);
 
+  const sidebarPanelContent = selectedComponent ? (
+    <div className="min-h-0 flex-1 overflow-y-auto px-3 pb-3 scrollbar-no">
+      <PropertyEditor
+        component={componentRegistry[selectedComponent]}
+        components={componentRegistry}
+        selectedComponent={selectedComponent}
+        config={componentConfig}
+        onChange={handlePropertyChange}
+        onResetAll={handleResetCurrent}
+        onResetProperty={handleResetProperty}
+        onCopyLink={handleCopyLink}
+        onSelectComponent={handleComponentSelect}
+      />
+    </div>
+  ) : (
+    <div className="min-h-0 flex-1 overflow-y-auto scrollbar-no">
+      <ComponentSelector
+        components={componentRegistry}
+        selectedComponent={selectedComponent}
+        onSelect={handleComponentSelect}
+      />
+    </div>
+  );
+
+  const mainPanelContent = selectedComponent ? (
+    <div className="flex-1 flex flex-col min-w-0">
+      <div className="flex-1 md:py-4 lg:py-10">
+        <LivePreview
+          componentKey={selectedComponent}
+          config={componentConfig}
+          component={componentRegistry[selectedComponent]}
+          showCode={showCode}
+          onToggleCode={() => setShowCode(!showCode)}
+          onCopyCode={handleCopyCode}
+        />
+      </div>
+    </div>
+  ) : (
+    <PlaygroundEmptyState />
+  );
+
   return (
     <PlaygroundErrorBoundary onReset={handleReset}>
       <div className="h-full flex flex-col bg-background">
         {/* Main Content */}
-        <div className="flex w-full flex-1 flex-col lg:flex-row lg:gap-8 xl:gap-24">
-          {/* Left Sidebar - Controls */}
-          <div className="flex w-full flex-shrink-0 flex-col lg:sticky lg:top-16 lg:h-[calc(100vh-4rem)] lg:py-10 lg:w-72">
+        {/* Desktop layout */}
+        <div
+          ref={panelGroupContainerRef}
+          className="hidden w-full flex-1 lg:flex lg:flex-row"
+        >
+          {sidebarSizes ? (
+            <PanelGroup direction="horizontal" className="flex-1">
+              <Panel
+                defaultSize={sidebarSizes.sidebarPct}
+                minSize={sidebarSizes.minSidebarPct}
+                maxSize={50}
+                className={SIDEBAR_OUTER_CLASSNAME}
+              >
+                <div className={SIDEBAR_INNER_CLASSNAME}>
+                  {sidebarPanelContent}
+                </div>
+              </Panel>
+
+              <PanelResizeHandle className="group relative -ml-1.75 flex w-3 flex-shrink-0 cursor-col-resize items-center justify-center">
+                <div className="bg-background rounded-full border border-border p-0.5">
+                  <GripVertical className="relative z-10 h-3 w-3 text-muted-foreground/40" />
+                </div>
+              </PanelResizeHandle>
+
+              <Panel minSize={30} className={`${MAIN_OUTER_CLASSNAME} flex-1`}>
+                {mainPanelContent}
+              </Panel>
+            </PanelGroup>
+          ) : (
+            // Not measured yet (nothing has mounted on the client). Render a
+            // plain, non-resizable layout pinned to the exact same SIDEBAR_PX
+            // width the PanelGroup above will end up at. This is what SSR (and
+            // the very first client paint) shows, so there's no oversized
+            // sidebar flash — once useSidebarPanelSizes measures the real
+            // container, we swap to the PanelGroup at an identical width.
+            <>
+              <div
+                style={{ width: SIDEBAR_PX, flexShrink: 0 }}
+                className={SIDEBAR_OUTER_CLASSNAME}
+              >
+                <div className={SIDEBAR_INNER_CLASSNAME}>
+                  {sidebarPanelContent}
+                </div>
+              </div>
+              <div className={`${MAIN_OUTER_CLASSNAME} flex-1`}>
+                {mainPanelContent}
+              </div>
+            </>
+          )}
+        </div>
+
+        {/* Mobile layout */}
+        <div className="flex w-full flex-1 flex-col lg:hidden">
+          <div className="flex w-full flex-shrink-0 flex-col">
             <div className="flex h-full flex-col overflow-hidden rounded-xl border border-border/70 bg-card/70 shadow-sm dark:border-white/5 dark:bg-[#0F0F0F]">
-              {selectedComponent ? (
-                <>
-                  {/* Scrollable Property Editor */}
-                  <div className="min-h-0 flex-1 overflow-y-auto px-3 pb-3 scrollbar-no">
-                    <PropertyEditor
-                      component={componentRegistry[selectedComponent]}
-                      components={componentRegistry}
-                      selectedComponent={selectedComponent}
-                      config={componentConfig}
-                      onChange={handlePropertyChange}
-                      onResetAll={handleResetCurrent}
-                      onResetProperty={handleResetProperty}
-                      onCopyLink={handleCopyLink}
-                      onSelectComponent={handleComponentSelect}
-                    />
-                  </div>
-                </>
-              ) : (
-                <>
-                  {/* Component Selector */}
-                  <div className="min-h-0 flex-1 overflow-y-auto scrollbar-no">
-                    <ComponentSelector
-                      components={componentRegistry}
-                      selectedComponent={selectedComponent}
-                      onSelect={handleComponentSelect}
-                    />
-                  </div>
-                </>
-              )}
+              {sidebarPanelContent}
             </div>
           </div>
 
-          {/* Right Side - Live Preview or Empty State */}
-          {selectedComponent ? (
-            <div className="flex-1 flex flex-col min-w-0">
-              <div className="flex-1 md:py-4 lg:py-10">
-                <LivePreview
-                  componentKey={selectedComponent}
-                  config={componentConfig}
-                  component={componentRegistry[selectedComponent]}
-                  showCode={showCode}
-                  onToggleCode={() => setShowCode(!showCode)}
-                  onCopyCode={handleCopyCode}
-                />
-              </div>
-            </div>
-          ) : (
-            <PlaygroundEmptyState />
-          )}
+          {mainPanelContent}
         </div>
-        <Toast />
       </div>
     </PlaygroundErrorBoundary>
   );
