@@ -1,5 +1,4 @@
 import { Maximize } from "lucide-react";
-import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 interface TemplateShowcaseProps {
@@ -26,7 +25,7 @@ export default function TemplateShowcase({
           Preview
         </span>
         {fullscreenHref && (
-          <Link
+          <a
             href={fullscreenHref}
             target="_blank"
             rel="noopener noreferrer"
@@ -34,7 +33,7 @@ export default function TemplateShowcase({
             aria-label="Open in full screen"
           >
             <Maximize size={16} />
-          </Link>
+          </a>
         )}
       </div>
 

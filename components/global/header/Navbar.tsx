@@ -159,11 +159,11 @@ export default function Navbar() {
           <div className="hidden items-center gap-2 lg:flex">
             <CommandPalette />
             <div>
-              <Link
+              <a
                 aria-label="GitHub"
                 href={externalLinks.githubRepo}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
               >
                 <Button
                   aria-label="GitHub"
@@ -174,12 +174,12 @@ export default function Navbar() {
                   <GitHubLogoIcon className="h-4.5 w-4.5" />
                   <span className="sr-only">GitHub</span>
                 </Button>
-              </Link>
-              <Link
+              </a>
+              <a
                 aria-label="Twitter"
                 href={externalLinks.twitter}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
               >
                 <Button
                   aria-label="Twitter"
@@ -190,7 +190,7 @@ export default function Navbar() {
                   <XTwitterIcon size={14} />
                   <span className="sr-only">Twitter</span>
                 </Button>
-              </Link>
+              </a>
               <ModeToggle />
             </div>
           </div>
