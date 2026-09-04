@@ -5,9 +5,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Callout } from "../callout";
-import TechStack from "../tech-stack";
-import RepoDownload from "../repo-download";
+import TechStack from "./tech-stack";
+import RepoDownload from "./repo-download";
 import TemplateActions from "../template/template-actions";
 import TemplateFeatures from "../template/template-features";
 import TemplateShowcase from "../template/template-showcase";
@@ -18,13 +17,11 @@ import { Code, Pre } from "./CodeBlock";
 import { stepOverrides, tabsOverrides, LinkedCard } from "./tabs-overrides";
 import TemplatePreview from "../template/template-preview";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const mdxComponents = {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-  Callout,
   TechStack,
   RepoDownload,
   TemplateActions,
