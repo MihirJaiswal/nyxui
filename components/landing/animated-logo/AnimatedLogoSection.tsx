@@ -22,10 +22,7 @@ export function AnimatedLogoSection(): React.ReactElement {
             <h2 className="max-w-xl text-4xl leading-tight font-medium tracking-tight sm:text-5xl">
               Drawn in a single
               <br />
-              <span className="text-foreground/65">
-                {" "}
-                <span className="font-caveat text-brand text-6xl">stroke.</span>
-              </span>
+              <span className="font-caveat text-brand text-6xl">stroke.</span>
             </h2>
             <p className="mt-5 max-w-lg text-base leading-7 text-muted-foreground">
               The Nyx mark animates from a bare outline to the finished glyph —

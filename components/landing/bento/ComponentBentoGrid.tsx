@@ -171,16 +171,12 @@ export function ComponentBentoGrid(): React.ReactElement {
             <h2 className="max-w-xl text-4xl leading-tight font-medium tracking-tight sm:text-5xl">
               Design basics.
               <br />
-              <span className="text-foreground/65">
-                Defining{" "}
-                <span className="font-caveat text-brand text-6xl">
-                  details.
-                </span>
-              </span>
+              Defining{" "}
+              <span className="font-caveat text-brand text-6xl">details.</span>
             </h2>
           </div>
 
-          <div className="flex items-end border-t border-border/60 px-6 py-10 sm:px-10 md:border-l md:border-t-0 md:px-12 md:py-18">
+          <div className="flex items-end border-t border-border/60 px-6 py-10 sm:px-10 md:border-t-0 md:px-12 md:py-18">
             <p className="max-w-lg text-base leading-7 text-muted-foreground">
               From tactile controls to cinematic effects, every piece is built
               to be copied, tuned, and shipped without sanding off its
