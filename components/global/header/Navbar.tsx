@@ -107,7 +107,7 @@ export default function Navbar(): React.ReactElement {
               </Link>
             ))}
 
-            <DropdownMenu>
+            <DropdownMenu modal={false}>
               <DropdownMenuTrigger asChild>
                 <button
                   className={cn(

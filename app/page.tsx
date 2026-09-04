@@ -14,6 +14,7 @@ export default function Home() {
         slug,
         name: componentData?.title ?? component.name,
         image: componentData?.image,
+        heroImage: componentData?.heroImage,
       };
     },
   );

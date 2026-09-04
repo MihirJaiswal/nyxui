@@ -5,9 +5,9 @@ import AnimatedLogo from "@/components/home/newsletter/animated-logo";
 export function LandingCta(): React.ReactElement {
   return (
     <section className="relative left-1/2 w-screen -translate-x-1/2">
-      <div className="relative mx-auto grid min-h-80 max-w-295 border-x border-border/60 md:grid-cols-[minmax(0,1fr)_20rem]">
-        <div className="flex flex-col justify-between px-6 py-10 sm:px-10 sm:py-12 md:px-12 md:py-14">
-          <h2 className="max-w-4xl text-4xl leading-[1.05] font-medium tracking-tight sm:text-5xl md:text-6xl">
+      <div className="relative mx-auto grid min-h-80 max-w-295 border-x border-border/60 lg:grid-cols-[minmax(0,1fr)_20rem]">
+        <div className="flex flex-col justify-between px-6 py-10 sm:px-10 sm:py-12 md:px-12 md:py-14 gap-8">
+          <h2 className="max-w-4xl text-3xl leading-[1.05] font-medium tracking-tight sm:text-5xl md:text-6xl">
             Got an interface in mind?
             <br />
             <span className="text-foreground/65">
