@@ -1141,3 +1141,14 @@ body {
 .animate-shine {
   animation: shine 2s ease-in-out infinite;
 }
+
+/* Compass wheel — fixed-size, centered */
+.compass-wheel {
+  width: 131rem;
+  transform: translateX(-50%) scale(1);
+  transform-origin: top center;
+}
+
+.compass-card-anchor {
+  transform: translateY(-55.4rem);
+}

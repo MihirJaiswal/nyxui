@@ -3,10 +3,8 @@
 import { motion, useReducedMotion } from "motion/react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import {
-  BentoComponentPreview,
-  type BentoComponentName,
-} from "./BentoComponentPreview";
+import { BentoComponentName, BentoComponentPreview } from "./BentoComponentPreview";
+
 
 interface BentoCellDefinition {
   className: string;
