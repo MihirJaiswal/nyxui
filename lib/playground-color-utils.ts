@@ -49,7 +49,7 @@ export function getColorPickerValue(value: string): string {
   return namedColorHex[trimmedValue.toLowerCase()] ?? "#000000";
 }
 
-export function isColorText(value: ComponentPropValue): value is string {
+function isColorText(value: ComponentPropValue): value is string {
   if (typeof value !== "string") {
     return false;
   }
@@ -61,7 +61,7 @@ export function isColorText(value: ComponentPropValue): value is string {
   );
 }
 
-export function isRecordValue(
+function isRecordValue(
   value: ComponentPropValue,
 ): value is Record<string, ComponentPropValue> {
   return Boolean(value && typeof value === "object" && !Array.isArray(value));
