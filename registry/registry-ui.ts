@@ -2,6 +2,21 @@ import { type Registry } from "shadcn/registry";
 
 export const ui: Registry["items"] = [
   {
+    name: "accordion",
+    type: "registry:ui",
+    title: "Accordion",
+    description:
+      "A motion-powered accordion with smooth height and opacity animations for expanding and collapsing content.",
+    dependencies: ["motion"],
+    files: [
+      {
+        path: "registry/ui/accordion.tsx",
+        type: "registry:ui",
+        target: "components/ui/accordion.tsx",
+      },
+    ],
+  },
+  {
     name: "animated-code-block",
     type: "registry:ui",
     title: "Animated Code Block",

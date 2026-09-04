@@ -15,6 +15,20 @@
       "cssVars": {}
     },
     {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "Accordion",
+      "description": "A motion-powered accordion with smooth height and opacity animations for expanding and collapsing content.",
+      "dependencies": ["motion"],
+      "files": [
+        {
+          "path": "registry/ui/accordion.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/accordion.tsx"
+        }
+      ]
+    },
+    {
       "name": "animated-code-block",
       "type": "registry:ui",
       "title": "Animated Code Block",
@@ -1204,8 +1218,9 @@
       "name": "footer",
       "type": "registry:ui",
       "title": "Footer",
-      "description": "A simple footer component i will add some more modern components in the future.",
-      "dependencies": ["lucide-react"],
+      "description": "A modern footer with responsive accordion navigation, social links and a large wordmark.",
+      "dependencies": ["motion", "lucide-react"],
+      "registryDependencies": ["accordion"],
       "files": [
         {
           "path": "registry/blocks/footer.tsx",
