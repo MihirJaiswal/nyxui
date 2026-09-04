@@ -219,18 +219,6 @@ export function GlowCard({
     return gradients[variant];
   }, [variant, allowCustomBackground]);
 
-  const getBorderGradient = () => {
-    const { rgb, laserRgb, glitch1Rgb, glitch2Rgb } = colorData;
-
-    return variant === "laser"
-      ? `conic-gradient(from ${waveTimeRef.current * 3}deg at ${mousePos.x}% ${mousePos.y}%, rgba(${laserRgb.r}, ${laserRgb.g}, ${laserRgb.b}, 1) 0deg, rgba(${laserRgb.r + 100}, ${laserRgb.g}, ${laserRgb.b}, 0.8) 60deg, rgba(255, 255, 0, 0.6) 120deg, rgba(0, 255, 100, 0.8) 180deg, rgba(0, 100, 255, 1) 240deg, rgba(100, 0, 255, 0.8) 300deg, rgba(${laserRgb.r}, ${laserRgb.g}, ${laserRgb.b}, 1) 360deg)`
-      : variant === "cosmic"
-        ? `conic-gradient(from ${waveTimeRef.current}deg at ${mousePos.x}% ${mousePos.y}%, rgba(255, 20, 147, 0.8) 0deg, rgba(138, 43, 226, 0.6) 120deg, rgba(75, 0, 130, 0.8) 240deg, rgba(255, 20, 147, 0.8) 360deg)`
-        : variant === "glitch"
-          ? `conic-gradient(from ${waveTimeRef.current * 4}deg at ${mousePos.x}% ${mousePos.y}%, rgba(${glitch1Rgb.r}, ${glitch1Rgb.g}, ${glitch1Rgb.b}, 0.8) 0deg, rgba(${glitch2Rgb.r}, ${glitch2Rgb.g}, ${glitch2Rgb.b}, 0.6) 180deg, rgba(${glitch1Rgb.r}, ${glitch1Rgb.g}, ${glitch1Rgb.b}, 0.8) 360deg)`
-          : `conic-gradient(from ${mousePos.x * 3.6}deg at ${mousePos.x}% ${mousePos.y}%, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.8) 0deg, rgba(${rgb.r + 50}, ${rgb.g + 30}, ${rgb.b + 60}, 0.6) 90deg, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.4) 180deg, rgba(${rgb.r - 30}, ${rgb.g - 20}, ${rgb.b + 40}, 0.6) 270deg, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.8) 360deg)`;
-  };
-
   // Render effects
   const renderEffects = () => {
     const { rgb, laserRgb, glitch1Rgb, glitch2Rgb } = colorData;
@@ -419,7 +407,7 @@ export function GlowCard({
             <div
               className="absolute inset-0 pointer-events-none transition-all duration-200 ease-out"
               style={{
-                background: `radial-gradient(circle at ${mousePos.x}% ${mousePos.y}%, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${isHovered ? 0.4 : 0.1}) 0%, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${isHovered ? 0.2 : 0.05}) 30%, transparent 70%)`,
+                background: `radial-gradient(circle at ${mousePos.x}% ${mousePos.y}%, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${(isHovered ? 0.4 : 0.1) * intensity}) 0%, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${(isHovered ? 0.2 : 0.05) * intensity}) 30%, transparent 70%)`,
                 filter: `blur(${isHovered ? 20 : 10}px)`,
                 transform: `scale(${isHovered ? 1.2 : 1})`,
               }}
@@ -427,7 +415,7 @@ export function GlowCard({
             <div
               className="absolute inset-0 pointer-events-none transition-all duration-300 ease-out"
               style={{
-                background: `radial-gradient(circle at ${mousePos.x}% ${mousePos.y}%, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${isHovered ? 0.3 : 0}) 0%, transparent 50%)`,
+                background: `radial-gradient(circle at ${mousePos.x}% ${mousePos.y}%, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${isHovered ? 0.3 * intensity : 0}) 0%, transparent 50%)`,
                 filter: "blur(40px)",
                 opacity: isHovered ? 1 : 0,
               }}
@@ -463,14 +451,12 @@ export function GlowCard({
   const containerStyles = useMemo(
     () => ({
       background: backgroundGradient,
-      transformStyle: "preserve-3d" as React.CSSProperties["transformStyle"],
-      perspective: "1000px",
       filter:
         variant === "glitch" && isHovered
           ? `hue-rotate(${waveTimeRef.current * 2}deg) saturate(1.5)`
           : undefined,
     }),
-    [backgroundGradient, isHovered, mousePos.x, mousePos.y, variant],
+    [backgroundGradient, isHovered, variant],
   );
 
   useEffect(() => {
@@ -553,12 +539,11 @@ export function GlowCard({
       aria-label={`${variant} glow card${disabled ? ", disabled" : ""}`}
       tabIndex={disabled ? -1 : 0}
       className={cn(
-        "relative overflow-hidden backdrop-blur-sm cursor-pointer rounded-2xl p-6",
-        "border border-white/10 transition-all duration-300 ease-out",
-        "focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-400",
+        "relative overflow-hidden backdrop-blur-sm rounded-2xl p-6",
+        "transition-all duration-300 ease-out",
+        "focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
         !allowCustomBackground && "bg-black/20",
-        isHovered && !disabled && "shadow-2xl",
-        disabled && "opacity-50 cursor-not-allowed",
+        disabled && "opacity-50",
         className,
       )}
       style={containerStyles}
@@ -567,32 +552,10 @@ export function GlowCard({
       {/* variant-specific effects */}
       {renderEffects()}
 
-      {/* Universal Border Effects */}
-      <div
-        className={cn(
-          "absolute inset-0 pointer-events-none transition-all duration-200 rounded-2xl",
-          className?.includes("rounded-") ? "" : "rounded-2xl",
-        )}
-        style={{
-          background: getBorderGradient(),
-          padding: "2px",
-          mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-          maskComposite: "xor",
-          WebkitMask:
-            "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-          WebkitMaskComposite: "xor",
-          opacity: isHovered ? 1 : 0,
-          filter: `blur(${isHovered ? 0 : 2}px)`,
-        }}
-      />
-
       {/* Laser Border Glow */}
       {variant === "laser" && (
         <div
-          className={cn(
-            "absolute inset-0 pointer-events-none transition-all duration-300 rounded-2xl",
-            className?.includes("rounded-") ? "" : "rounded-2xl",
-          )}
+          className="absolute inset-0 pointer-events-none transition-all duration-300 rounded-2xl"
           style={{
             boxShadow: isHovered
               ? `
@@ -615,10 +578,7 @@ export function GlowCard({
       {/*Glitch Border Glow */}
       {variant === "glitch" && (
         <div
-          className={cn(
-            "absolute inset-0 pointer-events-none transition-all duration-300 rounded-2xl",
-            className?.includes("rounded-") ? "" : "rounded-2xl",
-          )}
+          className="absolute inset-0 pointer-events-none transition-all duration-300 rounded-2xl"
           style={{
             boxShadow: isHovered
               ? `
