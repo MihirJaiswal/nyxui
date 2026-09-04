@@ -33,7 +33,9 @@ export function CompassRulerTicks({
                 : "absolute left-1/2 top-1/2 w-px origin-top bg-foreground/40"
             }
             style={{
-              height: `${isBigWhiteLine ? COMPASS_GEOMETRY.largeTickHeightRem : COMPASS_GEOMETRY.smallTickHeightRem}rem`,
+              height: isBigWhiteLine
+                ? COMPASS_GEOMETRY.largeTickHeight
+                : COMPASS_GEOMETRY.smallTickHeight,
               transform: `rotate(${angle}deg) translateY(-${COMPASS_GEOMETRY.rulerRadiusCqw}cqw)`,
             }}
           />

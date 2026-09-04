@@ -66,7 +66,7 @@ export default function Navbar(): React.ReactElement {
             }
       }
       className={cn(
-        "top-4 z-50 w-full will-change-[max-width]",
+        "top-1.5 lg:top-4 z-50 w-full will-change-[max-width]",
         isHome ? "fixed left-1/2 -translate-x-1/2" : "sticky mx-auto",
       )}
     >
@@ -144,11 +144,11 @@ export default function Navbar(): React.ReactElement {
           <Button
             variant="outline"
             aria-label="Search"
-            className="h-8 w-full max-w-xs justify-start gap-2 rounded-lg border-border/60 bg-muted/50 px-3 text-sm font-normal text-muted-foreground shadow-none transition-colors hover:bg-muted hover:text-foreground"
+            className="h-7 w-full max-w-xs justify-start gap-2 rounded-lg border-border/60 bg-muted/50 px-3 text-sm font-normal text-muted-foreground shadow-none transition-colors hover:bg-muted hover:text-foreground"
             onClick={openSearch}
           >
-            <Search className="h-4 w-4 shrink-0" />
-            <span>Search...</span>
+            <Search className="h-2 w-2" />
+            <span className="text-sm">Search</span>
           </Button>
         </div>
 

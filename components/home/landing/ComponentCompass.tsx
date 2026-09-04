@@ -11,6 +11,7 @@ import {
   useEffect,
   useRef,
   useState,
+  type CSSProperties,
   type KeyboardEvent as ReactKeyboardEvent,
   type MouseEvent as ReactMouseEvent,
   type PointerEvent as ReactPointerEvent,
@@ -21,6 +22,7 @@ import { COMPASS_GEOMETRY } from "./compass-geometry";
 import { CompassTrack } from "./CompassTrack";
 import { LandingActions } from "./LandingActions";
 import type { LandingComponent } from "./types";
+import responsiveStyles from "./compass-responsive.module.css";
 
 const SMALL_LINES_PER_GROUP = COMPASS_GEOMETRY.smallLinesPerGroup;
 const WHITE_GROUPS_PER_COMPONENT = COMPASS_GEOMETRY.whiteGroupsPerComponent;
@@ -52,6 +54,10 @@ interface StoppableAnimation {
   stop: () => void;
 }
 
+interface CompassWheelStyle extends CSSProperties {
+  "--compact-compass-wheel-width": string;
+}
+
 const SNAP_SPRING = {
   type: "spring",
   stiffness: 250,
@@ -69,6 +75,11 @@ export function ComponentCompass({
   const componentCount = Math.max(components.length, 1);
   const degreesPerComponent = 360 / componentCount;
   const timelineLineCount = componentCount * LINES_PER_COMPONENT;
+  const wheelStyle: CompassWheelStyle = {
+    "--compact-compass-wheel-width": `${componentCount * COMPASS_GEOMETRY.wheelWidthPerComponentRem}rem`,
+    containerType: "inline-size",
+    left: "50%",
+  };
   const markerAngleOffset = (FIRST_MARKER_OFFSET / timelineLineCount) * 360;
   const initialRotation =
     -INITIAL_COMPONENT_INDEX * degreesPerComponent - markerAngleOffset;
@@ -292,13 +303,8 @@ export function ComponentCompass({
           aria-label="Curved component compass. Drag to rotate and browse."
         >
           <div
-            className="absolute top-0 aspect-square"
-            style={{
-              containerType: "inline-size",
-              left: "50%",
-              transform: "translateX(-50%)",
-              width: `${COMPASS_GEOMETRY.wheelWidthPercent}%`,
-            }}
+            className={`absolute top-0 aspect-square ${responsiveStyles.wheel}`}
+            style={wheelStyle}
           >
             <CompassTrack
               activeIndex={activeIndex}
