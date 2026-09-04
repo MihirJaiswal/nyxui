@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { absoluteUrl } from "@/lib/utils";
-import PlaygroundClient from "@/components/playground/PlaygroundClient";
-import Header from "@/components/global/Header";
+import PlaygroundClient from "@/components/playground/playground-shell/PlaygroundClient";
+import Navbar from "@/components/global/header/Navbar";
 
 export const metadata: Metadata = {
   title: "Nyx UI | Component Playground",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
 export default function PlaygroundPage() {
   return (
     <>
-      <Header />
+      <Navbar />
       <div className=" px-6 lg:px-6 xl:px-22 xl:container mx-auto">
         <PlaygroundClient />
       </div>
