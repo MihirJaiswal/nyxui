@@ -1,4 +1,9 @@
-import { AnimatedCodeBlock } from "@/registry/ui/animated-code-block";
+"use client";
+import {
+  AnimatedCodeBlock,
+  AnimatedCodeBlockTheme,
+} from "@/registry/ui/animated-code-block";
+import { useState } from "react";
 
 const exampleCode = `import { motion } from "motion/react";
 
