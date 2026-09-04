@@ -34,7 +34,6 @@ export interface MusicPlayerProps {
   currentTrack?: Track;
   queue?: Track[];
   currentIndex?: number;
-  initialTime?: number;
   className?: string;
   autoPlay?: boolean;
   showEqualizer?: boolean;
@@ -107,7 +106,6 @@ export const MusicPlayer = ({
   currentTrack,
   queue = [],
   currentIndex = 0,
-  initialTime = 0,
   className = "",
   autoPlay = false,
   showEqualizer = true,
@@ -119,7 +117,7 @@ export const MusicPlayer = ({
 }: MusicPlayerProps) => {
   const uid = useId();
   const [isPlaying, setIsPlaying] = useState(autoPlay);
-  const [currentTime, setCurrentTime] = useState(initialTime);
+  const [currentTime, setCurrentTime] = useState(0);
   const [volume, setVolume] = useState(75);
   const [isMuted, setIsMuted] = useState(false);
   const [liked, setLiked] = useState(false);
@@ -224,9 +222,9 @@ export const MusicPlayer = ({
       audioRef.current.currentTime = 0;
     }
     if (!audioUrl) {
-      setCurrentTime(initialTime);
+      setCurrentTime(0);
     }
-  }, [audioUrl, initialTime]);
+  }, [audioUrl]);
 
   // Keyboard shortcuts
   useEffect(() => {
@@ -483,7 +481,7 @@ export const MusicPlayer = ({
                 exit={{ opacity: 0, scale: 0.96 }}
                 transition={{ duration: 0.28, ease: [0.32, 0.72, 0, 1] }}
               >
-                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[2rem] bg-zinc-900 ring-1 ring-white/10">
+                <div className="relative aspect-square w-full overflow-hidden rounded-[2rem] bg-zinc-900 ring-1 ring-white/10">
                   {/* Artwork — morphs from thumbnail (wrapper fixes img layoutId distortion) */}
                   <motion.div
                     layoutId={`artwork-${uid}`}
@@ -748,7 +746,7 @@ export const MusicPlayer = ({
                       animate={{ opacity: 1, y: 0, height: "auto" }}
                       exit={{ opacity: 0, y: -8, height: 0 }}
                       transition={{ duration: 0.3, ease: "easeOut" }}
-                      className="mt-3 overflow-hidden rounded-3xl border border-white/10 bg-black/70 shadow-xl backdrop-blur-2xl"
+                      className="mt-3 overflow-hidden rounded-3xl border border-white/10 bg-black/70 backdrop-blur-2xl"
                     >
                       <div className="p-5">
                         <div className="mb-3 flex items-center justify-between">

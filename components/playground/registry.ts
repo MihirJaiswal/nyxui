@@ -1128,16 +1128,6 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
       },
 
       // Playback
-      initialTime: {
-        type: "number",
-        default: 0,
-        min: 0,
-        max: 300,
-        step: 1,
-        label: "Initial Time (s)",
-        description: "Starting playback time in seconds",
-        category: "Playback",
-      },
       autoPlay: {
         type: "boolean",
         default: false,

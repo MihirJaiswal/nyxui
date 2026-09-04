@@ -248,7 +248,7 @@ export default function AnimatedChatDemo() {
                     "w-full rounded-2xl px-4 py-2 transition-all duration-300 hover:scale-[1.02] cursor-pointer transform",
                     message.sender === "user1"
                       ? "bg-blue-500 text-white rounded-br-md shadow-lg hover:shadow-xl ml-auto"
-                      : "bg-white dark:bg-zinc-800 dark:text-white text-zinc-800 rounded-bl-md shadow-md hover:shadow-lg border border-zinc-200 dark:border-zinc-700 mr-auto",
+                      : "bg-white dark:bg-zinc-800 dark:text-white text-zinc-800 rounded-bl-md shadow-md hover:shadow-lg mr-auto",
                   )}
                   onClick={() => {
                     const element = document.getElementById(
@@ -313,7 +313,7 @@ export default function AnimatedChatDemo() {
                     <button
                       key={emoji}
                       onClick={() => addReaction(message.id, emoji)}
-                      className="w-7 h-7 bg-white dark:bg-zinc-700 rounded-full shadow-lg hover:scale-125 transition-all duration-200 flex items-center justify-center text-sm border border-zinc-200 dark:border-zinc-600 hover:shadow-xl"
+                      className="w-7 h-7 bg-white dark:bg-zinc-700 rounded-full shadow-lg hover:scale-125 transition-all duration-200 flex items-center justify-center text-sm hover:shadow-xl"
                     >
                       {emoji}
                     </button>
@@ -335,7 +335,7 @@ export default function AnimatedChatDemo() {
                   "max-w-[75%] rounded-2xl px-4 py-3 shadow-md",
                   typingUser === "user1"
                     ? "bg-blue-500/80 text-white rounded-br-md ml-auto"
-                    : "bg-white dark:bg-zinc-800 text-zinc-800 dark:text-white rounded-bl-md border border-zinc-200 dark:border-zinc-700 mr-auto",
+                    : "bg-white dark:bg-zinc-800 text-zinc-800 dark:text-white rounded-bl-md mr-auto",
                 )}
               >
                 <div className="flex gap-1 items-center">

@@ -27,7 +27,7 @@ const AnimationCard = ({
 }: AnimationCard) => {
   return (
     <div
-      className="border group relative rounded-lg p-3 sm:p-4 shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer bg-background"
+      className="border group relative rounded-lg p-3 sm:p-4 transition-shadow duration-300 cursor-pointer bg-background"
       onClick={onClick}
     >
       <p className="text-xs sm:text-sm font-semibold mb-2">{title}</p>

@@ -20,7 +20,7 @@ const XPost = () => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.4, ease: "easeOut", delay: 0.05 }}
-      className="group/post border border-zinc-300 dark:border-zinc-800/70 bg-gradient-to-br dark:from-white/10 dark:via-white/5  from-transparent via-transparent to-transparent backdrop-blur-sm p-4 mb-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-zinc-700/90 hover:bg-gradient-to-br hover:from-white/15 hover:via-white/10 hover:to-white/5 motion-safe:transition-transform rounded-lg"
+      className="group/post border border-zinc-300 dark:border-zinc-800/70 bg-gradient-to-br dark:from-white/10 dark:via-white/5  from-transparent via-transparent to-transparent backdrop-blur-sm p-4 mb-3 transition-all duration-300 hover:-translate-y-1 hover:border-zinc-700/90 hover:bg-gradient-to-br hover:from-white/15 hover:via-white/10 hover:to-white/5 motion-safe:transition-transform rounded-lg"
       whileHover={{ scale: 1.01 }}
     >
       <div className="flex items-start gap-2 relative">
@@ -30,7 +30,7 @@ const XPost = () => {
           width={32}
           height={32}
           loading="lazy"
-          className="h-8 w-8 rounded-full border border-zinc-800/60 shadow-sm object-cover"
+          className="h-8 w-8 rounded-full border border-zinc-800/60 object-cover"
         />
         <div className="w-full">
           <div className="flex items-center gap-2 text-sm">
@@ -47,7 +47,7 @@ const XPost = () => {
           </p>
 
           <motion.div
-            className="mt-3 overflow-hidden rounded-lg border border-zinc-300 dark:border-zinc-800/70 shadow-sm flex items-center justify-center p-3"
+            className="mt-3 overflow-hidden rounded-lg border border-zinc-300 dark:border-zinc-800/70 flex items-center justify-center p-3"
             whileHover={{ scale: 1.01 }}
             transition={{ type: "spring", stiffness: 200, damping: 20 }}
           >
