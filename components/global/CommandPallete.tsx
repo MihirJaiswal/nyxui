@@ -201,13 +201,13 @@ export function CommandPalette() {
     <>
       <Button
         variant="outline"
-        className="relative flex h-9 w-54 items-center justify-start gap-2 rounded-md border-border bg-background px-3 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+        className="relative h-8 max-h-8 justify-start gap-2 rounded-lg border-border bg-[hsl(var(--surface-alt))] px-3 text-sm font-normal text-muted-foreground shadow-none transition-colors hover:bg-[hsl(var(--surface-alt))] hover:text-foreground sm:w-48 sm:px-4"
         onClick={() => setOpen(true)}
       >
         <Search className="h-4 w-4 shrink-0" />
-        <span className="hidden font-normal md:inline-flex">Search Nyx UI</span>
-        <kbd className="pointer-events-none ml-auto hidden h-5 select-none items-center gap-1 rounded border border-border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground sm:flex">
-          <span>⌘</span>K
+        <span className="inline-flex flex-1">Search...</span>
+        <kbd className="pointer-events-none hidden shrink-0 select-none items-center gap-1 rounded border border-border bg-background px-1.5 font-mono text-[10px] font-medium text-muted-foreground sm:flex">
+          <span className="text-xs">⌘</span>K
         </kbd>
       </Button>
 

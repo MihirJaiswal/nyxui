@@ -90,7 +90,7 @@ export default function FooterSection() {
               className="size-fit flex items-end justify-center gap-3"
             >
               <div className="h-8 w-8 border-4 border-background flex items-center justify-center rounded-full transition-all duration-200">
-                <Logo className="transition-colors duration-200" />
+                <Logo className="transition-colors duration-200 w-auto h-8" />
               </div>
               <span className="font-bold text-xl">NYX UI</span>
             </Link>

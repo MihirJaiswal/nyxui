@@ -523,11 +523,11 @@ export default function CustomCursorDemo() {
 
                 <div className="flex-1 flex items-center justify-center">
                   <Image
-                    src="/logo.svg"
+                    src="/nyx-logo.webp"
                     alt="Placeholder"
                     width={150}
                     height={150}
-                    className="rounded-xl"
+                    className="rounded-xl dark:invert"
                   />
                 </div>
 
