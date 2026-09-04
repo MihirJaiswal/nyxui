@@ -6,9 +6,7 @@ type Target = Window | Document | HTMLElement | null;
 type RefTarget = React.RefObject<HTMLElement | null>;
 type Element = Target | RefTarget;
 
-function isRefObject(
-  element: Element | undefined,
-): element is RefTarget {
+function isRefObject(element: Element | undefined): element is RefTarget {
   return (
     element != null &&
     typeof element === "object" &&

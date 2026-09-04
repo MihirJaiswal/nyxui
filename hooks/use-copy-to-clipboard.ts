@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { usePlatform } from "./use-platform";
 
 interface UseCopyToClipboardOptions {
   timeout?: number;
@@ -14,6 +15,7 @@ export function useCopyToClipboard({
   const [copyCount, setCopyCount] = React.useState(0);
   const hasCopied = copyCount > 0;
   const isMountedRef = React.useRef(true);
+  const { isIOS } = usePlatform();
 
   React.useEffect(() => {
     isMountedRef.current = true;
@@ -36,41 +38,42 @@ export function useCopyToClipboard({
     return () => window.clearTimeout(timer);
   }, [copyCount, timeout]);
 
-  const legacyCopy = React.useCallback((value: string) => {
-    const textarea = document.createElement("textarea");
-    textarea.value = value;
-    textarea.setAttribute("readonly", "");
-    textarea.style.position = "fixed";
-    textarea.style.left = "-9999px";
-    textarea.style.top = "0";
-    document.body.appendChild(textarea);
+  const legacyCopy = React.useCallback(
+    (value: string) => {
+      const textarea = document.createElement("textarea");
+      textarea.value = value;
+      textarea.setAttribute("readonly", "");
+      textarea.style.position = "fixed";
+      textarea.style.left = "-9999px";
+      textarea.style.top = "0";
+      document.body.appendChild(textarea);
 
-    let succeeded = false;
-    try {
-      const isIOS = /ipad|iphone|ipod/i.test(navigator.userAgent);
+      let succeeded = false;
+      try {
+        if (isIOS) {
+          textarea.contentEditable = "true";
+          textarea.readOnly = false;
+          const range = document.createRange();
+          range.selectNodeContents(textarea);
+          const selection = window.getSelection();
+          selection?.removeAllRanges();
+          selection?.addRange(range);
+          textarea.setSelectionRange(0, textarea.value.length);
+        } else {
+          textarea.select();
+        }
 
-      if (isIOS) {
-        textarea.contentEditable = "true";
-        textarea.readOnly = false;
-        const range = document.createRange();
-        range.selectNodeContents(textarea);
-        const selection = window.getSelection();
-        selection?.removeAllRanges();
-        selection?.addRange(range);
-        textarea.setSelectionRange(0, textarea.value.length);
-      } else {
-        textarea.select();
+        succeeded = document.execCommand("copy");
+      } catch {
+        succeeded = false;
+      } finally {
+        document.body.removeChild(textarea);
       }
 
-      succeeded = document.execCommand("copy");
-    } catch {
-      succeeded = false;
-    } finally {
-      document.body.removeChild(textarea);
-    }
-
-    return succeeded;
-  }, []);
+      return succeeded;
+    },
+    [isIOS],
+  );
 
   const copy = React.useCallback(
     async (value: string) => {
