@@ -116,14 +116,49 @@ const plans: Plan[] = [
   },
 ];
 
-function HexIcon({ gradientId, icon: Icon }: { gradientId: string; icon: LucideIcon }) {
+function HexIcon({
+  gradientId,
+  icon: Icon,
+}: {
+  gradientId: string;
+  icon: LucideIcon;
+}) {
   return (
     <div className="relative size-6 shrink-0">
-      <svg className="block size-full" fill="none" viewBox="0 0 20 22" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        className="block size-full"
+        fill="none"
+        viewBox="0 0 20 22"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <defs>
-          <linearGradient id={gradientId} x1="10" x2="10" y1="0" y2="22" gradientUnits="userSpaceOnUse">
-            <stop stopColor={gradientId === "hex-blue" ? "#388EF8" : gradientId === "hex-purple" ? "#7538F8" : "#FDBB23"} />
-            <stop offset="1" stopColor={gradientId === "hex-blue" ? "#90D7F6" : gradientId === "hex-purple" ? "#F690EC" : "#FECE30"} />
+          <linearGradient
+            id={gradientId}
+            x1="10"
+            x2="10"
+            y1="0"
+            y2="22"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop
+              stopColor={
+                gradientId === "hex-blue"
+                  ? "#388EF8"
+                  : gradientId === "hex-purple"
+                    ? "#7538F8"
+                    : "#FDBB23"
+              }
+            />
+            <stop
+              offset="1"
+              stopColor={
+                gradientId === "hex-blue"
+                  ? "#90D7F6"
+                  : gradientId === "hex-purple"
+                    ? "#F690EC"
+                    : "#FECE30"
+              }
+            />
           </linearGradient>
         </defs>
         <path
@@ -156,7 +191,9 @@ function CardHeader({ plan, index }: { plan: Plan; index: number }) {
           <div className="flex items-center gap-2 pt-4">
             <HexIcon gradientId={gradientIds[index]} icon={plan.icon} />
             {plan.badge && (
-              <p className="text-xs font-medium text-yellow-400">{plan.badge}</p>
+              <p className="text-xs font-medium text-yellow-400">
+                {plan.badge}
+              </p>
             )}
           </div>
           <p className="mt-3 text-xl font-semibold leading-none text-white">
@@ -202,7 +239,9 @@ export default function GrainyBackgroundDemo2() {
 
       {/* Title */}
       <div className="text-center text-5xl leading-none tracking-tight max-md:text-4xl">
-        <p className="mb-0 text-neutral-900 dark:text-white">Build like a Studio.</p>
+        <p className="mb-0 text-neutral-900 dark:text-white">
+          Build like a Studio.
+        </p>
         <p className="text-neutral-400">Ship with confidence.</p>
       </div>
 
@@ -224,12 +263,12 @@ export default function GrainyBackgroundDemo2() {
               {plan.features.map((feature) => {
                 const FeatureIcon = feature.icon;
                 return (
-                  <div
-                    key={feature.label}
-                    className="flex items-center gap-2"
-                  >
+                  <div key={feature.label} className="flex items-center gap-2">
                     <div className="flex size-4 shrink-0 items-center justify-center opacity-30">
-                      <FeatureIcon className="size-4 text-neutral-900 dark:text-white" strokeWidth={1.5} />
+                      <FeatureIcon
+                        className="size-4 text-neutral-900 dark:text-white"
+                        strokeWidth={1.5}
+                      />
                     </div>
                     <p className="text-xs font-normal leading-[1.34] text-neutral-900 dark:text-white">
                       {feature.label}
@@ -253,7 +292,9 @@ export default function GrainyBackgroundDemo2() {
 
       {/* Bottom note */}
       <p className="mt-4 max-w-[500px] text-center text-sm font-normal leading-[1.43] text-neutral-500">
-        <span className="mr-1 font-medium text-neutral-900 dark:text-white">Note:</span>
+        <span className="mr-1 font-medium text-neutral-900 dark:text-white">
+          Note:
+        </span>
         <span>
           If you're a NyxUI v2 Pro customer, you're eligible for an upgrade
           discount, use the same email address or contact us{" "}
@@ -267,7 +308,10 @@ export default function GrainyBackgroundDemo2() {
       </p>
       <p className="text-center text-sm text-neutral-500">
         Looking for NyxUI Pro v2?{" "}
-        <a className="text-neutral-900 hover:underline dark:text-white" href="https://v2.nyxui.com">
+        <a
+          className="text-neutral-900 hover:underline dark:text-white"
+          href="https://v2.nyxui.com"
+        >
           Go to v2 →
         </a>
       </p>
