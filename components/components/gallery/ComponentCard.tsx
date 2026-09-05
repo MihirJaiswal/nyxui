@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface ComponentCardProps {
@@ -52,12 +51,12 @@ export const ComponentCard = ({
       >
         {imageSrc ? (
           <div className="relative w-full h-full bg-background isolate overflow-hidden">
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src={imageSrc}
               alt={title}
-              fill
               className={cn(
-                "object-contain dark:mix-blend-screen",
+                "absolute inset-0 h-full w-full object-contain dark:mix-blend-screen",
                 imageClassName,
               )}
               loading="lazy"
@@ -66,11 +65,10 @@ export const ComponentCard = ({
           </div>
         ) : (
           <div className="w-14 h-14 rounded-full shrink-0 bg-background">
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src="/nyx-logo.webp"
               alt={title}
-              width={150}
-              height={150}
               className="inline-block rounded-lg w-full h-full object-contain"
               loading="lazy"
             />

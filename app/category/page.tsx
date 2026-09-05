@@ -1,6 +1,5 @@
 import { componentsData } from "@/registry/Data";
 import Link from "next/link";
-import Image from "next/image";
 import { categoryHref } from "@/lib/links";
 
 export default function CategoriesPage() {
@@ -41,11 +40,10 @@ export default function CategoriesPage() {
 
             <div className="inset-ring-shadow relative w-full flex-1 overflow-hidden border border-border rounded-2xl flex items-center justify-center">
               <div className="w-14 h-14 rounded-full shrink-0">
-                <Image
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   src="/nyx-logo.webp"
                   alt={tag}
-                  width={150}
-                  height={150}
                   className="inline-block rounded-lg w-full h-full drop-shadow-[1px_0_0_black]"
                   loading="lazy"
                 />
