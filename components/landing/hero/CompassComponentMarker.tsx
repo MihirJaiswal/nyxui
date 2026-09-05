@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { Box } from "lucide-react";
 import {
@@ -122,12 +121,13 @@ export const CompassComponentMarker = memo(function CompassComponentMarker({
               <div className="h-full w-full overflow-hidden rounded-[13px] bg-background p-1">
                 <div className="h-full w-full overflow-hidden rounded-lg bg-zinc-950">
                   {component.heroImage || component.image ? (
-                    <Image
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
                       src={component.heroImage || component.image!}
                       alt={`${component.name} preview`}
                       width={240}
                       height={146}
-                      priority={index < 5}
+                      loading={index < 5 ? "eager" : "lazy"}
                       draggable={false}
                       className="block h-full w-full object-cover"
                     />

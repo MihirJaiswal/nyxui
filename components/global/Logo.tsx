@@ -1,12 +1,16 @@
-import Image, { type ImageProps } from "next/image";
+import type React from "react";
 import { cn } from "@/lib/utils";
 
-type LogoProps = Omit<ImageProps, "src" | "alt"> & {
+type LogoProps = Omit<
+  React.ImgHTMLAttributes<HTMLImageElement>,
+  "src" | "alt"
+> & {
   alt?: string;
 };
 
 const Logo = ({ alt = "", className, ...props }: LogoProps) => (
-  <Image
+  // eslint-disable-next-line @next/next/no-img-element
+  <img
     src="/nyx-logo.webp"
     alt={alt}
     width={1024}
