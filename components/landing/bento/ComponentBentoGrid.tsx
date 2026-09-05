@@ -160,11 +160,11 @@ export function ComponentBentoGrid(): React.ReactElement {
   return (
     <section
       aria-label="Featured component showcase"
-      className="relative left-1/2 w-screen -translate-x-1/2 pt-36 sm:pt-56 md:pt-0"
+      className="relative left-1/2 w-screen -translate-x-1/2"
     >
       <div className="relative mx-auto max-w-295 border-x border-border/60">
         <div className="grid border-b border-border/60 md:grid-cols-2">
-          <div className="px-6 py-14 sm:px-10 md:px-12 md:py-18">
+          <div className="px-6 sm:py-14 sm:px-10 md:px-12 md:py-18">
             <p className="mb-4 font-mono text-[10px] uppercase tracking-widest text-brand">
               The component collection
             </p>
@@ -176,7 +176,7 @@ export function ComponentBentoGrid(): React.ReactElement {
             </h2>
           </div>
 
-          <div className="flex items-end border-t border-border/60 px-6 py-10 sm:px-10 md:border-t-0 md:px-12 md:py-18">
+          <div className="flex items-end px-6 py-10 sm:px-10 md:px-12 md:py-18">
             <p className="max-w-lg text-base leading-7 text-muted-foreground">
               From tactile controls to cinematic effects, every piece is built
               to be copied, tuned, and shipped without sanding off its

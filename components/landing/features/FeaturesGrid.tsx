@@ -26,7 +26,7 @@ export function FeaturesGrid(): React.ReactElement {
               duration: reduceMotion ? 0 : 0.55,
               ease: [0.22, 1, 0.36, 1],
             }}
-            className="flex flex-col px-6 py-12 sm:px-10 md:px-12"
+            className="flex flex-col px-6 py-10 sm:py-12 sm:px-10 md:px-12"
           >
             <div className="mb-5 flex items-center gap-2">
               <p className="font-mono text-[10px] uppercase tracking-widest text-brand">
@@ -65,7 +65,7 @@ export function FeaturesGrid(): React.ReactElement {
               delay: reduceMotion ? 0 : 0.08,
               ease: [0.22, 1, 0.36, 1],
             }}
-            className="flex items-center justify-center border-t border-border/60 px-6 py-12 sm:px-10 md:border-t-0 md:px-12"
+            className="flex items-center justify-center border-t border-border/60 px-6 py-6 sm:py-12 sm:px-10 md:border-t-0 md:px-12"
           >
             <TiledImage className="max-w-md" />
           </motion.div>
