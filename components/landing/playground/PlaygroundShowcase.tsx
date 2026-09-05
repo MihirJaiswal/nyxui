@@ -66,7 +66,7 @@ export function PlaygroundShowcase(): React.ReactElement {
           <div ref={containerRef} className="w-[91.5%] mx-auto">
             <video
               ref={videoRef}
-              poster="/assets/videos/playground-demo-dark-poster.jpg"
+              poster="/assets/videos/playground-demo-dark-poster.avif"
               className="w-full"
               muted
               loop
