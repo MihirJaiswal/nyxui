@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { InstallCommandCopy } from "./InstallCommandCopy";
 
 export function LandingFeatureGrid(): React.ReactElement {
@@ -7,11 +6,10 @@ export function LandingFeatureGrid(): React.ReactElement {
       <ul className="relative mx-auto grid max-w-295 divide-y divide-border/60 md:grid-cols-3 sm:divide-x sm:divide-y-0">
         <li className="order-2 flex flex-col items-center justify-center gap-3 px-6 py-10 text-center border-l md:order-1">
           <div className="rounded-full p-2.5">
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src="/assets/images/landing-page/star.svg"
               alt="fdf"
-              height={100}
-              width={100}
               className="w-4"
             />
           </div>
@@ -37,11 +35,10 @@ export function LandingFeatureGrid(): React.ReactElement {
 
         <li className="order-3 flex flex-col items-center justify-center gap-3 px-6 py-10 text-center border-r border-border/60">
           <div className="rounded-full p-2.5">
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src="/assets/images/landing-page/grid.svg"
               alt="fdf"
-              height={100}
-              width={100}
               className="w-4"
             />
           </div>

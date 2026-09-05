@@ -33,7 +33,6 @@ const nextConfig: NextConfig = withBundlerAnalyzer({
     ],
   },
   images: {
-    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
