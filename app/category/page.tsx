@@ -26,7 +26,7 @@ export default function CategoriesPage() {
           <Link
             key={tag}
             href={categoryHref(tag)}
-            className="bg-card border-card hover:bg-accent group relative flex cursor-pointer flex-col overflow-hidden rounded-[20px] border p-3 h-70"
+            className="bg-card border-card dark:bg-border/20 hover:bg-accent group relative flex cursor-pointer flex-col overflow-hidden rounded-[20px] border p-3 h-70"
           >
             <div className="flex items-center justify-between gap-2 px-2 pb-2">
               <p className="font-medium text-foreground line-clamp-1">{tag}</p>
