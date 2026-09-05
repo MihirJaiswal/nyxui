@@ -52,7 +52,7 @@ export const componentsData: ComponentsData = {
       title: "Water Ripple Effect",
       tags: ["Interactive", "Visual Effects", "Image"],
       description: "A mesmerizing water ripple effect for interactive images.",
-      image: "/assets/images/showcase/components/water-ripple-effect.jpeg",
+      image: "/assets/images/showcase/components/water-ripple-effect.avif",
       isNew: true,
       imageClassName: "scale-85",
       heroImage: "/assets/images/landing-page/hero/water-ripple.avif",
