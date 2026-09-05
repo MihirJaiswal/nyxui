@@ -342,7 +342,7 @@ export default function ThreeDLayeredCard({
         >
           {/* Background gradient */}
           <div className={cn("absolute inset-0", backgroundColor)} />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30" />
+          <div className="absolute inset-0 bg-linear-to-b from-transparent to-black/30" />
 
           {/* Smooth linear lens effect overlay */}
           <motion.div
@@ -436,7 +436,6 @@ export default function ThreeDLayeredCard({
                 alt="Logo"
                 fill
                 className="object-contain"
-                quality={100}
                 sizes={`${logoSize}px`}
               />
             </motion.div>
@@ -552,7 +551,6 @@ export default function ThreeDLayeredCard({
                 src={mainImage}
                 alt="Character"
                 fill
-                quality={100}
                 className="object-contain mask-b-from-25"
                 sizes={`${IMAGE_SIZE}px`}
               />

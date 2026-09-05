@@ -60,7 +60,6 @@ export const ComponentCard = ({
                 "object-contain dark:mix-blend-screen",
                 imageClassName,
               )}
-              quality={100}
               loading="lazy"
               draggable="false"
             />
@@ -73,7 +72,6 @@ export const ComponentCard = ({
               width={150}
               height={150}
               className="inline-block rounded-lg w-full h-full object-contain"
-              quality={100}
               loading="lazy"
             />
           </div>

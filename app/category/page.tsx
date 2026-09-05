@@ -27,7 +27,7 @@ export default function CategoriesPage() {
           <Link
             key={tag}
             href={categoryHref(tag)}
-            className="bg-card border-card hover:bg-accent group relative flex cursor-pointer flex-col overflow-hidden rounded-[20px] border p-3 h-[280px]"
+            className="bg-card border-card hover:bg-accent group relative flex cursor-pointer flex-col overflow-hidden rounded-[20px] border p-3 h-70"
           >
             <div className="flex items-center justify-between gap-2 px-2 pb-2">
               <p className="font-medium text-foreground line-clamp-1">{tag}</p>
@@ -40,14 +40,13 @@ export default function CategoriesPage() {
             </div>
 
             <div className="inset-ring-shadow relative w-full flex-1 overflow-hidden border border-border rounded-2xl flex items-center justify-center">
-              <div className="w-14 h-14 rounded-full flex-shrink-0">
+              <div className="w-14 h-14 rounded-full shrink-0">
                 <Image
                   src="/nyx-logo.webp"
                   alt={tag}
                   width={150}
                   height={150}
                   className="inline-block rounded-lg w-full h-full drop-shadow-[1px_0_0_black]"
-                  quality={100}
                   loading="lazy"
                 />
               </div>

@@ -11,7 +11,6 @@ export default function MarqueeDemo1() {
           alt="avenger logo"
           width={120}
           height={120}
-          quality={100}
           loading="lazy"
           className="aspect-square w-[120px] rounded-full"
         />
@@ -20,7 +19,6 @@ export default function MarqueeDemo1() {
           alt="batman logo"
           width={120}
           height={120}
-          quality={100}
           loading="lazy"
           className="aspect-square w-[120px] rounded-full"
         />
@@ -29,7 +27,6 @@ export default function MarqueeDemo1() {
           alt="black panther logo"
           width={120}
           height={120}
-          quality={100}
           loading="lazy"
           className="aspect-square w-[120px] rounded-full"
         />
@@ -38,7 +35,6 @@ export default function MarqueeDemo1() {
           alt="captain america logo"
           width={120}
           height={120}
-          quality={100}
           loading="lazy"
           className="aspect-square w-[120px] rounded-full"
         />
@@ -47,7 +43,6 @@ export default function MarqueeDemo1() {
           alt="daredevil logo"
           width={120}
           height={120}
-          quality={100}
           loading="lazy"
           className="aspect-square w-[120px] rounded-full"
         />
@@ -56,7 +51,6 @@ export default function MarqueeDemo1() {
           alt="deadpool logo"
           width={120}
           height={120}
-          quality={100}
           loading="lazy"
           className="aspect-square w-[120px] rounded-full"
         />
@@ -67,7 +61,6 @@ export default function MarqueeDemo1() {
           alt="flash logo"
           width={120}
           height={120}
-          quality={100}
           loading="lazy"
           className="aspect-square w-[120px] rounded-full"
         />
@@ -76,7 +69,6 @@ export default function MarqueeDemo1() {
           alt="green lantern logo"
           width={120}
           height={120}
-          quality={100}
           loading="lazy"
           className="aspect-square w-[120px] rounded-full"
         />
@@ -85,7 +77,6 @@ export default function MarqueeDemo1() {
           alt="ironman logo"
           width={120}
           height={120}
-          quality={100}
           loading="lazy"
           className="aspect-square w-[120px] rounded-full"
         />
@@ -94,7 +85,6 @@ export default function MarqueeDemo1() {
           alt="superman logo"
           width={120}
           height={120}
-          quality={100}
           loading="lazy"
           className="aspect-square w-[120px] rounded-full"
         />
@@ -103,7 +93,6 @@ export default function MarqueeDemo1() {
           alt="dr strange logo"
           width={120}
           height={120}
-          quality={100}
           loading="lazy"
           className="aspect-square w-[120px] rounded-full"
         />
@@ -112,7 +101,6 @@ export default function MarqueeDemo1() {
           alt="shield logo"
           width={120}
           height={120}
-          quality={100}
           loading="lazy"
           className="aspect-square w-[120px] rounded-full"
         />

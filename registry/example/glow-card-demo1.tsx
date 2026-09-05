@@ -14,16 +14,15 @@ export default function GlowCardDemo1() {
               variant="glitch"
               glitchColor1="#ff0064"
               glitchColor2="#00ff64"
-              className="w-full h-auto min-h-[400px] sm:min-h-[40px]"
+              className="w-full h-auto min-h-100 sm:min-h-10"
             >
               <div className="h-full flex flex-col ">
-                <div className="h-40 sm:h-48 mb-4 rounded-lg overflow-hidden bg-gradient-to-br from-pink-600 to-green-600 flex items-center justify-center">
+                <div className="h-40 sm:h-48 mb-4 rounded-lg overflow-hidden bg-linear-to-br from-pink-600 to-green-600 flex items-center justify-center">
                   <Image
                     src="/assets/images/glow-card/deoxys.jpg"
                     alt="Digital Matrix"
                     width={200}
                     height={200}
-                    quality={100}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -51,16 +50,15 @@ export default function GlowCardDemo1() {
             <GlowCard
               variant="laser"
               laserColor="#ef4444"
-              className="w-full h-auto min-h-[400px] sm:min-h-[450px]"
+              className="w-full h-auto min-h-100 sm:min-h-10"
             >
               <div className="h-full flex flex-col">
-                <div className="h-40 sm:h-48 mb-4 rounded-lg overflow-hidden bg-gradient-to-br from-red-600 to-orange-600 flex items-center justify-center">
+                <div className="h-40 sm:h-48 mb-4 rounded-lg overflow-hidden bg-linear-to-br from-red-600 to-orange-600 flex items-center justify-center">
                   <Image
                     src="/assets/images/glow-card/darkrai.jpg"
                     alt="Laser Targeting"
                     width={200}
                     height={200}
-                    quality={100}
                     className="w-full h-full object-cover filter contrast-125"
                   />
                 </div>
@@ -87,16 +85,15 @@ export default function GlowCardDemo1() {
           <div className="w-full max-w-sm mx-auto">
             <GlowCard
               variant="cosmic"
-              className="w-full h-auto min-h-[400px] sm:min-h-[450px]"
+              className="w-full h-auto min-h-100 sm:min-h-10"
             >
               <div className="h-full flex flex-col">
-                <div className="h-40 sm:h-48 mb-4 rounded-lg overflow-hidden bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center">
+                <div className="h-40 sm:h-48 mb-4 rounded-lg overflow-hidden bg-linear-to-br from-purple-600 to-pink-600 flex items-center justify-center">
                   <Image
                     src="/assets/images/glow-card/lunala.jpg"
                     alt="Cosmic Space"
                     width={200}
                     height={200}
-                    quality={100}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -131,14 +128,13 @@ export default function GlowCardDemo1() {
             <GlowCard
               variant="liquid"
               liquidColor="#0ea5e9"
-              className="w-full h-auto min-h-[400px] sm:min-h-[450px]"
+              className="w-full h-auto min-h-100 sm:min-h-10"
             >
               <div className="h-full flex flex-col">
-                <div className="h-40 sm:h-48 mb-4 rounded-lg overflow-hidden bg-gradient-to-br from-blue-600 to-cyan-600 flex items-center justify-center">
+                <div className="h-40 sm:h-48 mb-4 rounded-lg overflow-hidden bg-linear-to-br from-blue-600 to-cyan-600 flex items-center justify-center">
                   <Image
                     width={200}
                     height={200}
-                    quality={100}
                     src="/assets/images/glow-card/suicune.jpg"
                     alt="Liquid Dynamics"
                     className="w-full h-full object-cover"
@@ -165,8 +161,8 @@ export default function GlowCardDemo1() {
         </div>
 
         {/* Desktop: Overlapping Layout (XL screens and up) */}
-        <div className="hidden 2xl:block relative min-h-[600px] w-full">
-          <div className="relative flex items-center justify-center min-h-[500px] w-full">
+        <div className="hidden 2xl:block relative min-h-150 w-full">
+          <div className="relative flex items-center justify-center min-h-125 w-full">
             {/* Card 1 - Deoxys */}
             <div
               className="absolute"
@@ -184,13 +180,12 @@ export default function GlowCardDemo1() {
                 className="w-80 2xl:w-96 h-112"
               >
                 <div className="h-full flex flex-col">
-                  <div className="h-56 mb-4 rounded-lg overflow-hidden bg-gradient-to-br from-pink-600 to-green-600 flex items-center justify-center">
+                  <div className="h-56 mb-4 rounded-lg overflow-hidden bg-linear-to-br from-pink-600 to-green-600 flex items-center justify-center">
                     <Image
                       src="/assets/images/glow-card/deoxys.jpg"
                       alt="Digital Matrix"
                       width={200}
                       height={200}
-                      quality={100}
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -229,13 +224,12 @@ export default function GlowCardDemo1() {
                 className="w-80 2xl:w-96 h-112"
               >
                 <div className="h-full flex flex-col">
-                  <div className="h-56 mb-4 rounded-lg overflow-hidden bg-gradient-to-br from-red-600 to-orange-600 flex items-center justify-center">
+                  <div className="h-56 mb-4 rounded-lg overflow-hidden bg-linear-to-br from-red-600 to-orange-600 flex items-center justify-center">
                     <Image
                       src="/assets/images/glow-card/darkrai.jpg"
                       alt="Laser Targeting"
                       width={200}
                       height={200}
-                      quality={100}
                       className="w-full h-full object-cover filter contrast-125"
                     />
                   </div>
@@ -270,13 +264,12 @@ export default function GlowCardDemo1() {
             >
               <GlowCard variant="cosmic" className="w-80 2xl:w-96 h-112">
                 <div className="h-full flex flex-col">
-                  <div className="h-56 mb-4 rounded-lg overflow-hidden bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center">
+                  <div className="h-56 mb-4 rounded-lg overflow-hidden bg-linear-to-br from-purple-600 to-pink-600 flex items-center justify-center">
                     <Image
                       src="/assets/images/glow-card/lunala.jpg"
                       alt="Cosmic Space"
                       width={200}
                       height={200}
-                      quality={100}
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -322,11 +315,10 @@ export default function GlowCardDemo1() {
                 className="w-80 2xl:w-96 h-112"
               >
                 <div className="h-full flex flex-col">
-                  <div className="h-56 mb-4 rounded-lg overflow-hidden bg-gradient-to-br from-blue-600 to-cyan-600 flex items-center justify-center">
+                  <div className="h-56 mb-4 rounded-lg overflow-hidden bg-linear-to-br from-blue-600 to-cyan-600 flex items-center justify-center">
                     <Image
                       width={200}
                       height={200}
-                      quality={100}
                       src="/assets/images/glow-card/suicune.jpg"
                       alt="Liquid Dynamics"
                       className="w-full h-full object-cover"

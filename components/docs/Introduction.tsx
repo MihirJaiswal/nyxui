@@ -35,7 +35,6 @@ export default function IntroductionPage() {
           height={630}
           loading="lazy"
           placeholder="blur"
-          quality={100}
           className="w-full"
         />
       </div>

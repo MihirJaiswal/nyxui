@@ -677,7 +677,6 @@ export const ImageScanner = ({
           height={500}
           width={500}
           priority
-          quality={100}
           className={cn(
             "w-full h-full object-cover transition-all duration-300",
             isScanning ? "hue-rotate-15 animate-pulse" : "",

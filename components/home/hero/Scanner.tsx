@@ -15,7 +15,7 @@ interface ScanResult {
 
 const ScannerSkeleton = () => {
   return (
-    <div className="h-[300px] w-[300px]">
+    <div className="h-75 w-75">
       <div className="relative overflow-hidden w-full h-full">
         <div className="w-full h-full relative overflow-hidden bg-zinc-900">
           <Image
@@ -275,7 +275,7 @@ const ScannerCore = () => {
   };
 
   return (
-    <div className="h-[300px] w-[300px]">
+    <div className="h-75 w-75">
       <div className="relative overflow-hidden w-full h-full">
         <div
           className={cn(
@@ -291,7 +291,6 @@ const ScannerCore = () => {
             alt="AI Scanner Target"
             width={375}
             height={375}
-            quality={100}
             priority
             className={cn(
               "object-cover transition-all duration-500 ease-out",
@@ -302,7 +301,7 @@ const ScannerCore = () => {
 
           {/* Scan overlay effects */}
           {isScanning && (
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-500/5 to-transparent animate-pulse" />
+            <div className="absolute inset-0 bg-linear-to-b from-transparent via-blue-500/5 to-transparent animate-pulse" />
           )}
 
           {/* Matrix scan pattern */}
@@ -454,7 +453,7 @@ export const Scanner = () => {
   }, []); // Empty dependency array ensures this runs on every mount
 
   return (
-    <div className="relative h-[300px] w-[300px]">
+    <div className="relative h-75 w-75">
       {/* Always show skeleton initially - no animation delays */}
       <AnimatePresence>
         {!showMainComponent && (

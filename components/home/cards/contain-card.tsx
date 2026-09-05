@@ -67,13 +67,12 @@ export default function ContainCard() {
               <Link href={project.route} className="cursor-pointer block">
                 <TextureCard className="h-full rounded-2xl bg-card border border-border/60 p-2 transition-colors hover:bg-muted/30">
                   <TextureCardContent className="p-0">
-                    <div className="relative aspect-[4/3] w-full rounded-xl mb-6 overflow-hidden border border-border/60">
+                    <div className="relative aspect-4/3 w-full rounded-xl mb-6 overflow-hidden border border-border/60">
                       <Image
                         src={project.image || "/placeholder.svg"}
                         alt={`${project.title} preview`}
                         height={1200}
                         width={900}
-                        quality={100}
                         loading="lazy"
                         placeholder="blur"
                         className="rounded-xl object-cover transition-transform duration-300 group-hover:scale-105"

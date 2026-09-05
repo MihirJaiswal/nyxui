@@ -41,7 +41,7 @@ export const GlassExamples = () => {
           className="object-cover"
         />
         <div className="absolute inset-0 bg-black/25" />
-        <div className="absolute inset-0 bg-gradient-to-br from-sky-600/15 via-transparent to-fuchsia-600/15" />
+        <div className="absolute inset-0 bg-linear-to-br from-sky-600/15 via-transparent to-fuchsia-600/15" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-6xl">
@@ -246,7 +246,7 @@ export const GlassExamples = () => {
             specularIntensity={0.5}
             border={false}
             hover={false}
-            className="rounded-[2rem] p-0 px-4 font-normal"
+            className="rounded-4xl p-0 px-4 font-normal"
           >
             <div className="flex h-24 items-center gap-3">
               {apps.map((app) => (
@@ -260,7 +260,6 @@ export const GlassExamples = () => {
                     alt={app.alt}
                     width={64}
                     height={64}
-                    quality={100}
                     className="rounded-xl shadow-lg"
                   />
                 </button>
