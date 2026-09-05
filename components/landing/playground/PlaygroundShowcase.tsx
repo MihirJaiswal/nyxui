@@ -1,12 +1,37 @@
+"use client";
+
 import { ArrowUpRight } from "lucide-react";
+import { useEffect, useRef } from "react";
 import { siteLinks } from "@/lib/links";
 import { MorphLink } from "@/components/ui/morph-link";
 
 export function PlaygroundShowcase(): React.ReactElement {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const loadVideo = () => {
+      video.src = "/assets/videos/playground-demo-dark.mp4";
+      video.load();
+      video.play().catch(() => {
+        // autoplay may be blocked until user interacts;
+      });
+    };
+
+    if (document.readyState === "complete") {
+      loadVideo();
+    } else {
+      window.addEventListener("load", loadVideo);
+      return () => window.removeEventListener("load", loadVideo);
+    }
+  }, []);
+
   return (
     <section className="relative left-1/2 w-screen -translate-x-1/2 border-b border-border/60">
       <div className="relative mx-auto max-w-295 border-x border-border/60">
-        <div className="grid gap-8 border-b border-border/60 px-6 py-16 md:grid-cols-[1fr_0.8fr] md:px-12 md:py-20">
+        <div className="grid gap-10 border-b border-border/60 px-6 py-10 sm:py-16 md:grid-cols-[1fr_0.8fr] md:px-12 md:py-20">
           <div>
             <p className="mb-5 flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-brand">
               The Nyx playground
@@ -36,13 +61,14 @@ export function PlaygroundShowcase(): React.ReactElement {
         <div>
           <div className="w-[91.5%] mx-auto">
             <video
-              src="/assets/videos/playground-demo-dark.mp4"
+              ref={videoRef}
+              poster="/assets/videos/playground-demo-dark-poster.jpg"
               className="w-full"
-              autoPlay
               muted
               loop
               playsInline
               controls
+              preload="none"
             />
           </div>
         </div>

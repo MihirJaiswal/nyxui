@@ -10,7 +10,7 @@ interface LandingHeroProps {
 
 export function Landing({ components }: LandingHeroProps): React.ReactElement {
   return (
-    <section className="relative max-w-295 mx-auto h-screen">
+    <section className="relative max-w-295 mx-auto min-h-screen">
       <div className="relative">
         <div className="border-x border-border/60 pt-32 sm:pt-40">
           <LandingHeroIntro />

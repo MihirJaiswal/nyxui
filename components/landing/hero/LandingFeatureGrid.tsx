@@ -20,7 +20,7 @@ export function LandingFeatureGrid(): React.ReactElement {
           </p>
         </li>
 
-        <li className="order-1 relative isolate flex flex-col items-center justify-center gap-3 overflow-hidden px-6 py-10 text-center md:order-2">
+        <li className="order-1 relative isolate flex min-h-28 flex-col items-center justify-center gap-3 overflow-hidden px-6 py-10 text-center md:order-2">
           <span
             aria-hidden="true"
             className="absolute -bottom-44 left-1/2 h-25 w-72 -translate-x-1/2 bg-brand/70 clip-path: ellipse(48% 29% at 52% 50%); blur-3xl hidden dark:block"
