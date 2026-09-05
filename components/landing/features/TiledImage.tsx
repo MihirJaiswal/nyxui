@@ -13,7 +13,7 @@ interface TiledImageProps {
 }
 
 export function TiledImage({
-  src = "/assets/images/landing-page/design-engineering.png",
+  src = "/assets/images/landing-page/design-engineering.avif",
   cols = 4,
   rows = 3,
   imageAspect = "1 / 1", // set this to match your actual image's real width/height
