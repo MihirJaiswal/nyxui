@@ -33,6 +33,8 @@ const nextConfig: NextConfig = withBundlerAnalyzer({
     ],
   },
   images: {
+    // Bypass Vercel image optimizer — quota exhausted (402) until billing resets
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
