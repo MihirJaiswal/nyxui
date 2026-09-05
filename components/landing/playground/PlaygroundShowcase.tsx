@@ -7,25 +7,29 @@ import { MorphLink } from "@/components/ui/morph-link";
 
 export function PlaygroundShowcase(): React.ReactElement {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video) return;
+    const container = containerRef.current;
+    if (!video || !container) return;
 
-    const loadVideo = () => {
-      video.src = "/assets/videos/playground-demo-dark.mp4";
-      video.load();
-      video.play().catch(() => {
-        // autoplay may be blocked until user interacts;
-      });
-    };
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            video.src = "/assets/videos/playground-demo-dark.mp4";
+            video.load();
+            video.play().catch(() => {});
+            observer.disconnect();
+          }
+        });
+      },
+      { rootMargin: "200px" },
+    );
 
-    if (document.readyState === "complete") {
-      loadVideo();
-    } else {
-      window.addEventListener("load", loadVideo);
-      return () => window.removeEventListener("load", loadVideo);
-    }
+    observer.observe(container);
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -59,7 +63,7 @@ export function PlaygroundShowcase(): React.ReactElement {
         </div>
 
         <div>
-          <div className="w-[91.5%] mx-auto">
+          <div ref={containerRef} className="w-[91.5%] mx-auto">
             <video
               ref={videoRef}
               poster="/assets/videos/playground-demo-dark-poster.jpg"
