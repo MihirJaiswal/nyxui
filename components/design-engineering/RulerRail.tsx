@@ -135,9 +135,10 @@ export function RulerRail({
     const onScroll = () => {
       cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() => {
+        const threshold = window.innerHeight * 0.4;
         let current = -1;
         els.forEach((el, i) => {
-          if (el.getBoundingClientRect().top <= 160) current = i;
+          if (el.getBoundingClientRect().top <= threshold) current = i;
         });
         setCurrentIndex(current);
       });
@@ -149,7 +150,7 @@ export function RulerRail({
       window.removeEventListener("scroll", onScroll);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sectionIds.join("|")]);
+  }, [sectionIds.join("|"), anchorTop]);
 
   // 01 on the first ruler big-line at/below the heading; 02..04 every line after.
   const majors = useMemo(() => {
