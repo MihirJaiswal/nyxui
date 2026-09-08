@@ -898,51 +898,72 @@ body {
     @apply bg-background text-foreground;
     /* Removed problematic margin/padding/box-sizing resets */
   }
-
-  html {
-    scrollbar-gutter: stable;
-  }
 }
 
-/* Simplified scrollbar styling */
-::-webkit-scrollbar {
+html {
+  scrollbar-width: none;
+}
+html::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-thumb-floating {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 5px;
+  border-radius: 9999px;
+  background: rgba(120, 120, 120, 0.5);
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.scrollbar-thumb-floating[data-visible="true"] {
+  opacity: 1;
+}
+.dark .scrollbar-thumb-floating {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+*::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
-::-webkit-scrollbar-track {
+*::-webkit-scrollbar-track {
   background-color: #f7f7f7;
   border-radius: 8px;
 }
 
-::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
   background: #e2e2e2;
   border-radius: 8px;
   border: 2px solid #f7f7f7;
   transition: background 0.2s ease;
 }
 
-::-webkit-scrollbar-thumb:hover {
+*::-webkit-scrollbar-thumb:hover {
   background: #d4d4d4;
 }
 
-.dark ::-webkit-scrollbar-track {
+.dark *::-webkit-scrollbar-track {
   background-color: #0a0a0a;
   border-radius: 8px;
 }
 
-.dark ::-webkit-scrollbar-thumb {
+.dark *::-webkit-scrollbar-thumb {
   background: #39393a;
   border-radius: 8px;
   border: 2px solid #18181b;
   transition: background 0.2s ease;
 }
 
-.dark ::-webkit-scrollbar-thumb:hover {
+.dark *::-webkit-scrollbar-thumb:hover {
   background: #58585e;
 }
 
-::-webkit-scrollbar-button {
+*::-webkit-scrollbar-button {
   display: none;
 }
 
