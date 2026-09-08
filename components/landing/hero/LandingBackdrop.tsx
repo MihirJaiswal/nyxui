@@ -1,9 +1,3 @@
-/**
- * Paper-style drafting-table backdrop, ported 1:1 from the paper.design
- * reference markup. All layers are pointer-events-none and aria-hidden.
- * `laptop:` breakpoints map to `lg:`, `bg-cream`/`paper-50` map to
- * `bg-background`.
- */
 export function LandingBackdrop(): React.ReactElement {
   return (
     <>
