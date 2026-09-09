@@ -58,12 +58,12 @@ export const componentsData: ComponentsData = {
       imageClassName: "object-cover",
       isNew: true,
     },
-    "scribble-circle": {
-      title: "Scribble Circle",
+    scribble: {
+      title: "Scribble",
       tags: ["Typography", "Interactive"],
       description:
-        "Draws a hand-drawn circle around a word when it scrolls into view. Useful for highlighting key phrases in headings.",
-      // TODO: replace with a dedicated showcase image for scribble-circle.
+        "Hand-drawn scribble that draws itself around a word — circle, underline, box, or highlight.",
+      // TODO: replace with a dedicated showcase image for scribble.
       image: "/assets/images/showcase/components/animated-text.avif",
       imageClassName: "object-cover",
       isNew: true,

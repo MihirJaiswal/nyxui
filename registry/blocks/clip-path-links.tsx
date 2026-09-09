@@ -45,11 +45,6 @@ export type ClipPathGridProps = {
   className?: string;
 };
 
-/**
- * Bordered wrapper that ties the tiles together with shared dividers.
- * Compose with Tailwind grid utilities — each row is its own grid so
- * different rows can have different column counts.
- */
 export const ClipPathGrid: React.FC<ClipPathGridProps> = ({
   children,
   className,
@@ -57,7 +52,7 @@ export const ClipPathGrid: React.FC<ClipPathGridProps> = ({
   return (
     <div
       className={cn(
-        "divide-y divide-neutral-900 border border-neutral-900 dark:divide-neutral-100 dark:border-neutral-100",
+        "divide-y divide-foreground border border-foreground",
         className,
       )}
     >
@@ -76,12 +71,7 @@ export const ClipPathRow: React.FC<ClipPathRowProps> = ({
   className,
 }) => {
   return (
-    <div
-      className={cn(
-        "grid w-full divide-x divide-neutral-900 dark:divide-neutral-100",
-        className,
-      )}
-    >
+    <div className={cn("grid w-full divide-x divide-foreground", className)}>
       {children}
     </div>
   );
@@ -123,7 +113,7 @@ export const ClipPathTile: React.FC<ClipPathTileProps> = ({
       <div
         ref={overlayRef}
         style={{ clipPath: BOTTOM_RIGHT_CLIP }}
-        className="absolute inset-0 grid place-content-center bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900"
+        className="absolute inset-0 grid place-content-center bg-foreground text-background"
       >
         {children}
       </div>

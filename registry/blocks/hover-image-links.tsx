@@ -12,14 +12,14 @@ export type HoverImageLinksProps = {
 
 /**
  * Container for a list of `<HoverImageLink>` rows.
- * Dark-first styling — designed for neutral-950 backgrounds.
+ * Transparent by default — pass a background via `className` if needed.
  */
 export const HoverImageLinks: React.FC<HoverImageLinksProps> = ({
   children,
   className,
 }) => {
   return (
-    <section className={cn("w-full bg-neutral-950 p-4 md:p-8", className)}>
+    <section className={cn("w-full p-4 md:p-8", className)}>
       <div className="mx-auto max-w-5xl">{children}</div>
     </section>
   );
@@ -67,7 +67,7 @@ export const HoverImageLink: React.FC<HoverImageLinkProps> = ({
       initial="initial"
       whileHover="whileHover"
       className={cn(
-        "group relative flex items-center justify-between border-b-2 border-neutral-700 py-4 transition-colors duration-500 hover:border-neutral-50 md:py-8",
+        "group relative flex items-center justify-between border-b-2 border-border py-4 transition-colors duration-500 hover:border-primary md:py-8",
         className,
       )}
     >
@@ -82,7 +82,7 @@ export const HoverImageLink: React.FC<HoverImageLinkProps> = ({
             staggerChildren: 0.075,
             delayChildren: 0.25,
           }}
-          className="relative z-10 block text-4xl font-bold text-neutral-500 transition-colors duration-500 group-hover:text-neutral-50 md:text-6xl"
+          className="relative z-10 block text-4xl font-bold text-muted-foreground transition-colors duration-500 group-hover:text-primary md:text-6xl"
         >
           {heading.split("").map((letter, i) => (
             <motion.span
@@ -98,7 +98,7 @@ export const HoverImageLink: React.FC<HoverImageLinkProps> = ({
             </motion.span>
           ))}
         </motion.span>
-        <span className="relative z-10 mt-2 block text-base text-neutral-500 transition-colors duration-500 group-hover:text-neutral-50">
+        <span className="relative z-10 mt-2 block text-base text-muted-foreground transition-colors duration-500 group-hover:text-primary">
           {subheading}
         </span>
       </div>
@@ -128,7 +128,7 @@ export const HoverImageLink: React.FC<HoverImageLinkProps> = ({
         transition={{ type: "spring" }}
         className="relative z-10 p-4"
       >
-        <ArrowRight className="text-5xl text-neutral-50" />
+        <ArrowRight className="size-8 text-primary-foreground md:size-10" />
       </motion.div>
     </motion.a>
   );

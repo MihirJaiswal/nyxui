@@ -57,23 +57,21 @@ export const Index: Record<string, RegistryEntry> = {
     }),
     meta: undefined,
   },
-  "scribble-circle": {
-    name: "scribble-circle",
+  scribble: {
+    name: "scribble",
     description:
-      "Draws a hand-drawn circle around a word when it scrolls into view. Useful for highlighting key phrases in headings.",
+      "Hand-drawn scribble that draws itself around a word — circle, underline, box, or highlight.",
     type: "registry:ui",
     registryDependencies: undefined,
     files: [
       {
-        path: "registry/ui/scribble-circle.tsx",
+        path: "registry/ui/scribble.tsx",
         type: "registry:ui",
       },
     ],
     component: React.lazy(async () => {
-      const mod = (await import(
-        "@/registry/ui/scribble-circle"
-      )) as RegistryModule;
-      return { default: pickRegistryComponent(mod, "scribble-circle") };
+      const mod = (await import("@/registry/ui/scribble")) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "scribble") };
     }),
     meta: undefined,
   },
@@ -649,63 +647,63 @@ export const Index: Record<string, RegistryEntry> = {
     }),
     meta: undefined,
   },
-  "scribble-circle-demo": {
-    name: "scribble-circle-demo",
+  "scribble-demo": {
+    name: "scribble-demo",
     description:
       "Example showing circle, underline, box and highlight scribbles in one heading.",
     type: "registry:example",
-    registryDependencies: ["https://nyxui.com/r/scribble-circle.json"],
+    registryDependencies: ["https://nyxui.com/r/scribble.json"],
     files: [
       {
-        path: "registry/example/scribble-circle-demo.tsx",
+        path: "registry/example/scribble-demo.tsx",
         type: "registry:example",
       },
     ],
     component: React.lazy(async () => {
       const mod = (await import(
-        "@/registry/example/scribble-circle-demo"
+        "@/registry/example/scribble-demo"
       )) as RegistryModule;
-      return { default: pickRegistryComponent(mod, "scribble-circle-demo") };
+      return { default: pickRegistryComponent(mod, "scribble-demo") };
     }),
     meta: undefined,
   },
-  "scribble-circle-demo1": {
-    name: "scribble-circle-demo1",
+  "scribble-demo1": {
+    name: "scribble-demo1",
     description:
       "Example showing a hand-drawn circle drawn around a word in a heading.",
     type: "registry:example",
-    registryDependencies: ["https://nyxui.com/r/scribble-circle.json"],
+    registryDependencies: ["https://nyxui.com/r/scribble.json"],
     files: [
       {
-        path: "registry/example/scribble-circle-demo1.tsx",
+        path: "registry/example/scribble-demo1.tsx",
         type: "registry:example",
       },
     ],
     component: React.lazy(async () => {
       const mod = (await import(
-        "@/registry/example/scribble-circle-demo1"
+        "@/registry/example/scribble-demo1"
       )) as RegistryModule;
-      return { default: pickRegistryComponent(mod, "scribble-circle-demo1") };
+      return { default: pickRegistryComponent(mod, "scribble-demo1") };
     }),
     meta: undefined,
   },
-  "scribble-circle-demo2": {
-    name: "scribble-circle-demo2",
+  "scribble-demo2": {
+    name: "scribble-demo2",
     description:
       "Example showing a hand-drawn circle with custom stroke color and width.",
     type: "registry:example",
-    registryDependencies: ["https://nyxui.com/r/scribble-circle.json"],
+    registryDependencies: ["https://nyxui.com/r/scribble.json"],
     files: [
       {
-        path: "registry/example/scribble-circle-demo2.tsx",
+        path: "registry/example/scribble-demo2.tsx",
         type: "registry:example",
       },
     ],
     component: React.lazy(async () => {
       const mod = (await import(
-        "@/registry/example/scribble-circle-demo2"
+        "@/registry/example/scribble-demo2"
       )) as RegistryModule;
-      return { default: pickRegistryComponent(mod, "scribble-circle-demo2") };
+      return { default: pickRegistryComponent(mod, "scribble-demo2") };
     }),
     meta: undefined,
   },

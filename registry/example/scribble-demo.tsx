@@ -1,6 +1,6 @@
 "use client";
 
-import { ScribbleCircle } from "@/registry/ui/scribble-circle";
+import { ScribbleCircle } from "@/registry/ui/scribble";
 
 export const ScribbleCircleVariantsDemo = () => {
   return (

@@ -22,6 +22,7 @@ export const examples: Registry["items"] = [
     title: "Clip Path Links Demo",
     description:
       "Example showing a grid of link tiles with directional clip-path wipe animations.",
+    dependencies: ["react-icons"],
     registryDependencies: ["https://nyxui.com/r/clip-path-links.json"],
     files: [
       {
@@ -75,47 +76,47 @@ export const examples: Registry["items"] = [
     ],
   },
   {
-    name: "scribble-circle-demo",
+    name: "scribble-demo",
     type: "registry:example",
-    title: "Scribble Circle Variants Demo",
+    title: "Scribble Variants Demo",
     description:
       "Example showing circle, underline, box and highlight scribbles in one heading.",
-    registryDependencies: ["https://nyxui.com/r/scribble-circle.json"],
+    registryDependencies: ["https://nyxui.com/r/scribble.json"],
     files: [
       {
-        path: "registry/example/scribble-circle-demo.tsx",
+        path: "registry/example/scribble-demo.tsx",
         type: "registry:example",
-        target: "components/scribble-circle-demo.tsx",
+        target: "components/scribble-demo.tsx",
       },
     ],
   },
   {
-    name: "scribble-circle-demo1",
+    name: "scribble-demo1",
     type: "registry:example",
-    title: "Scribble Circle Demo",
+    title: "Scribble Demo",
     description:
       "Example showing a hand-drawn circle drawn around a word in a heading.",
-    registryDependencies: ["https://nyxui.com/r/scribble-circle.json"],
+    registryDependencies: ["https://nyxui.com/r/scribble.json"],
     files: [
       {
-        path: "registry/example/scribble-circle-demo1.tsx",
+        path: "registry/example/scribble-demo1.tsx",
         type: "registry:example",
-        target: "components/scribble-circle-demo1.tsx",
+        target: "components/scribble-demo1.tsx",
       },
     ],
   },
   {
-    name: "scribble-circle-demo2",
+    name: "scribble-demo2",
     type: "registry:example",
-    title: "Scribble Circle Custom Color Demo",
+    title: "Scribble Custom Color Demo",
     description:
       "Example showing a hand-drawn circle with custom stroke color and width.",
-    registryDependencies: ["https://nyxui.com/r/scribble-circle.json"],
+    registryDependencies: ["https://nyxui.com/r/scribble.json"],
     files: [
       {
-        path: "registry/example/scribble-circle-demo2.tsx",
+        path: "registry/example/scribble-demo2.tsx",
         type: "registry:example",
-        target: "components/scribble-circle-demo2.tsx",
+        target: "components/scribble-demo2.tsx",
       },
     ],
   },

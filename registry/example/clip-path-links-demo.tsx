@@ -1,16 +1,16 @@
 "use client";
 
 import {
-  Blocks,
-  BookOpen,
-  Github,
-  Layers,
-  Palette,
-  Sparkles,
-  Terminal,
-  Wand2,
-  Wrench,
-} from "lucide-react";
+  SiAppletv,
+  SiDiscord,
+  SiHbo,
+  SiNetflix,
+  SiPlex,
+  SiParamountplus,
+  SiPrimevideo,
+  SiTwitch,
+  SiYoutube,
+} from "react-icons/si";
 import {
   ClipPathGrid,
   ClipPathRow,
@@ -19,40 +19,40 @@ import {
 
 export const ClipPathLinksDemo = () => {
   return (
-    <div className="w-full px-4 py-12">
+    <div className="w-full bg-background px-4 py-12">
       <div className="mx-auto max-w-7xl">
         <ClipPathGrid>
           <ClipPathRow className="grid-cols-2">
-            <ClipPathTile href="#docs">
-              <BookOpen className="text-xl sm:text-3xl lg:text-4xl" />
+            <ClipPathTile href="#netflix">
+              <SiNetflix className="text-2xl" />
             </ClipPathTile>
-            <ClipPathTile href="#playground">
-              <Wand2 className="text-xl sm:text-3xl lg:text-4xl" />
+            <ClipPathTile href="#hbo">
+              <SiHbo className="text-3xl" />
             </ClipPathTile>
           </ClipPathRow>
           <ClipPathRow className="grid-cols-4">
-            <ClipPathTile href="#components">
-              <Layers className="text-xl sm:text-3xl lg:text-4xl" />
+            <ClipPathTile href="#paramount">
+              <SiParamountplus className="text-lg sm:text-xl lg:text-2xl" />
             </ClipPathTile>
-            <ClipPathTile href="#blocks">
-              <Blocks className="text-xl sm:text-3xl lg:text-4xl" />
+            <ClipPathTile href="#plex">
+              <SiPlex className="text-4xl" />
             </ClipPathTile>
-            <ClipPathTile href="#templates">
-              <Palette className="text-xl sm:text-3xl lg:text-4xl" />
+            <ClipPathTile href="#prime">
+              <SiPrimevideo className="text-5xl sm:text-6xl lg:text-7xl" />
             </ClipPathTile>
-            <ClipPathTile href="#effects">
-              <Sparkles className="text-xl sm:text-3xl lg:text-4xl" />
+            <ClipPathTile href="#appletv">
+              <SiAppletv className="text-4xl" />
             </ClipPathTile>
           </ClipPathRow>
           <ClipPathRow className="grid-cols-3">
-            <ClipPathTile href="#cli">
-              <Terminal className="text-xl sm:text-3xl lg:text-4xl" />
+            <ClipPathTile href="#youtube">
+              <SiYoutube className="text-2xl" />
             </ClipPathTile>
-            <ClipPathTile href="#tools">
-              <Wrench className="text-xl sm:text-3xl lg:text-4xl" />
+            <ClipPathTile href="#twitch">
+              <SiTwitch className="text-2xl" />
             </ClipPathTile>
-            <ClipPathTile href="#github">
-              <Github className="text-xl sm:text-3xl lg:text-4xl" />
+            <ClipPathTile href="#discord">
+              <SiDiscord className="text-2xl" />
             </ClipPathTile>
           </ClipPathRow>
         </ClipPathGrid>

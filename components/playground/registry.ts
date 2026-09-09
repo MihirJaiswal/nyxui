@@ -54,7 +54,7 @@ const componentMeta: Record<string, PlaygroundComponentMeta> = {
     importType: "default",
     exportName: "RevealCard",
   },
-  "scribble-circle": { dependencies: ["motion"], exportName: "ScribbleCircle" },
+  scribble: { dependencies: ["motion"], exportName: "ScribbleCircle" },
   "pop-text": { exportName: "PopText" },
 };
 
@@ -83,7 +83,7 @@ const componentLoaders: Record<string, () => Promise<ComponentModule>> = {
   "image-comparison": () => import("@/registry/ui/image-comparison"),
   "ms-paint": () => import("@/registry/ui/ms-paint"),
   "reveal-card": () => import("@/registry/ui/reveal-card"),
-  "scribble-circle": () => import("@/registry/ui/scribble-circle"),
+  scribble: () => import("@/registry/ui/scribble"),
   "pop-text": () => import("@/registry/ui/pop-text"),
 };
 
@@ -2668,8 +2668,8 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
     },
   },
 
-  "scribble-circle": {
-    name: "Scribble Circle",
+  scribble: {
+    name: "Scribble",
     component: "ScribbleCircle",
     props: {
       word: {

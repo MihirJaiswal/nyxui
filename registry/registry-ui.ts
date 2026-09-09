@@ -41,17 +41,17 @@ export const ui: Registry["items"] = [
     },
   },
   {
-    name: "scribble-circle",
+    name: "scribble",
     type: "registry:ui",
-    title: "Scribble Circle",
+    title: "Scribble",
     description:
-      "Draws a hand-drawn circle around a word when it scrolls into view. Useful for highlighting key phrases in headings.",
+      "Hand-drawn scribble that draws itself around a word — circle, underline, box, or highlight.",
     dependencies: ["motion"],
     files: [
       {
-        path: "registry/ui/scribble-circle.tsx",
+        path: "registry/ui/scribble.tsx",
         type: "registry:ui",
-        target: "components/ui/scribble-circle.tsx",
+        target: "components/ui/scribble.tsx",
       },
     ],
   },
