@@ -287,6 +287,16 @@ export const componentsData: ComponentsData = {
     },
   },
   blocks: {
+    "expandable-toolbar": {
+      title: "Expandable Toolbar",
+      tags: ["Toolbar", "Interactive"],
+      description:
+        "A floating icon toolbar that springs open to reveal a content panel above the active icon.",
+      // TODO: replace with a dedicated showcase image for expandable-toolbar.
+      image: "/assets/images/showcase/blocks/footer.avif",
+      imageClassName: "object-cover invert dark:invert-0 dark:contrast-110",
+      isNew: true,
+    },
     footer: {
       title: "Footer",
       tags: ["Footer", "Section"],

@@ -2,6 +2,21 @@ import { type Registry } from "shadcn/registry";
 
 export const examples: Registry["items"] = [
   {
+    name: "expandable-toolbar-demo",
+    type: "registry:example",
+    title: "Expandable Toolbar Demo",
+    description:
+      "Example showing a floating toolbar that expands into a content panel.",
+    registryDependencies: ["https://nyxui.com/r/expandable-toolbar.json"],
+    files: [
+      {
+        path: "registry/example/expandable-toolbar-demo.tsx",
+        type: "registry:example",
+        target: "components/expandable-toolbar-demo.tsx",
+      },
+    ],
+  },
+  {
     name: "morphing-navigation-demo",
     type: "registry:example",
     title: "Morphing Navigation Demo",

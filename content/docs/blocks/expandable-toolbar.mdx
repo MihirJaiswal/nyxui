@@ -1,0 +1,108 @@
+---
+title: Expandable Toolbar
+date: 2026-09-09
+description: A floating icon toolbar that springs open to reveal a content panel above the active icon.
+author: MihirJaiswal
+published: true
+tags: ["Toolbar", "Interactive"]
+---
+
+<ComponentPreview name="expandable-toolbar-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nyxui.com/r/expandable-toolbar.json"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies.</Step>
+
+```bash
+npm install motion lucide-react
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="expandable-toolbar" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { ExpandableToolbar } from "@/components/blocks/expandable-toolbar";
+import { Folder, MessageCircle, User, WalletCards } from "lucide-react";
+```
+
+### Basic Usage
+
+```tsx
+const items = [
+  {
+    id: 1,
+    label: "User",
+    icon: <User className="size-4.5" />,
+    content: <p>Profile panel body</p>,
+  },
+  {
+    id: 2,
+    label: "Messages",
+    icon: <MessageCircle className="size-4.5" />,
+    content: <p>You have 3 new messages.</p>,
+  },
+  {
+    id: 3,
+    label: "Documents",
+    icon: <Folder className="size-4.5" />,
+    content: <p>Project_Proposal.pdf</p>,
+  },
+  {
+    id: 4,
+    label: "Wallet",
+    icon: <WalletCards className="size-4.5" />,
+    content: <p>Balance: $1,250.32</p>,
+  },
+];
+
+<ExpandableToolbar items={items} />;
+```
+
+Click an icon to expand the panel; click it again (or click anywhere outside) to collapse. The panel width is locked to the toolbar width so it never overflows the icons.
+
+## API
+
+### `<ExpandableToolbar>`
+
+| Prop        | Type            | Default | Description                       |
+| ----------- | --------------- | ------- | --------------------------------- |
+| `items`     | `ToolbarItem[]` | —       | Array of toolbar items to render. |
+| `className` | `string?`       | —       | Extra classes on the root.        |
+
+### `ToolbarItem`
+
+| Field     | Type               | Description                                |
+| --------- | ------------------ | ------------------------------------------ |
+| `id`      | `number \| string` | Unique identifier for the item.            |
+| `label`   | `string`           | Accessible label for the icon button.      |
+| `icon`    | `ReactNode`        | Icon rendered inside the toolbar button.   |
+| `content` | `ReactNode`        | Panel content shown when the item is open. |

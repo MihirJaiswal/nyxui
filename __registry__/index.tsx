@@ -547,6 +547,26 @@ export const Index: Record<string, RegistryEntry> = {
     }),
     meta: undefined,
   },
+  "expandable-toolbar-demo": {
+    name: "expandable-toolbar-demo",
+    description:
+      "Example showing a floating toolbar that expands into a content panel.",
+    type: "registry:example",
+    registryDependencies: ["https://nyxui.com/r/expandable-toolbar.json"],
+    files: [
+      {
+        path: "registry/example/expandable-toolbar-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/example/expandable-toolbar-demo"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "expandable-toolbar-demo") };
+    }),
+    meta: undefined,
+  },
   "morphing-navigation-demo": {
     name: "morphing-navigation-demo",
     description:
@@ -1592,6 +1612,26 @@ export const Index: Record<string, RegistryEntry> = {
         "@/registry/blocks/morphing-navigation"
       )) as RegistryModule;
       return { default: pickRegistryComponent(mod, "morphing-navigation") };
+    }),
+    meta: undefined,
+  },
+  "expandable-toolbar": {
+    name: "expandable-toolbar",
+    description:
+      "A floating icon toolbar that springs open to reveal a content panel above the active icon.",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [
+      {
+        path: "registry/blocks/expandable-toolbar.tsx",
+        type: "registry:ui",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/blocks/expandable-toolbar"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "expandable-toolbar") };
     }),
     meta: undefined,
   },

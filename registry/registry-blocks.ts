@@ -47,6 +47,21 @@ export const blocks: Registry["items"] = [
     ],
   },
   {
+    name: "expandable-toolbar",
+    type: "registry:ui",
+    title: "Expandable Toolbar",
+    description:
+      "A floating icon toolbar that springs open to reveal a content panel above the active icon.",
+    dependencies: ["motion", "lucide-react"],
+    files: [
+      {
+        path: "registry/blocks/expandable-toolbar.tsx",
+        type: "registry:ui",
+        target: "components/blocks/expandable-toolbar.tsx",
+      },
+    ],
+  },
+  {
     name: "footer",
     type: "registry:ui",
     title: "Footer",
