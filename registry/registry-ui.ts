@@ -2,6 +2,21 @@ import { type Registry } from "shadcn/registry";
 
 export const ui: Registry["items"] = [
   {
+    name: "flip-text",
+    type: "registry:ui",
+    title: "Flip Text",
+    description:
+      "Splits text into characters that roll up and away on hover while a duplicate layer flips in from below, staggered letter by letter.",
+    dependencies: ["motion"],
+    files: [
+      {
+        path: "registry/ui/flip-text.tsx",
+        type: "registry:ui",
+        target: "components/ui/flip-text.tsx",
+      },
+    ],
+  },
+  {
     name: "pop-text",
     type: "registry:ui",
     title: "Pop Text",
@@ -548,6 +563,21 @@ export const ui: Registry["items"] = [
         path: "registry/ui/3d-layered-card.tsx",
         type: "registry:ui",
         target: "components/ui/3d-layered-card.tsx",
+      },
+    ],
+  },
+  {
+    name: "halo-ring",
+    type: "registry:ui",
+    title: "Halo Ring",
+    description:
+      "Rotating conic-gradient border with a soft inner glow halo, for AI-brand card treatments.",
+    dependencies: ["motion"],
+    files: [
+      {
+        path: "registry/ui/halo-ring.tsx",
+        type: "registry:ui",
+        target: "components/ui/halo-ring.tsx",
       },
     ],
   },

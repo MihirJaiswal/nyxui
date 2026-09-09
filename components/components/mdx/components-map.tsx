@@ -17,6 +17,7 @@ import { headings, text, table } from "./typography";
 import { Code, Pre } from "./CodeBlock";
 import { stepOverrides, tabsOverrides, LinkedCard } from "./tabs-overrides";
 import TemplatePreview from "@/components/components/template/template-preview";
+import { ProCTA } from "@/components/global/ProCTA";
 
 export const mdxComponents = {
   Accordion,
@@ -25,6 +26,7 @@ export const mdxComponents = {
   AccordionTrigger,
   TechStack,
   RepoDownload,
+  ProCTA,
   TemplateActions,
   TemplateFeatures,
   TemplatePreview,

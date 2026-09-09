@@ -35,6 +35,8 @@ export default function ComponentGrid({
           imageSrc={item.image}
           imageClassName={item.imageClassName}
           type={type}
+          isPro={item.isPro}
+          proUrl={"proUrl" in item ? item.proUrl : undefined}
         />
       ))}
     </div>

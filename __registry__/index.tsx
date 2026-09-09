@@ -39,6 +39,24 @@ function pickRegistryComponent(
 }
 
 export const Index: Record<string, RegistryEntry> = {
+  "flip-text": {
+    name: "flip-text",
+    description:
+      "Splits text into characters that roll up and away on hover while a duplicate layer flips in from below, staggered letter by letter.",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [
+      {
+        path: "registry/ui/flip-text.tsx",
+        type: "registry:ui",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import("@/registry/ui/flip-text")) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "flip-text") };
+    }),
+    meta: undefined,
+  },
   "pop-text": {
     name: "pop-text",
     description:
@@ -544,6 +562,64 @@ export const Index: Record<string, RegistryEntry> = {
         "@/registry/ui/3d-layered-card"
       )) as RegistryModule;
       return { default: pickRegistryComponent(mod, "3d-layered-card") };
+    }),
+    meta: undefined,
+  },
+  "halo-ring": {
+    name: "halo-ring",
+    description:
+      "Rotating conic-gradient border with a soft inner glow halo, for AI-brand card treatments.",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [
+      {
+        path: "registry/ui/halo-ring.tsx",
+        type: "registry:ui",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import("@/registry/ui/halo-ring")) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "halo-ring") };
+    }),
+    meta: undefined,
+  },
+  "halo-ring-demo": {
+    name: "halo-ring-demo",
+    description:
+      "Example of an AI chat card wrapped in a rotating conic gradient halo.",
+    type: "registry:example",
+    registryDependencies: ["https://nyxui.com/r/halo-ring.json"],
+    files: [
+      {
+        path: "registry/example/halo-ring-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/example/halo-ring-demo"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "halo-ring-demo") };
+    }),
+    meta: undefined,
+  },
+  "flip-text-demo": {
+    name: "flip-text-demo",
+    description:
+      "Example showing links whose characters flip away and back in on hover.",
+    type: "registry:example",
+    registryDependencies: ["https://nyxui.com/r/flip-text.json"],
+    files: [
+      {
+        path: "registry/example/flip-text-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/example/flip-text-demo"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "flip-text-demo") };
     }),
     meta: undefined,
   },

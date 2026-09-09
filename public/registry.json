@@ -15,6 +15,20 @@
       "cssVars": {}
     },
     {
+      "name": "flip-text",
+      "type": "registry:ui",
+      "title": "Flip Text",
+      "description": "Splits text into characters that roll up and away on hover while a duplicate layer flips in from below, staggered letter by letter.",
+      "dependencies": ["motion"],
+      "files": [
+        {
+          "path": "registry/ui/flip-text.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/flip-text.tsx"
+        }
+      ]
+    },
+    {
       "name": "pop-text",
       "type": "registry:ui",
       "title": "Pop Text",
@@ -662,6 +676,48 @@
           "path": "registry/ui/3d-layered-card.tsx",
           "type": "registry:ui",
           "target": "components/ui/3d-layered-card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "halo-ring",
+      "type": "registry:ui",
+      "title": "Halo Ring",
+      "description": "Rotating conic-gradient border with a soft inner glow halo, for AI-brand card treatments.",
+      "dependencies": ["motion"],
+      "files": [
+        {
+          "path": "registry/ui/halo-ring.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/halo-ring.tsx"
+        }
+      ]
+    },
+    {
+      "name": "halo-ring-demo",
+      "type": "registry:example",
+      "title": "Halo Ring Demo",
+      "description": "Example of an AI chat card wrapped in a rotating conic gradient halo.",
+      "registryDependencies": ["https://nyxui.com/r/halo-ring.json"],
+      "files": [
+        {
+          "path": "registry/example/halo-ring-demo.tsx",
+          "type": "registry:example",
+          "target": "components/halo-ring-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "flip-text-demo",
+      "type": "registry:example",
+      "title": "Flip Text Demo",
+      "description": "Example showing links whose characters flip away and back in on hover.",
+      "registryDependencies": ["https://nyxui.com/r/flip-text.json"],
+      "files": [
+        {
+          "path": "registry/example/flip-text-demo.tsx",
+          "type": "registry:example",
+          "target": "components/flip-text-demo.tsx"
         }
       ]
     },

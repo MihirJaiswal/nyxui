@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "flip-text-demo",
+  "type": "registry:example",
+  "title": "Flip Text Demo",
+  "description": "Example showing links whose characters flip away and back in on hover.",
+  "dependencies": ["motion"],
+  "registryDependencies": ["https://nyxui.com/r/flip-text.json"],
+  "files": [
+    {
+      "path": "registry/example/flip-text-demo.tsx",
+      "content": "\"use client\";\n\nimport { FlipText } from \"@/registry/ui/flip-text\";\n\nexport const FlipTextDemo = () => {\n  return (\n    <section className=\"grid place-content-start gap-3 px-8 py-12 bg-[#d4ff00] rounded-2xl w-full\">\n      <FlipText\n        href=\"#\"\n        text=\"Twitter\"\n        className=\"text-4xl font-black uppercase text-foreground sm:text-5xl md:text-6xl\"\n      />\n      <FlipText\n        href=\"#\"\n        text=\"Linkedin\"\n        className=\"text-4xl font-black uppercase text-foreground sm:text-5xl md:text-6xl\"\n      />\n      <FlipText\n        href=\"#\"\n        text=\"Facebook\"\n        className=\"text-4xl font-black uppercase text-foreground sm:text-5xl md:text-6xl\"\n      />\n      <FlipText\n        href=\"#\"\n        text=\"Instagram\"\n        className=\"text-4xl font-black uppercase text-foreground sm:text-5xl md:text-6xl\"\n      />\n    </section>\n  );\n};\n",
+      "type": "registry:example",
+      "target": "components/flip-text-demo.tsx"
+    },
+    {
+      "path": "registry/ui/flip-text.tsx",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/utils\";\nimport { motion, type Transition } from \"motion/react\";\nimport React, { useState } from \"react\";\n\nexport type FlipTextProps = {\n  /** String whose characters flip up and away on hover. */\n  text: string;\n  /** Per-character animation duration, seconds. */\n  duration?: number;\n  /** Stagger between characters, seconds. */\n  stagger?: number;\n  className?: string;\n  /** Classes applied to the duplicate hover layer. */\n  overlayClassName?: string;\n  href?: string;\n  transition?: Transition;\n} & Omit<\n  React.ComponentPropsWithoutRef<\"a\">,\n  | \"children\"\n  | \"style\"\n  | \"onDrag\"\n  | \"onDragStart\"\n  | \"onDragEnd\"\n  | \"onDragEnter\"\n  | \"onDragExit\"\n  | \"onDragLeave\"\n  | \"onDragOver\"\n  | \"onDrop\"\n  | \"onAnimationStart\"\n  | \"onAnimationEnd\"\n  | \"onAnimationIteration\"\n>;\n\nconst renderChar = (char: string) => (char === \" \" ? \" \" : char);\n\n/**\n * Splits text into characters that roll up and away on hover, while a\n * duplicate layer rolls in from below — staggered letter by letter in the\n * same order on enter and leave. Renders an anchor when `href` is provided,\n * otherwise a span.\n */\nexport const FlipText: React.FC<FlipTextProps> = ({\n  text,\n  duration = 0.25,\n  stagger = 0.025,\n  className,\n  overlayClassName,\n  href,\n  transition = { ease: \"easeInOut\" },\n  ...props\n}) => {\n  const [hovered, setHovered] = useState(false);\n  const characters = text.split(\"\");\n\n  const renderRow = (isOverlay: boolean) => (\n    <div\n      className={cn(isOverlay && \"absolute inset-0\", overlayClassName)}\n      aria-hidden={isOverlay}\n    >\n      {characters.map((char, i) => (\n        <motion.span\n          key={i}\n          initial={false}\n          animate={{\n            y: hovered\n              ? isOverlay\n                ? \"0%\"\n                : \"-100%\"\n              : isOverlay\n                ? \"100%\"\n                : \"0%\",\n          }}\n          transition={{ ...transition, duration, delay: stagger * i }}\n          className=\"inline-block will-change-transform\"\n        >\n          {renderChar(char)}\n        </motion.span>\n      ))}\n    </div>\n  );\n\n  const shared = {\n    onHoverStart: () => setHovered(true),\n    onHoverEnd: () => setHovered(false),\n    onFocus: () => setHovered(true),\n    onBlur: () => setHovered(false),\n    \"aria-label\": text,\n    className: cn(\n      \"relative block overflow-hidden whitespace-nowrap\",\n      className,\n    ),\n    style: { lineHeight: 1 },\n  };\n\n  if (href) {\n    return (\n      <motion.a href={href} {...shared} {...props}>\n        {renderRow(false)}\n        {renderRow(true)}\n      </motion.a>\n    );\n  }\n\n  return (\n    <motion.span {...shared} {...props}>\n      {renderRow(false)}\n      {renderRow(true)}\n    </motion.span>\n  );\n};\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ]
+}

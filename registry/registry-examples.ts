@@ -2,6 +2,36 @@ import { type Registry } from "shadcn/registry";
 
 export const examples: Registry["items"] = [
   {
+    name: "halo-ring-demo",
+    type: "registry:example",
+    title: "Halo Ring Demo",
+    description:
+      "Example of an AI chat card wrapped in a rotating conic gradient halo.",
+    registryDependencies: ["https://nyxui.com/r/halo-ring.json"],
+    files: [
+      {
+        path: "registry/example/halo-ring-demo.tsx",
+        type: "registry:example",
+        target: "components/halo-ring-demo.tsx",
+      },
+    ],
+  },
+  {
+    name: "flip-text-demo",
+    type: "registry:example",
+    title: "Flip Text Demo",
+    description:
+      "Example showing links whose characters flip away and back in on hover.",
+    registryDependencies: ["https://nyxui.com/r/flip-text.json"],
+    files: [
+      {
+        path: "registry/example/flip-text-demo.tsx",
+        type: "registry:example",
+        target: "components/flip-text-demo.tsx",
+      },
+    ],
+  },
+  {
     name: "expandable-toolbar-demo",
     type: "registry:example",
     title: "Expandable Toolbar Demo",

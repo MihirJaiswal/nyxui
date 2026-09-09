@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { PRO_SITE_URL } from "@/registry/Data";
 
 interface ComponentCardProps {
   slug: string;
@@ -10,6 +11,8 @@ interface ComponentCardProps {
   type?: "components" | "blocks" | "templates";
   className?: string;
   imageClassName?: string;
+  isPro?: boolean;
+  proUrl?: string;
 }
 
 export const ComponentCard = ({
@@ -19,23 +22,28 @@ export const ComponentCard = ({
   type = "components",
   className,
   imageClassName,
+  isPro = false,
+  proUrl,
 }: ComponentCardProps) => {
-  const href = `/${type}/${slug}`;
+  const href = isPro ? (proUrl ?? PRO_SITE_URL) : `/${type}/${slug}`;
 
-  return (
-    <Link
-      href={href}
-      className={cn(
-        "group relative flex h-full cursor-pointer flex-col overflow-hidden",
-        "rounded-[20px] border border-muted bg-card dark:bg-border/10 p-3",
-        "shadow-glass transition-colors duration-200",
-        "hover:bg-card/80 hover:shadow-glass-lg",
-        className,
-      )}
-    >
+  const cardBody = (
+    <>
       {/* Title Area */}
-      <div className="flex flex-col items-start justify-between gap-1.5 px-2 pb-2">
-        <h3 className="text-card-foreground font-medium">{title}</h3>
+      <div className="flex w-full flex-col items-start justify-between gap-1.5 px-2 pb-2">
+        <div className="flex w-full items-center justify-between gap-2">
+          <h3 className="text-card-foreground font-medium">{title}</h3>
+          {isPro && (
+            <span
+              className={cn(
+                "shrink-0 rounded-full border border-brand/40 bg-brand/10 px-2 py-0.5",
+                "text-[10px] font-semibold uppercase tracking-wide text-brand",
+              )}
+            >
+              Pro
+            </span>
+          )}
+        </div>
       </div>
 
       {/* Preview Area */}
@@ -75,6 +83,40 @@ export const ComponentCard = ({
           </div>
         )}
       </div>
+    </>
+  );
+
+  if (isPro) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={cn(
+          "group relative flex h-full cursor-pointer flex-col overflow-hidden",
+          "rounded-[20px] border border-muted bg-card dark:bg-border/10 p-3",
+          "shadow-glass transition-colors duration-200",
+          "hover:bg-card/80 hover:shadow-glass-lg",
+          className,
+        )}
+      >
+        {cardBody}
+      </a>
+    );
+  }
+
+  return (
+    <Link
+      href={href}
+      className={cn(
+        "group relative flex h-full cursor-pointer flex-col overflow-hidden",
+        "rounded-[20px] border border-muted bg-card dark:bg-border/10 p-3",
+        "shadow-glass transition-colors duration-200",
+        "hover:bg-card/80 hover:shadow-glass-lg",
+        className,
+      )}
+    >
+      {cardBody}
     </Link>
   );
 };

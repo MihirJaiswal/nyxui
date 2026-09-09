@@ -1,4 +1,8 @@
-export interface Component {
+/**
+ * Base metadata shared by all showcase items.
+ * `isPro` marks premium items that live on the nyxui Pro site.
+ */
+interface ShowCaseItemBase {
   title: string;
   tags: string[];
   description: string;
@@ -6,25 +10,26 @@ export interface Component {
   heroImage?: string;
   isNew?: boolean;
   imageClassName?: string;
+  isPro?: boolean;
 }
 
-export interface template {
-  title: string;
-  tags: string[];
-  description: string;
-  image: string;
-  isNew?: boolean;
-  imageClassName?: string;
+export interface Component extends ShowCaseItemBase {
+  proUrl?: string;
 }
 
-export interface Block {
-  title: string;
-  tags: string[];
-  description: string;
-  image: string;
-  isNew?: boolean;
-  imageClassName?: string;
+export interface template extends ShowCaseItemBase {
+  proUrl?: string;
 }
+
+export interface Block extends ShowCaseItemBase {
+  proUrl?: string;
+}
+
+/**
+ * Base URL of the nyxui Pro site. Premium items link here unless
+ * they define a more specific `proUrl`.
+ */
+export const PRO_SITE_URL = "https://nyxui.pro";
 
 interface Links {
   docs: string;
@@ -48,6 +53,26 @@ export const componentsData: ComponentsData = {
     docs: "Introduction",
   },
   components: {
+    "halo-ring": {
+      title: "Halo Ring",
+      tags: ["Effects", "Cards"],
+      description:
+        "Rotating conic-gradient border with a soft inner glow halo, for AI-brand card treatments.",
+      // TODO: replace with a dedicated showcase image for halo-ring.
+      image: "/assets/images/showcase/components/animated-text.avif",
+      imageClassName: "object-cover",
+      isNew: true,
+    },
+    "flip-text": {
+      title: "Flip Text",
+      tags: ["Typography", "Effects"],
+      description:
+        "Splits text into characters that roll up and away on hover while a duplicate layer flips in from below, staggered letter by letter.",
+      // TODO: replace with a dedicated showcase image for flip-text.
+      image: "/assets/images/showcase/components/animated-text.avif",
+      imageClassName: "object-cover",
+      isNew: true,
+    },
     "pop-text": {
       title: "Pop Text",
       tags: ["Typography", "Interactive"],
