@@ -1,0 +1,130 @@
+---
+title: Morphing Navigation
+date: 2026-09-08
+description: A hover-driven navigation dropdown with directional slide animations between tab panels.
+author: MihirJaiswal
+published: true
+tags: ["Navigation", "Menu", "Interactive"]
+---
+
+<ComponentPreview name="morphing-navigation-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nyxui.com/r/morphing-navigation.json"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies.</Step>
+
+```bash
+npm install motion lucide-react
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="morphing-navigation" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import {
+  Dropdown,
+  Tab,
+  Tabs,
+  Trigger,
+  TriggerWrapper,
+} from "@/components/blocks/morphing-navigation";
+```
+
+### Basic Usage
+
+```tsx
+<Dropdown>
+  <TriggerWrapper>
+    <Trigger>Watch</Trigger>
+    <Trigger>Library</Trigger>
+    <Trigger>Collections</Trigger>
+  </TriggerWrapper>
+  <Tabs>
+    <Tab>
+      <WatchPanel />
+    </Tab>
+    <Tab>
+      <LibraryPanel />
+    </Tab>
+    <Tab>
+      <CollectionsPanel />
+    </Tab>
+  </Tabs>
+</Dropdown>
+```
+
+## API
+
+### `<Dropdown>`
+
+Root container. Tracks which tab is open and the direction it's traveling.
+
+| Prop        | Type        | Description                                |
+| ----------- | ----------- | ------------------------------------------ |
+| `children`  | `ReactNode` | A `<TriggerWrapper>` followed by `<Tabs>`. |
+| `className` | `string?`   | Extra classes on the root container.       |
+
+### `<TriggerWrapper>`
+
+Wires each `<Trigger>` to its tab index.
+
+| Prop        | Type        | Description                                                      |
+| ----------- | ----------- | ---------------------------------------------------------------- |
+| `children`  | `ReactNode` | Any number of `<Trigger>` children. Order matches `<Tab>` order. |
+| `className` | `string?`   | Extra classes on each rendered button.                           |
+
+### `<Trigger>`
+
+Label + chevron icon. Chevron rotates when its tab is open.
+
+| Prop        | Type        | Description                      |
+| ----------- | ----------- | -------------------------------- |
+| `children`  | `ReactNode` | The visible label.               |
+| `className` | `string?`   | Extra classes on the label span. |
+
+### `<Tabs>`
+
+Container for the dropdown panel. Animates between tab panels based on the direction the cursor is traveling.
+
+| Prop        | Type        | Description                                    |
+| ----------- | ----------- | ---------------------------------------------- |
+| `children`  | `ReactNode` | One `<Tab>` per `<Trigger>`. Order must match. |
+| `className` | `string?`   | Extra classes on the inner panel.              |
+
+### `<Tab>`
+
+A single panel body. Default width is `w-[500px]`; override with `className`.
+
+| Prop        | Type        | Description                      |
+| ----------- | ----------- | -------------------------------- |
+| `children`  | `ReactNode` | Panel content.                   |
+| `className` | `string?`   | Extra classes on the panel body. |

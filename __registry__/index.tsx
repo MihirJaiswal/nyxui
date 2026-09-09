@@ -39,6 +39,44 @@ function pickRegistryComponent(
 }
 
 export const Index: Record<string, RegistryEntry> = {
+  "pop-text": {
+    name: "pop-text",
+    description:
+      "A heading whose letters swell when hovered — the hovered letter is boldest and the effect fades across its neighbors.",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [
+      {
+        path: "registry/ui/pop-text.tsx",
+        type: "registry:ui",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import("@/registry/ui/pop-text")) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "pop-text") };
+    }),
+    meta: undefined,
+  },
+  "scribble-circle": {
+    name: "scribble-circle",
+    description:
+      "Draws a hand-drawn circle around a word when it scrolls into view. Useful for highlighting key phrases in headings.",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [
+      {
+        path: "registry/ui/scribble-circle.tsx",
+        type: "registry:ui",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/ui/scribble-circle"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "scribble-circle") };
+    }),
+    meta: undefined,
+  },
   accordion: {
     name: "accordion",
     description:
@@ -508,6 +546,166 @@ export const Index: Record<string, RegistryEntry> = {
         "@/registry/ui/3d-layered-card"
       )) as RegistryModule;
       return { default: pickRegistryComponent(mod, "3d-layered-card") };
+    }),
+    meta: undefined,
+  },
+  "morphing-navigation-demo": {
+    name: "morphing-navigation-demo",
+    description:
+      "Example showing a hover-driven navigation dropdown with directional slide animations.",
+    type: "registry:example",
+    registryDependencies: ["https://nyxui.com/r/morphing-navigation.json"],
+    files: [
+      {
+        path: "registry/example/morphing-navigation-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/example/morphing-navigation-demo"
+      )) as RegistryModule;
+      return {
+        default: pickRegistryComponent(mod, "morphing-navigation-demo"),
+      };
+    }),
+    meta: undefined,
+  },
+  "clip-path-links-demo": {
+    name: "clip-path-links-demo",
+    description:
+      "Example showing a grid of link tiles with directional clip-path wipe animations.",
+    type: "registry:example",
+    registryDependencies: ["https://nyxui.com/r/clip-path-links.json"],
+    files: [
+      {
+        path: "registry/example/clip-path-links-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/example/clip-path-links-demo"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "clip-path-links-demo") };
+    }),
+    meta: undefined,
+  },
+  "hover-image-links-demo": {
+    name: "hover-image-links-demo",
+    description:
+      "Example showing link rows that scatter their heading letters and reveal a floating image on hover.",
+    type: "registry:example",
+    registryDependencies: ["https://nyxui.com/r/hover-image-links.json"],
+    files: [
+      {
+        path: "registry/example/hover-image-links-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/example/hover-image-links-demo"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "hover-image-links-demo") };
+    }),
+    meta: undefined,
+  },
+  "pop-text-demo": {
+    name: "pop-text-demo",
+    description: "Example showing letters that swell when hovered.",
+    type: "registry:example",
+    registryDependencies: ["https://nyxui.com/r/pop-text.json"],
+    files: [
+      {
+        path: "registry/example/pop-text-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/example/pop-text-demo"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "pop-text-demo") };
+    }),
+    meta: undefined,
+  },
+  "pop-text-demo1": {
+    name: "pop-text-demo1",
+    description: "A stylized rose-colored pop-text example.",
+    type: "registry:example",
+    registryDependencies: ["https://nyxui.com/r/pop-text.json"],
+    files: [
+      {
+        path: "registry/example/pop-text-demo1.tsx",
+        type: "registry:example",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/example/pop-text-demo1"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "pop-text-demo1") };
+    }),
+    meta: undefined,
+  },
+  "scribble-circle-demo": {
+    name: "scribble-circle-demo",
+    description:
+      "Example showing circle, underline, box and highlight scribbles in one heading.",
+    type: "registry:example",
+    registryDependencies: ["https://nyxui.com/r/scribble-circle.json"],
+    files: [
+      {
+        path: "registry/example/scribble-circle-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/example/scribble-circle-demo"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "scribble-circle-demo") };
+    }),
+    meta: undefined,
+  },
+  "scribble-circle-demo1": {
+    name: "scribble-circle-demo1",
+    description:
+      "Example showing a hand-drawn circle drawn around a word in a heading.",
+    type: "registry:example",
+    registryDependencies: ["https://nyxui.com/r/scribble-circle.json"],
+    files: [
+      {
+        path: "registry/example/scribble-circle-demo1.tsx",
+        type: "registry:example",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/example/scribble-circle-demo1"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "scribble-circle-demo1") };
+    }),
+    meta: undefined,
+  },
+  "scribble-circle-demo2": {
+    name: "scribble-circle-demo2",
+    description:
+      "Example showing a hand-drawn circle with custom stroke color and width.",
+    type: "registry:example",
+    registryDependencies: ["https://nyxui.com/r/scribble-circle.json"],
+    files: [
+      {
+        path: "registry/example/scribble-circle-demo2.tsx",
+        type: "registry:example",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/example/scribble-circle-demo2"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "scribble-circle-demo2") };
     }),
     meta: undefined,
   },
@@ -1336,6 +1534,66 @@ export const Index: Record<string, RegistryEntry> = {
     component: React.lazy(async () => {
       const mod = (await import("@/registry/lib/utils")) as RegistryModule;
       return { default: pickRegistryComponent(mod, "utils") };
+    }),
+    meta: undefined,
+  },
+  "hover-image-links": {
+    name: "hover-image-links",
+    description:
+      "A link list where hovering rows scatters the heading letters and reveals a floating image that chases the cursor.",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [
+      {
+        path: "registry/blocks/hover-image-links.tsx",
+        type: "registry:ui",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/blocks/hover-image-links"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "hover-image-links") };
+    }),
+    meta: undefined,
+  },
+  "clip-path-links": {
+    name: "clip-path-links",
+    description:
+      "A grid of link tiles with a directional clip-path wipe that follows the cursor's entry and exit edge.",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [
+      {
+        path: "registry/blocks/clip-path-links.tsx",
+        type: "registry:ui",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/blocks/clip-path-links"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "clip-path-links") };
+    }),
+    meta: undefined,
+  },
+  "morphing-navigation": {
+    name: "morphing-navigation",
+    description:
+      "A hover-driven navigation dropdown with directional slide animations between tab panels.",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [
+      {
+        path: "registry/blocks/morphing-navigation.tsx",
+        type: "registry:ui",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/blocks/morphing-navigation"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "morphing-navigation") };
     }),
     meta: undefined,
   },

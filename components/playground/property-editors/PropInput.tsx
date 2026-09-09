@@ -41,6 +41,18 @@ export function PropInput({ property, prop, value, onChange }: PropInputProps) {
       );
     }
 
+    case "classnames": {
+      return (
+        <Input
+          type="text"
+          value={String(value || "")}
+          onChange={(e) => onChange(property, e.target.value)}
+          placeholder={prop.placeholder || "e.g. text-rose-300 font-bold"}
+          className="h-9 border-border/60 bg-background text-sm"
+        />
+      );
+    }
+
     case "textarea": {
       const isCodeField = property === "children" || property === "code";
       if (isCodeField) {

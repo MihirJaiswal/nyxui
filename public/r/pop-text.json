@@ -1,0 +1,39 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pop-text",
+  "type": "registry:ui",
+  "title": "Pop Text",
+  "description": "A heading whose letters swell when hovered — the hovered letter is boldest and the effect fades across its neighbors.",
+  "dependencies": [],
+  "files": [
+    {
+      "path": "registry/ui/pop-text.tsx",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/utils\";\nimport React from \"react\";\n\nexport type PopTextProps = {\n  text: string;\n  color?: string;\n  hoverColor?: string;\n  className?: string;\n};\n\n/**\n * Heading whose letters swell when hovered — the hovered letter gets the\n * most weight and brightness, and the effect fades out across its neighbors.\n */\nexport const PopText: React.FC<PopTextProps> = ({\n  text,\n  color = \"#a5b4fc\",\n  hoverColor = \"#e0e7ff\",\n  className,\n}) => {\n  return (\n    <h2\n      style={\n        {\n          color,\n          \"--pop-text-hover\": hoverColor,\n        } as React.CSSProperties\n      }\n      className={cn(\"cursor-default text-center text-5xl font-thin\", className)}\n    >\n      {text.split(\"\").map((letter, idx) => (\n        <span key={idx} className=\"pop-text-letter\">\n          {letter}\n        </span>\n      ))}\n    </h2>\n  );\n};\n",
+      "type": "registry:ui",
+      "target": "components/ui/pop-text.tsx"
+    }
+  ],
+  "css": {
+    ".pop-text-letter": {
+      "transition": "0.35s font-weight, 0.35s color"
+    },
+    ".pop-text-letter:hover": {
+      "font-weight": "900",
+      "color": "var(--pop-text-hover, #e0e7ff)"
+    },
+    ".pop-text-letter:hover + .pop-text-letter": {
+      "font-weight": "500",
+      "color": "color-mix(in srgb, var(--pop-text-hover, #e0e7ff) 50%, currentColor)"
+    },
+    ".pop-text-letter:hover + .pop-text-letter + .pop-text-letter": {
+      "font-weight": "300"
+    },
+    ".pop-text-letter:has(+ .pop-text-letter:hover)": {
+      "font-weight": "500",
+      "color": "color-mix(in srgb, var(--pop-text-hover, #e0e7ff) 50%, currentColor)"
+    },
+    ".pop-text-letter:has(+ .pop-text-letter + .pop-text-letter:hover)": {
+      "font-weight": "300"
+    }
+  }
+}

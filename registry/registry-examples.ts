@@ -2,6 +2,124 @@ import { type Registry } from "shadcn/registry";
 
 export const examples: Registry["items"] = [
   {
+    name: "morphing-navigation-demo",
+    type: "registry:example",
+    title: "Morphing Navigation Demo",
+    description:
+      "Example showing a hover-driven navigation dropdown with directional slide animations.",
+    registryDependencies: ["https://nyxui.com/r/morphing-navigation.json"],
+    files: [
+      {
+        path: "registry/example/morphing-navigation-demo.tsx",
+        type: "registry:example",
+        target: "components/morphing-navigation-demo.tsx",
+      },
+    ],
+  },
+  {
+    name: "clip-path-links-demo",
+    type: "registry:example",
+    title: "Clip Path Links Demo",
+    description:
+      "Example showing a grid of link tiles with directional clip-path wipe animations.",
+    registryDependencies: ["https://nyxui.com/r/clip-path-links.json"],
+    files: [
+      {
+        path: "registry/example/clip-path-links-demo.tsx",
+        type: "registry:example",
+        target: "components/clip-path-links-demo.tsx",
+      },
+    ],
+  },
+  {
+    name: "hover-image-links-demo",
+    type: "registry:example",
+    title: "Hover Image Links Demo",
+    description:
+      "Example showing link rows that scatter their heading letters and reveal a floating image on hover.",
+    registryDependencies: ["https://nyxui.com/r/hover-image-links.json"],
+    files: [
+      {
+        path: "registry/example/hover-image-links-demo.tsx",
+        type: "registry:example",
+        target: "components/hover-image-links-demo.tsx",
+      },
+    ],
+  },
+  {
+    name: "pop-text-demo",
+    type: "registry:example",
+    title: "Pop Text Demo",
+    description: "Example showing letters that swell when hovered.",
+    registryDependencies: ["https://nyxui.com/r/pop-text.json"],
+    files: [
+      {
+        path: "registry/example/pop-text-demo.tsx",
+        type: "registry:example",
+        target: "components/pop-text-demo.tsx",
+      },
+    ],
+  },
+  {
+    name: "pop-text-demo1",
+    type: "registry:example",
+    title: "Pop Text Custom Demo",
+    description: "A stylized rose-colored pop-text example.",
+    registryDependencies: ["https://nyxui.com/r/pop-text.json"],
+    files: [
+      {
+        path: "registry/example/pop-text-demo1.tsx",
+        type: "registry:example",
+        target: "components/pop-text-demo1.tsx",
+      },
+    ],
+  },
+  {
+    name: "scribble-circle-demo",
+    type: "registry:example",
+    title: "Scribble Circle Variants Demo",
+    description:
+      "Example showing circle, underline, box and highlight scribbles in one heading.",
+    registryDependencies: ["https://nyxui.com/r/scribble-circle.json"],
+    files: [
+      {
+        path: "registry/example/scribble-circle-demo.tsx",
+        type: "registry:example",
+        target: "components/scribble-circle-demo.tsx",
+      },
+    ],
+  },
+  {
+    name: "scribble-circle-demo1",
+    type: "registry:example",
+    title: "Scribble Circle Demo",
+    description:
+      "Example showing a hand-drawn circle drawn around a word in a heading.",
+    registryDependencies: ["https://nyxui.com/r/scribble-circle.json"],
+    files: [
+      {
+        path: "registry/example/scribble-circle-demo1.tsx",
+        type: "registry:example",
+        target: "components/scribble-circle-demo1.tsx",
+      },
+    ],
+  },
+  {
+    name: "scribble-circle-demo2",
+    type: "registry:example",
+    title: "Scribble Circle Custom Color Demo",
+    description:
+      "Example showing a hand-drawn circle with custom stroke color and width.",
+    registryDependencies: ["https://nyxui.com/r/scribble-circle.json"],
+    files: [
+      {
+        path: "registry/example/scribble-circle-demo2.tsx",
+        type: "registry:example",
+        target: "components/scribble-circle-demo2.tsx",
+      },
+    ],
+  },
+  {
     name: "animated-code-block-demo",
     type: "registry:example",
     title: "Animated Code Block Demo",

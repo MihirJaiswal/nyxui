@@ -48,6 +48,26 @@ export const componentsData: ComponentsData = {
     docs: "Introduction",
   },
   components: {
+    "pop-text": {
+      title: "Pop Text",
+      tags: ["Typography", "Interactive"],
+      description:
+        "A heading whose letters swell when hovered — the hovered letter is boldest and the effect fades across its neighbors.",
+      // TODO: replace with a dedicated showcase image for pop-text.
+      image: "/assets/images/showcase/components/animated-text.avif",
+      imageClassName: "object-cover",
+      isNew: true,
+    },
+    "scribble-circle": {
+      title: "Scribble Circle",
+      tags: ["Typography", "Interactive"],
+      description:
+        "Draws a hand-drawn circle around a word when it scrolls into view. Useful for highlighting key phrases in headings.",
+      // TODO: replace with a dedicated showcase image for scribble-circle.
+      image: "/assets/images/showcase/components/animated-text.avif",
+      imageClassName: "object-cover",
+      isNew: true,
+    },
     "water-ripple-effect": {
       title: "Water Ripple Effect",
       tags: ["Interactive", "Visual Effects", "Image"],
@@ -271,6 +291,36 @@ export const componentsData: ComponentsData = {
       title: "Footer",
       tags: ["Footer", "Section"],
       description: "A simple footer component.",
+      image: "/assets/images/showcase/blocks/footer.avif",
+      imageClassName: "object-cover invert dark:invert-0 dark:contrast-110",
+      isNew: true,
+    },
+    "hover-image-links": {
+      title: "Hover Image Links",
+      tags: ["Navigation", "Links", "Interactive"],
+      description:
+        "A link list where hovering rows scatters the heading letters and reveals a floating image that chases the cursor.",
+      // TODO: replace with a dedicated showcase image for hover-image-links.
+      image: "/assets/images/showcase/blocks/footer.avif",
+      imageClassName: "object-cover invert dark:invert-0 dark:contrast-110",
+      isNew: true,
+    },
+    "clip-path-links": {
+      title: "Clip Path Links",
+      tags: ["Navigation", "Links", "Interactive"],
+      description:
+        "A grid of link tiles with a directional clip-path wipe that follows the cursor's entry and exit edge.",
+      // TODO: replace with a dedicated showcase image for clip-path-links.
+      image: "/assets/images/showcase/blocks/footer.avif",
+      imageClassName: "object-cover invert dark:invert-0 dark:contrast-110",
+      isNew: true,
+    },
+    "morphing-navigation": {
+      title: "Morphing Navigation",
+      tags: ["Navigation", "Menu", "Interactive"],
+      description:
+        "A hover-driven navigation dropdown with directional slide animations between tab panels.",
+      // TODO: replace with a dedicated showcase image for morphing-navigation.
       image: "/assets/images/showcase/blocks/footer.avif",
       imageClassName: "object-cover invert dark:invert-0 dark:contrast-110",
       isNew: true,

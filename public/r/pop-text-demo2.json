@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pop-text-demo2",
+  "type": "registry:example",
+  "title": "Pop Text Custom Demo",
+  "description": "A stylized rose-colored pop-text example.",
+  "dependencies": ["."],
+  "registryDependencies": ["https://nyxui.com/r/pop-text.json"],
+  "files": [
+    {
+      "path": "registry/example/pop-text-demo2.tsx",
+      "content": "\"use client\";\n\nimport { PopText } from \"@/registry/ui/pop-text\";\n\nexport const PopTextCustomDemo = () => {\n  return (\n    <div className=\"grid w-full place-content-center bg-black px-4 py-24\">\n      <PopText\n        text=\"Watch me change color\"\n        color=\"#fda4af\"\n        hoverColor=\"#fff1f2\"\n        className=\"text-6xl font-extralight\"\n      />\n    </div>\n  );\n};\n",
+      "type": "registry:example",
+      "target": "components/pop-text-demo2.tsx"
+    },
+    {
+      "path": "registry/ui/pop-text.tsx",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/utils\";\nimport React from \"react\";\n\nimport styles from \"./pop-text.module.css\";\n\nexport type PopTextProps = {\n  text: string;\n  color?: string;\n  hoverColor?: string;\n  className?: string;\n};\n\n/**\n * Heading whose letters swell when hovered — the hovered letter gets the\n * most weight and brightness, and the effect fades out across its neighbors.\n */\nexport const PopText: React.FC<PopTextProps> = ({\n  text,\n  color = \"#a5b4fc\",\n  hoverColor = \"#e0e7ff\",\n  className,\n}) => {\n  return (\n    <h2\n      style={\n        {\n          color,\n          \"--pop-text-hover\": hoverColor,\n        } as React.CSSProperties\n      }\n      className={cn(\"cursor-default text-center text-5xl font-thin\", className)}\n    >\n      {text.split(\"\").map((letter, idx) => (\n        <span key={idx} className={styles.hoverText}>\n          {letter === \" \" ? \" \" : letter}\n        </span>\n      ))}\n    </h2>\n  );\n};\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ]
+}

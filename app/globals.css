@@ -2,6 +2,38 @@
 @import "tw-animate-css";
 @import "shadow-plugin";
 
+/* Pop Text — sibling-cascade hover bubble. */
+.pop-text-letter {
+  transition:
+    0.35s font-weight,
+    0.35s color;
+}
+
+.pop-text-letter:hover {
+  font-weight: 900;
+  color: var(--pop-text-hover, #e0e7ff);
+}
+
+.pop-text-letter:hover + .pop-text-letter {
+  font-weight: 500;
+  color: color-mix(in srgb, var(--pop-text-hover, #e0e7ff) 50%, currentColor);
+}
+
+.pop-text-letter:hover + .pop-text-letter + .pop-text-letter {
+  font-weight: 300;
+}
+
+.pop-text-letter:has(+ .pop-text-letter:hover) {
+  font-weight: 500;
+  color: color-mix(in srgb, var(--pop-text-hover, #e0e7ff) 50%, currentColor);
+}
+
+.pop-text-letter:has(+ .pop-text-letter + .pop-text-letter:hover) {
+  font-weight: 300;
+}
+
+@source "../components/playground/preset-classes.ts";
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

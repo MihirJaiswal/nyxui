@@ -1,0 +1,119 @@
+---
+title: Clip Path Links
+date: 2026-09-09
+description: A grid of link tiles with a directional clip-path wipe that follows the cursor's entry and exit edge.
+author: MihirJaiswal
+published: true
+tags: ["Navigation", "Links", "Interactive"]
+---
+
+<ComponentPreview name="clip-path-links-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nyxui.com/r/clip-path-links.json"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies.</Step>
+
+```bash
+npm install motion lucide-react
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="clip-path-links" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import {
+  ClipPathGrid,
+  ClipPathRow,
+  ClipPathTile,
+} from "@/components/blocks/clip-path-links";
+```
+
+### Basic Usage
+
+```tsx
+<ClipPathGrid>
+  <ClipPathRow className="grid-cols-2">
+    <ClipPathTile href="#docs">
+      <BookOpen className="text-xl sm:text-3xl lg:text-4xl" />
+    </ClipPathTile>
+    <ClipPathTile href="#playground">
+      <Wand2 className="text-xl sm:text-3xl lg:text-4xl" />
+    </ClipPathTile>
+  </ClipPathRow>
+  <ClipPathRow className="grid-cols-4">
+    <ClipPathTile href="#components">
+      <Layers className="text-xl sm:text-3xl lg:text-4xl" />
+    </ClipPathTile>
+    <ClipPathTile href="#blocks">
+      <Blocks className="text-xl sm:text-3xl lg:text-4xl" />
+    </ClipPathTile>
+    <ClipPathTile href="#templates">
+      <Palette className="text-xl sm:text-3xl lg:text-4xl" />
+    </ClipPathTile>
+    <ClipPathTile href="#effects">
+      <Sparkles className="text-xl sm:text-3xl lg:text-4xl" />
+    </ClipPathTile>
+  </ClipPathRow>
+</ClipPathGrid>
+```
+
+Each row is its own grid, so different rows can use different `grid-cols-*` values.
+
+## API
+
+### `<ClipPathGrid>`
+
+Bordered container with shared horizontal dividers between rows.
+
+| Prop        | Type        | Default | Description                           |
+| ----------- | ----------- | ------- | ------------------------------------- |
+| `children`  | `ReactNode` | —       | One or more `<ClipPathRow>` children. |
+| `className` | `string?`   | —       | Extra classes on the container.       |
+
+### `<ClipPathRow>`
+
+A single row of tiles. Controls its own column count via `className`.
+
+| Prop        | Type        | Default | Description                                                          |
+| ----------- | ----------- | ------- | -------------------------------------------------------------------- |
+| `children`  | `ReactNode` | —       | `<ClipPathTile>` children.                                           |
+| `className` | `string?`   | —       | Should include a `grid-cols-*` utility matching the number of tiles. |
+
+### `<ClipPathTile>`
+
+A single link tile. The hover overlay wipes in from the edge the cursor entered through and wipes out through the edge it leaves through. Whatever you pass as `children` is rendered twice — once as the base content, once as the overlay — so any icon/text follows the hover state automatically.
+
+| Prop        | Type        | Default | Description                             |
+| ----------- | ----------- | ------- | --------------------------------------- |
+| `children`  | `ReactNode` | —       | Icon or content to display in the tile. |
+| `href`      | `string?`   | `"#"`   | Link target.                            |
+| `className` | `string?`   | —       | Extra classes on the tile anchor.       |

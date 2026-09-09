@@ -2,6 +2,60 @@ import { type Registry } from "shadcn/registry";
 
 export const ui: Registry["items"] = [
   {
+    name: "pop-text",
+    type: "registry:ui",
+    title: "Pop Text",
+    description:
+      "A heading whose letters swell when hovered — the hovered letter is boldest and the effect fades across its neighbors.",
+    files: [
+      {
+        path: "registry/ui/pop-text.tsx",
+        type: "registry:ui",
+        target: "components/ui/pop-text.tsx",
+      },
+    ],
+    css: {
+      ".pop-text-letter": {
+        transition: "0.35s font-weight, 0.35s color",
+      },
+      ".pop-text-letter:hover": {
+        "font-weight": "900",
+        color: "var(--pop-text-hover, #e0e7ff)",
+      },
+      ".pop-text-letter:hover + .pop-text-letter": {
+        "font-weight": "500",
+        color:
+          "color-mix(in srgb, var(--pop-text-hover, #e0e7ff) 50%, currentColor)",
+      },
+      ".pop-text-letter:hover + .pop-text-letter + .pop-text-letter": {
+        "font-weight": "300",
+      },
+      ".pop-text-letter:has(+ .pop-text-letter:hover)": {
+        "font-weight": "500",
+        color:
+          "color-mix(in srgb, var(--pop-text-hover, #e0e7ff) 50%, currentColor)",
+      },
+      ".pop-text-letter:has(+ .pop-text-letter + .pop-text-letter:hover)": {
+        "font-weight": "300",
+      },
+    },
+  },
+  {
+    name: "scribble-circle",
+    type: "registry:ui",
+    title: "Scribble Circle",
+    description:
+      "Draws a hand-drawn circle around a word when it scrolls into view. Useful for highlighting key phrases in headings.",
+    dependencies: ["motion"],
+    files: [
+      {
+        path: "registry/ui/scribble-circle.tsx",
+        type: "registry:ui",
+        target: "components/ui/scribble-circle.tsx",
+      },
+    ],
+  },
+  {
     name: "accordion",
     type: "registry:ui",
     title: "Accordion",

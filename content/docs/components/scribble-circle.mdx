@@ -1,0 +1,90 @@
+---
+title: Scribble Circle
+date: 2026-09-09
+description: A hand-drawn scribble that draws itself around a word when it scrolls into view — circle, underline, box, or highlight.
+author: MihirJaiswal
+published: true
+tags: ["Typography", "Interactive"]
+---
+
+<ComponentPreview name="scribble-circle-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nyxui.com/r/scribble-circle.json"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies.</Step>
+
+```bash
+npm install motion
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="scribble-circle" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Examples
+
+### Circle
+
+<ComponentPreview name="scribble-circle-demo1" />
+
+### Custom Color
+
+Pass `stroke` and `strokeWidth` to pick your own pen.
+
+<ComponentPreview name="scribble-circle-demo2" />
+
+## Usage
+
+```tsx
+import { ScribbleCircle } from "@/components/ui/scribble-circle";
+```
+
+```tsx
+<h1>
+  Stream every <ScribbleCircle word="Episode" /> the same hour it airs
+</h1>
+```
+
+Pick a different look with `variant`:
+
+```tsx
+<ScribbleCircle word="underline" variant="underline" />
+<ScribbleCircle word="box" variant="box" />
+<ScribbleCircle word="highlight" variant="highlight" />
+```
+
+## Props
+
+| Prop          | Type                                              | Default      | Description                               |
+| ------------- | ------------------------------------------------- | ------------ | ----------------------------------------- |
+| `word`        | `string`                                          | **Required** | The word to scribble around.              |
+| `variant`     | `"circle" \| "underline" \| "box" \| "highlight"` | `"circle"`   | Scribble shape.                           |
+| `stroke`      | `string`                                          | `"#FACC15"`  | Pen color (any CSS color).                |
+| `strokeWidth` | `number`                                          | `3`          | Pen width in pixels (not on `highlight`). |
+| `className`   | `string`                                          | `""`         | Extra classes on the wrapping span.       |

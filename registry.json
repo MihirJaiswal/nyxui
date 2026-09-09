@@ -15,6 +15,56 @@
       "cssVars": {}
     },
     {
+      "name": "pop-text",
+      "type": "registry:ui",
+      "title": "Pop Text",
+      "description": "A heading whose letters swell when hovered — the hovered letter is boldest and the effect fades across its neighbors.",
+      "files": [
+        {
+          "path": "registry/ui/pop-text.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/pop-text.tsx"
+        }
+      ],
+      "css": {
+        ".pop-text-letter": {
+          "transition": "0.35s font-weight, 0.35s color"
+        },
+        ".pop-text-letter:hover": {
+          "font-weight": "900",
+          "color": "var(--pop-text-hover, #e0e7ff)"
+        },
+        ".pop-text-letter:hover + .pop-text-letter": {
+          "font-weight": "500",
+          "color": "color-mix(in srgb, var(--pop-text-hover, #e0e7ff) 50%, currentColor)"
+        },
+        ".pop-text-letter:hover + .pop-text-letter + .pop-text-letter": {
+          "font-weight": "300"
+        },
+        ".pop-text-letter:has(+ .pop-text-letter:hover)": {
+          "font-weight": "500",
+          "color": "color-mix(in srgb, var(--pop-text-hover, #e0e7ff) 50%, currentColor)"
+        },
+        ".pop-text-letter:has(+ .pop-text-letter + .pop-text-letter:hover)": {
+          "font-weight": "300"
+        }
+      }
+    },
+    {
+      "name": "scribble-circle",
+      "type": "registry:ui",
+      "title": "Scribble Circle",
+      "description": "Draws a hand-drawn circle around a word when it scrolls into view. Useful for highlighting key phrases in headings.",
+      "dependencies": ["motion"],
+      "files": [
+        {
+          "path": "registry/ui/scribble-circle.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/scribble-circle.tsx"
+        }
+      ]
+    },
+    {
       "name": "accordion",
       "type": "registry:ui",
       "title": "Accordion",
@@ -616,6 +666,118 @@
       ]
     },
     {
+      "name": "morphing-navigation-demo",
+      "type": "registry:example",
+      "title": "Morphing Navigation Demo",
+      "description": "Example showing a hover-driven navigation dropdown with directional slide animations.",
+      "registryDependencies": ["https://nyxui.com/r/morphing-navigation.json"],
+      "files": [
+        {
+          "path": "registry/example/morphing-navigation-demo.tsx",
+          "type": "registry:example",
+          "target": "components/morphing-navigation-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "clip-path-links-demo",
+      "type": "registry:example",
+      "title": "Clip Path Links Demo",
+      "description": "Example showing a grid of link tiles with directional clip-path wipe animations.",
+      "registryDependencies": ["https://nyxui.com/r/clip-path-links.json"],
+      "files": [
+        {
+          "path": "registry/example/clip-path-links-demo.tsx",
+          "type": "registry:example",
+          "target": "components/clip-path-links-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "hover-image-links-demo",
+      "type": "registry:example",
+      "title": "Hover Image Links Demo",
+      "description": "Example showing link rows that scatter their heading letters and reveal a floating image on hover.",
+      "registryDependencies": ["https://nyxui.com/r/hover-image-links.json"],
+      "files": [
+        {
+          "path": "registry/example/hover-image-links-demo.tsx",
+          "type": "registry:example",
+          "target": "components/hover-image-links-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "pop-text-demo",
+      "type": "registry:example",
+      "title": "Pop Text Demo",
+      "description": "Example showing letters that swell when hovered.",
+      "registryDependencies": ["https://nyxui.com/r/pop-text.json"],
+      "files": [
+        {
+          "path": "registry/example/pop-text-demo.tsx",
+          "type": "registry:example",
+          "target": "components/pop-text-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "pop-text-demo1",
+      "type": "registry:example",
+      "title": "Pop Text Custom Demo",
+      "description": "A stylized rose-colored pop-text example.",
+      "registryDependencies": ["https://nyxui.com/r/pop-text.json"],
+      "files": [
+        {
+          "path": "registry/example/pop-text-demo1.tsx",
+          "type": "registry:example",
+          "target": "components/pop-text-demo1.tsx"
+        }
+      ]
+    },
+    {
+      "name": "scribble-circle-demo",
+      "type": "registry:example",
+      "title": "Scribble Circle Variants Demo",
+      "description": "Example showing circle, underline, box and highlight scribbles in one heading.",
+      "registryDependencies": ["https://nyxui.com/r/scribble-circle.json"],
+      "files": [
+        {
+          "path": "registry/example/scribble-circle-demo.tsx",
+          "type": "registry:example",
+          "target": "components/scribble-circle-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "scribble-circle-demo1",
+      "type": "registry:example",
+      "title": "Scribble Circle Demo",
+      "description": "Example showing a hand-drawn circle drawn around a word in a heading.",
+      "registryDependencies": ["https://nyxui.com/r/scribble-circle.json"],
+      "files": [
+        {
+          "path": "registry/example/scribble-circle-demo1.tsx",
+          "type": "registry:example",
+          "target": "components/scribble-circle-demo1.tsx"
+        }
+      ]
+    },
+    {
+      "name": "scribble-circle-demo2",
+      "type": "registry:example",
+      "title": "Scribble Circle Custom Color Demo",
+      "description": "Example showing a hand-drawn circle with custom stroke color and width.",
+      "registryDependencies": ["https://nyxui.com/r/scribble-circle.json"],
+      "files": [
+        {
+          "path": "registry/example/scribble-circle-demo2.tsx",
+          "type": "registry:example",
+          "target": "components/scribble-circle-demo2.tsx"
+        }
+      ]
+    },
+    {
       "name": "animated-code-block-demo",
       "type": "registry:example",
       "title": "Animated Code Block Demo",
@@ -1211,6 +1373,48 @@
         {
           "path": "registry/lib/utils.ts",
           "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "hover-image-links",
+      "type": "registry:ui",
+      "title": "Hover Image Links",
+      "description": "A link list where hovering rows scatters the heading letters and reveals a floating image that chases the cursor.",
+      "dependencies": ["motion", "lucide-react"],
+      "files": [
+        {
+          "path": "registry/blocks/hover-image-links.tsx",
+          "type": "registry:ui",
+          "target": "components/blocks/hover-image-links.tsx"
+        }
+      ]
+    },
+    {
+      "name": "clip-path-links",
+      "type": "registry:ui",
+      "title": "Clip Path Links",
+      "description": "A grid of link tiles with a directional clip-path wipe that follows the cursor's entry and exit edge.",
+      "dependencies": ["motion", "lucide-react"],
+      "files": [
+        {
+          "path": "registry/blocks/clip-path-links.tsx",
+          "type": "registry:ui",
+          "target": "components/blocks/clip-path-links.tsx"
+        }
+      ]
+    },
+    {
+      "name": "morphing-navigation",
+      "type": "registry:ui",
+      "title": "Morphing Navigation",
+      "description": "A hover-driven navigation dropdown with directional slide animations between tab panels.",
+      "dependencies": ["motion", "lucide-react"],
+      "files": [
+        {
+          "path": "registry/blocks/morphing-navigation.tsx",
+          "type": "registry:ui",
+          "target": "components/blocks/morphing-navigation.tsx"
         }
       ]
     },

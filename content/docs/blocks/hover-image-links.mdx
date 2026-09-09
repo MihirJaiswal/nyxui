@@ -1,0 +1,99 @@
+---
+title: Hover Image Links
+date: 2026-09-09
+description: A link list where hovering rows scatters the heading letters and reveals a floating image that chases the cursor.
+author: MihirJaiswal
+published: true
+tags: ["Navigation", "Links", "Interactive"]
+---
+
+<ComponentPreview name="hover-image-links-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nyxui.com/r/hover-image-links.json"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies.</Step>
+
+```bash
+npm install motion lucide-react
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="hover-image-links" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import {
+  HoverImageLink,
+  HoverImageLinks,
+} from "@/components/blocks/hover-image-links";
+```
+
+### Basic Usage
+
+```tsx
+<HoverImageLinks>
+  <HoverImageLink
+    heading="Seasonal"
+    subheading="Simulcast titles airing right now"
+    imgSrc="/images/seasonal.jpg"
+    href="/seasonal"
+  />
+  <HoverImageLink
+    heading="Studios"
+    subheading="Browse by animation studio"
+    imgSrc="/images/studios.jpg"
+    href="/studios"
+  />
+</HoverImageLinks>
+```
+
+## API
+
+### `<HoverImageLinks>`
+
+Dark section wrapper.
+
+| Prop        | Type        | Default | Description                   |
+| ----------- | ----------- | ------- | ----------------------------- |
+| `children`  | `ReactNode` | —       | `<HoverImageLink>` children.  |
+| `className` | `string?`   | —       | Extra classes on the section. |
+
+### `<HoverImageLink>`
+
+A single row. On hover the heading letters scatter apart one by one, a thumbnail appears and follows the cursor with springy easing, and an arrow fades in from the right.
+
+| Prop         | Type      | Default | Description                                                     |
+| ------------ | --------- | ------- | --------------------------------------------------------------- |
+| `heading`    | `string`  | —       | Big label. Each letter animates independently on hover.         |
+| `subheading` | `string`  | —       | Smaller label underneath.                                       |
+| `imgSrc`     | `string`  | —       | Thumbnail source. Rendered as a springy overlay while hovering. |
+| `href`       | `string?` | `"#"`   | Link target.                                                    |
+| `className`  | `string?` | —       | Extra classes on the row anchor.                                |
