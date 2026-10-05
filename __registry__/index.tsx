@@ -1339,22 +1339,4 @@ export const Index: Record<string, RegistryEntry> = {
     }),
     meta: undefined,
   },
-  footer: {
-    name: "footer",
-    description:
-      "A modern footer with responsive accordion navigation, social links and a large wordmark.",
-    type: "registry:ui",
-    registryDependencies: ["accordion"],
-    files: [
-      {
-        path: "registry/blocks/footer.tsx",
-        type: "registry:ui",
-      },
-    ],
-    component: React.lazy(async () => {
-      const mod = (await import("@/registry/blocks/footer")) as RegistryModule;
-      return { default: pickRegistryComponent(mod, "footer") };
-    }),
-    meta: undefined,
-  },
 };
