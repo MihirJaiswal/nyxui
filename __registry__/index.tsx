@@ -39,6 +39,60 @@ function pickRegistryComponent(
 }
 
 export const Index: Record<string, RegistryEntry> = {
+  "flip-text": {
+    name: "flip-text",
+    description:
+      "Splits text into characters that roll up and away on hover while a duplicate layer flips in from below, staggered letter by letter.",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [
+      {
+        path: "registry/ui/flip-text.tsx",
+        type: "registry:ui",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import("@/registry/ui/flip-text")) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "flip-text") };
+    }),
+    meta: undefined,
+  },
+  "pop-text": {
+    name: "pop-text",
+    description:
+      "A heading whose letters swell when hovered — the hovered letter is boldest and the effect fades across its neighbors.",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [
+      {
+        path: "registry/ui/pop-text.tsx",
+        type: "registry:ui",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import("@/registry/ui/pop-text")) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "pop-text") };
+    }),
+    meta: undefined,
+  },
+  scribble: {
+    name: "scribble",
+    description:
+      "Hand-drawn scribble that draws itself around a word — circle, underline, box, or highlight.",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [
+      {
+        path: "registry/ui/scribble.tsx",
+        type: "registry:ui",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import("@/registry/ui/scribble")) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "scribble") };
+    }),
+    meta: undefined,
+  },
   accordion: {
     name: "accordion",
     description:
@@ -511,11 +565,325 @@ export const Index: Record<string, RegistryEntry> = {
     }),
     meta: undefined,
   },
+  "halo-ring": {
+    name: "halo-ring",
+    description:
+      "Rotating conic-gradient border with a soft inner glow halo, for AI-brand card treatments.",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [
+      {
+        path: "registry/ui/halo-ring.tsx",
+        type: "registry:ui",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import("@/registry/ui/halo-ring")) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "halo-ring") };
+    }),
+    meta: undefined,
+  },
+  "shining-card": {
+    name: "shining-card",
+    description:
+      "A 3D mouse-tilt card with a sheen overlay that follows the cursor.",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [
+      {
+        path: "registry/ui/shining-card.tsx",
+        type: "registry:ui",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/ui/shining-card"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "shining-card") };
+    }),
+    meta: undefined,
+  },
+  "typing-words": {
+    name: "typing-words",
+    description:
+      "A typing headline that cycles words letter-by-letter with a 3D blur flip and a color-shifting caret.",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [
+      {
+        path: "registry/ui/typing-words.tsx",
+        type: "registry:ui",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/ui/typing-words"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "typing-words") };
+    }),
+    meta: undefined,
+  },
+  "logo-cycle": {
+    name: "logo-cycle",
+    description:
+      "A grid of logo cells where two pill-mounted logos counter-rotate past each other, swapping top and bottom.",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [
+      {
+        path: "registry/ui/logo-cycle.tsx",
+        type: "registry:ui",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import("@/registry/ui/logo-cycle")) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "logo-cycle") };
+    }),
+    meta: undefined,
+  },
+  "shuffle-loader": {
+    name: "shuffle-loader",
+    description:
+      "A row of white blocks that continuously swap places with a lift-drop animation.",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [
+      {
+        path: "registry/ui/shuffle-loader.tsx",
+        type: "registry:ui",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/ui/shuffle-loader"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "shuffle-loader") };
+    }),
+    meta: undefined,
+  },
+  "ascii-text": {
+    name: "ascii-text",
+    description:
+      "Renders text as animated ASCII block letters, with wave, scan, glitch, typewriter and pulse modes.",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [
+      {
+        path: "registry/ui/ascii-text.tsx",
+        type: "registry:ui",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import("@/registry/ui/ascii-text")) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "ascii-text") };
+    }),
+    meta: undefined,
+  },
+  "liquid-metal-button": {
+    name: "liquid-metal-button",
+    description:
+      "A pill button ringed by a flowing liquid-metal shader, with a click ripple and a CSS fallback when WebGL is unavailable.",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [
+      {
+        path: "registry/ui/liquid-metal-button.tsx",
+        type: "registry:ui",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/ui/liquid-metal-button"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "liquid-metal-button") };
+    }),
+    meta: undefined,
+  },
+  "ascii-text-demo": {
+    name: "ascii-text-demo",
+    description:
+      "Gallery of Ascii Text animation modes. Click any card to copy its JSX.",
+    type: "registry:example",
+    registryDependencies: ["https://nyxui.com/r/ascii-text.json"],
+    files: [
+      {
+        path: "registry/example/ascii-text-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/example/ascii-text-demo"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "ascii-text-demo") };
+    }),
+    meta: undefined,
+  },
+  "liquid-metal-button-demo": {
+    name: "liquid-metal-button-demo",
+    description:
+      "Gallery of Liquid Metal Button variants. Click any card to copy its JSX.",
+    type: "registry:example",
+    registryDependencies: ["https://nyxui.com/r/liquid-metal-button.json"],
+    files: [
+      {
+        path: "registry/example/liquid-metal-button-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/example/liquid-metal-button-demo"
+      )) as RegistryModule;
+      return {
+        default: pickRegistryComponent(mod, "liquid-metal-button-demo"),
+      };
+    }),
+    meta: undefined,
+  },
+  "halo-ring-demo": {
+    name: "halo-ring-demo",
+    description:
+      "Example of an AI chat card wrapped in a rotating conic gradient halo.",
+    type: "registry:example",
+    registryDependencies: ["https://nyxui.com/r/halo-ring.json"],
+    files: [
+      {
+        path: "registry/example/halo-ring-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/example/halo-ring-demo"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "halo-ring-demo") };
+    }),
+    meta: undefined,
+  },
+  "flip-text-demo": {
+    name: "flip-text-demo",
+    description:
+      "Example showing links whose characters flip away and back in on hover.",
+    type: "registry:example",
+    registryDependencies: ["https://nyxui.com/r/flip-text.json"],
+    files: [
+      {
+        path: "registry/example/flip-text-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/example/flip-text-demo"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "flip-text-demo") };
+    }),
+    meta: undefined,
+  },
+  "pop-text-demo": {
+    name: "pop-text-demo",
+    description: "Example showing letters that swell when hovered.",
+    type: "registry:example",
+    registryDependencies: ["https://nyxui.com/r/pop-text.json"],
+    files: [
+      {
+        path: "registry/example/pop-text-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/example/pop-text-demo"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "pop-text-demo") };
+    }),
+    meta: undefined,
+  },
+  "pop-text-demo1": {
+    name: "pop-text-demo1",
+    description: "A stylized rose-colored pop-text example.",
+    type: "registry:example",
+    registryDependencies: ["https://nyxui.com/r/pop-text.json"],
+    files: [
+      {
+        path: "registry/example/pop-text-demo1.tsx",
+        type: "registry:example",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/example/pop-text-demo1"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "pop-text-demo1") };
+    }),
+    meta: undefined,
+  },
+  "scribble-demo": {
+    name: "scribble-demo",
+    description:
+      "Example showing circle, underline, box and highlight scribbles in one heading.",
+    type: "registry:example",
+    registryDependencies: ["https://nyxui.com/r/scribble.json"],
+    files: [
+      {
+        path: "registry/example/scribble-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/example/scribble-demo"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "scribble-demo") };
+    }),
+    meta: undefined,
+  },
+  "scribble-demo1": {
+    name: "scribble-demo1",
+    description:
+      "Example showing a hand-drawn circle drawn around a word in a heading.",
+    type: "registry:example",
+    registryDependencies: ["https://nyxui.com/r/scribble.json"],
+    files: [
+      {
+        path: "registry/example/scribble-demo1.tsx",
+        type: "registry:example",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/example/scribble-demo1"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "scribble-demo1") };
+    }),
+    meta: undefined,
+  },
+  "scribble-demo2": {
+    name: "scribble-demo2",
+    description:
+      "Example showing a hand-drawn circle with custom stroke color and width.",
+    type: "registry:example",
+    registryDependencies: ["https://nyxui.com/r/scribble.json"],
+    files: [
+      {
+        path: "registry/example/scribble-demo2.tsx",
+        type: "registry:example",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/example/scribble-demo2"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "scribble-demo2") };
+    }),
+    meta: undefined,
+  },
   "animated-code-block-demo": {
     name: "animated-code-block-demo",
     description: "Example showing a code block with typing animation effects.",
     type: "registry:example",
-    registryDependencies: ["https://nyxui.com/r/animated-code-block"],
+    registryDependencies: ["https://nyxui.com/r/animated-code-block.json"],
     files: [
       {
         path: "registry/example/animated-code-block-demo.tsx",
@@ -536,7 +904,7 @@ export const Index: Record<string, RegistryEntry> = {
     name: "animated-code-block-demo1",
     description: "Example showing the code block with the parchment theme.",
     type: "registry:example",
-    registryDependencies: ["https://nyxui.com/r/animated-code-block"],
+    registryDependencies: ["https://nyxui.com/r/animated-code-block.json"],
     files: [
       {
         path: "registry/example/animated-code-block-demo1.tsx",
@@ -557,7 +925,7 @@ export const Index: Record<string, RegistryEntry> = {
     name: "animated-code-block-demo2",
     description: "Example showing the code block with the terminal theme.",
     type: "registry:example",
-    registryDependencies: ["https://nyxui.com/r/animated-code-block"],
+    registryDependencies: ["https://nyxui.com/r/animated-code-block.json"],
     files: [
       {
         path: "registry/example/animated-code-block-demo2.tsx",
@@ -578,7 +946,7 @@ export const Index: Record<string, RegistryEntry> = {
     name: "animated-code-block-demo3",
     description: "Example showing the code block with the minimal theme.",
     type: "registry:example",
-    registryDependencies: ["https://nyxui.com/r/animated-code-block"],
+    registryDependencies: ["https://nyxui.com/r/animated-code-block.json"],
     files: [
       {
         path: "registry/example/animated-code-block-demo3.tsx",
@@ -599,7 +967,7 @@ export const Index: Record<string, RegistryEntry> = {
     name: "grainy-background-demo",
     description: "Example showing an animated grainy background.",
     type: "registry:example",
-    registryDependencies: ["https://nyxui.com/r/grainy-background"],
+    registryDependencies: ["https://nyxui.com/r/grainy-background.json"],
     files: [
       {
         path: "registry/example/grainy-background-demo.tsx",
@@ -619,7 +987,7 @@ export const Index: Record<string, RegistryEntry> = {
     description:
       "Example showing a dark aurora grainy background used as a hero section with headline and CTAs.",
     type: "registry:example",
-    registryDependencies: ["https://nyxui.com/r/grainy-background"],
+    registryDependencies: ["https://nyxui.com/r/grainy-background.json"],
     files: [
       {
         path: "registry/example/grainy-background-demo1.tsx",
@@ -631,26 +999,6 @@ export const Index: Record<string, RegistryEntry> = {
         "@/registry/example/grainy-background-demo1"
       )) as RegistryModule;
       return { default: pickRegistryComponent(mod, "grainy-background-demo1") };
-    }),
-    meta: undefined,
-  },
-  "grainy-background-demo2": {
-    name: "grainy-background-demo2",
-    description:
-      "Example showing mesh grainy backgrounds used in a pricing card layout.",
-    type: "registry:example",
-    registryDependencies: ["https://nyxui.com/r/grainy-background"],
-    files: [
-      {
-        path: "registry/example/grainy-background-demo2.tsx",
-        type: "registry:example",
-      },
-    ],
-    component: React.lazy(async () => {
-      const mod = (await import(
-        "@/registry/example/grainy-background-demo2"
-      )) as RegistryModule;
-      return { default: pickRegistryComponent(mod, "grainy-background-demo2") };
     }),
     meta: undefined,
   },
@@ -1319,6 +1667,82 @@ export const Index: Record<string, RegistryEntry> = {
         "@/registry/example/3d-layered-card-demo"
       )) as RegistryModule;
       return { default: pickRegistryComponent(mod, "3d-layered-card-demo") };
+    }),
+    meta: undefined,
+  },
+  "shining-card-demo": {
+    name: "shining-card-demo",
+    description: "Example of Shining Card.",
+    type: "registry:example",
+    registryDependencies: ["https://nyxui.com/r/shining-card.json"],
+    files: [
+      {
+        path: "registry/example/shining-card-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/example/shining-card-demo"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "shining-card-demo") };
+    }),
+    meta: undefined,
+  },
+  "typing-words-demo": {
+    name: "typing-words-demo",
+    description: "Example of Typing Words.",
+    type: "registry:example",
+    registryDependencies: ["https://nyxui.com/r/typing-words.json"],
+    files: [
+      {
+        path: "registry/example/typing-words-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/example/typing-words-demo"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "typing-words-demo") };
+    }),
+    meta: undefined,
+  },
+  "logo-cycle-demo": {
+    name: "logo-cycle-demo",
+    description: "Example of Logo Cycle.",
+    type: "registry:example",
+    registryDependencies: ["https://nyxui.com/r/logo-cycle.json"],
+    files: [
+      {
+        path: "registry/example/logo-cycle-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/example/logo-cycle-demo"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "logo-cycle-demo") };
+    }),
+    meta: undefined,
+  },
+  "shuffle-loader-demo": {
+    name: "shuffle-loader-demo",
+    description: "Example of Shuffle Loader.",
+    type: "registry:example",
+    registryDependencies: ["https://nyxui.com/r/shuffle-loader.json"],
+    files: [
+      {
+        path: "registry/example/shuffle-loader-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = (await import(
+        "@/registry/example/shuffle-loader-demo"
+      )) as RegistryModule;
+      return { default: pickRegistryComponent(mod, "shuffle-loader-demo") };
     }),
     meta: undefined,
   },

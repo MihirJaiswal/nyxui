@@ -19,9 +19,7 @@ interface GlassContainerProps {
   specularIntensity?: number;
 }
 
-export const GlassContainer: React.FC<
-  GlassContainerProps & React.HTMLAttributes<HTMLDivElement>
-> = memo(
+export const GlassContainer = memo(
   ({
     children,
     className = "",
@@ -39,7 +37,7 @@ export const GlassContainer: React.FC<
     innerGlowOpacity = 1,
     specularIntensity = 0.4,
     ...props
-  }) => {
+  }: GlassContainerProps & React.HTMLAttributes<HTMLDivElement>) => {
     const variantConfig = {
       default: { blur: 20, opacity: 0.25 },
       prominent: { blur: 30, opacity: 0.35 },

@@ -1,0 +1,78 @@
+---
+title: "Typing Words"
+date: 2026-09-12
+description: A typing headline that cycles words letter-by-letter with a 3D blur flip.
+author: MihirJaiswal
+published: true
+tags: ["Text Animation", "Animation"]
+---
+
+<ComponentPreview name="typing-words-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nyxui.com/r/typing-words.json"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies.</Step>
+
+```bash
+npm install motion
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="typing-words" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { TypingWords } from "@/components/ui/typing-words";
+```
+
+```tsx
+<h1 className="text-5xl font-bold">
+  Ship faster with{" "}
+  <TypingWords
+    words={["less code", "clean design", "pure motion", "zero config"]}
+    startIndex={1}
+    typingSpeed={70}
+    deletingSpeed={35}
+  />
+</h1>
+```
+
+## Props
+
+| Prop                | Type       | Default       | Description                                                 |
+| ------------------- | ---------- | ------------- | ----------------------------------------------------------- |
+| `words`             | `string[]` | —             | Words the headline cycles through.                          |
+| `startIndex`        | `number`   | `0`           | Index of the word the cycle starts at.                      |
+| `typingSpeed`       | `number`   | `50`          | Time between each typed character, in ms.                   |
+| `deletingSpeed`     | `number`   | `typingSpeed` | Time between each deleted character, in ms.                 |
+| `pauseAtEnd`        | `number`   | `1000`        | How long the fully-typed word holds before deleting, in ms. |
+| `characterDuration` | `number`   | `0.3`         | Per-character reveal duration, in seconds.                  |
+| `className`         | `string`   | —             | Extra classes on the animated span.                         |

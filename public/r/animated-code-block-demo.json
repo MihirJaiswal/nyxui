@@ -5,7 +5,7 @@
   "title": "Animated Code Block Demo",
   "description": "Example showing a code block with typing animation effects.",
   "dependencies": ["motion", "lucide-react", "prismjs"],
-  "registryDependencies": ["https://nyxui.com/r/animated-code-block"],
+  "registryDependencies": ["https://nyxui.com/r/animated-code-block.json"],
   "files": [
     {
       "path": "registry/example/animated-code-block-demo.tsx",

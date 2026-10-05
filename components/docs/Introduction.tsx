@@ -16,7 +16,7 @@ export default function IntroductionPage() {
         <p className="mb-3 text-xs font-medium tracking-wide text-[#FF4F11] uppercase">
           Introduction
         </p>
-        <h1 className="text-4xl font-bold tracking-tight mb-5">
+        <h1 className="mb-5 scroll-m-20 text-3xl font-bold tracking-tight wrap-break-word sm:text-4xl">
           What is Nyx UI?
         </h1>
         <p className="leading-relaxed text-muted-foreground">

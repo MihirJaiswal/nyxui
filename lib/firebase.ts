@@ -1,4 +1,5 @@
-import { initializeApp } from "firebase/app";
+import { getApp, getApps, initializeApp } from "firebase/app";
+import { getAuth, type Auth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -11,9 +12,31 @@ const firebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
-const app = initializeApp(firebaseConfig);
+// Guard against re-initializing across hot reloads and route handlers.
+const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
 
 // Firestore
 export const db = getFirestore(app);
+
+/**
+ * Google sign-in for Pro access.
+ *
+ * Lazy on purpose: `getAuth` validates the API key eagerly, so importing it
+ * at module scope would break every server route that only wants Firestore
+ * (and any build where the client keys aren't present).
+ */
+let authInstance: Auth | null = null;
+
+export function getFirebaseAuth(): Auth {
+  authInstance ??= getAuth(app);
+  return authInstance;
+}
+
+/**
+ * Whether client-side Firebase is configured. Without keys — a fresh clone,
+ * or a preview build with no env — sign-in is simply unavailable rather than
+ * throwing and taking the page down with it.
+ */
+export const firebaseEnabled = Boolean(firebaseConfig.apiKey);
 
 export default app;

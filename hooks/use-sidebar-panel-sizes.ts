@@ -30,10 +30,17 @@ export const useSidebarPanelSizes = (
   } | null>(null);
 
   useLayoutEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-
+    // Read the ref inside update() rather than capturing it once. Capturing it
+    // meant that if the effect ever ran while the ref was still null — which
+    // happens on React's StrictMode remount, where the cleanup disconnects the
+    // observer before the ref is reattached — the effect bailed out early and
+    // left nothing observing anything for the rest of the session. The symptom
+    // was that the sidebar never re-measured on window resize, so it kept a
+    // stale percentage and its pixel width scaled with the viewport.
     const update = () => {
+      const el = containerRef.current;
+      if (!el) return;
+
       const total = el.offsetWidth;
       if (total > 0) {
         const px = getSidebarPx();
@@ -43,13 +50,21 @@ export const useSidebarPanelSizes = (
     };
 
     update();
-    const ro = new ResizeObserver(update);
-    ro.observe(el);
 
+    // The observer is the precise signal (it catches container changes that do
+    // not come from the window, like the sidebar being collapsed). The window
+    // listener is the safety net for the case above.
+    const el = containerRef.current;
+    const ro = new ResizeObserver(update);
+    if (el) ro.observe(el);
+
+    window.addEventListener("resize", update);
     const mq = window.matchMedia(XL_MQ);
     mq.addEventListener("change", update);
+
     return () => {
       ro.disconnect();
+      window.removeEventListener("resize", update);
       mq.removeEventListener("change", update);
     };
   }, [containerRef]);

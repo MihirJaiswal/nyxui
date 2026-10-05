@@ -2,9 +2,9 @@ import { InstallCommandCopy } from "./InstallCommandCopy";
 
 export function LandingFeatureGrid(): React.ReactElement {
   return (
-    <div className="relative left-1/2 w-screen -translate-x-1/2 border-b border-border/60">
+    <div className="relative left-1/2 w-screen -translate-x-1/2 border-y border-border/60">
       <ul className="relative mx-auto grid max-w-295 divide-y divide-border/60 md:grid-cols-3 sm:divide-x sm:divide-y-0">
-        <li className="order-2 flex flex-col items-center justify-center gap-3 px-6 py-10 text-center border-l md:order-1">
+        <li className="order-2 flex flex-col items-center justify-center gap-3 px-6 py-10 text-center md:order-1">
           <div className="rounded-full p-2.5">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -33,7 +33,7 @@ export function LandingFeatureGrid(): React.ReactElement {
           <InstallCommandCopy />
         </li>
 
-        <li className="order-3 flex flex-col items-center justify-center gap-3 px-6 py-10 text-center border-r border-border/60">
+        <li className="order-3 flex flex-col items-center justify-center gap-3 px-6 py-10 text-center">
           <div className="rounded-full p-2.5">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img

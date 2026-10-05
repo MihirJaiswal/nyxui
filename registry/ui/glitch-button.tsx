@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useRef } from "react";
-import { twMerge } from "tailwind-merge";
+import { cn } from "@/lib/utils";
 
 interface GlitchButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -15,7 +15,7 @@ interface GlitchButtonProps
   borderColor?: string;
 }
 
-export const GlitchButton: React.FC<GlitchButtonProps> = ({
+export function GlitchButton({
   children,
   className = "",
   glitchOnHover = true,
@@ -26,7 +26,7 @@ export const GlitchButton: React.FC<GlitchButtonProps> = ({
   },
   borderColor = "white",
   ...props
-}) => {
+}: GlitchButtonProps) {
   const [isHovering, setIsHovering] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -55,7 +55,7 @@ export const GlitchButton: React.FC<GlitchButtonProps> = ({
     setTimeout(() => setIsClicked(false), 500);
   };
 
-  const containerClasses = twMerge(
+  const containerClasses = cn(
     "relative cursor-pointer font-mono overflow-hidden",
     "text-4xl",
     "bg-gray-900",
@@ -174,4 +174,4 @@ export const GlitchButton: React.FC<GlitchButtonProps> = ({
       )}
     </button>
   );
-};
+}

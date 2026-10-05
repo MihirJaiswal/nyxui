@@ -1,5 +1,5 @@
 import { componentsData } from "@/registry/Data";
-import { ComponentCard } from "@/components/components/gallery/ComponentCard";
+import ComponentGrid from "@/components/components/gallery/ComponentGrid";
 import type { Metadata } from "next";
 import { absoluteUrl } from "@/lib/utils";
 import { categoryHref, tagToSlug } from "@/lib/links";
@@ -21,46 +21,23 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
   if (!decodedCategory) {
     return (
-      <div className="container mx-auto py-8">
-        <h1 className="text-3xl font-bold mb-6 text-red-500">
-          Error: Category parameter is missing
-        </h1>
+      <div>
+        <p className="text-muted-foreground">Category not found.</p>
       </div>
     );
   }
 
-  const displayCategory =
-    decodedCategory.charAt(0).toUpperCase() + decodedCategory.slice(1);
-
-  const filteredComponents = Object.entries(componentsData.components).filter(
-    ([, component]) =>
-      component.tags.some(
-        (tag) => tag.toLowerCase() === decodedCategory.toLowerCase(),
-      ),
+  const hasAny = Object.values(componentsData.components).some((c) =>
+    c.tags.some((t) => t.toLowerCase() === decodedCategory.toLowerCase()),
   );
 
   return (
-    <div className="container mx-auto py-8">
-      <h1 className="text-3xl font-bold mb-6 text-gray-800 dark:text-gray-100">
-        {displayCategory} Components
-      </h1>
+    <div>
+      <ComponentGrid type="components" category={decodedCategory} />
 
-      <div className="relative z-40 grid grid-cols-1 items-start gap-6 pb-12 md:grid-cols-1 lg:grid-cols-2 lg:gap-10 xl:grid-cols-2">
-        {filteredComponents.map(([slug, component]) => (
-          <ComponentCard
-            key={slug}
-            slug={slug}
-            title={component.title}
-            description={component.description}
-            imageSrc={component.image}
-            imageClassName={component.imageClassName}
-          />
-        ))}
-      </div>
-
-      {filteredComponents.length === 0 && (
+      {!hasAny && (
         <div className="text-center py-16">
-          <p className="text-xl text-gray-600 dark:text-gray-300">
+          <p className="text-xl text-muted-foreground">
             No components found in this category.
           </p>
         </div>

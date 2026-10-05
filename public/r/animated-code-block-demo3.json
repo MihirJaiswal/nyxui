@@ -5,7 +5,7 @@
   "title": "Animated Code Block Minimal Demo",
   "description": "Example showing the code block with the minimal theme.",
   "dependencies": ["motion", "lucide-react", "prismjs"],
-  "registryDependencies": ["https://nyxui.com/r/animated-code-block"],
+  "registryDependencies": ["https://nyxui.com/r/animated-code-block.json"],
   "files": [
     {
       "path": "registry/example/animated-code-block-demo3.tsx",

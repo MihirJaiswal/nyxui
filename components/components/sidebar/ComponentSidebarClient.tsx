@@ -29,13 +29,13 @@ function groupItems(
   return Array.from(grouped.entries()).sort(([a], [b]) => a.localeCompare(b));
 }
 
-export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
+export function ComponentSidebarClient({
   gettingStartedSection,
   componentItems,
   templateItems = [],
   blockItems = [],
   type = "components",
-}) => {
+}: ComponentSidebarClientProps) {
   const currentPath = usePathname();
   const [isCollapsed, setIsCollapsed] = useSidebarCollapse();
   const activeItemRef = React.useRef<HTMLAnchorElement | null>(null);
@@ -175,4 +175,4 @@ export const ComponentSidebarClient: React.FC<ComponentSidebarClientProps> = ({
       </div>
     </motion.div>
   );
-};
+}

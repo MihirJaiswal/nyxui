@@ -2,6 +2,8 @@ import { MetadataRoute } from "next";
 import { allDocs } from "content-collections";
 import { absoluteUrl } from "@/lib/utils";
 import { categoryHref, itemHref, siteLinks } from "@/lib/links";
+import { componentsData } from "@/registry/Data";
+import { blockCategoryHref, getBlockCategory } from "@/lib/links";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const date = new Date();
@@ -25,6 +27,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: date,
       changeFrequency: "daily",
       priority: 0.9,
+    },
+    {
+      url: absoluteUrl(siteLinks.blocks),
+      lastModified: date,
+      changeFrequency: "weekly",
+      priority: 0.8,
     },
     {
       url: absoluteUrl(siteLinks.templates),
@@ -95,11 +103,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }),
   );
 
+  const blockTags = new Set<string>();
+  Object.entries(componentsData.blocks).forEach(([slug, block]) => {
+    blockTags.add(getBlockCategory(slug, block.tags ?? []));
+  });
+
+  const blockCategoryPages: MetadataRoute.Sitemap = Array.from(blockTags).map(
+    (tag) => ({
+      url: absoluteUrl(blockCategoryHref(tag)),
+      lastModified: date,
+      changeFrequency: "weekly",
+      priority: 0.6,
+    }),
+  );
+
   const allPages = [
     ...mainPages,
     ...componentPages,
     ...templatePages,
     ...categoryPages,
+    ...blockCategoryPages,
   ];
 
   const uniquePages = allPages.filter(

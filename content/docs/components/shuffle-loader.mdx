@@ -1,0 +1,66 @@
+---
+title: Shuffle Loader
+date: 2026-09-13
+description: A row of white blocks that continuously swap places with a lift-drop animation.
+author: MihirJaiswal
+published: true
+tags: ["Loaders", "Animation"]
+---
+
+<ComponentPreview name="shuffle-loader-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nyxui.com/r/shuffle-loader.json"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies.</Step>
+
+```bash
+npm install motion
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="shuffle-loader" />
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { ShuffleLoader } from "@/components/ui/shuffle-loader";
+```
+
+```tsx
+<div className="grid place-content-center bg-neutral-950 p-8">
+  <ShuffleLoader />
+</div>
+```
+
+## Props
+
+| Prop        | Type     | Default | Description                                                               |
+| ----------- | -------- | ------- | ------------------------------------------------------------------------- |
+| `count`     | `number` | `5`     | Number of blocks in the row.                                              |
+| `size`      | `number` | `32`    | Width/height of each block in pixels. Also drives the lift/drop distance. |
+| `className` | `string` | —       | Classes for the outer flex container.                                     |

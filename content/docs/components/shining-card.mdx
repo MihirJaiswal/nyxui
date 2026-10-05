@@ -1,0 +1,75 @@
+---
+title: Shining Card
+date: 2026-09-13
+description: A 3D mouse-tilt card with a sheen overlay that follows the cursor.
+author: MihirJaiswal
+published: true
+tags: ["Cards", "Animation"]
+---
+
+<ComponentPreview name="shining-card-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nyxui.com/r/shining-card.json"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies.</Step>
+
+```bash
+npm install motion
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="shining-card" />
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { ShiningCard } from "@/components/ui/shining-card";
+```
+
+```tsx
+<div className="relative h-[500px] bg-neutral-100">
+  <ShiningCard imageUrl="/img.jpg" title="Hover me" />
+</div>
+```
+
+## Props
+
+| Prop                  | Type     | Default   | Description                                       |
+| --------------------- | -------- | --------- | ------------------------------------------------- |
+| `imageUrl`            | `string` | —         | Background image URL for the card.                |
+| `title`               | `string` | —         | Optional heading overlaid at the top of the card. |
+| `tiltStrength`        | `number` | `17.5`    | Maximum tilt in degrees (both axes).              |
+| `shineStrength`       | `number` | `0.5`     | Maximum shine overlay opacity (0–1).              |
+| `shineColor`          | `string` | `#d4d4d8` | Color of the shine overlay.                       |
+| `imageOverlayOpacity` | `number` | `0`       | Opacity of the dark scrim over the image (0–1).   |
+| `width`               | `number` | `320`     | Card width in px.                                 |
+| `aspectRatio`         | `string` | `"9/13"`  | CSS aspect ratio for the card.                    |
+| `perspective`         | `number` | `1500`    | Perspective in px — bigger = subtler 3D.          |
+| `className`           | `string` | —         | Classes for the perspective wrapper.              |
+| `cardClassName`       | `string` | —         | Classes for the tilted card face.                 |
+| `titleClassName`      | `string` | —         | Classes for the title label.                      |

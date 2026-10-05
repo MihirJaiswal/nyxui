@@ -7,6 +7,66 @@ import { UnistNode, UnistTree } from "@/types/unist";
 
 import Registry from "@/registry.json";
 
+function pushSourceNodes(
+  node: UnistNode,
+  files: { path: string }[],
+  event: string,
+) {
+  if (files.length > 1) {
+    node.children?.push(
+      u("element", {
+        tagName: "FileCodeViewer",
+        properties: {
+          files: files.map((file) => {
+            const source = fs.readFileSync(
+              path.join(process.cwd(), file.path),
+              "utf8",
+            );
+            return {
+              path: file.path,
+              name: file.path.split("/").pop(),
+              code: source,
+            };
+          }),
+        },
+        children: [],
+      }),
+    );
+    return;
+  }
+
+  const src = files[0].path;
+  const filePath = path.join(process.cwd(), src);
+  let source = fs.readFileSync(filePath, "utf8");
+  source = source.replaceAll("export default", "export");
+
+  node.children?.push(
+    u("element", {
+      tagName: "pre",
+      properties: {
+        __src__: src,
+      },
+      children: [
+        u("element", {
+          tagName: "code",
+          properties: {
+            className: ["language-tsx"],
+          },
+          data: {
+            meta: `event="${event}"`,
+          },
+          children: [
+            {
+              type: "text",
+              value: source,
+            },
+          ],
+        }),
+      ],
+    }),
+  );
+}
+
 export function rehypeComponent() {
   return async (tree: UnistTree) => {
     visit(tree, (node: UnistNode) => {
@@ -19,6 +79,23 @@ export function rehypeComponent() {
           | undefined;
 
         if (!name && !srcPath) {
+          return null;
+        }
+
+        // Pro items: never inline source. Render the paywall gate instead.
+        const proItem = Registry.items.find(
+          (item) => item.name === name && item.meta?.pro === true,
+        );
+        if (proItem) {
+          node.children?.push(
+            u("element", {
+              tagName: "ProCodeGate",
+              properties: {
+                name: name as string,
+              },
+              children: [],
+            }),
+          );
           return null;
         }
 
@@ -93,38 +170,21 @@ export function rehypeComponent() {
             return null;
           }
 
-          const src = component.files[0].path;
+          // Pro items: keep the live preview, gate the code tab.
+          if (component.meta?.pro === true) {
+            node.children?.push(
+              u("element", {
+                tagName: "ProCodeGate",
+                properties: {
+                  name: name as string,
+                },
+                children: [],
+              }),
+            );
+            return null;
+          }
 
-          const filePath = path.join(process.cwd(), src);
-          let source = fs.readFileSync(filePath, "utf8");
-
-          source = source.replaceAll("export default", "export");
-
-          node.children?.push(
-            u("element", {
-              tagName: "pre",
-              properties: {
-                __src__: src,
-              },
-              children: [
-                u("element", {
-                  tagName: "code",
-                  properties: {
-                    className: ["language-tsx"],
-                  },
-                  data: {
-                    meta: `event="copy_usage_code"`,
-                  },
-                  children: [
-                    {
-                      type: "text",
-                      value: source,
-                    },
-                  ],
-                }),
-              ],
-            }),
-          );
+          pushSourceNodes(node, component.files, "copy_usage_code");
         } catch (error) {
           console.error(error);
         }

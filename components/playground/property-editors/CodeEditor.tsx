@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect, useLayoutEffect, useRef } from "react";
-import { getHighlighter, type BundledLanguage } from "shiki";
-import { getNyxuiTheme, getNyxuiLightTheme } from "@/lib/shiki-themes";
+import type { BundledLanguage } from "shiki";
+import { getNyxuiHighlighter } from "@/lib/highlighter";
 import { cn } from "@/lib/utils";
 
 interface CodeEditorProps {
@@ -38,17 +38,15 @@ const CodeEditor = ({
     ta.style.height = `${next}px`;
   }, [value, maxHeight]);
 
+  // Deliberately not debounced: the textarea is text-transparent, so this
+  // highlighted <pre> is the text the user sees as they type.
   useEffect(() => {
+    let cancelled = false;
+
     const highlightCode = async () => {
       try {
-        const [darkTheme, lightTheme] = await Promise.all([
-          getNyxuiTheme(),
-          getNyxuiLightTheme(),
-        ]);
-        const highlighter = await getHighlighter({
-          themes: [darkTheme, lightTheme],
-          langs: [language as BundledLanguage],
-        });
+        const highlighter = await getNyxuiHighlighter([language]);
+        if (cancelled) return;
 
         const codeToHighlight = value || "";
         const highlighted = highlighter.codeToHtml(codeToHighlight, {
@@ -59,6 +57,7 @@ const CodeEditor = ({
         setHighlightedCode(highlighted);
         setIsLoaded(true);
       } catch (error) {
+        if (cancelled) return;
         console.error("Failed to highlight code:", error);
         // Fallback highlighting
         const codeToHighlight = value || "";
@@ -77,6 +76,12 @@ const CodeEditor = ({
     };
 
     highlightCode();
+
+    // Keystrokes outrun highlighting; without this an older result can land
+    // after a newer one and show stale text.
+    return () => {
+      cancelled = true;
+    };
   }, [value, language]);
 
   const handleScroll = () => {
@@ -126,6 +131,7 @@ const CodeEditor = ({
       {/* Textarea overlay */}
       <textarea
         ref={textareaRef}
+        aria-label={placeholder || "Code editor"}
         value={value}
         onChange={handleTextareaChange}
         onScroll={handleScroll}

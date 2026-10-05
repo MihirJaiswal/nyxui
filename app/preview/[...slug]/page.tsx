@@ -17,7 +17,7 @@ export default async function BlockPreviewPage({ params }: PreviewPageProps) {
   }
 
   return (
-    <div className="w-full h-full min-h-screen flex items-center justify-center flex-1 flex-col lg:flex-row lg:gap-8 xl:gap-0 px-6 lg:px-6 xl:px-22 xl:container mx-auto">
+    <div className="w-full h-full min-h-screen flex items-center justify-center flex-1 flex-col lg:flex-row lg:gap-8 xl:gap-0">
       <Component />
     </div>
   );

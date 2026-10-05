@@ -1,6 +1,6 @@
 import { componentsData } from "@/registry/Data";
 import { ComponentSidebarClient } from "./ComponentSidebarClient";
-import { itemHref, getComponentCategory } from "@/lib/links";
+import { itemHref, getComponentCategory, getBlockCategory } from "@/lib/links";
 import type { CategoryItem } from "@/types/sidebar";
 
 interface ComponentSidebarProps {
@@ -10,11 +10,11 @@ interface ComponentSidebarProps {
 interface SortableEntry {
   title: string;
   isNew?: boolean;
+  isPro?: boolean;
   tags?: string[];
 }
 
 const TEMPLATE_CATEGORY = "Portfolio";
-const BLOCK_CATEGORY = "Blocks";
 const DEFAULT_GETTING_STARTED_ITEM: CategoryItem = {
   name: "Introduction",
   href: "/docs",
@@ -30,15 +30,27 @@ function toSortedItems<T extends SortableEntry>(
     .sort((a, b) => a.name.localeCompare(b.name));
 }
 
+/**
+ * Sidebar labels shouldn't repeat the grouping category — items are
+ * already grouped visually, so "Text Animation: Flipping Words"
+ * collapses to "Flipping Words", "Mockup: Bank Card" to "Bank Card",
+ * etc. Titles without a colon are left untouched.
+ */
+function labelForSidebar(title: string): string {
+  const idx = title.indexOf(": ");
+  return idx === -1 ? title : title.slice(idx + 2);
+}
+
 export const ComponentSidebar = ({
   type = "components",
 }: ComponentSidebarProps) => {
   const processedComponents = toSortedItems(
     componentsData.components,
     (key, component) => ({
-      name: component.title,
+      name: labelForSidebar(component.title),
       href: itemHref("components", key),
       isNew: Boolean(component.isNew),
+      isPro: Boolean(component.isPro),
       category: getComponentCategory(component.title, component.tags),
     }),
   );
@@ -46,9 +58,10 @@ export const ComponentSidebar = ({
   const processedTemplates = toSortedItems(
     componentsData.templates,
     (key, template) => ({
-      name: template.title,
+      name: labelForSidebar(template.title),
       href: itemHref("templates", key),
       isNew: Boolean(template.isNew),
+      isPro: Boolean(template.isPro),
       category: TEMPLATE_CATEGORY,
     }),
   );
@@ -56,10 +69,11 @@ export const ComponentSidebar = ({
   const processedBlocks = toSortedItems(
     componentsData.blocks,
     (key, block) => ({
-      name: block.title,
+      name: labelForSidebar(block.title),
       href: itemHref("blocks", key),
       isNew: Boolean(block.isNew),
-      category: BLOCK_CATEGORY,
+      isPro: Boolean(block.isPro),
+      category: getBlockCategory(key, block.tags ?? []),
     }),
   );
 

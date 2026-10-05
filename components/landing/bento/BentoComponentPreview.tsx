@@ -19,7 +19,7 @@ const CustomPointerPreview = dynamic(
 );
 
 const ImageRipplePreview = dynamic(
-  () => import("@/components/home/bento/ImageRipple"),
+  () => import("@/components/landing/bento/ImageRipple"),
   { ssr: false },
 );
 

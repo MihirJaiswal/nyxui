@@ -1,0 +1,103 @@
+---
+title: Liquid Metal Button
+date: 2026-10-05
+description: A pill button ringed by a flowing liquid-metal shader, with a click ripple and a CSS fallback when WebGL is unavailable.
+author: MihirJaiswal
+published: true
+tags: ["Buttons", "Animation"]
+---
+
+<ComponentPreview name="liquid-metal-button-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nyxui.com/r/liquid-metal-button.json"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies.</Step>
+
+```bash
+npm install three
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="liquid-metal-button" />
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { LiquidMetalButton } from "@/components/ui/liquid-metal-button";
+```
+
+```tsx
+<LiquidMetalButton onClick={() => console.log("clicked")}>
+  Get Started
+</LiquidMetalButton>
+```
+
+Icon-only: make it square and give it a label, since there is no text to read.
+
+```tsx
+<LiquidMetalButton
+  className="aspect-square w-12 px-0 py-0"
+  aria-label="Get started"
+>
+  <Sparkles className="size-4" aria-hidden />
+</LiquidMetalButton>
+```
+
+Recolour the rim by passing any subset of the palette:
+
+```tsx
+<LiquidMetalButton
+  colors={{ warm: "#ff6ec7", cool: "#7af0ff", highlight: "#f5f5ff" }}
+>
+  Get Started
+</LiquidMetalButton>
+```
+
+The two tints are applied as brightness-preserving multipliers, so they shift
+the hue of the metal without lightening or darkening it — pass saturated
+colours and let `chromaticShift` control how strongly they read.
+
+## Props
+
+Accepts every standard `<button>` attribute in addition to the below.
+
+| Prop               | Type        | Default | Description                                                                                          |
+| ------------------ | ----------- | ------- | ---------------------------------------------------------------------------------------------------- |
+| `children`         | `ReactNode` | —       | Button content. Text, an icon, or both.                                                              |
+| `rimWidth`         | `number`    | `2`     | Thickness of the visible metal rim, in pixels.                                                       |
+| `repetition`       | `number`    | `2`     | Number of highlight lobes travelling around the rim. Higher is busier.                               |
+| `softness`         | `number`    | `0.3`   | Edge falloff between lobes. Low values give crisp chrome edges.                                      |
+| `chromaticShift`   | `number`    | `0.6`   | Strength of the amber/blue dispersion across the lit rim, 0 to 1.                                    |
+| `banding`          | `number`    | `0.92`  | How hard the colour bands are edged. 0 blends gold into blue smoothly; 1 gives crisp stripes.        |
+| `angle`            | `number`    | `45`    | Flow direction, in degrees.                                                                          |
+| `scale`            | `number`    | `3`     | Zoom of the lateral wash across the rim.                                                             |
+| `speed`            | `number`    | `1.8`   | Base flow speed. Hover and press scale this up.                                                      |
+| `colors`           | `object`    | —       | Palette of the rim: `shadow`, `highlight`, `warm`, `cool` as hex. Any omitted key keeps its default. |
+| `disableRipple`    | `boolean`   | `false` | Suppress the click ripple.                                                                           |
+| `surfaceClassName` | `string`    | —       | Classes for the inner pill that sits on top of the metal rim.                                        |
+| `className`        | `string`    | —       | Classes for the button itself.                                                                       |

@@ -26,7 +26,7 @@ interface CardProps {
   className?: string;
 }
 
-const RevealCard: React.FC<CardProps> = ({
+function RevealCard({
   coverImage,
   titleImage,
   characterImage,
@@ -48,7 +48,7 @@ const RevealCard: React.FC<CardProps> = ({
   priority = false,
   threshold = 0.3,
   className = "",
-}) => {
+}: CardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -212,6 +212,6 @@ const RevealCard: React.FC<CardProps> = ({
       )}
     </div>
   );
-};
+}
 
 export default RevealCard;

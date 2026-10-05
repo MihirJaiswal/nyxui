@@ -48,6 +48,8 @@ import { JsonLd } from "@/components/global/JsonLd";
 import { externalLinks } from "@/lib/links";
 import { Toaster } from "@/components/ui/sonner";
 import Navbar from "@/components/global/header/Navbar";
+import { ProAccessProvider } from "@/components/providers/pro-access-provider";
+import { ProUpsellPopup } from "@/components/global/ProUpsellPopup";
 import { ScrollProgress } from "@/components/global/ScrollProgress";
 
 export const metadata: Metadata = {
@@ -179,11 +181,14 @@ export default function RootLayout({
           enableSystem={false}
         >
           {/* <Banner /> */}
-          <div className="flex min-h-screen flex-col dark:has-data-home-page:bg-black">
-            <Navbar />
-            <main className="flex min-h-0 flex-1 flex-col">{children}</main>
-            <Footer />
-          </div>
+          <ProAccessProvider>
+            <div className="flex min-h-screen flex-col dark:has-data-home-page:bg-black">
+              <Navbar />
+              <main className="flex min-h-0 flex-1 flex-col">{children}</main>
+              <Footer />
+            </div>
+          </ProAccessProvider>
+          <ProUpsellPopup />
           <Toaster />
           <ScrollProgress />
         </ThemeProvider>

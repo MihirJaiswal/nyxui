@@ -20,7 +20,11 @@ export async function getDocFromParams(
     return null;
   }
 
-  const possibleSlugs = [`${section}/${itemSlug}`, itemSlug];
+  const possibleSlugs = [
+    `${section}/${itemSlug}`,
+    `pro/${section}/${itemSlug}`,
+    itemSlug,
+  ];
 
   return (
     allDocs.find((doc) => possibleSlugs.includes(doc.slugAsParams)) ?? null

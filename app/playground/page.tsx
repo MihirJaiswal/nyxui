@@ -1,5 +1,6 @@
 import { Metadata } from "next";
-import { absoluteUrl } from "@/lib/utils";
+import { CONTAINER } from "@/lib/layout";
+import { absoluteUrl, cn } from "@/lib/utils";
 import PlaygroundClient from "@/components/playground/playground-shell/PlaygroundClient";
 
 export const metadata: Metadata = {
@@ -49,7 +50,7 @@ export const metadata: Metadata = {
 
 export default function PlaygroundPage() {
   return (
-    <div className="mx-auto w-full max-w-345 px-6 py-6">
+    <div className={cn(CONTAINER.wide, "py-6")}>
       <PlaygroundClient />
     </div>
   );

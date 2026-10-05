@@ -1,4 +1,4 @@
-import { createHighlighter, type ThemeRegistration } from "shiki";
+import type { ThemeRegistration } from "shiki";
 
 /**
  * GitHub themes with their red (#ff7b72 / #cf222e) replaced by the NyxUI
@@ -7,6 +7,15 @@ import { createHighlighter, type ThemeRegistration } from "shiki";
  * We avoid `bundledThemes` (which does dynamic imports that break esbuild's
  * MDX pipeline at build time) and instead load the theme by name through a
  * throwaway highlighter, then clone + modify the result.
+ *
+ * NOTE: do NOT call `tmp.dispose()` on the throwaway highlighter — in shiki
+ * v2 dispose() releases the shared WASM/oniguruma engine, which poisons any
+ * subsequent highlighter in the same session and silently prevents syntax
+ * highlighting (the caller falls back to an un-styled <pre>).
+ *
+ * shiki itself is imported dynamically. A static import would pull the full
+ * bundle — the 632-language and 108-theme maps plus the oniguruma engine —
+ * into the initial chunk of every route that touches this module.
  */
 
 const BRAND_ORANGE = "#FF4F11";
@@ -46,35 +55,33 @@ function rebrand(
   } as unknown as ThemeRegistration;
 }
 
-let darkCache: ThemeRegistration | null = null;
-let lightCache: ThemeRegistration | null = null;
+async function buildTheme(
+  source: "github-dark-default" | "github-light-default",
+  replace: string,
+  name: string,
+): Promise<ThemeRegistration> {
+  const { createHighlighter } = await import("shiki");
+  const tmp = await createHighlighter({ themes: [source], langs: [] });
+  return rebrand(
+    tmp.getTheme(source) as unknown as BaseThemeShape,
+    replace,
+    name,
+  );
+}
 
-export async function getNyxuiTheme(): Promise<ThemeRegistration> {
-  if (darkCache) return darkCache;
+let darkCache: Promise<ThemeRegistration> | null = null;
+let lightCache: Promise<ThemeRegistration> | null = null;
 
-  const tmp = await createHighlighter({
-    themes: ["github-dark-default"],
-    langs: [],
-  });
-  const base = tmp.getTheme("github-dark-default") as unknown as BaseThemeShape;
-  tmp.dispose();
-
-  darkCache = rebrand(base, REPLACE_DARK, "nyxui-dark");
+export function getNyxuiTheme(): Promise<ThemeRegistration> {
+  darkCache ??= buildTheme("github-dark-default", REPLACE_DARK, "nyxui-dark");
   return darkCache;
 }
 
-export async function getNyxuiLightTheme(): Promise<ThemeRegistration> {
-  if (lightCache) return lightCache;
-
-  const tmp = await createHighlighter({
-    themes: ["github-light-default"],
-    langs: [],
-  });
-  const base = tmp.getTheme(
+export function getNyxuiLightTheme(): Promise<ThemeRegistration> {
+  lightCache ??= buildTheme(
     "github-light-default",
-  ) as unknown as BaseThemeShape;
-  tmp.dispose();
-
-  lightCache = rebrand(base, REPLACE_LIGHT, "nyxui-light");
+    REPLACE_LIGHT,
+    "nyxui-light",
+  );
   return lightCache;
 }

@@ -220,7 +220,7 @@ export const LampHeading = ({
         backgroundPosition: ["0% 50%", "200% 50%"],
         transition: {
           duration: animationSpeed,
-          ease: "linear",
+          ease: "linear" as const,
           repeat: Infinity,
         },
       },
@@ -237,7 +237,7 @@ export const LampHeading = ({
               opacity: [0.95, 1, 0.95],
               transition: {
                 duration: animationSpeed * 0.6,
-                ease: "easeInOut",
+                ease: "easeInOut" as const,
                 repeat: Infinity,
               },
             },
@@ -254,7 +254,7 @@ export const LampHeading = ({
         scaleX: [1, 1.05, 1],
         transition: {
           duration: animationSpeed * 1.2,
-          ease: "easeInOut",
+          ease: "easeInOut" as const,
           repeat: Infinity,
           staggerChildren: 0.1,
         },

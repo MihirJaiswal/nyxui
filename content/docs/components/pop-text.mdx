@@ -1,0 +1,102 @@
+---
+title: Pop Text
+date: 2026-09-09
+description: A heading whose letters swell when hovered — the hovered letter is boldest and the effect fades across its neighbors.
+author: MihirJaiswal
+published: true
+tags: ["Typography", "Interactive"]
+---
+
+<ComponentPreview name="pop-text-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nyxui.com/r/pop-text.json"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="pop-text" />
+
+<Step>Add the hover cascade to your `globals.css`.</Step>
+
+```css
+.pop-text-letter {
+  transition:
+    0.35s font-weight,
+    0.35s color;
+}
+
+.pop-text-letter:hover {
+  font-weight: 900;
+  color: var(--pop-text-hover, #e0e7ff);
+}
+
+.pop-text-letter:hover + .pop-text-letter {
+  font-weight: 500;
+  color: color-mix(in srgb, var(--pop-text-hover, #e0e7ff) 50%, currentColor);
+}
+
+.pop-text-letter:hover + .pop-text-letter + .pop-text-letter {
+  font-weight: 300;
+}
+
+.pop-text-letter:has(+ .pop-text-letter:hover) {
+  font-weight: 500;
+  color: color-mix(in srgb, var(--pop-text-hover, #e0e7ff) 50%, currentColor);
+}
+
+.pop-text-letter:has(+ .pop-text-letter + .pop-text-letter:hover) {
+  font-weight: 300;
+}
+```
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { PopText } from "@/components/ui/pop-text";
+```
+
+```tsx
+<PopText text="Binge the whole season" />
+```
+
+## Examples
+
+### Custom Color
+
+Pass `color` and `hoverColor` to pick your own palette, plus `className` for size and weight.
+
+<ComponentPreview name="pop-text-demo1" />
+
+## Props
+
+| Prop         | Type     | Default      | Description                                    |
+| ------------ | -------- | ------------ | ---------------------------------------------- |
+| `text`       | `string` | **Required** | The string to render, split into letters.      |
+| `color`      | `string` | `"#a5b4fc"`  | Base text color (any CSS color).               |
+| `hoverColor` | `string` | `"#e0e7ff"`  | Color of the hovered letter.                   |
+| `className`  | `string` | `""`         | Extra classes on the wrapping heading element. |

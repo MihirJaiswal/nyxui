@@ -1,0 +1,74 @@
+---
+title: Halo Ring
+date: 2026-09-10
+description: Rotating conic-gradient border with a soft inner glow halo, for AI-brand card treatments.
+author: MihirJaiswal
+published: true
+tags: ["Effects", "Cards"]
+---
+
+<ComponentPreview name="halo-ring-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nyxui.com/r/halo-ring.json"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies.</Step>
+
+```bash
+npm install motion lucide-react
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="halo-ring" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { HaloRing } from "@/components/ui/halo-ring";
+```
+
+```tsx
+<HaloRing className="rounded-3xl">
+  <div className="rounded-3xl bg-neutral-900 p-6">Card content</div>
+</HaloRing>
+```
+
+## Props
+
+| Prop             | Type               | Default    | Description                                                             |
+| ---------------- | ------------------ | ---------- | ----------------------------------------------------------------------- |
+| `children`       | `ReactNode`        | —          | Card content rendered inside the bordered pane.                         |
+| `speed`          | `number`           | `3`        | Seconds per full rotation.                                              |
+| `colors`         | `string[]`         | rainbow    | CSS colors for the sweep, spread evenly with alpha fades at the ends.   |
+| `gradient`       | `string?`          | —          | Full `conic-gradient(from ${turn}turn, …)` string. Overrides `colors`.  |
+| `haloRange`      | `[number, number]` | `[62, 96]` | Mask fade as `[innerStart, outerEnd]` % — lower pulls the glow tighter. |
+| `haloBlur`       | `number`           | `24`       | Halo blur radius in px.                                                 |
+| `haloOpacity`    | `number`           | `0.6`      | Halo opacity (0–1).                                                     |
+| `className`      | `string?`          | —          | Outer wrapper: radius, max width, shadow ring, etc.                     |
+| `innerClassName` | `string?`          | —          | Inner pane classes (adds bg color + padding around `children`).         |

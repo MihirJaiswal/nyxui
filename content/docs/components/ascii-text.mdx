@@ -1,0 +1,75 @@
+---
+title: Ascii Text
+date: 2026-10-06
+description: Renders text as animated ASCII block letters, with wave, scan, glitch, typewriter and pulse modes.
+author: MihirJaiswal
+published: true
+tags: ["Typography", "Animation"]
+---
+
+<ComponentPreview name="ascii-text-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nyxui.com/r/ascii-text.json"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="ascii-text" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { AsciiText } from "@/components/ui/ascii-text";
+```
+
+```tsx
+<AsciiText text="NYX UI" animation="wave" />
+```
+
+Colour is inherited, so it themes with the surrounding text unless you set it:
+
+```tsx
+<div className="text-emerald-400">
+  <AsciiText text="ONLINE" animation="scan" glow />
+</div>
+```
+
+## Props
+
+| Prop            | Type                                                                | Default    | Description                                             |
+| --------------- | ------------------------------------------------------------------- | ---------- | ------------------------------------------------------- |
+| `text`          | `string`                                                            | `"NYX UI"` | Text to render. Upper-cased automatically.              |
+| `animation`     | `"none" \| "wave" \| "glitch" \| "typewriter" \| "pulse" \| "scan"` | `"wave"`   | How the glyphs animate.                                 |
+| `speed`         | `number`                                                            | `1`        | Animation rate multiplier.                              |
+| `fontSize`      | `number`                                                            | `14`       | Glyph size in px. Ignored while `autoFit` is on.        |
+| `autoFit`       | `boolean`                                                           | `true`     | Scale the glyphs so one line fills the container width. |
+| `letterSpacing` | `number`                                                            | `2`        | Blank columns between letters.                          |
+| `color`         | `string`                                                            | —          | Any CSS colour. Defaults to the inherited text colour.  |
+| `glow`          | `boolean`                                                           | `false`    | Add a soft glow behind the glyphs.                      |
+| `ramp`          | `string`                                                            | `"░▒▓█"`   | Characters used for a lit cell, darkest to lightest.    |
+| `className`     | `string`                                                            | —          | Classes for the wrapper.                                |

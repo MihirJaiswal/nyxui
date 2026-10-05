@@ -162,7 +162,7 @@ export function ComponentBentoGrid(): React.ReactElement {
       aria-label="Featured component showcase"
       className="relative left-1/2 w-screen -translate-x-1/2"
     >
-      <div className="relative mx-auto max-w-295 border-x border-border/60">
+      <div className="relative mx-auto max-w-295 border-x border-border/60 pt-12">
         <div className="grid border-b border-border/60 md:grid-cols-2">
           <div className="px-6 sm:py-14 sm:px-10 md:px-12 md:py-18">
             <p className="mb-4 font-mono text-[10px] uppercase tracking-widest text-brand">

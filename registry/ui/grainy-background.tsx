@@ -301,7 +301,7 @@ const defaultColors = {
   dark: ["#1a1a2e", "#16213e", "#0f3460", "#533483"],
 };
 
-export const GrainyBackground: React.FC<GrainyBackgroundProps> = ({
+export function GrainyBackground({
   children,
   className,
   style,
@@ -318,7 +318,7 @@ export const GrainyBackground: React.FC<GrainyBackgroundProps> = ({
   darkMode = false,
   as = "div",
   grainBlendMode = "soft-light",
-}) => {
+}: GrainyBackgroundProps) {
   const finalColors = colors || defaultColors[darkMode ? "dark" : "light"];
   const gradient = useMemo(
     () => getGradientPattern(animationType, finalColors, darkMode),
@@ -493,4 +493,4 @@ export const GrainyBackground: React.FC<GrainyBackgroundProps> = ({
       </div>
     </MotionComponent>
   );
-};
+}

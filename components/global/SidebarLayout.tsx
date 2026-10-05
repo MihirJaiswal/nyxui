@@ -3,6 +3,7 @@
 import React from "react";
 import { ComponentSidebar } from "@/components/components/sidebar/component-sidebar";
 import { useSidebarCollapse } from "@/hooks/use-sidebar-collapse";
+import { CONTAINER } from "@/lib/layout";
 import { cn } from "@/lib/utils";
 
 interface SidebarLayoutProps {
@@ -20,7 +21,8 @@ export default function SidebarLayout({
     <div className="flex flex-1 flex-col">
       <div
         className={cn(
-          "max-w-345 mx-auto flex w-full flex-1 flex-col px-6 lg:flex-row lg:px-6 xl:mx-auto lg:gap-8",
+          CONTAINER.wide,
+          "flex flex-1 flex-col lg:flex-row lg:gap-8 xl:mx-auto",
           isCollapsed ? "xl:gap-12" : "xl:gap-24",
         )}
       >
@@ -30,7 +32,7 @@ export default function SidebarLayout({
           </div>
         </aside>
         <main className="min-w-0 flex-1">
-          <div className="mx-auto w-full py-4">{children}</div>
+          <div className="mx-auto w-full py-12">{children}</div>
         </main>
       </div>
     </div>

@@ -13,10 +13,13 @@ import TemplateFeatures from "@/components/components/template/template-features
 import TemplateShowcase from "@/components/components/template/template-showcase";
 import TemplateSteps from "@/components/components/template/template-steps";
 import { ComponentSource } from "@/components/components/code-block/component-source";
+import { ProCodeGate } from "@/components/components/code-block/pro-code-gate";
+import { FileCodeViewer } from "@/components/components/code-block/file-code-viewer";
 import { headings, text, table } from "./typography";
 import { Code, Pre } from "./CodeBlock";
 import { stepOverrides, tabsOverrides, LinkedCard } from "./tabs-overrides";
 import TemplatePreview from "@/components/components/template/template-preview";
+import { ProCTA } from "@/components/global/ProCTA";
 
 export const mdxComponents = {
   Accordion,
@@ -25,6 +28,7 @@ export const mdxComponents = {
   AccordionTrigger,
   TechStack,
   RepoDownload,
+  ProCTA,
   TemplateActions,
   TemplateFeatures,
   TemplatePreview,
@@ -35,6 +39,16 @@ export const mdxComponents = {
   ComponentSource: (props: React.ComponentProps<typeof ComponentSource>) => (
     <div className="w-full max-w-full overflow-hidden">
       <ComponentSource {...props} />
+    </div>
+  ),
+
+  ProCodeGate: (props: React.ComponentProps<typeof ProCodeGate>) => (
+    <ProCodeGate {...props} />
+  ),
+
+  FileCodeViewer: (props: React.ComponentProps<typeof FileCodeViewer>) => (
+    <div className="my-6 w-full max-w-full overflow-hidden">
+      <FileCodeViewer {...props} />
     </div>
   ),
 

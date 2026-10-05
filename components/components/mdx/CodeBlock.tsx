@@ -94,7 +94,7 @@ export const Pre = ({
             aria-hidden="true"
             data-fade-overlay="true"
             className={cn(
-              "pointer-events-none absolute right-1 bottom-1 h-10 w-20 bg-linear-to-l from-card to-transparent opacity-0 transition-opacity group-hover/pre:opacity-100",
+              "pointer-events-none absolute right-1 bottom-1 h-10 w-20 bg-linear-to-l from-background to-transparent opacity-0 transition-opacity group-hover/pre:opacity-100",
             )}
           />
         </>

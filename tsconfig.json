@@ -13,6 +13,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "baseUrl": ".",
     "plugins": [
       {
         "name": "next"
@@ -24,11 +25,12 @@
     }
   },
   "include": [
-    "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "content/docs/components/apple-glass-effect.mdx"
+    "content/docs/components/apple-glass-effect.mdx",
+    "next-env.d.ts",
+    ".next-verify/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }

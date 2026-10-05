@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { ComponentType } from "react";
 import { useRouter } from "next/navigation";
 import {
@@ -111,7 +111,11 @@ function itemKeywords(
   );
 }
 
-export const CommandPalette = () => {
+export const CommandPalette = ({
+  hideTrigger = false,
+}: {
+  hideTrigger?: boolean;
+}) => {
   const [open, setOpen] = useState(false);
   const router = useRouter();
 
@@ -125,6 +129,15 @@ export const CommandPalette = () => {
   useKeyboardShortcut("/", () => setOpen((currentOpen) => !currentOpen), {
     ignoreInputs: true,
   });
+
+  // Direct "open" trigger from anywhere (navbar search button, hero CTA, …)
+  // — avoids the synthetic-keyboard-event hack which is fragile across
+  // browsers when the palette's own restrictions on modifier keys change.
+  useEffect(() => {
+    const handler = () => setOpen(true);
+    window.addEventListener("nyxui:open-search", handler);
+    return () => window.removeEventListener("nyxui:open-search", handler);
+  }, []);
 
   const commandSections = useMemo(() => {
     const componentCommands: CommandEntry[] = Object.entries(
@@ -178,15 +191,17 @@ export const CommandPalette = () => {
 
   return (
     <>
-      <Button
-        variant="ghost"
-        className="relative justify-start gap-2 px-3 text-sm font-normal text-muted-foreground border-none!"
-        onClick={() => setOpen(true)}
-      >
-        <kbd className="pointer-events-none hidden shrink-0 select-none items-center gap-1 rounded border border-border/60 bg-background px-1.5 font-mono text-[10px] font-medium text-muted-foreground sm:flex">
-          <span className="text-sm">⌘</span>K
-        </kbd>
-      </Button>
+      {!hideTrigger && (
+        <Button
+          variant="ghost"
+          className="relative justify-start gap-2 px-3 text-sm font-normal text-muted-foreground border-none!"
+          onClick={() => setOpen(true)}
+        >
+          <kbd className="pointer-events-none hidden shrink-0 select-none items-center gap-1 rounded border border-border/60 bg-background px-1.5 font-mono text-[10px] font-medium text-muted-foreground sm:flex">
+            <span className="text-sm">⌘</span>K
+          </kbd>
+        </Button>
+      )}
 
       <CommandDialog open={open} onOpenChange={setOpen} title="Search Nyx UI">
         <CommandInput placeholder="Search pages, components, blocks..." />

@@ -1,7 +1,13 @@
 "use client";
 
 import { FC, useRef, useEffect } from "react";
-import { HTMLMotionProps, motion, useAnimation, useInView } from "motion/react";
+import {
+  HTMLMotionProps,
+  motion,
+  useAnimation,
+  useInView,
+  type Variants,
+} from "motion/react";
 
 type AnimationType =
   | "blink"
@@ -21,7 +27,10 @@ interface Props extends HTMLMotionProps<"div"> {
   custom?: number;
 }
 
-const animationVariants = {
+const animationVariants: Record<
+  string,
+  { container: Variants; child: Variants }
+> = {
   blink: {
     container: {
       hidden: { opacity: 0 },
@@ -33,16 +42,12 @@ const animationVariants = {
     child: {
       visible: {
         opacity: 1,
-        y: 0,
+        y: [0, -10, 0],
         transition: {
           type: "spring",
           damping: 12,
           stiffness: 100,
-          y: {
-            type: "keyframes",
-            times: [0, 0.5, 1],
-            values: [0, -10, 0],
-          },
+          y: { times: [0, 0.5, 1] },
         },
       },
       hidden: { opacity: 0, y: 10 },
@@ -73,16 +78,12 @@ const animationVariants = {
     child: {
       visible: {
         opacity: 1,
-        scale: 1,
+        scale: [0, 1.1, 1],
         transition: {
           type: "spring",
           damping: 15,
           stiffness: 400,
-          scale: {
-            type: "keyframes",
-            times: [0, 0.6, 1],
-            values: [0, 1.1, 1],
-          },
+          scale: { times: [0, 0.6, 1] },
         },
       },
       hidden: { opacity: 0, scale: 0 },
@@ -197,13 +198,13 @@ const animationVariants = {
   },
 };
 
-export const AnimateText: FC<Props> = ({
+export function AnimateText({
   text,
   type = "elastic",
   custom = 1,
   className = "",
   ...props
-}: Props) => {
+}: Props) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false });
   const ctrls = useAnimation();
@@ -277,4 +278,4 @@ export const AnimateText: FC<Props> = ({
       ))}
     </motion.h2>
   );
-};
+}

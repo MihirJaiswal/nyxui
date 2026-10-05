@@ -1,0 +1,71 @@
+# nyxui pre-push guard
+# Blocks accidental pushes of Pro-only paths to the PUBLIC remote (origin).
+# Pushes to the "private" remote are never blocked.
+#
+# Pro paths are also mirrored in scripts/sync-public.mjs (PRO_EXCLUDES).
+# Keep both lists in sync when you add Pro content.
+
+# Husky passes the remote name and url as $1 and $2
+REMOTE_NAME="$1"
+REMOTE_URL="$2"
+
+# Only guard the public remote
+if [ "$REMOTE_NAME" = "private" ]; then
+  exit 0
+fi
+
+if echo "$REMOTE_URL" | grep -q "nyxui-private"; then
+  exit 0
+fi
+
+# Pro-only prefixes — a push to origin containing changes under any of
+# these paths is rejected.
+PRO_PATHS=(
+  "registry/pro"
+  "registry-data"
+  "content/docs/pro"
+  "app/api/pro"
+  "components/pro-only"
+  "public/pro"
+)
+
+# stdin: "<local ref> <local sha> <remote ref> <remote sha>" lines
+while read -r local_ref local_sha remote_ref remote_sha; do
+  # Skip branch deletions
+  if [ "$local_sha" = "0000000000000000000000000000000000000000" ]; then
+    continue
+  fi
+
+  # Range of commits being pushed (everything new vs the remote)
+  RANGE="$remote_sha..$local_sha"
+  # First push to a new branch: remote sha is all zeros
+  if [ "$remote_sha" = "0000000000000000000000000000000000000000" ]; then
+    # fall back to diffing against a known point — use merge-base with origin/main
+    BASE=$(git merge-base origin/main "$local_sha" 2>/dev/null || echo "$local_sha")
+    RANGE="$BASE..$local_sha"
+  fi
+
+  for COMMIT in $(git rev-list "$RANGE"); do
+    for PRO_PATH in "${PRO_PATHS[@]}"; do
+      # any file touched by this commit under a pro path?
+      if git diff-tree --no-commit-id --name-only -r "$COMMIT" \
+        | grep -qE "^${PRO_PATH}(/|$)"; then
+        echo ""
+        echo "✗ BLOCKED: push to PUBLIC remote contains Pro content"
+        echo ""
+        echo "  Commit:  $(git log -1 --format='%h %s' $COMMIT)"
+        echo "  Path:    ${PRO_PATH}/"
+        echo ""
+        echo "  To push Pro content, push to the private remote instead:"
+        echo "    git push private"
+        echo ""
+        echo "  If this commit is intentionally public, move the files out of"
+        echo "  the pro paths or update PRO_PATHS in .husky/pre-push."
+        echo ""
+        exit 1
+      fi
+    done
+  done
+done
+
+exit 0

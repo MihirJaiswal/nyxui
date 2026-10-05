@@ -1,0 +1,70 @@
+---
+title: Flip Text
+date: 2026-09-09
+description: Splits text into characters that roll up and away on hover while a duplicate layer flips in from below, staggered letter by letter.
+author: MihirJaiswal
+published: true
+tags: ["Typography", "Effects"]
+---
+
+<ComponentPreview name="flip-text-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nyxui.com/r/flip-text.json"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies.</Step>
+
+```bash
+npm install motion
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="flip-text" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { FlipText } from "@/components/ui/flip-text";
+```
+
+```tsx
+<FlipText href="#" text="Twitter" className="text-6xl font-black uppercase" />
+```
+
+## Props
+
+| Prop               | Type          | Default                 | Description                                            |
+| ------------------ | ------------- | ----------------------- | ------------------------------------------------------ |
+| `text`             | `string`      | —                       | String whose characters flip on hover.                 |
+| `duration`         | `number`      | `0.25`                  | Per-character animation duration, seconds.             |
+| `stagger`          | `number`      | `0.025`                 | Delay between each character, seconds.                 |
+| `className`        | `string?`     | —                       | Classes on the wrapper (sizing, font, case).           |
+| `overlayClassName` | `string?`     | —                       | Classes on the duplicate hover layer.                  |
+| `href`             | `string?`     | —                       | Render an anchor instead of a span.                    |
+| `transition`       | `Transition?` | `{ ease: "easeInOut" }` | Extra transition merged into each character animation. |

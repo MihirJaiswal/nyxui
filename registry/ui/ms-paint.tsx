@@ -26,13 +26,13 @@ interface CustomButtonProps {
   variant?: "default" | "ghost";
 }
 
-const CustomButton: React.FC<CustomButtonProps> = ({
+function CustomButton({
   children,
   className = "",
   onClick,
   title = "",
   variant = "default",
-}) => {
+}: CustomButtonProps) {
   const variantStyles =
     variant === "ghost"
       ? "hover:bg-gray-200 hover:text-gray-900"
@@ -50,7 +50,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
       {children}
     </button>
   );
-};
+}
 
 const DEFAULT_COLORS = [
   "#000000",
@@ -611,6 +611,7 @@ export default function MSpaint({
           <input
             ref={colorPickerRef}
             type="color"
+            aria-label="Pick a colour"
             value={color}
             onChange={(e) => handleColorChange(e.target.value)}
             className="absolute opacity-0 pointer-events-none"

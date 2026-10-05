@@ -15,7 +15,7 @@ export function FeaturesGrid(): React.ReactElement {
       aria-label="NyxUI features"
       className="relative left-1/2 w-screen -translate-x-1/2 border-b border-border/60"
     >
-      <div className="mx-auto max-w-295 border-x border-border/60">
+      <div className="mx-auto max-w-295 border-x border-border/60 pt-12">
         <div className="grid md:grid-cols-2">
           {/* Left: copy */}
           <motion.div

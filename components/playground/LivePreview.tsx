@@ -5,7 +5,6 @@ import { lazy, Suspense, useEffect, useMemo, useState } from "react";
 import { Check, Code, Copy, FileCode2, RefreshCw } from "lucide-react";
 import parse, { type Element } from "html-react-parser";
 import { ImageLayer, Divider } from "@/registry/ui/image-comparison";
-import { getHighlighter } from "shiki";
 import {
   expandDottedConfig,
   generatePlaygroundCode,
@@ -16,7 +15,8 @@ import type {
   ComponentDefinition,
   ComponentPropValue,
 } from "@/types/playground";
-import { getNyxuiTheme, getNyxuiLightTheme } from "@/lib/shiki-themes";
+import { getNyxuiHighlighter } from "@/lib/highlighter";
+import { useDebouncedValue } from "@/hooks/use-debounced-value";
 import { cn } from "@/lib/utils";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
@@ -124,38 +124,53 @@ const LivePreview = ({
     [component, config, codeVariant],
   );
 
+  // The preview itself renders straight from config, so trailing the code
+  // panel keeps highlighting off the typing path without the component
+  // lagging behind the props.
+  const debouncedCode = useDebouncedValue(code, 150);
+
   useEffect(() => {
+    if (!showCode) {
+      return;
+    }
+
+    let cancelled = false;
+
     async function highlightCode(): Promise<void> {
-      if (!showCode) {
-        return;
-      }
-
       try {
-        const [darkTheme, lightTheme] = await Promise.all([
-          getNyxuiTheme(),
-          getNyxuiLightTheme(),
-        ]);
-        const highlighter = await getHighlighter({
-          themes: [darkTheme, lightTheme],
-          langs: ["tsx", "bash"],
-        });
+        const highlighter = await getNyxuiHighlighter(["tsx"]);
+        if (cancelled) return;
 
-        const highlighted = highlighter.codeToHtml(code, {
+        const highlighted = highlighter.codeToHtml(debouncedCode, {
           lang: "tsx",
-          themes: { dark: "nyxui-dark", light: "nyxui-light" },
+          // First key becomes the inline-style default (light); other keys
+          // become CSS vars keyed by name. Globals.css then picks
+          // --shiki-dark under .dark. Order matters — do not swap.
+          themes: { light: "nyxui-light", dark: "nyxui-dark" },
         });
 
         setHighlightedCode(highlighted);
       } catch (error) {
+        if (cancelled) return;
         console.error("Failed to highlight code:", error);
+        const escaped = debouncedCode
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;");
         setHighlightedCode(
-          `<pre class="bg-card text-foreground p-4 rounded-xl overflow-auto border border-border/60"><code>${code}</code></pre>`,
+          `<pre class="bg-card text-foreground p-4 rounded-xl overflow-auto border border-border/60"><code>${escaped}</code></pre>`,
         );
       }
     }
 
     highlightCode();
-  }, [code, codeVariant, showCode]);
+
+    // Without this, a slow highlight can resolve after a newer one and repaint
+    // the panel with stale code.
+    return () => {
+      cancelled = true;
+    };
+  }, [debouncedCode, codeVariant, showCode]);
 
   const handleCopyCode = async (variant: CodeVariant) => {
     await onCopyCode(variant);

@@ -43,6 +43,30 @@ const eslintConfig = [
     },
   },
   {
+    // House rule: never pair a border/ring with a shadow on one element — that
+    // draws a double edge. Use `smooth-shadow-ring-*`, which bakes a 1px
+    // hairline ring into the shadow layer. See AGENTS.md › Elevated surfaces.
+    //
+    // Deliberately exempt: `ring-inset`, `shadow-inner`, `shadow-[inset…]`
+    // highlights, and zero-offset `shadow-[0_0_…]` glows — none of those is an
+    // outer edge.
+    //
+    // Currently "warn", not "error": ~53 pre-existing sites still violate it,
+    // and erroring would fail `pnpm lint` and the build. Flip to "error" once
+    // that backlog is cleared.
+    files: ["**/*.tsx"],
+    rules: {
+      "no-restricted-syntax": [
+        "warn",
+        {
+          selector: `Literal[value=/(?=[\\s\\S]*(?:^|\\s)(?:border|ring-[0-9])(?![\\w-]))(?=[\\s\\S]*(?:^|\\s)shadow-(?!none|inner|\\[inset|\\[0_0_))(?![\\s\\S]*ring-inset)/]`,
+          message:
+            "Double edge: this class string pairs a border/ring with a shadow. Use smooth-shadow-ring-* instead (see AGENTS.md › Elevated surfaces).",
+        },
+      ],
+    },
+  },
+  {
     ignores: ["__registry__/**/*", "public/r/**/*.json"],
   },
 ];

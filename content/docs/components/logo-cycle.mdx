@@ -1,0 +1,73 @@
+---
+title: Logo Cycle
+date: 2026-09-12
+description: A grid of logo cells where two pill-mounted logos counter-rotate past each other, swapping top and bottom.
+author: MihirJaiswal
+published: true
+tags: ["Logos", "Animation"]
+---
+
+<ComponentPreview name="logo-cycle-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+<TabsTrigger value="cli">CLI</TabsTrigger>
+<TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://nyxui.com/r/logo-cycle.json"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies.</Step>
+
+```bash
+npm install motion react-icons
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="logo-cycle" />
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { LogoCycle } from "@/components/ui/logo-cycle";
+```
+
+```tsx
+<LogoCycle
+  pairs={[
+    {
+      top: <SiTailwindcss className="text-[#0DA5E9]" />,
+      bottom: <SiHtml5 className="text-[#DD4A25]" />,
+    },
+  ]}
+/>
+```
+
+## Props
+
+| Prop        | Type              | Default | Description                                                                |
+| ----------- | ----------------- | ------- | -------------------------------------------------------------------------- |
+| `pairs`     | `LogoCyclePair[]` | —       | The logo pairs to swap in each cell. `top` shows first, `bottom` swaps in. |
+| `columns`   | `number`          | `3`     | Number of columns in the grid.                                             |
+| `duration`  | `number`          | `10`    | Full swap cycle length, in seconds.                                        |
+| `iconSize`  | `number`          | `24`    | Icon size in px.                                                           |
+| `className` | `string`          | —       | Classes for the outer section.                                             |

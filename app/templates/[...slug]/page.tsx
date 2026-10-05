@@ -106,7 +106,6 @@ export default async function TemplatePage({ params }: SlugPageProps) {
           title={template.title}
           description={template.description}
           tags={template.tags}
-          tagBasePath="/templates/category"
           links={template.links}
           linkLabels={{ doc: "Live Demo", api: "Source Code" }}
           primaryDocLink

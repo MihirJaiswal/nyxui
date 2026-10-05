@@ -47,7 +47,36 @@ export function tagToSlug(tag: string): string {
   return encodeURIComponent(tag.toLowerCase().replace(/\s+/g, "-"));
 }
 
+export function getBlockCategory(slug: string, tags: string[]): string {
+  // Mockups are an explicit tag-driven bucket — slug heuristics below
+  // (e.g. "auth-cluster" containing "auth") must not steal them.
+  // Full bento compositions get their own bucket before the Mockups check.
+  if (tags.includes("Bento")) return "Bento";
+  if (tags.includes("Navigation")) return "Navigation";
+  if (tags.includes("Interactions")) return "Interactions";
+  if (tags.includes("Logo Cloud")) return "Logo Cloud";
+  if (tags.includes("Pricing")) return "Pricing";
+  if (tags.includes("Mockups")) return "Mockups";
+  // Hero is slug-driven and must stay ahead of the "Section" check below:
+  // hero-section-* blocks also carry a "Section" tag.
+  if (slug.startsWith("hero-section")) return "Hero";
+  // Feature/Footer before Section for the same reason — their tags are
+  // ["Feature","Section",…] and ["Footer","Section",…].
+  if (tags.includes("Feature")) return "Feature";
+  if (tags.includes("Footer")) return "Footer";
+  if (tags.includes("Section")) return "Section";
+  return tags[0] ?? "Other";
+}
+
+export function blockCategoryHref(category: string): string {
+  return categoryHref(category, "/blocks/category");
+}
+
 export function getComponentCategory(title: string, tags: string[]): string {
+  if (tags.includes("Auth")) {
+    return "Auth";
+  }
+
   if (tags.includes("Buttons") || title.toLowerCase().includes("button")) {
     return "Button";
   }

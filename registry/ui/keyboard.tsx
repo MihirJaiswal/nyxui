@@ -106,7 +106,7 @@ interface PhysicalTheme {
 
 type KeyVisualStyle = React.CSSProperties & Record<`--${string}`, string>;
 
-const InteractiveKeyboard: React.FC<InteractiveKeyboardProps> = ({
+function InteractiveKeyboard({
   layout = "standard",
   showFunctionKeys = true,
   showNavigationCluster = true,
@@ -126,7 +126,7 @@ const InteractiveKeyboard: React.FC<InteractiveKeyboardProps> = ({
   perspective = 1000,
   rotateX = 0,
   ...props
-}) => {
+}: InteractiveKeyboardProps) {
   const [pressedKeys, setPressedKeys] = useState<Set<string>>(new Set());
   const pressedKeysRef = useRef<Set<string>>(new Set());
   const getKeyboardLayout = (): KeyboardRow[] => {
@@ -1442,6 +1442,6 @@ const InteractiveKeyboard: React.FC<InteractiveKeyboardProps> = ({
       </div>
     </div>
   );
-};
+}
 
 export default InteractiveKeyboard;

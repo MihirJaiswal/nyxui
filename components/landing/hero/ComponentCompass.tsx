@@ -23,6 +23,38 @@ import { COMPASS_GEOMETRY } from "../../../lib/compass-geometry";
 import { CompassTrack } from "./CompassTrack";
 import type { LandingComponent } from "../../../types/landing";
 
+/** Curated slugs shown on the home compass — the rest of the library is hidden. */
+const COMPASS_SLUGS: ReadonlySet<string> = new Set([
+  "water-ripple-effect",
+  "image-scanner",
+  "3d-layered-card",
+  "cyberpunk-card",
+  "animated-code-block",
+  "glow-card",
+  "music-player",
+  "custom-cursor",
+  "apple-glass-effect",
+  "bubble-background",
+  "matrix-code-rain",
+  "terminal",
+  "ms-paint",
+  "scribble",
+  "halo-ring",
+  "flip-text",
+  "ascii-text",
+  "liquid-metal-button",
+  "lamp-heading",
+  "morphing-blob",
+  "glitch-button",
+  "pop-text",
+  "logo-cycle",
+  "grainy-background",
+  "typing-words",
+  "reveal-card",
+  "keyboard",
+  "image-comparison",
+]);
+
 const SMALL_LINES_PER_GROUP = COMPASS_GEOMETRY.smallLinesPerGroup;
 const WHITE_GROUPS_PER_COMPONENT = COMPASS_GEOMETRY.whiteGroupsPerComponent;
 const LINES_PER_WHITE_GROUP = SMALL_LINES_PER_GROUP + 1;
@@ -69,7 +101,13 @@ function wrapIndex(index: number, count: number): number {
 export function ComponentCompass({
   components,
 }: ComponentCompassProps): React.ReactElement {
-  const componentCount = Math.max(components.length, 1);
+  // Keep only the curated COMPASS_SLUGS list, in the order defined there.
+  const filtered = COMPASS_SLUGS
+    ? [...COMPASS_SLUGS]
+        .map((slug) => components.find((c) => c.slug === slug))
+        .filter((c): c is LandingComponent => Boolean(c))
+    : components;
+  const componentCount = Math.max(filtered.length, 1);
   const degreesPerComponent = 360 / componentCount;
   const timelineLineCount = componentCount * LINES_PER_COMPONENT;
   const markerAngleOffset = (FIRST_MARKER_OFFSET / timelineLineCount) * 360;
@@ -301,7 +339,7 @@ export function ComponentCompass({
           >
             <CompassTrack
               activeIndex={activeIndex}
-              components={components}
+              components={filtered}
               firstMarkerOffset={FIRST_MARKER_OFFSET}
               linesPerComponent={LINES_PER_COMPONENT}
               linesPerWhiteGroup={LINES_PER_WHITE_GROUP}

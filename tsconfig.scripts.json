@@ -4,10 +4,15 @@
   "compilerOptions": {
     "target": "es6",
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "esModuleInterop": true,
     "isolatedModules": false
   },
-  "include": [".content-collections/generated", "scripts/**/*.ts"],
+  "include": [
+    ".content-collections/generated",
+    "scripts/**/*.ts",
+    "scripts/**/*.mts",
+    "registry/**/*.ts"
+  ],
   "exclude": ["node_modules"]
 }

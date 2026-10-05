@@ -80,7 +80,7 @@ const THEMES: Record<string, ThemeTokens> = {
   },
 };
 
-const InteractiveTerminal: React.FC<TerminalProps> = ({
+function InteractiveTerminal({
   command = "help",
   steps = ["Processing command..."],
   finalMessage = "Command executed successfully!",
@@ -95,7 +95,7 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({
   className,
   title = "zsh — 80×24",
   variant = "default",
-}) => {
+}: TerminalProps) {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState<string[]>([]);
   const [step, setStep] = useState(0);
@@ -461,6 +461,6 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({
       </div>
     </div>
   );
-};
+}
 
 export default InteractiveTerminal;

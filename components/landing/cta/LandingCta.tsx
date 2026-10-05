@@ -32,24 +32,21 @@ const cardContent = (
 export function LandingCta(): React.ReactElement {
   return (
     <section className="group relative left-1/2 w-screen -translate-x-1/2 overflow-hidden">
-      <div className="relative mx-auto grid lg:min-h-80 max-w-295 border-x border-border/60 lg:grid-cols-[minmax(0,1fr)_20rem]">
+      <div className="relative mx-auto grid lg:min-h-80 max-w-295 border-x border-border/60 pt-12 lg:grid-cols-[minmax(0,1fr)_20rem]">
         <div className="flex flex-col justify-between px-6 py-10 sm:px-10 sm:py-12 md:px-12 md:py-14 lg:gap-8">
           <h2 className="max-w-4xl text-3xl leading-[1.05] font-medium tracking-tight sm:text-5xl md:text-6xl">
-            Less code more impact
+            Unlock premium blocks
             <br />
-            ship something{" "}
+            with Nyx UI{" "}
             <span className="text-brand font-caveat text-5xl sm:text-6xl md:text-7xl">
-              today
+              pro
             </span>
             .
           </h2>
 
-          <MorphLink
-            href="mailto:jaiswalmihir.business@gmail.com"
-            className="self-start mt-4 md:mt-2"
-          >
+          <MorphLink href="/pro" className="self-start mt-4 md:mt-2">
             <div className="flex items-center gap-1">
-              <span>Get in touch</span>{" "}
+              <span>Get All Access</span>{" "}
               <ArrowUpRight className="inline size-4" />
             </div>
           </MorphLink>

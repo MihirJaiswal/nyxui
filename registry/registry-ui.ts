@@ -2,6 +2,75 @@ import { type Registry } from "shadcn/registry";
 
 export const ui: Registry["items"] = [
   {
+    name: "flip-text",
+    type: "registry:ui",
+    title: "Flip Text",
+    description:
+      "Splits text into characters that roll up and away on hover while a duplicate layer flips in from below, staggered letter by letter.",
+    dependencies: ["motion"],
+    files: [
+      {
+        path: "registry/ui/flip-text.tsx",
+        type: "registry:ui",
+        target: "components/ui/flip-text.tsx",
+      },
+    ],
+  },
+  {
+    name: "pop-text",
+    type: "registry:ui",
+    title: "Pop Text",
+    description:
+      "A heading whose letters swell when hovered — the hovered letter is boldest and the effect fades across its neighbors.",
+    files: [
+      {
+        path: "registry/ui/pop-text.tsx",
+        type: "registry:ui",
+        target: "components/ui/pop-text.tsx",
+      },
+    ],
+    css: {
+      ".pop-text-letter": {
+        transition: "0.35s font-weight, 0.35s color",
+      },
+      ".pop-text-letter:hover": {
+        "font-weight": "900",
+        color: "var(--pop-text-hover, #e0e7ff)",
+      },
+      ".pop-text-letter:hover + .pop-text-letter": {
+        "font-weight": "500",
+        color:
+          "color-mix(in srgb, var(--pop-text-hover, #e0e7ff) 50%, currentColor)",
+      },
+      ".pop-text-letter:hover + .pop-text-letter + .pop-text-letter": {
+        "font-weight": "300",
+      },
+      ".pop-text-letter:has(+ .pop-text-letter:hover)": {
+        "font-weight": "500",
+        color:
+          "color-mix(in srgb, var(--pop-text-hover, #e0e7ff) 50%, currentColor)",
+      },
+      ".pop-text-letter:has(+ .pop-text-letter + .pop-text-letter:hover)": {
+        "font-weight": "300",
+      },
+    },
+  },
+  {
+    name: "scribble",
+    type: "registry:ui",
+    title: "Scribble",
+    description:
+      "Hand-drawn scribble that draws itself around a word — circle, underline, box, or highlight.",
+    dependencies: ["motion"],
+    files: [
+      {
+        path: "registry/ui/scribble.tsx",
+        type: "registry:ui",
+        target: "components/ui/scribble.tsx",
+      },
+    ],
+  },
+  {
     name: "accordion",
     type: "registry:ui",
     title: "Accordion",
@@ -494,6 +563,129 @@ export const ui: Registry["items"] = [
         path: "registry/ui/3d-layered-card.tsx",
         type: "registry:ui",
         target: "components/ui/3d-layered-card.tsx",
+      },
+    ],
+  },
+  {
+    name: "halo-ring",
+    type: "registry:ui",
+    title: "Halo Ring",
+    description:
+      "Rotating conic-gradient border with a soft inner glow halo, for AI-brand card treatments.",
+    dependencies: ["motion"],
+    files: [
+      {
+        path: "registry/ui/halo-ring.tsx",
+        type: "registry:ui",
+        target: "components/ui/halo-ring.tsx",
+      },
+    ],
+  },
+  {
+    name: "shining-card",
+    type: "registry:ui",
+    title: "Shining Card",
+    description:
+      "A 3D mouse-tilt card with a sheen overlay that follows the cursor.",
+    dependencies: ["motion"],
+    files: [
+      {
+        path: "registry/ui/shining-card.tsx",
+        type: "registry:ui",
+        target: "components/ui/shining-card.tsx",
+      },
+    ],
+  },
+  {
+    name: "typing-words",
+    type: "registry:ui",
+    title: "Typing Words",
+    description:
+      "A typing headline that cycles words letter-by-letter with a 3D blur flip and a color-shifting caret.",
+    dependencies: ["motion"],
+    files: [
+      {
+        path: "registry/ui/typing-words.tsx",
+        type: "registry:ui",
+        target: "components/ui/typing-words.tsx",
+      },
+    ],
+  },
+  {
+    name: "logo-cycle",
+    type: "registry:ui",
+    title: "Logo Cycle",
+    description:
+      "A grid of logo cells where two pill-mounted logos counter-rotate past each other, swapping top and bottom.",
+    dependencies: ["motion", "react-icons"],
+    files: [
+      {
+        path: "registry/ui/logo-cycle.tsx",
+        type: "registry:ui",
+        target: "components/ui/logo-cycle.tsx",
+      },
+    ],
+  },
+  {
+    name: "shuffle-loader",
+    type: "registry:ui",
+    title: "Shuffle Loader",
+    description:
+      "A row of white blocks that continuously swap places with a lift-drop animation.",
+    dependencies: ["motion"],
+    files: [
+      {
+        path: "registry/ui/shuffle-loader.tsx",
+        type: "registry:ui",
+        target: "components/ui/shuffle-loader.tsx",
+      },
+    ],
+  },
+  {
+    name: "ascii-text",
+    type: "registry:ui",
+    title: "Ascii Text",
+    description:
+      "Renders text as animated ASCII block letters, with wave, scan, glitch, typewriter and pulse modes.",
+    dependencies: [],
+    files: [
+      {
+        path: "registry/ui/ascii-text.tsx",
+        type: "registry:ui",
+        target: "components/ui/ascii-text.tsx",
+      },
+    ],
+  },
+  {
+    name: "liquid-metal-button",
+    type: "registry:ui",
+    title: "Liquid Metal Button",
+    description:
+      "A pill button ringed by a flowing liquid-metal shader, with a click ripple and a CSS fallback when WebGL is unavailable.",
+    dependencies: ["three"],
+    cssVars: {
+      theme: {
+        "animate-liquid-metal-ripple":
+          "liquidMetalRipple 600ms ease-out forwards",
+      },
+    },
+    css: {
+      "@keyframes liquidMetalRipple": {
+        "0%": {
+          transform: "translate(-50%, -50%) scale(0)",
+          opacity: "0.6",
+        },
+        "100%": {
+          transform: "translate(-50%, -50%) scale(4)",
+          opacity: "0",
+        },
+      },
+    },
+    files: [
+      {
+        path: "registry/ui/liquid-metal-button.tsx",
+        type: "registry:ui",
+        target: "components/ui/liquid-metal-button.tsx",
       },
     ],
   },

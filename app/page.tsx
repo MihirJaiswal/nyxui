@@ -1,4 +1,5 @@
 import { ComponentBentoGrid } from "@/components/landing/bento/ComponentBentoGrid";
+import { BlocksShowcase } from "@/components/landing/blocks/BlocksShowcase";
 import { LandingCta } from "@/components/landing/cta/LandingCta";
 import { FeaturesGrid } from "@/components/landing/features/FeaturesGrid";
 import { Landing } from "@/components/landing/Landing";
@@ -21,13 +22,11 @@ export default function Home() {
   );
 
   return (
-    <div
-      data-home-page
-      className="flex flex-1 flex-col gap-12 overflow-hidden dark:bg-black"
-    >
+    <div data-home-page className="flex flex-1 flex-col overflow-hidden">
       <Landing components={components} />
       <ComponentBentoGrid />
       <PlaygroundShowcase />
+      <BlocksShowcase />
       <FeaturesGrid />
       <LandingCta />
     </div>

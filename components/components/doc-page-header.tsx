@@ -37,12 +37,14 @@ export function DocPageHeader({
   const hasTags = Boolean(tags?.length);
 
   return (
-    <div className="mt-6 space-y-4">
-      <h1 className="scroll-m-20 text-3xl font-bold tracking-tight sm:text-4xl wrap-break-word">
+    <div className="p-3 space-y-4 mx-auto max-w-[120ch] w-full">
+      <h1 className="scroll-m-20 text-3xl font-bold tracking-tight wrap-break-word sm:text-4xl">
         {title}
       </h1>
 
-      {description && <p className="text-muted-foreground">{description}</p>}
+      {description && (
+        <p className="leading-relaxed text-muted-foreground">{description}</p>
+      )}
 
       {(hasTags || action) && (
         <div className="flex flex-wrap items-center justify-between gap-3 pt-1">

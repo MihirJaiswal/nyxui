@@ -2,11 +2,146 @@ import { type Registry } from "shadcn/registry";
 
 export const examples: Registry["items"] = [
   {
+    name: "ascii-text-demo",
+    type: "registry:example",
+    title: "Ascii Text Demo",
+    description:
+      "Gallery of Ascii Text animation modes. Click any card to copy its JSX.",
+    dependencies: ["lucide-react", "sonner"],
+    registryDependencies: ["https://nyxui.com/r/ascii-text.json"],
+    files: [
+      {
+        path: "registry/example/ascii-text-demo.tsx",
+        type: "registry:example",
+        target: "components/ascii-text-demo.tsx",
+      },
+    ],
+  },
+  {
+    name: "liquid-metal-button-demo",
+    type: "registry:example",
+    title: "Liquid Metal Button Demo",
+    description:
+      "Gallery of Liquid Metal Button variants. Click any card to copy its JSX.",
+    dependencies: ["lucide-react", "sonner"],
+    registryDependencies: ["https://nyxui.com/r/liquid-metal-button.json"],
+    files: [
+      {
+        path: "registry/example/liquid-metal-button-demo.tsx",
+        type: "registry:example",
+        target: "components/liquid-metal-button-demo.tsx",
+      },
+    ],
+  },
+  {
+    name: "halo-ring-demo",
+    type: "registry:example",
+    title: "Halo Ring Demo",
+    description:
+      "Example of an AI chat card wrapped in a rotating conic gradient halo.",
+    registryDependencies: ["https://nyxui.com/r/halo-ring.json"],
+    files: [
+      {
+        path: "registry/example/halo-ring-demo.tsx",
+        type: "registry:example",
+        target: "components/halo-ring-demo.tsx",
+      },
+    ],
+  },
+  {
+    name: "flip-text-demo",
+    type: "registry:example",
+    title: "Flip Text Demo",
+    description:
+      "Example showing links whose characters flip away and back in on hover.",
+    registryDependencies: ["https://nyxui.com/r/flip-text.json"],
+    files: [
+      {
+        path: "registry/example/flip-text-demo.tsx",
+        type: "registry:example",
+        target: "components/flip-text-demo.tsx",
+      },
+    ],
+  },
+  {
+    name: "pop-text-demo",
+    type: "registry:example",
+    title: "Pop Text Demo",
+    description: "Example showing letters that swell when hovered.",
+    registryDependencies: ["https://nyxui.com/r/pop-text.json"],
+    files: [
+      {
+        path: "registry/example/pop-text-demo.tsx",
+        type: "registry:example",
+        target: "components/pop-text-demo.tsx",
+      },
+    ],
+  },
+  {
+    name: "pop-text-demo1",
+    type: "registry:example",
+    title: "Pop Text Custom Demo",
+    description: "A stylized rose-colored pop-text example.",
+    registryDependencies: ["https://nyxui.com/r/pop-text.json"],
+    files: [
+      {
+        path: "registry/example/pop-text-demo1.tsx",
+        type: "registry:example",
+        target: "components/pop-text-demo1.tsx",
+      },
+    ],
+  },
+  {
+    name: "scribble-demo",
+    type: "registry:example",
+    title: "Scribble Variants Demo",
+    description:
+      "Example showing circle, underline, box and highlight scribbles in one heading.",
+    registryDependencies: ["https://nyxui.com/r/scribble.json"],
+    files: [
+      {
+        path: "registry/example/scribble-demo.tsx",
+        type: "registry:example",
+        target: "components/scribble-demo.tsx",
+      },
+    ],
+  },
+  {
+    name: "scribble-demo1",
+    type: "registry:example",
+    title: "Scribble Demo",
+    description:
+      "Example showing a hand-drawn circle drawn around a word in a heading.",
+    registryDependencies: ["https://nyxui.com/r/scribble.json"],
+    files: [
+      {
+        path: "registry/example/scribble-demo1.tsx",
+        type: "registry:example",
+        target: "components/scribble-demo1.tsx",
+      },
+    ],
+  },
+  {
+    name: "scribble-demo2",
+    type: "registry:example",
+    title: "Scribble Custom Color Demo",
+    description:
+      "Example showing a hand-drawn circle with custom stroke color and width.",
+    registryDependencies: ["https://nyxui.com/r/scribble.json"],
+    files: [
+      {
+        path: "registry/example/scribble-demo2.tsx",
+        type: "registry:example",
+        target: "components/scribble-demo2.tsx",
+      },
+    ],
+  },
+  {
     name: "animated-code-block-demo",
     type: "registry:example",
     title: "Animated Code Block Demo",
     description: "Example showing a code block with typing animation effects.",
-    registryDependencies: ["https://nyxui.com/r/animated-code-block"],
+    registryDependencies: ["https://nyxui.com/r/animated-code-block.json"],
     files: [
       {
         path: "registry/example/animated-code-block-demo.tsx",
@@ -20,7 +155,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Animated Code Block Parchment Demo",
     description: "Example showing the code block with the parchment theme.",
-    registryDependencies: ["https://nyxui.com/r/animated-code-block"],
+    registryDependencies: ["https://nyxui.com/r/animated-code-block.json"],
     files: [
       {
         path: "registry/example/animated-code-block-demo1.tsx",
@@ -34,7 +169,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Animated Code Block Terminal Demo",
     description: "Example showing the code block with the terminal theme.",
-    registryDependencies: ["https://nyxui.com/r/animated-code-block"],
+    registryDependencies: ["https://nyxui.com/r/animated-code-block.json"],
     files: [
       {
         path: "registry/example/animated-code-block-demo2.tsx",
@@ -48,7 +183,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Animated Code Block Minimal Demo",
     description: "Example showing the code block with the minimal theme.",
-    registryDependencies: ["https://nyxui.com/r/animated-code-block"],
+    registryDependencies: ["https://nyxui.com/r/animated-code-block.json"],
     files: [
       {
         path: "registry/example/animated-code-block-demo3.tsx",
@@ -62,7 +197,7 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     title: "Grainy Background Demo",
     description: "Example showing an animated grainy background.",
-    registryDependencies: ["https://nyxui.com/r/grainy-background"],
+    registryDependencies: ["https://nyxui.com/r/grainy-background.json"],
     files: [
       {
         path: "registry/example/grainy-background-demo.tsx",
@@ -77,27 +212,12 @@ export const examples: Registry["items"] = [
     title: "Grainy Background Hero Demo",
     description:
       "Example showing a dark aurora grainy background used as a hero section with headline and CTAs.",
-    registryDependencies: ["https://nyxui.com/r/grainy-background"],
+    registryDependencies: ["https://nyxui.com/r/grainy-background.json"],
     files: [
       {
         path: "registry/example/grainy-background-demo1.tsx",
         type: "registry:example",
         target: "components/grainy-background-demo1.tsx",
-      },
-    ],
-  },
-  {
-    name: "grainy-background-demo2",
-    type: "registry:example",
-    title: "Grainy Background Pricing Demo",
-    description:
-      "Example showing mesh grainy backgrounds used in a pricing card layout.",
-    registryDependencies: ["https://nyxui.com/r/grainy-background"],
-    files: [
-      {
-        path: "registry/example/grainy-background-demo2.tsx",
-        type: "registry:example",
-        target: "components/grainy-background-demo2.tsx",
       },
     ],
   },
@@ -589,6 +709,62 @@ export const examples: Registry["items"] = [
         path: "registry/example/3d-layered-card-demo.tsx",
         type: "registry:example",
         target: "components/3d-layered-card-demo.tsx",
+      },
+    ],
+  },
+  {
+    name: "shining-card-demo",
+    type: "registry:example",
+    title: "Shining Card Demo",
+    description: "Example of Shining Card.",
+    registryDependencies: ["https://nyxui.com/r/shining-card.json"],
+    files: [
+      {
+        path: "registry/example/shining-card-demo.tsx",
+        type: "registry:example",
+        target: "components/shining-card-demo.tsx",
+      },
+    ],
+  },
+  {
+    name: "typing-words-demo",
+    type: "registry:example",
+    title: "Typing Words Demo",
+    description: "Example of Typing Words.",
+    registryDependencies: ["https://nyxui.com/r/typing-words.json"],
+    files: [
+      {
+        path: "registry/example/typing-words-demo.tsx",
+        type: "registry:example",
+        target: "components/typing-words-demo.tsx",
+      },
+    ],
+  },
+  {
+    name: "logo-cycle-demo",
+    type: "registry:example",
+    title: "Logo Cycle Demo",
+    description: "Example of Logo Cycle.",
+    registryDependencies: ["https://nyxui.com/r/logo-cycle.json"],
+    files: [
+      {
+        path: "registry/example/logo-cycle-demo.tsx",
+        type: "registry:example",
+        target: "components/logo-cycle-demo.tsx",
+      },
+    ],
+  },
+  {
+    name: "shuffle-loader-demo",
+    type: "registry:example",
+    title: "Shuffle Loader Demo",
+    description: "Example of Shuffle Loader.",
+    registryDependencies: ["https://nyxui.com/r/shuffle-loader.json"],
+    files: [
+      {
+        path: "registry/example/shuffle-loader-demo.tsx",
+        type: "registry:example",
+        target: "components/shuffle-loader-demo.tsx",
       },
     ],
   },
