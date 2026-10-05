@@ -240,6 +240,24 @@ async function main() {
     info(`skipped ${skippedPro.length} pro-only path(s) (expected)`);
   }
 
+  // --- swap in the pro-free registry listing --------------------------------
+  // The private registry.json lists every pro item with a registry/pro/** file
+  // path. Those sources are excluded from the mirror, so shadcn registry:build
+  // aborts with ENOENT on the first one it tries to read. The generated
+  // pro-free listing is the one the mirror has to ship, both at the repo root
+  // (shadcn reads it) and under public/ (the site serves it).
+  const publicListing = join(root, "public/registry.json");
+  if (!existsSync(publicListing)) {
+    rmSync(tmp, { recursive: true, force: true });
+    die(
+      "missing public/registry.json — run `pnpm registry:build` before syncing",
+    );
+  }
+  cpSync(publicListing, join(mirror, "registry.json"));
+  mkdirSync(join(mirror, "public"), { recursive: true });
+  cpSync(publicListing, join(mirror, "public/registry.json"));
+  info("swapped registry.json for the pro-free public listing");
+
   // --- swap in the pro-free registry index ----------------------------------
   // The private __registry__/index.tsx React.lazy-imports every pro block.
   // registry/pro/** is excluded from the mirror, so shipping that file would
