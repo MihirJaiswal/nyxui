@@ -2,6 +2,7 @@ export interface CategoryItem {
   name: string;
   href: string;
   isNew?: boolean;
+  isPro?: boolean;
   category?: string;
 }
 

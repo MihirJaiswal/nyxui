@@ -43,7 +43,8 @@ export interface ComponentProp {
     | "color"
     | "object"
     | "textarea"
-    | "multiselect";
+    | "multiselect"
+    | "classnames";
   default: ComponentPropValue;
   label: string;
   description?: string;

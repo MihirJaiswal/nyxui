@@ -64,6 +64,10 @@ const ALLOWED = [
   "components",
   "hooks",
   "lib",
+  // Shared type definitions. components/ and lib/ are mirrored and reference
+  // these, so leaving them out freezes the public copies and the mirror fails
+  // to typecheck against newer component code.
+  "types",
   "providers",
   "stores",
   "__registry__",
