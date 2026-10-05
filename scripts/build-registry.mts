@@ -1,5 +1,5 @@
 import { execFile } from "child_process";
-import { promises as fs } from "fs";
+import { promises as fs, default as fsSync } from "fs";
 import path from "path";
 import { promisify } from "util";
 import { format } from "prettier";
@@ -107,10 +107,34 @@ function deduplicateRegistryItems(items: Registry["items"]): Registry["items"] {
   return Array.from(uniqueItemsByName.values());
 }
 
-const proItems = [...pro, ...proExamples].map((item) => ({
-  ...item,
-  meta: { ...(item.meta ?? {}), pro: true },
-}));
+/**
+ * Pro manifests ship to the public mirror (the site renders the Pro catalogue
+ * from them) but registry/pro/** does not. Keeping an item whose source is
+ * absent makes shadcn registry:build abort with ENOENT on the first file it
+ * tries to read, so drop those here rather than letting the build die.
+ *
+ * On the private repo every source is present and nothing is dropped.
+ */
+const proItems = [...pro, ...proExamples]
+  .filter((item) =>
+    (item.files ?? []).every(
+      (file) =>
+        typeof file === "object" &&
+        "path" in file &&
+        fsSync.existsSync(path.join(process.cwd(), file.path)),
+    ),
+  )
+  .map((item) => ({
+    ...item,
+    meta: { ...(item.meta ?? {}), pro: true },
+  }));
+
+const droppedPro = [...pro, ...proExamples].length - proItems.length;
+if (droppedPro > 0) {
+  console.log(
+    `Skipped ${droppedPro} pro item(s) with no source on disk (public mirror)`,
+  );
+}
 const proItemNames = new Set(proItems.map((item) => item.name));
 
 function createRegistry(): Registry {
@@ -309,7 +333,9 @@ async function stripProFromPublicR(): Promise<void> {
 
   // verify registry.json listing has no pro entries
   const publicRJson = path.join(publicRDir, "registry.json");
-  const listing = registrySchema.parse(JSON.parse(await fs.readFile(publicRJson, "utf8")));
+  const listing = registrySchema.parse(
+    JSON.parse(await fs.readFile(publicRJson, "utf8")),
+  );
   const leaked = listing.items.filter((item) => proItemNames.has(item.name));
   if (leaked.length > 0) {
     throw new Error(
