@@ -127,7 +127,7 @@ export default function IntroductionPage() {
           </ul>
           <p className="mt-6 leading-7 text-muted-foreground">
             Pro unlocks the full catalog for one flat purchase —{" "}
-            <strong className="font-medium text-foreground">$94 / year</strong>{" "}
+            <strong className="font-medium text-foreground">$129 / year</strong>{" "}
             or{" "}
             <strong className="font-medium text-foreground">
               $149 once, lifetime
