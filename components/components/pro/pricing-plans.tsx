@@ -51,8 +51,10 @@ export function SignInStrip() {
  * Prices are display-only — Polar is the source of truth for what a
  * customer is charged. Keep these in sync with the products in Polar.
  */
-export const ANNUAL_PRICE = "$94";
+export const ANNUAL_PRICE = "$129";
 export const LIFETIME_PRICE = "$149";
+const ANNUAL_WAS_PRICE = "$149";
+const LIFETIME_WAS_PRICE = "$179";
 
 interface PricingPlansProps {
   annualProductId?: string;
@@ -64,6 +66,13 @@ const features = [
   "Full TypeScript source, CLI or copy-paste",
   "New releases included",
   "Unlimited personal & commercial projects",
+];
+
+const freeFeatures = [
+  "35 free animated components",
+  "CLI install or copy-paste",
+  "MIT licensed, use anywhere",
+  "Weekly additions to the free tier",
 ];
 
 export function PricingPlans({
@@ -123,21 +132,40 @@ export function PricingPlans({
 
   const plans = [
     {
+      id: "free" as const,
+      name: "Free",
+      price: "$0",
+      cadence: "forever",
+      blurb: "The open-source core. No account needed.",
+      href: "/components",
+      external: false,
+      features: freeFeatures,
+      featured: false,
+    },
+    {
       id: "annual" as const,
       name: "Annual",
       price: ANNUAL_PRICE,
+      wasPrice: ANNUAL_WAS_PRICE,
+      offLabel: "13% off",
       cadence: "per year",
       blurb: "Everything, renewed yearly. Cancel any time.",
       href: checkoutHref(annualProductId),
+      external: false,
+      features,
       featured: false,
     },
     {
       id: "lifetime" as const,
       name: "Lifetime",
       price: LIFETIME_PRICE,
+      wasPrice: LIFETIME_WAS_PRICE,
+      offLabel: "17% off",
       cadence: "one-time",
       blurb: "Pay once. Yours forever, including everything added later.",
       href: checkoutHref(lifetimeProductId),
+      external: false,
+      features,
       featured: true,
     },
   ];
@@ -151,83 +179,104 @@ export function PricingPlans({
         </h2>
       </div>
 
-      <div className="grid gap-4 px-6 pb-10 sm:grid-cols-2 sm:px-10 sm:pb-12 md:px-12">
-        {plans.map((tier) => (
-          <div
-            key={tier.id}
-            className={cn(
-              "relative flex flex-col rounded-2xl bg-card p-6 sm:p-8",
-              tier.featured
-                ? "smooth-shadow-ring-md smooth-ring-brand/40"
-                : "border border-border/60",
-            )}
-          >
-            {tier.featured && (
-              <span className="absolute -top-2.5 left-6 rounded-full bg-brand px-2.5 py-0.5 font-mono text-[10px] font-semibold tracking-widest text-brand-foreground uppercase">
-                Best value
-              </span>
-            )}
-
-            <div className="flex items-baseline gap-2">
-              <span className="text-4xl leading-none font-semibold tracking-tight text-foreground sm:text-5xl">
-                {tier.price}
-              </span>
-              <span className="text-sm text-muted-foreground">
-                {tier.cadence}
-              </span>
-            </div>
-
-            <p className="mt-2 text-sm font-medium text-foreground">
-              {tier.name}
-            </p>
-            <p className="mt-1.5 text-sm text-muted-foreground">{tier.blurb}</p>
-
-            <ul className="mt-6 space-y-2.5 border-t border-border/60 pt-6">
-              {features.map((feature) => (
-                <li
-                  key={feature}
-                  className="flex items-start gap-2.5 text-sm text-muted-foreground"
-                >
-                  <Check
-                    aria-hidden="true"
-                    className="mt-0.5 size-4 shrink-0 text-brand"
-                  />
-                  <span>{feature}</span>
-                </li>
-              ))}
-            </ul>
-
-            <div className="mt-8 flex-1" />
-
-            {tier.href ? (
-              <Button
-                asChild
-                variant={tier.featured ? "default" : "outline"}
-                className="w-full"
-              >
-                <Link href={tier.href} prefetch={false}>
-                  Get {tier.name.toLowerCase()}
-                  <ArrowUpRight className="size-4" />
-                </Link>
-              </Button>
-            ) : (
-              <p className="text-center font-mono text-xs text-muted-foreground">
-                Checkout is being set up.
-              </p>
-            )}
-
-            <p className="mt-4 text-center font-mono text-[11px] leading-relaxed text-muted-foreground/80">
-              {user ? (
-                <>
-                  Billing to{" "}
-                  <span className="text-foreground">{user.email}</span>
-                </>
-              ) : (
-                "Access tied to your checkout email"
+      <div className="grid gap-4 px-6 pb-10 sm:grid-cols-3 sm:px-10 sm:pb-12 md:px-12 lg:grid-cols-3">
+        {plans.map((tier) => {
+          const isPaid = tier.id !== "free";
+          return (
+            <div
+              key={tier.id}
+              className={cn(
+                "relative flex flex-col rounded-2xl bg-card p-6 sm:p-8",
+                tier.featured
+                  ? "smooth-shadow-ring-md smooth-ring-brand/40"
+                  : "border border-border/60",
               )}
-            </p>
-          </div>
-        ))}
+            >
+              {tier.featured && (
+                <span className="absolute -top-2.5 left-6 rounded-full bg-brand px-2.5 py-0.5 font-mono text-[10px] font-semibold tracking-widest text-brand-foreground uppercase">
+                  Best value
+                </span>
+              )}
+              {isPaid && tier.offLabel && (
+                <span className="absolute top-6 right-6 rounded-full bg-emerald-500/10 px-2.5 py-1 font-mono text-[11px] font-semibold tracking-wide text-emerald-600 dark:text-emerald-400">
+                  {tier.offLabel}
+                </span>
+              )}
+
+              <div className="flex items-baseline gap-2">
+                <span className="text-4xl leading-none font-semibold tracking-tight text-foreground sm:text-5xl">
+                  {tier.price}
+                </span>
+                {isPaid && tier.wasPrice && (
+                  <span className="text-lg leading-none font-medium tracking-tight text-muted-foreground/70 line-through">
+                    {tier.wasPrice}
+                  </span>
+                )}
+                <span className="text-sm text-muted-foreground">
+                  {tier.cadence}
+                </span>
+              </div>
+
+              <p className="mt-2 text-sm font-medium text-foreground">
+                {tier.name}
+              </p>
+              <p className="mt-1.5 text-sm text-muted-foreground">
+                {tier.blurb}
+              </p>
+
+              <ul className="mt-6 space-y-2.5 border-t border-border/60 pt-6">
+                {tier.features.map((feature) => (
+                  <li
+                    key={feature}
+                    className="flex items-start gap-2.5 text-sm text-muted-foreground"
+                  >
+                    <Check
+                      aria-hidden="true"
+                      className="mt-0.5 size-4 shrink-0 text-brand"
+                    />
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-8 flex-1" />
+
+              {tier.href ? (
+                <Button
+                  asChild
+                  variant={tier.featured ? "default" : "outline"}
+                  className="w-full"
+                >
+                  <Link href={tier.href} prefetch={false}>
+                    {isPaid
+                      ? `Get ${tier.name.toLowerCase()}`
+                      : "Browse free components"}
+                    <ArrowUpRight className="size-4" />
+                  </Link>
+                </Button>
+              ) : (
+                <p className="text-center font-mono text-xs text-muted-foreground">
+                  Checkout is being set up.
+                </p>
+              )}
+
+              <p className="mt-4 text-center font-mono text-[11px] leading-relaxed text-muted-foreground/80">
+                {isPaid ? (
+                  user ? (
+                    <>
+                      Billing to{" "}
+                      <span className="text-foreground">{user.email}</span>
+                    </>
+                  ) : (
+                    "Access tied to your checkout email"
+                  )
+                ) : (
+                  "No sign-in required"
+                )}
+              </p>
+            </div>
+          );
+        })}
       </div>
     </ProSection>
   );

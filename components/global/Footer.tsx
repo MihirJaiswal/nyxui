@@ -155,6 +155,9 @@ export default function FooterSection() {
   const animate = prefersReducedMotion ? undefined : ("visible" as const);
   const isNarrow = containerVariantFor(usePathname()) === "narrow";
   const container = INNER[containerVariantFor(usePathname())];
+  const groups = isNarrow
+    ? LINK_GROUPS.filter((group) => group.title !== "Categories")
+    : LINK_GROUPS;
 
   return (
     <footer
@@ -165,9 +168,9 @@ export default function FooterSection() {
       <div className={cn(container, "flex flex-col")}>
         <motion.div
           className={cn(
-            "gap-x-8 gap-y-12 py-14",
+            "gap-x-12 gap-y-12 py-14 sm:gap-y-14",
             isNarrow
-              ? "grid grid-cols-2 sm:grid-cols-3 lg:flex lg:items-start lg:justify-between"
+              ? "grid grid-cols-2 sm:grid-cols-3 lg:flex lg:items-start gap-x-20 lg:justify-between"
               : "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-[minmax(0,1.4fr)_repeat(4,minmax(0,1fr))]",
           )}
           initial={initial}
@@ -234,12 +237,12 @@ export default function FooterSection() {
           {/* Link groups: on narrow routes, clustered right of the brand; on wide routes, plain grid children */}
           {isNarrow ? (
             <div className="contents lg:flex lg:gap-14 xl:gap-20">
-              {LINK_GROUPS.map(({ title, links }) => (
+              {groups.map(({ title, links }) => (
                 <LinkGroup key={title} title={title} links={links} />
               ))}
             </div>
           ) : (
-            LINK_GROUPS.map(({ title, links }) => (
+            groups.map(({ title, links }) => (
               <LinkGroup key={title} title={title} links={links} />
             ))
           )}
