@@ -313,6 +313,23 @@ async function main() {
     }
   }
 
+  // --- rewrite app/layout.tsx: drop the pro-obf stylesheet import -----------
+  // The private root layout imports ./pro-obf.css to mangle pro block preview
+  // classnames. That file is excluded from the mirror (PRO_EXCLUDES above),
+  // so keeping the import breaks the public `next build`. Strip the line.
+  const mirrorLayout = join(mirror, "app/layout.tsx");
+  if (existsSync(mirrorLayout)) {
+    const src = readFileSync(mirrorLayout, "utf8");
+    const stripped = src
+      .split("\n")
+      .filter((line) => !/pro-obf\.css/.test(line))
+      .join("\n");
+    if (stripped !== src) {
+      writeFileSync(mirrorLayout, stripped);
+      info("rewrote app/layout.tsx: removed pro-obf.css import");
+    }
+  }
+
   // --- verify no pro files snuck in -----------------------------------------
   const mirrorFiles = listFiles(mirror);
   const leaked = mirrorFiles.filter((f) => isExcluded(f));
