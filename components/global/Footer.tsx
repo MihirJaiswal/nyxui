@@ -168,10 +168,10 @@ export default function FooterSection() {
       <div className={cn(container, "flex flex-col")}>
         <motion.div
           className={cn(
-            "gap-x-12 gap-y-12 py-14 sm:gap-y-14",
+            "grid grid-cols-2 gap-x-12 gap-y-12 py-14 sm:grid-cols-3 sm:gap-y-14",
             isNarrow
-              ? "grid grid-cols-2 sm:grid-cols-3 lg:flex lg:items-start gap-x-20 lg:justify-between"
-              : "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-[minmax(0,1.4fr)_repeat(4,minmax(0,1fr))]",
+              ? "lg:grid-cols-[minmax(0,1.4fr)_repeat(3,minmax(0,1fr))]"
+              : "lg:grid-cols-[minmax(0,1.4fr)_repeat(4,minmax(0,1fr))]",
           )}
           initial={initial}
           animate={animate}
@@ -179,12 +179,7 @@ export default function FooterSection() {
         >
           {/* Brand column */}
           <motion.div
-            className={cn(
-              "flex max-w-sm flex-col gap-5",
-              isNarrow
-                ? "col-span-full lg:col-span-1 lg:shrink-0"
-                : "col-span-full lg:col-span-1",
-            )}
+            className="flex max-w-sm flex-col gap-5 col-span-full lg:col-span-1"
             variants={itemVariants}
           >
             <Link
@@ -234,18 +229,9 @@ export default function FooterSection() {
             </div>
           </motion.div>
 
-          {/* Link groups: on narrow routes, clustered right of the brand; on wide routes, plain grid children */}
-          {isNarrow ? (
-            <div className="contents lg:flex lg:gap-14 xl:gap-20">
-              {groups.map(({ title, links }) => (
-                <LinkGroup key={title} title={title} links={links} />
-              ))}
-            </div>
-          ) : (
-            groups.map(({ title, links }) => (
-              <LinkGroup key={title} title={title} links={links} />
-            ))
-          )}
+          {groups.map(({ title, links }) => (
+            <LinkGroup key={title} title={title} links={links} />
+          ))}
         </motion.div>
       </div>
 
