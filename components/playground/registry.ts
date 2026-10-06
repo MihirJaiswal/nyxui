@@ -89,11 +89,10 @@ const componentLoaders: Record<string, () => Promise<ComponentModule>> = {
   "github-repo-card": () => import("@/registry/ui/github-repo-card"),
   "glow-card": () => import("@/registry/ui/glow-card"),
   "music-player": () => import("@/registry/ui/music-player"),
-  // Uses a playground wrapper — `position: "absolute"` escapes the preview
-  // and `position: "fixed"` covers the viewport without a containing block.
-  // See the wrapper file for details.
   "grainy-background": () =>
-    import("@/components/playground/wrappers/grainy-background"),
+    import("@/registry/ui/grainy-background").then((m) => ({
+      default: m.GrainyBackground,
+    })),
   "water-ripple-effect": () => import("@/registry/ui/water-ripple-effect"),
   "custom-cursor": () => import("@/registry/ui/custom-cursor"),
   "apple-glass-effect": () => import("@/registry/ui/apple-glass-effect"),
@@ -1353,13 +1352,6 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
         description: "Array of colors for the gradient animation",
         category: "Colors",
       },
-      darkMode: {
-        type: "boolean",
-        default: false,
-        label: "Dark Mode",
-        description: "Use dark color scheme",
-        category: "Colors",
-      },
 
       // Animation
       animationType: {
@@ -1432,50 +1424,6 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
         label: "Grain Blend Mode",
         description: "How grain texture blends with background",
         category: "Grain",
-      },
-
-      // Layout
-      size: {
-        type: "select",
-        default: "full",
-        options: ["sm", "md", "lg", "full"],
-        label: "Size",
-        description: "Size of the background container",
-        category: "Layout",
-      },
-      position: {
-        type: "select",
-        default: "relative",
-        options: ["fixed", "absolute", "relative"],
-        label: "Position",
-        description: "CSS position property",
-        category: "Layout",
-      },
-      zIndex: {
-        type: "number",
-        default: 0,
-        min: -10,
-        max: 50,
-        step: 1,
-        label: "Z-Index",
-        description: "CSS z-index value",
-        category: "Layout",
-      },
-      as: {
-        type: "select",
-        default: "div",
-        options: [
-          "div",
-          "section",
-          "article",
-          "main",
-          "aside",
-          "header",
-          "footer",
-        ],
-        label: "Render As",
-        description: "HTML element type to render as",
-        category: "Layout",
       },
     },
   },

@@ -5,14 +5,12 @@ export default function GrainyBackgroundDemo1() {
   return (
     <div className="relative w-full overflow-hidden rounded-xl">
       <GrainyBackground
-        darkMode
         animationType="mesh"
         grainType="plasma"
         grainIntensity={35}
         grainSize={120}
         speed={1.4}
         colors={["#1e1b4b", "#0c4a6e", "#2e1065", "#0a0a0a"]}
-        position="relative"
         className="inset-0"
       >
         <div className="relative z-10 mx-auto flex max-w-2xl flex-col items-center px-8 py-20 text-center sm:px-12">

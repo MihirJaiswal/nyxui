@@ -123,7 +123,6 @@ function TileCard({ tile }: { tile: Tile }) {
       {/* Grainy header */}
       <div className={`relative m-2 overflow-hidden rounded-xl flex-1`}>
         <GrainyBackground
-          darkMode
           animationType={tile.animationType}
           grainType={tile.grainType}
           grainIntensity={tile.grainIntensity}

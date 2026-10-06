@@ -14,12 +14,7 @@ export interface GrainyBackgroundProps {
   grainIntensity?: number;
   grainSize?: number;
   animationType?: "flow" | "mesh" | "waves" | "aurora" | "spiral" | "pulse";
-  size?: "sm" | "md" | "lg" | "full" | number;
-  position?: "fixed" | "absolute" | "relative";
-  zIndex?: number;
   animate?: boolean;
-  darkMode?: boolean;
-  as?: "div" | "section" | "article" | "main" | "aside" | "header" | "footer";
   grainBlendMode?:
     | "multiply"
     | "overlay"
@@ -30,32 +25,14 @@ export interface GrainyBackgroundProps {
     | "normal";
 }
 
-const getSizeStyles = (
-  size: GrainyBackgroundProps["size"],
-): React.CSSProperties => {
-  if (typeof size === "number") {
-    return { width: `${size}px`, height: `${size}px` };
-  }
-  const sizeMap = {
-    sm: { width: "300px", height: "300px" },
-    md: { width: "500px", height: "500px" },
-    lg: { width: "800px", height: "800px" },
-    full: { width: "100%", height: "100%" },
-  } as const;
-  return sizeMap[size || "full"];
-};
-
 const getGrainSVG = (
   type: NonNullable<GrainyBackgroundProps["grainType"]>,
   intensity: number,
   size: number,
-  darkMode: boolean,
 ): string => {
   const baseFreq = Math.max(0.1, size / 120);
   const opacity = Math.min(0.95, (intensity / 100) * 1.2);
-  const lightMatrix = darkMode
-    ? "0 0 0 0 0.9 0 0 0 0 0.9 0 0 0 0 0.9 0 0 0"
-    : "0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0 0.1 0 0 0";
+  const lightMatrix = "0 0 0 0 0.9 0 0 0 0 0.9 0 0 0 0 0.9 0 0 0";
 
   const grainConfigs = {
     digital: {
@@ -103,23 +80,18 @@ const getGrainSVG = (
   } as const;
 
   const config = grainConfigs[type];
-  return `data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='${type}' x='0%25' y='0%25' width='100%25' height='100%25'%3E%3CfeTurbulence type='${config.type}' baseFrequency='${config.freq}' numOctaves='${config.octaves}' seed='${config.seed}' result='noise'/%3E%3CfeColorMatrix in='noise' type='saturate' values='0' result='desaturated'/%3E%3CfeColorMatrix in='desaturated' type='matrix' values='${lightMatrix} ${config.opacity}' result='colored'/%3E%3CfeComposite in='colored' in2='SourceGraphic' operator='multiply' result='grain1'/%3E%3CfeTurbulence type='${config.type === "turbulence" ? "fractalNoise" : "turbulence"}' baseFrequency='${config.freq * 1.5}' numOctaves='${Math.max(1, config.octaves - 2)}' seed='${config.seed + 10}' result='noise2'/%3E%3CfeColorMatrix in='noise2' type='saturate' values='0' result='desaturated2'/%3E%3CfeColorMatrix in='desaturated2' type='matrix' values='${lightMatrix} ${config.opacity * 0.6}' result='colored2'/%3E%3CfeComposite in='grain1' in2='colored2' operator='screen' result='final'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23${type})' fill='%23${darkMode ? "ffffff" : "000000"}'/%3E%3C/svg%3E`;
+  return `data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='${type}' x='0%25' y='0%25' width='100%25' height='100%25'%3E%3CfeTurbulence type='${config.type}' baseFrequency='${config.freq}' numOctaves='${config.octaves}' seed='${config.seed}' result='noise'/%3E%3CfeColorMatrix in='noise' type='saturate' values='0' result='desaturated'/%3E%3CfeColorMatrix in='desaturated' type='matrix' values='${lightMatrix} ${config.opacity}' result='colored'/%3E%3CfeComposite in='colored' in2='SourceGraphic' operator='multiply' result='grain1'/%3E%3CfeTurbulence type='${config.type === "turbulence" ? "fractalNoise" : "turbulence"}' baseFrequency='${config.freq * 1.5}' numOctaves='${Math.max(1, config.octaves - 2)}' seed='${config.seed + 10}' result='noise2'/%3E%3CfeColorMatrix in='noise2' type='saturate' values='0' result='desaturated2'/%3E%3CfeColorMatrix in='desaturated2' type='matrix' values='${lightMatrix} ${config.opacity * 0.6}' result='colored2'/%3E%3CfeComposite in='grain1' in2='colored2' operator='screen' result='final'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23${type})' fill='%23ffffff'/%3E%3C/svg%3E`;
 };
 
 const getGradientPattern = (
   pattern: NonNullable<GrainyBackgroundProps["animationType"]>,
   colors: string[],
-  darkMode = false,
 ): string => {
-  const defaultColors = darkMode
-    ? ["#1a1a2e", "#16213e", "#0f3460", "#533483"]
-    : ["#ff6b6b", "#4ecdc4", "#45b7d1", "#96ceb4"];
-
-  const finalColors = colors.length > 0 ? colors : defaultColors;
-  const baseOpacity = darkMode ? "85" : "75";
-  const lightOpacity = darkMode ? "65" : "55";
-  const heavyOpacity = darkMode ? "95" : "90";
-  const ultraLightOpacity = darkMode ? "45" : "35";
+  const finalColors = colors;
+  const baseOpacity = "75";
+  const lightOpacity = "55";
+  const heavyOpacity = "90";
+  const ultraLightOpacity = "35";
   const gradientPatterns = {
     flow: (): string => {
       const gradients: string[] = [];
@@ -296,10 +268,7 @@ const getGradientPattern = (
   return gradientPatterns[pattern]();
 };
 
-const defaultColors = {
-  light: ["#ff6b6b", "#4ecdc4", "#45b7d1", "#96ceb4"],
-  dark: ["#1a1a2e", "#16213e", "#0f3460", "#533483"],
-};
+const DEFAULT_COLORS = ["#ff6b6b", "#4ecdc4", "#45b7d1", "#96ceb4"];
 
 export function GrainyBackground({
   children,
@@ -311,22 +280,17 @@ export function GrainyBackground({
   grainIntensity = 60,
   grainSize = 100,
   animationType = "mesh",
-  size = "full",
-  position = "relative",
-  zIndex = 0,
   animate = true,
-  darkMode = false,
-  as = "div",
   grainBlendMode = "soft-light",
 }: GrainyBackgroundProps) {
-  const finalColors = colors || defaultColors[darkMode ? "dark" : "light"];
+  const finalColors = colors && colors.length > 0 ? colors : DEFAULT_COLORS;
   const gradient = useMemo(
-    () => getGradientPattern(animationType, finalColors, darkMode),
-    [animationType, finalColors, darkMode],
+    () => getGradientPattern(animationType, finalColors),
+    [animationType, finalColors],
   );
   const grainSVG = useMemo(
-    () => getGrainSVG(grainType, grainIntensity, grainSize, darkMode),
-    [grainType, grainIntensity, grainSize, darkMode],
+    () => getGrainSVG(grainType, grainIntensity, grainSize),
+    [grainType, grainIntensity, grainSize],
   );
 
   const variants: Variants = useMemo(() => {
@@ -436,20 +400,17 @@ export function GrainyBackground({
     [grainIntensity, speed],
   );
 
-  //eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const MotionComponent = motion[as] as any;
-
   return (
-    <MotionComponent
-      className={cn("enhanced-grainy-animated-bg overflow-hidden", className)}
+    <motion.div
+      className={cn(
+        "enhanced-grainy-animated-bg relative overflow-hidden",
+        className,
+      )}
       style={{
-        ...getSizeStyles(size),
-        ...style,
-        position,
-        zIndex,
-        backgroundColor: darkMode ? "#0a0a0a" : "#ffffff",
+        backgroundColor: "#0a0a0a",
         pointerEvents: "auto",
         isolation: "isolate",
+        ...style,
       }}
     >
       {/* Base gradient layer */}
@@ -491,6 +452,6 @@ export function GrainyBackground({
       >
         {children}
       </div>
-    </MotionComponent>
+    </motion.div>
   );
 }
