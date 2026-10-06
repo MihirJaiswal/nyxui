@@ -108,7 +108,7 @@ export function createBaseMetadata({
   description,
   keywords,
   canonical,
-  image = "/nyx.webp",
+  image = "/assets/logos/nyx.webp",
   twitterCreator = "@mihir_jaiswal_",
   type = "website",
 }: CreateBaseMetadataOptions): Metadata {

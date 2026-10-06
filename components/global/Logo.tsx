@@ -11,7 +11,7 @@ type LogoProps = Omit<
 const Logo = ({ alt = "", className, ...props }: LogoProps) => (
   // eslint-disable-next-line @next/next/no-img-element
   <img
-    src="/nyx-logo.webp"
+    src="/assets/logos/nyx-logo.webp"
     alt={alt}
     width={1024}
     height={1024}

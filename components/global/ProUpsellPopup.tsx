@@ -37,7 +37,7 @@ export function ProUpsellPopup() {
           {/* Banner image backdrop */}
           <div className="relative h-36 overflow-hidden">
             <Image
-              src="/banner.avif"
+              src="/assets/logos/banner.avif"
               alt=""
               aria-hidden
               fill

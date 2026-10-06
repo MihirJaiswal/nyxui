@@ -526,7 +526,7 @@ export default function CustomCursorDemo() {
 
                 <div className="flex-1 flex items-center justify-center">
                   <Image
-                    src="/nyx-logo.webp"
+                    src="/assets/logos/nyx-logo.webp"
                     alt="Placeholder"
                     width={150}
                     height={150}

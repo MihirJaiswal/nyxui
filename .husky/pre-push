@@ -27,6 +27,7 @@ PRO_PATHS=(
   "app/api/pro"
   "components/pro-only"
   "public/pro"
+  "public/blocks"
 )
 
 # stdin: "<local ref> <local sha> <remote ref> <remote sha>" lines

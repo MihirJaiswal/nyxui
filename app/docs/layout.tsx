@@ -48,7 +48,7 @@ export const metadata: Metadata = {
       "Modern UI components for Next.js applications built with Tailwind CSS, Framer Motion, and TypeScript. Create stunning user interfaces with ease.",
     images: [
       {
-        url: "/docs/docs-cover.png",
+        url: "/assets/images/docs/docs-cover.png",
         width: 1200,
         height: 630,
         alt: "Nyx UI Component Library Preview",
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     title: "Nyx UI - Modern React Components Library",
     description:
       "Discover beautiful UI components for Next.js applications built with Tailwind CSS, Framer Motion, and TypeScript.",
-    images: ["/nyx.webp"],
+    images: ["/assets/logos/nyx.webp"],
     creator: "@nuvyx_ui",
     site: "@nuvyx_ui",
   },

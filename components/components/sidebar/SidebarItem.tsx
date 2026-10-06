@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
-import { Lock } from "lucide-react";
 import { animate, motion, useMotionValue, useSpring } from "motion/react";
 import { cn } from "@/lib/utils";
 import { PhantomLine } from "@/components/global/PhantomLine";
@@ -70,14 +69,6 @@ export const SidebarItem = ({
         title={item.name}
       >
         <span className="min-w-0 flex-1 truncate">{item.name}</span>
-        {item.isPro && (
-          <span
-            aria-label="Pro"
-            className="flex shrink-0 items-center text-primary/20"
-          >
-            <Lock className="size-3" />
-          </span>
-        )}
       </motion.span>
       {!isLast && <PhantomLine position="bottom" double />}
     </MotionLink>

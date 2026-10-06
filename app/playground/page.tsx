@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     title: "Nyx UI Component Playground",
     description:
       "Interactive playground to customize React components with live preview.",
-    images: ["/nyx.webp"],
+    images: ["/assets/logos/nyx.webp"],
     creator: "@mihir_jaiswal_",
   },
   robots: {

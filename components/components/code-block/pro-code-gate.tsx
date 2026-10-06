@@ -2,7 +2,8 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { Check, Loader2, Lock, TriangleAlert } from "lucide-react";
+import { ArrowUpRight, Loader2, Lock, TriangleAlert } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { useProAccess } from "@/components/providers/pro-access-provider";
 import { PRO_URL } from "@/registry/Data";
 import { ProDummyCode } from "./pro-dummy-code";
@@ -215,63 +216,56 @@ export function ProCodeGate({
           <div className="blur-sm" aria-hidden="true">
             {mounted ? <ProDummyCode /> : null}
           </div>
-          <div className="from-card to-card/5 absolute inset-0 bg-linear-to-t dark:from-black dark:to-black/5 h-full" />
+          <div className="from-card via-card/60 to-card/20 absolute inset-0 bg-linear-to-t dark:from-black dark:via-black/60 dark:to-black/20 h-full" />
         </div>
 
         {/* centered gate card */}
-        <div className="absolute inset-0 z-10 grid place-items-center p-3">
-          <div className="flex max-h-full w-full max-w-xs flex-col items-center overflow-y-auto rounded-2xl px-5 py-5 text-center">
-            <div className="relative flex size-10 shrink-0 items-center justify-center rounded-full bg-brand/10 smooth-ring-brand/40">
-              <div className="absolute inset-0 rounded-full bg-brand/20 blur-md" />
-              <Lock aria-hidden="true" className="relative size-4 text-brand" />
+        <div className="absolute inset-0 z-10 grid place-items-center p-4 sm:p-8">
+          <div className="flex max-h-full w-full max-w-md flex-col items-center overflow-y-auto text-center py-2">
+            {/* icon */}
+            <div className="relative flex size-11 shrink-0 items-center justify-center rounded-full bg-brand/10 ring-1 ring-brand/25">
+              <Lock aria-hidden="true" className="size-4 text-brand" />
             </div>
 
-            <h3 className="mt-3 text-base font-semibold tracking-tight text-foreground">
+            <h3 className="mt-4 text-lg font-semibold tracking-tight text-foreground">
               {title}
             </h3>
-            <p className="mt-1 text-xs leading-relaxed text-balance text-muted-foreground">
+            <p className="mt-1.5 max-w-sm text-[13px] leading-relaxed text-balance text-muted-foreground">
               {signedInWithoutPlan
                 ? `${user?.email} doesn't have an active plan yet. Buy with this email and the code unlocks here instantly.`
                 : description}
             </p>
 
-            <ul className="mt-3 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[10px] font-medium text-muted-foreground">
-              {["Lifetime updates", "All pro blocks", "Source code"].map(
-                (perk) => (
-                  <li key={perk} className="flex items-center gap-1">
-                    <Check aria-hidden="true" className="size-2.5 text-brand" />
-                    {perk}
-                  </li>
-                ),
-              )}
-            </ul>
+            <div className="mt-6 flex w-full max-w-xs flex-col items-stretch gap-2">
+              <Button asChild className="w-full">
+                <Link href={PRO_URL} prefetch={false}>
+                  {ctaLabel}
+                  {ctaPrice && (
+                    <span className="font-semibold opacity-80">
+                      · {ctaPrice}
+                    </span>
+                  )}
+                  <ArrowUpRight aria-hidden="true" className="size-4" />
+                </Link>
+              </Button>
 
-            <Link
-              href={PRO_URL}
-              className="group mt-4 flex w-full shrink-0 items-center justify-center gap-1.5 rounded-full bg-brand px-5 py-2 text-[13px] font-semibold text-white shadow-brand/40 transition-all duration-300 hover:shadow-lg hover:brightness-110 smooth-shadow-ring"
-            >
-              {ctaLabel}
-              {ctaPrice && (
-                <span className="font-semibold opacity-80">· {ctaPrice}</span>
+              {!user && (
+                <button
+                  type="button"
+                  onClick={() => void handleSignIn()}
+                  disabled={signingIn || loading}
+                  className="flex w-full items-center justify-center gap-2 rounded-full px-5 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground disabled:opacity-50"
+                >
+                  {signingIn && (
+                    <Loader2
+                      aria-hidden="true"
+                      className="size-3.5 animate-spin"
+                    />
+                  )}
+                  Already purchased? Sign in
+                </button>
               )}
-            </Link>
-
-            {!user && (
-              <button
-                type="button"
-                onClick={() => void handleSignIn()}
-                disabled={signingIn || loading}
-                className="mt-2 flex w-full shrink-0 items-center justify-center gap-2 rounded-full px-5 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground disabled:opacity-50"
-              >
-                {signingIn && (
-                  <Loader2
-                    aria-hidden="true"
-                    className="size-3.5 animate-spin"
-                  />
-                )}
-                Already purchased? Sign in
-              </button>
-            )}
+            </div>
           </div>
         </div>
 

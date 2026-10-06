@@ -50,7 +50,7 @@ export async function generateMetadata({
       description: enhancedDescription,
       keywords: componentKeywords,
       canonical,
-      image: doc.image || "/nyx.webp",
+      image: doc.image || "/assets/logos/nyx.webp",
       type: "article",
     }),
     authors: [{ name: "Mihir Jaiswal", url: externalLinks.twitter }],

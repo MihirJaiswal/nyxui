@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Loader2, User } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { useProAccess } from "@/components/providers/pro-access-provider";
 import {
   DropdownMenu,
@@ -19,6 +19,9 @@ import { cn } from "@/lib/utils";
 const POLAR_PORTAL_URL =
   process.env.NEXT_PUBLIC_POLAR_PORTAL_URL ?? "https://polar.sh/purchases";
 
+/** Shown when the Google profile photo fails to load or is missing. */
+const FALLBACK_AVATAR = "/blocks/images/avatars/gradient.avif";
+
 /**
  * Account button for the navbar. Three states:
  *   - loading  → 36px placeholder that keeps the layout stable
@@ -32,6 +35,10 @@ const POLAR_PORTAL_URL =
 export function ProAccountButton() {
   const { user, entitled, plan, loading, signIn, signOut } = useProAccess();
   const [busy, setBusy] = useState(false);
+  const [avatarFailed, setAvatarFailed] = useState(false);
+
+  const avatarSrc =
+    avatarFailed || !user?.photoURL ? FALLBACK_AVATAR : user.photoURL;
 
   if (loading && !user) {
     return (
@@ -87,18 +94,15 @@ export function ProAccountButton() {
           )}
         >
           <span className="relative flex size-7 items-center justify-center rounded-full bg-muted/60">
-            {user.photoURL ? (
-              <Image
-                src={user.photoURL}
-                alt=""
-                width={28}
-                height={28}
-                className="size-7 rounded-full object-cover"
-                unoptimized
-              />
-            ) : (
-              <User className="size-3.5 text-muted-foreground" />
-            )}
+            <Image
+              src={avatarSrc}
+              alt=""
+              width={28}
+              height={28}
+              className="size-7 rounded-full object-cover"
+              unoptimized
+              onError={() => setAvatarFailed(true)}
+            />
             {entitled && (
               <span
                 aria-hidden="true"
@@ -118,20 +122,15 @@ export function ProAccountButton() {
       <DropdownMenuContent align="end" className="w-64">
         <DropdownMenuLabel className="font-normal">
           <div className="flex items-center gap-3">
-            {user.photoURL ? (
-              <Image
-                src={user.photoURL}
-                alt=""
-                width={36}
-                height={36}
-                className="size-9 rounded-full object-cover"
-                unoptimized
-              />
-            ) : (
-              <span className="flex size-9 items-center justify-center rounded-full bg-muted">
-                <User className="size-4 text-muted-foreground" />
-              </span>
-            )}
+            <Image
+              src={avatarSrc}
+              alt=""
+              width={36}
+              height={36}
+              className="size-9 rounded-full object-cover"
+              unoptimized
+              onError={() => setAvatarFailed(true)}
+            />
             <div className="min-w-0 flex-1">
               <span className="block truncate text-sm font-medium text-foreground">
                 {user.displayName ?? "Signed in"}

@@ -113,7 +113,7 @@ export function createTemplateSchema(
       url: absoluteUrl("/templates"),
       description: "Modern React template collection for Next.js applications",
     },
-    screenshot: template.image || "/nyx.webp",
+    screenshot: template.image || "/assets/logos/nyx.webp",
     applicationSubCategory: "Web Template",
     featureList: [
       "React & Next.js Compatible",

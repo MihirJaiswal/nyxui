@@ -52,7 +52,7 @@ export async function generateMetadata({
       description: enhancedDescription,
       keywords: templateKeywords,
       canonical,
-      image: template.image || "/nyx.webp",
+      image: template.image || "/assets/logos/nyx.webp",
       twitterCreator: "@nuvyx_ui",
       type: "article",
     }),

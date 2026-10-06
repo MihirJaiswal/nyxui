@@ -40,7 +40,7 @@ export default function CategoriesPage() {
               <div className="w-14 h-14 rounded-full shrink-0">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/nyx-logo.webp"
+                  src="/assets/logos/nyx-logo.webp"
                   alt={tag}
                   className="inline-block rounded-lg w-full h-full drop-shadow-[1px_0_0_black]"
                   loading="lazy"

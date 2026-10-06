@@ -57,6 +57,13 @@ const ALLOWED = [
   // built registry output (free JSONs only — pro JSONs are excluded below)
   "public/r",
   "registry.json",
+  // static assets used by the free site: logos, hover-tick + music-player
+  // audio, free component demo images, template/playground videos, fonts
+  "public/assets/logos",
+  "public/assets/audio",
+  "public/assets/images",
+  "public/assets/videos",
+  "public/fonts",
   // docs
   "content",
   // site code
@@ -106,6 +113,8 @@ const PRO_EXCLUDES = [
   "app/api/pro",
   "components/pro-only",
   "public/pro",
+  // Pro block imagery — referenced only by registry/pro/blocks/**
+  "public/blocks",
   // Pro agent skills sold to entitled customers. Scope this to the Pro skill
   // only — skills/ also holds the public contributor skills, and excluding the
   // whole directory makes the guard reject those as leaks.

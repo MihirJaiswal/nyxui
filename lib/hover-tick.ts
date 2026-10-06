@@ -1,7 +1,7 @@
 "use client";
 
 // ---- Hover tick sound -------------------------------------------------
-// Uses the Web Audio API: the file at /public/sounds/tick.mp3 is fetched
+// Uses the Web Audio API: the file at /public/assets/audio/tick.mp3 is fetched
 // and decoded once into an AudioBuffer, then each hover spawns a fresh
 // AudioBufferSourceNode. This is the reliable way to play a short SFX
 // rapidly and overlapping — cloneNode() on an <audio> element does NOT
@@ -24,7 +24,7 @@ export const preloadTick = () => {
     audioContext = new Ctor();
   }
   if (!tickLoadPromise) {
-    tickLoadPromise = fetch("/sounds/tick.mp3")
+    tickLoadPromise = fetch("/assets/audio/tick.mp3")
       .then((res) => res.arrayBuffer())
       .then((data) => audioContext!.decodeAudioData(data))
       .then((buf) => {

@@ -48,7 +48,7 @@ const BlocksPage = () => {
   // /blocks/category/<slug> page.
   const categories = new Map<
     string,
-    { count: number; image: string; imageClassName?: string }
+    { count: number; image: string; imageClassName?: string; isPro: boolean }
   >();
   Object.entries(componentsData.blocks).forEach(([slug, block]) => {
     const category = getBlockCategory(slug, block.tags ?? []);
@@ -57,6 +57,7 @@ const BlocksPage = () => {
       count: (existing?.count ?? 0) + 1,
       image: existing?.image ?? block.image,
       imageClassName: existing?.imageClassName ?? block.imageClassName,
+      isPro: (existing?.isPro ?? false) || block.isPro === true,
     });
   });
 
@@ -83,17 +84,19 @@ const BlocksPage = () => {
           — one card per category bucket instead of per block. */}
       <div className="mx-auto grid w-full max-w-[120ch] grid-cols-1 gap-4 md:grid-cols-2 lg:gap-6 xl:grid-cols-3">
         {sortedCategories.map((category) => {
-          const { image, imageClassName, count } = categories.get(category)!;
+          const { image, imageClassName, count, isPro } =
+            categories.get(category)!;
           return (
             <ComponentCard
               key={category}
               type="blocks"
               slug={category}
               title={category}
-              imageSrc={image || "/nyx-logo.webp"}
+              imageSrc={image || "/assets/logos/nyx-logo.webp"}
               imageClassName={imageClassName}
               href={blockCategoryHref(category)}
               count={count}
+              isPro={isPro}
             />
           );
         })}

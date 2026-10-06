@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { ProBadge } from "./ProBadge";
 import { PRO_URL } from "@/registry/Data";
 
 interface ComponentCardProps {
@@ -39,28 +40,16 @@ export const ComponentCard = ({
       <div className="flex w-full flex-col items-start justify-between gap-1.5 px-2 pb-2">
         <div className="flex w-full items-center justify-between gap-2">
           <h3 className="text-card-foreground font-medium">{title}</h3>
-          <div className="flex shrink-0 items-center gap-1.5">
-            {typeof count === "number" && (
-              <span
-                className={cn(
-                  "rounded-full border border-border bg-muted px-2 py-0.5",
-                  "text-[10px] font-semibold tabular-nums text-muted-foreground",
-                )}
-              >
-                {count}
-              </span>
-            )}
-            {isPro && (
-              <span
-                className={cn(
-                  "rounded-full border border-brand/40 bg-brand/10 px-2 py-0.5",
-                  "text-[10px] font-semibold uppercase tracking-wide text-brand",
-                )}
-              >
-                Pro
-              </span>
-            )}
-          </div>
+          {(typeof count === "number" || isPro) && (
+            <div className="flex shrink-0 items-center gap-1 rounded-full border border-border bg-muted px-2 py-0.5">
+              {isPro && <ProBadge />}
+              {typeof count === "number" && (
+                <span className="text-[10px] font-semibold tabular-nums text-muted-foreground">
+                  {count}
+                </span>
+              )}
+            </div>
+          )}
         </div>
       </div>
 
@@ -93,7 +82,7 @@ export const ComponentCard = ({
           <div className="w-14 h-14 rounded-full shrink-0 bg-background">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/nyx-logo.webp"
+              src="/assets/logos/nyx-logo.webp"
               alt={title}
               className="inline-block rounded-lg w-full h-full object-contain"
               loading="lazy"

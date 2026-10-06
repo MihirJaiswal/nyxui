@@ -6,7 +6,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { ChevronUp } from "lucide-react";
-import img from "@/public/docs/docs-cover.png";
+import img from "@/public/assets/images/docs/docs-cover.png";
 
 export default function IntroductionPage() {
   return (
