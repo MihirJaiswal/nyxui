@@ -236,11 +236,6 @@ export const CommandPalette = ({
                         <span className="text-xs font-medium">
                           {item.title}
                         </span>
-                        {item.description && (
-                          <span className="ml-2 truncate text-xs text-muted-foreground/70">
-                            {item.description}
-                          </span>
-                        )}
                       </div>
                     </CommandItem>
                   );

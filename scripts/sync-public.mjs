@@ -28,6 +28,7 @@ import {
   readdirSync,
   rmSync,
   statSync,
+  writeFileSync,
 } from "node:fs";
 import { tmpdir } from "node:os";
 import { basename, join, relative } from "node:path";
@@ -288,6 +289,29 @@ async function main() {
   cpSync(publicIndexSrc, mirrorIndex);
   rmSync(publicIndexSrc, { force: true });
   info("swapped __registry__/index.tsx for the pro-free public index");
+
+  // --- rewrite package.json: strip obfuscation from build -------------------
+  // The private build wraps `next build` with scripts/obfuscate-pro.mjs to
+  // mangle pro block preview code. That script is excluded from the mirror
+  // (PRO_EXCLUDES above) so public CI dies with MODULE_NOT_FOUND when it
+  // tries to run `pnpm build`. Strip the wrapper from the public copy.
+  const mirrorPkgPath = join(mirror, "package.json");
+  if (existsSync(mirrorPkgPath)) {
+    const pkg = JSON.parse(readFileSync(mirrorPkgPath, "utf8"));
+    let touched = false;
+    if (pkg.scripts?.build?.includes("obfuscate-pro")) {
+      pkg.scripts.build = "next build";
+      touched = true;
+    }
+    if (pkg.scripts?.["build:clean"]?.includes("obfuscate-pro")) {
+      delete pkg.scripts["build:clean"];
+      touched = true;
+    }
+    if (touched) {
+      writeFileSync(mirrorPkgPath, JSON.stringify(pkg, null, 2) + "\n");
+      info("rewrote package.json: removed obfuscate-pro from build script");
+    }
+  }
 
   // --- verify no pro files snuck in -----------------------------------------
   const mirrorFiles = listFiles(mirror);

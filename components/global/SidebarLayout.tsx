@@ -1,9 +1,10 @@
 "use client";
 
 import React from "react";
+import { usePathname } from "next/navigation";
 import { ComponentSidebar } from "@/components/components/sidebar/component-sidebar";
 import { useSidebarCollapse } from "@/hooks/use-sidebar-collapse";
-import { CONTAINER } from "@/lib/layout";
+import { CONTAINER, hasTightSidebarGap } from "@/lib/layout";
 import { cn } from "@/lib/utils";
 
 interface SidebarLayoutProps {
@@ -16,6 +17,8 @@ export default function SidebarLayout({
   sidebarType,
 }: SidebarLayoutProps) {
   const [isCollapsed] = useSidebarCollapse();
+  const pathname = usePathname();
+  const tightGap = hasTightSidebarGap(pathname ?? "");
 
   return (
     <div className="flex flex-1 flex-col">
@@ -23,7 +26,7 @@ export default function SidebarLayout({
         className={cn(
           CONTAINER.wide,
           "flex flex-1 flex-col lg:flex-row lg:gap-8 xl:mx-auto",
-          isCollapsed ? "xl:gap-12" : "xl:gap-24",
+          tightGap ? "xl:gap-0" : isCollapsed ? "xl:gap-12" : "xl:gap-24",
         )}
       >
         <aside className="hidden w-full shrink-0 lg:block lg:w-auto">

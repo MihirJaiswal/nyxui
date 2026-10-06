@@ -27,7 +27,7 @@ interface Props extends HTMLMotionProps<"div"> {
   custom?: number;
 }
 
-const animationVariants: Record<
+export const animationVariants: Record<
   string,
   { container: Variants; child: Variants }
 > = {

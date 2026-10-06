@@ -7,8 +7,7 @@
   "scripts": {
     "predev": "node scripts/ensure-pro-obf.mjs",
     "dev": "next dev",
-    "build": "node scripts/obfuscate-pro.mjs && next build",
-    "build:clean": "node scripts/obfuscate-pro.mjs --clean",
+    "build": "next build",
     "start": "next start",
     "build:registry": "npx tsx ./scripts/build-registry.mts",
     "registry:generate": "npx tsx --tsconfig ./tsconfig.scripts.json ./scripts/build-registry.mts",

@@ -32,7 +32,8 @@ const componentMeta: Record<string, PlaygroundComponentMeta> = {
   "github-repo-card": { dependencies: ["lucide-react"] },
   "glow-card": {},
   "music-player": { dependencies: ["lucide-react"] },
-  "grainy-background": { dependencies: ["motion"] },
+  // Wrapper exports as default (see components/playground/wrappers/).
+  "grainy-background": { dependencies: ["motion"], importType: "default" },
   "water-ripple-effect": { dependencies: ["three"], importType: "default" },
   "custom-cursor": { dependencies: ["motion"], exportName: "Cursor" },
   "apple-glass-effect": {
@@ -40,7 +41,9 @@ const componentMeta: Record<string, PlaygroundComponentMeta> = {
     exportName: "GlassContainer",
   },
   "bubble-background": {},
-  "animated-text": { dependencies: ["motion"], exportName: "AnimateText" },
+  // Wrapper exports as default; the real component (not loaded by the
+  // playground) exports `AnimateText` as a named export.
+  "animated-text": { dependencies: ["motion"], importType: "default" },
   "glitch-button": {},
   "dynamic-ripple": {},
   terminal: { dependencies: ["motion", "lucide-react"], importType: "default" },
@@ -64,7 +67,11 @@ const componentMeta: Record<string, PlaygroundComponentMeta> = {
     dependencies: ["motion"],
     exportName: "TypingWords",
   },
-  "logo-cycle": { dependencies: ["motion"] },
+  "logo-cycle": {
+    dependencies: ["motion"],
+    // Wrapper exports as default (see components/playground/wrappers/).
+    importType: "default",
+  },
   "liquid-metal-button": {
     dependencies: ["three"],
     exportName: "LiquidMetalButton",
@@ -82,12 +89,20 @@ const componentLoaders: Record<string, () => Promise<ComponentModule>> = {
   "github-repo-card": () => import("@/registry/ui/github-repo-card"),
   "glow-card": () => import("@/registry/ui/glow-card"),
   "music-player": () => import("@/registry/ui/music-player"),
-  "grainy-background": () => import("@/registry/ui/grainy-background"),
+  // Uses a playground wrapper — `position: "absolute"` escapes the preview
+  // and `position: "fixed"` covers the viewport without a containing block.
+  // See the wrapper file for details.
+  "grainy-background": () =>
+    import("@/components/playground/wrappers/grainy-background"),
   "water-ripple-effect": () => import("@/registry/ui/water-ripple-effect"),
   "custom-cursor": () => import("@/registry/ui/custom-cursor"),
   "apple-glass-effect": () => import("@/registry/ui/apple-glass-effect"),
   "bubble-background": () => import("@/registry/ui/bubble-background"),
-  "animated-text": () => import("@/registry/ui/animated-text"),
+  // Uses a playground wrapper — motion/react's `useInView` returns stale
+  // `false` under the preview's Suspense boundary, so the real component
+  // never reaches "visible". See the wrapper file for details.
+  "animated-text": () =>
+    import("@/components/playground/wrappers/animated-text"),
   "glitch-button": () => import("@/registry/ui/glitch-button"),
   "dynamic-ripple": () => import("@/registry/ui/dynamic-ripple"),
   terminal: () => import("@/registry/ui/terminal"),
@@ -104,7 +119,10 @@ const componentLoaders: Record<string, () => Promise<ComponentModule>> = {
   "shuffle-loader": () => import("@/registry/ui/shuffle-loader"),
   "shining-card": () => import("@/registry/ui/shining-card"),
   "typing-words": () => import("@/registry/ui/typing-words"),
-  "logo-cycle": () => import("@/registry/ui/logo-cycle"),
+  // Uses a playground wrapper — the real component's intrinsic width is 0
+  // in shrink-to-fit flex containers and the props panel can only pass
+  // string identifiers for icons. See the wrapper file for details.
+  "logo-cycle": () => import("@/components/playground/wrappers/logo-cycle"),
   "liquid-metal-button": () => import("@/registry/ui/liquid-metal-button"),
   "ascii-text": () => import("@/registry/ui/ascii-text"),
 };

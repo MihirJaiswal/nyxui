@@ -34,3 +34,11 @@ const NARROW_ROUTES = new Set<string>(["/", "/design-engineering", "/pro"]);
 export function containerVariantFor(pathname: string): ContainerVariant {
   return NARROW_ROUTES.has(pathname) ? "narrow" : "wide";
 }
+
+const TIGHT_GAP_ROUTES: readonly string[] = ["/docs"];
+
+export function hasTightSidebarGap(pathname: string): boolean {
+  return TIGHT_GAP_ROUTES.some(
+    (p) => pathname === p || pathname.startsWith(`${p}/`),
+  );
+}
