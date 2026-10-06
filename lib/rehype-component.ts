@@ -5,7 +5,27 @@ import { visit } from "unist-util-visit";
 
 import { UnistNode, UnistTree } from "@/types/unist";
 
-import Registry from "@/registry.json";
+import RegistryJson from "@/registry.json";
+
+/**
+ * registry.json is generated, so TypeScript infers its type from whatever
+ * happens to be in the file. The public mirror drops every pro item, which
+ * leaves no item carrying `meta` and makes `item.meta` a type error there
+ * while compiling fine here. Pin the shape so both trees agree.
+ */
+type RegistryFile = {
+  path: string;
+  type?: string;
+  target?: string;
+};
+
+type RegistryItem = {
+  name: string;
+  files: RegistryFile[];
+  meta?: { pro?: boolean } | null;
+};
+
+const Registry = RegistryJson as unknown as { items: RegistryItem[] };
 
 function pushSourceNodes(
   node: UnistNode,
