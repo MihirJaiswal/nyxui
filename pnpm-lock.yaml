@@ -127,6 +127,9 @@ importers:
       posthog-js:
         specifier: ^1.239.1
         version: 1.239.1
+      posthog-node:
+        specifier: ^5.55.0
+        version: 5.55.0
       prismjs:
         specifier: ^1.30.0
         version: 1.30.0
@@ -2474,6 +2477,18 @@ packages:
     resolution:
       {
         integrity: sha512-wwQAWhWSuHaag8c4q/KN/vCoeOJYshAIvMQwD4GpSb3OiZklFfvAgmj0VCBBImRpuF/aFgIRzllXlVX93Jevww==,
+      }
+
+  "@posthog/core@1.56.0":
+    resolution:
+      {
+        integrity: sha512-WNlOoFQbOZyJzX54DhAslSpTjwDyXX5VLuRFNJjv172uOE9qHVUvtZAPP9dHZdq2HZkkLjbY27idH7UhzKSBVA==,
+      }
+
+  "@posthog/types@1.413.0":
+    resolution:
+      {
+        integrity: sha512-tYAVzNojWckuG/wxBB0fwE70sFruQQq4xbhkci7eH2ARU3mMfUTkvpN1HwBMpm0AtbxidLiH0IFvagmdJ8opPw==,
       }
 
   "@protobufjs/aspromise@1.1.2":
@@ -9641,6 +9656,18 @@ packages:
       rrweb-snapshot:
         optional: true
 
+  posthog-node@5.55.0:
+    resolution:
+      {
+        integrity: sha512-8dFtlDTqs0CKGZ8t4mUnk4NdShAgzru3B9D0MfM/NTBzlRyAjctivzWINLtMLRQxYjvgBohxy7RTwiQf4mPycQ==,
+      }
+    engines: { node: ^20.20.0 || >=22.22.0 }
+    peerDependencies:
+      rxjs: ^7.0.0
+    peerDependenciesMeta:
+      rxjs:
+        optional: true
+
   postprocessing@6.37.6:
     resolution:
       {
@@ -13185,6 +13212,12 @@ snapshots:
       zod: 3.25.76
 
   "@polka/url@1.0.0-next.29": {}
+
+  "@posthog/core@1.56.0":
+    dependencies:
+      "@posthog/types": 1.413.0
+
+  "@posthog/types@1.413.0": {}
 
   "@protobufjs/aspromise@1.1.2": {}
 
@@ -18348,6 +18381,10 @@ snapshots:
       fflate: 0.4.8
       preact: 10.26.5
       web-vitals: 4.2.4
+
+  posthog-node@5.55.0:
+    dependencies:
+      "@posthog/core": 1.56.0
 
   postprocessing@6.37.6(three@0.178.0):
     dependencies:

@@ -1,5 +1,6 @@
 import { Webhooks } from "@polar-sh/nextjs";
 import { planForProduct, setEntitlement } from "@/lib/entitlement";
+import { trackServerEvent } from "@/lib/event-server";
 
 /**
  * Keeps the local entitlement mirror in step with Polar.
@@ -36,6 +37,20 @@ export const POST = Webhooks({
       polarCustomerId: data.customerId ?? null,
       polarSubscriptionId: null,
     });
+
+    // Entitlement is keyed by email on this side; the matching Firebase uid
+    // only lands when the customer next signs in. Attribute to email_hash
+    // for now — the client identify() stitches events together once auth
+    // resolves on the browser.
+    await trackServerEvent({
+      name: "checkout_completed",
+      distinctId: `email:${email.toLowerCase()}`,
+      email,
+      properties: {
+        plan: "lifetime",
+        polar_customer_id: data.customerId ?? null,
+      },
+    });
   },
 
   onSubscriptionActive: async ({ data }) => {
@@ -50,6 +65,17 @@ export const POST = Webhooks({
       expiresAt: periodEnd(data),
       polarCustomerId: data.customerId ?? null,
       polarSubscriptionId: data.id,
+    });
+
+    await trackServerEvent({
+      name: "checkout_completed",
+      distinctId: `email:${email.toLowerCase()}`,
+      email,
+      properties: {
+        plan,
+        polar_customer_id: data.customerId ?? null,
+        polar_subscription_id: data.id,
+      },
     });
   },
 
@@ -83,6 +109,18 @@ export const POST = Webhooks({
       expiresAt: Date.now(),
       polarCustomerId: data.customerId ?? null,
       polarSubscriptionId: data.id,
+    });
+
+    // The refund-triage query joins this against pro_source_served between
+    // the matching checkout_completed and this event.
+    await trackServerEvent({
+      name: "plan_cancelled",
+      distinctId: `email:${email.toLowerCase()}`,
+      email,
+      properties: {
+        polar_customer_id: data.customerId ?? null,
+        polar_subscription_id: data.id,
+      },
     });
   },
 });

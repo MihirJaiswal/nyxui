@@ -120,6 +120,10 @@ const PRO_EXCLUDES = [
   // whole directory makes the guard reject those as leaks.
   "skills/building-with-nyxui",
   "skills/syncing-public-mirror",
+  // Pro preview obfuscation pipeline — private-only, never ships publicly.
+  "scripts/obfuscate-pro.mjs",
+  "app/pro-obf.css",
+  ".obf",
 ];
 
 // ---------------------------------------------------------------------------

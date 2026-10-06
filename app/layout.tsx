@@ -41,6 +41,7 @@ const Satoshi = localFont({
   variable: "--font-satoshi",
   display: "swap",
 });
+import "./pro-obf.css";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Footer from "@/components/global/Footer";
@@ -49,6 +50,8 @@ import { externalLinks } from "@/lib/links";
 import { Toaster } from "@/components/ui/sonner";
 import Navbar from "@/components/global/header/Navbar";
 import { ProAccessProvider } from "@/components/providers/pro-access-provider";
+import { PostHogProvider } from "@/components/providers/posthog-provider";
+import { PostHogIdentityBridge } from "@/components/providers/posthog-identity-bridge";
 import { ProUpsellPopup } from "@/components/global/ProUpsellPopup";
 import { ScrollProgress } from "@/components/global/ScrollProgress";
 
@@ -181,13 +184,16 @@ export default function RootLayout({
           enableSystem={false}
         >
           {/* <Banner /> */}
-          <ProAccessProvider>
-            <div className="flex min-h-screen flex-col dark:has-data-home-page:bg-black">
-              <Navbar />
-              <main className="flex min-h-0 flex-1 flex-col">{children}</main>
-              <Footer />
-            </div>
-          </ProAccessProvider>
+          <PostHogProvider>
+            <ProAccessProvider>
+              <PostHogIdentityBridge />
+              <div className="flex min-h-screen flex-col dark:has-data-home-page:bg-black">
+                <Navbar />
+                <main className="flex min-h-0 flex-1 flex-col">{children}</main>
+                <Footer />
+              </div>
+            </ProAccessProvider>
+          </PostHogProvider>
           <ProUpsellPopup />
           <Toaster />
           <ScrollProgress />

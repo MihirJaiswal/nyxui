@@ -28,6 +28,9 @@ PRO_PATHS=(
   "components/pro-only"
   "public/pro"
   "public/blocks"
+  "scripts/obfuscate-pro.mjs"
+  "app/pro-obf.css"
+  ".obf"
 )
 
 # stdin: "<local ref> <local sha> <remote ref> <remote sha>" lines
