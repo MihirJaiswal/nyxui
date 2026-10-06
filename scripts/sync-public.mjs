@@ -110,6 +110,7 @@ const PRO_EXCLUDES = [
   // only — skills/ also holds the public contributor skills, and excluding the
   // whole directory makes the guard reject those as leaks.
   "skills/building-with-nyxui",
+  "skills/syncing-public-mirror",
 ];
 
 // ---------------------------------------------------------------------------
