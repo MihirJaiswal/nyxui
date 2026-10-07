@@ -116,10 +116,8 @@ const nextConfig: NextConfig = withBundlerAnalyzer({
     ];
   },
   reactStrictMode: true,
-  // These routes read Pro files off disk at request time. They live outside
-  // public/, so tracing has to be told to ship them.
   outputFileTracingIncludes: {
-    "/api/pro/source/[name]": ["./registry/pro/**/*.tsx"],
+    "/api/pro/source/[name]": ["./registry/pro/**/*.{ts,tsx}"],
   },
   experimental: {
     optimizeCss: true,
