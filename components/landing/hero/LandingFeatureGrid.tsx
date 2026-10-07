@@ -9,7 +9,8 @@ export function LandingFeatureGrid(): React.ReactElement {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/assets/images/landing-page/star.svg"
-              alt="fdf"
+              alt=""
+              aria-hidden
               className="w-4"
             />
           </div>
@@ -38,7 +39,8 @@ export function LandingFeatureGrid(): React.ReactElement {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/assets/images/landing-page/grid.svg"
-              alt="fdf"
+              alt=""
+              aria-hidden
               className="w-4"
             />
           </div>

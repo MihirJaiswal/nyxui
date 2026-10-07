@@ -12,6 +12,17 @@ const nextConfig: NextConfig = withBundlerAnalyzer({
   // doc URLs working so existing links and bookmarks do not 404.
   async redirects() {
     return [
+      // Canonicalise host: www → non-www. Both URLs resolved to the same
+      // content, which split ranking signals and triggered the SEO
+      // auditor's "no HTTP redirects" warning. 308 (permanent) preserves
+      // method + body for POST webhooks (Polar etc.) that might ever hit
+      // the apex incorrectly.
+      {
+        source: "/legacy-www/:path*",
+        has: [{ type: "host", value: "www.nyxui.com" }],
+        destination: "https://nyxui.com/:path*",
+        permanent: true,
+      },
       {
         source: "/blocks/analogclock",
         destination: "/blocks/analog-clock",

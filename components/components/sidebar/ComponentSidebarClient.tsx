@@ -6,6 +6,13 @@ import { PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useHoverTick } from "@/hooks/use-hover-tick";
 import { useSidebarCollapse } from "@/hooks/use-sidebar-collapse";
+import {
+  PreviewHoverCard,
+  SIDEBAR_PREVIEW_OPEN_DELAY_MS,
+  SIDEBAR_PREVIEW_SIDE_OFFSET_PX,
+  usePreviewHover,
+  resolveSidebarPreview,
+} from "@/lib/sidebar-preview";
 import { SidebarItem } from "./SidebarItem";
 import { SidebarSection } from "./SidebarSection";
 import type {
@@ -40,6 +47,7 @@ export function ComponentSidebarClient({
   const [isCollapsed, setIsCollapsed] = useSidebarCollapse();
   const activeItemRef = React.useRef<HTMLAnchorElement | null>(null);
   const hoverTick = useHoverTick();
+  const hover = usePreviewHover(SIDEBAR_PREVIEW_OPEN_DELAY_MS);
 
   const groupedComponents = React.useMemo(
     () => groupItems(componentItems, "Components"),
@@ -98,6 +106,7 @@ export function ComponentSidebarClient({
 
   return (
     <motion.div
+      {...hover.listProps}
       initial={false}
       animate={{
         height: isCollapsed ? 40 : "var(--content-h)",
@@ -173,6 +182,11 @@ export function ComponentSidebarClient({
           )}
         </AnimatePresence>
       </div>
+      <PreviewHoverCard
+        controller={hover}
+        resolve={resolveSidebarPreview}
+        sideOffset={SIDEBAR_PREVIEW_SIDE_OFFSET_PX}
+      />
     </motion.div>
   );
 }

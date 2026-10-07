@@ -4,6 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import { siteLinks } from "@/lib/links";
 import { MorphLink } from "@/components/ui/morph-link";
 import { TiledImage } from "@/components/landing/features/TiledImage";
+import { LandingBackdrop } from "@/components/landing/hero/LandingBackdrop";
 
 export const metadata: Metadata = {
   title: "Nyx UI | Design Engineering",
@@ -66,26 +67,29 @@ export default function DesignEngineeringPage(): React.ReactElement {
     <main className="relative min-h-dvh w-full overflow-x-clip bg-background">
       <div className="relative z-10 mx-auto max-w-295 border-border/60 bg-background lg:border-x">
         {/* Header */}
-        <header className="relative left-1/2 -ml-[50vw] w-screen border-b border-border/60">
-          <div className="mx-auto max-w-295 px-6 py-16 md:py-20 lg:px-12">
-            <p className="mb-5 font-mono text-[10px] uppercase tracking-widest text-brand">
-              Design engineering
-            </p>
-            <h1
-              id="de-heading"
-              className="max-w-3xl text-4xl leading-tight font-medium tracking-tight text-foreground sm:text-5xl md:text-6xl"
-            >
-              Design and code,
-              <br />
-              one{" "}
-              <span className="font-caveat text-brand text-5xl sm:text-6xl md:text-7xl">
-                discipline.
-              </span>
-            </h1>
-            <p className="mt-6 text-base leading-7 text-muted-foreground">
-              Why the most considered interfaces are built by people who can do
-              both, and how that thinking shapes every component in Nyx UI.
-            </p>
+        <header className="relative border-b border-border/60">
+          <div className="relative overflow-x-clip">
+            <LandingBackdrop />
+            <div className="relative px-6 py-16 md:py-20 lg:px-12">
+              <p className="mb-5 font-mono text-[10px] uppercase tracking-widest text-brand">
+                Design engineering
+              </p>
+              <h1
+                id="de-heading"
+                className="max-w-3xl text-4xl leading-tight font-medium tracking-tight text-foreground sm:text-5xl md:text-6xl"
+              >
+                Design and code,
+                <br />
+                one{" "}
+                <span className="font-caveat text-brand text-5xl sm:text-6xl md:text-7xl">
+                  discipline.
+                </span>
+              </h1>
+              <p className="mt-6 text-base leading-7 text-muted-foreground">
+                Why the most considered interfaces are built by people who can
+                do both, and how that thinking shapes every component in Nyx UI.
+              </p>
+            </div>
           </div>
         </header>
 

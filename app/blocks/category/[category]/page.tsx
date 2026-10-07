@@ -4,8 +4,15 @@ import { Index } from "@/__registry__";
 import { ComponentPreview } from "@/components/components/preview/component-preview";
 import { ProCodeGate } from "@/components/components/code-block/pro-code-gate";
 import { absoluteUrl } from "@/lib/utils";
-import { blockCategoryHref, getBlockCategory, tagToSlug } from "@/lib/links";
+import {
+  blockCategoryHref,
+  getBlockCategory,
+  siteLinks,
+  tagToSlug,
+} from "@/lib/links";
 import { createBaseMetadata } from "@/lib/docs";
+import { createBreadcrumbSchema } from "@/lib/docs-schema";
+import { JsonLd } from "@/components/global/JsonLd";
 
 interface BlockCategoryPageProps {
   params: Promise<{
@@ -51,8 +58,15 @@ export default async function BlockCategoryPage({
     allBuckets.get(decodedCategory.toLowerCase()) ??
     decodedCategory.charAt(0).toUpperCase() + decodedCategory.slice(1);
 
+  const breadcrumbData = createBreadcrumbSchema([
+    { name: "Nyx UI", url: absoluteUrl("/") },
+    { name: "Blocks", url: absoluteUrl(siteLinks.blocks) },
+    { name: titleCategory, url: absoluteUrl(blockCategoryHref(titleCategory)) },
+  ]);
+
   return (
     <div className="mx-auto max-w-[120ch] w-full">
+      <JsonLd data={breadcrumbData} />
       {/* Every block in this category is rendered LIVE, stacked one
           after another. The Installation / license setup section lives
           ONLY on the individual /blocks/<name> page. Mockups and

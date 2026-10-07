@@ -8,8 +8,11 @@ import {
   getDocFromParams,
   type SlugPageProps,
 } from "@/lib/docs";
-import { createTemplateSchema } from "@/lib/docs-schema";
-import { externalLinks, itemHref } from "@/lib/links";
+import {
+  createBreadcrumbSchema,
+  createTemplateSchema,
+} from "@/lib/docs-schema";
+import { externalLinks, itemHref, siteLinks } from "@/lib/links";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/global/JsonLd";
@@ -52,7 +55,7 @@ export async function generateMetadata({
       description: enhancedDescription,
       keywords: templateKeywords,
       canonical,
-      image: template.image || "/assets/logos/nyx.webp",
+      image: absoluteUrl(`/api/og?type=templates&slug=${templateName}`),
       twitterCreator: "@nuvyx_ui",
       type: "article",
     }),
@@ -89,10 +92,19 @@ export default async function TemplatePage({ params }: SlugPageProps) {
   }
 
   const schemaData = createTemplateSchema(template, templateName);
+  const breadcrumbData = createBreadcrumbSchema([
+    { name: "Nyx UI", url: absoluteUrl("/") },
+    { name: "Templates", url: absoluteUrl(siteLinks.templates) },
+    {
+      name: template.title,
+      url: absoluteUrl(itemHref("templates", templateName)),
+    },
+  ]);
 
   return (
     <>
       <JsonLd data={schemaData} />
+      <JsonLd data={breadcrumbData} />
 
       {/* Additional meta tags in head */}
       <meta name="template-name" content={template.title} />

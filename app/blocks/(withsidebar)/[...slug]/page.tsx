@@ -9,8 +9,8 @@ import {
   getDocFromParams,
   type SlugPageProps,
 } from "@/lib/docs";
-import { publisher } from "@/lib/docs-schema";
-import { itemHref } from "@/lib/links";
+import { createBreadcrumbSchema, publisher } from "@/lib/docs-schema";
+import { itemHref, siteLinks } from "@/lib/links";
 import { JsonLd } from "@/components/global/JsonLd";
 // import Link from "next/link";
 // import { Scan } from "lucide-react";
@@ -49,7 +49,7 @@ export async function generateMetadata({
       block.title.toLowerCase(),
     ],
     canonical,
-    image: block.image,
+    image: absoluteUrl(`/api/og?type=blocks&slug=${slug[0]}`),
   });
 }
 
@@ -78,9 +78,16 @@ export default async function BlockPage({ params }: SlugPageProps) {
     publisher,
   };
 
+  const breadcrumbData = createBreadcrumbSchema([
+    { name: "Nyx UI", url: absoluteUrl("/") },
+    { name: "Blocks", url: absoluteUrl(siteLinks.blocks) },
+    { name: block.title, url: absoluteUrl(itemHref("blocks", slug[0])) },
+  ]);
+
   return (
     <>
       <JsonLd data={schemaData} />
+      <JsonLd data={breadcrumbData} />
 
       {/* Mockups already show their title in the preview wrapper header —
           skip the page header for them. */}

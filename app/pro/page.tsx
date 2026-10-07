@@ -13,6 +13,8 @@ import {
   Eyebrow,
   ProSection,
 } from "@/components/components/pro/pro-section";
+import { LandingBackdrop } from "@/components/landing/hero/LandingBackdrop";
+import { ProCtaMockup } from "@/components/components/pro/pro-cta-mockup";
 
 const itemCount = pro.length;
 
@@ -54,20 +56,23 @@ export default function ProPage() {
     <div className="flex flex-1 flex-col overflow-hidden">
       {/* Hero */}
       <ProSection>
-        <div className={cn(CELL, "sm:py-20")}>
-          <Eyebrow>nyxui pro</Eyebrow>
-          <h1 className="mt-5 max-w-3xl text-4xl leading-tight font-medium tracking-tight text-foreground sm:text-5xl md:text-6xl">
-            Everything you need to build
-            <br />
-            modern interfaces{" "}
-            <span className="font-caveat text-5xl text-brand sm:text-6xl md:text-7xl">
-              faster.
-            </span>
-          </h1>
-          <p className="mt-6 text-muted-foreground">
-            Templates, blocks and animated components, production-ready, and
-            yours to copy the moment you sign in.
-          </p>
+        <div className={cn(CELL, "relative overflow-x-clip sm:py-20")}>
+          <LandingBackdrop />
+          <div className="relative">
+            <Eyebrow>nyxui pro</Eyebrow>
+            <h1 className="mt-5 max-w-3xl text-4xl leading-tight font-medium tracking-tight text-foreground sm:text-5xl md:text-6xl">
+              Everything you need to build
+              <br />
+              modern interfaces{" "}
+              <span className="font-caveat text-5xl text-brand sm:text-6xl md:text-7xl">
+                faster.
+              </span>
+            </h1>
+            <p className="mt-6 text-muted-foreground">
+              Templates, blocks and animated components, production-ready, and
+              yours to copy the moment you sign in.
+            </p>
+          </div>
         </div>
       </ProSection>
 
@@ -116,21 +121,26 @@ export default function ProPage() {
 
       {/* Closing CTA */}
       <ProSection bordered={false}>
-        <div className={cn(CELL, "flex flex-col items-start sm:py-16")}>
-          <h2 className="max-w-3xl text-3xl leading-[1.05] font-medium tracking-tight sm:text-5xl">
-            Stop rebuilding the same
-            <br />
-            landing page{" "}
-            <span className="font-caveat text-5xl text-brand sm:text-6xl">
-              every time.
-            </span>
-          </h2>
-          <MorphLink href="/blocks" className="mt-8">
-            <div className="flex items-center gap-1">
-              <span>Browse blocks</span>
-              <ArrowUpRight className="inline size-4" />
-            </div>
-          </MorphLink>
+        <div className="relative overflow-x-clip lg:grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
+          <div className={cn(CELL, "flex flex-col items-start sm:py-16")}>
+            <h2 className="max-w-3xl text-3xl leading-[1.05] font-medium tracking-tight sm:text-5xl">
+              Stop rebuilding the same
+              <br />
+              landing page{" "}
+              <span className="font-caveat text-5xl text-brand sm:text-6xl">
+                every time.
+              </span>
+            </h2>
+            <MorphLink href="/blocks" className="mt-8">
+              <div className="flex items-center gap-1">
+                <span>Browse blocks</span>
+                <ArrowUpRight className="inline size-4" />
+              </div>
+            </MorphLink>
+          </div>
+          <div className="relative hidden min-h-72 lg:block">
+            <ProCtaMockup />
+          </div>
         </div>
       </ProSection>
     </div>

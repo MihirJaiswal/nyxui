@@ -1,6 +1,7 @@
 import { ComponentBentoGrid } from "@/components/landing/bento/ComponentBentoGrid";
 import { BlocksShowcase } from "@/components/landing/blocks/BlocksShowcase";
 import { LandingCta } from "@/components/landing/cta/LandingCta";
+import { LandingFaq } from "@/components/landing/faq/LandingFaq";
 import { FeaturesGrid } from "@/components/landing/features/FeaturesGrid";
 import { Landing } from "@/components/landing/Landing";
 import { PlaygroundShowcase } from "@/components/landing/playground/PlaygroundShowcase";
@@ -28,6 +29,7 @@ export default function Home() {
       <PlaygroundShowcase />
       <BlocksShowcase />
       <FeaturesGrid />
+      <LandingFaq />
       <LandingCta />
     </div>
   );

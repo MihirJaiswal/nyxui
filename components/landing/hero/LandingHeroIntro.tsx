@@ -10,8 +10,8 @@ export function LandingHeroIntro(): React.ReactElement {
         </span>
       </h1>
       <p className="mx-auto pt-2 max-w-4xl text-pretty text-foreground/80 text-sm sm:text-xl lg:text-2xl">
-        Easily plug in the latest trending components without stressing over
-        design or animations.
+        An open-source React component library with animated, Tailwind-styled
+        components for Next.js.
       </p>
     </div>
   );

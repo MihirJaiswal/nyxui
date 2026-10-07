@@ -18,6 +18,21 @@ const author = {
   url: externalLinks.twitter,
 };
 
+export function createBreadcrumbSchema(
+  trail: { name: string; url: string }[],
+): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: trail.map((crumb, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: crumb.name,
+      item: crumb.url,
+    })),
+  };
+}
+
 export function createComponentSchema(
   doc: Doc,
   slug: string,

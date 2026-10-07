@@ -2,8 +2,10 @@ import { componentsData } from "@/registry/Data";
 import ComponentGrid from "@/components/components/gallery/ComponentGrid";
 import type { Metadata } from "next";
 import { absoluteUrl } from "@/lib/utils";
-import { categoryHref, tagToSlug } from "@/lib/links";
+import { categoryHref, siteLinks, tagToSlug } from "@/lib/links";
 import { createBaseMetadata } from "@/lib/docs";
+import { createBreadcrumbSchema } from "@/lib/docs-schema";
+import { JsonLd } from "@/components/global/JsonLd";
 
 interface CategoryPageProps {
   params: Promise<{
@@ -31,8 +33,20 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     c.tags.some((t) => t.toLowerCase() === decodedCategory.toLowerCase()),
   );
 
+  const titleCategory =
+    decodedCategory.charAt(0).toUpperCase() + decodedCategory.slice(1);
+  const breadcrumbData = createBreadcrumbSchema([
+    { name: "Nyx UI", url: absoluteUrl("/") },
+    { name: "Components", url: absoluteUrl(siteLinks.components) },
+    {
+      name: titleCategory,
+      url: absoluteUrl(categoryHref(decodedCategory.toLowerCase())),
+    },
+  ]);
+
   return (
     <div>
+      <JsonLd data={breadcrumbData} />
       <ComponentGrid type="components" category={decodedCategory} />
 
       {!hasAny && (

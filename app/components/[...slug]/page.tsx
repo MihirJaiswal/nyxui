@@ -8,13 +8,22 @@ import {
   getDocFromParams,
   type SlugPageProps,
 } from "@/lib/docs";
-import { createComponentSchema } from "@/lib/docs-schema";
-import { externalLinks, itemHref, playgroundComponentHref } from "@/lib/links";
+import {
+  createBreadcrumbSchema,
+  createComponentSchema,
+} from "@/lib/docs-schema";
+import {
+  externalLinks,
+  itemHref,
+  playgroundComponentHref,
+  siteLinks,
+} from "@/lib/links";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MorphLink } from "@/components/ui/morph-link";
 import { ArrowUpRight } from "lucide-react";
 import { JsonLd } from "@/components/global/JsonLd";
+import { RelatedComponents } from "@/components/components/related-components";
 
 export async function generateMetadata({
   params,
@@ -50,7 +59,7 @@ export async function generateMetadata({
       description: enhancedDescription,
       keywords: componentKeywords,
       canonical,
-      image: doc.image || "/assets/logos/nyx.webp",
+      image: absoluteUrl(`/api/og?type=components&slug=${componentName}`),
       type: "article",
     }),
     authors: [{ name: "Mihir Jaiswal", url: externalLinks.twitter }],
@@ -84,10 +93,19 @@ export default async function ComponentPage({ params }: SlugPageProps) {
   }
 
   const schemaData = createComponentSchema(doc, componentName);
+  const breadcrumbData = createBreadcrumbSchema([
+    { name: "Nyx UI", url: absoluteUrl("/") },
+    { name: "Components", url: absoluteUrl(siteLinks.components) },
+    {
+      name: doc.title,
+      url: absoluteUrl(itemHref("components", componentName)),
+    },
+  ]);
 
   return (
     <>
       <JsonLd data={schemaData} />
+      <JsonLd data={breadcrumbData} />
 
       {/* Additional meta tags in head */}
       <meta name="component-name" content={doc.title} />
@@ -115,6 +133,7 @@ export default async function ComponentPage({ params }: SlugPageProps) {
           <div className="mdx-content">
             <Mdx code={doc.body.code} />
           </div>
+          <RelatedComponents slug={componentName} />
         </div>
       </div>
     </>

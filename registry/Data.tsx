@@ -11,6 +11,8 @@ interface ShowCaseItemBase {
   isNew?: boolean;
   imageClassName?: string;
   isPro?: boolean;
+  /** Marks the block whose image serves as its category's cover (e.g. sidebar hover preview). */
+  isRepresentative?: boolean;
 }
 
 export interface Component extends ShowCaseItemBase {
@@ -375,6 +377,7 @@ export const componentsData: ComponentsData = {
   blocks: {
     "mfa-code": {
       title: "MFA Code",
+      isRepresentative: true,
       tags: ["Interactions", "Auth", "Pro"],
       description:
         "A six-digit multifactor code auto-filling box-by-box with focus pops and a typing indicator, resolving to a verified state on loop.",
@@ -445,6 +448,7 @@ export const componentsData: ComponentsData = {
     },
     "feature-section-01": {
       title: "Feature Section 01",
+      isRepresentative: true,
       tags: ["Feature", "Section", "Pro"],
       description:
         "A three-card feature section with animated assets — a typewriter prompt, a browser design mock with a draw-in frame, and an infrastructure sidebar with a looping highlight.",
@@ -545,6 +549,7 @@ export const componentsData: ComponentsData = {
     },
     "logo-cloud-1": {
       title: "Logo Cloud 1",
+      isRepresentative: true,
       tags: ["Logo Cloud", "Section", "Pro"],
       description:
         "A social-proof logo cloud with a copy rail beside a grid of logo tiles that flip between sets with a blur transition, over a live stats marquee.",
@@ -565,6 +570,7 @@ export const componentsData: ComponentsData = {
     },
     "hover-image-links": {
       title: "Hover Image Links",
+      isRepresentative: true,
       tags: ["Section", "Links", "Pro"],
       description:
         "A link list where hovering rows scatters the heading letters and reveals a floating image that chases the cursor.",
@@ -715,6 +721,7 @@ export const componentsData: ComponentsData = {
     },
     "radar-chart": {
       title: "Mockup: Radar Chart",
+      isRepresentative: true,
       tags: ["Mockups", "Charts", "Pro"],
       description:
         "A pure CSS/SVG radar chart with grid rings, axis spokes, a filled score polygon, and hover tooltips per vertex.",
@@ -795,6 +802,7 @@ export const componentsData: ComponentsData = {
     },
     "auth-bento": {
       title: "Mockup: Auth Bento",
+      isRepresentative: true,
       tags: ["Bento", "Mockups", "Pro"],
       description:
         "The full authentication bento grid — 11 hover-gated mockup cards arranged in a 3×4 bento layout with a wide API keys + CLI bottom row.",
@@ -805,6 +813,7 @@ export const componentsData: ComponentsData = {
     },
     "hero-section-02": {
       title: "Hero Section 02",
+      isRepresentative: true,
       tags: ["Section", "Pro"],
       description:
         "A hero with an animated image carousel that cross-fades between light and dark screenshots.",
@@ -1144,6 +1153,7 @@ export const componentsData: ComponentsData = {
     },
     "navigation-1": {
       title: "Navigation 1",
+      isRepresentative: true,
       tags: ["Navigation", "Pro"],
       description:
         "A corner hamburger toggle that springs into a full-screen violet menu with staggered links, socials, and a contact CTA.",
@@ -1274,6 +1284,7 @@ export const componentsData: ComponentsData = {
     },
     "pricing-01": {
       title: "Pricing Section 01",
+      isRepresentative: true,
       tags: ["Pricing", "Pro"],
       description:
         "Three-tier pricing — animated grainy plan cards with hex icons, feature lists, and renewal footer.",

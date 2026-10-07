@@ -32,7 +32,7 @@ export function ProUpsellPopup() {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 24, scale: 0.96 }}
           transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
-          className="fixed bottom-6 start-6 z-50 w-[240px] max-w-[calc(100vw-3rem)] overflow-hidden rounded-2xl smooth-shadow-ring-lg bg-white text-neutral-900 dark:bg-neutral-900 dark:text-white"
+          className="fixed bottom-6 start-6 z-50 w-[240px] max-w-[calc(100vw-3rem)] overflow-hidden rounded-2xl bg-white text-neutral-950 dark:bg-neutral-950 dark:text-white dark:border border-border/60 shadow-xl"
         >
           {/* Banner image backdrop */}
           <div className="relative h-36 overflow-hidden">

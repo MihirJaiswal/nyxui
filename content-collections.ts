@@ -140,9 +140,13 @@ const documents = defineCollection({
     });
     return {
       ...document,
-      image: `${process.env.NEXT_PUBLIC_APP_URL}/og?title=${encodeURI(
-        document.title,
-      )}&description=${encodeURI(document.description)}`,
+      // The previous `image: ${APP_URL}/og?title=...&description=...` was
+      // pointing at a `/og` route that was never implemented, so every
+      // component page's og:image and twitter:image were 404s. Social
+      // previews now come from `app/components/[...slug]/opengraph-image.tsx`
+      // via Next's file convention, which generates a real PNG per
+      // component. We leave `image` to whatever the MDX frontmatter sets,
+      // which is used as a page-body preview, not as a social card.
       slug: `/components/${slugAsParams}`,
       slugAsParams: slugAsParams,
       body: {

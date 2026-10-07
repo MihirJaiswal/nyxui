@@ -9,6 +9,7 @@ export const siteLinks = {
   templates: "/templates",
   category: "/category",
   playground: "/playground",
+  pro: "/pro",
 } as const;
 
 export const externalLinks = {

@@ -29,7 +29,7 @@ export default function Navbar(): React.ReactElement {
     { href: siteLinks.playground, label: "Playground" },
     { href: siteLinks.blocks, label: "Blocks" },
     { href: siteLinks.templates, label: "Templates" },
-    { href: siteLinks.docs, label: "Docs" },
+    { href: siteLinks.pro, label: "Pricing" },
   ];
 
   const moreLinks: { href: string; label: string }[] = [];
@@ -39,7 +39,7 @@ export default function Navbar(): React.ReactElement {
   };
 
   return (
-    <header className="sticky top-0 z-100 w-full border-b bg-background border-border/60 backdrop-blur-lg">
+    <header className="sticky top-0 z-100 w-full border-b bg-background/50 border-border backdrop-blur-lg">
       <div
         className={cn(
           INNER[containerVariantFor(activeLink)],

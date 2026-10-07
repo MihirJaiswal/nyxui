@@ -57,35 +57,21 @@ import { ScrollProgress } from "@/components/global/ScrollProgress";
 export const metadata: Metadata = {
   metadataBase: new URL(`${externalLinks.site}/`),
   title: {
-    default: "Nyx UI",
+    default: "Nyx UI — Animated React Component Library",
     template: "%s | Nyx UI",
   },
   description:
     "Build stunning landing pages and web apps with NyxUI — 25+ React + Tailwind components and templates, powered by Framer Motion for smooth animations.",
+
   keywords: [
     "Nyx UI",
-    "nyxui",
-    "UI library",
-    "React UI library",
-    "Next.js UI library",
-    "component library",
     "React component library",
-    "UI components",
-    "Next.js components",
-    "React components",
+    "React UI library",
+    "animated React components",
     "Tailwind CSS components",
-    "TypeScript UI components",
-    "premium UI library",
-    "modern UI library",
+    "Next.js components",
     "Framer Motion components",
-    "responsive UI components",
-    "accessible UI library",
-    "customizable UI components",
-    "nyx UI",
-    "frontend UI library",
-    "Tailwind UI library",
-    "React design system",
-    "UI kit",
+    "shadcn components",
   ],
   authors: [
     {
@@ -98,8 +84,13 @@ export const metadata: Metadata = {
   alternates: {
     canonical: externalLinks.site,
   },
+
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/assets/logos/nyx-logo.png",
+  },
   openGraph: {
-    title: "Nyx UI",
+    title: "Nyx UI — Animated React Component Library",
     description:
       "The most comprehensive React UI library for Next.js. 30+ modern components built with Tailwind CSS and Framer Motion. Start building beautiful interfaces today.",
     images: [
@@ -114,7 +105,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nyx UI",
+    title: "Nyx UI — Animated React Component Library",
     description:
       "30+ modern React components built with Tailwind CSS and Framer Motion. The ultimate UI library for modern Next.js applications.",
     images: ["/assets/logos/nyx.webp"],
@@ -155,24 +146,60 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        {/* Add JSON-LD structured data */}
+        {/* Three JSON-LD entities so Google can model the project cleanly:
+            Organization (publisher), WebSite (searchable site), and
+            SoftwareApplication (what the product actually is). All three can
+            legally coexist; splitting them helps rich-result eligibility. */}
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "@id": `${externalLinks.site}/#organization`,
+            name: "Nyx UI",
+            url: `${externalLinks.site}/`,
+            logo: `${externalLinks.site}/assets/logos/nyx-logo.png`,
+            sameAs: [externalLinks.githubRepo, externalLinks.twitter].filter(
+              Boolean,
+            ),
+            founder: {
+              "@type": "Person",
+              name: "Mihir Jaiswal",
+              url: externalLinks.twitter,
+            },
+          }}
+        />
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "@id": `${externalLinks.site}/#website`,
+            name: "Nyx UI",
+            url: `${externalLinks.site}/`,
+            publisher: { "@id": `${externalLinks.site}/#organization` },
+            inLanguage: "en",
+          }}
+        />
         <JsonLd
           data={{
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
             name: "Nyx UI",
             description:
-              "Nyx UI is a collection of modern React components and templates for developers.",
+              "Nyx UI is an open-source React component library of animated, customizable components built with Tailwind CSS, TypeScript and Framer Motion.",
             url: `${externalLinks.site}/`,
             author: {
               "@type": "Person",
               name: "Mihir Jaiswal",
               url: externalLinks.twitter,
             },
+            publisher: { "@id": `${externalLinks.site}/#organization` },
             applicationCategory: "DeveloperApplication",
             operatingSystem: "Web Browser",
-            keywords:
-              "UI library, React components, Next.js, Tailwind CSS, TypeScript",
+            offers: {
+              "@type": "Offer",
+              price: "0",
+              priceCurrency: "USD",
+            },
           }}
         />
       </head>
@@ -186,7 +213,7 @@ export default function RootLayout({
           <PostHogProvider>
             <ProAccessProvider>
               <PostHogIdentityBridge />
-              <div className="flex min-h-screen flex-col dark:has-data-home-page:bg-black">
+              <div className="flex min-h-screen flex-col ">
                 <Navbar />
                 <main className="flex min-h-0 flex-1 flex-col">{children}</main>
                 <Footer />

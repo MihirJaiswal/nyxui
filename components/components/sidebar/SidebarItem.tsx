@@ -46,6 +46,7 @@ export const SidebarItem = ({
     <MotionLink
       ref={isActive ? activeItemRef : undefined}
       href={item.href}
+      data-hover-preview={item.href}
       aria-current={isActive ? "page" : undefined}
       onMouseEnter={() => {
         setHovered(true);

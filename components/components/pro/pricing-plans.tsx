@@ -51,10 +51,11 @@ export function SignInStrip() {
  * Prices are display-only — Polar is the source of truth for what a
  * customer is charged. Keep these in sync with the products in Polar.
  */
-export const ANNUAL_PRICE = "$129";
+
 export const LIFETIME_PRICE = "$149";
-const ANNUAL_WAS_PRICE = "$149";
+export const ANNUAL_PRICE = "$129";
 const LIFETIME_WAS_PRICE = "$179";
+const ANNUAL_WAS_PRICE = "$149";
 
 interface PricingPlansProps {
   annualProductId?: string;
@@ -143,6 +144,19 @@ export function PricingPlans({
       featured: false,
     },
     {
+      id: "lifetime" as const,
+      name: "Lifetime",
+      price: LIFETIME_PRICE,
+      wasPrice: LIFETIME_WAS_PRICE,
+      offLabel: "17% off",
+      cadence: "one-time",
+      blurb: "Pay once. including everything added later.",
+      href: checkoutHref(lifetimeProductId),
+      external: false,
+      features,
+      featured: true,
+    },
+    {
       id: "annual" as const,
       name: "Annual",
       price: ANNUAL_PRICE,
@@ -154,19 +168,6 @@ export function PricingPlans({
       external: false,
       features,
       featured: false,
-    },
-    {
-      id: "lifetime" as const,
-      name: "Lifetime",
-      price: LIFETIME_PRICE,
-      wasPrice: LIFETIME_WAS_PRICE,
-      offLabel: "17% off",
-      cadence: "one-time",
-      blurb: "Pay once. Yours forever, including everything added later.",
-      href: checkoutHref(lifetimeProductId),
-      external: false,
-      features,
-      featured: true,
     },
   ];
 
@@ -186,7 +187,7 @@ export function PricingPlans({
             <div
               key={tier.id}
               className={cn(
-                "relative flex flex-col rounded-2xl bg-card p-6 sm:p-8",
+                "relative flex flex-col rounded-2xl bg-card",
                 tier.featured
                   ? "smooth-shadow-ring-md smooth-ring-brand/40"
                   : "border border-border/60",
@@ -198,12 +199,12 @@ export function PricingPlans({
                 </span>
               )}
               {isPaid && tier.offLabel && (
-                <span className="absolute top-6 right-6 rounded-full bg-emerald-500/10 px-2.5 py-1 font-mono text-[11px] font-semibold tracking-wide text-emerald-600 dark:text-emerald-400">
+                <span className="absolute top-0 right-0 rounded-tr-2xl rounded-bl-2xl border-b border-l border-border/60 bg-muted/60 px-3 py-1.5 font-mono text-[10px] font-medium tracking-wide text-brand">
                   {tier.offLabel}
                 </span>
               )}
 
-              <div className="flex items-baseline gap-2">
+              <div className="flex items-baseline gap-2 px-6 sm:px-8 pt-6 sm:pt-8 pb-2">
                 <span className="text-4xl leading-none font-semibold tracking-tight text-foreground sm:text-5xl">
                   {tier.price}
                 </span>
@@ -217,14 +218,14 @@ export function PricingPlans({
                 </span>
               </div>
 
-              <p className="mt-2 text-sm font-medium text-foreground">
+              <p className="mt-2 text-sm font-medium text-foreground px-6 sm:px-8">
                 {tier.name}
               </p>
-              <p className="mt-1.5 text-sm text-muted-foreground">
+              <p className="mt-1.5 text-sm text-muted-foreground px-6 sm:px-8">
                 {tier.blurb}
               </p>
 
-              <ul className="mt-6 space-y-2.5 border-t border-border/60 pt-6">
+              <ul className="mt-6 space-y-2.5 border-t border-border/60 p-6 sm:p-8">
                 {tier.features.map((feature) => (
                   <li
                     key={feature}
@@ -239,28 +240,28 @@ export function PricingPlans({
                 ))}
               </ul>
 
-              <div className="mt-8 flex-1" />
+              <div className="px-6 sm:px-8">
+                {tier.href ? (
+                  <Button
+                    asChild
+                    variant={tier.featured ? "default" : "outline"}
+                    className="w-full group"
+                  >
+                    <Link href={tier.href} prefetch={false}>
+                      {isPaid
+                        ? `Get ${tier.name.toLowerCase()}`
+                        : "Browse free components"}
+                      <ArrowUpRight className="size-4 transition-transform duration-200 ease-in group-hover:-translate-y-0.25" />
+                    </Link>
+                  </Button>
+                ) : (
+                  <p className="text-center font-mono text-xs text-muted-foreground">
+                    Checkout is being set up.
+                  </p>
+                )}
+              </div>
 
-              {tier.href ? (
-                <Button
-                  asChild
-                  variant={tier.featured ? "default" : "outline"}
-                  className="w-full"
-                >
-                  <Link href={tier.href} prefetch={false}>
-                    {isPaid
-                      ? `Get ${tier.name.toLowerCase()}`
-                      : "Browse free components"}
-                    <ArrowUpRight className="size-4" />
-                  </Link>
-                </Button>
-              ) : (
-                <p className="text-center font-mono text-xs text-muted-foreground">
-                  Checkout is being set up.
-                </p>
-              )}
-
-              <p className="mt-4 text-center font-mono text-[11px] leading-relaxed text-muted-foreground/80">
+              <p className="mt-4 text-center font-mono text-[11px] leading-relaxed text-muted-foreground/80 pb-6 sm:pb-8">
                 {isPaid ? (
                   user ? (
                     <>
