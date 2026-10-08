@@ -1,6 +1,6 @@
 # Nyx UI
 
-<img width="3000" height="1795" alt="nyx-banner-2" src="https://github.com/user-attachments/assets/e7095add-599b-4813-a18b-b5bd5cf3954a" />
+<img width="3000" height="1795" alt="nyx-banner-2" src="https://raw.githubusercontent.com/MihirJaiswal/nyxui/refs/heads/main/public/docs/docs-cover.png" />
 
 ## About
 
@@ -14,7 +14,6 @@ Built with [Tailwind CSS](https://tailwindcss.com/), [Motion](https://www.motion
 - **Animations** - Smooth, customizable animations powered by Framer Motion
 - **TypeScript** - Fully typed for excellent developer experience
 - **Tailwind CSS** - Styled with utility-first CSS framework
-- **Accessible** - Built with accessibility in mind using Radix UI primitives
 - **shadcn Compatible** - Works seamlessly with the shadcn/ui ecosystem
 
 ## Quick Start
@@ -45,7 +44,7 @@ We welcome contributions! Please read our [Contributing Guidelines](./CONTRIBUTI
 **Mihir Jaiswal**
 
 - X: [@mihir*jaiswal*](https://x.com/mihir_jaiswal_)
-- Portfolio: [mihirjaiswal.me](https://mihirjaiswal.me/)
+- Portfolio: [mihirjaiswal.me](https://mihirjaiswal.com/)
 
 ## License
 
