@@ -7,3 +7,6 @@ allowBuilds:
   msw: false
   protobufjs: false
   sharp: true
+
+overrides:
+  jose: "^5.9.6"
