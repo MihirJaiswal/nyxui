@@ -442,7 +442,7 @@ export const componentsData: ComponentsData = {
       description:
         "A device session list with a pulsing active row and a revoke flow — one row flashes, slides out with a toast, then returns.",
       image: "/assets/images/showcase/blocks/session-list.avif",
-      imageClassName: "object-cover",
+      imageClassName: "object-cover invert-100 dark:invert-0",
       isPro: true,
       proUrl: "/blocks/session-list",
     },
