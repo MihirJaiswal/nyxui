@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { ArrowUpRight, Check } from "lucide-react";
 import { useProAccess } from "@/components/providers/pro-access-provider";
 import { MorphLink } from "@/components/ui/morph-link";
@@ -247,12 +246,12 @@ export function PricingPlans({
                     variant={tier.featured ? "default" : "outline"}
                     className="w-full group"
                   >
-                    <Link href={tier.href} prefetch={false}>
+                    <a href={tier.href}>
                       {isPaid
                         ? `Get ${tier.name.toLowerCase()}`
                         : "Browse free components"}
                       <ArrowUpRight className="size-4 transition-transform duration-200 ease-in group-hover:-translate-y-0.25" />
-                    </Link>
+                    </a>
                   </Button>
                 ) : (
                   <p className="text-center font-mono text-xs text-muted-foreground">
