@@ -779,7 +779,7 @@ export function PreviewThumbnailPlate({
             onLoad={() => onLoad()}
             onError={() => onError()}
             className={cn(
-              "relative block size-full dark:mix-blend-screen transition-opacity duration-150 motion-reduce:transition-none",
+              "relative block size-full object-contain dark:mix-blend-screen transition-opacity duration-150 motion-reduce:transition-none",
               imageClassName,
               loaded ? "opacity-100" : "opacity-0",
             )}
