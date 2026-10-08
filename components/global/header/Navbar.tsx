@@ -39,7 +39,7 @@ export default function Navbar(): React.ReactElement {
   };
 
   return (
-    <header className="sticky top-0 z-100 w-full border-b bg-background/50 border-border backdrop-blur-lg">
+    <header className="sticky top-0 z-100 w-full border-b bg-background/80 border-border backdrop-blur-lg">
       <div
         className={cn(
           INNER[containerVariantFor(activeLink)],

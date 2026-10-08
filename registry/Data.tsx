@@ -473,7 +473,7 @@ export const componentsData: ComponentsData = {
       description:
         "A developer-experience feature section with code diff, pipeline run, merge flow, and CLI mockups woven into a bento of narrative cards.",
       image: "/assets/images/showcase/blocks/feature-section-03.avif",
-      imageClassName: "object-cover scale-90",
+      imageClassName: "object-contain",
       isPro: true,
       proUrl: "/blocks/feature-section-03",
     },
@@ -483,7 +483,7 @@ export const componentsData: ComponentsData = {
       description:
         "A collaboration feature section arranging live-cursor, kanban, command-palette, and drag-reorder mockups in a bento grid.",
       image: "/assets/images/showcase/blocks/feature-section-04.avif",
-      imageClassName: "object-cover scale-90",
+      imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/feature-section-04",
     },
@@ -493,7 +493,7 @@ export const componentsData: ComponentsData = {
       description:
         "A payments feature section weaving bank-card, transaction-integrity, encryption, fraud-shield, and volume-chart mockups into a bento.",
       image: "/assets/images/showcase/blocks/feature-section-05.avif",
-      imageClassName: "object-cover scale-85",
+      imageClassName: "object-contain",
       isPro: true,
       proUrl: "/blocks/feature-section-05",
     },
@@ -503,7 +503,7 @@ export const componentsData: ComponentsData = {
       description:
         "An integrations feature section: a full-bleed marquee band over a three-up of network, SSO, and handoff mockups.",
       image: "/assets/images/showcase/blocks/feature-section-06.avif",
-      imageClassName: "object-cover object-bottom scale-120",
+      imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/feature-section-06",
     },
@@ -513,7 +513,7 @@ export const componentsData: ComponentsData = {
       description:
         "A growth & onboarding feature section pairing a milestone timeline hero with star-rating and swipe-card mockups.",
       image: "/assets/images/showcase/blocks/feature-section-07.avif",
-      imageClassName: "object-cover scale-105 object-bottom",
+      imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/feature-section-07",
     },
@@ -523,7 +523,7 @@ export const componentsData: ComponentsData = {
       description:
         "An access & keys feature section — a masonry wall of MFA, magic-link, password, OTP, and API-key interaction cards.",
       image: "/assets/images/showcase/blocks/feature-section-08.avif",
-      imageClassName: "object-cover obeject-top scale-90",
+      imageClassName: "object-cover obeject-top",
       isPro: true,
       proUrl: "/blocks/feature-section-08",
     },
@@ -563,7 +563,7 @@ export const componentsData: ComponentsData = {
       description:
         "A trusted-by logo cloud: copy column with an accent word beside a bordered grid of logo tiles that blur-and-drop in one-by-one on scroll.",
       image: "/assets/images/showcase/blocks/logo-cloud-2.avif",
-      imageClassName: "object-cover",
+      imageClassName: "object-cover invert-100 dark:invert-0",
       isPro: true,
       proUrl: "/blocks/logo-cloud-2",
     },
@@ -574,7 +574,7 @@ export const componentsData: ComponentsData = {
       description:
         "A link list where hovering rows scatters the heading letters and reveals a floating image that chases the cursor.",
       image: "/assets/images/showcase/blocks/hover-image-link.avif",
-      imageClassName: "object-cover",
+      imageClassName: "object-cover invert-100 dark:invert-0",
       isPro: true,
       proUrl: "/blocks/hover-image-links",
     },
@@ -584,7 +584,7 @@ export const componentsData: ComponentsData = {
       description:
         "A brand-icon grid where each tile's overlay wipes in from the nearest edge on hover using a clip-path animation.",
       image: "/assets/images/showcase/blocks/logo-cloud-3.avif",
-      imageClassName: "object-cover",
+      imageClassName: "object-cover invert-100 dark:invert-0",
       isPro: true,
       proUrl: "/blocks/logo-cloud-3",
     },
@@ -594,7 +594,7 @@ export const componentsData: ComponentsData = {
       description:
         "A trusted-by logo grid where tiles randomly swap to a different unused logo from the full set with a slide-and-fade transition, plus a hover wash under each cell.",
       image: "/assets/images/showcase/blocks/logo-cloud-4.avif",
-      imageClassName: "object-cover",
+      imageClassName: "object-cover invert-100 dark:invert-0",
       isPro: true,
       proUrl: "/blocks/logo-cloud-4",
     },
@@ -615,7 +615,7 @@ export const componentsData: ComponentsData = {
       description:
         "A marketing footer with blur-staggered link groups, brand column with socials, and a legal bar with a pulsing status dot.",
       image: "/assets/images/showcase/blocks/footer-01.avif",
-      imageClassName: "object-cover",
+      imageClassName: "object-cover invert-100 dark:invert-0",
       isPro: true,
       proUrl: "/blocks/footer-01",
     },
@@ -625,7 +625,7 @@ export const componentsData: ComponentsData = {
       description:
         "A dark minimal footer with staggered link columns and a giant gradient-masked outline wordmark above the legal row.",
       image: "/assets/images/showcase/blocks/footer-02.avif",
-      imageClassName: "object-cover",
+      imageClassName: "object-cover invert-100 dark:invert-0",
       isPro: true,
       proUrl: "/blocks/footer-02",
     },
@@ -635,7 +635,7 @@ export const componentsData: ComponentsData = {
       description:
         "A compact footer with a top nav brand row, five-column dashed-divider link grid, and a legal strip.",
       image: "/assets/images/showcase/blocks/footer-03.avif",
-      imageClassName: "object-cover",
+      imageClassName: "object-cover invert-100 dark:invert-0",
       isPro: true,
       proUrl: "/blocks/footer-03",
     },
@@ -645,7 +645,7 @@ export const componentsData: ComponentsData = {
       description:
         "A dense six-column footer with a legal blurb, gradient social pills, and an inline newsletter form with success state.",
       image: "/assets/images/showcase/blocks/footer-04.avif",
-      imageClassName: "object-cover",
+      imageClassName: "object-cover invert-100 dark:invert-0",
       isPro: true,
       proUrl: "/blocks/footer-04",
     },
@@ -655,7 +655,7 @@ export const componentsData: ComponentsData = {
       description:
         "A two-column footer with brand block on the left and three link columns with dotted vertical rules on the right.",
       image: "/assets/images/showcase/blocks/footer-05.avif",
-      imageClassName: "object-cover",
+      imageClassName: "object-cover invert-100 dark:invert-0",
       isPro: true,
       proUrl: "/blocks/footer-05",
     },
@@ -665,7 +665,7 @@ export const componentsData: ComponentsData = {
       description:
         "A contact-first footer: address, email and phone in the brand column, three link groups, and a legal row under a rule.",
       image: "/assets/images/showcase/blocks/footer-06.avif",
-      imageClassName: "object-cover",
+      imageClassName: "object-cover invert-100 dark:invert-0",
       isPro: true,
       proUrl: "/blocks/footer-06",
     },
@@ -686,7 +686,7 @@ export const componentsData: ComponentsData = {
       description:
         "A divided four-column footer with three link columns plus a stack of compliance badge cards, and a centered legal line.",
       image: "/assets/images/showcase/blocks/footer-08.avif",
-      imageClassName: "object-cover",
+      imageClassName: "object-cover invert-100 dark:invert-0",
       isPro: true,
       proUrl: "/blocks/footer-08",
     },
@@ -696,7 +696,7 @@ export const componentsData: ComponentsData = {
       description:
         "A responsive footer with accordion navigation on mobile, four link columns on desktop, and a giant gradient wordmark.",
       image: "/assets/images/showcase/blocks/footer-09.avif",
-      imageClassName: "object-cover",
+      imageClassName: "object-cover invert-100 dark:invert-0",
       isPro: true,
       proUrl: "/blocks/footer-09",
     },
@@ -706,7 +706,7 @@ export const componentsData: ComponentsData = {
       description:
         "A studio-style contact footer with an oversized mailto link, four link columns, a scrolling background wordmark, and a live status bar.",
       image: "/assets/images/showcase/blocks/footer-10.avif",
-      imageClassName: "object-cover",
+      imageClassName: "object-cover invert-100 dark:invert-0",
       isPro: true,
       proUrl: "/blocks/footer-10",
     },
@@ -716,7 +716,7 @@ export const componentsData: ComponentsData = {
       description:
         "A pure CSS/SVG dual-series line chart with horizontal grid, axis labels, crosshair hover, and a tooltip with series values and total.",
       image: "/assets/images/showcase/blocks/line-chart.avif",
-      imageClassName: "object-cover",
+      imageClassName: "object-cover invert-100 dark:invert-0",
       isPro: true,
       proUrl: "/blocks/line-chart",
     },
@@ -776,7 +776,7 @@ export const componentsData: ComponentsData = {
       description:
         "A Raycast-style mac keyboard where ⌘C glows red at its border while hovered.",
       image: "/assets/images/showcase/blocks/glow-keyboard.avif",
-      imageClassName: "object-cover",
+      imageClassName: "object-cover invert-100 dark:invert-0",
       isPro: true,
       proUrl: "/blocks/glow-keyboard",
     },
@@ -806,7 +806,7 @@ export const componentsData: ComponentsData = {
       description:
         "The full authentication bento grid — 11 hover-gated mockup cards arranged in a 3×4 bento layout with a wide API keys + CLI bottom row.",
       image: "/assets/images/showcase/blocks/auth-bento.avif",
-      imageClassName: "object-cover scale-90",
+      imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/auth-bento",
     },
@@ -1258,7 +1258,7 @@ export const componentsData: ComponentsData = {
       description:
         "Developer-stats bento — a Unified Performance Stats visual with the GitHub Repo Card, Terminal, and Matrix Code Rain components.",
       image: "/assets/images/showcase/blocks/bento-section-01.avif",
-      imageClassName: "object-cover scale-90",
+      imageClassName: "object-contain",
       isPro: true,
       proUrl: "/blocks/bento-section-01",
     },
@@ -1269,7 +1269,7 @@ export const componentsData: ComponentsData = {
       description:
         "Assist AI bento — a five-card 'This AI can do a lot' grid with typewriter notepad, chat thread, gradient chart + tooltip, web-search panel, and code editor.",
       image: "/assets/images/showcase/blocks/bento-section-02.avif",
-      imageClassName: "object-cover scale-90",
+      imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/bento-section-02",
     },
@@ -1279,7 +1279,7 @@ export const componentsData: ComponentsData = {
       description:
         "Services bento — a browser mockup with CTA, a progress gauge with a cycling notification stack, an animated world map, a glow keyboard, and an animated component graphic.",
       image: "/assets/images/showcase/blocks/bento-section-04.avif",
-      imageClassName: "object-cover scale-90",
+      imageClassName: "object-contain",
       isPro: true,
       proUrl: "/blocks/bento-section-04",
     },
