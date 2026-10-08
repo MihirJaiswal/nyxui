@@ -16,9 +16,9 @@ const FEATURED_CATEGORIES = [
 
 /** Representative slug per category — its image is reused as the category cover. */
 const CATEGORY_COVER: Record<string, string> = {
-  Navigation: "navigation-1",
-  Interactions: "mfa-code",
-  "Logo Cloud": "logo-cloud-1",
+  Navigation: "navigation-7",
+  Interactions: "session-list",
+  "Logo Cloud": "logo-cloud-5",
 };
 
 export function BlocksShowcase(): React.ReactElement {
