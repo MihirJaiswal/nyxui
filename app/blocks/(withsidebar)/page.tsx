@@ -55,8 +55,14 @@ const BlocksPage = () => {
     const existing = categories.get(category);
     categories.set(category, {
       count: (existing?.count ?? 0) + 1,
-      image: existing?.image ?? block.image,
-      imageClassName: existing?.imageClassName ?? block.imageClassName,
+      // The isRepresentative block's image is the category cover; otherwise
+      // fall back to the first block's image.
+      image: block.isRepresentative
+        ? block.image
+        : (existing?.image ?? block.image),
+      imageClassName: block.isRepresentative
+        ? block.imageClassName
+        : (existing?.imageClassName ?? block.imageClassName),
       isPro: (existing?.isPro ?? false) || block.isPro === true,
     });
   });

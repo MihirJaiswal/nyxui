@@ -779,7 +779,7 @@ export function PreviewThumbnailPlate({
             onLoad={() => onLoad()}
             onError={() => onError()}
             className={cn(
-              "relative block size-full object-contain dark:mix-blend-screen transition-opacity duration-150 motion-reduce:transition-none",
+              "relative block size-full dark:mix-blend-screen transition-opacity duration-150 motion-reduce:transition-none",
               imageClassName,
               loaded ? "opacity-100" : "opacity-0",
             )}
@@ -1025,7 +1025,19 @@ export function resolveSidebarPreview(key: string): PreviewItem | null {
 
   let image = data.image;
   let imageClassName = data.imageClassName;
-  if (type === "blocks" && !data.isRepresentative) {
+  // Shared placeholder images used across blocks that don't yet have their
+  // own showcase render. Only these should trigger the category-cover
+  // fallback — a block that ships with its own image deserves to show it.
+  const SHARED_PLACEHOLDERS = new Set([
+    "/assets/images/showcase/blocks/footer.avif",
+    "/assets/images/showcase/blocks/mockups.avif",
+    "/assets/images/showcase/blocks/interaction.avif",
+  ]);
+  if (
+    type === "blocks" &&
+    !data.isRepresentative &&
+    SHARED_PLACEHOLDERS.has(data.image)
+  ) {
     const category = getBlockCategory(slug, data.tags ?? []);
     const representative = Object.entries(componentsData.blocks).find(
       ([repSlug, block]) =>

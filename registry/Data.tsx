@@ -377,11 +377,10 @@ export const componentsData: ComponentsData = {
   blocks: {
     "mfa-code": {
       title: "MFA Code",
-      isRepresentative: true,
       tags: ["Interactions", "Auth", "Pro"],
       description:
         "A six-digit multifactor code auto-filling box-by-box with focus pops and a typing indicator, resolving to a verified state on loop.",
-      image: "/assets/images/showcase/blocks/interaction.avif",
+      image: "/assets/images/showcase/blocks/mfa-code.avif",
       imageClassName: "object-cover invert-100 dark:invert-0",
       isPro: true,
       proUrl: "/blocks/mfa-code",
@@ -391,7 +390,7 @@ export const componentsData: ComponentsData = {
       tags: ["Interactions", "Auth", "Pro"],
       description:
         "A sign-up attempt feed where verified rows check off and fraudulent rows flash red, strike through, and get blocked with an X badge.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/fraud-feed.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/fraud-feed",
@@ -401,7 +400,7 @@ export const componentsData: ComponentsData = {
       tags: ["Interactions", "Auth", "Pro"],
       description:
         "A rotating radar sweep with rings and crosshairs where user blips glow emerald and bot blips flash red with a blocked label.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/bot-radar.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/bot-radar",
@@ -411,7 +410,7 @@ export const componentsData: ComponentsData = {
       tags: ["Interactions", "Auth", "Pro"],
       description:
         "A phone receiving an OTP notification whose code digits fly out one-by-one into surrounding app tiles, each flashing as it lands.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/otp-notification.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/otp-notification",
@@ -421,7 +420,7 @@ export const componentsData: ComponentsData = {
       tags: ["Interactions", "Auth", "Pro"],
       description:
         "An ID card sliding into a scanner where a beam sweep reveals a scrambling verification code, then a checkmark and verified user appear.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/magic-link.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/magic-link",
@@ -431,17 +430,18 @@ export const componentsData: ComponentsData = {
       tags: ["Interactions", "Auth", "Pro"],
       description:
         "A user connected to a blinking server rack by packet-traveling rails while a live API key scrambles into place in an issued chip.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/api-keys.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/api-keys",
     },
     "session-list": {
       title: "Session List",
+      isRepresentative: true,
       tags: ["Interactions", "Auth", "Pro"],
       description:
         "A device session list with a pulsing active row and a revoke flow — one row flashes, slides out with a toast, then returns.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/session-list.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/session-list",
@@ -452,7 +452,7 @@ export const componentsData: ComponentsData = {
       tags: ["Feature", "Section", "Pro"],
       description:
         "A three-card feature section with animated assets — a typewriter prompt, a browser design mock with a draw-in frame, and an infrastructure sidebar with a looping highlight.",
-      image: "/assets/images/showcase/blocks/feature.avif",
+      image: "/assets/images/showcase/blocks/feature-section-01.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/feature-section-01",
@@ -462,7 +462,7 @@ export const componentsData: ComponentsData = {
       tags: ["Feature", "Section", "Pro"],
       description:
         "A security feature section arranging the auth mockups — security dial, fraud feed, MFA code, session list, and bot radar — in an asymmetric grid.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/feature-section-02.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/feature-section-02",
@@ -472,8 +472,8 @@ export const componentsData: ComponentsData = {
       tags: ["Feature", "Section", "Pro"],
       description:
         "A developer-experience feature section with code diff, pipeline run, merge flow, and CLI mockups woven into a bento of narrative cards.",
-      image: "/assets/images/showcase/blocks/footer.avif",
-      imageClassName: "object-cover",
+      image: "/assets/images/showcase/blocks/feature-section-03.avif",
+      imageClassName: "object-cover scale-90",
       isPro: true,
       proUrl: "/blocks/feature-section-03",
     },
@@ -482,8 +482,8 @@ export const componentsData: ComponentsData = {
       tags: ["Feature", "Section", "Pro"],
       description:
         "A collaboration feature section arranging live-cursor, kanban, command-palette, and drag-reorder mockups in a bento grid.",
-      image: "/assets/images/showcase/blocks/footer.avif",
-      imageClassName: "object-cover",
+      image: "/assets/images/showcase/blocks/feature-section-04.avif",
+      imageClassName: "object-cover scale-90",
       isPro: true,
       proUrl: "/blocks/feature-section-04",
     },
@@ -492,8 +492,8 @@ export const componentsData: ComponentsData = {
       tags: ["Feature", "Section", "Pro"],
       description:
         "A payments feature section weaving bank-card, transaction-integrity, encryption, fraud-shield, and volume-chart mockups into a bento.",
-      image: "/assets/images/showcase/blocks/footer.avif",
-      imageClassName: "object-cover",
+      image: "/assets/images/showcase/blocks/feature-section-05.avif",
+      imageClassName: "object-cover scale-85",
       isPro: true,
       proUrl: "/blocks/feature-section-05",
     },
@@ -502,8 +502,8 @@ export const componentsData: ComponentsData = {
       tags: ["Feature", "Section", "Pro"],
       description:
         "An integrations feature section: a full-bleed marquee band over a three-up of network, SSO, and handoff mockups.",
-      image: "/assets/images/showcase/blocks/footer.avif",
-      imageClassName: "object-cover",
+      image: "/assets/images/showcase/blocks/feature-section-06.avif",
+      imageClassName: "object-cover object-bottom scale-120",
       isPro: true,
       proUrl: "/blocks/feature-section-06",
     },
@@ -512,8 +512,8 @@ export const componentsData: ComponentsData = {
       tags: ["Feature", "Section", "Pro"],
       description:
         "A growth & onboarding feature section pairing a milestone timeline hero with star-rating and swipe-card mockups.",
-      image: "/assets/images/showcase/blocks/footer.avif",
-      imageClassName: "object-cover",
+      image: "/assets/images/showcase/blocks/feature-section-07.avif",
+      imageClassName: "object-cover scale-105 object-bottom",
       isPro: true,
       proUrl: "/blocks/feature-section-07",
     },
@@ -522,8 +522,8 @@ export const componentsData: ComponentsData = {
       tags: ["Feature", "Section", "Pro"],
       description:
         "An access & keys feature section — a masonry wall of MFA, magic-link, password, OTP, and API-key interaction cards.",
-      image: "/assets/images/showcase/blocks/footer.avif",
-      imageClassName: "object-cover",
+      image: "/assets/images/showcase/blocks/feature-section-08.avif",
+      imageClassName: "object-cover obeject-top scale-90",
       isPro: true,
       proUrl: "/blocks/feature-section-08",
     },
@@ -532,7 +532,7 @@ export const componentsData: ComponentsData = {
       tags: ["Feature", "Section", "Pro"],
       description:
         "A developer-tooling feature section showcasing nyxui components: terminal, animated code block, GitHub repo card, and keyboard.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/feature-section-09.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/feature-section-09",
@@ -542,18 +542,17 @@ export const componentsData: ComponentsData = {
       tags: ["Feature", "Section", "Pro"],
       description:
         "An AI-agent feature section with a macOS chat-window mockup, a Quick AI search prompt, and an animated tool-workflow demo.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/feature-section-10.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/feature-section-10",
     },
     "logo-cloud-1": {
       title: "Logo Cloud 1",
-      isRepresentative: true,
       tags: ["Logo Cloud", "Section", "Pro"],
       description:
         "A social-proof logo cloud with a copy rail beside a grid of logo tiles that flip between sets with a blur transition, over a live stats marquee.",
-      image: "/assets/images/showcase/blocks/logocloud.avif",
+      image: "/assets/images/showcase/blocks/logo-cloud-1.avif",
       imageClassName: "object-cover invert-100 dark:invert-0",
       isPro: true,
       proUrl: "/blocks/logo-cloud-1",
@@ -563,7 +562,7 @@ export const componentsData: ComponentsData = {
       tags: ["Logo Cloud", "Section", "Pro"],
       description:
         "A trusted-by logo cloud: copy column with an accent word beside a bordered grid of logo tiles that blur-and-drop in one-by-one on scroll.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/logo-cloud-2.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/logo-cloud-2",
@@ -574,7 +573,7 @@ export const componentsData: ComponentsData = {
       tags: ["Section", "Links", "Pro"],
       description:
         "A link list where hovering rows scatters the heading letters and reveals a floating image that chases the cursor.",
-      image: "/assets/images/showcase/blocks/section.avif",
+      image: "/assets/images/showcase/blocks/hover-image-link.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/hover-image-links",
@@ -584,7 +583,7 @@ export const componentsData: ComponentsData = {
       tags: ["Logo Cloud", "Section", "Pro"],
       description:
         "A brand-icon grid where each tile's overlay wipes in from the nearest edge on hover using a clip-path animation.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/logo-cloud-3.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/logo-cloud-3",
@@ -594,18 +593,19 @@ export const componentsData: ComponentsData = {
       tags: ["Logo Cloud", "Section", "Pro"],
       description:
         "A trusted-by logo grid where tiles randomly swap to a different unused logo from the full set with a slide-and-fade transition, plus a hover wash under each cell.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/logo-cloud-4.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/logo-cloud-4",
     },
     "logo-cloud-5": {
       title: "Logo Cloud 5",
+      isRepresentative: true,
       tags: ["Logo Cloud", "Section", "Pro"],
       description:
         "A centered logo cloud of two staggered, overlapping-circle rows with edge fades and a pill CTA.",
-      image: "/assets/images/showcase/blocks/footer.avif",
-      imageClassName: "object-cover",
+      image: "/assets/images/showcase/blocks/logo-cloud-5.avif",
+      imageClassName: "object-cover invert-100 dark:invert-0",
       isPro: true,
       proUrl: "/blocks/logo-cloud-5",
     },
@@ -614,7 +614,7 @@ export const componentsData: ComponentsData = {
       tags: ["Footer", "Section", "Pro"],
       description:
         "A marketing footer with blur-staggered link groups, brand column with socials, and a legal bar with a pulsing status dot.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/footer-01.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/footer-01",
@@ -624,7 +624,7 @@ export const componentsData: ComponentsData = {
       tags: ["Footer", "Section", "Pro"],
       description:
         "A dark minimal footer with staggered link columns and a giant gradient-masked outline wordmark above the legal row.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/footer-02.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/footer-02",
@@ -634,7 +634,7 @@ export const componentsData: ComponentsData = {
       tags: ["Footer", "Section", "Pro"],
       description:
         "A compact footer with a top nav brand row, five-column dashed-divider link grid, and a legal strip.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/footer-03.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/footer-03",
@@ -644,7 +644,7 @@ export const componentsData: ComponentsData = {
       tags: ["Footer", "Section", "Pro"],
       description:
         "A dense six-column footer with a legal blurb, gradient social pills, and an inline newsletter form with success state.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/footer-04.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/footer-04",
@@ -654,7 +654,7 @@ export const componentsData: ComponentsData = {
       tags: ["Footer", "Section", "Pro"],
       description:
         "A two-column footer with brand block on the left and three link columns with dotted vertical rules on the right.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/footer-05.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/footer-05",
@@ -664,7 +664,7 @@ export const componentsData: ComponentsData = {
       tags: ["Footer", "Section", "Pro"],
       description:
         "A contact-first footer: address, email and phone in the brand column, three link groups, and a legal row under a rule.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/footer-06.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/footer-06",
@@ -674,9 +674,10 @@ export const componentsData: ComponentsData = {
       tags: ["Footer", "Section", "Pro"],
       description:
         "An oversized CTA card overlapping a dark rounded footer with a name block, socials, newsletter, nav, and back-to-top.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/footer-07.avif",
       imageClassName: "object-cover",
       isPro: true,
+      isRepresentative: true,
       proUrl: "/blocks/footer-07",
     },
     "footer-08": {
@@ -684,7 +685,7 @@ export const componentsData: ComponentsData = {
       tags: ["Footer", "Section", "Pro"],
       description:
         "A divided four-column footer with three link columns plus a stack of compliance badge cards, and a centered legal line.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/footer-08.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/footer-08",
@@ -694,7 +695,7 @@ export const componentsData: ComponentsData = {
       tags: ["Footer", "Section", "Pro"],
       description:
         "A responsive footer with accordion navigation on mobile, four link columns on desktop, and a giant gradient wordmark.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/footer-09.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/footer-09",
@@ -704,7 +705,7 @@ export const componentsData: ComponentsData = {
       tags: ["Footer", "Section", "Pro"],
       description:
         "A studio-style contact footer with an oversized mailto link, four link columns, a scrolling background wordmark, and a live status bar.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/footer-10.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/footer-10",
@@ -714,18 +715,17 @@ export const componentsData: ComponentsData = {
       tags: ["Interactions", "Charts", "Pro"],
       description:
         "A pure CSS/SVG dual-series line chart with horizontal grid, axis labels, crosshair hover, and a tooltip with series values and total.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/line-chart.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/line-chart",
     },
     "radar-chart": {
       title: "Mockup: Radar Chart",
-      isRepresentative: true,
       tags: ["Mockups", "Charts", "Pro"],
       description:
         "A pure CSS/SVG radar chart with grid rings, axis spokes, a filled score polygon, and hover tooltips per vertex.",
-      image: "/assets/images/showcase/blocks/mockups.avif",
+      image: "/assets/images/showcase/blocks/radar-chart.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/radar-chart",
@@ -735,7 +735,7 @@ export const componentsData: ComponentsData = {
       tags: ["Mockups", "Pro"],
       description:
         "An animated social SSO card \u2014 social provider orbs shuffle around a glowing cloud while pulses travel along connection lines.",
-      image: "/assets/images/showcase/blocks/mockups.avif",
+      image: "/assets/images/showcase/blocks/sso-orbit.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/sso-orbit",
@@ -745,7 +745,7 @@ export const componentsData: ComponentsData = {
       tags: ["Interactions", "Pro"],
       description:
         "A fingerprint drawing itself inside a scanning dial, with brackets pulsing and compliance chips (SOC 2, CCPA, ISO) staggering in.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/security-dial.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/security-dial",
@@ -755,7 +755,7 @@ export const componentsData: ComponentsData = {
       tags: ["Interactions", "Pro"],
       description:
         "A password field typing masked dots while a needle gauge sweeps from weak to strong and a breach-check chip flips to clear.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/password-dial.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/password-dial",
@@ -765,7 +765,7 @@ export const componentsData: ComponentsData = {
       tags: ["Interactions", "Pro"],
       description:
         "A terminal window typing a CLI command char-by-char with staggered output lines and a blinking cursor, looping forever.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/cli.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/clerk-cli",
@@ -775,7 +775,7 @@ export const componentsData: ComponentsData = {
       tags: ["Interactions", "Pro"],
       description:
         "A Raycast-style mac keyboard where ⌘C glows red at its border while hovered.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/glow-keyboard.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/glow-keyboard",
@@ -785,7 +785,7 @@ export const componentsData: ComponentsData = {
       tags: ["Interactions", "Pro"],
       description:
         "A multiplayer-style cursor with a typing-indicator badge — drive its transform from pointer events to mimic live collaboration.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/realtime-cursor.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/realtime-cursor",
@@ -795,29 +795,27 @@ export const componentsData: ComponentsData = {
       tags: ["Interactions", "Auth", "Pro"],
       description:
         "A password field auto-typing a passphrase that climbs a four-segment strength meter with crack-time estimates and a rule checklist.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/password-strength.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/password-strength",
     },
     "auth-bento": {
       title: "Mockup: Auth Bento",
-      isRepresentative: true,
       tags: ["Bento", "Mockups", "Pro"],
       description:
         "The full authentication bento grid — 11 hover-gated mockup cards arranged in a 3×4 bento layout with a wide API keys + CLI bottom row.",
-      image: "/assets/images/showcase/blocks/bento.avif",
-      imageClassName: "object-cover",
+      image: "/assets/images/showcase/blocks/auth-bento.avif",
+      imageClassName: "object-cover scale-90",
       isPro: true,
       proUrl: "/blocks/auth-bento",
     },
     "hero-section-02": {
       title: "Hero Section 02",
-      isRepresentative: true,
       tags: ["Section", "Pro"],
       description:
         "A hero with an animated image carousel that cross-fades between light and dark screenshots.",
-      image: "/assets/images/showcase/blocks/hero.avif",
+      image: "/assets/images/showcase/blocks/hero-section-02.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/hero-section-02",
@@ -827,7 +825,7 @@ export const componentsData: ComponentsData = {
       tags: ["Section", "Pro"],
       description:
         "A hero with a radial sky gradient background, floating badge and animated glow shapes.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/hero-section-03.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/hero-section-03",
@@ -837,7 +835,7 @@ export const componentsData: ComponentsData = {
       tags: ["Section", "Pro"],
       description:
         "A hero with app store badges and a staggered reveal of the product mock below.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/hero-section-04.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/hero-section-04",
@@ -845,9 +843,10 @@ export const componentsData: ComponentsData = {
     "hero-section-05": {
       title: "Hero Section 05",
       tags: ["Section", "Pro"],
+      isRepresentative: true,
       description:
         "A hero with a bold headline, feature checklist and a browser-framed screenshot.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/hero-section-05.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/hero-section-05",
@@ -857,7 +856,7 @@ export const componentsData: ComponentsData = {
       tags: ["Section", "Pro"],
       description:
         "A hero with a perspective-tilted dashboard mock that floats over a gradient backdrop.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/hero-section-06.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/hero-section-06",
@@ -867,7 +866,7 @@ export const componentsData: ComponentsData = {
       tags: ["Section", "Pro"],
       description:
         "A hero with inline highlighted heading, icon grid and scroll-driven parallax decorations.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/hero-section-07.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/hero-section-07",
@@ -877,7 +876,7 @@ export const componentsData: ComponentsData = {
       tags: ["Section", "Pro"],
       description:
         "A split hero with logo cloud, marketing copy and a stacked product preview.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/hero-section-08.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/hero-section-08",
@@ -887,7 +886,7 @@ export const componentsData: ComponentsData = {
       tags: ["Section", "Pro"],
       description:
         "A hero with motion-staggered heading reveal and a glowing product screenshot.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/hero-section-09.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/hero-section-09",
@@ -897,7 +896,7 @@ export const componentsData: ComponentsData = {
       tags: ["Section", "Animation", "Pro"],
       description:
         "A full-screen hero with a breathing animated radial-gradient background, staggered entrance, and pill CTAs.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/hero-section-10.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/hero-section-10",
@@ -907,17 +906,18 @@ export const componentsData: ComponentsData = {
       tags: ["Hero", "Pro"],
       description:
         "A two-column landing hero with massive typography, social proof avatars, an interactive tech stack, and a stack of live visual demos.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/hero-section-12.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/hero-section-12",
     },
     "analog-clock": {
       title: "Mockup: Analog Clock",
+      isRepresentative: true,
       tags: ["Mockups", "Pro"],
       description:
         "A live-ticking analog clock face with metallic bezel, glass sheen, and smooth-sweep hands driven by system time.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/analog-clock.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/analog-clock",
@@ -927,7 +927,7 @@ export const componentsData: ComponentsData = {
       tags: ["Mockups", "Pro"],
       description:
         "A simulated cursor opening a command palette, typing a query, and picking a result on a GSAP loop.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/command-palette.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/command-palette",
@@ -937,7 +937,7 @@ export const componentsData: ComponentsData = {
       tags: ["Mockups", "Pro"],
       description:
         "AI handoff menu items that form a column and scroll on a loop — run in Opencode, Cursor, Claude, Codex, or Zed.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/handoff-menu.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/handoff-menu",
@@ -947,7 +947,7 @@ export const componentsData: ComponentsData = {
       tags: ["Mockups", "Pro"],
       description:
         "Three rows of integration icon tiles scrolling in alternating directions on a 3D-tilted plane.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/integration-marquee.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/integration-marquee",
@@ -957,7 +957,7 @@ export const componentsData: ComponentsData = {
       tags: ["Interactions", "Pro"],
       description:
         "A GitHub-style contribution heatmap with staggered cell reveal, count-up total, hover tooltips, and four color themes.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/contribution-heatmap.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/contribution-heatmap",
@@ -967,7 +967,7 @@ export const componentsData: ComponentsData = {
       tags: ["Mockups", "Pro"],
       description:
         "A horizontal milestone track filled up to today, with checkmarked, glowing, and hollow checkpoints on alternating cards.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/milestone-timeline.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/milestone-timeline",
@@ -977,7 +977,7 @@ export const componentsData: ComponentsData = {
       tags: ["Mockups", "Pro"],
       description:
         "A page mockup feeding an AI summary bubble whose bullets reveal word-by-word with a blur-to-sharp fade.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/page-summary.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/page-summary",
@@ -987,7 +987,7 @@ export const componentsData: ComponentsData = {
       tags: ["Mockups", "Pro"],
       description:
         "A CI pipeline with Build, parallel Verify jobs, and a waiting Deploy stage, connected by fanned dashed elbows.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/pipeline-run.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/pipeline-run",
@@ -997,7 +997,7 @@ export const componentsData: ComponentsData = {
       tags: ["Interactions", "Pro"],
       description:
         "A flat-color fintech bank card with mouse-tracked 3D tilt and a moving shine highlight.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/tilt-bank-card.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/tilt-bank-card",
@@ -1007,7 +1007,7 @@ export const componentsData: ComponentsData = {
       tags: ["Mockups", "Pro"],
       description:
         "A three-column kanban board where task cards slide across columns on a GSAP timeline, picking up checkmarks in Done.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/kanban-flow.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/kanban-flow",
@@ -1017,7 +1017,7 @@ export const componentsData: ComponentsData = {
       tags: ["Mockups", "Pro"],
       description:
         "Four files flowing rightward into a merging badge, then a beam carrying on to a merged-result icon that pops into a dashed placeholder slot.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/merge-flow.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/merge-flow",
@@ -1027,7 +1027,7 @@ export const componentsData: ComponentsData = {
       tags: ["Mockups", "Pro"],
       description:
         "A hub node connected to satellite icons by curved animated beams, with a faint mesh perimeter linking the ring.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/network-mesh.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/network-mesh",
@@ -1036,7 +1036,7 @@ export const componentsData: ComponentsData = {
       title: "Mockup: Revenue Chart",
       tags: ["Mockups", "Pro"],
       description: "A bar chart with a highlighted peak and summary legend.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/revenue-chart.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/revenue-chart",
@@ -1046,7 +1046,7 @@ export const componentsData: ComponentsData = {
       tags: ["Mockups", "Pro"],
       description:
         "A capsule storage tank filling with glossy liquid and a curved meniscus surface, with the percentage in the headspace above.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/storage-tank.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/storage-tank",
@@ -1056,7 +1056,7 @@ export const componentsData: ComponentsData = {
       tags: ["Mockups", "Pro"],
       description:
         "A cursor grabbing a list row by its handle, dragging it past the row below to swap places, then reversing back.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/drag-reorder.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/drag-reorder",
@@ -1066,7 +1066,7 @@ export const componentsData: ComponentsData = {
       tags: ["Mockups", "Pro"],
       description:
         "A cursor swiping the front card of a stack sideways with a LIKE stamp, flying off screen while the next card scales up to take the front.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/swipe-cards.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/swipe-cards",
@@ -1076,7 +1076,7 @@ export const componentsData: ComponentsData = {
       tags: ["Mockups", "Pro"],
       description:
         "A hover-fill star preview that fills progressively as the cursor sweeps across, locking in on click with a pop and a thank-you message.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/star-rating.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/star-rating",
@@ -1086,7 +1086,7 @@ export const componentsData: ComponentsData = {
       tags: ["Mockups", "Pro"],
       description:
         "A terminal-style code diff viewer with syntax-highlighted add/del lines, staggered reveal animation, and a copy button.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/code-diff.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/code-diff",
@@ -1096,7 +1096,7 @@ export const componentsData: ComponentsData = {
       tags: ["Mockups", "Pro"],
       description:
         "A transaction ID scrambling char-by-char into its final form with a blinking cursor, status dot, and minted state.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/txn-integrity.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/txn-integrity",
@@ -1106,7 +1106,7 @@ export const componentsData: ComponentsData = {
       tags: ["Mockups", "Pro"],
       description:
         "Plaintext tiles transforming into scrambling cipher tiles character-by-character, with active pop and settled cyan states.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/encryption-card.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/encryption-card",
@@ -1116,7 +1116,7 @@ export const componentsData: ComponentsData = {
       tags: ["Mockups", "Pro"],
       description:
         "A document filling in, a hash lighting up left-to-right, and an RSA-2048 stamp dropping in as the signature verifies.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/signed-payload.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/signed-payload",
@@ -1126,7 +1126,7 @@ export const componentsData: ComponentsData = {
       tags: ["Mockups", "Pro"],
       description:
         "A scanning spinner flagging malicious activity while blocked emails reveal one-by-one with red X badges.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/fraud-shield.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/fraud-shield",
@@ -1136,7 +1136,7 @@ export const componentsData: ComponentsData = {
       tags: ["Mockups", "Pro"],
       description:
         "Two named multiplayer cursors wandering a shared canvas on independent timelines, each selecting different shapes.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/collab-cursor.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/collab-cursors",
@@ -1146,18 +1146,17 @@ export const componentsData: ComponentsData = {
       tags: ["Mockups", "Pro"],
       description:
         "A study streak card with a progress ring and week of day pills — completed, pulsing today, and hollow upcoming.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/study-streak.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/study-streak",
     },
     "navigation-1": {
       title: "Navigation 1",
-      isRepresentative: true,
       tags: ["Navigation", "Pro"],
       description:
         "A corner hamburger toggle that springs into a full-screen violet menu with staggered links, socials, and a contact CTA.",
-      image: "/assets/images/showcase/blocks/navbar.avif",
+      image: "/assets/images/showcase/blocks/navigation-1.avif",
       imageClassName: "object-cover invert-100 dark:invert-0",
       isPro: true,
       proUrl: "/blocks/navigation-1",
@@ -1167,7 +1166,7 @@ export const componentsData: ComponentsData = {
       tags: ["Navigation", "Pro"],
       description:
         "A floating icon toolbar that springs open to reveal a content panel above the active icon.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/navigation-2.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/navigation-2",
@@ -1177,7 +1176,7 @@ export const componentsData: ComponentsData = {
       tags: ["Navigation", "Pro"],
       description:
         "A full-screen nav that slides in with a liquid 50vw border-radius reveal and staggered oversized links.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/navigation-3.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/navigation-3",
@@ -1187,7 +1186,7 @@ export const componentsData: ComponentsData = {
       tags: ["Navigation", "Pro"],
       description:
         "A Mintlify-style navigation dropdown with a sliding highlight pill and directional slide animations between tab panels.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/navigation-4.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/navigation-4",
@@ -1197,7 +1196,7 @@ export const componentsData: ComponentsData = {
       tags: ["Navigation", "Pro"],
       description:
         "A floating pill navbar that animates its width, condenses on scroll, and collapses into a mobile sheet.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/navigation-5.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/navigation-5",
@@ -1207,18 +1206,19 @@ export const componentsData: ComponentsData = {
       tags: ["Navigation", "Pro"],
       description:
         "A column of fixed side lines that stretch toward the cursor with springs, expanding into labeled nav links on hover.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/navigation-6.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/navigation-6",
     },
     "navigation-7": {
       title: "Navigation 7",
+      isRepresentative: true,
       tags: ["Navigation", "Pro"],
       description:
         "A glass pill mega-menu navbar that intensifies on scroll, with spring mega-dropdowns, staggered item reveals, and a mobile accordion sheet.",
-      image: "/assets/images/showcase/blocks/footer.avif",
-      imageClassName: "object-cover",
+      image: "/assets/images/showcase/blocks/navigation-7.png",
+      imageClassName: "object-cover invert-100 dark:invert-0",
       isPro: true,
       proUrl: "/blocks/navigation-7",
     },
@@ -1227,7 +1227,7 @@ export const componentsData: ComponentsData = {
       tags: ["Navigation", "Pro"],
       description:
         "A top navbar that hides on scroll-down and reveals on scroll-up, with a full-screen mobile menu and animated dropdown indicators.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/navigation-8.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/navigation-8",
@@ -1237,7 +1237,7 @@ export const componentsData: ComponentsData = {
       tags: ["Navigation", "Pro"],
       description:
         "A fixed floating navbar that shrinks on scroll, with hover mega-dropdowns featuring promo art panels and an animated mobile accordion.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/navigation-9.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/navigation-9",
@@ -1247,7 +1247,7 @@ export const componentsData: ComponentsData = {
       tags: ["Navigation", "Pro"],
       description:
         "A rounded navbar with ridge shadows and dual-column mega-menu dropdowns featuring a blog panel, directional panel transitions, and a mobile accordion.",
-      image: "/assets/images/showcase/blocks/footer.avif",
+      image: "/assets/images/showcase/blocks/navigation-10.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/navigation-10",
@@ -1257,18 +1257,19 @@ export const componentsData: ComponentsData = {
       tags: ["Bento", "Pro"],
       description:
         "Developer-stats bento — a Unified Performance Stats visual with the GitHub Repo Card, Terminal, and Matrix Code Rain components.",
-      image: "/assets/images/showcase/blocks/bento.avif",
-      imageClassName: "object-cover",
+      image: "/assets/images/showcase/blocks/bento-section-01.avif",
+      imageClassName: "object-cover scale-90",
       isPro: true,
       proUrl: "/blocks/bento-section-01",
     },
     "bento-section-02": {
       title: "Bento Section 02",
+      isRepresentative: true,
       tags: ["Bento", "Pro"],
       description:
         "Assist AI bento — a five-card 'This AI can do a lot' grid with typewriter notepad, chat thread, gradient chart + tooltip, web-search panel, and code editor.",
-      image: "/assets/images/showcase/blocks/footer.avif",
-      imageClassName: "object-cover",
+      image: "/assets/images/showcase/blocks/bento-section-02.avif",
+      imageClassName: "object-cover scale-90",
       isPro: true,
       proUrl: "/blocks/bento-section-02",
     },
@@ -1277,8 +1278,8 @@ export const componentsData: ComponentsData = {
       tags: ["Bento", "Pro"],
       description:
         "Services bento — a browser mockup with CTA, a progress gauge with a cycling notification stack, an animated world map, a glow keyboard, and an animated component graphic.",
-      image: "/assets/images/showcase/blocks/footer.avif",
-      imageClassName: "object-cover",
+      image: "/assets/images/showcase/blocks/bento-section-04.avif",
+      imageClassName: "object-cover scale-90",
       isPro: true,
       proUrl: "/blocks/bento-section-04",
     },
@@ -1288,7 +1289,7 @@ export const componentsData: ComponentsData = {
       tags: ["Pricing", "Pro"],
       description:
         "Three-tier pricing — animated grainy plan cards with hex icons, feature lists, and renewal footer.",
-      image: "/assets/images/showcase/blocks/pricing.avif",
+      image: "/assets/images/showcase/blocks/pricing-section-01.avif",
       imageClassName: "object-cover",
       isPro: true,
       proUrl: "/blocks/pricing-01",
