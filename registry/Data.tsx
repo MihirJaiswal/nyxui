@@ -588,6 +588,16 @@ export const componentsData: ComponentsData = {
       isPro: true,
       proUrl: "/blocks/character-selector",
     },
+    "card-scanner": {
+      title: "Card Scanner",
+      tags: ["Section", "Scanner", "Pro"],
+      description:
+        "An infinite card stream that flows through a central light beam — cards crossing it are clipped away and revealed as glitching binary digits, with Three.js ambient particles and a scanner burst that intensifies during a scan. The beam and particles glow green.",
+      image: "/assets/images/showcase/blocks/card-scanner.avif",
+      imageClassName: "object-cover",
+      isPro: true,
+      proUrl: "/blocks/card-scanner",
+    },
     "logo-cloud-3": {
       title: "Logo Cloud 3",
       tags: ["Logo Cloud", "Section", "Pro"],

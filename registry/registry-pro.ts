@@ -1487,6 +1487,72 @@ export const pro: Registry["items"] = [
         type: "registry:ui",
         target: "components/pro/blocks/character-selector/index.ts",
       },
+      {
+        path: "registry/pro/blocks/section/character-selector/character.ts",
+        type: "registry:component",
+        target: "components/pro/blocks/character-selector/character.ts",
+      },
+      {
+        path: "registry/pro/blocks/section/character-selector/close-icon.tsx",
+        type: "registry:component",
+        target: "components/pro/blocks/character-selector/close-icon.tsx",
+      },
+      {
+        path: "registry/pro/blocks/section/character-selector/roster-card.tsx",
+        type: "registry:component",
+        target: "components/pro/blocks/character-selector/roster-card.tsx",
+      },
+      {
+        path: "registry/pro/blocks/section/character-selector/slot-card.tsx",
+        type: "registry:component",
+        target: "components/pro/blocks/character-selector/slot-card.tsx",
+      },
+    ],
+    meta: { pro: true },
+  },
+  {
+    name: "card-scanner",
+    type: "registry:ui",
+    title: "Card Scanner",
+    description:
+      "An infinite card stream that flows through a central light beam — cards crossing it are clipped away and revealed as glitching binary digits, with Three.js ambient particles and a scanner burst that intensifies during a scan. The beam and particles glow green.",
+    dependencies: ["three"],
+    files: [
+      {
+        path: "registry/pro/blocks/section/card-scanner/page.tsx",
+        type: "registry:ui",
+        target: "components/pro/blocks/card-scanner/page.tsx",
+      },
+      {
+        path: "registry/pro/blocks/section/card-scanner/index.ts",
+        type: "registry:ui",
+        target: "components/pro/blocks/card-scanner/index.ts",
+      },
+      {
+        path: "registry/pro/blocks/section/card-scanner/constants.ts",
+        type: "registry:component",
+        target: "components/pro/blocks/card-scanner/constants.ts",
+      },
+      {
+        path: "registry/pro/blocks/section/card-scanner/utils.ts",
+        type: "registry:component",
+        target: "components/pro/blocks/card-scanner/utils.ts",
+      },
+      {
+        path: "registry/pro/blocks/section/card-scanner/card-stream.ts",
+        type: "registry:component",
+        target: "components/pro/blocks/card-scanner/card-stream.ts",
+      },
+      {
+        path: "registry/pro/blocks/section/card-scanner/particle-system.ts",
+        type: "registry:component",
+        target: "components/pro/blocks/card-scanner/particle-system.ts",
+      },
+      {
+        path: "registry/pro/blocks/section/card-scanner/particle-scanner.ts",
+        type: "registry:component",
+        target: "components/pro/blocks/card-scanner/particle-scanner.ts",
+      },
     ],
     meta: { pro: true },
   },
