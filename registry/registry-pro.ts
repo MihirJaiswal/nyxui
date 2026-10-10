@@ -1469,6 +1469,28 @@ export const pro: Registry["items"] = [
     meta: { pro: true },
   },
   {
+    name: "character-selector",
+    type: "registry:ui",
+    title: "Character Selector",
+    description:
+      "A gacha-style deploy scene — three equip slots open a blurred roster overlay with GSAP timelines, star-tier cards, and swap logic.",
+    dependencies: ["gsap"],
+    registryDependencies: ["scale-container"],
+    files: [
+      {
+        path: "registry/pro/blocks/section/character-selector/page.tsx",
+        type: "registry:ui",
+        target: "components/pro/blocks/character-selector/page.tsx",
+      },
+      {
+        path: "registry/pro/blocks/section/character-selector/index.ts",
+        type: "registry:ui",
+        target: "components/pro/blocks/character-selector/index.ts",
+      },
+    ],
+    meta: { pro: true },
+  },
+  {
     name: "logo-cloud-3",
     type: "registry:ui",
     title: "Logo Cloud 3",

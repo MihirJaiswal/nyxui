@@ -30,7 +30,7 @@ export function PopText({
     >
       {text.split("").map((letter, idx) => (
         <span key={idx} className="pop-text-letter">
-          {letter}
+          {letter === " " ? "\u00A0" : letter}
         </span>
       ))}
     </h2>

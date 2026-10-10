@@ -1,12 +1,11 @@
 "use client";
-import React, { useMemo, useRef, Suspense, useState, useEffect } from "react";
+import React, { useMemo, useRef, useState, useEffect } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import {
   EffectComposer,
   Bloom,
   ChromaticAberration,
 } from "@react-three/postprocessing";
-import { Environment } from "@react-three/drei";
 import * as THREE from "three";
 
 /* --------------------------  SHADERS  ---------------------------- */
@@ -177,7 +176,6 @@ function Blob({
   speed: number;
 }) {
   const { pointer, clock } = useThree();
-  const mesh = useRef<THREE.Mesh>(null!);
   const themes = {
     primary: { a: "#0A0F8A", b: "#1E40FF", c: "#00D4FF" },
     aurora: { a: "#4A00FF", b: "#FF006B", c: "#00FFFF" },
@@ -189,7 +187,8 @@ function Blob({
   const { a, b, c } = themes[theme] ?? themes.aurora;
   const geometry = useMemo(() => new THREE.IcosahedronGeometry(2, 6), []); // Keep original quality
 
-  // Stable uniforms reference
+  // Stable uniforms reference — values are synced per frame so prop
+  // changes never rebuild the material or reset uTime.
   const uniforms = useMemo(
     () => ({
       uTime: { value: 0 },
@@ -201,7 +200,8 @@ function Blob({
       uB: { value: new THREE.Color(b) },
       uC: { value: new THREE.Color(c) },
     }),
-    [a, b, c, complexity, speed],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
   );
   const material = useMemo(() => {
     const mat = shaderMaterial.clone();
@@ -209,18 +209,42 @@ function Blob({
     return mat;
   }, [uniforms]);
 
+  useEffect(() => {
+    return () => {
+      geometry.dispose();
+      material.dispose();
+    };
+  }, [geometry, material]);
+
+  // Track the last-synced prop strings so unchanged colors skip the
+  // per-frame hex re-parse.
+  const lastColorsRef = useRef({ a: "", b: "", c: "" });
+
   useFrame(() => {
     uniforms.uTime.value = clock.elapsedTime;
     uniforms.uPointer.value.copy(pointer);
+    uniforms.uComplexity.value = complexity * 0.15;
+    uniforms.uSpeed.value = speed * 0.25;
+    if (lastColorsRef.current.a !== a) {
+      uniforms.uA.value.set(a);
+      lastColorsRef.current.a = a;
+    }
+    if (lastColorsRef.current.b !== b) {
+      uniforms.uB.value.set(b);
+      lastColorsRef.current.b = b;
+    }
+    if (lastColorsRef.current.c !== c) {
+      uniforms.uC.value.set(c);
+      lastColorsRef.current.c = c;
+    }
   });
 
-  return <mesh ref={mesh} geometry={geometry} material={material} />;
+  return <mesh geometry={geometry} material={material} />;
 }
 
 /* ----------------------  PARTICLES  ------------------------------- */
 
 function Particles({ count = 150, color = "#00FFFF" }) {
-  const points = useRef<THREE.Points>(null!);
   const { geometry, material } = useMemo(() => {
     const pos = new Float32Array(count * 3);
     const scl = new Float32Array(count);
@@ -276,11 +300,24 @@ function Particles({ count = 150, color = "#00FFFF" }) {
     return { geometry: geom, material: mat };
   }, [count, color]);
 
+  useEffect(() => {
+    return () => {
+      geometry.dispose();
+      material.dispose();
+    };
+  }, [geometry, material]);
+
+  const lastColorRef = useRef("");
+
   useFrame(({ clock }) => {
     material.uniforms.uTime.value = clock.elapsedTime;
+    if (lastColorRef.current !== color) {
+      material.uniforms.uColor.value.set(color);
+      lastColorRef.current = color;
+    }
   });
 
-  return <points ref={points} geometry={geometry} material={material} />;
+  return <points geometry={geometry} material={material} />;
 }
 
 /* ----------------------  EFFECTS  -------------------------------- */
@@ -298,32 +335,6 @@ function PostProcessingEffects({ enabled = true }: { enabled?: boolean }) {
       <ChromaticAberration offset={[0.002, 0.002]} />
     </EffectComposer>
   );
-}
-
-/* ----------------------  ERROR BOUNDARY  ------------------------- */
-
-class EnvironmentErrorBoundary extends React.Component<
-  { children: React.ReactNode; fallback: React.ReactNode },
-  { hasError: boolean }
-> {
-  constructor(props: { children: React.ReactNode; fallback: React.ReactNode }) {
-    super(props);
-    this.state = { hasError: false };
-  }
-
-  static getDerivedStateFromError() {
-    return { hasError: true };
-  }
-
-  componentDidCatch() {
-    // Environment loading failed
-  }
-  render() {
-    if (this.state.hasError) {
-      return this.props.fallback;
-    }
-    return this.props.children;
-  }
 }
 
 /* ----------------------  SCENE  ---------------------------------- */
@@ -349,29 +360,13 @@ function Scene({
     danger: "#FFAA00",
   };
 
-  // Fallback lighting when Environment fails
-  const FallbackLighting = () => (
-    <>
-      <ambientLight intensity={0.4} color="#1a1a2e" />
-      <pointLight position={[10, 10, 10]} intensity={1.8} color="#ffffff" />
-      <pointLight position={[-10, -10, -10]} intensity={1.2} color="#4444ff" />
-      <pointLight position={[0, -10, 5]} intensity={0.8} color="#8844ff" />
-    </>
-  );
+  // NOTE: the blob and particles use custom ShaderMaterials that ignore
+  // scene lights and environment maps, so no lights/Environment are needed.
 
   return (
     <>
       <Blob theme={theme} complexity={complexity} speed={speed} />
       <Particles count={particleCount} color={particleColors[theme]} />
-      <ambientLight intensity={0.3} />
-      <pointLight position={[10, 10, 10]} intensity={1.5} color="#ffffff" />
-      <pointLight position={[-10, -10, -10]} intensity={1.0} color="#4444ff" />
-      <EnvironmentErrorBoundary fallback={<FallbackLighting />}>
-        <Suspense fallback={<FallbackLighting />}>
-          <Environment preset="night" />
-        </Suspense>
-      </EnvironmentErrorBoundary>
-
       <PostProcessingEffects enabled={enableEffects} />
     </>
   );

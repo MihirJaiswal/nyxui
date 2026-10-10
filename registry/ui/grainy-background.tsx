@@ -402,10 +402,7 @@ export function GrainyBackground({
 
   return (
     <motion.div
-      className={cn(
-        "enhanced-grainy-animated-bg relative overflow-hidden",
-        className,
-      )}
+      className={cn("relative overflow-hidden", className)}
       style={{
         backgroundColor: "#0a0a0a",
         pointerEvents: "auto",
@@ -415,7 +412,6 @@ export function GrainyBackground({
     >
       {/* Base gradient layer */}
       <motion.div
-        suppressHydrationWarning
         className="absolute inset-0"
         variants={variants}
         animate={animate ? "animate" : "static"}
@@ -429,7 +425,6 @@ export function GrainyBackground({
 
       {/* Primary grain layer */}
       <motion.div
-        suppressHydrationWarning
         className="absolute inset-0"
         variants={grainVariants}
         animate={animate ? "animate" : "static"}

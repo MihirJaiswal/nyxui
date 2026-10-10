@@ -106,6 +106,10 @@ interface PhysicalTheme {
 
 type KeyVisualStyle = React.CSSProperties & Record<`--${string}`, string>;
 
+// Stable identity so the physical-keyboard effect doesn't re-subscribe on
+// every render when the consumer passes no callbacks.
+const noop = () => {};
+
 function InteractiveKeyboard({
   layout = "standard",
   showFunctionKeys = true,
@@ -119,8 +123,8 @@ function InteractiveKeyboard({
   accentColor = "#F57644",
   keyPressedColor = "#333333",
   keyPressAnimationDuration = 150,
-  onKeyPress = () => {},
-  onKeyRelease = () => {},
+  onKeyPress = noop,
+  onKeyRelease = noop,
   className = "",
   allowPhysicalKeyboard = true,
   perspective = 1000,
@@ -129,6 +133,11 @@ function InteractiveKeyboard({
 }: InteractiveKeyboardProps) {
   const [pressedKeys, setPressedKeys] = useState<Set<string>>(new Set());
   const pressedKeysRef = useRef<Set<string>>(new Set());
+  // Latest callbacks without identity churn — keeps the listener effect mounted.
+  const onKeyPressRef = useRef(onKeyPress);
+  onKeyPressRef.current = onKeyPress;
+  const onKeyReleaseRef = useRef(onKeyRelease);
+  onKeyReleaseRef.current = onKeyRelease;
   const getKeyboardLayout = (): KeyboardRow[] => {
     switch (layout) {
       case "compact":
@@ -457,37 +466,30 @@ function InteractiveKeyboard({
       const keysToRelease = Array.from(pressedKeysRef.current);
       if (keysToRelease.length === 0) return;
 
-      pressedKeysRef.current = new Set();
-      setPressedKeys(new Set());
-      keysToRelease.forEach((code) => onKeyRelease(code));
+      const empty = new Set<string>();
+      pressedKeysRef.current = empty;
+      setPressedKeys(empty);
+      keysToRelease.forEach((code) => onKeyReleaseRef.current(code));
     };
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      setPressedKeys((prev) => {
-        const newSet = new Set(prev);
-        newSet.add(e.code);
-        pressedKeysRef.current = newSet;
-        return newSet;
-      });
+      const newSet = new Set(pressedKeysRef.current);
+      newSet.add(e.code);
+      pressedKeysRef.current = newSet;
+      setPressedKeys(newSet);
 
-      onKeyPress(e.code, e.key);
+      onKeyPressRef.current(e.code, e.key);
     };
     const handleKeyUp = (e: KeyboardEvent) => {
-      setPressedKeys((prev) => {
-        const newSet = new Set(prev);
-        newSet.delete(e.code);
-        if (
-          e.key === "Meta" ||
-          e.code === "MetaLeft" ||
-          e.code === "MetaRight"
-        ) {
-          newSet.delete("MetaLeft");
-          newSet.delete("MetaRight");
-        }
-        pressedKeysRef.current = newSet;
-        return newSet;
-      });
-      onKeyRelease(e.code, e.key);
+      const newSet = new Set(pressedKeysRef.current);
+      newSet.delete(e.code);
+      if (e.key === "Meta" || e.code === "MetaLeft" || e.code === "MetaRight") {
+        newSet.delete("MetaLeft");
+        newSet.delete("MetaRight");
+      }
+      pressedKeysRef.current = newSet;
+      setPressedKeys(newSet);
+      onKeyReleaseRef.current(e.code, e.key);
     };
 
     const handleVisibilityChange = () => {
@@ -496,40 +498,34 @@ function InteractiveKeyboard({
       }
     };
 
-    if (allowPhysicalKeyboard) {
-      window.addEventListener("keydown", handleKeyDown);
-      window.addEventListener("keyup", handleKeyUp);
-      window.addEventListener("blur", clearPressedKeys);
-      document.addEventListener("visibilitychange", handleVisibilityChange);
-    }
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
+    window.addEventListener("blur", clearPressedKeys);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleKeyUp);
       window.removeEventListener("blur", clearPressedKeys);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
-  }, [allowPhysicalKeyboard, onKeyPress, onKeyRelease]);
+  }, [allowPhysicalKeyboard]);
 
   const handleKeyDown = (code: string) => {
-    setPressedKeys((prev) => {
-      const newSet = new Set(prev);
-      newSet.add(code);
-      pressedKeysRef.current = newSet;
-      return newSet;
-    });
+    const newSet = new Set(pressedKeysRef.current);
+    newSet.add(code);
+    pressedKeysRef.current = newSet;
+    setPressedKeys(newSet);
 
-    onKeyPress(code);
+    onKeyPressRef.current(code);
   };
 
   const handleKeyUp = (code: string) => {
-    setPressedKeys((prev) => {
-      const newSet = new Set(prev);
-      newSet.delete(code);
-      pressedKeysRef.current = newSet;
-      return newSet;
-    });
+    const newSet = new Set(pressedKeysRef.current);
+    newSet.delete(code);
+    pressedKeysRef.current = newSet;
+    setPressedKeys(newSet);
 
-    onKeyRelease(code);
+    onKeyReleaseRef.current(code);
   };
 
   const getThemeStyles = (): ThemeStyles => ({

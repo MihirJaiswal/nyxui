@@ -2,7 +2,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
 import { Activity, CheckCircle } from "lucide-react";
 
 export interface ImageScannerProps {
@@ -671,12 +670,9 @@ export const ImageScanner = ({
           isScanning ? "brightness-110 contrast-110" : "",
         )}
       >
-        <Image
-          src={image || "/placeholder.svg"}
+        <img
+          src={image || undefined}
           alt={alt}
-          height={500}
-          width={500}
-          priority
           className={cn(
             "w-full h-full object-cover transition-all duration-300",
             isScanning ? "hue-rotate-15 animate-pulse" : "",

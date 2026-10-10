@@ -13,7 +13,7 @@ interface PlaygroundComponentMeta {
 }
 
 const componentMeta: Record<string, PlaygroundComponentMeta> = {
-  "cyberpunk-card": { dependencies: ["motion"] },
+  "cyberpunk-card": {},
   "animated-code-block": {
     dependencies: ["motion", "lucide-react", "prismjs"],
   },
@@ -24,7 +24,6 @@ const componentMeta: Record<string, PlaygroundComponentMeta> = {
     dependencies: [
       "three",
       "@react-three/fiber",
-      "@react-three/drei",
       "@react-three/postprocessing",
     ],
     exportName: "MorphingBlob",
@@ -623,7 +622,6 @@ export const componentRegistry: ComponentRegistry = {
           "neon-cyan",
           "neon-red",
           "matrix-green",
-          "cyber-red",
           "hologram",
           "custom",
         ],
@@ -1274,7 +1272,7 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
             title: "Digital Horizon",
             artist: "Cyber Musician",
             album: "Virtual Reality",
-            artwork: "/placeholder.svg?height=300&width=300",
+            artwork: "/assets/images/music-player/cover2.jpg",
             duration: 195,
           },
         ],
@@ -1469,7 +1467,8 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
           "indigo",
         ],
         label: "Cursor Color",
-        description: "Color scheme for the cursor",
+        description:
+          "Named preset (sky, red, ...) or any CSS color (rose, #e11d48)",
         category: "Cursor",
       },
 
@@ -1832,6 +1831,22 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
         label: "Border Color",
         description: "Color of the button border",
         category: "Colors",
+      },
+      bgClassName: {
+        type: "classnames",
+        default: "bg-gray-900",
+        label: "Glitch Layer Background",
+        description:
+          "Background class for the glitch slice layers (e.g. bg-black)",
+        category: "Appearance",
+      },
+      textClassName: {
+        type: "classnames",
+        default: "text-white",
+        label: "Glitch Layer Text",
+        description:
+          "Text color class for the glitch slice layers (e.g. text-green-400)",
+        category: "Appearance",
       },
     },
   },
@@ -3099,6 +3114,16 @@ console.log(\`The 10th Fibonacci number is: \${result}\`);`,
         step: 5,
         label: "Character Translate Y",
         description: "Y-axis translation for character image on hover",
+        category: "Animation",
+      },
+      titleTranslateZ: {
+        type: "number",
+        default: 100,
+        min: 0,
+        max: 300,
+        step: 10,
+        label: "Title Translate Z",
+        description: "Z-axis translation for title image on hover",
         category: "Animation",
       },
       characterTranslateZ: {

@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 
 interface CardProps {
   coverImage: string;
@@ -10,6 +9,7 @@ interface CardProps {
   height?: number;
   hoverRotation?: number;
   titleTranslateY?: number;
+  titleTranslateZ?: number;
   characterTranslateY?: number;
   characterTranslateZ?: number;
   alt?: {
@@ -34,6 +34,7 @@ function RevealCard({
   height = 400,
   hoverRotation = 25,
   titleTranslateY = -50,
+  titleTranslateZ = 100,
   characterTranslateY = -15,
   characterTranslateZ = 100,
   alt = {
@@ -105,27 +106,29 @@ function RevealCard({
 
   const mobileRevealClass =
     isMobile && shouldReveal
-      ? "[transform:perspective(900px)_translateY(-5%)_rotateX(25deg)_translateZ(0)] shadow-xl"
+      ? "[transform:perspective(900px)_translateY(-5%)_rotateX(var(--hover-rotation))_translateZ(0)] shadow-xl"
       : "";
 
   const characterRevealClass =
     isMobile && shouldReveal
-      ? "opacity-100 [transform:translate3d(0,-25%,100px)]"
+      ? "opacity-100 [transform:translate3d(0,var(--character-translate-y),var(--character-translate-z))]"
       : "";
 
   const titleRevealClass =
-    isMobile && shouldReveal ? "[transform:translate3d(0,-50px,100px)]" : "";
+    isMobile && shouldReveal
+      ? "[transform:translate3d(0,var(--title-translate-y),var(--title-translate-z))]"
+      : "";
 
   const desktopHoverClass = !isMobile
-    ? "group-hover:[transform:perspective(900px)_translateY(-5%)_rotateX(25deg)_translateZ(0)] group-hover:shadow-xl"
+    ? "group-hover:[transform:perspective(900px)_translateY(-5%)_rotateX(var(--hover-rotation))_translateZ(0)] group-hover:shadow-xl"
     : "";
 
   const characterHoverClass = !isMobile
-    ? "group-hover:opacity-100 group-hover:[transform:translate3d(0,-25%,100px)]"
+    ? "group-hover:opacity-100 group-hover:[transform:translate3d(0,var(--character-translate-y),var(--character-translate-z))]"
     : "";
 
   const titleHoverClass = !isMobile
-    ? "group-hover:[transform:translate3d(0,-50px,100px)]"
+    ? "group-hover:[transform:translate3d(0,var(--title-translate-y),var(--title-translate-z))]"
     : "";
 
   return (
@@ -148,13 +151,11 @@ function RevealCard({
             } as React.CSSProperties
           }
         >
-          <Image
+          <img
             src={coverImage}
             alt={alt.cover || "Cover Image"}
-            fill
-            className="object-cover"
+            className="absolute inset-0 h-full w-full object-cover"
             loading={priority ? "eager" : "lazy"}
-            priority={priority}
           />
 
           <div
@@ -165,11 +166,10 @@ function RevealCard({
       </div>
 
       <div className="absolute inset-0 z-10 pointer-events-none">
-        <Image
+        <img
           src={characterImage}
           alt={alt.character || "Character"}
-          fill
-          className={`object-cover opacity-0 transition-all duration-500 ${characterHoverClass} ${
+          className={`absolute inset-0 h-full w-full object-cover opacity-0 transition-all duration-500 ${characterHoverClass} ${
             shouldReveal ? characterRevealClass : ""
           }`}
           style={
@@ -180,16 +180,13 @@ function RevealCard({
             } as React.CSSProperties
           }
           loading={priority ? "eager" : "lazy"}
-          priority={priority}
         />
       </div>
 
       <div className="relative z-20 w-full">
-        <Image
+        <img
           src={titleImage}
           alt={alt.title || "Title"}
-          width={500}
-          height={500}
           className={`w-full transition-transform duration-500 ${titleHoverClass} ${
             shouldReveal ? titleRevealClass : ""
           }`}
@@ -197,11 +194,10 @@ function RevealCard({
             {
               ...animationStyle,
               "--title-translate-y": `${titleTranslateY}px`,
-              "--title-translate-z": `${characterTranslateZ}px`,
+              "--title-translate-z": `${titleTranslateZ}px`,
             } as React.CSSProperties
           }
           loading={priority ? "eager" : "lazy"}
-          priority={priority}
         />
       </div>
 

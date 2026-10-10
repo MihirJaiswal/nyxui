@@ -578,6 +578,16 @@ export const componentsData: ComponentsData = {
       isPro: true,
       proUrl: "/blocks/hover-image-links",
     },
+    "character-selector": {
+      title: "Character Selector",
+      tags: ["Section", "Selector", "Pro"],
+      description:
+        "A gacha-style deploy scene — three equip slots open a blurred roster overlay with GSAP timelines, star-tier cards, and swap logic.",
+      image: "/assets/images/showcase/blocks/character-selector.avif",
+      imageClassName: "object-cover",
+      isPro: true,
+      proUrl: "/blocks/character-selector",
+    },
     "logo-cloud-3": {
       title: "Logo Cloud 3",
       tags: ["Logo Cloud", "Section", "Pro"],

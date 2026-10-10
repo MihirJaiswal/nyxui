@@ -1,17 +1,29 @@
 "use client";
 
 import React, { useState, useCallback } from "react";
-import { motion, AnimatePresence, useMotionValue } from "motion/react";
+import {
+  motion,
+  AnimatePresence,
+  useMotionValue,
+  type MotionValue,
+} from "motion/react";
 import { cn } from "@/lib/utils";
 
 // Default pointer SVG component
-const DefaultPointerSVG = ({ className }: { className?: string }) => (
+const DefaultPointerSVG = ({
+  className,
+  style,
+}: {
+  className?: string;
+  style?: React.CSSProperties;
+}) => (
   <svg
     stroke="currentColor"
     fill="currentColor"
     strokeWidth="1"
     viewBox="0 0 16 16"
     className={className}
+    style={style}
     height="1em"
     width="1em"
     xmlns="http://www.w3.org/2000/svg"
@@ -33,16 +45,8 @@ export const Cursor = ({
   name: string;
   customSVG?: React.ReactNode;
   svgClassName?: string;
-  cursorColor?:
-    | "sky"
-    | "red"
-    | "green"
-    | "blue"
-    | "purple"
-    | "pink"
-    | "yellow"
-    | "indigo"
-    | string;
+  /** Named preset ("sky", "red", ...) or any CSS color (e.g. "rose", "#e11d48"). */
+  cursorColor?: string;
 }) => {
   const posX = useMotionValue(0);
   const posY = useMotionValue(0);
@@ -53,12 +57,8 @@ export const Cursor = ({
     (e: React.MouseEvent<HTMLDivElement>) => {
       if (containerRef.current) {
         const rect = containerRef.current.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        requestAnimationFrame(() => {
-          posX.set(x);
-          posY.set(y);
-        });
+        posX.set(e.clientX - rect.left);
+        posY.set(e.clientY - rect.top);
       }
     },
     [posX, posY],
@@ -108,33 +108,33 @@ export const FollowCursor = ({
   svgClassName,
   cursorColor = "sky",
 }: {
-  x: any;
-  y: any;
+  x: MotionValue<number>;
+  y: MotionValue<number>;
   name: string;
   customSVG?: React.ReactNode;
   svgClassName?: string;
   cursorColor?: string;
 }) => {
-  const getColorClasses = (color: string) => {
-    const predefinedColors = {
-      sky: "stroke-sky-600 text-sky-500 bg-sky-500",
-      red: "stroke-red-600 text-red-500 bg-red-500",
-      green: "stroke-green-600 text-green-500 bg-green-500",
-      blue: "stroke-blue-600 text-blue-500 bg-blue-500",
-      purple: "stroke-purple-600 text-purple-500 bg-purple-500",
-      pink: "stroke-pink-600 text-pink-500 bg-pink-500",
-      yellow: "stroke-yellow-600 text-yellow-500 bg-yellow-500",
-      indigo: "stroke-indigo-600 text-indigo-500 bg-indigo-500",
-    };
-
-    return (
-      predefinedColors[color as keyof typeof predefinedColors] ||
-      predefinedColors.sky
-    );
+  // Named presets map to hex; anything else is treated as a raw CSS color.
+  // Inline styles (not interpolated Tailwind classes) so arbitrary colors
+  // work in any build without safelisting.
+  const COLOR_PRESETS: Record<string, string> = {
+    sky: "#0ea5e9",
+    red: "#ef4444",
+    green: "#22c55e",
+    blue: "#3b82f6",
+    purple: "#a855f7",
+    pink: "#ec4899",
+    yellow: "#eab308",
+    indigo: "#6366f1",
   };
 
-  const colorClasses = getColorClasses(cursorColor);
-  const [strokeClass, textClass, bgClass] = colorClasses.split(" ");
+  const getColorStyles = (color: string): React.CSSProperties => {
+    const base = COLOR_PRESETS[color] ?? color;
+    return { color: base };
+  };
+
+  const colorStyles = getColorStyles(cursorColor);
 
   return (
     <motion.div
@@ -165,9 +165,9 @@ export const FollowCursor = ({
         <div
           className={cn(
             "h-6 w-6 -translate-x-[12px] -translate-y-[10px] -rotate-[70deg] transform",
-            textClass,
             svgClassName,
           )}
+          style={colorStyles}
         >
           {customSVG}
         </div>
@@ -175,17 +175,16 @@ export const FollowCursor = ({
         <DefaultPointerSVG
           className={cn(
             "h-6 w-6 -translate-x-[12px] -translate-y-[10px] -rotate-[70deg] transform",
-            strokeClass,
-            textClass,
             svgClassName,
           )}
+          style={colorStyles}
         />
       )}
       <div
         className={cn(
           "w-fit rounded-full px-2 py-1 text-white pointer-events-none text-xs whitespace-nowrap",
-          bgClass,
         )}
+        style={{ backgroundColor: colorStyles.color }}
       >
         {name}
       </div>

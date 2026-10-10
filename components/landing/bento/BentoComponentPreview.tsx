@@ -113,6 +113,8 @@ export function BentoComponentPreview({
       <GlitchButton
         glitchAlways
         className="rounded-xl bg-zinc-900 px-6 py-4 text-lg sm:text-2xl md:text-3xl border"
+        bgClassName="bg-zinc-900"
+        textClassName="text-white"
       >
         Ship it
       </GlitchButton>

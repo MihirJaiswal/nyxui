@@ -233,17 +233,25 @@ export const ui: Registry["items"] = [
         target: "components/ui/glitch-button.tsx",
       },
     ],
-    cssVars: {
-      theme: {
-        "animate-glitch-layer-1": "glitchFx1 800ms infinite step-end",
-        "animate-glitch-layer-2": "glitchFx2 900ms infinite step-end",
-        "animate-glitch-layer-3": "glitchFx3 1000ms infinite step-end",
-        "animate-glitch-skew": "glitchSkew 1200ms infinite step-end",
-        "animate-flicker": "flickerAnimation 2s infinite",
-        "animate-click-glitch": "clickGlitch 500ms step-end forwards",
-      },
-    },
     css: {
+      ".glitch-layer-1": {
+        animation: "glitchFx1 800ms infinite step-end",
+      },
+      ".glitch-layer-2": {
+        animation: "glitchFx2 900ms infinite step-end",
+      },
+      ".glitch-layer-3": {
+        animation: "glitchFx3 1000ms infinite step-end",
+      },
+      ".glitch-skew": {
+        animation: "glitchSkew 1200ms infinite step-end",
+      },
+      ".flicker-animation": {
+        animation: "flickerAnimation 2s infinite",
+      },
+      ".click-glitch": {
+        animation: "clickGlitch 500ms step-end forwards",
+      },
       "@keyframes glitchFx1": {
         "0%, 100%": { transform: "translateX(0)" },
         "10%": { transform: "translateX(0)" },
@@ -396,6 +404,45 @@ export const ui: Registry["items"] = [
         target: "components/ui/glow-card.tsx",
       },
     ],
+    css: {
+      "@keyframes laser-pulse": {
+        "0%, 100%": {
+          transform: "translate(-50%, -50%) scale(1)",
+          opacity: "1",
+        },
+        "50%": {
+          transform: "translate(-50%, -50%) scale(1.4)",
+          opacity: "0.7",
+        },
+      },
+      "@keyframes laser-reticle": {
+        "0%": { transform: "translate(-50%, -50%) rotate(0deg)" },
+        "100%": { transform: "translate(-50%, -50%) rotate(360deg)" },
+      },
+      "@keyframes cosmic-pulse": {
+        "0%, 100%": { opacity: "1", transform: "scale(1)" },
+        "50%": { opacity: "0.7", transform: "scale(1.05)" },
+      },
+      "@keyframes twinkle": {
+        "0%, 100%": { opacity: "1" },
+        "50%": { opacity: "0.3" },
+      },
+      "@keyframes glitch-lines": {
+        "0%": { transform: "translateY(0)" },
+        "20%": { transform: "translateY(-2px)" },
+        "40%": { transform: "translateY(1px)" },
+        "60%": { transform: "translateY(-1px)" },
+        "80%": { transform: "translateY(2px)" },
+        "100%": { transform: "translateY(0)" },
+      },
+      "@keyframes glitch-noise": {
+        "0%": { transform: "translate(0, 0)" },
+        "25%": { transform: "translate(-2px, 1px)" },
+        "50%": { transform: "translate(1px, -2px)" },
+        "75%": { transform: "translate(-1px, 2px)" },
+        "100%": { transform: "translate(2px, -1px)" },
+      },
+    },
   },
   {
     name: "marquee",
@@ -432,7 +479,6 @@ export const ui: Registry["items"] = [
     dependencies: [
       "three",
       "@react-three/fiber",
-      "@react-three/drei",
       "@react-three/postprocessing",
     ],
     files: [

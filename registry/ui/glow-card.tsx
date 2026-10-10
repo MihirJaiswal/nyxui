@@ -44,7 +44,7 @@ export function GlowCard({
   const animationRef = useRef<number>(0);
   const waveTimeRef = useRef<number>(0);
   const frameCountRef = useRef<number>(0);
-  const lastMouseMoveRef = useRef<number>(0);
+  const mouseMovePendingRef = useRef(false);
   const intersectionRef = useRef<IntersectionObserver | null>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -121,12 +121,6 @@ export function GlowCard({
   const animate = useCallback(() => {
     if (!isHovered) return;
 
-    const now = Date.now();
-    if (now - lastMouseMoveRef.current < 16) {
-      animationRef.current = requestAnimationFrame(animate);
-      return;
-    }
-
     waveTimeRef.current += 0.5;
     frameCountRef.current += 1;
     const currentFrame = frameCountRef.current;
@@ -161,10 +155,13 @@ export function GlowCard({
   }, [isHovered, mousePos, variant, generateCosmicParticles]);
 
   const handleMouseMove = useCallback((e: MouseEvent) => {
-    const now = Date.now();
-    if (now - lastMouseMoveRef.current < 16) return;
-    lastMouseMoveRef.current = now;
-
+    // Coalesce high-poll-rate mouse events to one update per frame so
+    // setMousePos (and its re-render) fires at most ~60Hz.
+    if (mouseMovePendingRef.current) return;
+    mouseMovePendingRef.current = true;
+    requestAnimationFrame(() => {
+      mouseMovePendingRef.current = false;
+    });
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width) * 100;
@@ -172,12 +169,21 @@ export function GlowCard({
     setMousePos({ x, y });
   }, []);
 
-  const handleMouseEnter = useCallback(() => {
-    setIsHovered(true);
-    if (variant === "cosmic") {
-      generateCosmicParticles(mousePos.x, mousePos.y);
-    }
-  }, [variant, generateCosmicParticles, mousePos.x, mousePos.y]);
+  const handleMouseEnter = useCallback(
+    (e: MouseEvent) => {
+      setIsHovered(true);
+      if (variant === "cosmic") {
+        const rect = containerRef.current?.getBoundingClientRect();
+        if (rect) {
+          generateCosmicParticles(
+            ((e.clientX - rect.left) / rect.width) * 100,
+            ((e.clientY - rect.top) / rect.height) * 100,
+          );
+        }
+      }
+    },
+    [variant, generateCosmicParticles],
+  );
 
   const handleMouseLeave = useCallback(() => {
     setIsHovered(false);
@@ -448,16 +454,13 @@ export function GlowCard({
         return null;
     }
   };
-  const containerStyles = useMemo(
-    () => ({
-      background: backgroundGradient,
-      filter:
-        variant === "glitch" && isHovered
-          ? `hue-rotate(${waveTimeRef.current * 2}deg) saturate(1.5)`
-          : undefined,
-    }),
-    [backgroundGradient, isHovered, variant],
-  );
+  const containerStyles = {
+    background: backgroundGradient,
+    filter:
+      variant === "glitch" && isHovered
+        ? `hue-rotate(${waveTimeRef.current * 2}deg) saturate(1.5)`
+        : undefined,
+  };
 
   useEffect(() => {
     const container = containerRef.current;

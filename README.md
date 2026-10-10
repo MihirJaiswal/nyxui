@@ -44,7 +44,7 @@ We welcome contributions! Please read our [Contributing Guidelines](./CONTRIBUTI
 **Mihir Jaiswal**
 
 - X: [@mihir*jaiswal*](https://x.com/mihir_jaiswal_)
-- Portfolio: [mihirjaiswal.me](https://mihirjaiswal.com/)
+- Portfolio: [mihirjaiswal.com](https://mihirjaiswal.com/)
 
 ## License
 

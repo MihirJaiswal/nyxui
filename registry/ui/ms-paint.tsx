@@ -89,7 +89,8 @@ export default function MSpaint({
   const downloadLinkRef = useRef<HTMLAnchorElement>(null);
   const colorPickerRef = useRef<HTMLInputElement>(null);
   const [isDrawing, setIsDrawing] = useState(false);
-  const [lastPosition, setLastPosition] = useState({ x: 0, y: 0 });
+  const lastPositionRef = useRef({ x: 0, y: 0 });
+  const statusTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [color, setColor] = useState("#000000");
   const [tool, setTool] = useState("brush");
   const [dimensions, setDimensions] = useState({ width, height });
@@ -199,12 +200,6 @@ export default function MSpaint({
     };
   }, [draggable, dragState]);
 
-  useEffect(() => {
-    if (canvasContainerRef.current) {
-      canvasContainerRef.current.style.overflow = "hidden";
-    }
-  }, []);
-
   const getCanvasScaleFactors = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return { scaleX: 1, scaleY: 1 };
@@ -241,7 +236,7 @@ export default function MSpaint({
       const y = (clientY - rect.top) * scaleY;
       context.beginPath();
       context.moveTo(x, y);
-      setLastPosition({ x, y });
+      lastPositionRef.current = { x, y };
       setIsDrawing(true);
     },
     [getCanvasScaleFactors],
@@ -274,7 +269,7 @@ export default function MSpaint({
       const x = (clientX - rect.left) * scaleX;
       const y = (clientY - rect.top) * scaleY;
       context.beginPath();
-      context.moveTo(lastPosition.x, lastPosition.y);
+      context.moveTo(lastPositionRef.current.x, lastPositionRef.current.y);
       context.lineTo(x, y);
       context.strokeStyle = tool === "eraser" ? backgroundColor : color;
       const currentToolSize = tool === "eraser" ? eraserSize : brushSize;
@@ -283,17 +278,9 @@ export default function MSpaint({
       context.lineCap = "round";
       context.lineJoin = "round";
       context.stroke();
-      setLastPosition({ x, y });
+      lastPositionRef.current = { x, y };
     },
-    [
-      isDrawing,
-      lastPosition,
-      tool,
-      color,
-      brushSize,
-      eraserSize,
-      getCanvasScaleFactors,
-    ],
+    [isDrawing, tool, color, brushSize, eraserSize, getCanvasScaleFactors],
   );
 
   const startDragging = useCallback(
@@ -324,7 +311,21 @@ export default function MSpaint({
 
   const updateStatus = useCallback((text: string, resetAfter = 3000) => {
     setStatusText(text);
-    setTimeout(() => setStatusText(defaultStatusMessage), resetAfter);
+    if (statusTimerRef.current) {
+      clearTimeout(statusTimerRef.current);
+    }
+    statusTimerRef.current = setTimeout(
+      () => setStatusText(defaultStatusMessage),
+      resetAfter,
+    );
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (statusTimerRef.current) {
+        clearTimeout(statusTimerRef.current);
+      }
+    };
   }, []);
 
   const handleSave = useCallback(() => {
@@ -574,6 +575,7 @@ export default function MSpaint({
               cursor: cursorStyle(),
               width: "100%",
               height: "100%",
+              touchAction: "none",
             }}
             role="img"
             aria-label={`Drawing canvas. Current tool: ${tool}. Click and drag to draw.`}

@@ -47,6 +47,11 @@ export function DynamicRipple({
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const animationRef = useRef<number>(0);
   const dropsRef = useRef<Drop[]>([]);
+  // Live color ref so the rAF loop reads current colors without restarting
+  // (inline customColors objects get a new identity on every parent render).
+  const themeColorsRef = useRef<{ primary: string; secondary: string } | null>(
+    null,
+  );
 
   const intensityFactors = useMemo(
     () => ({
@@ -107,6 +112,7 @@ export function DynamicRipple({
   );
 
   const currentTheme = themeColors[theme];
+  themeColorsRef.current = currentTheme;
 
   const roundedStyles = useMemo(
     () => ({
@@ -269,6 +275,9 @@ export function DynamicRipple({
         const x = Math.random() * dimensions.width;
         const y = Math.random() * dimensions.height;
 
+        // Colors read from the live ref so theme/customColors changes
+        // don't tear down and restart the animation loop.
+        const liveTheme = themeColorsRef.current;
         dropsRef.current.push({
           x,
           y,
@@ -279,8 +288,11 @@ export function DynamicRipple({
             currentIntensityFactors.size,
           speed: currentSpeedFactor,
           opacity: currentIntensityFactors.opacity,
-          color:
-            Math.random() > 0.5 ? currentTheme.primary : currentTheme.secondary,
+          color: liveTheme
+            ? Math.random() > 0.5
+              ? liveTheme.primary
+              : liveTheme.secondary
+            : "rgba(59, 130, 246, 0.7)",
         });
       }
 
@@ -292,8 +304,14 @@ export function DynamicRipple({
     return () => {
       cancelAnimationFrame(animationRef.current);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dimensions, intensity, speed, autoAnimate]);
+  }, [
+    dimensions,
+    intensity,
+    speed,
+    autoAnimate,
+    intensityFactors,
+    speedFactors,
+  ]);
 
   return (
     <div

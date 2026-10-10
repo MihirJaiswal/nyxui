@@ -1,6 +1,5 @@
 "use client";
 import { useState, useMemo } from "react";
-import Link from "next/link";
 import {
   BookOpen,
   Code,
@@ -14,7 +13,6 @@ import {
   Calendar,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
 
 const LANGUAGE_COLORS = {
   JavaScript: "#f1e05a",
@@ -253,7 +251,7 @@ export function GitHubRepoCard({
                 className={cn("h-4 w-4", currentTheme.accentColor)}
                 aria-hidden="true"
               />
-              <Link
+              <a
                 href={`https://github.com/${repoWithColor.owner}`}
                 className={cn(
                   "hover:underline font-medium transition-colors duration-200",
@@ -262,9 +260,9 @@ export function GitHubRepoCard({
                 aria-label={`View ${repoWithColor.owner}'s GitHub profile`}
               >
                 {repoWithColor.owner}
-              </Link>
+              </a>
               <span className={cn("text-xs", currentTheme.textMuted)}>/</span>
-              <Link
+              <a
                 href={repoUrl}
                 className={cn(
                   "font-semibold hover:underline transition-colors duration-200",
@@ -273,7 +271,7 @@ export function GitHubRepoCard({
                 aria-label={`View ${repoWithColor.name} repository on GitHub`}
               >
                 {repoWithColor.name}
-              </Link>
+              </a>
             </div>
           </div>
 
@@ -281,8 +279,8 @@ export function GitHubRepoCard({
             <div className="relative">
               <div className="h-10 w-10 rounded-full overflow-hidden ring-2 ring-white/20 transition-transform duration-200 group-hover:scale-110">
                 {repoWithColor.ownerAvatar ? (
-                  <Image
-                    src={repoWithColor.ownerAvatar || "/placeholder.svg"}
+                  <img
+                    src={repoWithColor.ownerAvatar}
                     alt={`${repoWithColor.owner}'s avatar`}
                     className="h-full w-full object-cover"
                     width={40}
@@ -330,7 +328,7 @@ export function GitHubRepoCard({
               </div>
             </div>
 
-            <Link
+            <a
               href={repoUrl}
               target="_blank"
               rel="noopener noreferrer"
@@ -342,7 +340,7 @@ export function GitHubRepoCard({
               aria-label="Open repository in new tab"
             >
               <ExternalLink className="h-4 w-4" />
-            </Link>
+            </a>
           </div>
 
           <p className={cn("text-sm leading-relaxed", currentTheme.textMuted)}>

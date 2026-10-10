@@ -153,20 +153,19 @@ export const LampHeading = ({
 
   // Add particle animations to DOM
   useEffect(() => {
-    if (!showParticles) return;
+    if (!showParticles || particleCount <= 0) return;
 
     const style = document.createElement("style");
-    style.textContent = particles
-      .map(
-        (particle) => `
-      @keyframes particleFloat-${particle.id} {
+    style.textContent = Array.from(
+      { length: particleCount },
+      (_, id) => `
+      @keyframes particleFloat-${id} {
         0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
-        33% { transform: translate3d(${Math.sin(particle.id) * 3}px, ${isBelow ? -8 : 8}px, 0) scale(1.05); }
-        66% { transform: translate3d(${Math.sin(particle.id + 1) * 2}px, ${isBelow ? -4 : 4}px, 0) scale(0.95); }
+        33% { transform: translate3d(${Math.sin(id) * 3}px, ${isBelow ? -8 : 8}px, 0) scale(1.05); }
+        66% { transform: translate3d(${Math.sin(id + 1) * 2}px, ${isBelow ? -4 : 4}px, 0) scale(0.95); }
       }
     `,
-      )
-      .join("");
+    ).join("");
 
     document.head.appendChild(style);
     return () => {
@@ -174,7 +173,7 @@ export const LampHeading = ({
         document.head.removeChild(style);
       }
     };
-  }, [particles, showParticles, isBelow]);
+  }, [showParticles, particleCount, isBelow]);
 
   // Create radial gradient helper
   const createRadialGradient = useCallback(

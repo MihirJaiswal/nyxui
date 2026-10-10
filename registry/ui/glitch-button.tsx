@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { cn } from "@/lib/utils";
 
 interface GlitchButtonProps
@@ -13,6 +13,10 @@ interface GlitchButtonProps
     secondary?: string;
   };
   borderColor?: string;
+  /** Background class for the glitch slice layers, e.g. "bg-black". */
+  bgClassName?: string;
+  /** Text color class for the glitch slice layers, e.g. "text-green-400". */
+  textClassName?: string;
 }
 
 export function GlitchButton({
@@ -25,15 +29,13 @@ export function GlitchButton({
     secondary: "#00ffff",
   },
   borderColor = "white",
+  bgClassName = "bg-gray-900",
+  textClassName = "text-white",
   ...props
 }: GlitchButtonProps) {
   const [isHovering, setIsHovering] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
-  const buttonRef = useRef<HTMLButtonElement>(null);
   const showGlitch = glitchAlways || (glitchOnHover && isHovering) || isClicked;
-  const bgColorClass = className.match(/bg-[a-z0-9-]+/)?.[0] || "bg-gray-900";
-  const textColorClass =
-    className.match(/text-[a-z0-9-]+/)?.[0] || "text-white";
   const isRounded = /rounded(-[a-z]+)?/.test(className);
 
   const borderStyle = {
@@ -70,7 +72,6 @@ export function GlitchButton({
 
   return (
     <button
-      ref={buttonRef}
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -99,8 +100,8 @@ export function GlitchButton({
         >
           <div
             className={`
-            absolute left-0 w-full h-1/3 top-0 
-            ${bgColorClass}
+            absolute left-0 w-full h-1/3 top-0
+            ${bgClassName}
             ${isRounded ? "rounded-t-lg" : ""}
             overflow-hidden
             glitch-layer-1
@@ -111,7 +112,7 @@ export function GlitchButton({
           >
             <div
               className={`
-                absolute w-full ${textColorClass}
+                absolute w-full ${textClassName}
                 top-0 left-0 right-0
                 flex items-center justify-center
                 h-full
@@ -125,8 +126,8 @@ export function GlitchButton({
           </div>
           <div
             className={`
-            absolute left-0 w-full h-1/3 top-1/3 
-            ${bgColorClass}
+            absolute left-0 w-full h-1/3 top-1/3
+            ${bgClassName}
             overflow-hidden
             glitch-layer-2
           `}
@@ -136,7 +137,7 @@ export function GlitchButton({
           >
             <div
               className={`
-                absolute w-full ${textColorClass}
+                absolute w-full ${textClassName}
                 top-0 left-0 right-0
                 flex items-center justify-center
                 h-[300%] -translate-y-1/3
@@ -148,8 +149,8 @@ export function GlitchButton({
           </div>
           <div
             className={`
-            absolute left-0 w-full h-1/3 top-2/3 
-            ${bgColorClass}
+            absolute left-0 w-full h-1/3 top-2/3
+            ${bgClassName}
             ${isRounded ? "rounded-b-lg" : ""}
             overflow-hidden
             glitch-layer-3
@@ -160,7 +161,7 @@ export function GlitchButton({
           >
             <div
               className={`
-                absolute w-full ${textColorClass}
+                absolute w-full ${textClassName}
                 top-0 left-0 right-0
                 flex items-center justify-center
                 h-[300%] -translate-y-2/3

@@ -156,6 +156,8 @@ export const glitchButtons = [
       <GlitchButton
         glitchOnHover={true}
         className="text-sm sm:text-base bg-black text-green-400"
+        bgClassName="bg-black"
+        textClassName="text-green-400"
       >
         <div className="flex items-center">
           <Download className="mr-2 h-5 w-5" />
@@ -182,6 +184,8 @@ export const glitchButtons = [
         glitchOnHover={true}
         glitchColors={{ primary: "#ff3e00", secondary: "#ffcc00" }}
         className="text-sm sm:text-base bg-red-900 text-yellow-300 rounded-lg"
+        bgClassName="bg-red-900"
+        textClassName="text-yellow-300"
       >
         <div className="flex items-center">
           <ShieldCheck className="mr-2 h-5 w-5" />
@@ -192,7 +196,7 @@ export const glitchButtons = [
     code: `<GlitchButton
   glitchOnHover={true}
   glitchColors={{ primary: "#ff3e00", secondary: "#ffcc00" }}
-  className="text-sm sm:text-base bg-red-900 text-yellow-300 rounded-lg"
+  className="text-sm sm:text-base bg-red-900 text-yellow-300 rounded-lg" bgClassName="bg-red-900" textClassName="text-yellow-300"
 >
   <div className="flex items-center">
     <ShieldCheck className="mr-2 h-5 w-5" />
@@ -208,6 +212,8 @@ export const glitchButtons = [
         glitchOnHover={true}
         glitchColors={{ primary: "#00aaff", secondary: "#0044ff" }}
         className="text-sm sm:text-base bg-blue-950 text-blue-300"
+        bgClassName="bg-blue-950"
+        textClassName="text-blue-300"
       >
         <div className="flex items-center">
           <Mail className="mr-2 h-5 w-5" />
@@ -218,7 +224,7 @@ export const glitchButtons = [
     code: `<GlitchButton
   glitchOnHover={true}
   glitchColors={{ primary: "#00aaff", secondary: "#0044ff" }}
-  className="text-sm sm:text-base bg-blue-950 text-blue-300"
+  className="text-sm sm:text-base bg-blue-950 text-blue-300" bgClassName="bg-blue-950" textClassName="text-blue-300"
 >
   <div className="flex items-center">
     <Mail className="mr-2 h-5 w-5" />
@@ -233,6 +239,7 @@ export const glitchButtons = [
       <GlitchButton
         glitchColors={{ primary: "#be21ed", secondary: "#00ffcc" }}
         className="text-sm sm:text-base bg-purple-950"
+        bgClassName="bg-purple-950"
       >
         <div className="flex items-center">
           <MoonIcon className="mr-1 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5" />
@@ -242,7 +249,7 @@ export const glitchButtons = [
     ),
     code: `<GlitchButton
   glitchColors={{ primary: "#be21ed", secondary: "#00ffcc" }}
-  className="text-sm sm:text-base bg-purple-950"
+  className="text-sm sm:text-base bg-purple-950" bgClassName="bg-purple-950"
 >
   <div className="flex items-center">
     <MoonIcon className="mr-1 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5" />
@@ -258,6 +265,8 @@ export const glitchButtons = [
         glitchOnHover={true}
         glitchColors={{ primary: "#5500ff", secondary: "#00ddff" }}
         className="text-sm sm:text-base bg-indigo-800 text-indigo-100 rounded-lg"
+        bgClassName="bg-indigo-800"
+        textClassName="text-indigo-100"
       >
         <div className="flex items-center">
           <Info className="mr-2 h-5 w-5" />
@@ -268,7 +277,7 @@ export const glitchButtons = [
     code: `<GlitchButton
   glitchOnHover={true}
   glitchColors={{ primary: "#5500ff", secondary: "#00ddff" }}
-  className="text-sm sm:text-base bg-indigo-800 text-indigo-100 rounded-lg"
+  className="text-sm sm:text-base bg-indigo-800 text-indigo-100 rounded-lg" bgClassName="bg-indigo-800" textClassName="text-indigo-100"
 >
   <div className="flex items-center">
     <Info className="mr-2 h-5 w-5" />
@@ -283,6 +292,8 @@ export const glitchButtons = [
       <GlitchButton
         glitchOnHover={true}
         className="text-sm sm:text-base bg-slate-900 text-white"
+        bgClassName="bg-slate-900"
+        textClassName="text-white"
       >
         <div className="flex items-center gap-2">
           <span>ENTER THE VOID</span>
@@ -292,7 +303,7 @@ export const glitchButtons = [
     ),
     code: `<GlitchButton
   glitchOnHover={true}
-  className="text-sm sm:text-base bg-slate-900 text-white"
+  className="text-sm sm:text-base bg-slate-900 text-white" bgClassName="bg-slate-900" textClassName="text-white"
 >
   <div className="flex items-center gap-2">
     <span>ENTER THE VOID</span>
@@ -304,11 +315,15 @@ export const glitchButtons = [
     name: "The Matrix",
     description: "Matrix themed green button",
     component: (
-      <GlitchButton className="text-sm sm:text-base bg-green-600 text-black font-extrabold rounded-lg">
+      <GlitchButton
+        className="text-sm sm:text-base bg-green-600 text-black font-extrabold rounded-lg"
+        bgClassName="bg-green-600"
+        textClassName="text-black"
+      >
         The Matrix
       </GlitchButton>
     ),
-    code: `<GlitchButton className="text-sm sm:text-base bg-green-600 text-black font-extrabold rounded-lg">
+    code: `<GlitchButton className="text-sm sm:text-base bg-green-600 text-black font-extrabold rounded-lg" bgClassName="bg-green-600" textClassName="text-black">
   The Matrix
 </GlitchButton>`,
   },
@@ -319,13 +334,15 @@ export const glitchButtons = [
       <GlitchButton
         glitchColors={{ primary: "#FF0000", secondary: "#0000FF" }}
         className="text-sm sm:text-base bg-black text-white rounded-lg"
+        bgClassName="bg-black"
+        textClassName="text-white"
       >
         Hacker Man
       </GlitchButton>
     ),
     code: `<GlitchButton
   glitchColors={{ primary: "#FF0000", secondary: "#0000FF" }}
-  className="text-sm sm:text-base bg-black text-white rounded-lg"
+  className="text-sm sm:text-base bg-black text-white rounded-lg" bgClassName="bg-black" textClassName="text-white"
 >
   Hacker Man
 </GlitchButton>`,

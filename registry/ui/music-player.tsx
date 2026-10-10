@@ -156,6 +156,8 @@ export const MusicPlayer = ({
   const progressRef = useRef<HTMLDivElement>(null);
   const volumeRef = useRef<HTMLDivElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const simTimeRef = useRef(0);
   const isDraggingProgressRef = useRef(false);
   const isDraggingVolumeRef = useRef(false);
 
@@ -202,21 +204,39 @@ export const MusicPlayer = ({
     }
   }, [onPlayPause, track.url]);
 
+  const resetTime = useCallback(() => {
+    simTimeRef.current = 0;
+    setCurrentTime(0);
+  }, []);
+
   const handleTrackEnd = useCallback(() => {
     if (repeatMode === "one") {
-      setCurrentTime(0);
+      const audio = audioRef.current;
+      if (audio && track.url) {
+        audio.currentTime = 0;
+        audio.play().catch(() => {});
+      }
+      resetTime();
       return;
     }
     if (repeatMode === "all" || activeIndex < queue.length - 1) {
       const next = activeIndex + 1 >= queue.length ? 0 : activeIndex + 1;
       setActiveIndex(next);
-      setCurrentTime(0);
+      resetTime();
       onTrackChange?.(queue[next], next);
     } else {
       setIsPlaying(false);
     }
     onTrackEnd?.();
-  }, [repeatMode, activeIndex, queue, onTrackChange, onTrackEnd]);
+  }, [
+    repeatMode,
+    activeIndex,
+    queue,
+    track.url,
+    onTrackChange,
+    onTrackEnd,
+    resetTime,
+  ]);
 
   // Sync real audio element events when url-based playback is used
   useEffect(() => {
@@ -224,6 +244,9 @@ export const MusicPlayer = ({
     if (!audio || !audioUrl) return;
 
     const onTimeUpdate = () => {
+      // Keep simTimeRef paired with currentTime everywhere — future logic
+      // must never read one while the other is stale.
+      simTimeRef.current = audio.currentTime;
       setCurrentTime(audio.currentTime);
       onTimeChange?.(audio.currentTime);
     };
@@ -258,14 +281,28 @@ export const MusicPlayer = ({
       audioRef.current.currentTime = 0;
     }
     if (!audioUrl) {
-      setCurrentTime(0);
+      resetTime();
     }
-  }, [audioUrl]);
+  }, [audioUrl, resetTime]);
 
-  // Keyboard shortcuts
+  // Keyboard shortcuts — only active while the player itself has focus, so
+  // the page can still scroll and text fields can still receive keys.
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
-      if (e.target instanceof HTMLInputElement) return;
+      const target = e.target;
+      if (
+        target instanceof HTMLInputElement ||
+        target instanceof HTMLTextAreaElement ||
+        (target instanceof HTMLElement && target.isContentEditable)
+      )
+        return;
+      const container = containerRef.current;
+      if (
+        !container ||
+        !(target instanceof Node) ||
+        !(container === target || container.contains(target))
+      )
+        return;
       switch (e.code) {
         case "Space":
           e.preventDefault();
@@ -273,11 +310,21 @@ export const MusicPlayer = ({
           break;
         case "ArrowLeft":
           e.preventDefault();
-          setCurrentTime((p) => Math.max(0, p - 10));
+          setCurrentTime((p) => {
+            const t = Math.max(0, p - 10);
+            simTimeRef.current = t;
+            if (audioRef.current && track.url) audioRef.current.currentTime = t;
+            return t;
+          });
           break;
         case "ArrowRight":
           e.preventDefault();
-          setCurrentTime((p) => Math.min(track.duration, p + 10));
+          setCurrentTime((p) => {
+            const t = Math.min(track.duration, p + 10);
+            simTimeRef.current = t;
+            if (audioRef.current && track.url) audioRef.current.currentTime = t;
+            return t;
+          });
           break;
         case "ArrowUp":
           e.preventDefault();
@@ -291,21 +338,22 @@ export const MusicPlayer = ({
     };
     window.addEventListener("keydown", handleKeyPress);
     return () => window.removeEventListener("keydown", handleKeyPress);
-  }, [track.duration, togglePlay]);
+  }, [track.duration, track.url, togglePlay]);
 
   // Time progression (only for simulated playback — real audio uses timeupdate event)
   useEffect(() => {
     if (!isPlaying || hasAudio) return;
     const interval = setInterval(() => {
-      setCurrentTime((time) => {
-        if (time >= track.duration) {
-          handleTrackEnd();
-          return 0;
-        }
-        const n = time + 1;
-        onTimeChange?.(n);
-        return n;
-      });
+      // Side effects (callbacks + track-end handling) stay outside the state
+      // updater — updaters must be pure and StrictMode would double-run them.
+      const next = simTimeRef.current + 1;
+      if (simTimeRef.current >= track.duration) {
+        handleTrackEnd();
+        return;
+      }
+      simTimeRef.current = next;
+      setCurrentTime(next);
+      onTimeChange?.(next);
     }, 1000);
     return () => clearInterval(interval);
   }, [isPlaying, hasAudio, track.duration, onTimeChange, handleTrackEnd]);
@@ -316,6 +364,7 @@ export const MusicPlayer = ({
       const { left, width } = progressRef.current.getBoundingClientRect();
       const pct = Math.max(0, Math.min(1, (clientX - left) / width));
       const t = Math.floor(track.duration * pct);
+      simTimeRef.current = t;
       setCurrentTime(t);
       if (audioRef.current && track.url) {
         audioRef.current.currentTime = t;
@@ -402,13 +451,13 @@ export const MusicPlayer = ({
       next = activeIndex === 0 ? queue.length - 1 : activeIndex - 1;
     }
     setActiveIndex(next);
-    setCurrentTime(0);
+    resetTime();
     onTrackChange?.(queue[next], next);
   };
 
   const selectFromQueue = (t: Track, i: number) => {
     setActiveIndex(i);
-    setCurrentTime(0);
+    resetTime();
     onTrackChange?.(t, i);
     setShowQueue(false);
   };
@@ -430,8 +479,10 @@ export const MusicPlayer = ({
 
   return (
     <div
+      ref={containerRef}
       role="region"
       aria-label="Music player"
+      tabIndex={0}
       className={cn("relative w-full max-w-[20rem] mx-auto", className)}
     >
       {track.url && (

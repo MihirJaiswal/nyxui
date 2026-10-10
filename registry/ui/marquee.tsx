@@ -1,7 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { useMotionValue, animate, motion } from "motion/react";
-import { useState, useEffect, useRef } from "react";
+import { motion, useMotionValue } from "motion/react";
+import { useEffect, useRef, useState } from "react";
 
 export type MarqueeProps = {
   children: React.ReactNode;
@@ -30,187 +30,200 @@ export function Marquee({
   pauseOnTap = true,
   draggable = true,
 }: MarqueeProps) {
-  const [currentSpeed, setCurrentSpeed] = useState(speed);
-  const [isPaused, setIsPaused] = useState(false);
-  const [isDragging, setIsDragging] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [paused, setPaused] = useState(false);
+  const [dragging, setDragging] = useState(false);
+  const [containerSize, setContainerSize] = useState(0);
+  const [childSize, setChildSize] = useState(0);
+  const [copies, setCopies] = useState(2);
+
   const translation = useMotionValue(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const [key, setKey] = useState(0);
-  const dragStartPosition = useRef(0);
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  // Last direction the translation offset was computed for. When direction
+  // flips, the shared motion value would otherwise carry a stale offset from
+  // the other axis (and a stale wrap-sign), visibly cutting the track.
+  const prevDirectionRef = useRef(direction);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    if (prevDirectionRef.current !== direction) {
+      prevDirectionRef.current = direction;
+      translation.set(0);
+    }
+  }, [direction, translation]);
 
-    const currentRef = containerRef.current;
+  const outerRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  // true while a drag is in flight; suppresses the trailing click so a
+  // release doesn't register as a tap-to-pause.
+  const didDragRef = useRef(false);
+  // Live refs so the rAF loop can read current state without re-subscribing.
+  const pausedRef = useRef(paused);
+  const draggingRef = useRef(dragging);
+  const hoveredRef = useRef(false);
+  const speedRef = useRef(speed);
+  const speedOnHoverRef = useRef(speedOnHover);
+  const reverseRef = useRef(reverse);
+  const cycleSizeRef = useRef(0);
+  // False while the marquee is scrolled out of the viewport — lets the rAF
+  // loop suspend itself entirely instead of ticking uselessly off-screen.
+  const visibleRef = useRef(true);
 
-    const updateDimensions = () => {
-      if (currentRef) {
-        const rect = currentRef.getBoundingClientRect();
-        setDimensions({
-          width: rect.width,
-          height: rect.height,
-        });
+  pausedRef.current = paused;
+  draggingRef.current = dragging;
+  speedRef.current = speed;
+  speedOnHoverRef.current = speedOnHover;
+  reverseRef.current = reverse;
+  // Cycle = size of ONE copy + its trailing gap. Scrolling by exactly this
+  // amount leaves the view pixel-identical to the start, so the modulo wrap
+  // in the rAF loop is invisible.
+  cycleSizeRef.current = childSize > 0 ? childSize + gap : 0;
+
+  useEffect(() => {
+    const outer = outerRef.current;
+    const track = trackRef.current;
+    if (!outer || !track) return;
+
+    const measure = () => {
+      const outerBox = outer.getBoundingClientRect();
+      const trackScroll =
+        direction === "horizontal" ? track.scrollWidth : track.scrollHeight;
+      const outerSize =
+        direction === "horizontal" ? outerBox.width : outerBox.height;
+
+      setContainerSize(outerSize);
+
+      // Current rendered total = copies * childSize + (copies - 1) * gap.
+      // Reverse that to recover childSize for the CURRENT copies count.
+      const measuredChild =
+        copies > 0 ? (trackScroll - (copies - 1) * gap) / copies : 0;
+      setChildSize(measuredChild);
+
+      // Render enough copies to always fill at least (viewport + one copy),
+      // so the modulo wrap of exactly one cycle is seamless.
+      if (measuredChild > 0 && outerSize > 0) {
+        const needed = Math.max(
+          2,
+          Math.ceil(outerSize / (measuredChild + gap)) + 1,
+        );
+        if (needed !== copies) setCopies(needed);
       }
     };
 
-    updateDimensions();
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(outer);
+    ro.observe(track);
+    return () => ro.disconnect();
+  }, [direction, gap, children, copies]);
 
-    const resizeObserver = new ResizeObserver(updateDimensions);
-    resizeObserver.observe(currentRef);
+  // Single rAF loop for the lifetime of the component. Reads live state from
+  // refs so prop changes don't kill/restart the loop. An IntersectionObserver
+  // stops the loop entirely while the marquee is off-screen.
+  useEffect(() => {
+    const outer = outerRef.current;
+    let raf: number | null = null;
+    let last = performance.now();
+
+    const tick = (now: number) => {
+      const delta = Math.min(now - last, 100); // clamp after tab-background
+      last = now;
+
+      const cycle = cycleSizeRef.current;
+      if (cycle && !pausedRef.current && !draggingRef.current) {
+        const active =
+          hoveredRef.current && speedOnHoverRef.current
+            ? speedOnHoverRef.current
+            : speedRef.current;
+        const step = (active * delta) / 1000;
+        let next = translation.get() + (reverseRef.current ? step : -step);
+
+        if (reverseRef.current) {
+          while (next >= cycle) next -= cycle;
+          while (next < 0) next += cycle;
+        } else {
+          while (next <= -cycle) next += cycle;
+          while (next > 0) next -= cycle;
+        }
+
+        translation.set(next);
+      }
+
+      raf = requestAnimationFrame(tick);
+    };
+
+    const start = () => {
+      if (raf == null) {
+        last = performance.now();
+        raf = requestAnimationFrame(tick);
+      }
+    };
+    const stop = () => {
+      if (raf != null) {
+        cancelAnimationFrame(raf);
+        raf = null;
+      }
+    };
+
+    start();
+
+    let io: IntersectionObserver | null = null;
+    if (outer) {
+      io = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) start();
+        else stop();
+      });
+      io.observe(outer);
+    }
 
     return () => {
-      resizeObserver.unobserve(currentRef);
-      resizeObserver.disconnect();
+      io?.disconnect();
+      stop();
     };
-  }, []);
+  }, [translation]);
 
-  const { width, height } = dimensions;
+  const maskStyle =
+    fadeEdges && containerSize > 0
+      ? (() => {
+          const pct = Math.min(
+            50,
+            Math.round((fadeWidth / containerSize) * 100),
+          );
+          const grad =
+            direction === "horizontal"
+              ? `linear-gradient(to right, transparent, black ${pct}%, black ${100 - pct}%, transparent 100%)`
+              : `linear-gradient(to bottom, transparent, black ${pct}%, black ${100 - pct}%, transparent 100%)`;
+          return { maskImage: grad, WebkitMaskImage: grad };
+        })()
+      : {};
 
-  useEffect(() => {
-    let controls;
-
-    if (isPaused || isDragging || (!width && !height)) {
-      return () => {};
+  const handleClick = () => {
+    if (didDragRef.current) {
+      didDragRef.current = false;
+      return;
     }
-
-    const size = direction === "horizontal" ? width : height;
-    const contentSize = size + gap;
-
-    if (!size) return () => {};
-
-    const from = reverse ? -contentSize / 2 : 0;
-    const to = reverse ? 0 : -contentSize / 2;
-    const distanceToTravel = Math.abs(to - from);
-    const duration = distanceToTravel / currentSpeed;
-
-    if (isTransitioning) {
-      const remainingDistance = Math.abs(translation.get() - to);
-      const transitionDuration = remainingDistance / currentSpeed;
-
-      controls = animate(translation, [translation.get(), to], {
-        ease: "linear",
-        duration: transitionDuration,
-        onComplete: () => {
-          setIsTransitioning(false);
-          setKey((prevKey) => prevKey + 1);
-        },
-      });
-    } else {
-      controls = animate(translation, [from, to], {
-        ease: "linear",
-        duration: duration,
-        repeat: Infinity,
-        repeatType: "loop",
-        repeatDelay: 0,
-        onRepeat: () => {
-          translation.set(from);
-        },
-      });
-    }
-
-    return controls?.stop;
-  }, [
-    key,
-    translation,
-    currentSpeed,
-    width,
-    height,
-    gap,
-    isTransitioning,
-    direction,
-    reverse,
-    isPaused,
-    isDragging,
-  ]);
-
-  const fadeGradientStyles = (() => {
-    if (!fadeEdges) return {};
-
-    const size = direction === "horizontal" ? width : height;
-    if (size === 0) return {};
-
-    const fadePercentage = Math.min(100, Math.round((fadeWidth / size) * 100));
-
-    if (direction === "horizontal") {
-      return {
-        maskImage: `linear-gradient(to right, transparent, black ${fadePercentage}%, black ${
-          100 - fadePercentage
-        }%, transparent 100%)`,
-        WebkitMaskImage: `linear-gradient(to right, transparent, black ${fadePercentage}%, black ${
-          100 - fadePercentage
-        }%, transparent 100%)`,
-      };
-    } else {
-      return {
-        maskImage: `linear-gradient(to bottom, transparent, black ${fadePercentage}%, black ${
-          100 - fadePercentage
-        }%, transparent 100%)`,
-        WebkitMaskImage: `linear-gradient(to bottom, transparent, black ${fadePercentage}%, black ${
-          100 - fadePercentage
-        }%, transparent 100%)`,
-      };
-    }
-  })();
-
-  const handleTap = () => {
-    if (pauseOnTap && !isDragging) {
-      setIsPaused(!isPaused);
-      setIsTransitioning(true);
-      setKey((prevKey) => prevKey + 1);
-    }
+    if (pauseOnTap) setPaused((p) => !p);
   };
 
-  const hoverProps = speedOnHover
-    ? {
-        onHoverStart: () => {
-          setIsTransitioning(true);
-          setCurrentSpeed(speedOnHover);
-        },
-        onHoverEnd: () => {
-          setIsTransitioning(true);
-          setCurrentSpeed(speed);
-        },
-      }
-    : {};
-
-  const handleDragStart = () => {
-    if (!draggable) return;
-
-    setIsDragging(true);
-    dragStartPosition.current = translation.get();
-  };
-
-  const handleDragEnd = () => {
-    if (!draggable) return;
-
-    setIsDragging(false);
-    setIsTransitioning(true);
-    setKey((prevKey) => prevKey + 1);
-  };
-
-  const dragConstraints = (() => {
-    const contentSize = direction === "horizontal" ? width : height;
-
-    return {
-      left: -contentSize,
-      right: contentSize,
-      top: -contentSize,
-      bottom: contentSize,
-    };
-  })();
+  const dragLimit = Math.max(cycleSizeRef.current * 2, containerSize);
 
   return (
     <div
+      ref={outerRef}
       className={cn(
         "overflow-hidden relative",
         className,
         (pauseOnTap || draggable) && "cursor-pointer",
-        isDragging && "cursor-grabbing",
+        dragging && "cursor-grabbing",
       )}
-      style={fadeGradientStyles}
-      onClick={handleTap}
+      style={maskStyle}
+      onPointerDown={() => {
+        didDragRef.current = false;
+      }}
+      onClick={handleClick}
+      onMouseEnter={() => {
+        hoveredRef.current = true;
+      }}
+      onMouseLeave={() => {
+        hoveredRef.current = false;
+      }}
     >
       <motion.div
         className={cn("flex w-max", draggable && "cursor-grab")}
@@ -221,17 +234,37 @@ export function Marquee({
           flexDirection: direction === "horizontal" ? "row" : "column",
           gap: `${gap}px`,
         }}
-        ref={containerRef}
-        {...hoverProps}
+        ref={trackRef}
         drag={draggable ? (direction === "horizontal" ? "x" : "y") : false}
-        dragConstraints={dragConstraints}
-        onDragStart={handleDragStart}
-        onDragEnd={handleDragEnd}
+        dragConstraints={{
+          left: -dragLimit,
+          right: dragLimit,
+          top: -dragLimit,
+          bottom: dragLimit,
+        }}
+        onDragStart={() => {
+          setDragging(true);
+          didDragRef.current = true;
+        }}
+        onDragEnd={() => {
+          setDragging(false);
+        }}
         dragElastic={0.1}
         dragMomentum={false}
       >
-        {children}
-        {children}
+        {Array.from({ length: copies }, (_, i) => (
+          <div
+            key={i}
+            style={{
+              display: "flex",
+              flexDirection: direction === "horizontal" ? "row" : "column",
+              gap: `${gap}px`,
+              flexShrink: 0,
+            }}
+          >
+            {children}
+          </div>
+        ))}
       </motion.div>
     </div>
   );

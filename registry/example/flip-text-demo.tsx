@@ -4,7 +4,7 @@ import { FlipText } from "@/registry/ui/flip-text";
 
 export const FlipTextDemo = () => {
   return (
-    <section className="grid place-content-start gap-3 px-8 py-12 bg-[#d4ff00] rounded-2xl w-full">
+    <section className="grid place-content-start gap-3 px-8 py-12 bg-[#d4ff00] rounded-2xl w-full dark:bg-amber-700 ">
       <FlipText
         href="#"
         text="Twitter"

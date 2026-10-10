@@ -27,7 +27,6 @@ export function ShuffleLoader({
   const blocksRef = useRef(blocks);
   blocksRef.current = blocks;
   const [scope, animate] = useAnimate<HTMLDivElement>();
-  const cancelledRef = useRef(false);
 
   useEffect(() => {
     setBlocks(Array.from(Array(count).keys()).map((i) => ({ id: i })));
@@ -43,7 +42,9 @@ export function ShuffleLoader({
   };
 
   useEffect(() => {
-    cancelledRef.current = false;
+    // Local cancellation flag — the ref was shared across effect runs, so a
+    // new run resetting it would resurrect the previous still-awaiting loop.
+    let cancelled = false;
 
     const getBlockEl = (id: number) =>
       scope.current?.querySelector<HTMLElement>(`[data-block-id="${id}"]`) ??
@@ -53,7 +54,7 @@ export function ShuffleLoader({
       // Wait one frame so React can paint the tiles before we query them.
       await new Promise((r) => requestAnimationFrame(r));
       for (;;) {
-        if (cancelledRef.current || !scope.current) return;
+        if (cancelled || !scope.current) return;
         const current = blocksRef.current;
         if (current.length < 2) return;
         const [el1, el2] = pickTwoRandom(current);
@@ -70,9 +71,9 @@ export function ShuffleLoader({
           { y: size },
           { ease: "easeInOut", duration: 0.175 },
         );
-        if (cancelledRef.current) return;
+        if (cancelled) return;
         await delay(175);
-        if (cancelledRef.current) return;
+        if (cancelled) return;
         setBlocks((prev) => {
           const copy = [...prev];
           const idx1 = copy.findIndex((b) => b.id === el1.id);
@@ -83,17 +84,17 @@ export function ShuffleLoader({
           return copy;
         });
         await delay(350);
-        if (cancelledRef.current) return;
+        if (cancelled) return;
         animate(node1, { y: 0 }, { ease: "easeInOut", duration: 0.175 });
         await animate(node2, { y: 0 }, { ease: "easeInOut", duration: 0.175 });
-        if (cancelledRef.current) return;
+        if (cancelled) return;
         await delay(175);
       }
     };
 
     void shuffle();
     return () => {
-      cancelledRef.current = true;
+      cancelled = true;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [count, size]);

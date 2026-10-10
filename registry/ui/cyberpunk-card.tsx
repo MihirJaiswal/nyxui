@@ -1,7 +1,7 @@
 "use client";
 
 import type React from "react";
-import { useState, useEffect } from "react";
+import { useId, useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
 export interface CyberpunkCardProps
@@ -15,7 +15,6 @@ export interface CyberpunkCardProps
     | "neon-cyan"
     | "neon-red"
     | "matrix-green"
-    | "cyber-red"
     | "hologram"
     | "custom";
   customColors?: {
@@ -51,7 +50,7 @@ export interface CyberpunkCardProps
   children: React.ReactNode;
 }
 
-const MatrixRain = () => {
+const MatrixRain = ({ active }: { active: boolean }) => {
   const [columns, setColumns] = useState<
     Array<{
       id: number;
@@ -67,6 +66,7 @@ const MatrixRain = () => {
   >([]);
 
   useEffect(() => {
+    if (!active) return;
     const matrixChars =
       "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン";
 
@@ -124,7 +124,7 @@ const MatrixRain = () => {
       clearInterval(interval);
       clearInterval(resetInterval);
     };
-  }, []);
+  }, [active]);
 
   return (
     <div className="absolute inset-0 font-mono text-xs">
@@ -182,6 +182,7 @@ export const CyberpunkCard = ({
   children,
   ...props
 }: CyberpunkCardProps) => {
+  const circuitPatternId = `circuit-${useId().replace(/[^a-zA-Z0-9-]/g, "")}`;
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
@@ -320,14 +321,6 @@ export const CyberpunkCard = ({
       glow: "shadow-lime-500/50",
       border: "border-lime-400",
     },
-    "cyber-red": {
-      primary: "from-red-500 via-rose-400 to-red-600",
-      secondary: "from-red-600 via-rose-500 to-red-700",
-      accent: "bg-rose-400",
-      text: "text-red-50",
-      glow: "shadow-rose-500/50",
-      border: "border-rose-400",
-    },
     hologram: {
       primary: "from-cyan-300 via-blue-400 to-purple-500",
       secondary: "from-purple-500 via-pink-400 to-cyan-300",
@@ -399,7 +392,7 @@ export const CyberpunkCard = ({
             <svg className="w-full h-full" viewBox="0 0 100 100">
               <defs>
                 <pattern
-                  id="circuit"
+                  id={circuitPatternId}
                   x="0"
                   y="0"
                   width="20"
@@ -415,14 +408,18 @@ export const CyberpunkCard = ({
                   <circle cx="10" cy="10" r="1" fill={patternColor} />
                 </pattern>
               </defs>
-              <rect width="100%" height="100%" fill="url(#circuit)" />
+              <rect
+                width="100%"
+                height="100%"
+                fill={`url(#${circuitPatternId})`}
+              />
             </svg>
           </div>
         );
       case "matrix":
         return (
           <div className="absolute inset-0 overflow-hidden opacity-40">
-            <MatrixRain />
+            <MatrixRain active={isHovered} />
           </div>
         );
       case "scanlines":
@@ -489,12 +486,6 @@ export const CyberpunkCard = ({
       {...props}
     >
       {getBackgroundPattern()}
-
-      {/* Inset ring highlight + soft outer shadow */}
-      <div
-        className="pointer-events-none absolute inset-0 rounded-[inherit]"
-        style={{ boxShadow: "var(--inset-ring-shadow)" }}
-      />
 
       {/* Particles Effect */}
       {backgroundEffect === "particles" &&

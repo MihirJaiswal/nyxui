@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useId, useRef } from "react";
 import type { CSSProperties } from "react";
 
 interface BubblesProps {
@@ -35,6 +35,7 @@ export function BubbleBackground({
   bubbleSize = "80%",
 }: BubblesProps) {
   const interactiveRef = useRef<HTMLDivElement>(null);
+  const gooFilterId = `goo-${useId().replace(/[^a-zA-Z0-9-]/g, "")}`;
 
   useEffect(() => {
     let curX = 0;
@@ -80,7 +81,7 @@ export function BubbleBackground({
       }}
     >
       <svg className="absolute w-0 h-0">
-        <filter id="goo">
+        <filter id={gooFilterId}>
           <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
           <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
           <feColorMatrix
@@ -96,7 +97,7 @@ export function BubbleBackground({
       <div
         className="w-full h-full"
         style={{
-          filter: "url(#goo) blur(40px)",
+          filter: `url(#${gooFilterId}) blur(40px)`,
         }}
       >
         <div

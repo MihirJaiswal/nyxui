@@ -105,22 +105,22 @@ const HeartIcon = () => (
 
 ### Cursor Component
 
-| Prop           | Type                                                                                | Default      | Description                                            |
-| -------------- | ----------------------------------------------------------------------------------- | ------------ | ------------------------------------------------------ |
-| `children`     | `React.ReactNode`                                                                   | **Required** | Content to render with the custom cursor effect.       |
-| `className`    | `string`                                                                            | `undefined`  | Additional CSS classes to apply to the container.      |
-| `name`         | `string`                                                                            | **Required** | Name displayed next to the cursor pointer.             |
-| `customSVG`    | `React.ReactNode`                                                                   | `undefined`  | Custom SVG icon to use instead of the default pointer. |
-| `svgClassName` | `string`                                                                            | `undefined`  | Additional CSS classes to apply to the SVG icon.       |
-| `cursorColor`  | `"sky" \| "red" \| "green" \| "blue" \| "purple" \| "pink" \| "yellow" \| "indigo"` | `"sky"`      | Color theme for the cursor.                            |
+| Prop           | Type              | Default      | Description                                                                                                      |
+| -------------- | ----------------- | ------------ | ---------------------------------------------------------------------------------------------------------------- |
+| `children`     | `React.ReactNode` | **Required** | Content to render with the custom cursor effect.                                                                 |
+| `className`    | `string`          | `undefined`  | Additional CSS classes to apply to the container.                                                                |
+| `name`         | `string`          | **Required** | Name displayed next to the cursor pointer.                                                                       |
+| `customSVG`    | `React.ReactNode` | `undefined`  | Custom SVG icon to use instead of the default pointer.                                                           |
+| `svgClassName` | `string`          | `undefined`  | Additional CSS classes to apply to the SVG icon.                                                                 |
+| `cursorColor`  | `string`          | `"sky"`      | Color for the cursor. Named preset (`"sky"`, `"red"`, ...) or any CSS color string (e.g. `"rose"`, `"#e11d48"`). |
 
 ### FollowCursor Component
 
-| Prop           | Type              | Default      | Description                                            |
-| -------------- | ----------------- | ------------ | ------------------------------------------------------ |
-| `x`            | `MotionValue`     | **Required** | X position motion value for the cursor.                |
-| `y`            | `MotionValue`     | **Required** | Y position motion value for the cursor.                |
-| `name`         | `string`          | **Required** | Name displayed next to the cursor pointer.             |
-| `customSVG`    | `React.ReactNode` | `undefined`  | Custom SVG icon to use instead of the default pointer. |
-| `svgClassName` | `string`          | `undefined`  | Additional CSS classes to apply to the SVG icon.       |
-| `cursorColor`  | `string`          | `"sky"`      | Color theme for the cursor.                            |
+| Prop           | Type                  | Default      | Description                                                                                                      |
+| -------------- | --------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------- |
+| `x`            | `MotionValue<number>` | **Required** | X position motion value for the cursor.                                                                          |
+| `y`            | `MotionValue<number>` | **Required** | Y position motion value for the cursor.                                                                          |
+| `name`         | `string`              | **Required** | Name displayed next to the cursor pointer.                                                                       |
+| `customSVG`    | `React.ReactNode`     | `undefined`  | Custom SVG icon to use instead of the default pointer.                                                           |
+| `svgClassName` | `string`              | `undefined`  | Additional CSS classes to apply to the SVG icon.                                                                 |
+| `cursorColor`  | `string`              | `"sky"`      | Color for the cursor. Named preset (`"sky"`, `"red"`, ...) or any CSS color string (e.g. `"rose"`, `"#e11d48"`). |

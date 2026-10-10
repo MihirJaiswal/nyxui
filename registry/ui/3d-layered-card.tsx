@@ -2,7 +2,6 @@
 import type React from "react";
 import { useState, useRef, useEffect } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
-import Image from "next/image";
 import { Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -431,12 +430,10 @@ export default function ThreeDLayeredCard({
               }}
               className="relative"
             >
-              <Image
+              <img
                 src={logo}
                 alt="Logo"
-                fill
-                className="object-contain"
-                sizes={`${logoSize}px`}
+                className="absolute inset-0 h-full w-full object-contain"
               />
             </motion.div>
           </motion.div>
@@ -547,12 +544,10 @@ export default function ThreeDLayeredCard({
                 height: `${IMAGE_SIZE}px`,
               }}
             >
-              <Image
+              <img
                 src={mainImage}
                 alt="Character"
-                fill
-                className="object-contain mask-b-from-25"
-                sizes={`${IMAGE_SIZE}px`}
+                className="absolute inset-0 h-full w-full object-contain mask-b-from-25"
               />
             </div>
             {/* Glow effect */}

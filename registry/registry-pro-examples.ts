@@ -200,6 +200,22 @@ export const proExamples: Registry["items"] = [
     ],
   },
   {
+    name: "character-selector-demo",
+    type: "registry:example",
+    title: "Character Selector Demo",
+    description:
+      "Example showing a gacha-style deploy scene with three equip slots and a GSAP roster overlay.",
+    dependencies: ["gsap"],
+    registryDependencies: ["@nyxui-pro/character-selector"],
+    files: [
+      {
+        path: "registry/pro/blocks/section/character-selector/demo.tsx",
+        type: "registry:example",
+        target: "components/pro/blocks/character-selector/demo.tsx",
+      },
+    ],
+  },
+  {
     name: "bot-radar-demo",
     type: "registry:example",
     title: "Bot Radar Demo",
