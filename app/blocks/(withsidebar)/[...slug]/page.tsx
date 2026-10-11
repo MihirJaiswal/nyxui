@@ -2,16 +2,19 @@ import { notFound } from "next/navigation";
 import { componentsData } from "@/registry/Data";
 import { absoluteUrl } from "@/lib/utils";
 import type { Metadata } from "next";
-import { Mdx } from "@/components/components/mdx/mdx-components";
 import { DocPageHeader } from "@/components/components/doc-page-header";
+import { DocPageLayout } from "@/components/components/doc-page-layout";
+import { DocBreadcrumbs } from "@/components/components/doc-breadcrumbs";
 import {
   createBaseMetadata,
+  extractHeadings,
   getDocFromParams,
   type SlugPageProps,
 } from "@/lib/docs";
 import { createBreadcrumbSchema, publisher } from "@/lib/docs-schema";
 import { itemHref, siteLinks } from "@/lib/links";
 import { JsonLd } from "@/components/global/JsonLd";
+import { RelatedBlocks } from "@/components/components/related-components";
 // import Link from "next/link";
 // import { Scan } from "lucide-react";
 // import { Button } from "@/components/ui/button";
@@ -84,28 +87,39 @@ export default async function BlockPage({ params }: SlugPageProps) {
     { name: block.title, url: absoluteUrl(itemHref("blocks", slug[0])) },
   ]);
 
+  const headings = extractHeadings(doc.body.raw);
+  const isMockup = block.title.startsWith("Mockup:");
+
   return (
-    <>
+    <div
+      className="w-full
+     mx-auto max-w-[120ch]"
+    >
       <JsonLd data={schemaData} />
       <JsonLd data={breadcrumbData} />
 
       {/* Mockups already show their title in the preview wrapper header —
           skip the page header for them. */}
-      {block.title.startsWith("Mockup:") ? null : (
-        <DocPageHeader title={block.title} description={block.description} />
+      {isMockup ? null : (
+        <>
+          <DocBreadcrumbs
+            items={[
+              { label: "Blocks", href: siteLinks.blocks },
+              { label: block.title },
+            ]}
+          />
+          <DocPageHeader title={block.title} description={block.description} />
+        </>
       )}
 
-      <div
-        className={
-          block.title.startsWith("Mockup:")
-            ? "w-full pb-20"
-            : "mt-6 space-y-8 w-full"
-        }
-      >
-        <div className="mdx-content">
-          <Mdx code={doc.body.code} type="blocks" />
-        </div>
+      <div className={isMockup ? "w-full pb-20" : "mt-6"}>
+        <DocPageLayout
+          code={doc.body.code}
+          type="blocks"
+          headings={headings}
+          footer={<RelatedBlocks slug={slug[0]} />}
+        />
       </div>
-    </>
+    </div>
   );
 }

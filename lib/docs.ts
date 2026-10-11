@@ -146,3 +146,29 @@ export function createBaseMetadata({
     },
   };
 }
+
+export interface TocHeading {
+  depth: number;
+  text: string;
+  slug: string;
+}
+
+export function extractHeadings(raw: string): TocHeading[] {
+  const headings: TocHeading[] = [];
+  let match: RegExpExecArray | null;
+  const re = /^(#{2,3})\s+(.+)$/gm;
+
+  while ((match = re.exec(raw)) !== null) {
+    const depth = match[1].length;
+    const raw_text = match[2]
+      .replace(/`/g, "")
+      .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1")
+      .trim();
+    const slug = raw_text
+      .toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, "")
+      .replace(/\s+/g, "-");
+    headings.push({ depth, text: raw_text, slug });
+  }
+  return headings;
+}

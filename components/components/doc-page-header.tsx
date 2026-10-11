@@ -37,7 +37,7 @@ export function DocPageHeader({
   const hasTags = Boolean(tags?.length);
 
   return (
-    <div className="p-3 space-y-4 mx-auto max-w-[120ch] w-full">
+    <div className="py-3 space-y-4 mx-auto max-w-[120ch] w-full">
       <h1 className="scroll-m-20 text-3xl font-bold tracking-tight wrap-break-word sm:text-4xl">
         {title}
       </h1>

@@ -1,13 +1,15 @@
 ---
 title: Liquid Metal Button
 date: 2026-10-05
-description: A pill button ringed by a flowing liquid-metal shader, with a click ripple and a CSS fallback when WebGL is unavailable.
+description: Pill button with a flowing liquid chrome WebGL shader rim and click ripple.
 author: MihirJaiswal
 published: true
 tags: ["Buttons", "Animation"]
 ---
 
 <ComponentPreview name="liquid-metal-button-demo" />
+
+Liquid Metal Button wraps a React pill button in a Three.js WebGL shader that flows around the rim like liquid chrome. Highlight lobes travel the border continuously, hovering and pressing speed up the flow, and clicks fire a ripple through the metal. The palette, lobe count, flow angle, and dispersion are all props, and the button falls back to a plain CSS rim when WebGL is unavailable. Use it for premium CTAs on AI and developer tool landing pages where the primary action deserves extra attention.
 
 ## Installation
 

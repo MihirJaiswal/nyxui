@@ -55,3 +55,39 @@ export function getRelatedComponents(
   scored.sort((a, b) => b.score - a.score || a.slug.localeCompare(b.slug));
   return scored.slice(0, limit).map((entry) => entry.data);
 }
+
+/**
+ * Same scoring as `getRelatedComponents`, but ranked against
+ * `componentsData.blocks` so block pages can cross-link their siblings.
+ */
+export function getRelatedBlocks(slug: string, limit = 4): RelatedComponent[] {
+  const subject = componentsData.blocks[slug];
+  if (!subject) return [];
+  const subjectTags = new Set((subject.tags ?? []).map((t) => t.toLowerCase()));
+  if (subjectTags.size === 0) return [];
+
+  const scored: Array<{ slug: string; score: number; data: RelatedComponent }> =
+    [];
+
+  for (const [otherSlug, data] of Object.entries(componentsData.blocks)) {
+    if (otherSlug === slug) continue;
+    const shared = (data.tags ?? []).filter((t) =>
+      subjectTags.has(t.toLowerCase()),
+    ).length;
+    if (shared === 0) continue;
+    scored.push({
+      slug: otherSlug,
+      score: shared,
+      data: {
+        slug: otherSlug,
+        title: data.title,
+        description: data.description ?? "",
+        tags: data.tags ?? [],
+        image: data.image,
+      },
+    });
+  }
+
+  scored.sort((a, b) => b.score - a.score || a.slug.localeCompare(b.slug));
+  return scored.slice(0, limit).map((entry) => entry.data);
+}

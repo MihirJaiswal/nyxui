@@ -1,8 +1,10 @@
-import { Mdx } from "@/components/components/mdx/mdx-components";
 import { DocPageHeader } from "@/components/components/doc-page-header";
+import { DocPageLayout } from "@/components/components/doc-page-layout";
+import { DocBreadcrumbs } from "@/components/components/doc-breadcrumbs";
 import { absoluteUrl } from "@/lib/utils";
 import {
   createBaseMetadata,
+  extractHeadings,
   generateDocKeywords,
   generateDocStaticParams,
   getDocFromParams,
@@ -92,6 +94,8 @@ export default async function ComponentPage({ params }: SlugPageProps) {
     notFound();
   }
 
+  const headings = extractHeadings(doc.body.raw);
+
   const schemaData = createComponentSchema(doc, componentName);
   const breadcrumbData = createBreadcrumbSchema([
     { name: "Nyx UI", url: absoluteUrl("/") },
@@ -113,7 +117,14 @@ export default async function ComponentPage({ params }: SlugPageProps) {
       <meta name="framework" content="React, Next.js" />
       <meta name="styling" content="Tailwind CSS" />
 
-      <div className="w-full">
+      <div className="w-full mx-auto max-w-[120ch]">
+        <DocBreadcrumbs
+          items={[
+            { label: "Components", href: siteLinks.components },
+            { label: doc.title },
+          ]}
+        />
+
         <DocPageHeader
           title={doc.title}
           description={doc.description}
@@ -129,12 +140,12 @@ export default async function ComponentPage({ params }: SlugPageProps) {
           }
         />
 
-        <div className="space-y-8">
-          <div className="mdx-content">
-            <Mdx code={doc.body.code} />
-          </div>
-          <RelatedComponents slug={componentName} />
-        </div>
+        <DocPageLayout
+          code={doc.body.code}
+          type="components"
+          headings={headings}
+          footer={<RelatedComponents slug={componentName} />}
+        />
       </div>
     </>
   );

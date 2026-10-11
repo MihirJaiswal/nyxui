@@ -411,7 +411,11 @@ export function GrainyBackground({
       }}
     >
       {/* Base gradient layer */}
+      {/* suppressHydrationWarning: browsers normalize 8-digit hex colors
+          (e.g. #065f4690) to rgba() when parsing the SSR'd style attribute,
+          which React flags as a mismatch even though the color is identical. */}
       <motion.div
+        suppressHydrationWarning
         className="absolute inset-0"
         variants={variants}
         animate={animate ? "animate" : "static"}

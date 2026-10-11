@@ -71,7 +71,7 @@ export const text = {
   ),
   p: ({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
     <p
-      className={cn("leading-7 not-first:mt-6 text-foreground", className)}
+      className={cn("leading-7 not-first:mt-6 text-foreground/60", className)}
       {...props}
     />
   ),
@@ -94,7 +94,7 @@ export const text = {
     />
   ),
   li: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
-    <li className={cn("mt-2 text-foreground", className)} {...props} />
+    <li className={cn("mt-2 text-foreground/60", className)} {...props} />
   ),
   blockquote: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
     <blockquote

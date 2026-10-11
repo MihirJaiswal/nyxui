@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { itemHref } from "@/lib/links";
-import { getRelatedComponents } from "@/lib/related";
+import { getRelatedBlocks, getRelatedComponents } from "@/lib/related";
 
 /**
  * Server-rendered "related components" grid shown at the bottom of each
@@ -30,6 +30,45 @@ export function RelatedComponents({ slug }: { slug: string }) {
           <li key={item.slug}>
             <Link
               href={itemHref("components", item.slug)}
+              className="group block rounded-lg border border-border/60 bg-card/40 p-4 transition hover:border-border hover:bg-card/70"
+            >
+              <div className="flex items-center justify-between gap-3">
+                <span className="text-sm font-medium text-foreground">
+                  {item.title}
+                </span>
+              </div>
+              {item.description && (
+                <p className="mt-1.5 text-sm text-muted-foreground line-clamp-2">
+                  {item.description}
+                </p>
+              )}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </aside>
+  );
+}
+
+/**
+ * Sibling of `RelatedComponents` for block pages — same card grid, but the
+ * candidates come from `componentsData.blocks` and the heading reads
+ * "Related blocks".
+ */
+export function RelatedBlocks({ slug }: { slug: string }) {
+  const related = getRelatedBlocks(slug, 4);
+  if (related.length === 0) return null;
+
+  return (
+    <aside className="mt-16 mx-auto max-w-[120ch] w-full">
+      <h2 className="mb-6 text-xl font-semibold text-foreground">
+        Related blocks
+      </h2>
+      <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+        {related.map((item) => (
+          <li key={item.slug}>
+            <Link
+              href={itemHref("blocks", item.slug)}
               className="group block rounded-lg border border-border/60 bg-card/40 p-4 transition hover:border-border hover:bg-card/70"
             >
               <div className="flex items-center justify-between gap-3">

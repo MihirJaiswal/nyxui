@@ -820,15 +820,15 @@ export const componentsData: ComponentsData = {
       isPro: true,
       proUrl: "/blocks/password-strength",
     },
-    "auth-bento": {
-      title: "Mockup: Auth Bento",
+    "clerk-bento": {
+      title: "Mockup: Clerk Bento",
       tags: ["Bento", "Mockups", "Pro"],
       description:
-        "The full authentication bento grid — 11 hover-gated mockup cards arranged in a 3×4 bento layout with a wide API keys + CLI bottom row.",
-      image: "/assets/images/showcase/blocks/auth-bento.avif",
+        "A Clerk.com-inspired authentication bento grid — 11 hover-gated mockup cards arranged in a 3×4 bento layout with a wide API keys + CLI bottom row.",
+      image: "/assets/images/showcase/blocks/clerk-bento.avif",
       imageClassName: "object-cover",
       isPro: true,
-      proUrl: "/blocks/auth-bento",
+      proUrl: "/blocks/clerk-bento",
     },
     "hero-section-02": {
       title: "Hero Section 02",
