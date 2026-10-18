@@ -10,7 +10,10 @@ import { cn } from "@/lib/utils";
 
 export const PlaygroundEmptyState = () => {
   return (
-    <div className="flex-1 flex flex-col overflow-hidden min-w-0">
+    <div
+      className="flex-1 flex flex-col overflow-hidden min-w-0 w-full
+     mx-auto max-w-[120ch]"
+    >
       <div className="flex-1 py-4 overflow-auto">
         <div className="h-full flex">
           <Grid />
@@ -24,7 +27,10 @@ export const PlaygroundEmptyState = () => {
 // PlaygroundContent so the SSR → client swap is pixel-identical.
 export const PlaygroundLoading = () => {
   return (
-    <div className="h-full flex flex-col bg-background">
+    <div
+      className="h-full flex flex-col bg-background w-full
+     mx-auto max-w-[120ch]"
+    >
       {/* Desktop layout */}
       <div className="hidden w-full flex-1 lg:flex lg:flex-row">
         <div className={cn(SIDEBAR_OUTER_CLASSNAME, "w-65 shrink-0 xl:w-77.5")}>

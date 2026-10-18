@@ -111,7 +111,10 @@ export const PlaygroundContent = ({
   );
 
   const mainPanelContent = selectedComponent ? (
-    <div className="flex-1 flex flex-col min-w-0">
+    <div
+      className="flex-1 flex flex-col w-full
+     mx-auto max-w-[120ch]"
+    >
       <div className="flex-1 py-4 lg:py-4">
         <LivePreview
           componentKey={selectedComponent}
