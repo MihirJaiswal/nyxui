@@ -19,6 +19,9 @@ export const externalLinks = {
   githubProfile: "https://github.com/MihirJaiswal",
   twitter: "https://x.com/mihir_jaiswal_",
   linkedin: "https://www.linkedin.com/in/mihir-jaiswal-322898287/",
+  portfolio: "https://mihirjaiswal.com",
+  nyxStudio: "https://nyxstudio.design",
+  dreamMist: "https://dreammist.games",
 } as const;
 
 export function itemHref(section: DocSection, slug: string): string {

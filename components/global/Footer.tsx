@@ -91,6 +91,11 @@ const SOCIALS = [
   { label: "GitHub", href: externalLinks.githubRepo, icon: GitHubLogoIcon },
 ];
 
+const SIBLING_SITES = [
+  { label: "NYX Studio", href: externalLinks.nyxStudio },
+  { label: "DreamMist", href: externalLinks.dreamMist },
+];
+
 const containerVariants = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.07, delayChildren: 0.05 } },
@@ -197,15 +202,31 @@ export default function FooterSection() {
               paste, ship.
             </p>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              Designed &amp; built by{" "}
+              Built by{" "}
               <a
-                href={externalLinks.twitter}
+                href={externalLinks.portfolio}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener"
                 className="font-medium text-foreground underline underline-offset-4 transition-colors hover:text-brand"
               >
                 Mihir Jaiswal
               </a>
+            </p>
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              Also by Mihir:{" "}
+              {SIBLING_SITES.map(({ label, href }, i) => (
+                <span key={label}>
+                  {i > 0 && " · "}
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener"
+                    className="font-medium text-foreground underline underline-offset-4 transition-colors hover:text-brand"
+                  >
+                    {label}
+                  </a>
+                </span>
+              ))}
             </p>
             <div
               className="flex items-center gap-2"

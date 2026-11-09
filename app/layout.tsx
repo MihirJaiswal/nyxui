@@ -54,6 +54,10 @@ import { PostHogIdentityBridge } from "@/components/providers/posthog-identity-b
 import { ProUpsellPopup } from "@/components/global/ProUpsellPopup";
 import { ScrollProgress } from "@/components/global/ScrollProgress";
 
+// Canonical Person entity, defined on mihirjaiswal.com and referenced by
+// every sibling site so search engines merge them into one author.
+const PERSON_ID = "https://mihirjaiswal.com/#person";
+
 export const metadata: Metadata = {
   metadataBase: new URL(`${externalLinks.site}/`),
   title: {
@@ -76,7 +80,7 @@ export const metadata: Metadata = {
   authors: [
     {
       name: "Mihir Jaiswal",
-      url: "https://mihirjaiswal-portfolio.vercel.app/",
+      url: externalLinks.portfolio,
     },
   ],
   creator: "Mihir Jaiswal",
@@ -146,10 +150,20 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        {/* Three JSON-LD entities so Google can model the project cleanly:
-            Organization (publisher), WebSite (searchable site), and
-            SoftwareApplication (what the product actually is). All three can
-            legally coexist; splitting them helps rich-result eligibility. */}
+        {/* JSON-LD entities so Google can model the project cleanly:
+            Person (author, shared by @id across Mihir's sites), Organization
+            (publisher), WebSite (searchable site), and SoftwareApplication
+            (what the product actually is). */}
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "@id": PERSON_ID,
+            name: "Mihir Jaiswal",
+            url: externalLinks.portfolio,
+            sameAs: ["https://github.com/mihirjaiswal"],
+          }}
+        />
         <JsonLd
           data={{
             "@context": "https://schema.org",
@@ -161,11 +175,7 @@ export default function RootLayout({
             sameAs: [externalLinks.githubRepo, externalLinks.twitter].filter(
               Boolean,
             ),
-            founder: {
-              "@type": "Person",
-              name: "Mihir Jaiswal",
-              url: externalLinks.twitter,
-            },
+            founder: { "@id": PERSON_ID },
           }}
         />
         <JsonLd
@@ -175,6 +185,7 @@ export default function RootLayout({
             "@id": `${externalLinks.site}/#website`,
             name: "Nyx UI",
             url: `${externalLinks.site}/`,
+            author: { "@id": PERSON_ID },
             publisher: { "@id": `${externalLinks.site}/#organization` },
             inLanguage: "en",
           }}
@@ -187,11 +198,7 @@ export default function RootLayout({
             description:
               "Nyx UI is an open-source React component library of animated, customizable components built with Tailwind CSS, TypeScript and Framer Motion.",
             url: `${externalLinks.site}/`,
-            author: {
-              "@type": "Person",
-              name: "Mihir Jaiswal",
-              url: externalLinks.twitter,
-            },
+            author: { "@id": PERSON_ID },
             publisher: { "@id": `${externalLinks.site}/#organization` },
             applicationCategory: "DeveloperApplication",
             operatingSystem: "Web Browser",
