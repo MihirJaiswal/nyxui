@@ -89,10 +89,8 @@ export const metadata: Metadata = {
     canonical: externalLinks.site,
   },
 
-  icons: {
-    icon: "/favicon.ico",
-    apple: "/assets/logos/nyx-logo.png",
-  },
+  // Favicon + apple-touch-icon are picked up from app/icon.png and
+  // app/apple-icon.png via Next's file conventions — no explicit config needed.
   openGraph: {
     title: "Nyx UI — Animated React Component Library",
     description:
