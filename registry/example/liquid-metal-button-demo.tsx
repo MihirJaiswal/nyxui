@@ -70,267 +70,96 @@ export const LiquidMetalButtonDemo = () => {
 export const liquidMetalButtons: LiquidMetalVariant[] = [
   {
     name: "Steel",
-    description: "The stock palette — amber and blue over dark chrome",
+    description:
+      "The stock settings: shallow arcs, crisp lines and a thin gold/blue fringe",
     component: <LiquidMetalButton>Steel</LiquidMetalButton>,
     code: `<LiquidMetalButton>Steel</LiquidMetalButton>`,
   },
   {
-    name: "Gold",
-    description: "Warm gold through amber",
+    name: "Chrome",
+    description: "No fringe at all: plain polished steel",
     component: (
-      <LiquidMetalButton
-        colors={{
-          shadow: "#1a1206",
-          highlight: "#fff2d6",
-          warm: "#ffd27f",
-          cool: "#ff9d2e",
-        }}
-      >
-        Gold
+      <LiquidMetalButton shiftRed={0} shiftBlue={0}>
+        Chrome
       </LiquidMetalButton>
     ),
-    code: `<LiquidMetalButton
-  colors={{
-    shadow: "#1a1206",
-    highlight: "#fff2d6",
-    warm: "#ffd27f",
-    cool: "#ff9d2e",
-  }}
->
-  Gold
-</LiquidMetalButton>`,
+    code: `<LiquidMetalButton shiftRed={0} shiftBlue={0}>Chrome</LiquidMetalButton>`,
   },
   {
-    name: "Rose",
-    description: "Hot pink into crimson",
+    name: "Prism",
+    description: "Red and blue pulled well apart for a wide rainbow edge",
     component: (
-      <LiquidMetalButton
-        colors={{
-          shadow: "#1a0610",
-          highlight: "#ffe6f2",
-          warm: "#ff6ec7",
-          cool: "#ff2d6f",
-        }}
-      >
-        Rose
+      <LiquidMetalButton shiftRed={1} shiftBlue={1}>
+        Prism
       </LiquidMetalButton>
     ),
-    code: `<LiquidMetalButton
-  colors={{
-    shadow: "#1a0610",
-    highlight: "#ffe6f2",
-    warm: "#ff6ec7",
-    cool: "#ff2d6f",
-  }}
->
-  Rose
-</LiquidMetalButton>`,
+    code: `<LiquidMetalButton shiftRed={1} shiftBlue={1}>Prism</LiquidMetalButton>`,
   },
   {
-    name: "Emerald",
-    description: "Mint through deep green",
-    component: (
-      <LiquidMetalButton
-        colors={{
-          shadow: "#04160e",
-          highlight: "#e0fff0",
-          warm: "#7cffb2",
-          cool: "#00d98b",
-        }}
-      >
-        Emerald
-      </LiquidMetalButton>
-    ),
-    code: `<LiquidMetalButton
-  colors={{
-    shadow: "#04160e",
-    highlight: "#e0fff0",
-    warm: "#7cffb2",
-    cool: "#00d98b",
-  }}
->
-  Emerald
-</LiquidMetalButton>`,
+    name: "Satin",
+    description: "Soft edges between light and dark",
+    component: <LiquidMetalButton softness={1}>Satin</LiquidMetalButton>,
+    code: `<LiquidMetalButton softness={1}>Satin</LiquidMetalButton>`,
   },
   {
-    name: "Violet",
-    description: "Lilac into electric purple",
-    component: (
-      <LiquidMetalButton
-        colors={{
-          shadow: "#0f0618",
-          highlight: "#f0e6ff",
-          warm: "#c77dff",
-          cool: "#7b2cff",
-        }}
-      >
-        Violet
-      </LiquidMetalButton>
-    ),
-    code: `<LiquidMetalButton
-  colors={{
-    shadow: "#0f0618",
-    highlight: "#f0e6ff",
-    warm: "#c77dff",
-    cool: "#7b2cff",
-  }}
->
-  Violet
-</LiquidMetalButton>`,
+    name: "Razor",
+    description: "Hard edges with no blur",
+    component: <LiquidMetalButton softness={0}>Razor</LiquidMetalButton>,
+    code: `<LiquidMetalButton softness={0}>Razor</LiquidMetalButton>`,
   },
   {
-    name: "Ice",
-    description: "Pale sky through cobalt",
-    component: (
-      <LiquidMetalButton
-        colors={{
-          shadow: "#06101a",
-          highlight: "#eaf6ff",
-          warm: "#a8e6ff",
-          cool: "#4d94ff",
-        }}
-      >
-        Ice
-      </LiquidMetalButton>
-    ),
-    code: `<LiquidMetalButton
-  colors={{
-    shadow: "#06101a",
-    highlight: "#eaf6ff",
-    warm: "#a8e6ff",
-    cool: "#4d94ff",
-  }}
->
-  Ice
-</LiquidMetalButton>`,
+    name: "Busy",
+    description: "More stripes of light across the rim",
+    component: <LiquidMetalButton repetition={8}>Busy</LiquidMetalButton>,
+    code: `<LiquidMetalButton repetition={8}>Busy</LiquidMetalButton>`,
   },
   {
-    name: "Copper",
-    description: "Warm metal with no cool band",
-    component: (
-      <LiquidMetalButton
-        colors={{
-          shadow: "#140b06",
-          highlight: "#f0d2b8",
-          warm: "#ffa060",
-          cool: "#ff7a3d",
-        }}
-      >
-        Copper
-      </LiquidMetalButton>
-    ),
-    code: `<LiquidMetalButton
-  colors={{
-    shadow: "#140b06",
-    highlight: "#f0d2b8",
-    warm: "#ffa060",
-    cool: "#ff7a3d",
-  }}
->
-  Copper
-</LiquidMetalButton>`,
+    name: "Broad",
+    description: "Fewer, wider bands",
+    component: <LiquidMetalButton repetition={2}>Broad</LiquidMetalButton>,
+    code: `<LiquidMetalButton repetition={2}>Broad</LiquidMetalButton>`,
   },
   {
-    name: "Sunset",
-    description: "Amber crossing into red",
-    component: (
-      <LiquidMetalButton
-        colors={{
-          shadow: "#1a0a06",
-          highlight: "#fff0e6",
-          warm: "#ffb347",
-          cool: "#ff4d6d",
-        }}
-      >
-        Sunset
-      </LiquidMetalButton>
-    ),
-    code: `<LiquidMetalButton
-  colors={{
-    shadow: "#1a0a06",
-    highlight: "#fff0e6",
-    warm: "#ffb347",
-    cool: "#ff4d6d",
-  }}
->
-  Sunset
-</LiquidMetalButton>`,
+    name: "Molten",
+    description: "Noise bends the stripes into a liquid wobble",
+    component: <LiquidMetalButton distortion={0.6}>Molten</LiquidMetalButton>,
+    code: `<LiquidMetalButton distortion={0.6}>Molten</LiquidMetalButton>`,
   },
   {
-    name: "Toxic",
-    description: "Acid lime into spring green",
-    component: (
-      <LiquidMetalButton
-        colors={{
-          shadow: "#0a1a04",
-          highlight: "#f2ffe0",
-          warm: "#d4ff4d",
-          cool: "#00ff9d",
-        }}
-      >
-        Toxic
-      </LiquidMetalButton>
-    ),
-    code: `<LiquidMetalButton
-  colors={{
-    shadow: "#0a1a04",
-    highlight: "#f2ffe0",
-    warm: "#d4ff4d",
-    cool: "#00ff9d",
-  }}
->
-  Toxic
-</LiquidMetalButton>`,
+    name: "Crosswind",
+    description: "Stripes running the other diagonal",
+    component: <LiquidMetalButton angle={135}>Crosswind</LiquidMetalButton>,
+    code: `<LiquidMetalButton angle={135}>Crosswind</LiquidMetalButton>`,
   },
   {
-    name: "Oil Slick",
-    description: "Every hue at once, with banding off",
+    name: "Rush",
+    description: "A faster flow",
+    component: <LiquidMetalButton speed={1.8}>Rush</LiquidMetalButton>,
+    code: `<LiquidMetalButton speed={1.8}>Rush</LiquidMetalButton>`,
+  },
+  {
+    name: "Icon",
+    description: "Square, icon-only, with a label for screen readers",
     component: (
       <LiquidMetalButton
-        banding={0}
-        chromaticShift={1}
-        colors={{
-          shadow: "#05040a",
-          highlight: "#ffffff",
-          warm: "#ff3df0",
-          cool: "#3dfff0",
-        }}
+        className="aspect-square w-12 px-0 py-0"
+        aria-label="Sparkle"
       >
         <Sparkles className="size-4" aria-hidden />
-        Oil Slick
       </LiquidMetalButton>
     ),
     code: `<LiquidMetalButton
-  banding={0}
-  chromaticShift={1}
-  colors={{
-    shadow: "#05040a",
-    highlight: "#ffffff",
-    warm: "#ff3df0",
-    cool: "#3dfff0",
-  }}
+  className="aspect-square w-12 px-0 py-0"
+  aria-label="Sparkle"
 >
   <Sparkles className="size-4" aria-hidden />
-  Oil Slick
 </LiquidMetalButton>`,
-  },
-  {
-    name: "Chrome",
-    description: "No dispersion at all — plain polished steel",
-    component: <LiquidMetalButton chromaticShift={0}>Chrome</LiquidMetalButton>,
-    code: `<LiquidMetalButton chromaticShift={0}>Chrome</LiquidMetalButton>`,
   },
   {
     name: "Inverted",
-    description: "Pale rim over a light surface",
+    description: "Metal rim over a light surface",
     component: (
       <LiquidMetalButton
-        colors={{
-          shadow: "#9aa0b0",
-          highlight: "#ffffff",
-          warm: "#ffd9a8",
-          cool: "#a8c8ff",
-        }}
         surfaceClassName="bg-gradient-to-b from-white to-neutral-200 dark:from-neutral-100 dark:to-neutral-300"
         className="text-neutral-800 dark:text-neutral-900"
       >
@@ -338,12 +167,6 @@ export const liquidMetalButtons: LiquidMetalVariant[] = [
       </LiquidMetalButton>
     ),
     code: `<LiquidMetalButton
-  colors={{
-    shadow: "#9aa0b0",
-    highlight: "#ffffff",
-    warm: "#ffd9a8",
-    cool: "#a8c8ff",
-  }}
   surfaceClassName="bg-gradient-to-b from-white to-neutral-200 dark:from-neutral-100 dark:to-neutral-300"
   className="text-neutral-800 dark:text-neutral-900"
 >

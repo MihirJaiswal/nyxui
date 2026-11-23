@@ -708,7 +708,6 @@ export const ui: Registry["items"] = [
     title: "Liquid Metal Button",
     description:
       "A pill button ringed by a flowing liquid-metal shader, with a click ripple and a CSS fallback when WebGL is unavailable.",
-    dependencies: ["three"],
     cssVars: {
       theme: {
         "animate-liquid-metal-ripple":

@@ -1,7 +1,7 @@
 ---
 title: Liquid Metal Button
 date: 2026-10-05
-description: Pill button with a flowing liquid chrome WebGL shader rim and click ripple.
+description: Pill button with a flowing liquid chrome WebGL2 shader rim and click ripple.
 author: MihirJaiswal
 published: true
 tags: ["Buttons", "Animation"]
@@ -9,7 +9,7 @@ tags: ["Buttons", "Animation"]
 
 <ComponentPreview name="liquid-metal-button-demo" />
 
-Liquid Metal Button wraps a React pill button in a Three.js WebGL shader that flows around the rim like liquid chrome. Highlight lobes travel the border continuously, hovering and pressing speed up the flow, and clicks fire a ripple through the metal. The palette, lobe count, flow angle, and dispersion are all props, and the button falls back to a plain CSS rim when WebGL is unavailable. Use it for premium CTAs on AI and developer tool landing pages where the primary action deserves extra attention.
+Liquid Metal Button wraps a React pill button in a WebGL2 shader that flows around the rim like liquid chrome, with no libraries. Shallow arcs of reflected light slide across the metal: each one a hard step up to bright, a thin bright band, a crisp dark line with a glint in it, then a long lavender-grey fade back to dark. Red and blue read the stripes slightly ahead and behind, so every hard edge picks up a thin gold and blue fringe. Hovering and pressing speed up the flow, clicks fire a ripple through the metal, and the button falls back to a plain CSS rim when WebGL2 is unavailable. Use it for premium CTAs on AI and developer tool landing pages where the primary action deserves extra attention. The look is modelled on Paper's Liquid Metal shader; the code is written from scratch.
 
 ## Installation
 
@@ -30,12 +30,6 @@ npx shadcn@latest add "https://nyxui.com/r/liquid-metal-button.json"
 <TabsContent value="manual">
 
 <Steps>
-
-<Step>Install dependencies.</Step>
-
-```bash
-npm install three
-```
 
 <Step>Copy and paste the following code into your project.</Step>
 
@@ -70,36 +64,37 @@ Icon-only: make it square and give it a label, since there is no text to read.
 </LiquidMetalButton>
 ```
 
-Recolour the rim by passing any subset of the palette:
+Tune the metal: more stripes, a wider prism fringe, a little liquid wobble:
 
 ```tsx
 <LiquidMetalButton
-  colors={{ warm: "#ff6ec7", cool: "#7af0ff", highlight: "#f5f5ff" }}
+  repetition={6}
+  shiftRed={0.8}
+  shiftBlue={0.8}
+  distortion={0.4}
 >
   Get Started
 </LiquidMetalButton>
 ```
 
-The two tints are applied as brightness-preserving multipliers, so they shift
-the hue of the metal without lightening or darkening it — pass saturated
-colours and let `chromaticShift` control how strongly they read.
+Set `shiftRed` and `shiftBlue` to `0` for plain polished steel with no fringe.
 
 ## Props
 
 Accepts every standard `<button>` attribute in addition to the below.
 
-| Prop               | Type        | Default | Description                                                                                          |
-| ------------------ | ----------- | ------- | ---------------------------------------------------------------------------------------------------- |
-| `children`         | `ReactNode` | —       | Button content. Text, an icon, or both.                                                              |
-| `rimWidth`         | `number`    | `2`     | Thickness of the visible metal rim, in pixels.                                                       |
-| `repetition`       | `number`    | `2`     | Number of highlight lobes travelling around the rim. Higher is busier.                               |
-| `softness`         | `number`    | `0.3`   | Edge falloff between lobes. Low values give crisp chrome edges.                                      |
-| `chromaticShift`   | `number`    | `0.6`   | Strength of the amber/blue dispersion across the lit rim, 0 to 1.                                    |
-| `banding`          | `number`    | `0.92`  | How hard the colour bands are edged. 0 blends gold into blue smoothly; 1 gives crisp stripes.        |
-| `angle`            | `number`    | `45`    | Flow direction, in degrees.                                                                          |
-| `scale`            | `number`    | `3`     | Zoom of the lateral wash across the rim.                                                             |
-| `speed`            | `number`    | `1.8`   | Base flow speed. Hover and press scale this up.                                                      |
-| `colors`           | `object`    | —       | Palette of the rim: `shadow`, `highlight`, `warm`, `cool` as hex. Any omitted key keeps its default. |
-| `disableRipple`    | `boolean`   | `false` | Suppress the click ripple.                                                                           |
-| `surfaceClassName` | `string`    | —       | Classes for the inner pill that sits on top of the metal rim.                                        |
-| `className`        | `string`    | —       | Classes for the button itself.                                                                       |
+| Prop               | Type        | Default | Description                                                                        |
+| ------------------ | ----------- | ------- | ---------------------------------------------------------------------------------- |
+| `children`         | `ReactNode` | —       | Button content. Text, an icon, or both.                                            |
+| `rimWidth`         | `number`    | `2`     | Thickness of the visible metal rim, in pixels.                                     |
+| `repetition`       | `number`    | `4`     | How many stripes of light fit across the metal.                                    |
+| `softness`         | `number`    | `0.5`   | 0 is a hard edge between light and dark, 1 a smooth gradient.                      |
+| `shiftRed`         | `number`    | `0.3`   | How far red is pulled ahead of green: the warm side of the prism fringe.           |
+| `shiftBlue`        | `number`    | `0.3`   | How far blue is pulled behind green: the cool side of the prism fringe.            |
+| `distortion`       | `number`    | `0`     | Noise bending the stripes. 0 keeps them smooth arcs.                               |
+| `angle`            | `number`    | `45`    | Direction the stripes run and flow, in degrees.                                    |
+| `scale`            | `number`    | `8`     | How far zoomed in. Higher shows a smaller window of the pattern, so broader bands. |
+| `speed`            | `number`    | `0.6`   | Base flow speed. Hover runs at 1.7×, and a press at 4× for 300ms.                  |
+| `disableRipple`    | `boolean`   | `false` | Suppress the click ripple.                                                         |
+| `surfaceClassName` | `string`    | —       | Classes for the inner pill that sits on top of the metal rim.                      |
+| `className`        | `string`    | —       | Classes for the button itself.                                                     |
